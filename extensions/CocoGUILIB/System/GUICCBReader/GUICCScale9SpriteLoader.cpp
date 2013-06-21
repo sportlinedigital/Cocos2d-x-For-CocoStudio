@@ -23,7 +23,6 @@
  ****************************************************************************/
 
 #include "GUICCScale9SpriteLoader.h"
-#include "CocoImageViewScale9.h"
 
 
 
@@ -44,7 +43,7 @@ void GUICCScale9SpriteLoader::onHandlePropTypeSpriteFrame(CocoWidget* pWidget, C
     if(strcmp(pPropertyName, PROPERTY_SPRITEFRAME) == 0) {
         /**/
 //            ((CCScale9Sprite *)pNode)->setSpriteFrame(pCCSpriteFrame);
-        dynamic_cast<CocoImageViewScale9*>(pWidget)->setSpriteFrame(pCCSpriteFrame);
+        dynamic_cast<coco*>(pWidget)->setSpriteFrame(pCCSpriteFrame);
         /**/
     } else {
         GUICCNodeLoader::onHandlePropTypeSpriteFrame(pWidget, pNode, pParent, pPropertyName, pCCSpriteFrame, pCCBReader);

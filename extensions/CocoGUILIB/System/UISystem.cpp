@@ -60,9 +60,7 @@ m_pUIInputManager(NULL),
 uiSystemInited(false),
 m_pInputLayer(NULL),
 m_textureFiles(NULL),
-/**/
 m_classTypeDic(NULL)
-/**/
 {
     cocos2d::CCSize winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
     this->m_fFileDesignWidth = winSize.width;
@@ -118,28 +116,6 @@ CocoWidget* UISystem::createWidgetFromFileWithAdapt_json(const char *fileName, b
     CocoWidget* widget = this->createWidgetFromFile_json(fileName);
     cocos2d::CCSize winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
     this->adjustWidgetProperty(widget, winSize.width/this->getFileDesignWidth(),winSize.height/this->getFileDesignHeight(), scaleAdapt, equalProportions);
-    return widget;
-}
-
-CocoWidget* UISystem::createWidgetFromCCBFile(const char *fileName, GUICCNodeLoaderLibrary *ccNodeLoaderLibrary)
-{
-    CocoWidget* widget = NULL;
-    
-    /* Create an autorelease GUICCBReader. */
-    GUICCBReader* guiCCBReader = new GUICCBReader(ccNodeLoaderLibrary);
-    widget = guiCCBReader->widgetFromCCBFile(fileName);
-    CC_SAFE_DELETE(guiCCBReader);
-    return widget;
-}
-
-CocoWidget* UISystem::createWidgetFromCCBFileWithAdapt(const char *fileName, GUICCNodeLoaderLibrary *ccNodeLoaderLibrary, bool scaleAdapt, bool equalProportions)
-{
-    CocoWidget* widget = this->createWidgetFromCCBFile(fileName, ccNodeLoaderLibrary);
-    //        cocos2d::CCSize winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
-    //        float compare_width = 480;
-    //        float compare_height = 320;
-    //        this->adjustWidgetProperty(widget, winSize.width / compare_width, winSize.height / compare_height, scaleAdapt, equalProportions);
-    
     return widget;
 }
 
@@ -207,8 +183,6 @@ void UISystem::resetSystem(cocos2d::CCNode* container,int nPriority)
     this->cleanUIScene();
     this->m_pCurScene->init();
     container->addChild(this->m_pCurScene->getRootWidget()->getContainerNode());
-    
-    initClassType();
 #endif
 }
 
@@ -261,7 +235,6 @@ void UISystem::cleanUIScene()
 #if VERSIONFORCOCOS2DX
     this->m_pCurScene->cleanScene();
     this->removeAllSpriteFrame();
-    this->removeAllClassType();
 #endif
 }
 
@@ -395,63 +368,6 @@ void UISystem::removeAllSpriteFrame()
         cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFrameByName(file->m_sString.c_str());
     }
     this->m_textureFiles->removeAllObjects();
-}
-
-void UISystem::initClassType()
-{
-    setClassType(CCString::create("CCNode"), "CCNode");
-    setClassType(CCString::create("CCLayer"), "CCLayer");
-    setClassType(CCString::create("CCLayerColor"), "CCLayerColor");
-    setClassType(CCString::create("CCLayerGradient"), "CCLayerGradient");
-    setClassType(CCString::create("CCSprite"), "CCSprite");
-    setClassType(CCString::create("CCLabelBMFont"), "CCLabelBMFont");
-    setClassType(CCString::create("CCLabelTTF"), "CCLabelTTF");
-    setClassType(CCString::create("CCScale9Sprite"), "CCScale9Sprite");
-    setClassType(CCString::create("CCScrollView"), "CCScrollView");
-    setClassType(CCString::create("CCMenu"), "CCMenu");
-    setClassType(CCString::create("CCMenuItemImage"), "CCMenuItemImage");
-    setClassType(CCString::create("CCControlButton"), "CCControlButton");
-}
-
-void UISystem::removeClassType(const char *key)
-{
-    if (!key || strcmp("", key) == 0)
-    {
-        return;
-    }
-    this->m_classTypeDic->removeObjectForKey(key);
-}
-
-void UISystem::removeAllClassType()
-{
-    this->m_classTypeDic->removeAllObjects();
-}
-
-void UISystem::registerClassType(CCString *classType, const char *key)
-{
-    if (!key || strcmp("", key) == 0 || !classType)
-    {
-        return;
-    }
-    this->m_classTypeDic->setObject(classType, key);
-}
-
-void UISystem::setClassType(CCString* classType, const char *key)
-{
-    if (!key || strcmp("", key) == 0 || !classType)
-    {
-        return;
-    }
-    this->m_classTypeDic->setObject(classType, key);
-}
-
-CCString* UISystem::getClassType(const char *key)
-{
-    if (!key || strcmp("", key) == 0)
-    {
-        return NULL;
-    }
-    return dynamic_cast<CCString*>(this->m_classTypeDic->objectForKey(key));
 }
 
 NS_CC_EXT_END
