@@ -63,7 +63,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A\include;$(ProjectDir)..\..\external\chipmunk\include\chipmunk;$(ProjectDir)..\..\external\sqlite3\include;$(ProjectDir)..\..\external;$(ProjectDir)..\..\external\libwebsockets\win32\include;$(ProjectDir)..\..\extensions;$(ProjectDir)..\..\extensions\CocoGUILIB\BaseClasses;$(ProjectDir)..\..\extensions\CocoGUILIB\CGraphics;$(ProjectDir)..\..\extensions\CocoGUILIB\Component;$(ProjectDir)..\..\extensions\CocoGUILIB\System\GUICCBReader;$(ProjectDir)..\..\extensions\CocoGUILIB\System\Json;$(ProjectDir)..\..\extensions\CocoGUILIB\System;$(ProjectDir)..\..\extensions\CocoGUILIB\UIElements;$(ProjectDir)..\..\extensions\CCArmature\external_tool\Json\lib_json;$(ProjectDir)..\..\extensions\CCBReader;$(ProjectDir)..\..\extensions\GUI\CCControlExtension;$(ProjectDir)..\..\extensions\GUI\CCEditBox;$(ProjectDir)..\..\extensions\GUI\CCScrollView;$(ProjectDir)..\..\cocos2dx;$(ProjectDir)..\..\cocos2dx\include;$(ProjectDir)..\..\cocos2dx\kazmath\include;$(ProjectDir)..\..\cocos2dx\platform\win32;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32\pthread;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32\OGLES;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32\zlib;$(ProjectDir)..\..\CocosDenshion\include;..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A\include;$(ProjectDir)..\..\external\chipmunk\include\chipmunk;$(ProjectDir)..\..\external\sqlite3\include;$(ProjectDir)..\..\external;$(ProjectDir)..\..\external\libwebsockets\win32\include;$(ProjectDir)..\..\extensions;$(ProjectDir)..\..\extensions\CocoGUILIB\BaseClasses;$(ProjectDir)..\..\extensions\CocoGUILIB\CGraphics;$(ProjectDir)..\..\extensions\CocoGUILIB\Component;$(ProjectDir)..\..\extensions\CocoGUILIB\System\GUICCBReader;$(ProjectDir)..\..\extensions\CocoGUILIB\System\Json;$(ProjectDir)..\..\extensions\CocoGUILIB\System;$(ProjectDir)..\..\extensions\CocoGUILIB\UIElements;$(ProjectDir)..\..\extensions\CCArmature;$(ProjectDir)..\..\extensions\CCArmature\external_tool\Json\lib_json;$(ProjectDir)..\..\extensions\CCArmature\external_tool\Json;$(ProjectDir)..\..\extensions\CCArmature\utils;$(ProjectDir)..\..\extensions\CCBReader;$(ProjectDir)..\..\extensions\GUI\CCControlExtension;$(ProjectDir)..\..\extensions\GUI\CCEditBox;$(ProjectDir)..\..\extensions\GUI\CCScrollView;$(ProjectDir)..\..\cocos2dx;$(ProjectDir)..\..\cocos2dx\include;$(ProjectDir)..\..\cocos2dx\kazmath\include;$(ProjectDir)..\..\cocos2dx\platform\win32;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32\pthread;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32\OGLES;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32\zlib;$(ProjectDir)..\..\CocosDenshion\include;..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_LIB;COCOS2D_DEBUG=1;CC_ENABLE_CHIPMUNK_INTEGRATION=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -157,6 +157,7 @@
     <ClCompile Include="..\CocoGUILIB\Component\CocoControlButton.cpp" />
     <ClCompile Include="..\CocoGUILIB\Component\CocoGradientPanel.cpp" />
     <ClCompile Include="..\CocoGUILIB\Component\CocoImageView.cpp" />
+    <ClCompile Include="..\CocoGUILIB\Component\CocoImageViewScale9.cpp" />
     <ClCompile Include="..\CocoGUILIB\Component\CocoLabel.cpp" />
     <ClCompile Include="..\CocoGUILIB\Component\CocoLabelAtlas.cpp" />
     <ClCompile Include="..\CocoGUILIB\Component\CocoLabelBMFont.cpp" />
@@ -173,6 +174,25 @@
     <ClCompile Include="..\CocoGUILIB\System\CCSReader.cpp" />
     <ClCompile Include="..\CocoGUILIB\System\CocosGUI.cpp" />
     <ClCompile Include="..\CocoGUILIB\System\DictionaryHelper.cpp" />
+    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCBFileLoader.cpp" />
+    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCBReader.cpp" />
+    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCControlButtonLoader.cpp" />
+    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCControlLoader.cpp" />
+    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCLabelBMFontLoader.cpp" />
+    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCLabelTTFLoader.cpp" />
+    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCLayerColorLoader.cpp" />
+    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCLayerGradientLoader.cpp" />
+    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCLayerLoader.cpp" />
+    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCMenuItemImageLoader.cpp" />
+    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCMenuItemLoader.cpp" />
+    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCMenuLoader.cpp" />
+    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCNodeLoader.cpp" />
+    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCNodeLoaderLibrary.cpp" />
+    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCNodeLoaderListener.cpp" />
+    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCParticleSystemQuadLoader.cpp" />
+    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCScale9SpriteLoader.cpp" />
+    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCScrollViewLoader.cpp" />
+    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCSpriteLoader.cpp" />
     <ClCompile Include="..\CocoGUILIB\System\InputLayer.cpp" />
     <ClCompile Include="..\CocoGUILIB\System\UIInputManager.cpp" />
     <ClCompile Include="..\CocoGUILIB\System\UIScene.cpp" />
@@ -181,6 +201,7 @@
     <ClCompile Include="..\Components\CCComAttribute.cpp" />
     <ClCompile Include="..\Components\CCComAudio.cpp" />
     <ClCompile Include="..\Components\CCComController.cpp" />
+    <ClCompile Include="..\Components\CCComRender.cpp" />
     <ClCompile Include="..\Components\CCInputDelegate.cpp" />
     <ClCompile Include="..\GUI\CCControlExtension\CCControl.cpp" />
     <ClCompile Include="..\GUI\CCControlExtension\CCControlButton.cpp" />
@@ -200,6 +221,7 @@
     <ClCompile Include="..\GUI\CCScrollView\CCSorting.cpp" />
     <ClCompile Include="..\GUI\CCScrollView\CCTableView.cpp" />
     <ClCompile Include="..\GUI\CCScrollView\CCTableViewCell.cpp" />
+    <ClCompile Include="..\JsonReader\CCJsonReader.cpp" />
     <ClCompile Include="..\LocalStorage\LocalStorage.cpp" />
     <ClCompile Include="..\network\HttpClient.cpp" />
     <ClCompile Include="..\network\Websocket.cpp" />
@@ -309,6 +331,7 @@
     <ClInclude Include="..\CocoGUILIB\Component\CocoControlButton.h" />
     <ClInclude Include="..\CocoGUILIB\Component\CocoGradientPanel.h" />
     <ClInclude Include="..\CocoGUILIB\Component\CocoImageView.h" />
+    <ClInclude Include="..\CocoGUILIB\Component\CocoImageViewScale9.h" />
     <ClInclude Include="..\CocoGUILIB\Component\CocoLabel.h" />
     <ClInclude Include="..\CocoGUILIB\Component\CocoLabelAtlas.h" />
     <ClInclude Include="..\CocoGUILIB\Component\CocoLabelBMFont.h" />
@@ -325,6 +348,25 @@
     <ClInclude Include="..\CocoGUILIB\System\CCSReader.h" />
     <ClInclude Include="..\CocoGUILIB\System\CocosGUI.h" />
     <ClInclude Include="..\CocoGUILIB\System\DictionaryHelper.h" />
+    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCBFileLoader.h" />
+    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCBReader.h" />
+    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCControlButtonLoader.h" />
+    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCControlLoader.h" />
+    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCLabelBMFontLoader.h" />
+    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCLabelTTFLoader.h" />
+    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCLayerColorLoader.h" />
+    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCLayerGradientLoader.h" />
+    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCLayerLoader.h" />
+    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCMenuItemImageLoader.h" />
+    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCMenuItemLoader.h" />
+    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCMenuLoader.h" />
+    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCNodeLoader.h" />
+    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCNodeLoaderLibrary.h" />
+    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCNodeLoaderListener.h" />
+    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCParticleSystemQuadLoader.h" />
+    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCScale9SpriteLoader.h" />
+    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCScrollViewLoader.h" />
+    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCSpriteLoader.h" />
     <ClInclude Include="..\CocoGUILIB\System\InputLayer.h" />
     <ClInclude Include="..\CocoGUILIB\System\UIInputManager.h" />
     <ClInclude Include="..\CocoGUILIB\System\UIScene.h" />
@@ -333,6 +375,7 @@
     <ClInclude Include="..\Components\CCComAttribute.h" />
     <ClInclude Include="..\Components\CCComAudio.h" />
     <ClInclude Include="..\Components\CCComController.h" />
+    <ClInclude Include="..\Components\CCComRender.h" />
     <ClInclude Include="..\Components\CCInputDelegate.h" />
     <ClInclude Include="..\GUI\CCControlExtension\CCControl.h" />
     <ClInclude Include="..\GUI\CCControlExtension\CCControlButton.h" />
@@ -356,6 +399,7 @@
     <ClInclude Include="..\GUI\CCScrollView\CCSorting.h" />
     <ClInclude Include="..\GUI\CCScrollView\CCTableView.h" />
     <ClInclude Include="..\GUI\CCScrollView\CCTableViewCell.h" />
+    <ClInclude Include="..\JsonReader\CCJsonReader.h" />
     <ClInclude Include="..\LocalStorage\LocalStorage.h" />
     <ClInclude Include="..\network\HttpClient.h" />
     <ClInclude Include="..\network\HttpRequest.h" />

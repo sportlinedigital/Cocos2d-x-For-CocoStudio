@@ -68,5 +68,8 @@
 #include "Components/CCComAttribute.h"
 #include "Components/CCComAudio.h"
 #include "Components/CCComController.h"
+#include "Components/CCComRender.h"
+
+#include "JsonReader/CCJsonReader.h"
 
 #endif /* __COCOS2D_EXT_H__ */
