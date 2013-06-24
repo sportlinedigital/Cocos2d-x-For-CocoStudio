@@ -14,12 +14,14 @@
 #include <cstring>
 #include <iostream>
 #include <stdexcept>
+#include <string.h>
+#include <stdio.h>
 
 #if _MSC_VER >= 1400 // VC++ 8.0
 #pragma warning( disable : 4996 )   // disable warning about strdup being deprecated.
 #endif
 
-namespace Json {
+namespace CSJson {
 
 // Implementation of class Features
 // ////////////////////////////////
@@ -869,7 +871,7 @@ Reader::getFormattedErrorMessages() const
 
 std::istream& operator>>( std::istream &sin, Value &root )
 {
-    Json::Reader reader;
+    CSJson::Reader reader;
     bool ok = reader.parse(sin, root, true);
     //JSON_ASSERT( ok );
     if (!ok) throw std::runtime_error(reader.getFormattedErrorMessages());
@@ -877,4 +879,4 @@ std::istream& operator>>( std::istream &sin, Value &root )
 }
 
 
-} // namespace Json
+} // namespace CSJson

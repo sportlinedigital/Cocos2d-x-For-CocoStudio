@@ -10,8 +10,9 @@ INCLUDES = -I$(COCOS_ROOT)/external \
 	-I../GUI/CCControlExtension \
 	-I../GUI/CCEditBox \
 	-I../network \
-    -I../Components \
-	-I../CCArmature
+        -I../Components \
+	-I../CCArmature \
+	-I../JsonReader \
 
 SOURCES = ../CCBReader/CCBFileLoader.cpp \
 ../CCBReader/CCMenuItemImageLoader.cpp \
@@ -108,6 +109,7 @@ SOURCES = ../CCBReader/CCBFileLoader.cpp \
 ../CCArmature/utils/CCTransformHelp.cpp \
 ../CCArmature/utils/CCTweenFunction.cpp \
 ../CCArmature/utils/CCUtilMath.cpp \
+../JsonReader/CCJsonReader.cpp
 
 include $(COCOS_ROOT)/cocos2dx/proj.linux/cocos2dx.mk
 

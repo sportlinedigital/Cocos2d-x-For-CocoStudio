@@ -94,10 +94,10 @@ typedef void (cocos2d::CCObject::*SEL_PushEvent)(cocos2d::CCObject*);
 typedef void (cocos2d::CCObject::*SEL_MoveEvent)(cocos2d::CCObject*);
 typedef void (cocos2d::CCObject::*SEL_ReleaseEvent)(cocos2d::CCObject*);
 typedef void (cocos2d::CCObject::*SEL_CancelEvent)(cocos2d::CCObject*);
-#define coco_pushselector(_SELECTOR) (cs::SEL_PushEvent)(&_SELECTOR)
-#define coco_moveselector(_SELECTOR) (cs::SEL_MoveEvent)(&_SELECTOR)
-#define coco_releaseselector(_SELECTOR) (cs::SEL_ReleaseEvent)(&_SELECTOR)
-#define coco_cancelselector(_SELECTOR) (cs::SEL_CancelEvent)(&_SELECTOR)
+#define coco_pushselector(_SELECTOR) (cocos2d::extension::SEL_PushEvent)(&_SELECTOR)
+#define coco_moveselector(_SELECTOR) (cocos2d::extension::SEL_MoveEvent)(&_SELECTOR)
+#define coco_releaseselector(_SELECTOR) (cocos2d::extension::SEL_ReleaseEvent)(&_SELECTOR)
+#define coco_cancelselector(_SELECTOR) (cocos2d::extension::SEL_CancelEvent)(&_SELECTOR)
 
 class CocoWidget : public cocos2d::CCObject
 {

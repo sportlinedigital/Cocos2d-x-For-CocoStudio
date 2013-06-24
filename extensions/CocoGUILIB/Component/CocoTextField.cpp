@@ -31,7 +31,15 @@ CocoTextField::CocoTextField():
 m_fTouchWidth(0.0),
 m_fTouchHeight(0.0),
 m_bUseTouchArea(false),
-m_pRenderTextField(NULL)
+m_pRenderTextField(NULL),
+m_pAttachWithIMEListener(NULL),
+m_pDetachWithIMEListener(NULL),
+m_pInsertTextListener(NULL),
+m_pDeleteBackwardListener(NULL),
+m_pfnAttachWithIMESelector(NULL),
+m_pfnDetachWithIMESelector(NULL),
+m_pfnInsertTextSelector(NULL),
+m_pfnDeleteBackwardSelector(NULL)
 {
     
 }

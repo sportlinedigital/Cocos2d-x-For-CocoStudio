@@ -102,7 +102,9 @@ spine/spine-cocos2dx.cpp \
 Components/CCComAttribute.cpp \
 Components/CCComAudio.cpp \
 Components/CCComController.cpp \
-Components/CCInputDelegate.cpp
+Components/CCComRender.cpp \
+Components/CCInputDelegate.cpp \
+JsonReader/CCJsonReader.cpp 
 
 LOCAL_WHOLE_STATIC_LIBRARIES := cocos2dx_static
 LOCAL_WHOLE_STATIC_LIBRARIES += cocosdenshion_static
@@ -120,7 +122,7 @@ LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH) \
                            $(LOCAL_PATH)/GUI/CCScrollView \
                            $(LOCAL_PATH)/network \
                            $(LOCAL_PATH)/LocalStorage \
-						   $(LOCAL_PATH)/CCArmature
+			   $(LOCAL_PATH)/CCArmature
 
 LOCAL_CFLAGS := -fexceptions
                     

@@ -315,6 +315,44 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		37DC650B177803D400D5E676 /* CCComRender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC6509177803D400D5E676 /* CCComRender.cpp */; };
+		37DC6511177803EB00D5E676 /* CCJsonReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC650F177803EB00D5E676 /* CCJsonReader.cpp */; };
+		37DC65681778044B00D5E676 /* CocoContainerWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC651D1778044B00D5E676 /* CocoContainerWidget.cpp */; };
+		37DC65691778044B00D5E676 /* CocoRootWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC651F1778044B00D5E676 /* CocoRootWidget.cpp */; };
+		37DC656A1778044B00D5E676 /* CocoWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC65211778044B00D5E676 /* CocoWidget.cpp */; };
+		37DC656B1778044B00D5E676 /* CClipAbleLayerColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC65241778044B00D5E676 /* CClipAbleLayerColor.cpp */; };
+		37DC656C1778044B00D5E676 /* CClipAbleLayerGradient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC65261778044B00D5E676 /* CClipAbleLayerGradient.cpp */; };
+		37DC656D1778044B00D5E676 /* CClipAbleSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC65281778044B00D5E676 /* CClipAbleSprite.cpp */; };
+		37DC656E1778044B00D5E676 /* CLabelAtlas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC652A1778044B00D5E676 /* CLabelAtlas.cpp */; };
+		37DC656F1778044B00D5E676 /* CPrimitivesNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC652C1778044B00D5E676 /* CPrimitivesNode.cpp */; };
+		37DC65701778044B00D5E676 /* CTextField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC652E1778044B00D5E676 /* CTextField.cpp */; };
+		37DC65711778044B00D5E676 /* GUINodeRGBA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC65301778044B00D5E676 /* GUINodeRGBA.cpp */; };
+		37DC65721778044B00D5E676 /* CocoButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC65331778044B00D5E676 /* CocoButton.cpp */; };
+		37DC65731778044B00D5E676 /* CocoCheckBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC65351778044B00D5E676 /* CocoCheckBox.cpp */; };
+		37DC65741778044B00D5E676 /* CocoControlButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC65371778044B00D5E676 /* CocoControlButton.cpp */; };
+		37DC65751778044B00D5E676 /* CocoGradientPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC65391778044B00D5E676 /* CocoGradientPanel.cpp */; };
+		37DC65761778044B00D5E676 /* CocoImageView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC653B1778044B00D5E676 /* CocoImageView.cpp */; };
+		37DC65771778044B00D5E676 /* CocoLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC653D1778044B00D5E676 /* CocoLabel.cpp */; };
+		37DC65781778044B00D5E676 /* CocoLabelAtlas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC653F1778044B00D5E676 /* CocoLabelAtlas.cpp */; };
+		37DC65791778044B00D5E676 /* CocoLabelBMFont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC65411778044B00D5E676 /* CocoLabelBMFont.cpp */; };
+		37DC657A1778044B00D5E676 /* CocoListView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC65431778044B00D5E676 /* CocoListView.cpp */; };
+		37DC657B1778044B00D5E676 /* CocoLoadingBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC65451778044B00D5E676 /* CocoLoadingBar.cpp */; };
+		37DC657C1778044B00D5E676 /* CocoNodeContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC65471778044B00D5E676 /* CocoNodeContainer.cpp */; };
+		37DC657D1778044B00D5E676 /* CocoPageView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC65491778044B00D5E676 /* CocoPageView.cpp */; };
+		37DC657E1778044B00D5E676 /* CocoPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC654B1778044B00D5E676 /* CocoPanel.cpp */; };
+		37DC657F1778044B00D5E676 /* CocoScrollView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC654D1778044B00D5E676 /* CocoScrollView.cpp */; };
+		37DC65801778044B00D5E676 /* CocoSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC654F1778044B00D5E676 /* CocoSlider.cpp */; };
+		37DC65811778044B00D5E676 /* CocoTextArea.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC65511778044B00D5E676 /* CocoTextArea.cpp */; };
+		37DC65821778044B00D5E676 /* CocoTextButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC65531778044B00D5E676 /* CocoTextButton.cpp */; };
+		37DC65831778044B00D5E676 /* CocoTextField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC65551778044B00D5E676 /* CocoTextField.cpp */; };
+		37DC65841778044B00D5E676 /* CCSReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC65581778044B00D5E676 /* CCSReader.cpp */; };
+		37DC65851778044B00D5E676 /* CocosGUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC655A1778044B00D5E676 /* CocosGUI.cpp */; };
+		37DC65861778044B00D5E676 /* DictionaryHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC655C1778044B00D5E676 /* DictionaryHelper.cpp */; };
+		37DC65871778044B00D5E676 /* InputLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC655E1778044B00D5E676 /* InputLayer.cpp */; };
+		37DC65881778044B00D5E676 /* UIInputManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC65601778044B00D5E676 /* UIInputManager.cpp */; };
+		37DC65891778044B00D5E676 /* UIScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC65621778044B00D5E676 /* UIScene.cpp */; };
+		37DC658A1778044B00D5E676 /* UISystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC65641778044B00D5E676 /* UISystem.cpp */; };
+		37DC658B1778044B00D5E676 /* UIWidgetPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC65661778044B00D5E676 /* UIWidgetPool.cpp */; };
 		37EEEC1F175DE303003C1193 /* CCComAttribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37EEEC17175DE303003C1193 /* CCComAttribute.cpp */; };
 		37EEEC20175DE303003C1193 /* CCComAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37EEEC19175DE303003C1193 /* CCComAudio.cpp */; };
 		37EEEC21175DE303003C1193 /* CCComController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37EEEC1B175DE303003C1193 /* CCComController.cpp */; };
@@ -1021,6 +1059,82 @@
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ../main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* iphone_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iphone_Prefix.pch; path = ../iphone_Prefix.pch; sourceTree = "<group>"; };
+		37DC6509177803D400D5E676 /* CCComRender.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCComRender.cpp; sourceTree = "<group>"; };
+		37DC650A177803D400D5E676 /* CCComRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCComRender.h; sourceTree = "<group>"; };
+		37DC650F177803EB00D5E676 /* CCJsonReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCJsonReader.cpp; sourceTree = "<group>"; };
+		37DC6510177803EB00D5E676 /* CCJsonReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCJsonReader.h; sourceTree = "<group>"; };
+		37DC651D1778044B00D5E676 /* CocoContainerWidget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoContainerWidget.cpp; sourceTree = "<group>"; };
+		37DC651E1778044B00D5E676 /* CocoContainerWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoContainerWidget.h; sourceTree = "<group>"; };
+		37DC651F1778044B00D5E676 /* CocoRootWidget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoRootWidget.cpp; sourceTree = "<group>"; };
+		37DC65201778044B00D5E676 /* CocoRootWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoRootWidget.h; sourceTree = "<group>"; };
+		37DC65211778044B00D5E676 /* CocoWidget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoWidget.cpp; sourceTree = "<group>"; };
+		37DC65221778044B00D5E676 /* CocoWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoWidget.h; sourceTree = "<group>"; };
+		37DC65241778044B00D5E676 /* CClipAbleLayerColor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CClipAbleLayerColor.cpp; sourceTree = "<group>"; };
+		37DC65251778044B00D5E676 /* CClipAbleLayerColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CClipAbleLayerColor.h; sourceTree = "<group>"; };
+		37DC65261778044B00D5E676 /* CClipAbleLayerGradient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CClipAbleLayerGradient.cpp; sourceTree = "<group>"; };
+		37DC65271778044B00D5E676 /* CClipAbleLayerGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CClipAbleLayerGradient.h; sourceTree = "<group>"; };
+		37DC65281778044B00D5E676 /* CClipAbleSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CClipAbleSprite.cpp; sourceTree = "<group>"; };
+		37DC65291778044B00D5E676 /* CClipAbleSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CClipAbleSprite.h; sourceTree = "<group>"; };
+		37DC652A1778044B00D5E676 /* CLabelAtlas.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CLabelAtlas.cpp; sourceTree = "<group>"; };
+		37DC652B1778044B00D5E676 /* CLabelAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLabelAtlas.h; sourceTree = "<group>"; };
+		37DC652C1778044B00D5E676 /* CPrimitivesNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPrimitivesNode.cpp; sourceTree = "<group>"; };
+		37DC652D1778044B00D5E676 /* CPrimitivesNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPrimitivesNode.h; sourceTree = "<group>"; };
+		37DC652E1778044B00D5E676 /* CTextField.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CTextField.cpp; sourceTree = "<group>"; };
+		37DC652F1778044B00D5E676 /* CTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTextField.h; sourceTree = "<group>"; };
+		37DC65301778044B00D5E676 /* GUINodeRGBA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GUINodeRGBA.cpp; sourceTree = "<group>"; };
+		37DC65311778044B00D5E676 /* GUINodeRGBA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUINodeRGBA.h; sourceTree = "<group>"; };
+		37DC65331778044B00D5E676 /* CocoButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoButton.cpp; sourceTree = "<group>"; };
+		37DC65341778044B00D5E676 /* CocoButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoButton.h; sourceTree = "<group>"; };
+		37DC65351778044B00D5E676 /* CocoCheckBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoCheckBox.cpp; sourceTree = "<group>"; };
+		37DC65361778044B00D5E676 /* CocoCheckBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoCheckBox.h; sourceTree = "<group>"; };
+		37DC65371778044B00D5E676 /* CocoControlButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoControlButton.cpp; sourceTree = "<group>"; };
+		37DC65381778044B00D5E676 /* CocoControlButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoControlButton.h; sourceTree = "<group>"; };
+		37DC65391778044B00D5E676 /* CocoGradientPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoGradientPanel.cpp; sourceTree = "<group>"; };
+		37DC653A1778044B00D5E676 /* CocoGradientPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoGradientPanel.h; sourceTree = "<group>"; };
+		37DC653B1778044B00D5E676 /* CocoImageView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoImageView.cpp; sourceTree = "<group>"; };
+		37DC653C1778044B00D5E676 /* CocoImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoImageView.h; sourceTree = "<group>"; };
+		37DC653D1778044B00D5E676 /* CocoLabel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoLabel.cpp; sourceTree = "<group>"; };
+		37DC653E1778044B00D5E676 /* CocoLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoLabel.h; sourceTree = "<group>"; };
+		37DC653F1778044B00D5E676 /* CocoLabelAtlas.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoLabelAtlas.cpp; sourceTree = "<group>"; };
+		37DC65401778044B00D5E676 /* CocoLabelAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoLabelAtlas.h; sourceTree = "<group>"; };
+		37DC65411778044B00D5E676 /* CocoLabelBMFont.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoLabelBMFont.cpp; sourceTree = "<group>"; };
+		37DC65421778044B00D5E676 /* CocoLabelBMFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoLabelBMFont.h; sourceTree = "<group>"; };
+		37DC65431778044B00D5E676 /* CocoListView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoListView.cpp; sourceTree = "<group>"; };
+		37DC65441778044B00D5E676 /* CocoListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoListView.h; sourceTree = "<group>"; };
+		37DC65451778044B00D5E676 /* CocoLoadingBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoLoadingBar.cpp; sourceTree = "<group>"; };
+		37DC65461778044B00D5E676 /* CocoLoadingBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoLoadingBar.h; sourceTree = "<group>"; };
+		37DC65471778044B00D5E676 /* CocoNodeContainer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoNodeContainer.cpp; sourceTree = "<group>"; };
+		37DC65481778044B00D5E676 /* CocoNodeContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoNodeContainer.h; sourceTree = "<group>"; };
+		37DC65491778044B00D5E676 /* CocoPageView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoPageView.cpp; sourceTree = "<group>"; };
+		37DC654A1778044B00D5E676 /* CocoPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoPageView.h; sourceTree = "<group>"; };
+		37DC654B1778044B00D5E676 /* CocoPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoPanel.cpp; sourceTree = "<group>"; };
+		37DC654C1778044B00D5E676 /* CocoPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoPanel.h; sourceTree = "<group>"; };
+		37DC654D1778044B00D5E676 /* CocoScrollView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoScrollView.cpp; sourceTree = "<group>"; };
+		37DC654E1778044B00D5E676 /* CocoScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoScrollView.h; sourceTree = "<group>"; };
+		37DC654F1778044B00D5E676 /* CocoSlider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoSlider.cpp; sourceTree = "<group>"; };
+		37DC65501778044B00D5E676 /* CocoSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoSlider.h; sourceTree = "<group>"; };
+		37DC65511778044B00D5E676 /* CocoTextArea.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoTextArea.cpp; sourceTree = "<group>"; };
+		37DC65521778044B00D5E676 /* CocoTextArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoTextArea.h; sourceTree = "<group>"; };
+		37DC65531778044B00D5E676 /* CocoTextButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoTextButton.cpp; sourceTree = "<group>"; };
+		37DC65541778044B00D5E676 /* CocoTextButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoTextButton.h; sourceTree = "<group>"; };
+		37DC65551778044B00D5E676 /* CocoTextField.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoTextField.cpp; sourceTree = "<group>"; };
+		37DC65561778044B00D5E676 /* CocoTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoTextField.h; sourceTree = "<group>"; };
+		37DC65581778044B00D5E676 /* CCSReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCSReader.cpp; sourceTree = "<group>"; };
+		37DC65591778044B00D5E676 /* CCSReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSReader.h; sourceTree = "<group>"; };
+		37DC655A1778044B00D5E676 /* CocosGUI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocosGUI.cpp; sourceTree = "<group>"; };
+		37DC655B1778044B00D5E676 /* CocosGUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosGUI.h; sourceTree = "<group>"; };
+		37DC655C1778044B00D5E676 /* DictionaryHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DictionaryHelper.cpp; sourceTree = "<group>"; };
+		37DC655D1778044B00D5E676 /* DictionaryHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryHelper.h; sourceTree = "<group>"; };
+		37DC655E1778044B00D5E676 /* InputLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InputLayer.cpp; sourceTree = "<group>"; };
+		37DC655F1778044B00D5E676 /* InputLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputLayer.h; sourceTree = "<group>"; };
+		37DC65601778044B00D5E676 /* UIInputManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIInputManager.cpp; sourceTree = "<group>"; };
+		37DC65611778044B00D5E676 /* UIInputManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIInputManager.h; sourceTree = "<group>"; };
+		37DC65621778044B00D5E676 /* UIScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIScene.cpp; sourceTree = "<group>"; };
+		37DC65631778044B00D5E676 /* UIScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIScene.h; sourceTree = "<group>"; };
+		37DC65641778044B00D5E676 /* UISystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UISystem.cpp; sourceTree = "<group>"; };
+		37DC65651778044B00D5E676 /* UISystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISystem.h; sourceTree = "<group>"; };
+		37DC65661778044B00D5E676 /* UIWidgetPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIWidgetPool.cpp; sourceTree = "<group>"; };
+		37DC65671778044B00D5E676 /* UIWidgetPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIWidgetPool.h; sourceTree = "<group>"; };
 		37EEEC17175DE303003C1193 /* CCComAttribute.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCComAttribute.cpp; sourceTree = "<group>"; };
 		37EEEC18175DE303003C1193 /* CCComAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCComAttribute.h; sourceTree = "<group>"; };
 		37EEEC19175DE303003C1193 /* CCComAudio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCComAudio.cpp; sourceTree = "<group>"; };
@@ -1406,6 +1520,8 @@
 		15A3D9B31682F826002FB0C5 /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				37DC651B1778044B00D5E676 /* CocoGUILIB */,
+				37DC650E177803EB00D5E676 /* JsonReader */,
 				1A70B1AD176318E80003A116 /* CCArmature */,
 				15A3D9B51682F826002FB0C5 /* CCBReader */,
 				15A3D9EA1682F826002FB0C5 /* cocos-ext.h */,
@@ -2678,9 +2794,131 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		37DC650E177803EB00D5E676 /* JsonReader */ = {
+			isa = PBXGroup;
+			children = (
+				37DC650F177803EB00D5E676 /* CCJsonReader.cpp */,
+				37DC6510177803EB00D5E676 /* CCJsonReader.h */,
+			);
+			path = JsonReader;
+			sourceTree = "<group>";
+		};
+		37DC651B1778044B00D5E676 /* CocoGUILIB */ = {
+			isa = PBXGroup;
+			children = (
+				37DC651C1778044B00D5E676 /* BaseClasses */,
+				37DC65231778044B00D5E676 /* CGraphics */,
+				37DC65321778044B00D5E676 /* Component */,
+				37DC65571778044B00D5E676 /* System */,
+			);
+			path = CocoGUILIB;
+			sourceTree = "<group>";
+		};
+		37DC651C1778044B00D5E676 /* BaseClasses */ = {
+			isa = PBXGroup;
+			children = (
+				37DC651D1778044B00D5E676 /* CocoContainerWidget.cpp */,
+				37DC651E1778044B00D5E676 /* CocoContainerWidget.h */,
+				37DC651F1778044B00D5E676 /* CocoRootWidget.cpp */,
+				37DC65201778044B00D5E676 /* CocoRootWidget.h */,
+				37DC65211778044B00D5E676 /* CocoWidget.cpp */,
+				37DC65221778044B00D5E676 /* CocoWidget.h */,
+			);
+			path = BaseClasses;
+			sourceTree = "<group>";
+		};
+		37DC65231778044B00D5E676 /* CGraphics */ = {
+			isa = PBXGroup;
+			children = (
+				37DC65241778044B00D5E676 /* CClipAbleLayerColor.cpp */,
+				37DC65251778044B00D5E676 /* CClipAbleLayerColor.h */,
+				37DC65261778044B00D5E676 /* CClipAbleLayerGradient.cpp */,
+				37DC65271778044B00D5E676 /* CClipAbleLayerGradient.h */,
+				37DC65281778044B00D5E676 /* CClipAbleSprite.cpp */,
+				37DC65291778044B00D5E676 /* CClipAbleSprite.h */,
+				37DC652A1778044B00D5E676 /* CLabelAtlas.cpp */,
+				37DC652B1778044B00D5E676 /* CLabelAtlas.h */,
+				37DC652C1778044B00D5E676 /* CPrimitivesNode.cpp */,
+				37DC652D1778044B00D5E676 /* CPrimitivesNode.h */,
+				37DC652E1778044B00D5E676 /* CTextField.cpp */,
+				37DC652F1778044B00D5E676 /* CTextField.h */,
+				37DC65301778044B00D5E676 /* GUINodeRGBA.cpp */,
+				37DC65311778044B00D5E676 /* GUINodeRGBA.h */,
+			);
+			path = CGraphics;
+			sourceTree = "<group>";
+		};
+		37DC65321778044B00D5E676 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				37DC65331778044B00D5E676 /* CocoButton.cpp */,
+				37DC65341778044B00D5E676 /* CocoButton.h */,
+				37DC65351778044B00D5E676 /* CocoCheckBox.cpp */,
+				37DC65361778044B00D5E676 /* CocoCheckBox.h */,
+				37DC65371778044B00D5E676 /* CocoControlButton.cpp */,
+				37DC65381778044B00D5E676 /* CocoControlButton.h */,
+				37DC65391778044B00D5E676 /* CocoGradientPanel.cpp */,
+				37DC653A1778044B00D5E676 /* CocoGradientPanel.h */,
+				37DC653B1778044B00D5E676 /* CocoImageView.cpp */,
+				37DC653C1778044B00D5E676 /* CocoImageView.h */,
+				37DC653D1778044B00D5E676 /* CocoLabel.cpp */,
+				37DC653E1778044B00D5E676 /* CocoLabel.h */,
+				37DC653F1778044B00D5E676 /* CocoLabelAtlas.cpp */,
+				37DC65401778044B00D5E676 /* CocoLabelAtlas.h */,
+				37DC65411778044B00D5E676 /* CocoLabelBMFont.cpp */,
+				37DC65421778044B00D5E676 /* CocoLabelBMFont.h */,
+				37DC65431778044B00D5E676 /* CocoListView.cpp */,
+				37DC65441778044B00D5E676 /* CocoListView.h */,
+				37DC65451778044B00D5E676 /* CocoLoadingBar.cpp */,
+				37DC65461778044B00D5E676 /* CocoLoadingBar.h */,
+				37DC65471778044B00D5E676 /* CocoNodeContainer.cpp */,
+				37DC65481778044B00D5E676 /* CocoNodeContainer.h */,
+				37DC65491778044B00D5E676 /* CocoPageView.cpp */,
+				37DC654A1778044B00D5E676 /* CocoPageView.h */,
+				37DC654B1778044B00D5E676 /* CocoPanel.cpp */,
+				37DC654C1778044B00D5E676 /* CocoPanel.h */,
+				37DC654D1778044B00D5E676 /* CocoScrollView.cpp */,
+				37DC654E1778044B00D5E676 /* CocoScrollView.h */,
+				37DC654F1778044B00D5E676 /* CocoSlider.cpp */,
+				37DC65501778044B00D5E676 /* CocoSlider.h */,
+				37DC65511778044B00D5E676 /* CocoTextArea.cpp */,
+				37DC65521778044B00D5E676 /* CocoTextArea.h */,
+				37DC65531778044B00D5E676 /* CocoTextButton.cpp */,
+				37DC65541778044B00D5E676 /* CocoTextButton.h */,
+				37DC65551778044B00D5E676 /* CocoTextField.cpp */,
+				37DC65561778044B00D5E676 /* CocoTextField.h */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		37DC65571778044B00D5E676 /* System */ = {
+			isa = PBXGroup;
+			children = (
+				37DC65581778044B00D5E676 /* CCSReader.cpp */,
+				37DC65591778044B00D5E676 /* CCSReader.h */,
+				37DC655A1778044B00D5E676 /* CocosGUI.cpp */,
+				37DC655B1778044B00D5E676 /* CocosGUI.h */,
+				37DC655C1778044B00D5E676 /* DictionaryHelper.cpp */,
+				37DC655D1778044B00D5E676 /* DictionaryHelper.h */,
+				37DC655E1778044B00D5E676 /* InputLayer.cpp */,
+				37DC655F1778044B00D5E676 /* InputLayer.h */,
+				37DC65601778044B00D5E676 /* UIInputManager.cpp */,
+				37DC65611778044B00D5E676 /* UIInputManager.h */,
+				37DC65621778044B00D5E676 /* UIScene.cpp */,
+				37DC65631778044B00D5E676 /* UIScene.h */,
+				37DC65641778044B00D5E676 /* UISystem.cpp */,
+				37DC65651778044B00D5E676 /* UISystem.h */,
+				37DC65661778044B00D5E676 /* UIWidgetPool.cpp */,
+				37DC65671778044B00D5E676 /* UIWidgetPool.h */,
+			);
+			path = System;
+			sourceTree = "<group>";
+		};
 		37EEEC16175DE303003C1193 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				37DC6509177803D400D5E676 /* CCComRender.cpp */,
+				37DC650A177803D400D5E676 /* CCComRender.h */,
 				37EEEC17175DE303003C1193 /* CCComAttribute.cpp */,
 				37EEEC18175DE303003C1193 /* CCComAttribute.h */,
 				37EEEC19175DE303003C1193 /* CCComAudio.cpp */,
@@ -3192,6 +3430,44 @@
 				1A70B213176318E80003A116 /* CCTransformHelp.cpp in Sources */,
 				1A70B214176318E80003A116 /* CCTweenFunction.cpp in Sources */,
 				1A70B215176318E80003A116 /* CCUtilMath.cpp in Sources */,
+				37DC650B177803D400D5E676 /* CCComRender.cpp in Sources */,
+				37DC6511177803EB00D5E676 /* CCJsonReader.cpp in Sources */,
+				37DC65681778044B00D5E676 /* CocoContainerWidget.cpp in Sources */,
+				37DC65691778044B00D5E676 /* CocoRootWidget.cpp in Sources */,
+				37DC656A1778044B00D5E676 /* CocoWidget.cpp in Sources */,
+				37DC656B1778044B00D5E676 /* CClipAbleLayerColor.cpp in Sources */,
+				37DC656C1778044B00D5E676 /* CClipAbleLayerGradient.cpp in Sources */,
+				37DC656D1778044B00D5E676 /* CClipAbleSprite.cpp in Sources */,
+				37DC656E1778044B00D5E676 /* CLabelAtlas.cpp in Sources */,
+				37DC656F1778044B00D5E676 /* CPrimitivesNode.cpp in Sources */,
+				37DC65701778044B00D5E676 /* CTextField.cpp in Sources */,
+				37DC65711778044B00D5E676 /* GUINodeRGBA.cpp in Sources */,
+				37DC65721778044B00D5E676 /* CocoButton.cpp in Sources */,
+				37DC65731778044B00D5E676 /* CocoCheckBox.cpp in Sources */,
+				37DC65741778044B00D5E676 /* CocoControlButton.cpp in Sources */,
+				37DC65751778044B00D5E676 /* CocoGradientPanel.cpp in Sources */,
+				37DC65761778044B00D5E676 /* CocoImageView.cpp in Sources */,
+				37DC65771778044B00D5E676 /* CocoLabel.cpp in Sources */,
+				37DC65781778044B00D5E676 /* CocoLabelAtlas.cpp in Sources */,
+				37DC65791778044B00D5E676 /* CocoLabelBMFont.cpp in Sources */,
+				37DC657A1778044B00D5E676 /* CocoListView.cpp in Sources */,
+				37DC657B1778044B00D5E676 /* CocoLoadingBar.cpp in Sources */,
+				37DC657C1778044B00D5E676 /* CocoNodeContainer.cpp in Sources */,
+				37DC657D1778044B00D5E676 /* CocoPageView.cpp in Sources */,
+				37DC657E1778044B00D5E676 /* CocoPanel.cpp in Sources */,
+				37DC657F1778044B00D5E676 /* CocoScrollView.cpp in Sources */,
+				37DC65801778044B00D5E676 /* CocoSlider.cpp in Sources */,
+				37DC65811778044B00D5E676 /* CocoTextArea.cpp in Sources */,
+				37DC65821778044B00D5E676 /* CocoTextButton.cpp in Sources */,
+				37DC65831778044B00D5E676 /* CocoTextField.cpp in Sources */,
+				37DC65841778044B00D5E676 /* CCSReader.cpp in Sources */,
+				37DC65851778044B00D5E676 /* CocosGUI.cpp in Sources */,
+				37DC65861778044B00D5E676 /* DictionaryHelper.cpp in Sources */,
+				37DC65871778044B00D5E676 /* InputLayer.cpp in Sources */,
+				37DC65881778044B00D5E676 /* UIInputManager.cpp in Sources */,
+				37DC65891778044B00D5E676 /* UIScene.cpp in Sources */,
+				37DC658A1778044B00D5E676 /* UISystem.cpp in Sources */,
+				37DC658B1778044B00D5E676 /* UIWidgetPool.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

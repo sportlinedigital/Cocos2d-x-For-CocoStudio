@@ -12,6 +12,7 @@ INCLUDES = -I$(COCOS_ROOT)/external \
 	-I../GUI/CCEditBox \
 	-I../Components \
 	-I../CCArmature \
+        -I../JsonReader \
     
 DEFINES += -DCC_ENABLE_CHIPMUNK_INTEGRATION=1
 DEFINES += -D__CC_PLATFORM_IMAGE_CPP__
@@ -89,6 +90,7 @@ SOURCES = ../CCBReader/CCBFileLoader.cpp \
 ../CCArmature/utils/CCTransformHelp.cpp \
 ../CCArmature/utils/CCTweenFunction.cpp \
 ../CCArmature/utils/CCUtilMath.cpp \
+../JsonReader/CCJsonReader.cpp \
 
 include $(COCOS_ROOT)/cocos2dx/proj.emscripten/cocos2dx.mk
 

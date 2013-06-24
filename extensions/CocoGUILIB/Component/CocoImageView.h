@@ -47,7 +47,6 @@ public:
     virtual void setFlipY(bool flipY);
     void setScale9Enable(bool able);
     void setScale9Size(float width,float height);
-    void setTexturesScale9(const char* fileName, cocos2d::CCRect capInsets, bool useSpriteFrame = false);
     void setDisplayFrame(cocos2d::CCSpriteFrame *pNewFrame);
     void setSpriteFrame(cocos2d::CCSpriteFrame *pNewFrame);
     void setPreferredSize(const cocos2d::CCSize& pSize);
@@ -55,6 +54,7 @@ public:
     void setInsetTop(float insetTop);
     void setInsetRight(float insetRight);
     void setInsetBottom(float insetBottom);
+    void setCapInset(const CCRect &capInset);
     virtual cocos2d::CCNode* getValidNode();
 protected:
     int m_nViewType;
@@ -66,6 +66,7 @@ protected:
     
     bool m_bScale9Enable;
     CCNode* m_pImageRender;
+    std::string m_strTextureFile;
 };
 
 NS_CC_EXT_END
