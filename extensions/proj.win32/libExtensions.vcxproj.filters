@@ -76,6 +76,9 @@
     <Filter Include="CocoGUILIB\BaseClasses">
       <UniqueIdentifier>{0d3258dd-4c8b-4f52-8903-d41328408920}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CocoGUILIB\Action">
+      <UniqueIdentifier>{3e11ea5c-b88d-4c64-bbc0-0ff241a7de1b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\GUI\CCScrollView\CCScrollView.cpp">
@@ -486,6 +489,18 @@
     <ClCompile Include="..\CocoGUILIB\CGraphics\CClipAbleLayerGradient.cpp">
       <Filter>CocoGUILIB\CGraphics</Filter>
     </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\Action\CocoGUIAction.cpp">
+      <Filter>CocoGUILIB\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\Action\CocoGUIActionFrame.cpp">
+      <Filter>CocoGUILIB\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\Action\CocoGUIActionManager.cpp">
+      <Filter>CocoGUILIB\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\Action\CocoGUIActionNode.cpp">
+      <Filter>CocoGUILIB\Action</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\GUI\CCScrollView\CCScrollView.h">
@@ -873,6 +888,18 @@
     </ClInclude>
     <ClInclude Include="..\CocoGUILIB\CGraphics\CClipAbleLayerGradient.h">
       <Filter>CocoGUILIB\CGraphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\Action\CocoGUIAction.h">
+      <Filter>CocoGUILIB\Action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\Action\CocoGUIActionFrame.h">
+      <Filter>CocoGUILIB\Action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\Action\CocoGUIActionManager.h">
+      <Filter>CocoGUILIB\Action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\Action\CocoGUIActionNode.h">
+      <Filter>CocoGUILIB\Action</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
