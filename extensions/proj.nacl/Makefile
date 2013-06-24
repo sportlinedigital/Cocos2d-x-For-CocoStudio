@@ -93,6 +93,7 @@ EXTENSIONS_SOURCES = ../CCBReader/CCBFileLoader.cpp \
 ../CCArmature/utils/CCTweenFunction.cpp \
 ../CCArmature/utils/CCUtilMath.cpp \
 ../JsonReader/CCJsonReader.cpp \
+../JsonReader/DictionaryHelper.cpp 
 
 all:
 

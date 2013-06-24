@@ -287,84 +287,49 @@
 		37DC661B17780CBE00D5E676 /* CCTweenFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC65FB17780CBE00D5E676 /* CCTweenFunction.cpp */; };
 		37DC661C17780CBE00D5E676 /* CCUtilMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC65FD17780CBE00D5E676 /* CCUtilMath.cpp */; };
 		37DC661F17780CC400D5E676 /* CCComRender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC661D17780CC400D5E676 /* CCComRender.cpp */; };
-		37DC666D17780CCF00D5E676 /* CocoContainerWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC662217780CCF00D5E676 /* CocoContainerWidget.cpp */; };
-		37DC666E17780CCF00D5E676 /* CocoRootWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC662417780CCF00D5E676 /* CocoRootWidget.cpp */; };
-		37DC666F17780CCF00D5E676 /* CocoWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC662617780CCF00D5E676 /* CocoWidget.cpp */; };
-		37DC667017780CCF00D5E676 /* CClipAbleLayerColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC662917780CCF00D5E676 /* CClipAbleLayerColor.cpp */; };
-		37DC667117780CCF00D5E676 /* CClipAbleLayerGradient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC662B17780CCF00D5E676 /* CClipAbleLayerGradient.cpp */; };
-		37DC667217780CCF00D5E676 /* CClipAbleSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC662D17780CCF00D5E676 /* CClipAbleSprite.cpp */; };
-		37DC667317780CCF00D5E676 /* CLabelAtlas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC662F17780CCF00D5E676 /* CLabelAtlas.cpp */; };
-		37DC667417780CCF00D5E676 /* CPrimitivesNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC663117780CCF00D5E676 /* CPrimitivesNode.cpp */; };
-		37DC667517780CCF00D5E676 /* CTextField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC663317780CCF00D5E676 /* CTextField.cpp */; };
-		37DC667617780CCF00D5E676 /* GUINodeRGBA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC663517780CCF00D5E676 /* GUINodeRGBA.cpp */; };
-		37DC667717780CCF00D5E676 /* CocoButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC663817780CCF00D5E676 /* CocoButton.cpp */; };
-		37DC667817780CCF00D5E676 /* CocoCheckBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC663A17780CCF00D5E676 /* CocoCheckBox.cpp */; };
-		37DC667917780CCF00D5E676 /* CocoControlButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC663C17780CCF00D5E676 /* CocoControlButton.cpp */; };
-		37DC667A17780CCF00D5E676 /* CocoGradientPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC663E17780CCF00D5E676 /* CocoGradientPanel.cpp */; };
-		37DC667B17780CCF00D5E676 /* CocoImageView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC664017780CCF00D5E676 /* CocoImageView.cpp */; };
-		37DC667C17780CCF00D5E676 /* CocoLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC664217780CCF00D5E676 /* CocoLabel.cpp */; };
-		37DC667D17780CCF00D5E676 /* CocoLabelAtlas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC664417780CCF00D5E676 /* CocoLabelAtlas.cpp */; };
-		37DC667E17780CCF00D5E676 /* CocoLabelBMFont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC664617780CCF00D5E676 /* CocoLabelBMFont.cpp */; };
-		37DC667F17780CCF00D5E676 /* CocoListView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC664817780CCF00D5E676 /* CocoListView.cpp */; };
-		37DC668017780CCF00D5E676 /* CocoLoadingBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC664A17780CCF00D5E676 /* CocoLoadingBar.cpp */; };
-		37DC668117780CCF00D5E676 /* CocoNodeContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC664C17780CCF00D5E676 /* CocoNodeContainer.cpp */; };
-		37DC668217780CCF00D5E676 /* CocoPageView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC664E17780CCF00D5E676 /* CocoPageView.cpp */; };
-		37DC668317780CCF00D5E676 /* CocoPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC665017780CCF00D5E676 /* CocoPanel.cpp */; };
-		37DC668417780CCF00D5E676 /* CocoScrollView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC665217780CCF00D5E676 /* CocoScrollView.cpp */; };
-		37DC668517780CCF00D5E676 /* CocoSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC665417780CCF00D5E676 /* CocoSlider.cpp */; };
-		37DC668617780CCF00D5E676 /* CocoTextArea.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC665617780CCF00D5E676 /* CocoTextArea.cpp */; };
-		37DC668717780CCF00D5E676 /* CocoTextButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC665817780CCF00D5E676 /* CocoTextButton.cpp */; };
-		37DC668817780CCF00D5E676 /* CocoTextField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC665A17780CCF00D5E676 /* CocoTextField.cpp */; };
-		37DC668917780CCF00D5E676 /* CCSReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC665D17780CCF00D5E676 /* CCSReader.cpp */; };
-		37DC668A17780CCF00D5E676 /* CocosGUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC665F17780CCF00D5E676 /* CocosGUI.cpp */; };
-		37DC668B17780CCF00D5E676 /* DictionaryHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC666117780CCF00D5E676 /* DictionaryHelper.cpp */; };
-		37DC668C17780CCF00D5E676 /* InputLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC666317780CCF00D5E676 /* InputLayer.cpp */; };
-		37DC668D17780CCF00D5E676 /* UIInputManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC666517780CCF00D5E676 /* UIInputManager.cpp */; };
-		37DC668E17780CCF00D5E676 /* UIScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC666717780CCF00D5E676 /* UIScene.cpp */; };
-		37DC668F17780CCF00D5E676 /* UISystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC666917780CCF00D5E676 /* UISystem.cpp */; };
-		37DC669017780CCF00D5E676 /* UIWidgetPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC666B17780CCF00D5E676 /* UIWidgetPool.cpp */; };
 		37DC669417780CD800D5E676 /* CCJsonReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC669217780CD800D5E676 /* CCJsonReader.cpp */; };
 		37DC6BB217780D2D00D5E676 /* SceneEditorTestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC6BB017780D2D00D5E676 /* SceneEditorTestScene.cpp */; };
-		37DC6BDB17780DAF00D5E676 /* animations in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BB317780DAF00D5E676 /* animations */; };
-		37DC6BDC17780DAF00D5E676 /* app.icf in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BB417780DAF00D5E676 /* app.icf */; };
-		37DC6BDD17780DAF00D5E676 /* armature in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BB517780DAF00D5E676 /* armature */; };
-		37DC6BDE17780DAF00D5E676 /* army_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BB617780DAF00D5E676 /* army_1.png */; };
-		37DC6BDF17780DAF00D5E676 /* background-music-aac.wav in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BB717780DAF00D5E676 /* background-music-aac.wav */; };
-		37DC6BE017780DAF00D5E676 /* background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BB817780DAF00D5E676 /* background.mp3 */; };
-		37DC6BE117780DAF00D5E676 /* background.ogg in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BB917780DAF00D5E676 /* background.ogg */; };
-		37DC6BE217780DAF00D5E676 /* ccb in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BBA17780DAF00D5E676 /* ccb */; };
-		37DC6BE317780DAF00D5E676 /* class.js in Sources */ = {isa = PBXBuildFile; fileRef = 37DC6BBB17780DAF00D5E676 /* class.js */; };
-		37DC6BE417780DAF00D5E676 /* CocosBuilderExample.ccbproj in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BBC17780DAF00D5E676 /* CocosBuilderExample.ccbproj */; };
-		37DC6BE517780DAF00D5E676 /* CocosBuilderExample.ccbresourcelog in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BBD17780DAF00D5E676 /* CocosBuilderExample.ccbresourcelog */; };
-		37DC6BE617780DAF00D5E676 /* cocosgui in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BBE17780DAF00D5E676 /* cocosgui */; };
-		37DC6BE717780DAF00D5E676 /* components in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BBF17780DAF00D5E676 /* components */; };
-		37DC6BE817780DAF00D5E676 /* configs in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BC017780DAF00D5E676 /* configs */; };
-		37DC6BE917780DAF00D5E676 /* defaultParticleSystem.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BC117780DAF00D5E676 /* defaultParticleSystem.plist */; };
-		37DC6BEA17780DAF00D5E676 /* development.icf in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BC217780DAF00D5E676 /* development.icf */; };
-		37DC6BEB17780DAF00D5E676 /* effect1.raw in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BC317780DAF00D5E676 /* effect1.raw */; };
-		37DC6BEC17780DAF00D5E676 /* effect1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BC417780DAF00D5E676 /* effect1.wav */; };
-		37DC6BED17780DAF00D5E676 /* effect2.ogg in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BC517780DAF00D5E676 /* effect2.ogg */; };
-		37DC6BEE17780DAF00D5E676 /* extensions in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BC617780DAF00D5E676 /* extensions */; };
-		37DC6BEF17780DAF00D5E676 /* fileLookup.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BC717780DAF00D5E676 /* fileLookup.plist */; };
-		37DC6BF017780DAF00D5E676 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BC817780DAF00D5E676 /* fonts */; };
-		37DC6BF117780DAF00D5E676 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BC917780DAF00D5E676 /* fps_images.png */; };
-		37DC6BF217780DAF00D5E676 /* hd in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BCA17780DAF00D5E676 /* hd */; };
-		37DC6BF317780DAF00D5E676 /* Hello.png in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BCB17780DAF00D5E676 /* Hello.png */; };
-		37DC6BF417780DAF00D5E676 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BCC17780DAF00D5E676 /* Images */; };
-		37DC6BF517780DAF00D5E676 /* ipad in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BCD17780DAF00D5E676 /* ipad */; };
-		37DC6BF617780DAF00D5E676 /* ipadhd in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BCE17780DAF00D5E676 /* ipadhd */; };
-		37DC6BF717780DAF00D5E676 /* map in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BCF17780DAF00D5E676 /* map */; };
-		37DC6BF817780DAF00D5E676 /* Misc in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BD017780DAF00D5E676 /* Misc */; };
-		37DC6BF917780DAF00D5E676 /* music.mid in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BD117780DAF00D5E676 /* music.mid */; };
-		37DC6BFA17780DAF00D5E676 /* NewProject123.json in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BD217780DAF00D5E676 /* NewProject123.json */; };
-		37DC6BFB17780DAF00D5E676 /* Particles in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BD317780DAF00D5E676 /* Particles */; };
-		37DC6BFC17780DAF00D5E676 /* pew-pew-lei.wav in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BD417780DAF00D5E676 /* pew-pew-lei.wav */; };
-		37DC6BFD17780DAF00D5E676 /* Shaders in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BD517780DAF00D5E676 /* Shaders */; };
-		37DC6BFE17780DAF00D5E676 /* spine in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BD617780DAF00D5E676 /* spine */; };
-		37DC6BFF17780DAF00D5E676 /* TestBone in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BD717780DAF00D5E676 /* TestBone */; };
-		37DC6C0017780DAF00D5E676 /* TileMaps in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BD817780DAF00D5E676 /* TileMaps */; };
-		37DC6C0117780DAF00D5E676 /* xiaowangshu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BD917780DAF00D5E676 /* xiaowangshu.mp3 */; };
-		37DC6C0217780DAF00D5E676 /* zwoptex in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6BDA17780DAF00D5E676 /* zwoptex */; };
+		37DC6CBE17782F9300D5E676 /* animations in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6C9617782F9300D5E676 /* animations */; };
+		37DC6CBF17782F9300D5E676 /* app.icf in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6C9717782F9300D5E676 /* app.icf */; };
+		37DC6CC017782F9300D5E676 /* armature in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6C9817782F9300D5E676 /* armature */; };
+		37DC6CC117782F9300D5E676 /* army_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6C9917782F9300D5E676 /* army_1.png */; };
+		37DC6CC217782F9300D5E676 /* background-music-aac.wav in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6C9A17782F9300D5E676 /* background-music-aac.wav */; };
+		37DC6CC317782F9300D5E676 /* background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6C9B17782F9300D5E676 /* background.mp3 */; };
+		37DC6CC417782F9300D5E676 /* background.ogg in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6C9C17782F9300D5E676 /* background.ogg */; };
+		37DC6CC517782F9300D5E676 /* ccb in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6C9D17782F9300D5E676 /* ccb */; };
+		37DC6CC617782F9300D5E676 /* class.js in Sources */ = {isa = PBXBuildFile; fileRef = 37DC6C9E17782F9300D5E676 /* class.js */; };
+		37DC6CC717782F9300D5E676 /* CocosBuilderExample.ccbproj in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6C9F17782F9300D5E676 /* CocosBuilderExample.ccbproj */; };
+		37DC6CC817782F9300D5E676 /* CocosBuilderExample.ccbresourcelog in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6CA017782F9300D5E676 /* CocosBuilderExample.ccbresourcelog */; };
+		37DC6CC917782F9300D5E676 /* cocosgui in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6CA117782F9300D5E676 /* cocosgui */; };
+		37DC6CCA17782F9300D5E676 /* components in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6CA217782F9300D5E676 /* components */; };
+		37DC6CCB17782F9300D5E676 /* configs in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6CA317782F9300D5E676 /* configs */; };
+		37DC6CCC17782F9300D5E676 /* defaultParticleSystem.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6CA417782F9300D5E676 /* defaultParticleSystem.plist */; };
+		37DC6CCD17782F9300D5E676 /* development.icf in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6CA517782F9300D5E676 /* development.icf */; };
+		37DC6CCE17782F9300D5E676 /* effect1.raw in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6CA617782F9300D5E676 /* effect1.raw */; };
+		37DC6CCF17782F9300D5E676 /* effect1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6CA717782F9300D5E676 /* effect1.wav */; };
+		37DC6CD017782F9300D5E676 /* effect2.ogg in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6CA817782F9300D5E676 /* effect2.ogg */; };
+		37DC6CD117782F9300D5E676 /* extensions in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6CA917782F9300D5E676 /* extensions */; };
+		37DC6CD217782F9300D5E676 /* fileLookup.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6CAA17782F9300D5E676 /* fileLookup.plist */; };
+		37DC6CD317782F9300D5E676 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6CAB17782F9300D5E676 /* fonts */; };
+		37DC6CD417782F9300D5E676 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6CAC17782F9300D5E676 /* fps_images.png */; };
+		37DC6CD517782F9300D5E676 /* hd in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6CAD17782F9300D5E676 /* hd */; };
+		37DC6CD617782F9300D5E676 /* Hello.png in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6CAE17782F9300D5E676 /* Hello.png */; };
+		37DC6CD717782F9300D5E676 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6CAF17782F9300D5E676 /* Images */; };
+		37DC6CD817782F9300D5E676 /* ipad in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6CB017782F9300D5E676 /* ipad */; };
+		37DC6CD917782F9300D5E676 /* ipadhd in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6CB117782F9300D5E676 /* ipadhd */; };
+		37DC6CDA17782F9300D5E676 /* map in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6CB217782F9300D5E676 /* map */; };
+		37DC6CDB17782F9300D5E676 /* Misc in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6CB317782F9300D5E676 /* Misc */; };
+		37DC6CDC17782F9300D5E676 /* music.mid in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6CB417782F9300D5E676 /* music.mid */; };
+		37DC6CDD17782F9300D5E676 /* NewProject123.json in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6CB517782F9300D5E676 /* NewProject123.json */; };
+		37DC6CDE17782F9300D5E676 /* Particles in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6CB617782F9300D5E676 /* Particles */; };
+		37DC6CDF17782F9300D5E676 /* pew-pew-lei.wav in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6CB717782F9300D5E676 /* pew-pew-lei.wav */; };
+		37DC6CE017782F9300D5E676 /* Shaders in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6CB817782F9300D5E676 /* Shaders */; };
+		37DC6CE117782F9300D5E676 /* spine in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6CB917782F9300D5E676 /* spine */; };
+		37DC6CE217782F9300D5E676 /* TestBone in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6CBA17782F9300D5E676 /* TestBone */; };
+		37DC6CE317782F9300D5E676 /* TileMaps in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6CBB17782F9300D5E676 /* TileMaps */; };
+		37DC6CE417782F9300D5E676 /* xiaowangshu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6CBC17782F9300D5E676 /* xiaowangshu.mp3 */; };
+		37DC6CE517782F9300D5E676 /* zwoptex in Resources */ = {isa = PBXBuildFile; fileRef = 37DC6CBD17782F9300D5E676 /* zwoptex */; };
+		37DC6CE817782FBA00D5E676 /* DictionaryHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC6CE617782FBA00D5E676 /* DictionaryHelper.cpp */; };
 		37EEEC61175DE9EE003C1193 /* CCComAttribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37EEEC59175DE9EE003C1193 /* CCComAttribute.cpp */; };
 		37EEEC62175DE9EE003C1193 /* CCComAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37EEEC5B175DE9EE003C1193 /* CCComAudio.cpp */; };
 		37EEEC63175DE9EE003C1193 /* CCComController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37EEEC5D175DE9EE003C1193 /* CCComController.cpp */; };
@@ -1028,122 +993,52 @@
 		37DC65FE17780CBE00D5E676 /* CCUtilMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCUtilMath.h; sourceTree = "<group>"; };
 		37DC661D17780CC400D5E676 /* CCComRender.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCComRender.cpp; sourceTree = "<group>"; };
 		37DC661E17780CC400D5E676 /* CCComRender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCComRender.h; sourceTree = "<group>"; };
-		37DC662217780CCF00D5E676 /* CocoContainerWidget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoContainerWidget.cpp; sourceTree = "<group>"; };
-		37DC662317780CCF00D5E676 /* CocoContainerWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoContainerWidget.h; sourceTree = "<group>"; };
-		37DC662417780CCF00D5E676 /* CocoRootWidget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoRootWidget.cpp; sourceTree = "<group>"; };
-		37DC662517780CCF00D5E676 /* CocoRootWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoRootWidget.h; sourceTree = "<group>"; };
-		37DC662617780CCF00D5E676 /* CocoWidget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoWidget.cpp; sourceTree = "<group>"; };
-		37DC662717780CCF00D5E676 /* CocoWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoWidget.h; sourceTree = "<group>"; };
-		37DC662917780CCF00D5E676 /* CClipAbleLayerColor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CClipAbleLayerColor.cpp; sourceTree = "<group>"; };
-		37DC662A17780CCF00D5E676 /* CClipAbleLayerColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CClipAbleLayerColor.h; sourceTree = "<group>"; };
-		37DC662B17780CCF00D5E676 /* CClipAbleLayerGradient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CClipAbleLayerGradient.cpp; sourceTree = "<group>"; };
-		37DC662C17780CCF00D5E676 /* CClipAbleLayerGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CClipAbleLayerGradient.h; sourceTree = "<group>"; };
-		37DC662D17780CCF00D5E676 /* CClipAbleSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CClipAbleSprite.cpp; sourceTree = "<group>"; };
-		37DC662E17780CCF00D5E676 /* CClipAbleSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CClipAbleSprite.h; sourceTree = "<group>"; };
-		37DC662F17780CCF00D5E676 /* CLabelAtlas.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CLabelAtlas.cpp; sourceTree = "<group>"; };
-		37DC663017780CCF00D5E676 /* CLabelAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLabelAtlas.h; sourceTree = "<group>"; };
-		37DC663117780CCF00D5E676 /* CPrimitivesNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPrimitivesNode.cpp; sourceTree = "<group>"; };
-		37DC663217780CCF00D5E676 /* CPrimitivesNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPrimitivesNode.h; sourceTree = "<group>"; };
-		37DC663317780CCF00D5E676 /* CTextField.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CTextField.cpp; sourceTree = "<group>"; };
-		37DC663417780CCF00D5E676 /* CTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTextField.h; sourceTree = "<group>"; };
-		37DC663517780CCF00D5E676 /* GUINodeRGBA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GUINodeRGBA.cpp; sourceTree = "<group>"; };
-		37DC663617780CCF00D5E676 /* GUINodeRGBA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUINodeRGBA.h; sourceTree = "<group>"; };
-		37DC663817780CCF00D5E676 /* CocoButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoButton.cpp; sourceTree = "<group>"; };
-		37DC663917780CCF00D5E676 /* CocoButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoButton.h; sourceTree = "<group>"; };
-		37DC663A17780CCF00D5E676 /* CocoCheckBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoCheckBox.cpp; sourceTree = "<group>"; };
-		37DC663B17780CCF00D5E676 /* CocoCheckBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoCheckBox.h; sourceTree = "<group>"; };
-		37DC663C17780CCF00D5E676 /* CocoControlButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoControlButton.cpp; sourceTree = "<group>"; };
-		37DC663D17780CCF00D5E676 /* CocoControlButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoControlButton.h; sourceTree = "<group>"; };
-		37DC663E17780CCF00D5E676 /* CocoGradientPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoGradientPanel.cpp; sourceTree = "<group>"; };
-		37DC663F17780CCF00D5E676 /* CocoGradientPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoGradientPanel.h; sourceTree = "<group>"; };
-		37DC664017780CCF00D5E676 /* CocoImageView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoImageView.cpp; sourceTree = "<group>"; };
-		37DC664117780CCF00D5E676 /* CocoImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoImageView.h; sourceTree = "<group>"; };
-		37DC664217780CCF00D5E676 /* CocoLabel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoLabel.cpp; sourceTree = "<group>"; };
-		37DC664317780CCF00D5E676 /* CocoLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoLabel.h; sourceTree = "<group>"; };
-		37DC664417780CCF00D5E676 /* CocoLabelAtlas.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoLabelAtlas.cpp; sourceTree = "<group>"; };
-		37DC664517780CCF00D5E676 /* CocoLabelAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoLabelAtlas.h; sourceTree = "<group>"; };
-		37DC664617780CCF00D5E676 /* CocoLabelBMFont.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoLabelBMFont.cpp; sourceTree = "<group>"; };
-		37DC664717780CCF00D5E676 /* CocoLabelBMFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoLabelBMFont.h; sourceTree = "<group>"; };
-		37DC664817780CCF00D5E676 /* CocoListView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoListView.cpp; sourceTree = "<group>"; };
-		37DC664917780CCF00D5E676 /* CocoListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoListView.h; sourceTree = "<group>"; };
-		37DC664A17780CCF00D5E676 /* CocoLoadingBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoLoadingBar.cpp; sourceTree = "<group>"; };
-		37DC664B17780CCF00D5E676 /* CocoLoadingBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoLoadingBar.h; sourceTree = "<group>"; };
-		37DC664C17780CCF00D5E676 /* CocoNodeContainer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoNodeContainer.cpp; sourceTree = "<group>"; };
-		37DC664D17780CCF00D5E676 /* CocoNodeContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoNodeContainer.h; sourceTree = "<group>"; };
-		37DC664E17780CCF00D5E676 /* CocoPageView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoPageView.cpp; sourceTree = "<group>"; };
-		37DC664F17780CCF00D5E676 /* CocoPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoPageView.h; sourceTree = "<group>"; };
-		37DC665017780CCF00D5E676 /* CocoPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoPanel.cpp; sourceTree = "<group>"; };
-		37DC665117780CCF00D5E676 /* CocoPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoPanel.h; sourceTree = "<group>"; };
-		37DC665217780CCF00D5E676 /* CocoScrollView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoScrollView.cpp; sourceTree = "<group>"; };
-		37DC665317780CCF00D5E676 /* CocoScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoScrollView.h; sourceTree = "<group>"; };
-		37DC665417780CCF00D5E676 /* CocoSlider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoSlider.cpp; sourceTree = "<group>"; };
-		37DC665517780CCF00D5E676 /* CocoSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoSlider.h; sourceTree = "<group>"; };
-		37DC665617780CCF00D5E676 /* CocoTextArea.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoTextArea.cpp; sourceTree = "<group>"; };
-		37DC665717780CCF00D5E676 /* CocoTextArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoTextArea.h; sourceTree = "<group>"; };
-		37DC665817780CCF00D5E676 /* CocoTextButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoTextButton.cpp; sourceTree = "<group>"; };
-		37DC665917780CCF00D5E676 /* CocoTextButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoTextButton.h; sourceTree = "<group>"; };
-		37DC665A17780CCF00D5E676 /* CocoTextField.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoTextField.cpp; sourceTree = "<group>"; };
-		37DC665B17780CCF00D5E676 /* CocoTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoTextField.h; sourceTree = "<group>"; };
-		37DC665D17780CCF00D5E676 /* CCSReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCSReader.cpp; sourceTree = "<group>"; };
-		37DC665E17780CCF00D5E676 /* CCSReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSReader.h; sourceTree = "<group>"; };
-		37DC665F17780CCF00D5E676 /* CocosGUI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocosGUI.cpp; sourceTree = "<group>"; };
-		37DC666017780CCF00D5E676 /* CocosGUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosGUI.h; sourceTree = "<group>"; };
-		37DC666117780CCF00D5E676 /* DictionaryHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DictionaryHelper.cpp; sourceTree = "<group>"; };
-		37DC666217780CCF00D5E676 /* DictionaryHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryHelper.h; sourceTree = "<group>"; };
-		37DC666317780CCF00D5E676 /* InputLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InputLayer.cpp; sourceTree = "<group>"; };
-		37DC666417780CCF00D5E676 /* InputLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputLayer.h; sourceTree = "<group>"; };
-		37DC666517780CCF00D5E676 /* UIInputManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIInputManager.cpp; sourceTree = "<group>"; };
-		37DC666617780CCF00D5E676 /* UIInputManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIInputManager.h; sourceTree = "<group>"; };
-		37DC666717780CCF00D5E676 /* UIScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIScene.cpp; sourceTree = "<group>"; };
-		37DC666817780CCF00D5E676 /* UIScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIScene.h; sourceTree = "<group>"; };
-		37DC666917780CCF00D5E676 /* UISystem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UISystem.cpp; sourceTree = "<group>"; };
-		37DC666A17780CCF00D5E676 /* UISystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISystem.h; sourceTree = "<group>"; };
-		37DC666B17780CCF00D5E676 /* UIWidgetPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIWidgetPool.cpp; sourceTree = "<group>"; };
-		37DC666C17780CCF00D5E676 /* UIWidgetPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIWidgetPool.h; sourceTree = "<group>"; };
 		37DC669217780CD800D5E676 /* CCJsonReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCJsonReader.cpp; sourceTree = "<group>"; };
 		37DC669317780CD800D5E676 /* CCJsonReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCJsonReader.h; sourceTree = "<group>"; };
 		37DC6BB017780D2D00D5E676 /* SceneEditorTestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SceneEditorTestScene.cpp; sourceTree = "<group>"; };
 		37DC6BB117780D2D00D5E676 /* SceneEditorTestScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneEditorTestScene.h; sourceTree = "<group>"; };
-		37DC6BB317780DAF00D5E676 /* animations */ = {isa = PBXFileReference; lastKnownFileType = folder; path = animations; sourceTree = "<group>"; };
-		37DC6BB417780DAF00D5E676 /* app.icf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = app.icf; sourceTree = "<group>"; };
-		37DC6BB517780DAF00D5E676 /* armature */ = {isa = PBXFileReference; lastKnownFileType = folder; path = armature; sourceTree = "<group>"; };
-		37DC6BB617780DAF00D5E676 /* army_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = army_1.png; sourceTree = "<group>"; };
-		37DC6BB717780DAF00D5E676 /* background-music-aac.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "background-music-aac.wav"; sourceTree = "<group>"; };
-		37DC6BB817780DAF00D5E676 /* background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background.mp3; sourceTree = "<group>"; };
-		37DC6BB917780DAF00D5E676 /* background.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = background.ogg; sourceTree = "<group>"; };
-		37DC6BBA17780DAF00D5E676 /* ccb */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ccb; sourceTree = "<group>"; };
-		37DC6BBB17780DAF00D5E676 /* class.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = class.js; sourceTree = "<group>"; };
-		37DC6BBC17780DAF00D5E676 /* CocosBuilderExample.ccbproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CocosBuilderExample.ccbproj; sourceTree = "<group>"; };
-		37DC6BBD17780DAF00D5E676 /* CocosBuilderExample.ccbresourcelog */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CocosBuilderExample.ccbresourcelog; sourceTree = "<group>"; };
-		37DC6BBE17780DAF00D5E676 /* cocosgui */ = {isa = PBXFileReference; lastKnownFileType = folder; path = cocosgui; sourceTree = "<group>"; };
-		37DC6BBF17780DAF00D5E676 /* components */ = {isa = PBXFileReference; lastKnownFileType = folder; path = components; sourceTree = "<group>"; };
-		37DC6BC017780DAF00D5E676 /* configs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = configs; sourceTree = "<group>"; };
-		37DC6BC117780DAF00D5E676 /* defaultParticleSystem.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = defaultParticleSystem.plist; sourceTree = "<group>"; };
-		37DC6BC217780DAF00D5E676 /* development.icf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = development.icf; sourceTree = "<group>"; };
-		37DC6BC317780DAF00D5E676 /* effect1.raw */ = {isa = PBXFileReference; lastKnownFileType = file; path = effect1.raw; sourceTree = "<group>"; };
-		37DC6BC417780DAF00D5E676 /* effect1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = effect1.wav; sourceTree = "<group>"; };
-		37DC6BC517780DAF00D5E676 /* effect2.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = effect2.ogg; sourceTree = "<group>"; };
-		37DC6BC617780DAF00D5E676 /* extensions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = extensions; sourceTree = "<group>"; };
-		37DC6BC717780DAF00D5E676 /* fileLookup.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = fileLookup.plist; sourceTree = "<group>"; };
-		37DC6BC817780DAF00D5E676 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
-		37DC6BC917780DAF00D5E676 /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fps_images.png; sourceTree = "<group>"; };
-		37DC6BCA17780DAF00D5E676 /* hd */ = {isa = PBXFileReference; lastKnownFileType = folder; path = hd; sourceTree = "<group>"; };
-		37DC6BCB17780DAF00D5E676 /* Hello.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Hello.png; sourceTree = "<group>"; };
-		37DC6BCC17780DAF00D5E676 /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
-		37DC6BCD17780DAF00D5E676 /* ipad */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ipad; sourceTree = "<group>"; };
-		37DC6BCE17780DAF00D5E676 /* ipadhd */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ipadhd; sourceTree = "<group>"; };
-		37DC6BCF17780DAF00D5E676 /* map */ = {isa = PBXFileReference; lastKnownFileType = folder; path = map; sourceTree = "<group>"; };
-		37DC6BD017780DAF00D5E676 /* Misc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Misc; sourceTree = "<group>"; };
-		37DC6BD117780DAF00D5E676 /* music.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = music.mid; sourceTree = "<group>"; };
-		37DC6BD217780DAF00D5E676 /* NewProject123.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NewProject123.json; sourceTree = "<group>"; };
-		37DC6BD317780DAF00D5E676 /* Particles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Particles; sourceTree = "<group>"; };
-		37DC6BD417780DAF00D5E676 /* pew-pew-lei.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "pew-pew-lei.wav"; sourceTree = "<group>"; };
-		37DC6BD517780DAF00D5E676 /* Shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Shaders; sourceTree = "<group>"; };
-		37DC6BD617780DAF00D5E676 /* spine */ = {isa = PBXFileReference; lastKnownFileType = folder; path = spine; sourceTree = "<group>"; };
-		37DC6BD717780DAF00D5E676 /* TestBone */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TestBone; sourceTree = "<group>"; };
-		37DC6BD817780DAF00D5E676 /* TileMaps */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TileMaps; sourceTree = "<group>"; };
-		37DC6BD917780DAF00D5E676 /* xiaowangshu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = xiaowangshu.mp3; sourceTree = "<group>"; };
-		37DC6BDA17780DAF00D5E676 /* zwoptex */ = {isa = PBXFileReference; lastKnownFileType = folder; path = zwoptex; sourceTree = "<group>"; };
+		37DC6C9617782F9300D5E676 /* animations */ = {isa = PBXFileReference; lastKnownFileType = folder; path = animations; sourceTree = "<group>"; };
+		37DC6C9717782F9300D5E676 /* app.icf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = app.icf; sourceTree = "<group>"; };
+		37DC6C9817782F9300D5E676 /* armature */ = {isa = PBXFileReference; lastKnownFileType = folder; path = armature; sourceTree = "<group>"; };
+		37DC6C9917782F9300D5E676 /* army_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = army_1.png; sourceTree = "<group>"; };
+		37DC6C9A17782F9300D5E676 /* background-music-aac.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "background-music-aac.wav"; sourceTree = "<group>"; };
+		37DC6C9B17782F9300D5E676 /* background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background.mp3; sourceTree = "<group>"; };
+		37DC6C9C17782F9300D5E676 /* background.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = background.ogg; sourceTree = "<group>"; };
+		37DC6C9D17782F9300D5E676 /* ccb */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ccb; sourceTree = "<group>"; };
+		37DC6C9E17782F9300D5E676 /* class.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = class.js; sourceTree = "<group>"; };
+		37DC6C9F17782F9300D5E676 /* CocosBuilderExample.ccbproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CocosBuilderExample.ccbproj; sourceTree = "<group>"; };
+		37DC6CA017782F9300D5E676 /* CocosBuilderExample.ccbresourcelog */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CocosBuilderExample.ccbresourcelog; sourceTree = "<group>"; };
+		37DC6CA117782F9300D5E676 /* cocosgui */ = {isa = PBXFileReference; lastKnownFileType = folder; path = cocosgui; sourceTree = "<group>"; };
+		37DC6CA217782F9300D5E676 /* components */ = {isa = PBXFileReference; lastKnownFileType = folder; path = components; sourceTree = "<group>"; };
+		37DC6CA317782F9300D5E676 /* configs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = configs; sourceTree = "<group>"; };
+		37DC6CA417782F9300D5E676 /* defaultParticleSystem.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = defaultParticleSystem.plist; sourceTree = "<group>"; };
+		37DC6CA517782F9300D5E676 /* development.icf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = development.icf; sourceTree = "<group>"; };
+		37DC6CA617782F9300D5E676 /* effect1.raw */ = {isa = PBXFileReference; lastKnownFileType = file; path = effect1.raw; sourceTree = "<group>"; };
+		37DC6CA717782F9300D5E676 /* effect1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = effect1.wav; sourceTree = "<group>"; };
+		37DC6CA817782F9300D5E676 /* effect2.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = effect2.ogg; sourceTree = "<group>"; };
+		37DC6CA917782F9300D5E676 /* extensions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = extensions; sourceTree = "<group>"; };
+		37DC6CAA17782F9300D5E676 /* fileLookup.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = fileLookup.plist; sourceTree = "<group>"; };
+		37DC6CAB17782F9300D5E676 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
+		37DC6CAC17782F9300D5E676 /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fps_images.png; sourceTree = "<group>"; };
+		37DC6CAD17782F9300D5E676 /* hd */ = {isa = PBXFileReference; lastKnownFileType = folder; path = hd; sourceTree = "<group>"; };
+		37DC6CAE17782F9300D5E676 /* Hello.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Hello.png; sourceTree = "<group>"; };
+		37DC6CAF17782F9300D5E676 /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
+		37DC6CB017782F9300D5E676 /* ipad */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ipad; sourceTree = "<group>"; };
+		37DC6CB117782F9300D5E676 /* ipadhd */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ipadhd; sourceTree = "<group>"; };
+		37DC6CB217782F9300D5E676 /* map */ = {isa = PBXFileReference; lastKnownFileType = folder; path = map; sourceTree = "<group>"; };
+		37DC6CB317782F9300D5E676 /* Misc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Misc; sourceTree = "<group>"; };
+		37DC6CB417782F9300D5E676 /* music.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = music.mid; sourceTree = "<group>"; };
+		37DC6CB517782F9300D5E676 /* NewProject123.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NewProject123.json; sourceTree = "<group>"; };
+		37DC6CB617782F9300D5E676 /* Particles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Particles; sourceTree = "<group>"; };
+		37DC6CB717782F9300D5E676 /* pew-pew-lei.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "pew-pew-lei.wav"; sourceTree = "<group>"; };
+		37DC6CB817782F9300D5E676 /* Shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Shaders; sourceTree = "<group>"; };
+		37DC6CB917782F9300D5E676 /* spine */ = {isa = PBXFileReference; lastKnownFileType = folder; path = spine; sourceTree = "<group>"; };
+		37DC6CBA17782F9300D5E676 /* TestBone */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TestBone; sourceTree = "<group>"; };
+		37DC6CBB17782F9300D5E676 /* TileMaps */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TileMaps; sourceTree = "<group>"; };
+		37DC6CBC17782F9300D5E676 /* xiaowangshu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = xiaowangshu.mp3; sourceTree = "<group>"; };
+		37DC6CBD17782F9300D5E676 /* zwoptex */ = {isa = PBXFileReference; lastKnownFileType = folder; path = zwoptex; sourceTree = "<group>"; };
+		37DC6CE617782FBA00D5E676 /* DictionaryHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DictionaryHelper.cpp; sourceTree = "<group>"; };
+		37DC6CE717782FBA00D5E676 /* DictionaryHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryHelper.h; sourceTree = "<group>"; };
 		37EEEC59175DE9EE003C1193 /* CCComAttribute.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCComAttribute.cpp; sourceTree = "<group>"; };
 		37EEEC5A175DE9EE003C1193 /* CCComAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCComAttribute.h; sourceTree = "<group>"; };
 		37EEEC5B175DE9EE003C1193 /* CCComAudio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCComAudio.cpp; sourceTree = "<group>"; };
@@ -2166,7 +2061,6 @@
 			isa = PBXGroup;
 			children = (
 				37DC669117780CD800D5E676 /* JsonReader */,
-				37DC662017780CCF00D5E676 /* CocoGUILIB */,
 				37DC65B417780CBE00D5E676 /* CCArmature */,
 				15C158D3168315E500D239F2 /* cocos-ext.h */,
 				15C158D4168315E500D239F2 /* ExtensionMacros.h */,
@@ -2742,120 +2636,11 @@
 			path = utils;
 			sourceTree = "<group>";
 		};
-		37DC662017780CCF00D5E676 /* CocoGUILIB */ = {
-			isa = PBXGroup;
-			children = (
-				37DC662117780CCF00D5E676 /* BaseClasses */,
-				37DC662817780CCF00D5E676 /* CGraphics */,
-				37DC663717780CCF00D5E676 /* Component */,
-				37DC665C17780CCF00D5E676 /* System */,
-			);
-			path = CocoGUILIB;
-			sourceTree = "<group>";
-		};
-		37DC662117780CCF00D5E676 /* BaseClasses */ = {
-			isa = PBXGroup;
-			children = (
-				37DC662217780CCF00D5E676 /* CocoContainerWidget.cpp */,
-				37DC662317780CCF00D5E676 /* CocoContainerWidget.h */,
-				37DC662417780CCF00D5E676 /* CocoRootWidget.cpp */,
-				37DC662517780CCF00D5E676 /* CocoRootWidget.h */,
-				37DC662617780CCF00D5E676 /* CocoWidget.cpp */,
-				37DC662717780CCF00D5E676 /* CocoWidget.h */,
-			);
-			path = BaseClasses;
-			sourceTree = "<group>";
-		};
-		37DC662817780CCF00D5E676 /* CGraphics */ = {
-			isa = PBXGroup;
-			children = (
-				37DC662917780CCF00D5E676 /* CClipAbleLayerColor.cpp */,
-				37DC662A17780CCF00D5E676 /* CClipAbleLayerColor.h */,
-				37DC662B17780CCF00D5E676 /* CClipAbleLayerGradient.cpp */,
-				37DC662C17780CCF00D5E676 /* CClipAbleLayerGradient.h */,
-				37DC662D17780CCF00D5E676 /* CClipAbleSprite.cpp */,
-				37DC662E17780CCF00D5E676 /* CClipAbleSprite.h */,
-				37DC662F17780CCF00D5E676 /* CLabelAtlas.cpp */,
-				37DC663017780CCF00D5E676 /* CLabelAtlas.h */,
-				37DC663117780CCF00D5E676 /* CPrimitivesNode.cpp */,
-				37DC663217780CCF00D5E676 /* CPrimitivesNode.h */,
-				37DC663317780CCF00D5E676 /* CTextField.cpp */,
-				37DC663417780CCF00D5E676 /* CTextField.h */,
-				37DC663517780CCF00D5E676 /* GUINodeRGBA.cpp */,
-				37DC663617780CCF00D5E676 /* GUINodeRGBA.h */,
-			);
-			path = CGraphics;
-			sourceTree = "<group>";
-		};
-		37DC663717780CCF00D5E676 /* Component */ = {
-			isa = PBXGroup;
-			children = (
-				37DC663817780CCF00D5E676 /* CocoButton.cpp */,
-				37DC663917780CCF00D5E676 /* CocoButton.h */,
-				37DC663A17780CCF00D5E676 /* CocoCheckBox.cpp */,
-				37DC663B17780CCF00D5E676 /* CocoCheckBox.h */,
-				37DC663C17780CCF00D5E676 /* CocoControlButton.cpp */,
-				37DC663D17780CCF00D5E676 /* CocoControlButton.h */,
-				37DC663E17780CCF00D5E676 /* CocoGradientPanel.cpp */,
-				37DC663F17780CCF00D5E676 /* CocoGradientPanel.h */,
-				37DC664017780CCF00D5E676 /* CocoImageView.cpp */,
-				37DC664117780CCF00D5E676 /* CocoImageView.h */,
-				37DC664217780CCF00D5E676 /* CocoLabel.cpp */,
-				37DC664317780CCF00D5E676 /* CocoLabel.h */,
-				37DC664417780CCF00D5E676 /* CocoLabelAtlas.cpp */,
-				37DC664517780CCF00D5E676 /* CocoLabelAtlas.h */,
-				37DC664617780CCF00D5E676 /* CocoLabelBMFont.cpp */,
-				37DC664717780CCF00D5E676 /* CocoLabelBMFont.h */,
-				37DC664817780CCF00D5E676 /* CocoListView.cpp */,
-				37DC664917780CCF00D5E676 /* CocoListView.h */,
-				37DC664A17780CCF00D5E676 /* CocoLoadingBar.cpp */,
-				37DC664B17780CCF00D5E676 /* CocoLoadingBar.h */,
-				37DC664C17780CCF00D5E676 /* CocoNodeContainer.cpp */,
-				37DC664D17780CCF00D5E676 /* CocoNodeContainer.h */,
-				37DC664E17780CCF00D5E676 /* CocoPageView.cpp */,
-				37DC664F17780CCF00D5E676 /* CocoPageView.h */,
-				37DC665017780CCF00D5E676 /* CocoPanel.cpp */,
-				37DC665117780CCF00D5E676 /* CocoPanel.h */,
-				37DC665217780CCF00D5E676 /* CocoScrollView.cpp */,
-				37DC665317780CCF00D5E676 /* CocoScrollView.h */,
-				37DC665417780CCF00D5E676 /* CocoSlider.cpp */,
-				37DC665517780CCF00D5E676 /* CocoSlider.h */,
-				37DC665617780CCF00D5E676 /* CocoTextArea.cpp */,
-				37DC665717780CCF00D5E676 /* CocoTextArea.h */,
-				37DC665817780CCF00D5E676 /* CocoTextButton.cpp */,
-				37DC665917780CCF00D5E676 /* CocoTextButton.h */,
-				37DC665A17780CCF00D5E676 /* CocoTextField.cpp */,
-				37DC665B17780CCF00D5E676 /* CocoTextField.h */,
-			);
-			path = Component;
-			sourceTree = "<group>";
-		};
-		37DC665C17780CCF00D5E676 /* System */ = {
-			isa = PBXGroup;
-			children = (
-				37DC665D17780CCF00D5E676 /* CCSReader.cpp */,
-				37DC665E17780CCF00D5E676 /* CCSReader.h */,
-				37DC665F17780CCF00D5E676 /* CocosGUI.cpp */,
-				37DC666017780CCF00D5E676 /* CocosGUI.h */,
-				37DC666117780CCF00D5E676 /* DictionaryHelper.cpp */,
-				37DC666217780CCF00D5E676 /* DictionaryHelper.h */,
-				37DC666317780CCF00D5E676 /* InputLayer.cpp */,
-				37DC666417780CCF00D5E676 /* InputLayer.h */,
-				37DC666517780CCF00D5E676 /* UIInputManager.cpp */,
-				37DC666617780CCF00D5E676 /* UIInputManager.h */,
-				37DC666717780CCF00D5E676 /* UIScene.cpp */,
-				37DC666817780CCF00D5E676 /* UIScene.h */,
-				37DC666917780CCF00D5E676 /* UISystem.cpp */,
-				37DC666A17780CCF00D5E676 /* UISystem.h */,
-				37DC666B17780CCF00D5E676 /* UIWidgetPool.cpp */,
-				37DC666C17780CCF00D5E676 /* UIWidgetPool.h */,
-			);
-			path = System;
-			sourceTree = "<group>";
-		};
 		37DC669117780CD800D5E676 /* JsonReader */ = {
 			isa = PBXGroup;
 			children = (
+				37DC6CE617782FBA00D5E676 /* DictionaryHelper.cpp */,
+				37DC6CE717782FBA00D5E676 /* DictionaryHelper.h */,
 				37DC669217780CD800D5E676 /* CCJsonReader.cpp */,
 				37DC669317780CD800D5E676 /* CCJsonReader.h */,
 			);
@@ -2946,46 +2731,46 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				37DC6BB317780DAF00D5E676 /* animations */,
-				37DC6BB417780DAF00D5E676 /* app.icf */,
-				37DC6BB517780DAF00D5E676 /* armature */,
-				37DC6BB617780DAF00D5E676 /* army_1.png */,
-				37DC6BB717780DAF00D5E676 /* background-music-aac.wav */,
-				37DC6BB817780DAF00D5E676 /* background.mp3 */,
-				37DC6BB917780DAF00D5E676 /* background.ogg */,
-				37DC6BBA17780DAF00D5E676 /* ccb */,
-				37DC6BBB17780DAF00D5E676 /* class.js */,
-				37DC6BBC17780DAF00D5E676 /* CocosBuilderExample.ccbproj */,
-				37DC6BBD17780DAF00D5E676 /* CocosBuilderExample.ccbresourcelog */,
-				37DC6BBE17780DAF00D5E676 /* cocosgui */,
-				37DC6BBF17780DAF00D5E676 /* components */,
-				37DC6BC017780DAF00D5E676 /* configs */,
-				37DC6BC117780DAF00D5E676 /* defaultParticleSystem.plist */,
-				37DC6BC217780DAF00D5E676 /* development.icf */,
-				37DC6BC317780DAF00D5E676 /* effect1.raw */,
-				37DC6BC417780DAF00D5E676 /* effect1.wav */,
-				37DC6BC517780DAF00D5E676 /* effect2.ogg */,
-				37DC6BC617780DAF00D5E676 /* extensions */,
-				37DC6BC717780DAF00D5E676 /* fileLookup.plist */,
-				37DC6BC817780DAF00D5E676 /* fonts */,
-				37DC6BC917780DAF00D5E676 /* fps_images.png */,
-				37DC6BCA17780DAF00D5E676 /* hd */,
-				37DC6BCB17780DAF00D5E676 /* Hello.png */,
-				37DC6BCC17780DAF00D5E676 /* Images */,
-				37DC6BCD17780DAF00D5E676 /* ipad */,
-				37DC6BCE17780DAF00D5E676 /* ipadhd */,
-				37DC6BCF17780DAF00D5E676 /* map */,
-				37DC6BD017780DAF00D5E676 /* Misc */,
-				37DC6BD117780DAF00D5E676 /* music.mid */,
-				37DC6BD217780DAF00D5E676 /* NewProject123.json */,
-				37DC6BD317780DAF00D5E676 /* Particles */,
-				37DC6BD417780DAF00D5E676 /* pew-pew-lei.wav */,
-				37DC6BD517780DAF00D5E676 /* Shaders */,
-				37DC6BD617780DAF00D5E676 /* spine */,
-				37DC6BD717780DAF00D5E676 /* TestBone */,
-				37DC6BD817780DAF00D5E676 /* TileMaps */,
-				37DC6BD917780DAF00D5E676 /* xiaowangshu.mp3 */,
-				37DC6BDA17780DAF00D5E676 /* zwoptex */,
+				37DC6C9617782F9300D5E676 /* animations */,
+				37DC6C9717782F9300D5E676 /* app.icf */,
+				37DC6C9817782F9300D5E676 /* armature */,
+				37DC6C9917782F9300D5E676 /* army_1.png */,
+				37DC6C9A17782F9300D5E676 /* background-music-aac.wav */,
+				37DC6C9B17782F9300D5E676 /* background.mp3 */,
+				37DC6C9C17782F9300D5E676 /* background.ogg */,
+				37DC6C9D17782F9300D5E676 /* ccb */,
+				37DC6C9E17782F9300D5E676 /* class.js */,
+				37DC6C9F17782F9300D5E676 /* CocosBuilderExample.ccbproj */,
+				37DC6CA017782F9300D5E676 /* CocosBuilderExample.ccbresourcelog */,
+				37DC6CA117782F9300D5E676 /* cocosgui */,
+				37DC6CA217782F9300D5E676 /* components */,
+				37DC6CA317782F9300D5E676 /* configs */,
+				37DC6CA417782F9300D5E676 /* defaultParticleSystem.plist */,
+				37DC6CA517782F9300D5E676 /* development.icf */,
+				37DC6CA617782F9300D5E676 /* effect1.raw */,
+				37DC6CA717782F9300D5E676 /* effect1.wav */,
+				37DC6CA817782F9300D5E676 /* effect2.ogg */,
+				37DC6CA917782F9300D5E676 /* extensions */,
+				37DC6CAA17782F9300D5E676 /* fileLookup.plist */,
+				37DC6CAB17782F9300D5E676 /* fonts */,
+				37DC6CAC17782F9300D5E676 /* fps_images.png */,
+				37DC6CAD17782F9300D5E676 /* hd */,
+				37DC6CAE17782F9300D5E676 /* Hello.png */,
+				37DC6CAF17782F9300D5E676 /* Images */,
+				37DC6CB017782F9300D5E676 /* ipad */,
+				37DC6CB117782F9300D5E676 /* ipadhd */,
+				37DC6CB217782F9300D5E676 /* map */,
+				37DC6CB317782F9300D5E676 /* Misc */,
+				37DC6CB417782F9300D5E676 /* music.mid */,
+				37DC6CB517782F9300D5E676 /* NewProject123.json */,
+				37DC6CB617782F9300D5E676 /* Particles */,
+				37DC6CB717782F9300D5E676 /* pew-pew-lei.wav */,
+				37DC6CB817782F9300D5E676 /* Shaders */,
+				37DC6CB917782F9300D5E676 /* spine */,
+				37DC6CBA17782F9300D5E676 /* TestBone */,
+				37DC6CBB17782F9300D5E676 /* TileMaps */,
+				37DC6CBC17782F9300D5E676 /* xiaowangshu.mp3 */,
+				37DC6CBD17782F9300D5E676 /* zwoptex */,
 			);
 			name = Resources;
 			path = ../Resources;
@@ -3102,45 +2887,45 @@
 				37DC660F17780CBE00D5E676 /* json_internalmap.inl in Resources */,
 				37DC661217780CBE00D5E676 /* json_valueiterator.inl in Resources */,
 				37DC661417780CBE00D5E676 /* sconscript in Resources */,
-				37DC6BDB17780DAF00D5E676 /* animations in Resources */,
-				37DC6BDC17780DAF00D5E676 /* app.icf in Resources */,
-				37DC6BDD17780DAF00D5E676 /* armature in Resources */,
-				37DC6BDE17780DAF00D5E676 /* army_1.png in Resources */,
-				37DC6BDF17780DAF00D5E676 /* background-music-aac.wav in Resources */,
-				37DC6BE017780DAF00D5E676 /* background.mp3 in Resources */,
-				37DC6BE117780DAF00D5E676 /* background.ogg in Resources */,
-				37DC6BE217780DAF00D5E676 /* ccb in Resources */,
-				37DC6BE417780DAF00D5E676 /* CocosBuilderExample.ccbproj in Resources */,
-				37DC6BE517780DAF00D5E676 /* CocosBuilderExample.ccbresourcelog in Resources */,
-				37DC6BE617780DAF00D5E676 /* cocosgui in Resources */,
-				37DC6BE717780DAF00D5E676 /* components in Resources */,
-				37DC6BE817780DAF00D5E676 /* configs in Resources */,
-				37DC6BE917780DAF00D5E676 /* defaultParticleSystem.plist in Resources */,
-				37DC6BEA17780DAF00D5E676 /* development.icf in Resources */,
-				37DC6BEB17780DAF00D5E676 /* effect1.raw in Resources */,
-				37DC6BEC17780DAF00D5E676 /* effect1.wav in Resources */,
-				37DC6BED17780DAF00D5E676 /* effect2.ogg in Resources */,
-				37DC6BEE17780DAF00D5E676 /* extensions in Resources */,
-				37DC6BEF17780DAF00D5E676 /* fileLookup.plist in Resources */,
-				37DC6BF017780DAF00D5E676 /* fonts in Resources */,
-				37DC6BF117780DAF00D5E676 /* fps_images.png in Resources */,
-				37DC6BF217780DAF00D5E676 /* hd in Resources */,
-				37DC6BF317780DAF00D5E676 /* Hello.png in Resources */,
-				37DC6BF417780DAF00D5E676 /* Images in Resources */,
-				37DC6BF517780DAF00D5E676 /* ipad in Resources */,
-				37DC6BF617780DAF00D5E676 /* ipadhd in Resources */,
-				37DC6BF717780DAF00D5E676 /* map in Resources */,
-				37DC6BF817780DAF00D5E676 /* Misc in Resources */,
-				37DC6BF917780DAF00D5E676 /* music.mid in Resources */,
-				37DC6BFA17780DAF00D5E676 /* NewProject123.json in Resources */,
-				37DC6BFB17780DAF00D5E676 /* Particles in Resources */,
-				37DC6BFC17780DAF00D5E676 /* pew-pew-lei.wav in Resources */,
-				37DC6BFD17780DAF00D5E676 /* Shaders in Resources */,
-				37DC6BFE17780DAF00D5E676 /* spine in Resources */,
-				37DC6BFF17780DAF00D5E676 /* TestBone in Resources */,
-				37DC6C0017780DAF00D5E676 /* TileMaps in Resources */,
-				37DC6C0117780DAF00D5E676 /* xiaowangshu.mp3 in Resources */,
-				37DC6C0217780DAF00D5E676 /* zwoptex in Resources */,
+				37DC6CBE17782F9300D5E676 /* animations in Resources */,
+				37DC6CBF17782F9300D5E676 /* app.icf in Resources */,
+				37DC6CC017782F9300D5E676 /* armature in Resources */,
+				37DC6CC117782F9300D5E676 /* army_1.png in Resources */,
+				37DC6CC217782F9300D5E676 /* background-music-aac.wav in Resources */,
+				37DC6CC317782F9300D5E676 /* background.mp3 in Resources */,
+				37DC6CC417782F9300D5E676 /* background.ogg in Resources */,
+				37DC6CC517782F9300D5E676 /* ccb in Resources */,
+				37DC6CC717782F9300D5E676 /* CocosBuilderExample.ccbproj in Resources */,
+				37DC6CC817782F9300D5E676 /* CocosBuilderExample.ccbresourcelog in Resources */,
+				37DC6CC917782F9300D5E676 /* cocosgui in Resources */,
+				37DC6CCA17782F9300D5E676 /* components in Resources */,
+				37DC6CCB17782F9300D5E676 /* configs in Resources */,
+				37DC6CCC17782F9300D5E676 /* defaultParticleSystem.plist in Resources */,
+				37DC6CCD17782F9300D5E676 /* development.icf in Resources */,
+				37DC6CCE17782F9300D5E676 /* effect1.raw in Resources */,
+				37DC6CCF17782F9300D5E676 /* effect1.wav in Resources */,
+				37DC6CD017782F9300D5E676 /* effect2.ogg in Resources */,
+				37DC6CD117782F9300D5E676 /* extensions in Resources */,
+				37DC6CD217782F9300D5E676 /* fileLookup.plist in Resources */,
+				37DC6CD317782F9300D5E676 /* fonts in Resources */,
+				37DC6CD417782F9300D5E676 /* fps_images.png in Resources */,
+				37DC6CD517782F9300D5E676 /* hd in Resources */,
+				37DC6CD617782F9300D5E676 /* Hello.png in Resources */,
+				37DC6CD717782F9300D5E676 /* Images in Resources */,
+				37DC6CD817782F9300D5E676 /* ipad in Resources */,
+				37DC6CD917782F9300D5E676 /* ipadhd in Resources */,
+				37DC6CDA17782F9300D5E676 /* map in Resources */,
+				37DC6CDB17782F9300D5E676 /* Misc in Resources */,
+				37DC6CDC17782F9300D5E676 /* music.mid in Resources */,
+				37DC6CDD17782F9300D5E676 /* NewProject123.json in Resources */,
+				37DC6CDE17782F9300D5E676 /* Particles in Resources */,
+				37DC6CDF17782F9300D5E676 /* pew-pew-lei.wav in Resources */,
+				37DC6CE017782F9300D5E676 /* Shaders in Resources */,
+				37DC6CE117782F9300D5E676 /* spine in Resources */,
+				37DC6CE217782F9300D5E676 /* TestBone in Resources */,
+				37DC6CE317782F9300D5E676 /* TileMaps in Resources */,
+				37DC6CE417782F9300D5E676 /* xiaowangshu.mp3 in Resources */,
+				37DC6CE517782F9300D5E676 /* zwoptex in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3430,45 +3215,10 @@
 				37DC661B17780CBE00D5E676 /* CCTweenFunction.cpp in Sources */,
 				37DC661C17780CBE00D5E676 /* CCUtilMath.cpp in Sources */,
 				37DC661F17780CC400D5E676 /* CCComRender.cpp in Sources */,
-				37DC666D17780CCF00D5E676 /* CocoContainerWidget.cpp in Sources */,
-				37DC666E17780CCF00D5E676 /* CocoRootWidget.cpp in Sources */,
-				37DC666F17780CCF00D5E676 /* CocoWidget.cpp in Sources */,
-				37DC667017780CCF00D5E676 /* CClipAbleLayerColor.cpp in Sources */,
-				37DC667117780CCF00D5E676 /* CClipAbleLayerGradient.cpp in Sources */,
-				37DC667217780CCF00D5E676 /* CClipAbleSprite.cpp in Sources */,
-				37DC667317780CCF00D5E676 /* CLabelAtlas.cpp in Sources */,
-				37DC667417780CCF00D5E676 /* CPrimitivesNode.cpp in Sources */,
-				37DC667517780CCF00D5E676 /* CTextField.cpp in Sources */,
-				37DC667617780CCF00D5E676 /* GUINodeRGBA.cpp in Sources */,
-				37DC667717780CCF00D5E676 /* CocoButton.cpp in Sources */,
-				37DC667817780CCF00D5E676 /* CocoCheckBox.cpp in Sources */,
-				37DC667917780CCF00D5E676 /* CocoControlButton.cpp in Sources */,
-				37DC667A17780CCF00D5E676 /* CocoGradientPanel.cpp in Sources */,
-				37DC667B17780CCF00D5E676 /* CocoImageView.cpp in Sources */,
-				37DC667C17780CCF00D5E676 /* CocoLabel.cpp in Sources */,
-				37DC667D17780CCF00D5E676 /* CocoLabelAtlas.cpp in Sources */,
-				37DC667E17780CCF00D5E676 /* CocoLabelBMFont.cpp in Sources */,
-				37DC667F17780CCF00D5E676 /* CocoListView.cpp in Sources */,
-				37DC668017780CCF00D5E676 /* CocoLoadingBar.cpp in Sources */,
-				37DC668117780CCF00D5E676 /* CocoNodeContainer.cpp in Sources */,
-				37DC668217780CCF00D5E676 /* CocoPageView.cpp in Sources */,
-				37DC668317780CCF00D5E676 /* CocoPanel.cpp in Sources */,
-				37DC668417780CCF00D5E676 /* CocoScrollView.cpp in Sources */,
-				37DC668517780CCF00D5E676 /* CocoSlider.cpp in Sources */,
-				37DC668617780CCF00D5E676 /* CocoTextArea.cpp in Sources */,
-				37DC668717780CCF00D5E676 /* CocoTextButton.cpp in Sources */,
-				37DC668817780CCF00D5E676 /* CocoTextField.cpp in Sources */,
-				37DC668917780CCF00D5E676 /* CCSReader.cpp in Sources */,
-				37DC668A17780CCF00D5E676 /* CocosGUI.cpp in Sources */,
-				37DC668B17780CCF00D5E676 /* DictionaryHelper.cpp in Sources */,
-				37DC668C17780CCF00D5E676 /* InputLayer.cpp in Sources */,
-				37DC668D17780CCF00D5E676 /* UIInputManager.cpp in Sources */,
-				37DC668E17780CCF00D5E676 /* UIScene.cpp in Sources */,
-				37DC668F17780CCF00D5E676 /* UISystem.cpp in Sources */,
-				37DC669017780CCF00D5E676 /* UIWidgetPool.cpp in Sources */,
 				37DC669417780CD800D5E676 /* CCJsonReader.cpp in Sources */,
 				37DC6BB217780D2D00D5E676 /* SceneEditorTestScene.cpp in Sources */,
-				37DC6BE317780DAF00D5E676 /* class.js in Sources */,
+				37DC6CC617782F9300D5E676 /* class.js in Sources */,
+				37DC6CE817782FBA00D5E676 /* DictionaryHelper.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

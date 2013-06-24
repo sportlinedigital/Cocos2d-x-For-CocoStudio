@@ -109,7 +109,8 @@ SOURCES = ../CCBReader/CCBFileLoader.cpp \
 ../CCArmature/utils/CCTransformHelp.cpp \
 ../CCArmature/utils/CCTweenFunction.cpp \
 ../CCArmature/utils/CCUtilMath.cpp \
-../JsonReader/CCJsonReader.cpp
+../JsonReader/CCJsonReader.cpp \
+../JsonReader/DictionaryHelper.cpp 
 
 include $(COCOS_ROOT)/cocos2dx/proj.linux/cocos2dx.mk
 

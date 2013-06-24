@@ -25,8 +25,8 @@
 #include "CCJsonReader.h"
 #include "cocos-ext.h"
 #include "DictionaryHelper.h"
-#include "CCArmature.h"
-#include "CCArmatureDataManager.h"
+#include "CCArmature/CCArmature.h"
+#include "CCArmature/utils/CCArmatureDataManager.h"
 
 NS_CC_EXT_BEGIN
 

@@ -25,7 +25,7 @@
 #ifndef __CCJSONREADER_H__
 #define __CCJSONREADER_H__
 
-#include "CSContentJsonDictionary.h"
+#include "CCArmature/external_tool/Json/CSContentJsonDictionary.h"
 #include "cocos2d.h"
 #include "ExtensionMacros.h"
 

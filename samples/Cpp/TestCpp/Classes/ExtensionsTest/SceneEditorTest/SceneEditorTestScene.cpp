@@ -1,6 +1,6 @@
 #include "SceneEditorTestScene.h"
 #include "../ExtensionsTest.h"
-#include "CCJsonReader.h"
+#include "JsonReader/CCJsonReader.h"
 
 using namespace cocos2d;
 using namespace cocos2d::extension;

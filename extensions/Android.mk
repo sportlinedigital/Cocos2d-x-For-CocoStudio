@@ -104,7 +104,8 @@ Components/CCComAudio.cpp \
 Components/CCComController.cpp \
 Components/CCComRender.cpp \
 Components/CCInputDelegate.cpp \
-JsonReader/CCJsonReader.cpp 
+JsonReader/CCJsonReader.cpp \
+JsonReader/DictionaryHelper.cpp \
 
 LOCAL_WHOLE_STATIC_LIBRARIES := cocos2dx_static
 LOCAL_WHOLE_STATIC_LIBRARIES += cocosdenshion_static

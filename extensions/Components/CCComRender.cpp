@@ -54,7 +54,7 @@ void CCComRender::onEnter()
 
 void CCComRender::onExit()
 {
-   m_pRender->removeFromParentAndCleanup(true);
+   m_pRender = NULL;
 }
 
 cocos2d::CCNode* CCComRender::getRender()
