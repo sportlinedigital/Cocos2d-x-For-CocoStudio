@@ -117,6 +117,11 @@ NS_CC_EXT_BEGIN
                 }
                 else if(strcmp(comName, "CCParticleSystemQuad") == 0)
                 {
+                    std::string::size_type pos =  pPath.find(".plist");
+                    if (pos  == pPath.npos)
+                    {
+                        continue;
+                    }
                     cocos2d::CCParticleSystemQuad *pParticle = CCParticleSystemQuad::create(pPath.c_str());
                     CCComRender *pRender = CCComRender::create(pParticle, "CCParticleSystemQuad");
                     if (name != NULL)
