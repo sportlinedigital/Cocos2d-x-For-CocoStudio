@@ -353,6 +353,7 @@
 		37DC65891778044B00D5E676 /* UIScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC65621778044B00D5E676 /* UIScene.cpp */; };
 		37DC658A1778044B00D5E676 /* UISystem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC65641778044B00D5E676 /* UISystem.cpp */; };
 		37DC658B1778044B00D5E676 /* UIWidgetPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC65661778044B00D5E676 /* UIWidgetPool.cpp */; };
+		37DC65A1177807C900D5E676 /* SceneEditorTestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37DC659F177807C900D5E676 /* SceneEditorTestScene.cpp */; };
 		37EEEC1F175DE303003C1193 /* CCComAttribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37EEEC17175DE303003C1193 /* CCComAttribute.cpp */; };
 		37EEEC20175DE303003C1193 /* CCComAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37EEEC19175DE303003C1193 /* CCComAudio.cpp */; };
 		37EEEC21175DE303003C1193 /* CCComController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37EEEC1B175DE303003C1193 /* CCComController.cpp */; };
@@ -1135,6 +1136,8 @@
 		37DC65651778044B00D5E676 /* UISystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISystem.h; sourceTree = "<group>"; };
 		37DC65661778044B00D5E676 /* UIWidgetPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIWidgetPool.cpp; sourceTree = "<group>"; };
 		37DC65671778044B00D5E676 /* UIWidgetPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIWidgetPool.h; sourceTree = "<group>"; };
+		37DC659F177807C900D5E676 /* SceneEditorTestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SceneEditorTestScene.cpp; sourceTree = "<group>"; };
+		37DC65A0177807C900D5E676 /* SceneEditorTestScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneEditorTestScene.h; sourceTree = "<group>"; };
 		37EEEC17175DE303003C1193 /* CCComAttribute.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCComAttribute.cpp; sourceTree = "<group>"; };
 		37EEEC18175DE303003C1193 /* CCComAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCComAttribute.h; sourceTree = "<group>"; };
 		37EEEC19175DE303003C1193 /* CCComAudio.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCComAudio.cpp; sourceTree = "<group>"; };
@@ -2017,6 +2020,7 @@
 		15AA9CBB15B7EC460033D6C2 /* ExtensionsTest */ = {
 			isa = PBXGroup;
 			children = (
+				37DC659E177807C900D5E676 /* SceneEditorTest */,
 				1A70B1A9176318B80003A116 /* ArmatureTest */,
 				15AA9CBC15B7EC460033D6C2 /* CocosBuilderTest */,
 				37EEEC33175DE5D3003C1193 /* ComponentsTest */,
@@ -2914,6 +2918,16 @@
 			path = System;
 			sourceTree = "<group>";
 		};
+		37DC659E177807C900D5E676 /* SceneEditorTest */ = {
+			isa = PBXGroup;
+			children = (
+				37DC659F177807C900D5E676 /* SceneEditorTestScene.cpp */,
+				37DC65A0177807C900D5E676 /* SceneEditorTestScene.h */,
+			);
+			name = SceneEditorTest;
+			path = ../../Classes/ExtensionsTest/SceneEditorTest;
+			sourceTree = "<group>";
+		};
 		37EEEC16175DE303003C1193 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -3468,6 +3482,7 @@
 				37DC65891778044B00D5E676 /* UIScene.cpp in Sources */,
 				37DC658A1778044B00D5E676 /* UISystem.cpp in Sources */,
 				37DC658B1778044B00D5E676 /* UIWidgetPool.cpp in Sources */,
+				37DC65A1177807C900D5E676 /* SceneEditorTestScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

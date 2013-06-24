@@ -9,6 +9,7 @@
 #include "TableViewTest/TableViewTestScene.h"
 #include "ArmatureTest/ArmatureScene.h"
 #include "ComponentsTest/ComponentsTestScene.h"
+#include "SceneEditorTest/SceneEditorTestScene.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS) || (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 #include "NetworkTest/WebSocketTest.h"
@@ -39,6 +40,7 @@ enum
 	TEST_TABLEVIEW,
 	TEST_COMPONENTS,
 	TEST_ARMATURE,
+    TEST_SCENEEDITOR,
     TEST_MAX_COUNT,
 };
 
@@ -58,7 +60,8 @@ static const std::string testsName[TEST_MAX_COUNT] =
 #endif
 	"TableViewTest",
     "ComponentsTest",
-	"ArmatureTest"
+	"ArmatureTest",
+    "SceneJsonTest"
 };
 
 ////////////////////////////////////////////////////////
@@ -162,6 +165,10 @@ void ExtensionsMainLayer::menuCallback(CCObject* pSender)
 			}
 		}
 		break;
+    case TEST_SCENEEDITOR:
+       {
+            runSceneEditorTestLayer();
+       }
     default:
         break;
     }

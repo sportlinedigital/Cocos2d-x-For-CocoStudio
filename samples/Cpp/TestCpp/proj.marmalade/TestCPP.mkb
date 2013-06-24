@@ -336,6 +336,11 @@ files
 	(../Classes/ExtensionsTest/ArmatureTest)
 	ArmatureScene.cpp
 	ArmatureScene.h
+    
+    [Test/ExtensionsTest/SceneEditorTest]
+	(../Classes/ExtensionsTest/SceneEditorTest)
+	SceneEditorTestScene.cpp
+	SceneEditorTestScene.h
 
 	[Test/FontTest]
 	(../Classes/FontTest)
