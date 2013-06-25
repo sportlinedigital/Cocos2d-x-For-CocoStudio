@@ -22,26 +22,42 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#include "CocoGUIAction.h"
+#ifndef __UISYSTEM_H__
+#define __UISYSTEM_H__
+
+#include "UIInputManager.h"
+#include "UIScene.h"
+#include "../../CCArmature/external_tool/Json/CSContentJsonDictionary.h"
+
+
+#define CCUIHELPER cocos2d::extension::UIHelper::instance()
 
 NS_CC_EXT_BEGIN
 
-CocoGUIAction::CocoGUIAction()
+class UIHelper
 {
-
-}
-
-void CocoGUIAction::Play()
-{
-
-}
-void CocoGUIAction::Pause()
-{
-
-}
-void CocoGUIAction::Stop()
-{
-
-}
+public:
+    UIHelper();
+    ~UIHelper();
+    void init();
+    CocoWidget* createWidget(cocos2d::CCDictionary* data);
+    CocoWidget* createWidgetFromFile(const char* fileName);
+    CocoWidget* createWidget_json(cs::CSJsonDictionary* data);
+    CocoWidget* createWidgetFromFile_json(const char* fileName);
+    CocoWidget* createWidgetFromFileWithAdapt_json(const char* fileName, bool scaleAdapt, bool equalProportions);
+    void adjustWidgetProperty(CocoWidget* root,float xProportion,float yProportion,bool scaleAdapt,bool equalProportions);
+    static UIHelper* instance();
+    void addSpriteFrame(const char* fileName);
+    void removeSpriteFrame(const char* fileName);
+    void removeAllSpriteFrame();
+    
+protected:
+    CC_SYNTHESIZE(float, m_fFileDesignWidth, FileDesignWidth)
+    CC_SYNTHESIZE(float, m_fFileDesignHeight, FileDesignHeight)
+    //texture
+    cocos2d::CCArray* m_textureFiles;
+};
 
 NS_CC_EXT_END
+
+#endif /* defined(__CocoGUI__UISystem__) */
