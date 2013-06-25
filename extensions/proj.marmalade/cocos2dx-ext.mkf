@@ -117,4 +117,9 @@ files
     ("../CCArmature/external_tool/Json/lib_json")
     "*.h"
     "*.cpp"
+
+       ["JsonReader"]
+    ("../JsonReader")
+    "*.h"
+    "*.cpp"
 }
