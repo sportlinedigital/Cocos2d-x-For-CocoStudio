@@ -31,7 +31,7 @@ void CocosGUITestScene::runThisTest()
     
     CocoImageView* image = dynamic_cast<CocoImageView*>(ul->getWidgetByName("imageview"));
     image->setBeTouchAble(true);
-    image->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::MainMenuCallback));
+//    image->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::MainMenuCallback));
     
     
 }

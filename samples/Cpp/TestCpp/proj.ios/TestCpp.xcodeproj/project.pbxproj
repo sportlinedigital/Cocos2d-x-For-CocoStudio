@@ -372,7 +372,6 @@
 		50D5FE201779BFF6005E064C /* UIHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50D5FDF71779BFF6005E064C /* UIHelper.cpp */; };
 		50D5FE211779BFF6005E064C /* UIInputManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50D5FDF91779BFF6005E064C /* UIInputManager.cpp */; };
 		50D5FE221779BFF6005E064C /* UILayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50D5FDFB1779BFF6005E064C /* UILayer.cpp */; };
-		50D5FE231779BFF6005E064C /* UIScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50D5FDFD1779BFF6005E064C /* UIScene.cpp */; };
 		50D5FE241779BFF6005E064C /* UIWidgetPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50D5FDFF1779BFF6005E064C /* UIWidgetPool.cpp */; };
 		50D5FE2C1779C246005E064C /* CocosGUIScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50D5FE2A1779C246005E064C /* CocosGUIScene.cpp */; };
 		50D5FE361779C63D005E064C /* CocoGUIAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50D5FE2E1779C63D005E064C /* CocoGUIAction.cpp */; };
@@ -1172,8 +1171,6 @@
 		50D5FDFA1779BFF6005E064C /* UIInputManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIInputManager.h; sourceTree = "<group>"; };
 		50D5FDFB1779BFF6005E064C /* UILayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UILayer.cpp; sourceTree = "<group>"; };
 		50D5FDFC1779BFF6005E064C /* UILayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILayer.h; sourceTree = "<group>"; };
-		50D5FDFD1779BFF6005E064C /* UIScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIScene.cpp; sourceTree = "<group>"; };
-		50D5FDFE1779BFF6005E064C /* UIScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIScene.h; sourceTree = "<group>"; };
 		50D5FDFF1779BFF6005E064C /* UIWidgetPool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIWidgetPool.cpp; sourceTree = "<group>"; };
 		50D5FE001779BFF6005E064C /* UIWidgetPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIWidgetPool.h; sourceTree = "<group>"; };
 		50D5FE2A1779C246005E064C /* CocosGUIScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocosGUIScene.cpp; sourceTree = "<group>"; };
@@ -2980,8 +2977,6 @@
 				50D5FDFA1779BFF6005E064C /* UIInputManager.h */,
 				50D5FDFB1779BFF6005E064C /* UILayer.cpp */,
 				50D5FDFC1779BFF6005E064C /* UILayer.h */,
-				50D5FDFD1779BFF6005E064C /* UIScene.cpp */,
-				50D5FDFE1779BFF6005E064C /* UIScene.h */,
 				50D5FDFF1779BFF6005E064C /* UIWidgetPool.cpp */,
 				50D5FE001779BFF6005E064C /* UIWidgetPool.h */,
 			);
@@ -3535,7 +3530,6 @@
 				50D5FE201779BFF6005E064C /* UIHelper.cpp in Sources */,
 				50D5FE211779BFF6005E064C /* UIInputManager.cpp in Sources */,
 				50D5FE221779BFF6005E064C /* UILayer.cpp in Sources */,
-				50D5FE231779BFF6005E064C /* UIScene.cpp in Sources */,
 				50D5FE241779BFF6005E064C /* UIWidgetPool.cpp in Sources */,
 				50D5FE2C1779C246005E064C /* CocosGUIScene.cpp in Sources */,
 				50D5FE361779C63D005E064C /* CocoGUIAction.cpp in Sources */,

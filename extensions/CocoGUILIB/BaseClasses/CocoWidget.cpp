@@ -23,7 +23,6 @@
  ****************************************************************************/
 
 #include "CocoWidget.h"
-#include "../../JsonReader/DictionaryHelper.h"
 #include "../System/UIHelper.h"
 #include "../System/UILayer.h"
 

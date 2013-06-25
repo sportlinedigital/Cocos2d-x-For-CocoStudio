@@ -23,7 +23,6 @@
  ****************************************************************************/
 
 #include "CocoSlider.h"
-#include "DictionaryHelper.h"
 #include "CCScale9Sprite.h"
 
 NS_CC_EXT_BEGIN

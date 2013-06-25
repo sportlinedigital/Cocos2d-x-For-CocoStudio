@@ -23,7 +23,6 @@
  ****************************************************************************/
 
 #include "CocoPanel.h"
-#include "DictionaryHelper.h"
 #include "CCScale9Sprite.h"
 #include "CClipAbleLayerColor.h"
 

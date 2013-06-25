@@ -23,7 +23,7 @@
  ****************************************************************************/
 
 #include "CocosGUI.h"
-#include "DictionaryHelper.h"
+#include "../../JsonReader/DictionaryHelper.h"
 #include <fstream>
 #include <iostream>
 

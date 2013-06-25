@@ -23,7 +23,6 @@
  ****************************************************************************/
 
 #include "CocoImageView.h"
-#include "../System/UIHelper.h"
 #include "CCScale9Sprite.h"
 
 NS_CC_EXT_BEGIN

@@ -26,7 +26,6 @@
 #define __UISYSTEM_H__
 
 #include "UIInputManager.h"
-#include "UIScene.h"
 #include "../../CCArmature/external_tool/Json/CSContentJsonDictionary.h"
 
 

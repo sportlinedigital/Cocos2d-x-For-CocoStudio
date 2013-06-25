@@ -23,7 +23,7 @@
  ****************************************************************************/
 
 #include "UIHelper.h"
-#include "DictionaryHelper.h"
+#include "../../JsonReader/DictionaryHelper.h"
 #include "../Component/CocoButton.h"
 #include "../Component/CocoCheckBox.h"
 #include "../Component/CocoImageView.h"
