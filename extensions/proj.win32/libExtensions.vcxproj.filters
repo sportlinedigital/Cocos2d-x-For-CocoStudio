@@ -79,6 +79,9 @@
     <Filter Include="CocoGUILIB\Action">
       <UniqueIdentifier>{3e11ea5c-b88d-4c64-bbc0-0ff241a7de1b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="JsonReader">
+      <UniqueIdentifier>{98a32c85-66fa-4674-91a2-b834fa19833a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\GUI\CCScrollView\CCScrollView.cpp">
@@ -393,9 +396,6 @@
     <ClCompile Include="..\CocoGUILIB\Component\CocoImageView.cpp">
       <Filter>CocoGUILIB\Component</Filter>
     </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\Component\CocoImageViewScale9.cpp">
-      <Filter>CocoGUILIB\Component</Filter>
-    </ClCompile>
     <ClCompile Include="..\CocoGUILIB\Component\CocoLabel.cpp">
       <Filter>CocoGUILIB\Component</Filter>
     </ClCompile>
@@ -477,63 +477,6 @@
     <ClCompile Include="..\CocoGUILIB\System\UIWidgetPool.cpp">
       <Filter>CocoGUILIB\System</Filter>
     </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCBFileLoader.cpp">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCBReader.cpp">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCControlButtonLoader.cpp">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCControlLoader.cpp">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCLabelBMFontLoader.cpp">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCLabelTTFLoader.cpp">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCLayerColorLoader.cpp">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCLayerGradientLoader.cpp">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCLayerLoader.cpp">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCMenuItemImageLoader.cpp">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCMenuItemLoader.cpp">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCMenuLoader.cpp">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCNodeLoader.cpp">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCNodeLoaderLibrary.cpp">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCNodeLoaderListener.cpp">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCParticleSystemQuadLoader.cpp">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCScale9SpriteLoader.cpp">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCScrollViewLoader.cpp">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\System\GUICCBReader\GUICCSpriteLoader.cpp">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClCompile>
     <ClCompile Include="..\CocoGUILIB\BaseClasses\CocoContainerWidget.cpp">
       <Filter>CocoGUILIB\BaseClasses</Filter>
     </ClCompile>
@@ -552,9 +495,6 @@
     <ClCompile Include="..\Components\CCComRender.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="..\JsonReader\CCJsonReader.cpp">
-      <Filter>JsonReader</Filter>
-    </ClCompile>
     <ClCompile Include="..\CocoGUILIB\Action\CocoGUIAction.cpp">
       <Filter>CocoGUILIB\Action</Filter>
     </ClCompile>
@@ -566,6 +506,12 @@
     </ClCompile>
     <ClCompile Include="..\CocoGUILIB\Action\CocoGUIActionNode.cpp">
       <Filter>CocoGUILIB\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\JsonReader\CCJsonReader.cpp">
+      <Filter>JsonReader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\JsonReader\DictionaryHelper.cpp">
+      <Filter>JsonReader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -859,9 +805,6 @@
     <ClInclude Include="..\CocoGUILIB\Component\CocoImageView.h">
       <Filter>CocoGUILIB\Component</Filter>
     </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\Component\CocoImageViewScale9.h">
-      <Filter>CocoGUILIB\Component</Filter>
-    </ClInclude>
     <ClInclude Include="..\CocoGUILIB\Component\CocoLabel.h">
       <Filter>CocoGUILIB\Component</Filter>
     </ClInclude>
@@ -943,63 +886,6 @@
     <ClInclude Include="..\CocoGUILIB\System\UIWidgetPool.h">
       <Filter>CocoGUILIB\System</Filter>
     </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCBFileLoader.h">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCBReader.h">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCControlButtonLoader.h">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCControlLoader.h">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCLabelBMFontLoader.h">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCLabelTTFLoader.h">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCLayerColorLoader.h">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCLayerGradientLoader.h">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCLayerLoader.h">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCMenuItemImageLoader.h">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCMenuItemLoader.h">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCMenuLoader.h">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCNodeLoader.h">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCNodeLoaderLibrary.h">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCNodeLoaderListener.h">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCParticleSystemQuadLoader.h">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCScale9SpriteLoader.h">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCScrollViewLoader.h">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\System\GUICCBReader\GUICCSpriteLoader.h">
-      <Filter>CocoGUILIB\System\GUICCBReader</Filter>
-    </ClInclude>
     <ClInclude Include="..\CocoGUILIB\BaseClasses\CocoContainerWidget.h">
       <Filter>CocoGUILIB\BaseClasses</Filter>
     </ClInclude>
@@ -1018,9 +904,6 @@
     <ClInclude Include="..\Components\CCComRender.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\JsonReader\CCJsonReader.h">
-      <Filter>JsonReader</Filter>
-    </ClInclude>
     <ClInclude Include="..\CocoGUILIB\Action\CocoGUIAction.h">
       <Filter>CocoGUILIB\Action</Filter>
     </ClInclude>
@@ -1032,6 +915,12 @@
     </ClInclude>
     <ClInclude Include="..\CocoGUILIB\Action\CocoGUIActionNode.h">
       <Filter>CocoGUILIB\Action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\JsonReader\CCJsonReader.h">
+      <Filter>JsonReader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\JsonReader\DictionaryHelper.h">
+      <Filter>JsonReader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
