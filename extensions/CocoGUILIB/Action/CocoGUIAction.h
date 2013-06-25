@@ -36,15 +36,15 @@ class CocoGUIAction
 protected:
 	std::list<CocoGUIActionNode> actionNodeList;
 public:
- //   CocoGUIAction();
- //   virtual ~CocoGUIAction();
+    CocoGUIAction();
+    virtual ~CocoGUIAction();
 
-	//void Play();
-	//void Pause();
-	//void Stop();
+	void Play();
+	void Pause();
+	void Stop();
 
-	////
-	//CC_SYNTHESIZE(string, name, Name);
+	//
+	CC_SYNTHESIZE(const char*, name, Name);
 
 };
 

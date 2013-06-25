@@ -37,12 +37,12 @@ protected:
 	std::list<CocoGUIAction> actionList;
 
 public:
- //   CocoGUIActionManager();
- //   virtual ~CocoGUIActionManager();
+    CocoGUIActionManager();
+    virtual ~CocoGUIActionManager();
 
-	//CocoGUIAction* GetActionByName(string actionName);
+	CocoGUIAction* GetActionByName(const char* actionName);
 
-	//void PlayActionByName(string acitonName);
+	void PlayActionByName(const char* acitonName);
 
 };
 

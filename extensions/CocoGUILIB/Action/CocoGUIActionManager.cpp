@@ -26,9 +26,19 @@
 
 NS_CC_EXT_BEGIN
 
-//CocoGUIActionManager::CocoGUIActionManager()
-//{
-//
-//}
+CocoGUIActionManager::CocoGUIActionManager()
+{
+
+}
+
+CocoGUIAction* CocoGUIActionManager::GetActionByName(const char* actionName)
+{
+	return NULL;
+}
+
+void CocoGUIActionManager::PlayActionByName(const char* acitonName)
+{
+
+}
 
 NS_CC_EXT_END

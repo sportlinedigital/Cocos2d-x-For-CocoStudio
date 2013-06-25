@@ -26,9 +26,9 @@
 
 NS_CC_EXT_BEGIN
 
-//CocoGUIActionNode::CocoGUIActionNode()
-//{
-//
-//}
+CocoGUIActionNode::CocoGUIActionNode()
+{
+
+}
 
 NS_CC_EXT_END

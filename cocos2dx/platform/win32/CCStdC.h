@@ -90,6 +90,10 @@ THE SOFTWARE.
 	#include <WinSock2.h>
 #endif
 
+#ifdef COCOS2D_RELEASE
+	#include <WinSock2.h>
+#endif
+
 NS_CC_BEGIN
 
 struct timezone

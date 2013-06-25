@@ -26,9 +26,22 @@
 
 NS_CC_EXT_BEGIN
 
-//CocoGUIAction::CocoGUIAction()
-//{
-//
-//}
+CocoGUIAction::CocoGUIAction()
+{
+
+}
+
+void CocoGUIAction::Play()
+{
+
+}
+void CocoGUIAction::Pause()
+{
+
+}
+void CocoGUIAction::Stop()
+{
+
+}
 
 NS_CC_EXT_END

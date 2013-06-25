@@ -38,8 +38,8 @@ protected:
 	CocoWidget* actionNode;
 	std::list<CocoGUIActionFrame> actionFrameList;
 public:
-    //CocoGUIActionNode();
-    //virtual ~CocoGUIActionNode();
+    CocoGUIActionNode();
+    virtual ~CocoGUIActionNode();
 
 
 };
