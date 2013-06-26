@@ -28,7 +28,14 @@ NS_CC_EXT_BEGIN
 
 CocoGUIActionManager::CocoGUIActionManager()
 {
+	m_ActionList = cocos2d::CCArray::create();
+	m_ActionList->retain();
+}
 
+CocoGUIActionManager::~CocoGUIActionManager()
+{
+	m_ActionList->removeAllObjects();
+	m_ActionList->release();
 }
 
 CocoGUIAction* CocoGUIActionManager::GetActionByName(const char* actionName)

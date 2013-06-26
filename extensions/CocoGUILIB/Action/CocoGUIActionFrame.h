@@ -30,32 +30,29 @@
 
 NS_CC_EXT_BEGIN
 
-class CocoGUIActionFrame
+class CocoGUIActionFrame:public cocos2d::CCObject
 {
 protected:
 
 public:
     CocoGUIActionFrame();
     virtual ~CocoGUIActionFrame();
-
 	//
-	CC_SYNTHESIZE(float, frameId, FrameId);
+	CC_SYNTHESIZE(float, m_frameId, FrameId);
 	//
-	CC_SYNTHESIZE(float, startTime, StartTime);
+	CC_SYNTHESIZE(float, m_startTime, StartTime);
 	//
-	CC_SYNTHESIZE(CCPoint, position, Position);
+	CC_SYNTHESIZE(CCPoint, m_position, Position);
 	//
-	CC_SYNTHESIZE(float, scaleX, ScaleX);
+	CC_SYNTHESIZE(float, m_scaleX, ScaleX);
 	//
-	CC_SYNTHESIZE(float, scaleY, ScaleY);
+	CC_SYNTHESIZE(float, m_scaleY, ScaleY);
 	//
-	CC_SYNTHESIZE(float, rotation, Rotation);
+	CC_SYNTHESIZE(float, m_rotation, Rotation);
 	//
-	CC_SYNTHESIZE(float, visible, Visible);
+	CC_SYNTHESIZE(float, m_opacity, Opacity);
 	//
-	CC_SYNTHESIZE(float, opacity, Opacity);
-	//
-	CC_SYNTHESIZE(ccColor3B, color, Color);
+	CC_SYNTHESIZE(ccColor3B, m_color, Color);
 
 };
 

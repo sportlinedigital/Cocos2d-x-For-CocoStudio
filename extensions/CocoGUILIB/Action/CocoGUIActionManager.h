@@ -31,10 +31,10 @@
 
 NS_CC_EXT_BEGIN
 
-class CocoGUIActionManager
+class CocoGUIActionManager:public cocos2d::CCObject
 {
 protected:
-	std::list<CocoGUIAction> actionList;
+	cocos2d::CCArray* m_ActionList;
 
 public:
     CocoGUIActionManager();
