@@ -24,7 +24,6 @@
 
 #include "CocoButton.h"
 #include "CCScale9Sprite.h"
-#include "DictionaryHelper.h"
 
 NS_CC_EXT_BEGIN
     

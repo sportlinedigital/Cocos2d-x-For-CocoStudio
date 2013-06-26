@@ -25,7 +25,6 @@
 #include "CocoContainerWidget.h"
 #include "CClipAbleLayerColor.h"
 #include "CClipAbleLayerGradient.h"
-#include "DictionaryHelper.h"
 
 NS_CC_EXT_BEGIN
 

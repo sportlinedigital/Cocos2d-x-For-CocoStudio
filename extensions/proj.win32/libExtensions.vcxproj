@@ -176,11 +176,9 @@
     <ClCompile Include="..\CocoGUILIB\Component\CocoTextField.cpp" />
     <ClCompile Include="..\CocoGUILIB\System\CCSReader.cpp" />
     <ClCompile Include="..\CocoGUILIB\System\CocosGUI.cpp" />
-    <ClCompile Include="..\CocoGUILIB\System\DictionaryHelper.cpp" />
-    <ClCompile Include="..\CocoGUILIB\System\InputLayer.cpp" />
+    <ClCompile Include="..\CocoGUILIB\System\UIHelper.cpp" />
     <ClCompile Include="..\CocoGUILIB\System\UIInputManager.cpp" />
-    <ClCompile Include="..\CocoGUILIB\System\UIScene.cpp" />
-    <ClCompile Include="..\CocoGUILIB\System\UISystem.cpp" />
+    <ClCompile Include="..\CocoGUILIB\System\UILayer.cpp" />
     <ClCompile Include="..\CocoGUILIB\System\UIWidgetPool.cpp" />
     <ClCompile Include="..\Components\CCComAttribute.cpp" />
     <ClCompile Include="..\Components\CCComAudio.cpp" />
@@ -335,11 +333,9 @@
     <ClInclude Include="..\CocoGUILIB\Component\CocoTextField.h" />
     <ClInclude Include="..\CocoGUILIB\System\CCSReader.h" />
     <ClInclude Include="..\CocoGUILIB\System\CocosGUI.h" />
-    <ClInclude Include="..\CocoGUILIB\System\DictionaryHelper.h" />
-    <ClInclude Include="..\CocoGUILIB\System\InputLayer.h" />
+    <ClInclude Include="..\CocoGUILIB\System\UIHelper.h" />
     <ClInclude Include="..\CocoGUILIB\System\UIInputManager.h" />
-    <ClInclude Include="..\CocoGUILIB\System\UIScene.h" />
-    <ClInclude Include="..\CocoGUILIB\System\UISystem.h" />
+    <ClInclude Include="..\CocoGUILIB\System\UILayer.h" />
     <ClInclude Include="..\CocoGUILIB\System\UIWidgetPool.h" />
     <ClInclude Include="..\Components\CCComAttribute.h" />
     <ClInclude Include="..\Components\CCComAudio.h" />

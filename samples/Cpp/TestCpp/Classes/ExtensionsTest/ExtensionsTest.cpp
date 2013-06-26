@@ -10,6 +10,7 @@
 #include "ArmatureTest/ArmatureScene.h"
 #include "ComponentsTest/ComponentsTestScene.h"
 #include "SceneEditorTest/SceneEditorTestScene.h"
+#include "CocosGUITest/CocosGUIScene.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS) || (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 #include "NetworkTest/WebSocketTest.h"
@@ -41,6 +42,7 @@ enum
 	TEST_COMPONENTS,
 	TEST_ARMATURE,
     TEST_SCENEEDITOR,
+    TEST_COCOSGUI,
     TEST_MAX_COUNT,
 };
 
@@ -61,7 +63,8 @@ static const std::string testsName[TEST_MAX_COUNT] =
 	"TableViewTest",
     "ComponentsTest",
 	"ArmatureTest",
-    "SceneJsonTest"
+    "SceneJsonTest",
+    "CocosGUIScene"
 };
 
 ////////////////////////////////////////////////////////
@@ -169,6 +172,17 @@ void ExtensionsMainLayer::menuCallback(CCObject* pSender)
        {
             runSceneEditorTestLayer();
        }
+            break;
+        case TEST_COCOSGUI:
+        {
+			CocosGUITestScene *pScene = new CocosGUITestScene();
+			if (pScene)
+			{
+				pScene->runThisTest();
+				pScene->release();
+			}
+		}
+            break;
     default:
         break;
     }

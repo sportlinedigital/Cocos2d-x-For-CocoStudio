@@ -706,6 +706,9 @@ void CCScale9Sprite::updateCapInset()
 
 void CCScale9Sprite::setOpacityModifyRGB(bool var)
 {
+    if (!_scale9Image) {
+        return;
+    }
     _opacityModifyRGB = var;
     CCObject* child;
     CCArray* children = _scale9Image->getChildren();
@@ -791,6 +794,9 @@ void CCScale9Sprite::visit()
 
 void CCScale9Sprite::setColor(const ccColor3B& color)
 {
+    if (!_scale9Image) {
+        return;
+    }
     _color = color;
 
     CCObject* child;
@@ -812,6 +818,9 @@ const ccColor3B& CCScale9Sprite::getColor()
 
 void CCScale9Sprite::setOpacity(GLubyte opacity)
 {
+    if (!_scale9Image) {
+        return;
+    }
     _opacity = opacity;
 
     CCObject* child;

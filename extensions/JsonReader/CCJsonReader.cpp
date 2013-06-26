@@ -123,6 +123,7 @@ NS_CC_EXT_BEGIN
                         continue;
                     }
                     cocos2d::CCParticleSystemQuad *pParticle = CCParticleSystemQuad::create(pPath.c_str());
+					pParticle->setPosition(0, 0);
                     CCComRender *pRender = CCComRender::create(pParticle, "CCParticleSystemQuad");
                     if (name != NULL)
                     {
@@ -155,7 +156,7 @@ NS_CC_EXT_BEGIN
                     childrenCount = DICTOOL->getArrayCount_json(jsonDict, "config_file_path");
                     for (int i = 0; i < childrenCount; ++i)
                     {
-                        const char* plist = DICTOOL->getStringValueFromArray_json(jsonDict, "config_file_path", 0);
+                        const char* plist = DICTOOL->getStringValueFromArray_json(jsonDict, "config_file_path", i);
                         std::string plistpath;
                         plistpath += file_path;
                         plistpath.append(plist);
