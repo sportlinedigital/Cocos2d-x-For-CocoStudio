@@ -30,7 +30,21 @@ CocoGUIActionNode::CocoGUIActionNode()
 {
 	currentIndex = 0;
 	m_actionNode = CocoWidget::create();
-	m_ActionFrameList = new std::vector<CocoGUIActionFrame*>();
+	m_actionNode->retain();	
+
+	m_action = new CCSequence();
+
+	m_ActionFrameList = cocos2d::CCArray::create();
+	m_ActionFrameList->retain();
+}
+
+CocoGUIActionNode::~CocoGUIActionNode()
+{	
+	m_action->release();
+	m_actionNode->release();
+	
+	m_ActionFrameList->removeAllObjects();
+	m_ActionFrameList->release();
 }
 
 void CocoGUIActionNode::SetActionNode(CocoWidget* widget)
@@ -40,24 +54,40 @@ void CocoGUIActionNode::SetActionNode(CocoWidget* widget)
 	UpdateToFrameByIndex(currentIndex);
 }
 
+void CocoGUIActionNode::AddFrame(CocoGUIActionFrame* frame)
+{
+	m_ActionFrameList->addObject(frame);
+}
+
+void CocoGUIActionNode::DeleteFrame(CocoGUIActionFrame* frame)
+{
+	m_ActionFrameList->removeObject(frame);
+}
+
 void CocoGUIActionNode::UpdateToFrameByIndex(int index)
 {
 	currentIndex = index;
 
-	int frameNum = m_ActionFrameList->size();
+	int frameNum = m_ActionFrameList->count();
 
-	if ( index < 0 || index >= frameNum )
+	bool bFindFrame = false;
+
+	CocoGUIActionFrame* frame = NULL;
+	for (int i = 0; i < frameNum; i++)
 	{
-		if (m_actionNode != NULL)
+		frame = (CocoGUIActionFrame*)m_ActionFrameList->objectAtIndex(index);
+		if (frame->getFrameId() == index)
 		{
-			m_actionNode->setVisible(false);
+			bFindFrame = true;
+			UpdateToFrame(frame);
+			break;
 		}
-		
-		return;
 	}
 
-	CocoGUIActionFrame* frame = (CocoGUIActionFrame*)m_ActionFrameList->at(index);
-	UpdateToFrame(frame);
+	if (!bFindFrame)
+	{
+		m_actionNode->setVisible(false);
+	}
 }
 
 void CocoGUIActionNode::UpdateToFrame(CocoGUIActionFrame* frame)
@@ -78,7 +108,7 @@ void CocoGUIActionNode::UpdateToFrame(CocoGUIActionFrame* frame)
 
 void CocoGUIActionNode::RunAction(float fUnitTime, bool bloop)
 {
-	int frameNum = m_ActionFrameList->size();
+	int frameNum = m_ActionFrameList->count();
 
 	if ( m_actionNode == NULL || frameNum <= 0 )
 	{
@@ -91,7 +121,7 @@ void CocoGUIActionNode::RunAction(float fUnitTime, bool bloop)
 	{
 		float duration;
 
-		CocoGUIActionFrame* frame = (CocoGUIActionFrame*)m_ActionFrameList->at(i);
+		CocoGUIActionFrame* frame = (CocoGUIActionFrame*)m_ActionFrameList->objectAtIndex(i);
 
 		if ( i == 0 )
 		{
@@ -99,7 +129,7 @@ void CocoGUIActionNode::RunAction(float fUnitTime, bool bloop)
 		}
 		else
 		{
-			CocoGUIActionFrame* frame_pre = (CocoGUIActionFrame*)m_ActionFrameList->at(i-1);
+			CocoGUIActionFrame* frame_pre = (CocoGUIActionFrame*)m_ActionFrameList->objectAtIndex(i-1);
 			duration = (frame->getFrameId() - frame_pre->getFrameId()) * fUnitTime;
 		}
 
@@ -113,16 +143,21 @@ void CocoGUIActionNode::RunAction(float fUnitTime, bool bloop)
 		actionFrame->addObject( actionSpawn );
 	}
 
-	CCSequence* currentAction = CCSequence::create(actionFrame);
+	m_action = CCSequence::create(actionFrame);
 
 	if (bloop)
 	{
-		m_actionNode->getValidNode()->runAction(CCRepeatForever::create((CCActionInterval*)currentAction));
+		m_actionNode->getValidNode()->runAction(CCRepeatForever::create((CCActionInterval*)m_action));
 	}
 	else
 	{
-		m_actionNode->getValidNode()->runAction(currentAction);
+		m_actionNode->getValidNode()->runAction(m_action);
 	}
+}
+
+void CocoGUIActionNode::StopAction()
+{
+	m_actionNode->getValidNode()->stopAction(m_action);
 }
 
 //void CocoGUIActionNode::RunToFrameByIndex(int index)

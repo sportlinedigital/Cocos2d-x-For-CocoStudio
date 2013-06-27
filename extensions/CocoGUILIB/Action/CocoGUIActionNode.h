@@ -32,26 +32,27 @@
 
 NS_CC_EXT_BEGIN
 
-class CocoGUIActionNode
+class CocoGUIActionNode:public cocos2d::CCObject
 {
 protected:
 	int currentIndex;
+	CCSequence* m_action;
 	CocoWidget* m_actionNode;
-	std::vector<CocoGUIActionFrame*>* m_ActionFrameList;
+	cocos2d::CCArray* m_ActionFrameList;
 public:
     CocoGUIActionNode();
-    virtual ~CocoGUIActionNode(){};
+    virtual ~CocoGUIActionNode();
 
 	void SetActionNode(CocoWidget* widget);
+
+	void AddFrame(CocoGUIActionFrame* frame);
+	void DeleteFrame(CocoGUIActionFrame* frame);
 
 	void UpdateToFrameByIndex(int index);
 	void UpdateToFrame(CocoGUIActionFrame* frame);
 
 	void RunAction(float fUnitTime, bool bloop);
-	//void RunToFrame();
-
-	//void RunToFrameByIndex(int index);
-	//void RunToFrame(CocoGUIActionFrame* frame);
+	void StopAction();
 
 };
 

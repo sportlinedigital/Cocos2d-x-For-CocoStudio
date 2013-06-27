@@ -30,13 +30,13 @@
 
 NS_CC_EXT_BEGIN
 
-class CocoGUIActionFrame
+class CocoGUIActionFrame:public cocos2d::CCObject
 {
 protected:
 
 public:
     CocoGUIActionFrame();
-    virtual ~CocoGUIActionFrame(){};
+    virtual ~CocoGUIActionFrame();
 	//
 	CC_SYNTHESIZE(float, m_frameId, FrameId);
 	//

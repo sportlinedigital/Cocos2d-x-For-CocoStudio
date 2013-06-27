@@ -31,19 +31,19 @@
 
 NS_CC_EXT_BEGIN
 
-class CocoGUIAction
+class CocoGUIAction:public cocos2d::CCObject
 {
 protected:
-	std::vector<CocoGUIActionNode*>* m_ActionNodeList;
+	cocos2d::CCArray* m_ActionNodeList;
 public:
     CocoGUIAction();
-    virtual ~CocoGUIAction(){};
+    virtual ~CocoGUIAction();
 
 	void Play();
 	void Pause();
 	void Stop();
 
-//	void UpdateToFrameByIndex(int index);
+	void UpdateToFrameByIndex(int index);
 
 	//
 	CC_SYNTHESIZE(const char*, m_name, Name);

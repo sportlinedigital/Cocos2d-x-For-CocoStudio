@@ -31,14 +31,14 @@
 
 NS_CC_EXT_BEGIN
 
-class CocoGUIActionManager
+class CocoGUIActionManager:public cocos2d::CCObject
 {
 protected:
-	std::list<CocoGUIAction> m_ActionList;
+	cocos2d::CCArray* m_ActionList;
 
 public:
     CocoGUIActionManager();
-    virtual ~CocoGUIActionManager(){};
+    virtual ~CocoGUIActionManager();
 
 	CocoGUIAction* GetActionByName(const char* actionName);
 

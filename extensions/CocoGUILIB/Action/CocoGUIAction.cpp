@@ -28,16 +28,23 @@ NS_CC_EXT_BEGIN
 
 CocoGUIAction::CocoGUIAction()
 {
-	m_ActionNodeList = new std::vector<CocoGUIActionNode*>();
+	m_ActionNodeList = cocos2d::CCArray::create();
+	m_ActionNodeList->retain();
+}
+
+CocoGUIAction::~CocoGUIAction()
+{
+	m_ActionNodeList->removeAllObjects();
+	m_ActionNodeList->release();
 }
 
 void CocoGUIAction::Play()
 {
-	int frameNum = m_ActionNodeList->size();
+	int frameNum = m_ActionNodeList->count();
 
 	for ( int i = 0; i < frameNum; i++ )
 	{
-		CocoGUIActionNode* actionNode = (CocoGUIActionNode*)m_ActionNodeList->at(i);
+		CocoGUIActionNode* actionNode = (CocoGUIActionNode*)m_ActionNodeList->objectAtIndex(i);
 
 		actionNode->RunAction( this->getUnitTime(),this->getLoop() );
 	}
@@ -51,7 +58,26 @@ void CocoGUIAction::Pause()
 
 void CocoGUIAction::Stop()
 {
+	int frameNum = m_ActionNodeList->count();
 
+	for ( int i = 0; i < frameNum; i++ )
+	{
+		CocoGUIActionNode* actionNode = (CocoGUIActionNode*)m_ActionNodeList->objectAtIndex(i);
+
+		actionNode->StopAction();
+	}
+}
+
+void CocoGUIAction::UpdateToFrameByIndex(int index)
+{
+	int frameNum = m_ActionNodeList->count();
+
+	for ( int i = 0; i < frameNum; i++ )
+	{
+		CocoGUIActionNode* actionNode = (CocoGUIActionNode*)m_ActionNodeList->objectAtIndex(i);
+
+		actionNode->UpdateToFrameByIndex(index);
+	}
 }
 
 NS_CC_EXT_END

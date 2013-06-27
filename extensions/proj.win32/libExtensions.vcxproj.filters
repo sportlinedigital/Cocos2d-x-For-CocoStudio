@@ -459,19 +459,7 @@
     <ClCompile Include="..\CocoGUILIB\System\CocosGUI.cpp">
       <Filter>CocoGUILIB\System</Filter>
     </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\System\DictionaryHelper.cpp">
-      <Filter>CocoGUILIB\System</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\System\InputLayer.cpp">
-      <Filter>CocoGUILIB\System</Filter>
-    </ClCompile>
     <ClCompile Include="..\CocoGUILIB\System\UIInputManager.cpp">
-      <Filter>CocoGUILIB\System</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\System\UIScene.cpp">
-      <Filter>CocoGUILIB\System</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\System\UISystem.cpp">
       <Filter>CocoGUILIB\System</Filter>
     </ClCompile>
     <ClCompile Include="..\CocoGUILIB\System\UIWidgetPool.cpp">
@@ -512,6 +500,12 @@
     </ClCompile>
     <ClCompile Include="..\JsonReader\DictionaryHelper.cpp">
       <Filter>JsonReader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\System\UIHelper.cpp">
+      <Filter>CocoGUILIB\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\System\UILayer.cpp">
+      <Filter>CocoGUILIB\System</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -868,19 +862,7 @@
     <ClInclude Include="..\CocoGUILIB\System\CocosGUI.h">
       <Filter>CocoGUILIB\System</Filter>
     </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\System\DictionaryHelper.h">
-      <Filter>CocoGUILIB\System</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\System\InputLayer.h">
-      <Filter>CocoGUILIB\System</Filter>
-    </ClInclude>
     <ClInclude Include="..\CocoGUILIB\System\UIInputManager.h">
-      <Filter>CocoGUILIB\System</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\System\UIScene.h">
-      <Filter>CocoGUILIB\System</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\System\UISystem.h">
       <Filter>CocoGUILIB\System</Filter>
     </ClInclude>
     <ClInclude Include="..\CocoGUILIB\System\UIWidgetPool.h">
@@ -921,6 +903,12 @@
     </ClInclude>
     <ClInclude Include="..\JsonReader\DictionaryHelper.h">
       <Filter>JsonReader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\System\UIHelper.h">
+      <Filter>CocoGUILIB\System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\System\UILayer.h">
+      <Filter>CocoGUILIB\System</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
