@@ -175,7 +175,9 @@ void CocoGUIActionNode::RunAction(float fUnitTime, bool bloop)
 
 void CocoGUIActionNode::StopAction()
 {
-	m_actionNode->stopAction(m_action);
+    if (m_actionNode) {
+        m_actionNode->stopAction(m_action);
+    }
 }
 
 //void CocoGUIActionNode::RunToFrameByIndex(int index)
