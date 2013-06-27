@@ -79,4 +79,10 @@ CCNode* CocoLabelBMFont::getValidNode()
     return this->m_pLabelBMFont;
 }
 
+void CocoLabelBMFont::setAnchorPoint(const cocos2d::CCPoint &pt)
+{
+    CocoWidget::setAnchorPoint(pt);
+    this->m_pLabelBMFont->setAnchorPoint(pt);
+}
+
 NS_CC_EXT_END

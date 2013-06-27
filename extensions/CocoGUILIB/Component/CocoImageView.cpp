@@ -341,4 +341,10 @@ CCNode* CocoImageView::getValidNode()
     return this->m_pImageRender;
 }
 
+void CocoImageView::setAnchorPoint(const cocos2d::CCPoint &pt)
+{
+    CocoWidget::setAnchorPoint(pt);
+    this->m_pImageRender->setAnchorPoint(pt);
+}
+
 NS_CC_EXT_END

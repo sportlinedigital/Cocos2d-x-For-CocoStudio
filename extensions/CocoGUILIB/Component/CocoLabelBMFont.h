@@ -40,6 +40,7 @@ public:
     void setText(const char* value);
     const char* getStringValue();
     virtual cocos2d::CCNode* getValidNode();
+    virtual void setAnchorPoint(const cocos2d::CCPoint &pt);
 protected:
     cocos2d::CCLabelBMFont* m_pLabelBMFont;
 };

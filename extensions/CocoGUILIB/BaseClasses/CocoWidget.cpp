@@ -105,6 +105,7 @@ bool CocoWidget::init()
 void CocoWidget::releaseResoures()
 {
     this->setUpdateEnable(false);
+    this->setUILayer(NULL);
     this->removeAllChildrenAndCleanUp(true);
     this->m_pCCRenderNode->removeAllChildrenWithCleanup(true);
     this->m_pCCRenderNode->removeFromParentAndCleanup(true);
@@ -168,7 +169,6 @@ bool CocoWidget::addChild(CocoWidget *child)
             child->updateChildrenUILayer(this->m_pUILayer);
         }
     }
-    child->setUpdateEnable(child->getUpdateEnable());
     structureChangedEvent();
     return true;
 }
@@ -187,9 +187,21 @@ void CocoWidget::setUILayer(cocos2d::extension::UILayer *uiLayer)
 void CocoWidget::updateChildrenUILayer(UILayer* uiLayer)
 {
     this->setUILayer(uiLayer);
+    this->setUpdateEnable(this->getUpdateEnable());
     for (int i=0; i<this->m_children->count(); i++) {
         CocoWidget* child = (CocoWidget*)(this->m_children->objectAtIndex(i));
         child->updateChildrenUILayer(this->m_pUILayer);
+    }
+}
+
+void CocoWidget::disableUpdate()
+{
+    if (m_pUILayer) {
+        m_pUILayer->removeUpdateEnableWidget(this);
+    }
+    for (int i=0; i<this->m_children->count(); i++) {
+        CocoWidget* child = (CocoWidget*)(this->m_children->objectAtIndex(i));
+        child->disableUpdate();
     }
 }
 
@@ -227,8 +239,6 @@ void CocoWidget::removeChildMoveToTrash(CocoWidget *child)
     {
         this->m_children->removeObject(child);
         child->structureChangedEvent();
-        child->updateChildrenUILayer(NULL);
-        child->setUpdateEnable(false);
         child->releaseResoures();
         child->m_pWidgetParent = NULL;
         delete child;
@@ -244,6 +254,7 @@ void CocoWidget::removeChildReferenceOnly(CocoWidget *child)
     if (this->m_children->containsObject(child))
     {
         child->structureChangedEvent();
+        child->disableUpdate();
         child->updateChildrenUILayer(NULL);
         this->m_pCCRenderNode->removeChild(child->m_pCCRenderNode, false);
         child->setNeedCheckVisibleDepandParent(false);
@@ -261,7 +272,6 @@ void CocoWidget::removeFromParentAndCleanup(bool cleanup)
     else
     {
         structureChangedEvent();
-        setUpdateEnable(false);
         releaseResoures();
         m_pWidgetParent = NULL;
         delete this;
@@ -276,8 +286,6 @@ void CocoWidget::removeAllChildrenAndCleanUp(bool cleanup)
         CocoWidget* child = (CocoWidget*)(m_children->lastObject());
         m_children->removeObject(child);
         child->structureChangedEvent();
-        child->updateChildrenUILayer(NULL);
-        child->setUILayer(NULL);
         child->releaseResoures();
         delete child;
         child = NULL;

@@ -205,6 +205,11 @@ void UILayer::dispose()
     this->removeFromParentAndCleanup(true);
 }
 
+void UILayer::clear()
+{
+    this->m_pRootWidget->removeAllChildrenAndCleanUp(true);
+}
+
 bool UILayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
     if (m_pInputManager && m_pInputManager->onTouchPressed(pTouch))

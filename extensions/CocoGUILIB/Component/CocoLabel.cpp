@@ -174,4 +174,10 @@ CCNode* CocoLabel::getValidNode()
     return this->m_pRenderLabel;
 }
 
+void CocoLabel::setAnchorPoint(const cocos2d::CCPoint &pt)
+{
+    CocoWidget::setAnchorPoint(pt);
+    this->m_pRenderLabel->setAnchorPoint(pt);
+}
+
 NS_CC_EXT_END

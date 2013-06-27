@@ -39,8 +39,6 @@ public:
     UIHelper();
     ~UIHelper();
     void init();
-    CocoWidget* createWidget(cocos2d::CCDictionary* data);
-    CocoWidget* createWidgetFromFile(const char* fileName);
     CocoWidget* createWidget_json(cs::CSJsonDictionary* data);
     CocoWidget* createWidgetFromFile_json(const char* fileName);
     CocoWidget* createWidgetFromFileWithAdapt_json(const char* fileName, bool scaleAdapt, bool equalProportions);

@@ -56,6 +56,7 @@ public:
     void setInsetBottom(float insetBottom);
     void setCapInset(const CCRect &capInset);
     virtual cocos2d::CCNode* getValidNode();
+    virtual void setAnchorPoint(const cocos2d::CCPoint &pt);
 protected:
     int m_nViewType;
     int m_nClickCount;

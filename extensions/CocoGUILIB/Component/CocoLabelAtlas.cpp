@@ -72,6 +72,7 @@ const char* CocoLabelAtlas::getStringValue()
 
 void CocoLabelAtlas::setAnchorPoint(const cocos2d::CCPoint &pt)
 {
+    CocoWidget::setAnchorPoint(pt);
     this->m_pRenderLaberAtlas->setAnchorPoint(ccp(pt.x, pt.y-0.25f));
 }
 
@@ -79,6 +80,5 @@ CCNode* CocoLabelAtlas::getValidNode()
 {
     return this->m_pRenderLaberAtlas;
 }
-
 
 NS_CC_EXT_END
