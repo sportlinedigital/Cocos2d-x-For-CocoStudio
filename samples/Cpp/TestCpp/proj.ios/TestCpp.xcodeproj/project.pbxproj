@@ -378,6 +378,8 @@
 		50D5FE371779C63D005E064C /* CocoGUIActionFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50D5FE301779C63D005E064C /* CocoGUIActionFrame.cpp */; };
 		50D5FE381779C63D005E064C /* CocoGUIActionManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50D5FE321779C63D005E064C /* CocoGUIActionManager.cpp */; };
 		50D5FE391779C63D005E064C /* CocoGUIActionNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50D5FE341779C63D005E064C /* CocoGUIActionNode.cpp */; };
+		50E32A70177C86A20027ED05 /* slot in Resources */ = {isa = PBXBuildFile; fileRef = 50E32A6F177C86A20027ED05 /* slot */; };
+		50E32A73177C86C30027ED05 /* CocosGUISlotScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50E32A71177C86C30027ED05 /* CocosGUISlotScene.cpp */; };
 		6442E66D17297DB40008499D /* TextureAtlasEncryptionTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6442E66B17297DB40008499D /* TextureAtlasEncryptionTest.cpp */; };
 		A059B9AD174D9B8E0078F84F /* ConfigurationTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A059B9AB174D9B8E0078F84F /* ConfigurationTest.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
@@ -1183,6 +1185,9 @@
 		50D5FE331779C63D005E064C /* CocoGUIActionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoGUIActionManager.h; sourceTree = "<group>"; };
 		50D5FE341779C63D005E064C /* CocoGUIActionNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoGUIActionNode.cpp; sourceTree = "<group>"; };
 		50D5FE351779C63D005E064C /* CocoGUIActionNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoGUIActionNode.h; sourceTree = "<group>"; };
+		50E32A6F177C86A20027ED05 /* slot */ = {isa = PBXFileReference; lastKnownFileType = folder; path = slot; sourceTree = "<group>"; };
+		50E32A71177C86C30027ED05 /* CocosGUISlotScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocosGUISlotScene.cpp; sourceTree = "<group>"; };
+		50E32A72177C86C30027ED05 /* CocosGUISlotScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosGUISlotScene.h; sourceTree = "<group>"; };
 		6442E66B17297DB40008499D /* TextureAtlasEncryptionTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureAtlasEncryptionTest.cpp; sourceTree = "<group>"; };
 		6442E66C17297DB40008499D /* TextureAtlasEncryptionTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureAtlasEncryptionTest.h; sourceTree = "<group>"; };
 		A059B9AB174D9B8E0078F84F /* ConfigurationTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConfigurationTest.cpp; sourceTree = "<group>"; };
@@ -2986,6 +2991,8 @@
 		50D5FE291779C246005E064C /* CocosGUITest */ = {
 			isa = PBXGroup;
 			children = (
+				50E32A71177C86C30027ED05 /* CocosGUISlotScene.cpp */,
+				50E32A72177C86C30027ED05 /* CocosGUISlotScene.h */,
 				50D5FE2A1779C246005E064C /* CocosGUIScene.cpp */,
 				50D5FE2B1779C246005E064C /* CocosGUIScene.h */,
 			);
@@ -3021,6 +3028,7 @@
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				50E32A6F177C86A20027ED05 /* slot */,
 				37DC6C2A17782B2100D5E676 /* animations */,
 				37DC6C2B17782B2100D5E676 /* app.icf */,
 				37DC6C2C17782B2100D5E676 /* armature */,
@@ -3201,6 +3209,7 @@
 				37DC6C7717782B2100D5E676 /* TileMaps in Resources */,
 				37DC6C7817782B2100D5E676 /* xiaowangshu.mp3 in Resources */,
 				37DC6C7917782B2100D5E676 /* zwoptex in Resources */,
+				50E32A70177C86A20027ED05 /* slot in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3536,6 +3545,7 @@
 				50D5FE371779C63D005E064C /* CocoGUIActionFrame.cpp in Sources */,
 				50D5FE381779C63D005E064C /* CocoGUIActionManager.cpp in Sources */,
 				50D5FE391779C63D005E064C /* CocoGUIActionNode.cpp in Sources */,
+				50E32A73177C86C30027ED05 /* CocosGUISlotScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

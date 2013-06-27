@@ -18,6 +18,9 @@ public:
     
 	// The CallBack for back to the main menu scene
 	virtual void MainMenuCallback(CCObject* pSender);
+    
+    void toCocosGUISlotScene(CCObject* pSender);
+    
     UILayer* ul;
 };
 
