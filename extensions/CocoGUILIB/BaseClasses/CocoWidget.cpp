@@ -71,7 +71,9 @@ m_bVisibleDirty(true),
 m_fAdaptScaleX(1.0f),
 m_fAdaptScaleY(1.0f),
 m_anchorPoint(ccp(0.5f, 0.5f)),
-m_pUILayer(NULL)
+m_pUILayer(NULL),
+m_bIsCreatedFromFile(false),
+m_fileDesignSize(CCSizeZero)
 {
     
 }
@@ -1061,6 +1063,21 @@ void CocoWidget::adaptSize(float xProportion,float yProportion)
     this->m_fAdaptScaleY = yProportion;
     this->setScaleX(m_fAdaptScaleX*this->getScaleX());
     this->setScaleY(m_fAdaptScaleY*this->getScaleY());
+}
+
+void CocoWidget::setCreateFromFile(bool is)
+{
+    this->m_bIsCreatedFromFile = is;
+}
+
+void CocoWidget::setFileDesignSize(const cocos2d::CCSize &size)
+{
+    this->m_fileDesignSize = size;
+}
+
+CCSize CocoWidget::getFileDesignSize()
+{
+    return m_fileDesignSize;
 }
 
 void CocoWidget::setColor(const cocos2d::ccColor3B &color)
