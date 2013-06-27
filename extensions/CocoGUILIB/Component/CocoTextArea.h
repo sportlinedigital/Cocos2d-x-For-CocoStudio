@@ -49,6 +49,7 @@ public:
     virtual void setFlipX(bool flipX);
     virtual void setFlipY(bool flipY);
     virtual cocos2d::CCNode* getValidNode();
+    virtual void setAnchorPoint(const cocos2d::CCPoint &pt);
 protected:
     CCLabelTTF* m_pRenderLabel;
 };

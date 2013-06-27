@@ -32,7 +32,8 @@ NS_CC_EXT_BEGIN
     
 static CCSReader* sharedReader = NULL;
 
-CCSReader::CCSReader()
+CCSReader::CCSReader():
+m_strFilePath("")
 {
     
 }
@@ -49,98 +50,6 @@ CCSReader* CCSReader::shareReader()
         sharedReader = new CCSReader();
     }
     return sharedReader;
-}
-
-CocoWidget* CCSReader::widgetFromCCDictionary(cocos2d::CCDictionary* data)
-{
-    CocoWidget* widget = NULL;
-    
-    const char* classname = DICTOOL->getStringValue(data, "classname");
-    cocos2d::CCDictionary* uiOptions = DICTOOL->getSubDictionary(data, "options");
-    if (classname && strcmp(classname, "Button") == 0)
-    {
-        widget = CocoButton::create();
-        this->setPropsForButtonFromCCDictionary(widget, uiOptions);
-    }
-    else if (classname && strcmp(classname, "CheckBox") == 0)
-    {
-        widget = CocoCheckBox::create();
-        this->setPropsForCheckBoxFromCCDictionary(widget, uiOptions);
-    }
-    else if (classname && strcmp(classname, "Label") == 0)
-    {
-        widget = CocoLabel::create();
-        this->setPropsForLabelFromCCDictionary(widget, uiOptions);
-    }
-    else if (classname && strcmp(classname, "LabelAtlas") == 0)
-    {
-        widget = CocoLabelAtlas::create();
-        this->setPropsForLabelAtlasFromCCDictionary(widget, uiOptions);
-    }
-    else if (classname && strcmp(classname, "LoadingBar") == 0)
-    {
-        widget = CocoLoadingBar::create();
-        this->setPropsForLoadingBarFromCCDictionary(widget, uiOptions);
-    }
-    else if (classname && strcmp(classname, "ScrollView") == 0)
-    {
-        widget = CocoScrollView::create();
-        this->setPropsForScrollViewFromCCDictionary(widget, uiOptions);
-    }
-    else if (classname && strcmp(classname, "TextArea") == 0)
-    {
-        widget = CocoTextArea::create();
-        this->setPropsForTextAreaFromCCDictionary(widget, uiOptions);
-    }
-    else if (classname && strcmp(classname, "TextButton") == 0)
-    {
-        widget = CocoTextButton::create();
-        this->setPropsForTextButtonFromCCDictionary(widget, uiOptions);
-    }
-    else if (classname && strcmp(classname, "TextField") == 0)
-    {
-        widget = CocoTextField::create();
-        this->setPropsForTextFieldFromCCDictionary(widget, uiOptions);
-    }
-    else if (classname && strcmp(classname, "ImageView") == 0)
-    {
-        widget = CocoImageView::create();
-        this->setPropsForImageViewFromCCDictionary(widget, uiOptions);
-    }
-    else if (classname && strcmp(classname, "Panel") == 0)
-    {
-        widget = CocoPanel::create();
-        this->setPropsForPanelFromCCDictionary(widget, uiOptions);
-    }
-    else if (classname && strcmp(classname, "Slider") == 0)
-    {
-        widget = CocoSlider::create();
-        this->setPropsForSliderFromCCDictionary(widget, uiOptions);
-    }
-    else if (classname && strcmp(classname, "ListView") == 0)
-    {
-        widget = CocoListView::create();
-        this->setPropsForListViewFromCCDictionary(widget, uiOptions);
-    }
-    else if (classname && strcmp(classname, "PageView") == 0)
-    {
-        widget = CocoPageView::create();
-        this->setPropsForPageViewFromCCDictionary(widget, uiOptions);
-    }
-    cocos2d::CCArray* arr = DICTOOL->getArrayValue(data, "children");
-    if (arr)
-    {
-        for (int i=0;i<arr->count();i++)
-        {
-            cocos2d::CCDictionary* subData = (cocos2d::CCDictionary*)(arr->objectAtIndex(i));
-            CocoWidget* child = this->widgetFromCCDictionary(subData);
-            if (child)
-            {
-                widget->addChild(child);
-            }
-        }
-    }
-    return widget;
 }
 
 CocoWidget* CCSReader::widgetFromJsonDictionary(cs::CSJsonDictionary* data)
@@ -229,39 +138,6 @@ CocoWidget* CCSReader::widgetFromJsonDictionary(cs::CSJsonDictionary* data)
     return widget;
 }
 
-CocoWidget* CCSReader::widgetFromPlistFile(const char* fileName)
-{
-    cocos2d::CCDictionary* dic = cocos2d::CCDictionary::createWithContentsOfFile(fileName);
-    float fileVersion = DICTOOL->getFloatValue(dic, "version");
-    if (fileVersion != kCCSVersion)
-    {
-        printf("WARNING! Incompatible json file version (file: %f reader: %f)\n", fileVersion, kCCSVersion);
-        return NULL;
-    }
-    cocos2d::CCArray* textures = (cocos2d::CCArray*)(DICTOOL->getArrayValue(dic, "textures"));
-    for (int i=0; textures->count(); i++)
-    {
-        cocos2d::CCString* file = (cocos2d::CCString*)(textures->objectAtIndex(i));
-        CCUIHELPER->addSpriteFrame(file->m_sString.c_str());
-    }
-    float fileDesignWidth = DICTOOL->getFloatValue(dic, "designWidth");
-    float fileDesignHeight = DICTOOL->getFloatValue(dic, "designHeight");
-    if (fileDesignWidth <= 0 || fileDesignHeight <= 0)
-    {
-        printf("Read design size error!\n");
-        cocos2d::CCSize winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
-        CCUIHELPER->setFileDesignWidth(winSize.width);
-        CCUIHELPER->setFileDesignHeight(winSize.height);
-    }
-    else
-    {
-        CCUIHELPER->setFileDesignWidth(fileDesignWidth);
-        CCUIHELPER->setFileDesignHeight(fileDesignHeight);
-    }
-    cocos2d::CCDictionary* widgetTree = (cocos2d::CCDictionary*)(DICTOOL->getArrayValue(dic, "widgetTree"));
-    return this->widgetFromCCDictionary(widgetTree);
-}
-
 CocoWidget* CCSReader::widgetFromJsonFile(const char *fileName)
 {
     const char *des = NULL;
@@ -284,11 +160,11 @@ CocoWidget* CCSReader::widgetFromJsonFile(const char *fileName)
 //        }
     int texturesCount = DICTOOL->getArrayCount_json(jsonDict, "textures");
     int pos = jsonpath.find_last_of('/');
-    std::string pPath = jsonpath.substr(0,pos+1);
+	m_strFilePath = jsonpath.substr(0,pos+1);
     for (int i=0; i<texturesCount; i++)
     {
         const char* file = DICTOOL->getStringValueFromArray_json(jsonDict, "textures", i);
-        std::string tp = pPath;
+        std::string tp = m_strFilePath;
         tp.append(file);
         CCUIHELPER->addSpriteFrame(tp.c_str());
     }
@@ -312,395 +188,6 @@ CocoWidget* CCSReader::widgetFromJsonFile(const char *fileName)
     delete[] des;
     return widget;
 }
-
-void CCSReader::setPropsForWidgetFromCCDictionary(CocoWidget*widget,cocos2d::CCDictionary *options)
-{
-    widget->setWidgetTag(DICTOOL->getIntValue(options, "tag"));
-    widget->setBeTouchAble(DICTOOL->getBooleanValue(options, "touchAble"));
-    const char* name = DICTOOL->getStringValue(options, "name");
-    const char* widgetName = name?name:"default";
-    widget->setName(widgetName);
-    float x = DICTOOL->getFloatValue(options, "x");
-    float y = DICTOOL->getFloatValue(options, "y");
-    widget->setPosition(ccp(x,y));
-    CCObject* sx = DICTOOL->checkObjectExist(options, "scaleX");
-    if (sx)
-    {
-        widget->setScaleX(DICTOOL->objectToFloatValue(sx));
-    }
-    CCObject* sy = DICTOOL->checkObjectExist(options, "scaleY");
-    if (sy)
-    {
-        widget->setScaleY(DICTOOL->objectToFloatValue(sy));
-    }
-    CCObject* rt = DICTOOL->checkObjectExist(options, "rotation");
-    if (rt)
-    {
-        widget->setRotation(DICTOOL->objectToFloatValue(rt));
-    }
-    CCObject* vb = DICTOOL->checkObjectExist(options, "visible");
-    if (vb)
-    {
-        widget->setVisible(DICTOOL->objectToBooleanValue(vb));
-    }
-    widget->setUseMergedTexture(DICTOOL->getBooleanValue(options, "useMergedTexture"));
-    int z = DICTOOL->getIntValue(options, "ZOrder");
-    widget->setWidgetZOrder(z);
-}
-
-void CCSReader::setColorPropsForWidgetFromCCDictionary(CocoWidget *widget, cocos2d::CCDictionary *options)
-{
-    CCObject * op = DICTOOL->checkObjectExist(options, "opacity");
-    if (op)
-    {
-        widget->setOpacity(DICTOOL->objectToIntValue(op));
-    }
-    CCObject * cr = DICTOOL->checkObjectExist(options, "colorR");
-    CCObject * cg = DICTOOL->checkObjectExist(options, "colorG");
-    CCObject * cb = DICTOOL->checkObjectExist(options, "colorB");
-    int colorR = cr ? DICTOOL->objectToIntValue(cr) : 255;
-    int colorG = cg ? DICTOOL->objectToIntValue(cg) : 255;
-    int colorB = cb ? DICTOOL->objectToIntValue(cb) : 255;
-    widget->setColor(ccc3(colorR, colorG, colorB));
-    CCObject * apx = DICTOOL->checkObjectExist(options, "anchorPointX");
-    float apxf = apx ? DICTOOL->objectToFloatValue(apx) : 0.5f;
-    CCObject * apy = DICTOOL->checkObjectExist(options, "anchorPointY");
-    float apyf = apy ? DICTOOL->objectToFloatValue(apy) : 0.5f;
-    widget->setAnchorPoint(ccp(apxf, apyf));
-}
-
-void CCSReader::setPropsForButtonFromCCDictionary(CocoWidget*widget,cocos2d::CCDictionary* options)
-{
-    this->setPropsForWidgetFromCCDictionary(widget, options);
-    CocoButton* button = (CocoButton*)widget;
-    bool scale9Enable = DICTOOL->getBooleanValue(options, "scale9Enable");
-    button->setScale9Enable(scale9Enable);
-    
-    const char* normalFileName = DICTOOL->getStringValue(options, "normal");
-    const char* pressedFileName = DICTOOL->getStringValue(options, "pressed");
-    const char* disabledFileName = DICTOOL->getStringValue(options, "disabled");
-    
-    if (scale9Enable)
-    {
-        float cx = DICTOOL->getFloatValue(options, "capInsetsX");
-        float cy = DICTOOL->getFloatValue(options, "capInsetsY");
-        float cw = DICTOOL->getFloatValue(options, "capInsetsWidth");
-        float ch = DICTOOL->getFloatValue(options, "capInsetsHeight");
-        
-        button->setTexturesScale9(normalFileName, pressedFileName, disabledFileName, cocos2d::CCRect(cx, cy, cw, ch),widget->getUseMergedTexture());
-        cocos2d::CCObject* sw = DICTOOL->checkObjectExist(options, "scale9Width");
-        cocos2d::CCObject* sh = DICTOOL->checkObjectExist(options, "scale9Height");
-        if (sw && sh)
-        {
-            float swf = DICTOOL->objectToFloatValue(sw);
-            float shf = DICTOOL->objectToFloatValue(sh);
-            button->setScale9Size(swf, shf);
-         }
-    }
-    else
-    {
-        button->setTextures(normalFileName, pressedFileName, disabledFileName,widget->getUseMergedTexture());
-    }
-    this->setColorPropsForWidgetFromCCDictionary(widget, options);
-}
-
-void CCSReader::setPropsForCheckBoxFromCCDictionary(CocoWidget*widget,cocos2d::CCDictionary* options)
-{
-    this->setPropsForWidgetFromCCDictionary(widget, options);
-    CocoCheckBox* checkBox = (CocoCheckBox*)widget;
-    const char* backGroundFileName = DICTOOL->getStringValue(options, "backGroundBox");
-    const char* backGroundSelectedFileName = DICTOOL->getStringValue(options, "backGroundBoxSelected");
-    const char* frontCrossFileName = DICTOOL->getStringValue(options, "frontCross");
-    const char* backGroundDisabledFileName = DICTOOL->getStringValue(options, "backGroundBoxDisabled");
-    const char* frontCrossDisabledFileName = DICTOOL->getStringValue(options, "frontCrossDisabled");
-    
-    checkBox->setTextures(backGroundFileName, backGroundSelectedFileName, frontCrossFileName,backGroundDisabledFileName,frontCrossDisabledFileName,widget->getUseMergedTexture());
-    this->setColorPropsForWidgetFromCCDictionary(widget, options);
-}
-
-void CCSReader::setPropsForImageViewFromCCDictionary(CocoWidget*widget,cocos2d::CCDictionary* options)
-{
-    this->setPropsForWidgetFromCCDictionary(widget, options);
-    
-    CocoImageView* imageView = (CocoImageView*)widget;
-    const char* imageFileName = DICTOOL->getStringValue(options, "fileName");
-    cocos2d::CCObject*  scale9EnableExist = DICTOOL->checkObjectExist(options, "scale9Enable");
-    bool scale9Enable = false;
-    if (scale9EnableExist)
-    {
-        scale9Enable = DICTOOL->getBooleanValue(options, "scale9Enable");
-    }
-    imageView->setScale9Enable(scale9Enable);
-    if (scale9Enable)
-    {
-        float cx = DICTOOL->getFloatValue(options, "capInsetsX");
-        float cy = DICTOOL->getFloatValue(options, "capInsetsY");
-        float cw = DICTOOL->getFloatValue(options, "capInsetsWidth");
-        float ch = DICTOOL->getFloatValue(options, "capInsetsHeight");
-        
-        imageView->setTexture(imageFileName, widget->getUseMergedTexture());
-        imageView->setCapInset(cocos2d::CCRect(cx, cy, cw, ch));
-        bool sw = DICTOOL->checkObjectExist(options, "scale9Width");
-        bool sh = DICTOOL->checkObjectExist(options, "scale9Height");
-        if (sw && sh)
-        {
-            float swf = DICTOOL->getFloatValue(options, "scale9Width");
-            float shf = DICTOOL->getFloatValue(options, "scale9Height");
-            imageView->setScale9Size(swf, shf);
-        }
-    }
-    else
-    {
-        imageView->setTexture(imageFileName, widget->getUseMergedTexture());
-    }
-    bool flipX = DICTOOL->getBooleanValue(options, "flipX");
-    bool flipY = DICTOOL->getBooleanValue(options, "flipY");
-    imageView->setFlipX(flipX);
-    imageView->setFlipY(flipY);
-    
-    this->setColorPropsForWidgetFromCCDictionary(widget, options);
-}
-
-void CCSReader::setPropsForLabelFromCCDictionary(CocoWidget*widget,cocos2d::CCDictionary* options)
-{
-    this->setPropsForWidgetFromCCDictionary(widget, options);
-    CocoLabel* label = (CocoLabel*)widget;
-    bool touchScaleChangeAble = DICTOOL->getBooleanValue(options, "touchSacleEnable");
-    label->setTouchScaleChangeAble(touchScaleChangeAble);
-    const char* text = DICTOOL->getStringValue(options, "text");
-    label->setText(text);
-    CCObject* fs = DICTOOL->checkObjectExist(options, "fontSize");
-    if (fs) {
-        label->setFontSize(DICTOOL->objectToIntValue(fs));
-    }
-    CCObject* fn = DICTOOL->checkObjectExist(options, "fontName");
-    if (fn) {
-        label->setFontName(DICTOOL->objectToStringValue(fn));
-    }
-    CCObject* cro = DICTOOL->checkObjectExist(options, "colorR");
-    CCObject* cgo = DICTOOL->checkObjectExist(options, "colorG");
-    CCObject* cbo = DICTOOL->checkObjectExist(options, "colorB");
-    int cr = cro?DICTOOL->objectToIntValue(cro):255;
-    int cg = cgo?DICTOOL->objectToIntValue(cgo):255;
-    int cb = cbo?DICTOOL->objectToIntValue(cbo):255;
-    ccColor3B tc = ccc3(cr, cg, cb);
-    label->setColor(tc);
-    label->setFlipX(DICTOOL->getBooleanValue(options, "flipX"));
-    label->setFlipY(DICTOOL->getBooleanValue(options, "flipY"));
-    this->setColorPropsForWidgetFromCCDictionary(widget, options);
-    int gravity = DICTOOL->getIntValue(options, "gravity");
-    label->setGravity((LabelGravity)gravity);
-}
-
-void CCSReader::setPropsForLabelAtlasFromCCDictionary(CocoWidget*widget,cocos2d::CCDictionary* options)
-{
-    this->setPropsForWidgetFromCCDictionary(widget, options);
-    CocoLabelAtlas* labelAtlas = (CocoLabelAtlas*)widget;
-    cocos2d::CCObject* sv = DICTOOL->checkObjectExist(options, "stringValue");
-    cocos2d::CCObject* cmf = DICTOOL->checkObjectExist(options, "charMapFile");
-    cocos2d::CCObject* iw = DICTOOL->checkObjectExist(options, "itemWidth");
-    cocos2d::CCObject* ih = DICTOOL->checkObjectExist(options, "itemHeight");
-    cocos2d::CCObject* scm = DICTOOL->checkObjectExist(options, "startCharMap");
-    if (sv && cmf && iw && ih && scm)
-    {
-        labelAtlas->setProperty(DICTOOL->objectToStringValue(sv),DICTOOL->objectToStringValue(cmf),DICTOOL->objectToIntValue(iw),DICTOOL->objectToIntValue(ih),DICTOOL->objectToStringValue(scm),widget->getUseMergedTexture());
-    }
-    this->setColorPropsForWidgetFromCCDictionary(widget, options);
-}
-
-void CCSReader::setPropsForContainerWidgetFromCCDictionary(CocoWidget *widget, cocos2d::CCDictionary *options)
-{
-    this->setPropsForWidgetFromCCDictionary(widget, options);
-    CocoContainerWidget* containerWidget = (CocoContainerWidget*)widget;
-    containerWidget->setClipAble(DICTOOL->getBooleanValue(options, "clipAble"));
-    this->setColorPropsForWidgetFromCCDictionary(widget, options);
-}
-
-void CCSReader::setPropsForPanelFromCCDictionary(CocoWidget*widget,cocos2d::CCDictionary* options)
-{
-    this->setPropsForContainerWidgetFromCCDictionary(widget, options);
-    CocoPanel* panel = (CocoPanel*)widget;
-    bool backGroundScale9Enable = DICTOOL->getBooleanValue(options, "backGroundScale9Enable");
-    panel->setBackGroundImageScale9Enable(backGroundScale9Enable);
-    int cr = DICTOOL->getIntValue(options, "colorR");
-    int cg = DICTOOL->getIntValue(options, "colorG");
-    int cb = DICTOOL->getIntValue(options, "colorB");
-    int co = DICTOOL->getIntValue(options, "colorO");
-    float w = DICTOOL->getFloatValue(options, "width");
-    float h = DICTOOL->getFloatValue(options, "height");
-    if (co == 0)
-    {
-        co = 255;
-    }
-    panel->setColor(cocos2d::ccc3(cr, cg, cb));
-    panel->setSize(CCSizeMake(w, h));
-    if (backGroundScale9Enable)
-    {
-        float cx = DICTOOL->getFloatValue(options, "capInsetsX");
-        float cy = DICTOOL->getFloatValue(options, "capInsetsY");
-        float cw = DICTOOL->getFloatValue(options, "capInsetsWidth");
-        float ch = DICTOOL->getFloatValue(options, "capInsetsHeight");
-        panel->setBackGroundImageScale9(DICTOOL->getStringValue(options, "backGroundImage"), cocos2d::CCRect(cx, cy, cw, ch),widget->getUseMergedTexture());
-    }
-    else
-    {
-        panel->setBackGroundImage(DICTOOL->getStringValue(options, "backGroundImage"),widget->getUseMergedTexture());
-    }
-    this->setColorPropsForWidgetFromCCDictionary(widget, options);
-}
-
-void CCSReader::setPropsForScrollViewFromCCDictionary(CocoWidget*widget,cocos2d::CCDictionary* options)
-{
-    this->setPropsForPanelFromCCDictionary(widget, options);
-    this->setColorPropsForWidgetFromCCDictionary(widget, options);
-}
-
-void CCSReader::setPropsForSliderFromCCDictionary(CocoWidget*widget,cocos2d::CCDictionary* options)
-{
-    this->setPropsForWidgetFromCCDictionary(widget, options);
-    CocoSlider* slider = (CocoSlider*)widget;
-    
-    bool barTextureScale9Enable = DICTOOL->getBooleanValue(options, "barTextureScale9Enable");
-    slider->setBarTextureScale9Enable(barTextureScale9Enable);
-    CCObject* bt = DICTOOL->checkObjectExist(options, "barFileName");
-    float barLength = DICTOOL->getFloatValue(options, "length");
-    if (bt)
-    {
-        if (barTextureScale9Enable)
-        {
-            slider->setBarTextureScale9(DICTOOL->objectToStringValue(bt), 0, 0, 0, 0,widget->getUseMergedTexture());
-            slider->setBarLength(barLength);
-        }
-        else
-        {
-            slider->setBarTexture(DICTOOL->objectToStringValue(bt),widget->getUseMergedTexture());
-        }
-    }
-    slider->setSlidBallTextures(DICTOOL->getStringValue(options, "ballNormal"), DICTOOL->getStringValue(options, "ballPressed"), DICTOOL->getStringValue(options, "ballDisabled"),widget->getUseMergedTexture());
-    slider->setSlidBallPercent(DICTOOL->getIntValue(options, "percent"));
-    
-    cocos2d::CCObject* showProgressBarExist = DICTOOL->checkObjectExist(options, "showProgressBar");
-    bool showProgressBar = false;
-    if (showProgressBarExist)
-    {
-        showProgressBar = DICTOOL->getBooleanValue(options, "showProgressBar");
-    }
-    if (showProgressBar)
-    {
-        slider->setShowProgressBar(showProgressBar);
-        slider->setProgressBarTextureScale9(DICTOOL->getStringValue(options, "progressBarFileName"), 0, 0, 0, 0, widget->getUseMergedTexture());
-        slider->setProgressBarScale(barLength);
-    }
-    
-    this->setColorPropsForWidgetFromCCDictionary(widget, options);
-}
-
-void CCSReader::setPropsForTextAreaFromCCDictionary(CocoWidget*widget,cocos2d::CCDictionary* options)
-{
-    this->setPropsForWidgetFromCCDictionary(widget, options);
-    CocoTextArea* textArea = (CocoTextArea*)widget;
-    textArea->setText(DICTOOL->getStringValue(options, "text"));
-    CCObject* fs = DICTOOL->checkObjectExist(options, "fontSize");
-    if (fs)
-    {
-        textArea->setFontSize(DICTOOL->objectToIntValue(fs));
-    }
-    int cr = DICTOOL->getIntValue(options, "colorR");
-    int cg = DICTOOL->getIntValue(options, "colorG");
-    int cb = DICTOOL->getIntValue(options, "colorB");
-    textArea->setTextColor(cr, cg, cb);
-    textArea->setFontName(DICTOOL->getStringValue(options, "fontName"));
-    CCObject* aw = DICTOOL->checkObjectExist(options, "areaWidth");
-    CCObject* ah = DICTOOL->checkObjectExist(options, "areaHeight");
-    if (aw && ah)
-    {
-        CCSize size = cocos2d::CCSize(DICTOOL->objectToFloatValue(aw),DICTOOL->objectToFloatValue(ah));
-        textArea->setTextAreaSize(size);
-    }
-    CCObject* ha = DICTOOL->checkObjectExist(options, "hAlignment");
-    if (ha)
-    {
-        textArea->setTextHorizontalAlignment((cocos2d::CCTextAlignment)DICTOOL->objectToIntValue(ha));
-    }
-    CCObject* va = DICTOOL->checkObjectExist(options, "vAlignment");
-    if (va)
-    {
-        textArea->setTextVerticalAlignment((cocos2d::CCVerticalTextAlignment)DICTOOL->objectToIntValue(va));
-    }
-    this->setColorPropsForWidgetFromCCDictionary(widget, options);
-}
-
-void CCSReader::setPropsForTextButtonFromCCDictionary(CocoWidget*widget,cocos2d::CCDictionary* options)
-{
-    this->setPropsForButtonFromCCDictionary(widget, options);
-    CocoTextButton* textButton = (CocoTextButton*)widget;
-    textButton->setText(DICTOOL->getStringValue(options, "text"));
-    textButton->setFlipX(DICTOOL->getBooleanValue(options, "flipX"));
-    textButton->setFlipY(DICTOOL->getBooleanValue(options, "flipY"));
-    int cr = DICTOOL->getIntValue(options, "textColorR");
-    int cg = DICTOOL->getIntValue(options, "textColorG");
-    int cb = DICTOOL->getIntValue(options, "textColorB");
-    textButton->setTextColor(cr,cg,cb);
-    CCObject* fs = DICTOOL->checkObjectExist(options, "fontSize");
-    if (fs)
-    {
-        textButton->setFontSize(DICTOOL->objectToIntValue(fs));
-    }
-    CCObject* fn = DICTOOL->checkObjectExist(options, "fontName");
-    if (fn)
-    {
-        textButton->setFontName(DICTOOL->objectToStringValue(fn));
-    }
-    this->setColorPropsForWidgetFromCCDictionary(widget, options);
-}
-
-void CCSReader::setPropsForTextFieldFromCCDictionary(CocoWidget*widget,cocos2d::CCDictionary* options)
-{
-    this->setPropsForWidgetFromCCDictionary(widget, options);
-    CocoTextField* textField = (CocoTextField*)widget;
-    cocos2d::CCObject * ph = DICTOOL->checkObjectExist(options, "placeHolder");
-    if (ph)
-    {
-        textField->setPlaceHolder(DICTOOL->objectToStringValue(ph));
-    }
-    textField->setText(DICTOOL->getStringValue(options, "text"));
-    cocos2d::CCObject * fs = DICTOOL->checkObjectExist(options, "fontSize");
-    if (fs)
-    {
-        textField->setFontSize(DICTOOL->objectToIntValue(fs));
-    }
-    cocos2d::CCObject* tsw = DICTOOL->checkObjectExist(options, "touchSizeWidth");
-    cocos2d::CCObject* tsh = DICTOOL->checkObjectExist(options, "touchSizeHeight");
-    if (tsw && tsh)
-    {
-        textField->setTouchSize(DICTOOL->objectToFloatValue(tsw), DICTOOL->objectToFloatValue(tsh));
-    }
-    this->setColorPropsForWidgetFromCCDictionary(widget, options);
-}
-
-void CCSReader::setPropsForLoadingBarFromCCDictionary(CocoWidget *widget, cocos2d::CCDictionary *options)
-{
-    this->setPropsForWidgetFromCCDictionary(widget, options);
-    CocoLoadingBar* loadingBar = (CocoLoadingBar*)widget;
-    loadingBar->setTexture(DICTOOL->getStringValue(options, "texture"),widget->getUseMergedTexture());
-    loadingBar->setDirection(LoadingBarType(DICTOOL->getIntValue(options, "direction")));
-    loadingBar->setPercent(DICTOOL->getIntValue(options, "percent"));
-    this->setColorPropsForWidgetFromCCDictionary(widget, options);
-}
-
-void CCSReader::setPropsForListViewFromCCDictionary(CocoWidget *widget, cocos2d::CCDictionary *options)
-{
-    setPropsForScrollViewFromCCDictionary(widget, options);
-}
-
-void CCSReader::setPropsForPageViewFromCCDictionary(CocoWidget *widget, cocos2d::CCDictionary *options)
-{
-//        this->setPropsForScrollViewFromCCDictionary(widget, options);
-    this->setPropsForPanelFromCCDictionary(widget, options);
-    this->setColorPropsForWidgetFromCCDictionary(widget, options);
-}
-
-/****************************************************json**************************************************/
 
 void CCSReader::setPropsForWidgetFromJsonDictionary(CocoWidget*widget,cs::CSJsonDictionary *options)
 {
@@ -765,9 +252,17 @@ void CCSReader::setPropsForButtonFromJsonDictionary(CocoWidget*widget,cs::CSJson
     bool scale9Enable = DICTOOL->getBooleanValue_json(options, "scale9Enable");
     button->setScale9Enable(scale9Enable);
     
+	std::string tp_n = m_strFilePath;
+	std::string tp_p = m_strFilePath;
+	std::string tp_d = m_strFilePath;
+
     const char* normalFileName = DICTOOL->getStringValue_json(options, "normal");
     const char* pressedFileName = DICTOOL->getStringValue_json(options, "pressed");
     const char* disabledFileName = DICTOOL->getStringValue_json(options, "disabled");
+
+	const char* normalFileName_tp = normalFileName?tp_n.append(normalFileName).c_str():NULL;
+	const char* pressedFileName_tp = pressedFileName?tp_p.append(pressedFileName).c_str():NULL;
+	const char* disabledFileName_tp =  disabledFileName?tp_d.append(disabledFileName).c_str():NULL;
     
     if (scale9Enable)
     {
@@ -775,11 +270,18 @@ void CCSReader::setPropsForButtonFromJsonDictionary(CocoWidget*widget,cs::CSJson
         float cy = DICTOOL->getFloatValue_json(options, "capInsetsY");
         float cw = DICTOOL->getFloatValue_json(options, "capInsetsWidth");
         float ch = DICTOOL->getFloatValue_json(options, "capInsetsHeight");
-        
-        button->setTexturesScale9(normalFileName, pressedFileName, disabledFileName, cocos2d::CCRect(cx, cy, cw, ch),widget->getUseMergedTexture());
+		if (widget->getUseMergedTexture())
+		{
+			 button->setTexturesScale9(normalFileName, pressedFileName, disabledFileName, cocos2d::CCRect(cx, cy, cw, ch),true);
+		}
+		else
+		{
+			 button->setTexturesScale9(normalFileName_tp, pressedFileName_tp, disabledFileName_tp, cocos2d::CCRect(cx, cy, cw, ch));
+		}
         bool sw = DICTOOL->checkObjectExist_json(options, "scale9Width");
         bool sh = DICTOOL->checkObjectExist_json(options, "scale9Height");
-        if (sw && sh) {
+        if (sw && sh)
+        {
             float swf = DICTOOL->getFloatValue_json(options, "scale9Width");
             float shf = DICTOOL->getFloatValue_json(options, "scale9Height");
             button->setScale9Size(swf, shf);
@@ -787,7 +289,14 @@ void CCSReader::setPropsForButtonFromJsonDictionary(CocoWidget*widget,cs::CSJson
     }
     else
     {
-        button->setTextures(normalFileName, pressedFileName, disabledFileName,widget->getUseMergedTexture());
+		if (widget->getUseMergedTexture())
+		{
+			 button->setTextures(normalFileName, pressedFileName, disabledFileName,true);
+		}
+		else
+		{
+			 button->setTextures(normalFileName_tp, pressedFileName_tp, disabledFileName_tp);
+		}
     }
     this->setColorPropsForWidgetFromJsonDictionary(widget,options);
 }
@@ -801,8 +310,30 @@ void CCSReader::setPropsForCheckBoxFromJsonDictionary(CocoWidget*widget,cs::CSJs
     const char* frontCrossFileName = DICTOOL->getStringValue_json(options, "frontCross");
     const char* backGroundDisabledFileName = DICTOOL->getStringValue_json(options, "backGroundBoxDisabled");
     const char* frontCrossDisabledFileName = DICTOOL->getStringValue_json(options, "frontCrossDisabled");
+
+
+	std::string tp_b = m_strFilePath;
+	std::string tp_bs = m_strFilePath;
+	std::string tp_c = m_strFilePath;
+	std::string tp_bd = m_strFilePath;
+	std::string tp_cd = m_strFilePath;
+
+	const char* backGroundFileName_tp = backGroundFileName?tp_b.append(backGroundFileName).c_str():NULL;
+	const char* backGroundSelectedFileName_tp = backGroundSelectedFileName?tp_bs.append(backGroundSelectedFileName).c_str():NULL;
+	const char* frontCrossFileName_tp = frontCrossFileName?tp_c.append(frontCrossFileName).c_str():NULL;
+	const char* backGroundDisabledFileName_tp = backGroundDisabledFileName?tp_bd.append(backGroundDisabledFileName).c_str():NULL;
+	const char* frontCrossDisabledFileName_tp = frontCrossDisabledFileName?tp_cd.append(frontCrossDisabledFileName).c_str():NULL;
+
+	if (widget->getUseMergedTexture())
+	{
+		checkBox->setTextures(backGroundFileName, backGroundSelectedFileName, frontCrossFileName,backGroundDisabledFileName,frontCrossDisabledFileName,true);
+	}
+	else
+	{
+		checkBox->setTextures(backGroundFileName_tp, backGroundSelectedFileName_tp, frontCrossFileName_tp,backGroundDisabledFileName_tp,frontCrossDisabledFileName_tp);
+	}
+	
     
-    checkBox->setTextures(backGroundFileName, backGroundSelectedFileName, frontCrossFileName,backGroundDisabledFileName,frontCrossDisabledFileName,widget->getUseMergedTexture());
     this->setColorPropsForWidgetFromJsonDictionary(widget,options);
 }
 
@@ -819,14 +350,31 @@ void CCSReader::setPropsForImageViewFromJsonDictionary(CocoWidget*widget,cs::CSJ
         scale9Enable = DICTOOL->getBooleanValue_json(options, "scale9Enable");
     }
     imageView->setScale9Enable(scale9Enable);
+
+	std::string tp_i = m_strFilePath;
+	const char* imageFileName_tp = NULL;
+	if (imageFileName)
+	{
+		imageFileName_tp = tp_i.append(imageFileName).c_str();
+	}
+	
+
     if (scale9Enable)
     {
         float cx = DICTOOL->getFloatValue_json(options, "capInsetsX");
         float cy = DICTOOL->getFloatValue_json(options, "capInsetsY");
         float cw = DICTOOL->getFloatValue_json(options, "capInsetsWidth");
         float ch = DICTOOL->getFloatValue_json(options, "capInsetsHeight");
+        if (widget->getUseMergedTexture())
+        {
+			imageView->setTexture(imageFileName,true);
+        }
+		else
+		{
+			imageView->setTexture(imageFileName_tp);
+		}
         
-        imageView->setTexture(imageFileName, widget->getUseMergedTexture());
+        
         imageView->setCapInset(cocos2d::CCRect(cx, cy, cw, ch));
         bool sw = DICTOOL->checkObjectExist_json(options, "scale9Width");
         bool sh = DICTOOL->checkObjectExist_json(options, "scale9Height");
@@ -839,13 +387,19 @@ void CCSReader::setPropsForImageViewFromJsonDictionary(CocoWidget*widget,cs::CSJ
     }
     else
     {
-        imageView->setTexture(imageFileName, widget->getUseMergedTexture());
+		if (widget->getUseMergedTexture())
+		{
+			imageView->setTexture(imageFileName,true);
+		}
+		else
+		{
+			imageView->setTexture(imageFileName_tp);
+		}
     }
     bool flipX = DICTOOL->getBooleanValue_json(options, "flipX");
     bool flipY = DICTOOL->getBooleanValue_json(options, "flipY");
     imageView->setFlipX(flipX);
     imageView->setFlipY(flipY);
-    
     this->setColorPropsForWidgetFromJsonDictionary(widget,options);
 }
 
@@ -893,7 +447,12 @@ void CCSReader::setPropsForLabelAtlasFromJsonDictionary(CocoWidget*widget,cs::CS
     bool scm = DICTOOL->checkObjectExist_json(options, "startCharMap");
     if (sv && cmf && iw && ih && scm)
     {
-        labelAtlas->setProperty(DICTOOL->getStringValue_json(options, "stringValue"),DICTOOL->getStringValue_json(options, "charMapFile"),DICTOOL->getIntValue_json(options, "itemWidth"),DICTOOL->getIntValue_json(options,"itemHeight"),DICTOOL->getStringValue_json(options, "startCharMap"),widget->getUseMergedTexture());
+		std::string tp_c = m_strFilePath;
+		const char* cmf_tp = NULL;
+		const char* cmft = DICTOOL->getStringValue_json(options, "charMapFile");
+		cmf_tp = tp_c.append(cmft).c_str();
+
+        labelAtlas->setProperty(DICTOOL->getStringValue_json(options, "stringValue"),cmf_tp,DICTOOL->getIntValue_json(options, "itemWidth"),DICTOOL->getIntValue_json(options,"itemHeight"),DICTOOL->getStringValue_json(options, "startCharMap"),widget->getUseMergedTexture());
     }
     this->setColorPropsForWidgetFromJsonDictionary(widget,options);
 }
@@ -924,16 +483,36 @@ void CCSReader::setPropsForPanelFromJsonDictionary(CocoWidget*widget,cs::CSJsonD
     }
     panel->setColor(cocos2d::ccc3(cr, cg, cb));
     panel->setSize(CCSizeMake(w, h));
+
+	std::string tp_b = m_strFilePath;
+	const char* imageFileName = DICTOOL->getStringValue_json(options, "backGroundImage");
+    const char* imageFileName_tp = imageFileName?tp_b.append(imageFileName).c_str():NULL;
+
     if (backGroundScale9Enable) {
         float cx = DICTOOL->getFloatValue_json(options, "capInsetsX");
         float cy = DICTOOL->getFloatValue_json(options, "capInsetsY");
         float cw = DICTOOL->getFloatValue_json(options, "capInsetsWidth");
         float ch = DICTOOL->getFloatValue_json(options, "capInsetsHeight");
-        panel->setBackGroundImageScale9(DICTOOL->getStringValue_json(options, "backGroundImage"), cocos2d::CCRect(cx, cy, cw, ch),widget->getUseMergedTexture());
+		if (widget->getUseMergedTexture())
+		{
+			panel->setBackGroundImageScale9(imageFileName, cocos2d::CCRect(cx, cy, cw, ch),true);
+		}
+		else
+		{
+            panel->setBackGroundImageScale9(imageFileName_tp, cocos2d::CCRect(cx, cy, cw, ch));
+		}
     }
     else
     {
-        panel->setBackGroundImage(DICTOOL->getStringValue_json(options, "backGroundImage"),widget->getUseMergedTexture());
+
+		if (widget->getUseMergedTexture())
+		{
+			panel->setBackGroundImage(imageFileName,true);
+		}
+		else
+		{
+			panel->setBackGroundImage(imageFileName_tp);
+		}
     }
     this->setColorPropsForWidgetFromJsonDictionary(widget,options);
 }
@@ -957,17 +536,54 @@ void CCSReader::setPropsForSliderFromJsonDictionary(CocoWidget*widget,cs::CSJson
     {
         if (barTextureScale9Enable)
         {
-            slider->setBarTextureScale9(DICTOOL->getStringValue_json(options, "barFileName"), 0, 0, 0, 0,widget->getUseMergedTexture());
+			std::string tp_b = m_strFilePath;
+			const char*imageFileName =  DICTOOL->getStringValue_json(options, "barFileName");
+            const char* imageFileName_tp = imageFileName?tp_b.append(imageFileName).c_str():NULL;
+			if (widget->getUseMergedTexture())
+			{
+				 slider->setBarTextureScale9(imageFileName, 0, 0, 0, 0,true);
+			}
+			else
+			{
+				 slider->setBarTextureScale9(imageFileName_tp, 0, 0, 0, 0);
+			}           
             slider->setBarLength(barLength);
         }
         else
         {
-            slider->setBarTexture(DICTOOL->getStringValue_json(options, "barFileName"),widget->getUseMergedTexture());
+			std::string tp_b = m_strFilePath;
+			const char*imageFileName =  DICTOOL->getStringValue_json(options, "barFileName");
+            const char* imageFileName_tp = imageFileName?tp_b.append(imageFileName).c_str():NULL;
+			if (widget->getUseMergedTexture())
+			{
+				slider->setBarTexture(imageFileName,true);
+			}
+			else
+			{
+				slider->setBarTexture(imageFileName_tp);
+			}
         }
     }
-    slider->setSlidBallTextures(DICTOOL->getStringValue_json(options, "ballNormal"), DICTOOL->getStringValue_json(options, "ballPressed"), DICTOOL->getStringValue_json(options, "ballDisabled"),widget->getUseMergedTexture());
+	std::string tp_n = m_strFilePath;
+	std::string tp_p = m_strFilePath;
+	std::string tp_d = m_strFilePath;
+
+	const char* normalFileName = DICTOOL->getStringValue_json(options, "ballNormal");
+	const char* pressedFileName = DICTOOL->getStringValue_json(options, "ballPressed");
+	const char* disabledFileName = DICTOOL->getStringValue_json(options, "ballDisabled");
+
+	const char* normalFileName_tp = normalFileName?tp_n.append(normalFileName).c_str():NULL;
+	const char* pressedFileName_tp = pressedFileName?tp_p.append(pressedFileName).c_str():NULL;
+	const char* disabledFileName_tp =  disabledFileName?tp_d.append(disabledFileName).c_str():NULL;
+	if (widget->getUseMergedTexture())
+	{
+		slider->setSlidBallTextures(normalFileName,pressedFileName,disabledFileName,true);
+	}
+	else
+	{
+		slider->setSlidBallTextures(normalFileName_tp,pressedFileName_tp,disabledFileName_tp);
+	}
     slider->setSlidBallPercent(DICTOOL->getIntValue_json(options, "percent"));
-    
     bool showProgressBarExist = DICTOOL->checkObjectExist_json(options, "showProgressBar");
     bool showProgressBar = false;
     if (showProgressBarExist)
@@ -977,10 +593,19 @@ void CCSReader::setPropsForSliderFromJsonDictionary(CocoWidget*widget,cs::CSJson
     if (showProgressBar)
     {
         slider->setShowProgressBar(showProgressBar);
-        slider->setProgressBarTextureScale9(DICTOOL->getStringValue_json(options, "progressBarFileName"), 0, 0, 0, 0, widget->getUseMergedTexture());
+		std::string tp_b = m_strFilePath;
+		const char*imageFileName =  DICTOOL->getStringValue_json(options, "progressBarFileName");
+        const char* imageFileName_tp = imageFileName?tp_b.append(imageFileName).c_str():NULL;
+		if (widget->getUseMergedTexture())
+		{
+			slider->setProgressBarTextureScale9(imageFileName, 0, 0, 0, 0, true);
+		}
+		else
+		{
+			slider->setProgressBarTextureScale9(imageFileName_tp, 0, 0, 0, 0);
+		}
         slider->setProgressBarScale(barLength);
     }
-    
     this->setColorPropsForWidgetFromJsonDictionary(widget,options);
 }
 
@@ -1072,7 +697,18 @@ void CCSReader::setPropsForLoadingBarFromJsonDictionary(CocoWidget *widget, cs::
 {
     this->setPropsForWidgetFromJsonDictionary(widget, options);
     CocoLoadingBar* loadingBar = (CocoLoadingBar*)widget;
-    loadingBar->setTexture(DICTOOL->getStringValue_json(options, "texture"),widget->getUseMergedTexture());
+
+	std::string tp_b = m_strFilePath;
+	const char*imageFileName =  DICTOOL->getStringValue_json(options, "texture");
+    const char* imageFileName_tp = imageFileName?tp_b.append(imageFileName).c_str():NULL;
+	if (widget->getUseMergedTexture())
+	{
+		loadingBar->setTexture(imageFileName,true);
+	}
+	else
+	{
+		loadingBar->setTexture(imageFileName_tp);
+	}
     loadingBar->setDirection(LoadingBarType(DICTOOL->getIntValue_json(options, "direction")));
     loadingBar->setPercent(DICTOOL->getIntValue_json(options, "percent"));
     this->setColorPropsForWidgetFromJsonDictionary(widget,options);
@@ -1085,7 +721,6 @@ void CCSReader::setPropsForListViewFromJsonDictionary(CocoWidget *widget, cs::CS
 
 void CCSReader::setPropsForPageViewFromJsonDictionary(CocoWidget*widget,cs::CSJsonDictionary* options)
 {
-//        this->setPropsForScrollViewFromJsonDictionary(widget, options);
     this->setPropsForPanelFromJsonDictionary(widget, options);
     this->setColorPropsForWidgetFromJsonDictionary(widget,options);
 }

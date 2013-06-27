@@ -38,29 +38,8 @@ public:
     ~CCSReader();
     static CCSReader* shareReader();
     
-    CocoWidget* widgetFromPlistFile(const char* fileName);
     CocoWidget* widgetFromJsonFile(const char* fileName);
-    CocoWidget* widgetFromCCDictionary(cocos2d::CCDictionary* data);
     CocoWidget* widgetFromJsonDictionary(cs::CSJsonDictionary* data);
-    
-    void setPropsForWidgetFromCCDictionary(CocoWidget*widget,cocos2d::CCDictionary* options);
-    void setColorPropsForWidgetFromCCDictionary(CocoWidget*widget,cocos2d::CCDictionary* options);
-    void setPropsForButtonFromCCDictionary(CocoWidget*widget,cocos2d::CCDictionary* options);
-    void setPropsForCheckBoxFromCCDictionary(CocoWidget*widget,cocos2d::CCDictionary* options);
-    void setPropsForImageViewFromCCDictionary(CocoWidget*widget,cocos2d::CCDictionary* options);
-    void setPropsForLabelFromCCDictionary(CocoWidget*widget,cocos2d::CCDictionary* options);
-    void setPropsForLabelAtlasFromCCDictionary(CocoWidget*widget,cocos2d::CCDictionary* options);
-    void setPropsForContainerWidgetFromCCDictionary(CocoWidget*widget,cocos2d::CCDictionary* options);
-    void setPropsForPanelFromCCDictionary(CocoWidget*widget,cocos2d::CCDictionary* options);
-    void setPropsForScrollViewFromCCDictionary(CocoWidget*widget,cocos2d::CCDictionary* options);
-    void setPropsForSliderFromCCDictionary(CocoWidget*widget,cocos2d::CCDictionary* options);
-    void setPropsForTextAreaFromCCDictionary(CocoWidget*widget,cocos2d::CCDictionary* options);
-    void setPropsForTextButtonFromCCDictionary(CocoWidget*widget,cocos2d::CCDictionary* options);
-    void setPropsForTextFieldFromCCDictionary(CocoWidget*widget,cocos2d::CCDictionary* options);
-    void setPropsForLoadingBarFromCCDictionary(CocoWidget*widget,cocos2d::CCDictionary* options);
-    void setPropsForImageButtonFromCCDictionary(CocoWidget* widget, cocos2d::CCDictionary* options);
-    void setPropsForListViewFromCCDictionary(CocoWidget* widget, cocos2d::CCDictionary* options);
-    void setPropsForPageViewFromCCDictionary(CocoWidget*widget,cocos2d::CCDictionary* options);
     
     void setPropsForWidgetFromJsonDictionary(CocoWidget*widget,cs::CSJsonDictionary* options);
     void setColorPropsForWidgetFromJsonDictionary(CocoWidget*widget,cs::CSJsonDictionary* options);
@@ -82,6 +61,7 @@ public:
     void setPropsForPageViewFromJsonDictionary(CocoWidget*widget,cs::CSJsonDictionary* options);
     
 protected:
+    std::string m_strFilePath;
 };
 
 NS_CC_EXT_END

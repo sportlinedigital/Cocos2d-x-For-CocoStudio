@@ -115,4 +115,10 @@ CCNode* CocoTextArea::getValidNode()
     return this->m_pRenderLabel;
 }
 
+void CocoTextArea::setAnchorPoint(const cocos2d::CCPoint &pt)
+{
+    CocoWidget::setAnchorPoint(pt);
+    this->m_pRenderLabel->setAnchorPoint(pt);
+}
+
 NS_CC_EXT_END

@@ -62,7 +62,8 @@ public:
     CocoWidget* getWidgetByTag(int tag);
     CocoWidget* getWidgetByName(const char* name);
     UIInputManager* getInputManager();
-    void dispose();
+    virtual void clear();
+    virtual void dispose();
 protected:
     CocoWidget* seekWidgetByTag(CocoWidget* root, int tag);
     CocoWidget* seekWidgetByName(CocoWidget* root, const char* name);

@@ -81,7 +81,7 @@ public:
     void addInsertTextEvent(cocos2d::CCObject* target, SEL_TextFieldInsertTextEvent selecor);
     void addDeleteBackwardEvent(cocos2d::CCObject* target, SEL_TextFieldDeleteBackwardEvent selecor);
     virtual cocos2d::CCNode* getValidNode();
-    
+    virtual void setAnchorPoint(const cocos2d::CCPoint &pt);
 protected:
     float m_fTouchWidth;
     float m_fTouchHeight;

@@ -73,16 +73,6 @@ void UIHelper::init()
     this->m_textureFiles->retain();
 }
 
-CocoWidget* UIHelper::createWidget(cocos2d::CCDictionary* data)
-{
-    return CCSReader::shareReader()->widgetFromCCDictionary(data);
-}
-
-CocoWidget* UIHelper::createWidgetFromFile(const char *fileName)
-{
-    return CCSReader::shareReader()->widgetFromPlistFile(fileName);
-}
-
 CocoWidget* UIHelper::createWidget_json(cs::CSJsonDictionary* data)
 {
     return CCSReader::shareReader()->widgetFromJsonDictionary(data);

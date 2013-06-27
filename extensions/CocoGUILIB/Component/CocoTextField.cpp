@@ -266,4 +266,10 @@ CCNode* CocoTextField::getValidNode()
     return this->m_pRenderTextField;
 }
 
+void CocoTextField::setAnchorPoint(const cocos2d::CCPoint &pt)
+{
+    CocoWidget::setAnchorPoint(pt);
+    this->m_pRenderTextField->setAnchorPoint(pt);
+}
+
 NS_CC_EXT_END
