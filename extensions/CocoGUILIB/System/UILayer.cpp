@@ -23,6 +23,7 @@
  ****************************************************************************/
 
 #include "UILayer.h"
+#include "UIHelper.h"
 
 NS_CC_EXT_BEGIN
 
@@ -139,7 +140,7 @@ CocoWidget* UILayer::getWidgetByTag(int tag)
     if (!m_pRootWidget) {
         return NULL;
     }
-    return this->seekWidgetByTag(m_pRootWidget, tag);
+    return CCUIHELPER->seekWidgetByTag(m_pRootWidget, tag);
 }
 
 CocoWidget* UILayer::getWidgetByName(const char* name)
@@ -147,51 +148,7 @@ CocoWidget* UILayer::getWidgetByName(const char* name)
     if (!m_pRootWidget) {
         return NULL;
     }
-    return this->seekWidgetByName(m_pRootWidget, name);
-}
-
-CocoWidget* UILayer::seekWidgetByTag(CocoWidget* root, int tag)
-{
-    if (!root)
-    {
-        return NULL;
-    }
-    if (root->getWidgetTag() == tag)
-    {
-        return root;
-    }
-    for (int i=0;i<root->getChildren()->count();i++)
-    {
-        CocoWidget* child = (CocoWidget*)(root->getChildren()->objectAtIndex(i));
-        CocoWidget* res = this->seekWidgetByTag(child,tag);
-        if (res != NULL)
-        {
-            return res;
-        }
-    }
-    return NULL;
-}
-
-CocoWidget* UILayer::seekWidgetByName(CocoWidget* root, const char *name)
-{
-    if (!root)
-    {
-        return NULL;
-    }
-    if (strcmp(root->getName().c_str(), name) == 0)
-    {
-        return root;
-    }
-    for (int i=0;i<root->getChildren()->count();i++)
-    {
-        CocoWidget* child = (CocoWidget*)(root->getChildren()->objectAtIndex(i));
-        CocoWidget* res = this->seekWidgetByName(child,name);
-        if (res != NULL)
-        {
-            return res;
-        }
-    }
-    return NULL;
+    return CCUIHELPER->seekWidgetByName(m_pRootWidget, name);
 }
 
 UIInputManager* UILayer::getInputManager()

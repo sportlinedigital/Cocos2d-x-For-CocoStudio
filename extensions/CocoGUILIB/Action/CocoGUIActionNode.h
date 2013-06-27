@@ -29,6 +29,7 @@
 #include "ExtensionMacros.h"
 #include "CocoWidget.h"
 #include "CocoGUIActionFrame.h"
+#include "../../CCArmature/external_tool/Json/CSContentJsonDictionary.h"
 
 NS_CC_EXT_BEGIN
 
@@ -38,7 +39,9 @@ protected:
 	int currentIndex;
 	CCSequence* m_action;
 	CocoWidget* m_actionNode;
-	cocos2d::CCArray* m_ActionFrameList;
+    //data
+	cocos2d::CCArray* m_ActionFrameList;/*action frame*/
+    CC_SYNTHESIZE(const char*, m_name, Name);
 public:
     CocoGUIActionNode();
     virtual ~CocoGUIActionNode();
@@ -53,7 +56,7 @@ public:
 
 	void RunAction(float fUnitTime, bool bloop);
 	void StopAction();
-
+    void initWithDictionary(cs::CSJsonDictionary* dic,CocoWidget* root);
 };
 
 NS_CC_EXT_END

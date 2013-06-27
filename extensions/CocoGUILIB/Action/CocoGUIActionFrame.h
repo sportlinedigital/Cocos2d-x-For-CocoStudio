@@ -27,6 +27,7 @@
 
 #include "cocos2d.h"
 #include "ExtensionMacros.h"
+#include "../../CCArmature/external_tool/Json/CSContentJsonDictionary.h"
 
 NS_CC_EXT_BEGIN
 
@@ -53,6 +54,8 @@ public:
 	CC_SYNTHESIZE(float, m_opacity, Opacity);
 	//
 	CC_SYNTHESIZE(ccColor3B, m_color, Color);
+    
+    void initWithDictionary(cs::CSJsonDictionary* dic);
 
 };
 

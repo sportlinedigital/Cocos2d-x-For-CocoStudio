@@ -23,6 +23,7 @@
  ****************************************************************************/
 
 #include "CocoGUIActionFrame.h"
+#include "../../JsonReader/DictionaryHelper.h"
 
 NS_CC_EXT_BEGIN
 
@@ -34,4 +35,17 @@ CocoGUIActionFrame::~CocoGUIActionFrame()
 {
 
 }
+
+void CocoGUIActionFrame::initWithDictionary(cs::CSJsonDictionary *dic)
+{
+    this->setFrameId(DICTOOL->getIntValue_json(dic, "frameid"));
+    this->setStartTime(DICTOOL->getFloatValue_json(dic, "starttime"));
+    this->setPosition(ccp(DICTOOL->getFloatValue_json(dic, "positionx"), DICTOOL->getFloatValue_json(dic, "positiony")));
+    this->setScaleX(DICTOOL->getFloatValue_json(dic, "scalex"));
+    this->setScaleY(DICTOOL->getFloatValue_json(dic, "scaley"));
+    this->setRotation(DICTOOL->getFloatValue_json(dic, "rotation"));
+    this->setOpacity(DICTOOL->getIntValue_json(dic, "opacity"));
+    this->setColor(ccc3(DICTOOL->getIntValue_json(dic, "colorr"), DICTOOL->getIntValue_json(dic, "colorg"), DICTOOL->getIntValue_json(dic, "colorb")));
+}
+
 NS_CC_EXT_END

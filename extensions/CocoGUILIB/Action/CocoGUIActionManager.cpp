@@ -23,8 +23,20 @@
  ****************************************************************************/
 
 #include "CocoGUIActionManager.h"
+#include "../../JsonReader/DictionaryHelper.h"
+#include "CocoGUIAction.h"
 
 NS_CC_EXT_BEGIN
+
+static CocoGUIActionManager* sharedActionManager = NULL;
+
+CocoGUIActionManager* CocoGUIActionManager::shareManager()
+{
+    if (!sharedActionManager) {
+        sharedActionManager = new CocoGUIActionManager();
+    }
+    return sharedActionManager;
+}
 
 CocoGUIActionManager::CocoGUIActionManager()
 {
@@ -36,6 +48,17 @@ CocoGUIActionManager::~CocoGUIActionManager()
 {
 	m_ActionList->removeAllObjects();
 	m_ActionList->release();
+}
+
+void CocoGUIActionManager::initWithDictionary(cs::CSJsonDictionary *dic,CocoWidget* root)
+{
+    int actionCount = DICTOOL->getArrayCount_json(dic, "actionlist");
+    for (int i=0; i<actionCount; i++) {
+        CocoGUIAction* action = new CocoGUIAction();
+        cs::CSJsonDictionary* actionDic = DICTOOL->getDictionaryFromArray_json(dic, "actionlist", i);
+        action->initWithDictionary(actionDic,root);
+        this->m_ActionList->addObject(action);
+    }
 }
 
 CocoGUIAction* CocoGUIActionManager::GetActionByName(const char* actionName)

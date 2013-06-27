@@ -234,4 +234,21 @@ void CocoContainerWidget::updateClipSize()
     }
 }
 
+CCSize CocoContainerWidget::getWrapSize() const
+{
+    for (int i=0; i<this->m_children->count(); i++) {
+        CocoWidget* child = dynamic_cast<CocoWidget*>(m_children->objectAtIndex(i));
+        switch (child->getWidgetType()) {
+            case WidgetTypeWidget:
+                
+                break;
+            case WidgetTypeContainer:
+                break;
+            default:
+                break;
+        }
+    }
+    return CCSizeZero;
+}
+
 NS_CC_EXT_END
