@@ -47,7 +47,8 @@ public:
     void addSpriteFrame(const char* fileName);
     void removeSpriteFrame(const char* fileName);
     void removeAllSpriteFrame();
-    
+    CocoWidget* seekWidgetByTag(CocoWidget* root, int tag);
+    CocoWidget* seekWidgetByName(CocoWidget* root, const char* name);
 protected:
     CC_SYNTHESIZE(float, m_fFileDesignWidth, FileDesignWidth)
     CC_SYNTHESIZE(float, m_fFileDesignHeight, FileDesignHeight)

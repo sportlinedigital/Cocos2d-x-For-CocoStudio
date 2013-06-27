@@ -23,7 +23,7 @@
          "backGroundScale9Enable" : true,
          "clipAble" : true,
          "touchAble" : true,
-         "backGroundImage" : "cocosgui/scrollviewbg.png",
+         "backGroundImage" : "scrollviewbg.png",
          "name" : "scrollview"
          },
          "children" :
@@ -142,8 +142,8 @@
           "x" : 75,
           "y" : -170,
           "text" : "返回顶部",
-          "normal" : "cocosgui/backtotopnormal.png",
-          "pressed" : "cocosgui/backtotoppressed.png",
+          "normal" : "backtotopnormal.png",
+          "pressed" : "backtotoppressed.png",
           "touchAble" : true,
           "name" : "backtotopbutton"
           },
@@ -162,7 +162,7 @@
          "backGroundScale9Enable" : true,
          "clipAble" : true,
          "touchAble" : true,
-         "backGroundImage" : "cocosgui/scrollviewbg.png",
+         "backGroundImage" : "scrollviewbg.png",
          "name" : "listview"
          },
          "children" : []
@@ -185,7 +185,7 @@
          {
          "x" : 30,
          "y" : 290,
-         "fileName" : "cocosgui/ccicon.png",
+         "fileName" : "ccicon.png",
          "scale9Enable" : false,
          "capInsetsX" : 20,
          "capInsetsY" : 20,
@@ -228,7 +228,7 @@
          "x" : 150,
          "y" : 270,
          "stringValue" : "3256",
-         "charMapFile" : "cocosgui/labelatlas.png",
+         "charMapFile" : "labelatlas.png",
          "itemWidth" : 17,
          "itemHeight" : 22,
          "startCharMap" : "0"
@@ -241,7 +241,7 @@
          {
          "x" : 70,
          "y" : 200,
-         "texture" : "cocosgui/loadingbar.png",
+         "texture" : "loadingbar.png",
          "percent" : 50,
          "name" : "loadingbar"
          },
@@ -253,12 +253,12 @@
          {
          "x" : 70,
          "y" : 160,
-         "barFileName" : "cocosgui/slidbar.png",
-         "ballNormal" : "cocosgui/sliderballnormal.png",
-         "ballPressed" :"cocosgui/sliderballpressed.png",
+         "barFileName" : "slidbar.png",
+         "ballNormal" : "sliderballnormal.png",
+         "ballPressed" :"sliderballpressed.png",
          "percent" : 50,
          "showProgressBar" : true,
-         "progressBarFileName" : "cocosgui/slider_bar_active_9patch.png",
+         "progressBarFileName" : "slider_bar_active_9patch.png",
          "touchAble" : true,
          "name" : "slider"
          },
@@ -294,11 +294,11 @@
          {
          "x" : 250,
          "y" : 290,
-         "backGroundBox" : "cocosgui/check_box_normal.png",
-         "backGroundBoxSelected" : "cocosgui/check_box_normal_press.png",
-         "frontCross" : "cocosgui/check_box_active.png",
-         "backGroundBoxDisabled" : "cocosgui/check_box_normal_disable.png",
-         "frontCrossDisabled" : "cocosgui/check_box_active_disable.png",
+         "backGroundBox" : "check_box_normal.png",
+         "backGroundBoxSelected" : "check_box_normal_press.png",
+         "frontCross" : "check_box_active.png",
+         "backGroundBoxDisabled" : "check_box_normal_disable.png",
+         "frontCrossDisabled" : "check_box_active_disable.png",
          "touchAble" : true,
          "name" : "checkbox"
          },
@@ -322,8 +322,8 @@
          {
          "x" : 127,
          "y" : 96,
-         "normal" : "cocosgui/animationbuttonnormal.png",
-         "pressed" : "cocosgui/animationbuttonpressed.png",
+         "normal" : "animationbuttonnormal.png",
+         "pressed" : "animationbuttonpressed.png",
          "touchAble" : true,
          "name" : "animationbutton"
          },
@@ -376,8 +376,8 @@
          "touchAble" : true,
          "touchSacleEnable" : true,
          "name" : "exitbutton",
-         "normal" : "cocosgui/CloseNormal.png",
-         "pressed" : "cocosgui/CloseSelected.png"
+         "normal" : "CloseNormal.png",
+         "pressed" : "CloseSelected.png"
          },
          "children" :[]
          }

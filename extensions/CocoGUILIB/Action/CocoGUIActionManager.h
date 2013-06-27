@@ -28,22 +28,24 @@
 #include "cocos2d.h"
 #include "ExtensionMacros.h"
 #include "CocoGUIAction.h"
+#include "../../CCArmature/external_tool/Json/CSContentJsonDictionary.h"
 
 NS_CC_EXT_BEGIN
 
 class CocoGUIActionManager:public cocos2d::CCObject
 {
 protected:
-	cocos2d::CCArray* m_ActionList;
+	cocos2d::CCArray* m_ActionList;/*guiaction*/
 
 public:
     CocoGUIActionManager();
     virtual ~CocoGUIActionManager();
-
+    static CocoGUIActionManager* shareManager();
 	CocoGUIAction* GetActionByName(const char* actionName);
 
 	void PlayActionByName(const char* acitonName);
-
+    
+    void initWithDictionary(cs::CSJsonDictionary* dic,CocoWidget* root);
 };
 
 NS_CC_EXT_END

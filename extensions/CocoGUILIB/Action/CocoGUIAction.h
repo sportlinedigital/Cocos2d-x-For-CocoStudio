@@ -28,13 +28,14 @@
 #include "cocos2d.h"
 #include "ExtensionMacros.h"
 #include "CocoGUIActionNode.h"
+#include "../../CCArmature/external_tool/Json/CSContentJsonDictionary.h"
 
 NS_CC_EXT_BEGIN
 
 class CocoGUIAction:public cocos2d::CCObject
 {
 protected:
-	cocos2d::CCArray* m_ActionNodeList;
+	cocos2d::CCArray* m_ActionNodeList;/*actionnode*/
 public:
     CocoGUIAction();
     virtual ~CocoGUIAction();
@@ -51,7 +52,8 @@ public:
 	CC_SYNTHESIZE(bool, m_loop, Loop);
 	//
 	CC_SYNTHESIZE(float, m_fUnitTime, UnitTime);
-
+    
+    void initWithDictionary(cs::CSJsonDictionary* dic,CocoWidget* root);
 };
 
 NS_CC_EXT_END

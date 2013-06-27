@@ -181,4 +181,48 @@ void UIHelper::removeAllSpriteFrame()
     this->m_textureFiles->removeAllObjects();
 }
 
+CocoWidget* UIHelper::seekWidgetByTag(CocoWidget* root, int tag)
+{
+    if (!root)
+    {
+        return NULL;
+    }
+    if (root->getWidgetTag() == tag)
+    {
+        return root;
+    }
+    for (int i=0;i<root->getChildren()->count();i++)
+    {
+        CocoWidget* child = (CocoWidget*)(root->getChildren()->objectAtIndex(i));
+        CocoWidget* res = seekWidgetByTag(child,tag);
+        if (res != NULL)
+        {
+            return res;
+        }
+    }
+    return NULL;
+}
+
+CocoWidget* UIHelper::seekWidgetByName(CocoWidget* root, const char *name)
+{
+    if (!root)
+    {
+        return NULL;
+    }
+    if (strcmp(root->getName().c_str(), name) == 0)
+    {
+        return root;
+    }
+    for (int i=0;i<root->getChildren()->count();i++)
+    {
+        CocoWidget* child = (CocoWidget*)(root->getChildren()->objectAtIndex(i));
+        CocoWidget* res = seekWidgetByName(child,name);
+        if (res != NULL)
+        {
+            return res;
+        }
+    }
+    return NULL;
+}
+
 NS_CC_EXT_END

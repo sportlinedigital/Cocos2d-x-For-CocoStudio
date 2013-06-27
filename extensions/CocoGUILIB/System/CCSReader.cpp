@@ -24,6 +24,7 @@
 
 #include "CocosGUI.h"
 #include "../../JsonReader/DictionaryHelper.h"
+#include "../Action/CocoGUIActionManager.h"
 #include <fstream>
 #include <iostream>
 
@@ -183,6 +184,8 @@ CocoWidget* CCSReader::widgetFromJsonFile(const char *fileName)
     }
     cs::CSJsonDictionary* widgetTree = DICTOOL->getSubDictionary_json(jsonDict, "widgetTree");
     CocoWidget* widget = this->widgetFromJsonDictionary(widgetTree);
+    cs::CSJsonDictionary* actions = DICTOOL->getSubDictionary_json(jsonDict, "actions");
+    CocoGUIActionManager::shareManager()->initWithDictionary(actions,widget);
     delete jsonDict;
     jsonDict = NULL;
     delete[] des;

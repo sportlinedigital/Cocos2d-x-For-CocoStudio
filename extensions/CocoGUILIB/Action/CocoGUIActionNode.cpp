@@ -23,28 +23,40 @@
  ****************************************************************************/
 
 #include "CocoGUIActionNode.h"
+#include "CocoGUIActionFrame.h"
+#include "../../JsonReader/DictionaryHelper.h"
+#include "../System/UIHelper.h"
 
 NS_CC_EXT_BEGIN
 
 CocoGUIActionNode::CocoGUIActionNode()
 {
 	currentIndex = 0;
-	m_actionNode = CocoWidget::create();
-	m_actionNode->retain();	
+	m_actionNode = NULL;
 
-	m_action = new CCSequence();
+	m_action = NULL;
 
 	m_ActionFrameList = cocos2d::CCArray::create();
 	m_ActionFrameList->retain();
 }
 
 CocoGUIActionNode::~CocoGUIActionNode()
-{	
-	m_action->release();
-	m_actionNode->release();
-	
+{
 	m_ActionFrameList->removeAllObjects();
 	m_ActionFrameList->release();
+}
+
+void CocoGUIActionNode::initWithDictionary(cs::CSJsonDictionary *dic,CocoWidget* root)
+{
+    this->setName(DICTOOL->getStringValue_json(dic, "name"));
+    int actionFrameCount = DICTOOL->getArrayCount_json(dic, "actionframelist");
+    this->SetActionNode(CCUIHELPER->seekWidgetByName(root, this->getName()));
+    for (int i=0; i<actionFrameCount; i++) {
+        CocoGUIActionFrame* actionFrame = new CocoGUIActionFrame();
+        cs::CSJsonDictionary* actionFrameDic = DICTOOL->getDictionaryFromArray_json(dic, "actionframelist", i);
+        actionFrame->initWithDictionary(actionFrameDic);
+        this->m_ActionFrameList->addObject(actionFrame);
+    }
 }
 
 void CocoGUIActionNode::SetActionNode(CocoWidget* widget)
@@ -143,21 +155,27 @@ void CocoGUIActionNode::RunAction(float fUnitTime, bool bloop)
 		actionFrame->addObject( actionSpawn );
 	}
 
-	m_action = CCSequence::create(actionFrame);
-
 	if (bloop)
 	{
-		m_actionNode->getValidNode()->runAction(CCRepeatForever::create((CCActionInterval*)m_action));
+        CCActionInterval* actionInterval = dynamic_cast<CCActionInterval*>(CCSequence::create(actionFrame));
+        if (actionInterval)
+        {
+            if (m_actionNode) {
+                m_actionNode->runAction(CCRepeatForever::create(actionInterval));
+            }
+        }
 	}
 	else
 	{
-		m_actionNode->getValidNode()->runAction(m_action);
+        if (m_actionNode) {
+            m_actionNode->runAction(CCSequence::create(actionFrame));
+        }
 	}
 }
 
 void CocoGUIActionNode::StopAction()
 {
-	m_actionNode->getValidNode()->stopAction(m_action);
+	m_actionNode->stopAction(m_action);
 }
 
 //void CocoGUIActionNode::RunToFrameByIndex(int index)
