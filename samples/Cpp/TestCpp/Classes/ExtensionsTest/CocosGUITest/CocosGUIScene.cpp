@@ -37,5 +37,15 @@ void CocosGUITestScene::runThisTest()
 }
 void CocosGUITestScene::MainMenuCallback(CCObject* pSender)
 {
+    CCSize size = dynamic_cast<CocoWidget*>(ul->getRootWidget()->getChildren()->lastObject())->getFileDesignSize();
+//    static bool is = true;
+//    if (is) {
+//        ul->setUIType(UILAYER_MODEL);
+//    }
+//    else{
+//        ul->setUIType(UILAYER_SCENE);
+//    }
+//    is = !is;
+    
 	TestScene::MainMenuCallback(pSender);
 }

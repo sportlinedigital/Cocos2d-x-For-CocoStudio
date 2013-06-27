@@ -187,6 +187,9 @@ public:
     virtual void updateChildrenVisibleDirty(bool dirty);
     virtual void updateChildrenOpacityDirty(bool dirty);
     virtual void adaptSize(float xProportion,float yProportion);
+    void setCreateFromFile(bool is);
+    void setFileDesignSize(const CCSize &size);
+    CCSize getFileDesignSize();
     
     void setUILayer(UILayer* uiLayer);
     void updateChildrenUILayer(UILayer* uiLayer);
@@ -262,6 +265,8 @@ protected:
     cocos2d::CCNode* m_pCCRenderNode;
     float m_fContentSizeWidth;
     float m_fContentSizeHeight;
+    bool m_bIsCreatedFromFile;
+    CCSize m_fileDesignSize;
     
     
     cocos2d::CCPoint m_locationInWindow;

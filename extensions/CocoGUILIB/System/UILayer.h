@@ -33,6 +33,13 @@
 
 NS_CC_EXT_BEGIN
 
+//typedef enum
+//{
+//    UILAYER_SCENE,
+//    UILAYER_MODEL
+//}GUITYPE;
+
+
 class UILayer : public CCLayer
 {
     
@@ -64,9 +71,13 @@ public:
     UIInputManager* getInputManager();
     virtual void clear();
     virtual void dispose();
+    CocoRootWidget* getRootWidget();
+    
+//    void setUIType(GUITYPE type);
+    
 protected:
 
-    
+//    GUITYPE m_UIType;
     CocoRootWidget* m_pRootWidget;
     UIInputManager* m_pInputManager;
     CCArray* m_updateEnableWidget;

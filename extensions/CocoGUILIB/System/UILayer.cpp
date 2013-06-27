@@ -31,6 +31,8 @@ UILayer::UILayer():
 m_pRootWidget(NULL),
 m_pInputManager(NULL),
 m_updateEnableWidget(NULL)
+//,
+//m_UIType(UILAYER_SCENE)
 {
     
 }
@@ -106,19 +108,37 @@ void UILayer::setVisible(bool visible)
     m_pRootWidget->setVisible(visible);
 }
 
+//void UILayer::setUIType(GUITYPE type)
+//{
+//    this->m_UIType = type;
+//    switch (this->m_UIType) {
+//        case UILAYER_SCENE:
+//            this->m_pRootWidget->setPosition(CCPointZero);
+//            break;
+//        case UILAYER_MODEL:
+//            this->m_pRootWidget->setPosition(ccp(-20, -20));
+//            break;
+//        default:
+//            break;
+//    }
+//}
+
 void UILayer::update(float dt)
 {
-    for (int i=0; i<m_updateEnableWidget->count(); i++) {
+    for (int i=0; i<m_updateEnableWidget->count(); i++)
+    {
         dynamic_cast<CocoWidget*>(m_updateEnableWidget->objectAtIndex(i))->update(dt);
     }
 }
 
 void UILayer::addUpdateEnableWidget(CocoWidget* widget)
 {
-    if (!widget) {
+    if (!widget)
+    {
         return;
     }
-    if (this->m_updateEnableWidget->containsObject(widget)) {
+    if (this->m_updateEnableWidget->containsObject(widget))
+    {
         return;
     }
     this->m_updateEnableWidget->addObject(widget);
@@ -126,10 +146,12 @@ void UILayer::addUpdateEnableWidget(CocoWidget* widget)
 
 void UILayer::removeUpdateEnableWidget(CocoWidget* widget)
 {
-    if (!widget) {
+    if (!widget)
+    {
         return;
     }
-    if (!this->m_updateEnableWidget->containsObject(widget)) {
+    if (!this->m_updateEnableWidget->containsObject(widget))
+    {
         return;
     }
     this->m_updateEnableWidget->removeObject(widget);
@@ -137,7 +159,8 @@ void UILayer::removeUpdateEnableWidget(CocoWidget* widget)
 
 CocoWidget* UILayer::getWidgetByTag(int tag)
 {
-    if (!m_pRootWidget) {
+    if (!m_pRootWidget)
+    {
         return NULL;
     }
     return CCUIHELPER->seekWidgetByTag(m_pRootWidget, tag);
@@ -145,10 +168,16 @@ CocoWidget* UILayer::getWidgetByTag(int tag)
 
 CocoWidget* UILayer::getWidgetByName(const char* name)
 {
-    if (!m_pRootWidget) {
+    if (!m_pRootWidget)
+    {
         return NULL;
     }
     return CCUIHELPER->seekWidgetByName(m_pRootWidget, name);
+}
+
+CocoRootWidget* UILayer::getRootWidget()
+{
+    return m_pRootWidget;
 }
 
 UIInputManager* UILayer::getInputManager()

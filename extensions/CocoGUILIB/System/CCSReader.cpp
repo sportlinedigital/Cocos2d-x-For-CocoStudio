@@ -184,6 +184,7 @@ CocoWidget* CCSReader::widgetFromJsonFile(const char *fileName)
     }
     cs::CSJsonDictionary* widgetTree = DICTOOL->getSubDictionary_json(jsonDict, "widgetTree");
     CocoWidget* widget = this->widgetFromJsonDictionary(widgetTree);
+    widget->setFileDesignSize(CCSizeMake(fileDesignWidth, fileDesignHeight));
     cs::CSJsonDictionary* actions = DICTOOL->getSubDictionary_json(jsonDict, "actions");
     CocoGUIActionManager::shareManager()->initWithDictionary(actions,widget);
     delete jsonDict;
