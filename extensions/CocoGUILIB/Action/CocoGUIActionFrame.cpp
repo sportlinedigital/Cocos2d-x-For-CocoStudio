@@ -30,5 +30,8 @@ CocoGUIActionFrame::CocoGUIActionFrame()
 {
 
 }
+CocoGUIActionFrame::~CocoGUIActionFrame()
+{
 
+}
 NS_CC_EXT_END
