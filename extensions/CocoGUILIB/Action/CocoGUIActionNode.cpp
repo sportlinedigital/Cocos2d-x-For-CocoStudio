@@ -42,6 +42,10 @@ CocoGUIActionNode::CocoGUIActionNode()
 
 CocoGUIActionNode::~CocoGUIActionNode()
 {
+	if (m_action != NULL)
+	{
+		m_action->release();
+	}
 	m_ActionFrameList->removeAllObjects();
 	m_ActionFrameList->release();
 }
@@ -137,7 +141,8 @@ void CocoGUIActionNode::RunAction(float fUnitTime, bool bloop)
 
 		if ( i == 0 )
 		{
-			duration = frame->getFrameId() * fUnitTime;
+			//duration = frame->getFrameId() * fUnitTime;
+			duration = 0.01f;
 		}
 		else
 		{
@@ -151,7 +156,7 @@ void CocoGUIActionNode::RunAction(float fUnitTime, bool bloop)
 		CCFadeTo* action_4 = CCFadeTo::create(duration,frame->getOpacity());
 		CCTintTo* action_5 = CCTintTo::create(duration,frame->getColor().r,frame->getColor().g,frame->getColor().r);
 
-		CCSpawn * actionSpawn = CCSpawn::create(action_1,action_2,action_3,action_4,action_5);
+		CCSpawn * actionSpawn = CCSpawn::create(action_1,action_2,action_3,action_4,action_5, NULL);
 		actionFrame->addObject( actionSpawn );
 	}
 
@@ -161,14 +166,26 @@ void CocoGUIActionNode::RunAction(float fUnitTime, bool bloop)
         if (actionInterval)
         {
             if (m_actionNode) {
-                m_actionNode->runAction(CCRepeatForever::create(actionInterval));
+				if (m_action!=NULL)
+				{
+					m_action->release();
+				}
+				m_action = CCRepeatForever::create(actionInterval);
+				m_action->retain();
+                m_actionNode->runAction(m_action);
             }
         }
 	}
 	else
 	{
         if (m_actionNode) {
-            m_actionNode->runAction(CCSequence::create(actionFrame));
+			if (m_action!=NULL)
+			{
+				m_action->release();
+			}
+			m_action = CCSequence::create(actionFrame);
+			m_action->retain();
+            m_actionNode->runAction(m_action);
         }
 	}
 }
