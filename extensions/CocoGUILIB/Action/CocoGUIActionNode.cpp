@@ -84,6 +84,11 @@ void CocoGUIActionNode::DeleteFrame(CocoGUIActionFrame* frame)
 	m_ActionFrameList->removeObject(frame);
 }
 
+void CocoGUIActionNode::ClearAllFrame()
+{
+	m_ActionFrameList->removeAllObjects();
+}
+
 void CocoGUIActionNode::UpdateToFrameByIndex(int index)
 {
 	currentIndex = index;
