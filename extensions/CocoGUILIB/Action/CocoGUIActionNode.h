@@ -48,6 +48,7 @@ public:
 
 	void SetActionNode(CocoWidget* widget);
 
+	void InsertFrame(int index, CocoGUIActionFrame* frame);
 	void AddFrame(CocoGUIActionFrame* frame);
 	void DeleteFrame(CocoGUIActionFrame* frame);
 

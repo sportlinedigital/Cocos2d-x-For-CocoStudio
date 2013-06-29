@@ -67,7 +67,11 @@ void CocoGUIActionNode::SetActionNode(CocoWidget* widget)
 {
 	m_actionNode = widget;
 
-	UpdateToFrameByIndex(currentIndex);
+	//UpdateToFrameByIndex(currentIndex);
+}
+void CocoGUIActionNode::InsertFrame(int index, CocoGUIActionFrame* frame)
+{
+	m_ActionFrameList->insertObject(frame,index);
 }
 
 void CocoGUIActionNode::AddFrame(CocoGUIActionFrame* frame)
