@@ -37,7 +37,7 @@ class CocoGUIActionNode:public cocos2d::CCObject
 {
 protected:
 	int currentIndex;
-	CCSequence* m_action;
+	CCAction* m_action;
 	CocoWidget* m_actionNode;
     //data
 	cocos2d::CCArray* m_ActionFrameList;/*action frame*/
@@ -48,8 +48,10 @@ public:
 
 	void SetActionNode(CocoWidget* widget);
 
+	void InsertFrame(int index, CocoGUIActionFrame* frame);
 	void AddFrame(CocoGUIActionFrame* frame);
 	void DeleteFrame(CocoGUIActionFrame* frame);
+	void ClearAllFrame();
 
 	void UpdateToFrameByIndex(int index);
 	void UpdateToFrame(CocoGUIActionFrame* frame);
