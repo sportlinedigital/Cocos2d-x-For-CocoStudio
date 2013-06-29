@@ -27,6 +27,8 @@
 #include "DictionaryHelper.h"
 #include "CCArmature/CCArmature.h"
 #include "CCArmature/utils/CCArmatureDataManager.h"
+#include "CocoGUILIB/System/UILayer.h"
+#include "CocoGUILIB/System/UIHelper.h"
 
 NS_CC_EXT_BEGIN
 
@@ -84,19 +86,20 @@ NS_CC_EXT_BEGIN
                 cs::CSJsonDictionary * subDict = inputFiles->getSubItemFromArray("components", i);
                 if (!subDict)
                    break;
-                const char* comName = subDict->getItemStringValue("classname");
+                const char *comName = subDict->getItemStringValue("classname");
                 const char *file = subDict->getItemStringValue("file");
                 const char *name = subDict->getItemStringValue("name");
-                if (file == NULL)
+                if (file == NULL || strcmp(file, "") == 0)
                 {
                     continue;
                 }
                 CCAssert(file != NULL, "file must be not NULL!");
                 std::string pPath = cocos2d::CCFileUtils::sharedFileUtils()->fullPathForFilename(file);
 
-                if (strcmp(comName, "CCSprite") == 0)
+                if (comName != NULL && strcmp(comName, "CCSprite") == 0)
                 {
                     cocos2d::CCSprite *pSprite = CCSprite::create(pPath.c_str());
+					
                     CCComRender *pRender = CCComRender::create(pSprite, "CCSprite");
                     if (name != NULL)
                     {
@@ -105,7 +108,7 @@ NS_CC_EXT_BEGIN
                     
                     gb->addComponent(pRender);
                 }
-                else if(strcmp(comName, "CCTMXTiledMap") == 0)
+                else if(comName != NULL && strcmp(comName, "CCTMXTiledMap") == 0)
                 {
                     cocos2d::CCTMXTiledMap *pTmx = CCTMXTiledMap::create(pPath.c_str());
                     CCComRender *pRender = CCComRender::create(pTmx, "CCTMXTiledMap");
@@ -115,7 +118,7 @@ NS_CC_EXT_BEGIN
                     }
                     gb->addComponent(pRender);
                 }
-                else if(strcmp(comName, "CCParticleSystemQuad") == 0)
+                else if(comName != NULL && strcmp(comName, "CCParticleSystemQuad") == 0)
                 {
                     std::string::size_type pos =  pPath.find(".plist");
                     if (pos  == pPath.npos)
@@ -123,6 +126,7 @@ NS_CC_EXT_BEGIN
                         continue;
                     }
                     cocos2d::CCParticleSystemQuad *pParticle = CCParticleSystemQuad::create(pPath.c_str());
+
 					pParticle->setPosition(0, 0);
                     CCComRender *pRender = CCComRender::create(pParticle, "CCParticleSystemQuad");
                     if (name != NULL)
@@ -131,7 +135,7 @@ NS_CC_EXT_BEGIN
                     }
                     gb->addComponent(pRender);
                 }
-                else if(strcmp(comName, "CCArmature") == 0)
+                else if(comName != NULL && strcmp(comName, "CCArmature") == 0)
                 {
                     std::string reDir = pPath;
                     std::string file_path = "";
@@ -182,23 +186,35 @@ NS_CC_EXT_BEGIN
 
                     CC_SAFE_DELETE(jsonDict);
                 }
-                else if(strcmp(comName, "CCComAudio") == 0)
+                else if(comName != NULL && strcmp(comName, "CCComAudio") == 0)
                 {
                     CCComAudio *pAudio = CCComAudio::create();
                     pAudio->preloadEffect(pPath.c_str());
                     gb->addComponent(pAudio);
                 }
-                else if(strcmp(comName, "CCComAttribute") == 0)
+                else if(comName != NULL && strcmp(comName, "CCComAttribute") == 0)
                 {
                     CCComAttribute *pAttribute = CCComAttribute::create();
                     gb->addComponent(pAttribute);
                 }
-                else if (strcmp(comName, "CCBackgroundAudio") == 0)
+                else if (comName != NULL && strcmp(comName, "CCBackgroundAudio") == 0)
                 {
                     CCComAudio *pAudio = CCComAudio::create();
                     pAudio->preloadBackgroundMusic(pPath.c_str());
                     gb->addComponent(pAudio);
                 }
+				else if(comName != NULL && strcmp(comName, "GUIComponent") == 0)
+				{
+					cocos2d::extension::UILayer *pLayer = cocos2d::extension::UILayer::create();
+					CocoWidget* widget=cocos2d::extension::UIHelper::instance()->createWidgetFromFile_json(pPath.c_str());
+					pLayer->addWidget(widget);
+					CCComRender *pRender = CCComRender::create(pLayer, "GUIComponent");
+					if (name != NULL)
+					{
+						pRender->setName(name);
+					}
+					gb->addComponent(pRender);
+				}
                 
                 CC_SAFE_DELETE(subDict);
             }
