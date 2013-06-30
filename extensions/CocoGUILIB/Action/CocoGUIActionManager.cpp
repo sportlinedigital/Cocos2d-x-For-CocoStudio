@@ -50,7 +50,7 @@ CocoGUIActionManager::~CocoGUIActionManager()
 	m_ActionList->release();
 }
 
-void CocoGUIActionManager::initWithDictionary(cs::CSJsonDictionary *dic,CocoWidget* root)
+void CocoGUIActionManager::initWithDictionary(cs::CSJsonDictionary *dic,UIWidget* root)
 {
     int actionCount = DICTOOL->getArrayCount_json(dic, "actionlist");
     for (int i=0; i<actionCount; i++) {

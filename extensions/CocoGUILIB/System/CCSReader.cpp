@@ -53,84 +53,84 @@ CCSReader* CCSReader::shareReader()
     return sharedReader;
 }
 
-CocoWidget* CCSReader::widgetFromJsonDictionary(cs::CSJsonDictionary* data)
+UIWidget* CCSReader::widgetFromJsonDictionary(cs::CSJsonDictionary* data)
 {
-    CocoWidget* widget = NULL;
+    UIWidget* widget = NULL;
     const char* classname = DICTOOL->getStringValue_json(data, "classname");
     cs::CSJsonDictionary* uiOptions = DICTOOL->getSubDictionary_json(data, "options");
     if (classname && strcmp(classname, "Button") == 0)
     {
-        widget = CocoButton::create();
+        widget = UIButton::create();
         this->setPropsForButtonFromJsonDictionary(widget, uiOptions);
     }
     else if (classname && strcmp(classname, "CheckBox") == 0)
     {
-        widget = CocoCheckBox::create();
+        widget = UICheckBox::create();
         this->setPropsForCheckBoxFromJsonDictionary(widget, uiOptions);
     }
     else if (classname && strcmp(classname, "Label") == 0)
     {
-        widget = CocoLabel::create();
+        widget = UILabel::create();
         this->setPropsForLabelFromJsonDictionary(widget, uiOptions);
     }
     else if (classname && strcmp(classname, "LabelAtlas") == 0)
     {
-        widget = CocoLabelAtlas::create();
+        widget = UILabelAtlas::create();
         this->setPropsForLabelAtlasFromJsonDictionary(widget, uiOptions);
     }
     else if (classname && strcmp(classname, "LoadingBar") == 0)
     {
-        widget = CocoLoadingBar::create();
+        widget = UILoadingBar::create();
         this->setPropsForLoadingBarFromJsonDictionary(widget, uiOptions);
     }else if (classname && strcmp(classname, "ScrollView") == 0){
-        widget = CocoScrollView::create();
+        widget = UIScrollView::create();
         this->setPropsForScrollViewFromJsonDictionary(widget, uiOptions);
     }
     else if (classname && strcmp(classname, "TextArea") == 0)
     {
-        widget = CocoTextArea::create();
+        widget = UITextArea::create();
         this->setPropsForTextAreaFromJsonDictionary(widget, uiOptions);
     }
     else if (classname && strcmp(classname, "TextButton") == 0)
     {
-        widget = CocoTextButton::create();
+        widget = UITextButton::create();
         this->setPropsForTextButtonFromJsonDictionary(widget, uiOptions);
     }
     else if (classname && strcmp(classname, "TextField") == 0)
     {
-        widget = CocoTextField::create();
+        widget = UITextField::create();
         this->setPropsForTextFieldFromJsonDictionary(widget, uiOptions);
     }
     else if (classname && strcmp(classname, "ImageView") == 0)
     {
-        widget = CocoImageView::create();
+        widget = UIImageView::create();
         this->setPropsForImageViewFromJsonDictionary(widget, uiOptions);
     }
     else if (classname && strcmp(classname, "Panel") == 0)
     {
-        widget = CocoPanel::create();
+        widget = UIPanel::create();
         this->setPropsForPanelFromJsonDictionary(widget, uiOptions);
     }
     else if (classname && strcmp(classname, "Slider") == 0)
     {
-        widget = CocoSlider::create();
+        widget = UISlider::create();
         this->setPropsForSliderFromJsonDictionary(widget, uiOptions);
     }
     else if (classname && strcmp(classname, "ListView") == 0)
     {
-        widget = CocoListView::create();
+        widget = UIListView::create();
         this->setPropsForListViewFromJsonDictionary(widget, uiOptions);
     }
     else if (classname && strcmp(classname, "PageView") == 0)
     {
-        widget = CocoPageView::create();
+        widget = UIPageView::create();
         this->setPropsForPageViewFromJsonDictionary(widget, uiOptions);
     }
     int childrenCount = DICTOOL->getArrayCount_json(data, "children");
     for (int i=0;i<childrenCount;i++)
     {
         cs::CSJsonDictionary* subData = DICTOOL->getDictionaryFromArray_json(data, "children", i);
-        CocoWidget* child = this->widgetFromJsonDictionary(subData);
+        UIWidget* child = this->widgetFromJsonDictionary(subData);
         if (child)
         {
             widget->addChild(child);
@@ -139,7 +139,7 @@ CocoWidget* CCSReader::widgetFromJsonDictionary(cs::CSJsonDictionary* data)
     return widget;
 }
 
-CocoWidget* CCSReader::widgetFromJsonFile(const char *fileName)
+UIWidget* CCSReader::widgetFromJsonFile(const char *fileName)
 {
     const char *des = NULL;
     std::string jsonpath;
@@ -183,7 +183,7 @@ CocoWidget* CCSReader::widgetFromJsonFile(const char *fileName)
         CCUIHELPER->setFileDesignHeight(fileDesignHeight);
     }
     cs::CSJsonDictionary* widgetTree = DICTOOL->getSubDictionary_json(jsonDict, "widgetTree");
-    CocoWidget* widget = this->widgetFromJsonDictionary(widgetTree);
+    UIWidget* widget = this->widgetFromJsonDictionary(widgetTree);
     widget->setFileDesignSize(CCSizeMake(fileDesignWidth, fileDesignHeight));
     cs::CSJsonDictionary* actions = DICTOOL->getSubDictionary_json(jsonDict, "actions");
     CocoGUIActionManager::shareManager()->initWithDictionary(actions,widget);
@@ -193,7 +193,7 @@ CocoWidget* CCSReader::widgetFromJsonFile(const char *fileName)
     return widget;
 }
 
-void CCSReader::setPropsForWidgetFromJsonDictionary(CocoWidget*widget,cs::CSJsonDictionary *options)
+void CCSReader::setPropsForWidgetFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary *options)
 {
     widget->setWidgetTag(DICTOOL->getIntValue_json(options, "tag"));
     widget->setBeTouchEnable(DICTOOL->getBooleanValue_json(options, "touchAble"));
@@ -228,7 +228,7 @@ void CCSReader::setPropsForWidgetFromJsonDictionary(CocoWidget*widget,cs::CSJson
     widget->setWidgetZOrder(z);
 }
 
-void CCSReader::setColorPropsForWidgetFromJsonDictionary(CocoWidget *widget, cs::CSJsonDictionary *options)
+void CCSReader::setColorPropsForWidgetFromJsonDictionary(UIWidget *widget, cs::CSJsonDictionary *options)
 {
     bool op = DICTOOL->checkObjectExist_json(options, "opacity");
     if (op)
@@ -249,10 +249,10 @@ void CCSReader::setColorPropsForWidgetFromJsonDictionary(CocoWidget *widget, cs:
     widget->setAnchorPoint(ccp(apxf, apyf));
 }
 
-void CCSReader::setPropsForButtonFromJsonDictionary(CocoWidget*widget,cs::CSJsonDictionary* options)
+void CCSReader::setPropsForButtonFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options)
 {
     this->setPropsForWidgetFromJsonDictionary(widget, options);
-    CocoButton* button = (CocoButton*)widget;
+    UIButton* button = (UIButton*)widget;
     bool scale9Enable = DICTOOL->getBooleanValue_json(options, "scale9Enable");
     button->setScale9Enable(scale9Enable);
     
@@ -305,10 +305,10 @@ void CCSReader::setPropsForButtonFromJsonDictionary(CocoWidget*widget,cs::CSJson
     this->setColorPropsForWidgetFromJsonDictionary(widget,options);
 }
 
-void CCSReader::setPropsForCheckBoxFromJsonDictionary(CocoWidget*widget,cs::CSJsonDictionary* options)
+void CCSReader::setPropsForCheckBoxFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options)
 {
     this->setPropsForWidgetFromJsonDictionary(widget, options);
-    CocoCheckBox* checkBox = (CocoCheckBox*)widget;
+    UICheckBox* checkBox = (UICheckBox*)widget;
     const char* backGroundFileName = DICTOOL->getStringValue_json(options, "backGroundBox");
     const char* backGroundSelectedFileName = DICTOOL->getStringValue_json(options, "backGroundBoxSelected");
     const char* frontCrossFileName = DICTOOL->getStringValue_json(options, "frontCross");
@@ -341,11 +341,11 @@ void CCSReader::setPropsForCheckBoxFromJsonDictionary(CocoWidget*widget,cs::CSJs
     this->setColorPropsForWidgetFromJsonDictionary(widget,options);
 }
 
-void CCSReader::setPropsForImageViewFromJsonDictionary(CocoWidget*widget,cs::CSJsonDictionary* options)
+void CCSReader::setPropsForImageViewFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options)
 {
     this->setPropsForWidgetFromJsonDictionary(widget, options);
     
-    CocoImageView* imageView = (CocoImageView*)widget;
+    UIImageView* imageView = (UIImageView*)widget;
     const char* imageFileName = DICTOOL->getStringValue_json(options, "fileName");
     bool scale9EnableExist = DICTOOL->checkObjectExist_json(options, "scale9Enable");
     bool scale9Enable = false;
@@ -407,10 +407,10 @@ void CCSReader::setPropsForImageViewFromJsonDictionary(CocoWidget*widget,cs::CSJ
     this->setColorPropsForWidgetFromJsonDictionary(widget,options);
 }
 
-void CCSReader::setPropsForLabelFromJsonDictionary(CocoWidget*widget,cs::CSJsonDictionary* options)
+void CCSReader::setPropsForLabelFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options)
 {
     this->setPropsForWidgetFromJsonDictionary(widget, options);
-    CocoLabel* label = (CocoLabel*)widget;
+    UILabel* label = (UILabel*)widget;
     bool touchScaleChangeAble = DICTOOL->getBooleanValue_json(options, "touchSacleEnable");
     label->setTouchScaleChangeAble(touchScaleChangeAble);
     const char* text = DICTOOL->getStringValue_json(options, "text");
@@ -440,10 +440,10 @@ void CCSReader::setPropsForLabelFromJsonDictionary(CocoWidget*widget,cs::CSJsonD
     label->setGravity((LabelGravity)gravity);
 }
 
-void CCSReader::setPropsForLabelAtlasFromJsonDictionary(CocoWidget*widget,cs::CSJsonDictionary* options)
+void CCSReader::setPropsForLabelAtlasFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options)
 {
     this->setPropsForWidgetFromJsonDictionary(widget, options);
-    CocoLabelAtlas* labelAtlas = (CocoLabelAtlas*)widget;
+    UILabelAtlas* labelAtlas = (UILabelAtlas*)widget;
     bool sv = DICTOOL->checkObjectExist_json(options, "stringValue");
     bool cmf = DICTOOL->checkObjectExist_json(options, "charMapFile");
     bool iw = DICTOOL->checkObjectExist_json(options, "itemWidth");
@@ -461,18 +461,18 @@ void CCSReader::setPropsForLabelAtlasFromJsonDictionary(CocoWidget*widget,cs::CS
     this->setColorPropsForWidgetFromJsonDictionary(widget,options);
 }
 
-void CCSReader::setPropsForContainerWidgetFromJsonDictionary(CocoWidget *widget, cs::CSJsonDictionary *options)
+void CCSReader::setPropsForContainerWidgetFromJsonDictionary(UIWidget *widget, cs::CSJsonDictionary *options)
 {
     this->setPropsForWidgetFromJsonDictionary(widget, options);
-    CocoContainerWidget* containerWidget = (CocoContainerWidget*)widget;
+    UIContainerWidget* containerWidget = (UIContainerWidget*)widget;
     containerWidget->setClipAble(DICTOOL->getBooleanValue_json(options, "clipAble"));
     this->setColorPropsForWidgetFromJsonDictionary(widget,options);
 }
 
-void CCSReader::setPropsForPanelFromJsonDictionary(CocoWidget*widget,cs::CSJsonDictionary* options)
+void CCSReader::setPropsForPanelFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options)
 {
     this->setPropsForContainerWidgetFromJsonDictionary(widget, options);
-    CocoPanel* panel = (CocoPanel*)widget;
+    UIPanel* panel = (UIPanel*)widget;
     bool backGroundScale9Enable = DICTOOL->getBooleanValue_json(options, "backGroundScale9Enable");
     panel->setBackGroundImageScale9Enable(backGroundScale9Enable);
     int cr = DICTOOL->getIntValue_json(options, "colorR");
@@ -521,16 +521,16 @@ void CCSReader::setPropsForPanelFromJsonDictionary(CocoWidget*widget,cs::CSJsonD
     this->setColorPropsForWidgetFromJsonDictionary(widget,options);
 }
 
-void CCSReader::setPropsForScrollViewFromJsonDictionary(CocoWidget*widget,cs::CSJsonDictionary* options)
+void CCSReader::setPropsForScrollViewFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options)
 {
     this->setPropsForPanelFromJsonDictionary(widget, options);
     this->setColorPropsForWidgetFromJsonDictionary(widget,options);
 }
 
-void CCSReader::setPropsForSliderFromJsonDictionary(CocoWidget*widget,cs::CSJsonDictionary* options)
+void CCSReader::setPropsForSliderFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options)
 {
     this->setPropsForWidgetFromJsonDictionary(widget, options);
-    CocoSlider* slider = (CocoSlider*)widget;
+    UISlider* slider = (UISlider*)widget;
     
     bool barTextureScale9Enable = DICTOOL->getBooleanValue_json(options, "barTextureScale9Enable");
     slider->setBarTextureScale9Enable(barTextureScale9Enable);
@@ -613,10 +613,10 @@ void CCSReader::setPropsForSliderFromJsonDictionary(CocoWidget*widget,cs::CSJson
     this->setColorPropsForWidgetFromJsonDictionary(widget,options);
 }
 
-void CCSReader::setPropsForTextAreaFromJsonDictionary(CocoWidget*widget,cs::CSJsonDictionary* options)
+void CCSReader::setPropsForTextAreaFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options)
 {
     this->setPropsForWidgetFromJsonDictionary(widget, options);
-    CocoTextArea* textArea = (CocoTextArea*)widget;
+    UITextArea* textArea = (UITextArea*)widget;
     textArea->setText(DICTOOL->getStringValue_json(options, "text"));
     bool fs = DICTOOL->checkObjectExist_json(options, "fontSize");
     if (fs)
@@ -648,10 +648,10 @@ void CCSReader::setPropsForTextAreaFromJsonDictionary(CocoWidget*widget,cs::CSJs
     this->setColorPropsForWidgetFromJsonDictionary(widget,options);
 }
 
-void CCSReader::setPropsForTextButtonFromJsonDictionary(CocoWidget*widget,cs::CSJsonDictionary* options)
+void CCSReader::setPropsForTextButtonFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options)
 {
     this->setPropsForButtonFromJsonDictionary(widget, options);
-    CocoTextButton* textButton = (CocoTextButton*)widget;
+    UITextButton* textButton = (UITextButton*)widget;
     textButton->setText(DICTOOL->getStringValue_json(options, "text"));
     textButton->setFlipX(DICTOOL->getBooleanValue_json(options, "flipX"));
     textButton->setFlipY(DICTOOL->getBooleanValue_json(options, "flipY"));
@@ -672,10 +672,10 @@ void CCSReader::setPropsForTextButtonFromJsonDictionary(CocoWidget*widget,cs::CS
     this->setColorPropsForWidgetFromJsonDictionary(widget,options);
 }
 
-void CCSReader::setPropsForTextFieldFromJsonDictionary(CocoWidget*widget,cs::CSJsonDictionary* options)
+void CCSReader::setPropsForTextFieldFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options)
 {
     this->setPropsForWidgetFromJsonDictionary(widget, options);
-    CocoTextField* textField = (CocoTextField*)widget;
+    UITextField* textField = (UITextField*)widget;
     bool ph = DICTOOL->checkObjectExist_json(options, "placeHolder");
     if (ph)
     {
@@ -697,10 +697,10 @@ void CCSReader::setPropsForTextFieldFromJsonDictionary(CocoWidget*widget,cs::CSJ
     this->setColorPropsForWidgetFromJsonDictionary(widget,options);
 }
 
-void CCSReader::setPropsForLoadingBarFromJsonDictionary(CocoWidget *widget, cs::CSJsonDictionary *options)
+void CCSReader::setPropsForLoadingBarFromJsonDictionary(UIWidget *widget, cs::CSJsonDictionary *options)
 {
     this->setPropsForWidgetFromJsonDictionary(widget, options);
-    CocoLoadingBar* loadingBar = (CocoLoadingBar*)widget;
+    UILoadingBar* loadingBar = (UILoadingBar*)widget;
 
 	std::string tp_b = m_strFilePath;
 	const char*imageFileName =  DICTOOL->getStringValue_json(options, "texture");
@@ -718,12 +718,12 @@ void CCSReader::setPropsForLoadingBarFromJsonDictionary(CocoWidget *widget, cs::
     this->setColorPropsForWidgetFromJsonDictionary(widget,options);
 }
 
-void CCSReader::setPropsForListViewFromJsonDictionary(CocoWidget *widget, cs::CSJsonDictionary *options)
+void CCSReader::setPropsForListViewFromJsonDictionary(UIWidget *widget, cs::CSJsonDictionary *options)
 {
     setPropsForScrollViewFromJsonDictionary(widget, options);
 }
 
-void CCSReader::setPropsForPageViewFromJsonDictionary(CocoWidget*widget,cs::CSJsonDictionary* options)
+void CCSReader::setPropsForPageViewFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options)
 {
     this->setPropsForPanelFromJsonDictionary(widget, options);
     this->setColorPropsForWidgetFromJsonDictionary(widget,options);

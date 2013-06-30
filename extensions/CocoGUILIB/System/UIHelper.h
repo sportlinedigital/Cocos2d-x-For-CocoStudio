@@ -22,8 +22,8 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#ifndef __UISYSTEM_H__
-#define __UISYSTEM_H__
+#ifndef __UIHELPER_H__
+#define __UIHELPER_H__
 
 #include "UIInputManager.h"
 #include "../../CCArmature/external_tool/Json/CSContentJsonDictionary.h"
@@ -40,15 +40,15 @@ public:
     ~UIHelper();
     void init();
     
-    CocoWidget* createWidgetFromJsonFile(const char* fileName);
-    CocoWidget* createWidgetFromJsonFileWithAdapt(const char* fileName, bool scaleAdapt, bool equalProportions);
-    void adjustWidgetProperty(CocoWidget* root,float xProportion,float yProportion,bool scaleAdapt,bool equalProportions);
+    UIWidget* createWidgetFromJsonFile(const char* fileName);
+    UIWidget* createWidgetFromJsonFileWithAdapt(const char* fileName, bool scaleAdapt, bool equalProportions);
+    void adjustWidgetProperty(UIWidget* root,float xProportion,float yProportion,bool scaleAdapt,bool equalProportions);
     static UIHelper* instance();
     void addSpriteFrame(const char* fileName);
     void removeSpriteFrame(const char* fileName);
     void removeAllSpriteFrame();
-    CocoWidget* seekWidgetByTag(CocoWidget* root, int tag);
-    CocoWidget* seekWidgetByName(CocoWidget* root, const char* name);
+    UIWidget* seekWidgetByTag(UIWidget* root, int tag);
+    UIWidget* seekWidgetByName(UIWidget* root, const char* name);
     void setFileDesignWidth(float width);
     float getFileDesignWidth();
     void setFileDesignHeight(float height);

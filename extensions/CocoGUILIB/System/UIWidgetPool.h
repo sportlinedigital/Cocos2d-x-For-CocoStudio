@@ -27,7 +27,7 @@
 
 #include <iostream>
 #include "cocos2d.h"
-#include "../BaseClasses/CocoWidget.h"
+#include "../BaseClasses/UIWidget.h"
 
 NS_CC_EXT_BEGIN
 
@@ -36,12 +36,12 @@ class UIWidgetPool
 public:
     UIWidgetPool();
     ~UIWidgetPool();
-    void push_back(CocoWidget* widget);
+    void push_back(UIWidget* widget);
     void pop_back();
-    void push_front(CocoWidget* widget);
+    void push_front(UIWidget* widget);
     void pop_front();
-    CocoWidget* begin();
-    CocoWidget* rbegin();
+    UIWidget* begin();
+    UIWidget* rbegin();
     bool empty();
     int size();
     void clear();

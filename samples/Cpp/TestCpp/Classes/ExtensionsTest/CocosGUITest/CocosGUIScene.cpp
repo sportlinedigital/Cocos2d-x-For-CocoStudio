@@ -77,19 +77,19 @@ void CocosGUITestScene::runThisTest()
 
 //    /*
     ul->addWidget(CCUIHELPER->createWidgetFromJsonFile("cocosgui/CocoGUISample.json"));
-    CocoScrollView* sc = (CocoScrollView*)(ul->getWidgetByName("scrollview"));
+    UIScrollView* sc = (UIScrollView*)(ul->getWidgetByName("scrollview"));
     sc->setUpdateEnable(true);
     sc->setMoveMode(SCROLLVIEW_MOVE_MODE_NORMAL);
     
-    CocoImageView* image = dynamic_cast<CocoImageView*>(ul->getWidgetByName("imageview"));
+    UIImageView* image = dynamic_cast<UIImageView*>(ul->getWidgetByName("imageview"));
     image->setBeTouchEnable(true);
 //    image->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::MainMenuCallback));
     
-    CocoButton* exitBtn = dynamic_cast<CocoButton*>(ul->getWidgetByName("exitbutton"));
+    UIButton* exitBtn = dynamic_cast<UIButton*>(ul->getWidgetByName("exitbutton"));
     exitBtn->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::toCocosGUISlotScene));
 //     */
     
-    CocoCheckBox* cb = dynamic_cast<CocoCheckBox*>(ul->getWidgetByName("checkbox"));
+    UICheckBox* cb = dynamic_cast<UICheckBox*>(ul->getWidgetByName("checkbox"));
     cb->addSelectEvent(this, coco_releaseselector(CocosGUITestScene::MainMenuCallback));
     
 }

@@ -26,7 +26,7 @@
 #define __UIINPUTMANAGER_H__
 
 #include "cocos2d.h"
-#include "../BaseClasses/CocoWidget.h"
+#include "../BaseClasses/UIWidget.h"
 
 NS_CC_EXT_BEGIN
 
@@ -35,25 +35,25 @@ class UIInputManager
 public:
     UIInputManager();
     ~UIInputManager();
-    void registWidget(CocoWidget* widget);
+    void registWidget(UIWidget* widget);
     void uiSceneHasChanged();
-    void sortWidgets(CocoWidget* widget);
-    void sortRootWidgets(CocoWidget* root);
-    void removeManageredWidget(CocoWidget* widget);
-    CocoWidget* checkEventWidget(cocos2d::CCPoint &touchPoint);
-    void addCheckedDoubleClickWidget(CocoWidget* widget);
+    void sortWidgets(UIWidget* widget);
+    void sortRootWidgets(UIWidget* root);
+    void removeManageredWidget(UIWidget* widget);
+    UIWidget* checkEventWidget(cocos2d::CCPoint &touchPoint);
+    void addCheckedDoubleClickWidget(UIWidget* widget);
     void update(float dt);
     bool onTouchBegan(cocos2d::CCTouch* touch);
     bool onTouchMoved(cocos2d::CCTouch* touch);
     bool onTouchEnd(cocos2d::CCTouch* touch);
     bool onTouchCancelled(cocos2d::CCTouch* touch);
     
-    void setRootWidget(CocoWidget* root);
-    CocoWidget* getRootWidget();
+    void setRootWidget(UIWidget* root);
+    UIWidget* getRootWidget();
     
 protected:
     cocos2d::CCArray* m_manageredWidget;
-    CocoWidget* m_pCurSelectedWidget;
+    UIWidget* m_pCurSelectedWidget;
     cocos2d::CCPoint touchBeganedPoint;
     cocos2d::CCPoint touchMovedPoint;
     cocos2d::CCPoint touchEndedPoint;
@@ -63,7 +63,7 @@ protected:
     float m_fLongClickTime;
     float m_fLongClickRecordTime;
     cocos2d::CCArray* checkedDoubleClickWidget;
-    CocoWidget* m_pRootWidget;
+    UIWidget* m_pRootWidget;
 };
 
 NS_CC_EXT_END

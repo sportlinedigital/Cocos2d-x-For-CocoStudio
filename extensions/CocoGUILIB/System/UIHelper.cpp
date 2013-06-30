@@ -24,18 +24,18 @@
 
 #include "UIHelper.h"
 #include "../../JsonReader/DictionaryHelper.h"
-#include "../Component/CocoButton.h"
-#include "../Component/CocoCheckBox.h"
-#include "../Component/CocoImageView.h"
-#include "../Component/CocoLabel.h"
-#include "../Component/CocoLabelAtlas.h"
-#include "../Component/CocoPanel.h"
-#include "../Component/CocoScrollView.h"
-#include "../Component/CocoLoadingBar.h"
-#include "../Component/CocoSlider.h"
-#include "../Component/CocoTextArea.h"
-#include "../Component/CocoTextButton.h"
-#include "../Component/CocoTextField.h"
+#include "../UIWidgets/UIButton.h"
+#include "../UIWidgets/UICheckBox.h"
+#include "../UIWidgets/UIImageView.h"
+#include "../UIWidgets/UILabel.h"
+#include "../UIWidgets/UILabelAtlas.h"
+#include "../UIWidgets/UIPanel.h"
+#include "../UIWidgets/UIScrollView.h"
+#include "../UIWidgets/UILoadingBar.h"
+#include "../UIWidgets/UISlider.h"
+#include "../UIWidgets/UITextArea.h"
+#include "../UIWidgets/UITextButton.h"
+#include "../UIWidgets/UITextField.h"
 #include "cocos2d.h"
 #include "CCSReader.h"
 
@@ -73,20 +73,20 @@ void UIHelper::init()
     this->m_textureFiles->retain();
 }
 
-CocoWidget* UIHelper::createWidgetFromJsonFile(const char *fileName)
+UIWidget* UIHelper::createWidgetFromJsonFile(const char *fileName)
 {
     return CCSReader::shareReader()->widgetFromJsonFile(fileName);
 }
 
-CocoWidget* UIHelper::createWidgetFromJsonFileWithAdapt(const char *fileName, bool scaleAdapt, bool equalProportions)
+UIWidget* UIHelper::createWidgetFromJsonFileWithAdapt(const char *fileName, bool scaleAdapt, bool equalProportions)
 {
-    CocoWidget* widget = this->createWidgetFromJsonFile(fileName);
+    UIWidget* widget = this->createWidgetFromJsonFile(fileName);
     cocos2d::CCSize winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
     this->adjustWidgetProperty(widget, winSize.width/this->getFileDesignWidth(),winSize.height/this->getFileDesignHeight(), scaleAdapt, equalProportions);
     return widget;
 }
 
-void UIHelper::adjustWidgetProperty(CocoWidget* root,float xProportion,float yProportion,bool scaleAdapt,bool equalProportions)
+void UIHelper::adjustWidgetProperty(UIWidget* root,float xProportion,float yProportion,bool scaleAdapt,bool equalProportions)
 {
     switch (root->getWidgetType())
     {
@@ -110,7 +110,7 @@ void UIHelper::adjustWidgetProperty(CocoWidget* root,float xProportion,float yPr
             break;
         case 1:
         {
-            CocoContainerWidget* cRoot = (CocoContainerWidget*)root;
+            UIContainerWidget* cRoot = (UIContainerWidget*)root;
             cRoot->setSize(cocos2d::CCSize(cRoot->getWidth()*xProportion,cRoot->getHeight()*yProportion));
         }
             break;
@@ -124,7 +124,7 @@ void UIHelper::adjustWidgetProperty(CocoWidget* root,float xProportion,float yPr
     }
     for (int i=0; i<root->getChildren()->count(); i++)
     {
-        CocoWidget* child = (CocoWidget*)(root->getChildren()->objectAtIndex(i));
+        UIWidget* child = (UIWidget*)(root->getChildren()->objectAtIndex(i));
         this->adjustWidgetProperty(child,xProportion,yProportion,scaleAdapt,equalProportions);
     }
 }
@@ -176,7 +176,7 @@ void UIHelper::removeAllSpriteFrame()
     this->m_textureFiles->removeAllObjects();
 }
 
-CocoWidget* UIHelper::seekWidgetByTag(CocoWidget* root, int tag)
+UIWidget* UIHelper::seekWidgetByTag(UIWidget* root, int tag)
 {
     if (!root)
     {
@@ -188,8 +188,8 @@ CocoWidget* UIHelper::seekWidgetByTag(CocoWidget* root, int tag)
     }
     for (int i=0;i<root->getChildren()->count();i++)
     {
-        CocoWidget* child = (CocoWidget*)(root->getChildren()->objectAtIndex(i));
-        CocoWidget* res = seekWidgetByTag(child,tag);
+        UIWidget* child = (UIWidget*)(root->getChildren()->objectAtIndex(i));
+        UIWidget* res = seekWidgetByTag(child,tag);
         if (res != NULL)
         {
             return res;
@@ -198,7 +198,7 @@ CocoWidget* UIHelper::seekWidgetByTag(CocoWidget* root, int tag)
     return NULL;
 }
 
-CocoWidget* UIHelper::seekWidgetByName(CocoWidget* root, const char *name)
+UIWidget* UIHelper::seekWidgetByName(UIWidget* root, const char *name)
 {
     if (!root)
     {
@@ -210,8 +210,8 @@ CocoWidget* UIHelper::seekWidgetByName(CocoWidget* root, const char *name)
     }
     for (int i=0;i<root->getChildren()->count();i++)
     {
-        CocoWidget* child = (CocoWidget*)(root->getChildren()->objectAtIndex(i));
-        CocoWidget* res = seekWidgetByName(child,name);
+        UIWidget* child = (UIWidget*)(root->getChildren()->objectAtIndex(i));
+        UIWidget* res = seekWidgetByName(child,name);
         if (res != NULL)
         {
             return res;

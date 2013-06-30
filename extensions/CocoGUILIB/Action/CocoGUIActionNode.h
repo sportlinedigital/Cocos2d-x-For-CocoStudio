@@ -27,7 +27,7 @@
 
 #include "cocos2d.h"
 #include "ExtensionMacros.h"
-#include "CocoWidget.h"
+#include "UIWidget.h"
 #include "CocoGUIActionFrame.h"
 #include "../../CCArmature/external_tool/Json/CSContentJsonDictionary.h"
 
@@ -38,7 +38,7 @@ class CocoGUIActionNode:public cocos2d::CCObject
 protected:
 	int currentIndex;
 	CCAction* m_action;
-	CocoWidget* m_actionNode;
+	UIWidget* m_actionNode;
     //data
 	cocos2d::CCArray* m_ActionFrameList;/*action frame*/
     CC_SYNTHESIZE(const char*, m_name, Name);
@@ -46,7 +46,7 @@ public:
     CocoGUIActionNode();
     virtual ~CocoGUIActionNode();
 
-	void SetActionNode(CocoWidget* widget);
+	void SetActionNode(UIWidget* widget);
 
 	void InsertFrame(int index, CocoGUIActionFrame* frame);
 	void AddFrame(CocoGUIActionFrame* frame);
@@ -58,7 +58,7 @@ public:
 
 	void RunAction(float fUnitTime, bool bloop);
 	void StopAction();
-    void initWithDictionary(cs::CSJsonDictionary* dic,CocoWidget* root);
+    void initWithDictionary(cs::CSJsonDictionary* dic,UIWidget* root);
 };
 
 NS_CC_EXT_END
