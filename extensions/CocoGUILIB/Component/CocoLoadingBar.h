@@ -41,7 +41,6 @@ public:
     CocoLoadingBar();
     virtual ~CocoLoadingBar();
     static CocoLoadingBar* create();
-    virtual void initNodes();
     void setDirection(LoadingBarType dir);
     int getDirection();
     void setTexture(const char* texture,bool useSpriteFrame = false);
@@ -50,6 +49,8 @@ public:
     float getTotalWidth();
     float getTotalHeight();
     virtual cocos2d::CCNode* getValidNode();
+protected:
+    virtual void initNodes();
 protected:
     LoadingBarType m_nBarType;
     int m_nPercent;

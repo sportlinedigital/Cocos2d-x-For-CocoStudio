@@ -107,9 +107,9 @@ void CocoImageView::setTextureRect(const cocos2d::CCRect &rect)
     }
 }
 
-bool CocoImageView::onTouchPressed(cocos2d::CCPoint &touchPoint)
+bool CocoImageView::onTouchBegan(cocos2d::CCPoint &touchPoint)
 {
-    this->setBeFocus(true);
+    this->setFocus(true);
     this->m_touchStartPos.x = touchPoint.x;
     this->m_touchStartPos.y = touchPoint.y;
     this->m_pWidgetParent->checkChildInfo(0,this,touchPoint);
@@ -125,7 +125,7 @@ bool CocoImageView::onTouchPressed(cocos2d::CCPoint &touchPoint)
     return true;
 }
 
-bool CocoImageView::onTouchReleased(cocos2d::CCPoint &touchPoint)
+bool CocoImageView::onTouchEnded(cocos2d::CCPoint &touchPoint)
 {
     if (this->m_bDoubleClickEnable)
     {
@@ -142,7 +142,7 @@ bool CocoImageView::onTouchReleased(cocos2d::CCPoint &touchPoint)
     }
     else
     {
-        CocoWidget::onTouchReleased(touchPoint);
+        CocoWidget::onTouchEnded(touchPoint);
     }
     return true;
 }

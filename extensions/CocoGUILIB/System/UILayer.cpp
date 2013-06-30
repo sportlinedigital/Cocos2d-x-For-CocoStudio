@@ -198,7 +198,7 @@ void UILayer::clear()
 
 bool UILayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
-    if (m_pInputManager && m_pInputManager->onTouchPressed(pTouch))
+    if (m_pInputManager && m_pInputManager->onTouchBegan(pTouch))
     {
         return true;
     }
@@ -214,13 +214,13 @@ void UILayer::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 
 void UILayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
-    m_pInputManager->onTouchReleased(pTouch);
+    m_pInputManager->onTouchEnd(pTouch);
 //    CCLOG("ui layer end");
 }
 
 void UILayer::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 {
-    m_pInputManager->onTouchCanceled(pTouch);
+    m_pInputManager->onTouchCancelled(pTouch);
 //    CCLOG("ui layer cancel");
 }
 

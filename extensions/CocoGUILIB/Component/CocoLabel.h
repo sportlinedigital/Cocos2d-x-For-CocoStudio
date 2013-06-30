@@ -44,8 +44,6 @@ public:
     CocoLabel();
     virtual ~CocoLabel();
     static CocoLabel* create();
-    virtual bool init();
-    virtual void initNodes();
     void setText(const char* text);
     const char* getStringValue();
     int getStringLength();
@@ -53,9 +51,6 @@ public:
     void setFontName(const char* name);
     void setTouchScaleChangeAble(bool able);
     bool getTouchScaleChangeAble();
-    virtual void onPressStateChangedToNormal();
-    virtual void onPressStateChangedToPressed();
-    virtual void onPressStateChangedToDisabled();
     void clickScale(float scale);
     virtual void setFlipX(bool flipX);
     virtual void setFlipY(bool flipY);
@@ -63,6 +58,12 @@ public:
     virtual void adaptSize(float xProportion,float yProportion);
     virtual cocos2d::CCNode* getValidNode();
     virtual void setAnchorPoint(const cocos2d::CCPoint &pt);
+protected:
+    virtual bool init();
+    virtual void initNodes();
+    virtual void onPressStateChangedToNormal();
+    virtual void onPressStateChangedToPressed();
+    virtual void onPressStateChangedToDisabled();
 protected:
     bool m_bTouchScaleChangeAble;
     float m_fNormalScaleValue;

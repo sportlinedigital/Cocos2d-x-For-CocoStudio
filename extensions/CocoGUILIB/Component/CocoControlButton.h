@@ -38,13 +38,8 @@ public:
     CocoControlButton();
     virtual ~CocoControlButton();
     static CocoControlButton* create();
-    virtual bool init();
-    virtual void initNodes();
     void setTextures(const char* backgroundNormal,const char* backgroundPressed,const char* backgroundDisabled);
     void setTitle(const char* titleNormal,const char* titlePressed,const char* titleDisabled);
-    virtual void onPressStateChangedToNormal();
-    virtual void onPressStateChangedToPressed();
-    virtual void onPressStateChangedToDisabled();
     virtual cocos2d::CCNode* getValidNode();
     virtual void setAnchorPoint(const cocos2d::CCPoint &pt);
     virtual void setColor(int r,int g,int b);
@@ -68,14 +63,22 @@ public:
     void setNormalBackgroundSpriteFrame(cocos2d::CCSpriteFrame * spriteFrame);
     void setPressedBackgroundSpriteFrame(cocos2d::CCSpriteFrame * spriteFrame);
     void setDisabledBackgroundSpriteFrame(cocos2d::CCSpriteFrame * spriteFrame);
-protected:        
+    void setZoomOnTouchDown(bool zoom);
+    bool getZoomOnTouchDown();
+protected:
+    virtual bool init();
+    virtual void initNodes();
+    virtual void onPressStateChangedToNormal();
+    virtual void onPressStateChangedToPressed();
+    virtual void onPressStateChangedToDisabled();
+    bool m_bZoomOnTouchDown;
+protected:
     cocos2d::extension::CCScale9Sprite* m_pNormalBackGround;
     cocos2d::extension::CCScale9Sprite* m_pPressedBackGround;
     cocos2d::extension::CCScale9Sprite* m_pDisabledBackGround;
     cocos2d::CCLabelTTF* m_pNormalTitle;
     cocos2d::CCLabelTTF* m_pPressedTitle;
     cocos2d::CCLabelTTF* m_pDisabledTitle;
-    CC_SYNTHESIZE(bool, m_bZoomOnTouchDown, ZoomOnTouchDown);
 };
 
 NS_CC_EXT_END

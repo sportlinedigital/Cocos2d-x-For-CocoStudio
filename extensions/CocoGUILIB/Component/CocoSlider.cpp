@@ -236,9 +236,9 @@ void CocoSlider::setProgressBarScale(int percent)
     this->m_pProgressBarNode->setContentSize(cocos2d::CCSize(width, this->m_pProgressBarNode->getContentSize().height));
 }
 
-bool CocoSlider::onTouchPressed(cocos2d::CCPoint &touchPoint)
+bool CocoSlider::onTouchBegan(cocos2d::CCPoint &touchPoint)
 {
-    CocoWidget::onTouchPressed(touchPoint);
+    CocoWidget::onTouchBegan(touchPoint);
     cocos2d::CCPoint nsp = this->m_pCCRenderNode->convertToNodeSpace(touchPoint);
     this->m_pSlidBall->setPosition(ccp(nsp.x,0));
     this->m_pSlidBall->setPressState(WidgetStateSelected);
@@ -265,16 +265,16 @@ bool CocoSlider::onTouchMoved(cocos2d::CCPoint &touchPoint)
     return true;
 }
 
-bool CocoSlider::onTouchReleased(cocos2d::CCPoint &touchPoint)
+bool CocoSlider::onTouchEnded(cocos2d::CCPoint &touchPoint)
 {
-    CocoWidget::onTouchReleased(touchPoint);
+    CocoWidget::onTouchEnded(touchPoint);
     this->m_pSlidBall->setPressState(WidgetStateNormal);
     return true;
 }
 
-bool CocoSlider::onTouchCanceled(cocos2d::CCPoint &touchPoint)
+bool CocoSlider::onTouchCancelled(cocos2d::CCPoint &touchPoint)
 {
-    CocoWidget::onTouchReleased(touchPoint);
+    CocoWidget::onTouchCancelled(touchPoint);
     this->m_pSlidBall->setPressState(WidgetStateNormal);
     return true;
 }

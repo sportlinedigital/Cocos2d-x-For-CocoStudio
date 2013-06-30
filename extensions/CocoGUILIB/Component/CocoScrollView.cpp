@@ -1192,9 +1192,9 @@ void CocoScrollView::handleReleaseLogic(cocos2d::CCPoint &touchPoint)
     this->endRecordSlidAction();
 }    
 
-bool CocoScrollView::onTouchPressed(cocos2d::CCPoint &touchPoint)
+bool CocoScrollView::onTouchBegan(cocos2d::CCPoint &touchPoint)
 {
-    CocoPanel::onTouchPressed(touchPoint);
+    CocoPanel::onTouchBegan(touchPoint);
     this->handlePressLogic(touchPoint);
     return true;
 }
@@ -1206,16 +1206,16 @@ bool CocoScrollView::onTouchMoved(cocos2d::CCPoint &touchPoint)
     return true;
 }
 
-bool CocoScrollView::onTouchReleased(cocos2d::CCPoint &touchPoint)
+bool CocoScrollView::onTouchEnded(cocos2d::CCPoint &touchPoint)
 {
-    CocoPanel::onTouchReleased(touchPoint);
+    CocoPanel::onTouchEnded(touchPoint);
     this->handleReleaseLogic(touchPoint);
     return true;
 }
 
-bool CocoScrollView::onTouchCanceled(cocos2d::CCPoint &touchPoint)
+bool CocoScrollView::onTouchCancelled(cocos2d::CCPoint &touchPoint)
 {
-    return CocoPanel::onTouchCanceled(touchPoint);
+    return CocoPanel::onTouchCancelled(touchPoint);
 }
 
 bool CocoScrollView::onTouchLongClicked(cocos2d::CCPoint &touchPoint)
@@ -1280,7 +1280,7 @@ void CocoScrollView::checkChildInfo(int handleState,CocoWidget* sender,cocos2d::
                 }
                 if (offset > this->m_fChildFocusCancelOffset)
                 {
-                    sender->setBeFocus(false);
+                    sender->setFocus(false);
                     this->handleMoveLogic(touchPoint);
                 }
             }
@@ -1444,6 +1444,46 @@ void CocoScrollView::stopAction()
         CocoWidget* child = dynamic_cast<CocoWidget*>(m_children->objectAtIndex(i));
         child->stopAllActions();
     }
+}
+
+void CocoScrollView::setDirection(SCROLLVIEW_DIR dir)
+{
+    m_eDirection = dir;
+}
+
+SCROLLVIEW_DIR CocoScrollView::getDirection()
+{
+    return m_eDirection;
+}
+
+void CocoScrollView::setMoveDirection(SCROLLVIEW_MOVE_DIR dir)
+{
+    m_eMoveDirection = dir;
+}
+
+SCROLLVIEW_MOVE_DIR CocoScrollView::getMoveDirection()
+{
+    return m_eMoveDirection;
+}
+
+void CocoScrollView::setMoveMode(SCROLLVIEW_MOVE_MODE mode)
+{
+    m_eMoveMode = mode;
+}
+
+SCROLLVIEW_MOVE_MODE CocoScrollView::getMoveMode()
+{
+    return m_eMoveMode;
+}
+
+void CocoScrollView::setBerthOrientation(SCROLLVIEW_BERTH_ORI mode)
+{
+    m_eBerthOrientation = mode;
+}
+
+SCROLLVIEW_BERTH_ORI CocoScrollView::getBerthOrientation()
+{
+    return m_eBerthOrientation;
 }
 
 NS_CC_EXT_END

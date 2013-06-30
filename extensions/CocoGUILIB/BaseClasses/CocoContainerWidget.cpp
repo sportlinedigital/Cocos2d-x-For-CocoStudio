@@ -37,7 +37,7 @@ m_fHeight(0.0),
 m_bClipAble(false),
 m_renderType(RENDER_TYPE_LAYERCOLOR)
 {
-    this->m_nWidgetType = WidgetTypeContainer;
+    this->m_WidgetType = WidgetTypeContainer;
 }
 
 CocoContainerWidget::~CocoContainerWidget()
@@ -73,7 +73,7 @@ void CocoContainerWidget::initNodes()
     this->m_pCCRenderNode = CClipAbleLayerColor::create();
 }
 
-bool CocoContainerWidget::getClipAble()
+bool CocoContainerWidget::isClippingEnable()
 {
     return this->m_bClipAble;
 }
@@ -84,7 +84,7 @@ bool CocoContainerWidget::addChild(CocoWidget* child)
     bool needSetChildCheckAble = false;
     CocoWidget* parent = this;
     while (parent != 0){
-        if (parent->getClipAble()){
+        if (parent->isClippingEnable()){
             needSetChildCheckAble = true;
             break;
         }

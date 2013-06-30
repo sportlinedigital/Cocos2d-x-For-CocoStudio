@@ -44,8 +44,6 @@ public:
     static CocoContainerWidget* create();
     //Only containerWidget can use the LayoutParameter for doing layout to child widget
     virtual void setLayoutParameter(/*LayoutParameter * parmeter*/);
-    virtual bool init();
-    virtual void initNodes();
     virtual bool addChild(CocoWidget* child);
     virtual void setClipAble(bool able);
     virtual void setClipRect(const cocos2d::CCRect &rect);
@@ -56,7 +54,7 @@ public:
     virtual float getWidth();
     virtual void setHeight(float height);
     virtual float getHeight();
-    virtual bool getClipAble();
+    virtual bool isClippingEnable();
     virtual bool hitTest(cocos2d::CCNode*node, cocos2d::CCPoint &pt);
     virtual void updateClipSize();
     virtual void onScaleDirtyChanged();
@@ -64,6 +62,9 @@ public:
     virtual void onScaleYDirtyChanged();
     CCSize getWrapSize() const;
 protected:
+    virtual bool init();
+    virtual void initNodes();
+protected:    
     float m_fWidth;
     float m_fHeight;
     bool m_bClipAble;

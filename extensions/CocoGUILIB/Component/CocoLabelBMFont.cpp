@@ -48,15 +48,11 @@ CocoLabelBMFont* CocoLabelBMFont::create()
     return NULL;
 }
 
-bool CocoLabelBMFont::init()
+void CocoLabelBMFont::initNodes()
 {
-    if (CocoWidget::init())
-    {
-        this->m_pLabelBMFont = cocos2d::CCLabelBMFont::create();
-        this->m_pCCRenderNode->addChild(this->m_pLabelBMFont);
-        return true;
-    }
-    return false;
+    CocoWidget::initNodes();
+    this->m_pLabelBMFont = cocos2d::CCLabelBMFont::create();
+    this->m_pCCRenderNode->addChild(this->m_pLabelBMFont);
 }
 
 void CocoLabelBMFont::setFntFile(const char *fileName)

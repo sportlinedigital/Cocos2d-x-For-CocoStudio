@@ -41,7 +41,6 @@ public:
     CocoListView();
     virtual ~CocoListView();
     static CocoListView* create();
-    virtual bool init();
     virtual bool addChild(CocoWidget* widget);
     virtual void removeChildMoveToTrash(CocoWidget* child);
     virtual void removeChildReferenceOnly(CocoWidget* child);
@@ -49,7 +48,6 @@ public:
     bool scrollChildren(float touchOffset);
     void drag(float offset);        
     CocoWidget* getCheckPositionChild();
-    
     void initChildWithDataLength(int length);        
     CocoWidget* getChildFromUpdatePool();
     void pushChildToPool();
@@ -67,13 +65,13 @@ public:
     void collectOverRightChild();
     void setLoopPosition();
     void updateChild();
-    
     void initChildEvent();
     void updateChildEvent();
-    
     void addInitChildEvent(cocos2d::CCObject* target, SEL_InitChildEvent seletor);
     void addUpdateChildEvent(cocos2d::CCObject* target, SEL_UpdateChildEvent selector);
     
+protected:
+    virtual bool init();
 protected:
     cocos2d::CCObject* m_pInitChildListener;
     SEL_InitChildEvent m_pfnInitChildSelector;

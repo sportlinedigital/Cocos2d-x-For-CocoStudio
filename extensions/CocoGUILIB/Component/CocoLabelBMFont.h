@@ -35,12 +35,13 @@ public:
     CocoLabelBMFont();
     virtual ~CocoLabelBMFont();
     static CocoLabelBMFont* create();
-    virtual bool init();
     void setFntFile(const char* fileName);
     void setText(const char* value);
     const char* getStringValue();
     virtual cocos2d::CCNode* getValidNode();
     virtual void setAnchorPoint(const cocos2d::CCPoint &pt);
+protected:
+    virtual void initNodes();
 protected:
     cocos2d::CCLabelBMFont* m_pLabelBMFont;
 };

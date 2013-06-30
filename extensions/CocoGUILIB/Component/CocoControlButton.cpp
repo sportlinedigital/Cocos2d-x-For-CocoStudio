@@ -265,5 +265,15 @@ void CocoControlButton::setDisabledBackgroundSpriteFrame(cocos2d::CCSpriteFrame 
     m_pDisabledBackGround->setSpriteFrame(spriteFrame);
 }
 
+void CocoControlButton::setZoomOnTouchDown(bool zoom)
+{
+    this->m_bZoomOnTouchDown = zoom;
+}
+
+bool CocoControlButton::getZoomOnTouchDown()
+{
+    return m_bZoomOnTouchDown;
+}
+
 NS_CC_EXT_END
 

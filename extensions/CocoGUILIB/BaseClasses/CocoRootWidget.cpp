@@ -26,8 +26,7 @@
 
 NS_CC_EXT_BEGIN
 
-CocoRootWidget::CocoRootWidget():
-m_pUIScene(NULL)
+CocoRootWidget::CocoRootWidget()
 {
     
 }

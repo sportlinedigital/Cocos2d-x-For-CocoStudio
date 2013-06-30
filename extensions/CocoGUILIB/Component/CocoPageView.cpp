@@ -330,9 +330,9 @@ void CocoPageView::stopAction()
     }
 }
 
-bool CocoPageView::onTouchPressed(cocos2d::CCPoint &touchPoint)
+bool CocoPageView::onTouchBegan(cocos2d::CCPoint &touchPoint)
 {
-    CocoPanel::onTouchPressed(touchPoint);
+    CocoPanel::onTouchBegan(touchPoint);
     
     cocos2d::CCPoint nsp = this->m_pCCRenderNode->convertToNodeSpace(touchPoint);
     m_fTouchMoveStartLocation = nsp.x;
@@ -391,9 +391,9 @@ bool CocoPageView::onTouchMoved(cocos2d::CCPoint &touchPoint)
     return true;
 }
 
-bool CocoPageView::onTouchReleased(cocos2d::CCPoint &touchPoint)
+bool CocoPageView::onTouchEnded(cocos2d::CCPoint &touchPoint)
 {
-    CocoPanel::onTouchReleased(touchPoint);
+    CocoPanel::onTouchEnded(touchPoint);
     
     cocos2d::CCPoint nsp = this->m_pCCRenderNode->convertToNodeSpace(touchPoint);
     m_fTouchEndLocation = nsp.x;
@@ -424,9 +424,9 @@ bool CocoPageView::onTouchReleased(cocos2d::CCPoint &touchPoint)
     return true;
 }
 
-bool CocoPageView::onTouchCanceled(cocos2d::CCPoint &touchPoint)
+bool CocoPageView::onTouchCancelled(cocos2d::CCPoint &touchPoint)
 {
-    CocoPanel::onTouchCanceled(touchPoint);        
+    CocoPanel::onTouchCancelled(touchPoint);        
 //        selectPage(currentScreen_);
     return true;
 }

@@ -55,12 +55,11 @@ public:
     void setFontSize(int size);
     virtual void didNotSelectSelf();
     const char* getStringValue();
-    virtual bool onTouchPressed(cocos2d::CCPoint &touchPoint);
+    virtual bool onTouchBegan(cocos2d::CCPoint &touchPoint);
     virtual bool pointAtSelfBody(cocos2d::CCPoint &pt);
     void setCharacterLength(int length);
     void setIsPassWord(bool isPassword);
     void update(float dt);
-    
     bool getAttachWithIME();
     void setAttachWithIME(bool attach);
     bool getDetachWithIME();
@@ -69,19 +68,18 @@ public:
     void setInsertText(bool insertText);
     bool getDeleteBackward();
     void setDeleteBackward(bool deleteBackward);
-    
-    // event
-    void attachWithIMEEvent();
-    void detachWithIMEEvent();
-    void insertTextEvent();
-    void deleteBackwardEvent();
-    
     void addAttachWithIMEEvent(cocos2d::CCObject* target, SEL_TextFieldAttachWithIMEEvent selecor);
     void addDetachWithIMEEvent(cocos2d::CCObject* target, SEL_TextFieldDetachWithIMEEvent selecor);
     void addInsertTextEvent(cocos2d::CCObject* target, SEL_TextFieldInsertTextEvent selecor);
     void addDeleteBackwardEvent(cocos2d::CCObject* target, SEL_TextFieldDeleteBackwardEvent selecor);
     virtual cocos2d::CCNode* getValidNode();
     virtual void setAnchorPoint(const cocos2d::CCPoint &pt);
+protected:
+    // event
+    void attachWithIMEEvent();
+    void detachWithIMEEvent();
+    void insertTextEvent();
+    void deleteBackwardEvent();
 protected:
     float m_fTouchWidth;
     float m_fTouchHeight;

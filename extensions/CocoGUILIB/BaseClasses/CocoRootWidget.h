@@ -29,16 +29,14 @@
 
 NS_CC_EXT_BEGIN
 
-class UIScene;
 class CocoRootWidget : public CocoContainerWidget
 {
 public:
     CocoRootWidget();
     virtual ~CocoRootWidget();
     static CocoRootWidget* create();
-    virtual bool init();
 protected:
-    CC_SYNTHESIZE(UIScene*, m_pUIScene, UIScene);
+    virtual bool init();
 };
 
 NS_CC_EXT_END

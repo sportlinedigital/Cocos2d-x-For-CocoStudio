@@ -50,17 +50,12 @@ public:
     CocoPageView();
     ~CocoPageView();
     static CocoPageView* create();
-    virtual bool init();
     
     virtual bool addChild(CocoWidget* widget);
     virtual void initProperty();
     virtual void resetProperty();
 //        virtual void setColorAndSize(int r,int g,int b,int o,float width,float height);
     virtual void setSize(const CCSize &size);
-    virtual bool onTouchPressed(cocos2d::CCPoint &touchPoint);
-    virtual bool onTouchMoved(cocos2d::CCPoint &touchPoint);
-    virtual bool onTouchReleased(cocos2d::CCPoint &touchPoint);
-    virtual bool onTouchCanceled(cocos2d::CCPoint &touchPoint);
     
     #pragma mark Updates
     
@@ -109,8 +104,14 @@ public:
     
     void moveChildren(float offset);
     void stopAction();
-    
-protected:        
+    virtual bool onTouchBegan(cocos2d::CCPoint &touchPoint);
+    virtual bool onTouchMoved(cocos2d::CCPoint &touchPoint);
+    virtual bool onTouchEnded(cocos2d::CCPoint &touchPoint);
+    virtual bool onTouchCancelled(cocos2d::CCPoint &touchPoint);
+protected:
+    virtual bool init();
+
+protected:
     // Holds the current page being displayed.
     int currentScreen_;
     

@@ -91,11 +91,44 @@ public:
     CocoScrollView();
     virtual ~CocoScrollView();
     static CocoScrollView* create();
-    virtual bool init();
     virtual bool addChild(CocoWidget* widget);
+    virtual void removeAllChildrenAndCleanUp(bool cleanup);
+    void scrollToBottom();
+    void scrollToTop();
+    virtual void setSize(const cocos2d::CCSize &size);
+    
+    
+    
+    void addScrollToTopEvent(cocos2d::CCObject* target, SEL_ScrollToTopEvent selector);
+    void addScrollToBottomEvent(cocos2d::CCObject* target, SEL_ScrollToBottomEvent selector);
+    void addScrollToLeftEvent(cocos2d::CCObject* target, SEL_ScrollToLeftEvent selector);
+    void addScrollToRightEvent(cocos2d::CCObject* target, SEL_ScrollToRightEvent selector);
+    
+
+    
+    void addBerthToTopEvent(cocos2d::CCObject* target, SEL_BerthToTopEvent selector);
+    void addBerthToBottomEvent(cocos2d::CCObject* target, SEL_BerthToBottomEvent selector);
+    void addBerthToVerticalCenterEvent(cocos2d::CCObject* target, SEL_BerthToVerticalCenterEvent selector);
+    void addBerthToLeftEvent(cocos2d::CCObject* target, SEL_BerthToLeftEvent selector);
+    void addBerthToRightEvent(cocos2d::CCObject* target, SEL_BerthToRightEvent selector);
+    void addBerthToHorizontalCenterEvent(cocos2d::CCObject* target, SEL_BerthToHorizontalCenterEvent selector);
+    
+    void stopAction();
+    virtual bool onTouchBegan(cocos2d::CCPoint &touchPoint);
+    virtual bool onTouchMoved(cocos2d::CCPoint &touchPoint);
+    virtual bool onTouchEnded(cocos2d::CCPoint &touchPoint);
+    virtual bool onTouchCancelled(cocos2d::CCPoint &touchPoint);
+    virtual bool onTouchLongClicked(cocos2d::CCPoint &touchPoint);
+    void setDirection(SCROLLVIEW_DIR dir);
+    SCROLLVIEW_DIR getDirection();
+    void setMoveMode(SCROLLVIEW_MOVE_MODE mode);
+    SCROLLVIEW_MOVE_MODE getMoveMode();
+    void setBerthOrientation(SCROLLVIEW_BERTH_ORI mode);
+    SCROLLVIEW_BERTH_ORI getBerthOrientation();
+protected:
+    virtual bool init();
     virtual void removeChildMoveToTrash(CocoWidget* child);
     virtual void removeChildReferenceOnly(CocoWidget* child);
-    virtual void removeAllChildrenAndCleanUp(bool cleanup);
     virtual void initProperty();
     virtual void resetProperty();
     void resortChildren();
@@ -110,53 +143,30 @@ public:
     void handleScrollActionEvent();
     void berthChildren(SCROLLVIEW_DIR direction);
     virtual bool scrollChildren(float touchOffset);
-    void scrollToBottom();
-    void scrollToTop();
     virtual void drag(float offset);
     void startRecordSlidAction();
     virtual void endRecordSlidAction();
     void handlePressLogic(cocos2d::CCPoint &touchPoint);
     void handleMoveLogic(cocos2d::CCPoint &touchPoint);
     void handleReleaseLogic(cocos2d::CCPoint &touchPoint);
-    virtual bool onTouchPressed(cocos2d::CCPoint &touchPoint);
-    virtual bool onTouchMoved(cocos2d::CCPoint &touchPoint);
-    virtual bool onTouchReleased(cocos2d::CCPoint &touchPoint);
-    virtual bool onTouchCanceled(cocos2d::CCPoint &touchPoint);
-    virtual bool onTouchLongClicked(cocos2d::CCPoint &touchPoint);
     virtual void update(float dt);
     void recordSlidTime(float dt);
     virtual void checkChildInfo(int handleState,CocoWidget* sender,cocos2d::CCPoint &touchPoint);
-    virtual void setSize(const cocos2d::CCSize &size);
-    
     void scrollToTopEvent();
     void scrollToBottomEvent();
     void scrollToLeftEvent();
     void scrollToRightEvent();
-    
-    void addScrollToTopEvent(cocos2d::CCObject* target, SEL_ScrollToTopEvent selector);
-    void addScrollToBottomEvent(cocos2d::CCObject* target, SEL_ScrollToBottomEvent selector);
-    void addScrollToLeftEvent(cocos2d::CCObject* target, SEL_ScrollToLeftEvent selector);
-    void addScrollToRightEvent(cocos2d::CCObject* target, SEL_ScrollToRightEvent selector);
-    
     void berthToTopEvent();
     void berthToBottomEvent();
     void berthToVerticalCenterEvent();
     void berthToLeftEvent();
     void berthToRightEvent();
     void berthToHorizontalCenterEvent();
-    
-    void addBerthToTopEvent(cocos2d::CCObject* target, SEL_BerthToTopEvent selector);
-    void addBerthToBottomEvent(cocos2d::CCObject* target, SEL_BerthToBottomEvent selector);
-    void addBerthToVerticalCenterEvent(cocos2d::CCObject* target, SEL_BerthToVerticalCenterEvent selector);
-    void addBerthToLeftEvent(cocos2d::CCObject* target, SEL_BerthToLeftEvent selector);
-    void addBerthToRightEvent(cocos2d::CCObject* target, SEL_BerthToRightEvent selector);
-    void addBerthToHorizontalCenterEvent(cocos2d::CCObject* target, SEL_BerthToHorizontalCenterEvent selector);
-    
-    void stopAction();
-    
+    void setMoveDirection(SCROLLVIEW_MOVE_DIR dir);
+    SCROLLVIEW_MOVE_DIR getMoveDirection();
 protected:
-    CC_SYNTHESIZE(SCROLLVIEW_DIR, m_eDirection, Direction);
-    CC_SYNTHESIZE(SCROLLVIEW_MOVE_DIR, m_eMoveDirection, MoveDirection);
+    SCROLLVIEW_DIR m_eDirection;
+    SCROLLVIEW_MOVE_DIR m_eMoveDirection;
     int m_nDirection;
     float m_fTouchStartLocation;
     float m_fTouchEndLocation;
@@ -176,9 +186,8 @@ protected:
     
     int m_nHandleState;//0 normal, 1 top boundary, 2 bottom boundary
     int m_nMoveDirection;//0 pull down, 1 push up
-    
-    CC_SYNTHESIZE(SCROLLVIEW_MOVE_MODE, m_eMoveMode, MoveMode);
-    CC_SYNTHESIZE(SCROLLVIEW_BERTH_ORI, m_eBerthOrientation, BerthOrientation);
+    SCROLLVIEW_MOVE_MODE m_eMoveMode;
+    SCROLLVIEW_BERTH_ORI m_eBerthOrientation;
     bool isRunningAction;
     
     bool m_bTopEnd;

@@ -48,7 +48,7 @@ m_bUpdateEnable(false),
 m_pCCRenderNode(NULL),
 m_strName("default"),
 m_children(NULL),
-m_nWidgetType(WidgetTypeWidget),
+m_WidgetType(WidgetTypeWidget),
 m_bVisible(true),
 m_bNeedCheckVisibleDependParent(false),
 m_pPushListener(NULL),
@@ -163,7 +163,8 @@ bool CocoWidget::addChild(CocoWidget *child)
             this->m_children->insertObject(child,0);
         }
     }
-    this->addChildNode(child);
+    child->m_pCCRenderNode->setZOrder(child->getWidgetZOrder());
+    this->m_pCCRenderNode->addChild(child->m_pCCRenderNode);
     
     if (this->m_pUILayer) {
         for (int i=0; i<this->m_children->count(); i++) {
@@ -173,12 +174,6 @@ bool CocoWidget::addChild(CocoWidget *child)
     }
     structureChangedEvent();
     return true;
-}
-
-void CocoWidget::addChildNode(CocoWidget *child)
-{
-    child->m_pCCRenderNode->setZOrder(child->getWidgetZOrder());
-    this->m_pCCRenderNode->addChild(child->m_pCCRenderNode);
 }
 
 void CocoWidget::setUILayer(cocos2d::extension::UILayer *uiLayer)
@@ -358,13 +353,13 @@ void CocoWidget::setNeedCheckVisibleDepandParent(bool need)
     }
 }
 
-void CocoWidget::setBeTouchAble(bool enable)
+void CocoWidget::setBeTouchEnable(bool enable)
 {
     this->m_bBeTouchEnabled = enable;
     structureChangedEvent();
 }
 
-bool CocoWidget::getBeTouchAble()
+bool CocoWidget::getBeTouchEnable()
 {
     return this->m_bBeTouchEnabled;
 }
@@ -393,12 +388,12 @@ bool CocoWidget::getUpdateEnable()
     return this->m_bUpdateEnable;
 }
 
-bool CocoWidget::getBeFocus()
+bool CocoWidget::isFocus()
 {
     return this->m_bFocus;
 }
 
-void CocoWidget::setBeFocus(bool fucos)
+void CocoWidget::setFocus(bool fucos)
 {
     if (fucos == this->m_bFocus)
     {
@@ -462,7 +457,7 @@ void CocoWidget::active()
     this->setPressState(WidgetStateNormal);
 }
 
-bool CocoWidget::getActive()
+bool CocoWidget::isActive()
 {
     return this->m_bActived;
 }
@@ -487,9 +482,9 @@ void CocoWidget::didNotSelectSelf()
     
 }
 
-bool CocoWidget::onTouchPressed(cocos2d::CCPoint &touchPoint)
+bool CocoWidget::onTouchBegan(cocos2d::CCPoint &touchPoint)
 {
-    this->setBeFocus(true);
+    this->setFocus(true);
     this->m_touchStartPos.x = touchPoint.x;
     this->m_touchStartPos.y = touchPoint.y;
     if (this->m_pWidgetParent)
@@ -504,7 +499,7 @@ bool CocoWidget::onTouchMoved(cocos2d::CCPoint &touchPoint)
 {
     this->m_touchMovePos.x = touchPoint.x;
     this->m_touchMovePos.y = touchPoint.y;
-    this->setBeFocus(this->pointAtSelfBody(touchPoint));
+    this->setFocus(this->pointAtSelfBody(touchPoint));
     if (this->m_pWidgetParent)
     {
         this->m_pWidgetParent->checkChildInfo(1,this,touchPoint);
@@ -513,12 +508,12 @@ bool CocoWidget::onTouchMoved(cocos2d::CCPoint &touchPoint)
     return true;
 }
 
-bool CocoWidget::onTouchReleased(cocos2d::CCPoint &touchPoint)
+bool CocoWidget::onTouchEnded(cocos2d::CCPoint &touchPoint)
 {
     this->m_touchEndPos.x = touchPoint.x;
     this->m_touchEndPos.y = touchPoint.y;
     bool focus = this->m_bFocus;
-    this->setBeFocus(false);
+    this->setFocus(false);
     if (this->m_pWidgetParent)
     {
         this->m_pWidgetParent->checkChildInfo(2,this,touchPoint);
@@ -534,7 +529,7 @@ bool CocoWidget::onTouchReleased(cocos2d::CCPoint &touchPoint)
     return true;
 }
 
-bool CocoWidget::onTouchCanceled(cocos2d::CCPoint &touchPoint)
+bool CocoWidget::onTouchCancelled(cocos2d::CCPoint &touchPoint)
 {
     this->setPressState(WidgetStateNormal);
     return true;
@@ -626,7 +621,7 @@ cocos2d::CCRect CocoWidget::getRect()
     cocos2d::CCPoint nodeAnchorPoint = validNode->getAnchorPoint();
     anchorPointX = nodeAnchorPoint.x;
     anchorPointY = nodeAnchorPoint.y;
-    switch (this->m_nWidgetType)
+    switch (this->m_WidgetType)
     {
         case WidgetTypeWidget:
             this->m_rect.origin.x = this->m_locationInWindow.x - width * anchorPointX;
@@ -656,7 +651,7 @@ cocos2d::CCRect CocoWidget::getRelativeRect()
     cocos2d::CCPoint nodeAnchorPoint = validNode->getAnchorPoint();
     anchorPointX = nodeAnchorPoint.x;
     anchorPointY = nodeAnchorPoint.y;
-    switch (this->m_nWidgetType)
+    switch (this->m_WidgetType)
     {
         case WidgetTypeWidget:
             this->m_relativeRect.origin.x = this->getPosition().x - width * anchorPointX;
@@ -890,7 +885,7 @@ void CocoWidget::setVisible(bool visible)
     this->m_pCCRenderNode->setVisible(visible);
 }
 
-bool CocoWidget::getVisible()
+bool CocoWidget::isVisible()
 {
     return this->m_bVisible;
 }
@@ -927,7 +922,7 @@ CocoWidget* CocoWidget::getChildByName(const char *name)
     for (int i=0; i<this->m_children->count(); i++)
     {
         CocoWidget* child = (CocoWidget*)(this->m_children->objectAtIndex(i));
-        if (strcmp(child->getName().c_str(), name) == 0)
+        if (strcmp(child->getName(), name) == 0)
         {
             return child;
         }
@@ -946,6 +941,11 @@ CocoWidget* CocoWidget::getChildByTag(int tag)
         }
     }
     return NULL;
+}
+
+CCArray* CocoWidget::getChildren()
+{
+    return m_children;
 }
 
 cocos2d::CCAction* CocoWidget::runAction(cocos2d::CCAction *action)
@@ -1022,9 +1022,9 @@ bool CocoWidget::getAbsoluteVisible()
     if (this->m_bVisibleDirty)
     {
         CocoWidget* parent = this;
-        bool visible = this->getVisible();
+        bool visible = this->isVisible();
         while (parent){
-            visible &= parent->getVisible();
+            visible &= parent->isVisible();
             if (!visible)
             {
                 break;
@@ -1132,6 +1132,56 @@ void CocoWidget::setBlendFunc(cocos2d::ccBlendFunc blendFunc)
 void CocoWidget::ignoreAnchorPointForPosition(bool ignore)
 {
     m_pCCRenderNode->ignoreAnchorPointForPosition(ignore);
+}
+
+CCPoint CocoWidget::getTouchStartPos()
+{
+    return m_touchStartPos;
+}
+
+CCPoint CocoWidget::getTouchMovePos()
+{
+    return m_touchMovePos;
+}
+
+CCPoint CocoWidget::getTouchEndPos()
+{
+    return m_touchEndPos;
+}
+
+void CocoWidget::setWidgetTag(int tag)
+{
+    m_nWidgetTag = tag;
+}
+
+int CocoWidget::getWidgetTag()
+{
+    return m_nWidgetTag;
+}
+
+void CocoWidget::setName(const char* name)
+{
+    m_strName = name;
+}
+
+const char* CocoWidget::getName()
+{
+    return m_strName.c_str();
+}
+
+void CocoWidget::setUseMergedTexture(bool useMergedTexture)
+{
+    m_bUseMergedTexture = useMergedTexture;
+}
+
+bool CocoWidget::getUseMergedTexture()
+{
+    return m_bUseMergedTexture;
+}
+
+WidgetType CocoWidget::getWidgetType()
+{
+    return m_WidgetType;
 }
 
 NS_CC_EXT_END

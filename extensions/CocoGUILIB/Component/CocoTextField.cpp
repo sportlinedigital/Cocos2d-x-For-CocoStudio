@@ -113,9 +113,9 @@ const char* CocoTextField::getStringValue()
     return m_pRenderTextField->getString();
 }
 
-bool CocoTextField::onTouchPressed(cocos2d::CCPoint &touchPoint)
+bool CocoTextField::onTouchBegan(cocos2d::CCPoint &touchPoint)
 {
-    CocoWidget::onTouchPressed(touchPoint);
+    CocoWidget::onTouchBegan(touchPoint);
     m_pRenderTextField->openIME();
     return true;
 }

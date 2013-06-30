@@ -39,29 +39,29 @@ public:
     CocoCheckBox();
     virtual ~CocoCheckBox();
     static CocoCheckBox* create();
-    virtual bool init();
-    virtual void initNodes();
     void setTextures(const char* backGround,const char* backGroundSelected,const char* cross,const char* backGroundDisabled,const char* frontCrossDisabled,bool useSpriteFrame = false);
     void setBackGroundTexture(const char* backGround,bool useSpriteFrame = false);
     void setBackGroundSelectedTexture(const char* backGroundSelected,bool useSpriteFrame = false);
     void setFrontCrossTexture(const char* cross,bool useSpriteFrame = false);
     void setBackGroundDisabledTexture(const char* backGroundDisabled,bool useSpriteFrame = false);
     void setFrontCrossDisabledTexture(const char* frontCrossDisabled,bool useSpriteFrame = false);
-    
-    virtual bool onTouchReleased(cocos2d::CCPoint &touchPoint);
-    virtual void onPressStateChangedToNormal();
-    virtual void onPressStateChangedToPressed();
-    virtual void onPressStateChangedToDisabled();
     void setSelectedState(bool selected);
     bool getSelectedState();
-    void selectedEvent();
-    void unSelectedEvent();
     virtual cocos2d::CCNode* getValidNode();
     virtual void setAnchorPoint(const cocos2d::CCPoint &pt);
     virtual void addSelectEvent(cocos2d::CCObject* target,SEL_SelectEvent selector);
     virtual void addUnSelectEvent(cocos2d::CCObject* target,SEL_UnSelectEvent selector);
     virtual void setFlipX(bool flipX);
     virtual void setFlipY(bool flipY);
+    virtual bool onTouchEnded(cocos2d::CCPoint &touchPoint);
+protected:
+    virtual bool init();
+    virtual void initNodes();
+    virtual void onPressStateChangedToNormal();
+    virtual void onPressStateChangedToPressed();
+    virtual void onPressStateChangedToDisabled();
+    void selectedEvent();
+    void unSelectedEvent();
 protected:
     cocos2d::CCSprite* m_pBackGroundBox;
     cocos2d::CCSprite* m_pBackGroundSelectedBox;

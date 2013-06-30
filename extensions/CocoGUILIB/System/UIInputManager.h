@@ -43,10 +43,10 @@ public:
     CocoWidget* checkEventWidget(cocos2d::CCPoint &touchPoint);
     void addCheckedDoubleClickWidget(CocoWidget* widget);
     void update(float dt);
-    bool onTouchPressed(cocos2d::CCTouch* touch);
+    bool onTouchBegan(cocos2d::CCTouch* touch);
     bool onTouchMoved(cocos2d::CCTouch* touch);
-    bool onTouchReleased(cocos2d::CCTouch* touch);
-    bool onTouchCanceled(cocos2d::CCTouch* touch);
+    bool onTouchEnd(cocos2d::CCTouch* touch);
+    bool onTouchCancelled(cocos2d::CCTouch* touch);
     
     void setRootWidget(CocoWidget* root);
     CocoWidget* getRootWidget();

@@ -35,11 +35,8 @@ public:
     CocoImageView();
     virtual ~CocoImageView();
     static CocoImageView* create();
-    virtual void initNodes();
     virtual void setTexture(const char* fileName,bool useSpriteFrame = false);
     virtual void setTextureRect(const cocos2d::CCRect& rect);
-    virtual bool onTouchPressed(cocos2d::CCPoint &touchPoint);
-    virtual bool onTouchReleased(cocos2d::CCPoint &touchPoint);
     void doubleClickEvent();
     void checkDoubleClick(float dt);
     void setDoubleClickEnable(bool able);
@@ -57,6 +54,10 @@ public:
     void setCapInset(const CCRect &capInset);
     virtual cocos2d::CCNode* getValidNode();
     virtual void setAnchorPoint(const cocos2d::CCPoint &pt);
+    virtual bool onTouchBegan(cocos2d::CCPoint &touchPoint);
+    virtual bool onTouchEnded(cocos2d::CCPoint &touchPoint);
+protected:
+    virtual void initNodes();
 protected:
     int m_nViewType;
     int m_nClickCount;

@@ -73,19 +73,14 @@ void UIHelper::init()
     this->m_textureFiles->retain();
 }
 
-CocoWidget* UIHelper::createWidget_json(cs::CSJsonDictionary* data)
-{
-    return CCSReader::shareReader()->widgetFromJsonDictionary(data);
-}
-
-CocoWidget* UIHelper::createWidgetFromFile_json(const char *fileName)
+CocoWidget* UIHelper::createWidgetFromJsonFile(const char *fileName)
 {
     return CCSReader::shareReader()->widgetFromJsonFile(fileName);
 }
 
-CocoWidget* UIHelper::createWidgetFromFileWithAdapt_json(const char *fileName, bool scaleAdapt, bool equalProportions)
+CocoWidget* UIHelper::createWidgetFromJsonFileWithAdapt(const char *fileName, bool scaleAdapt, bool equalProportions)
 {
-    CocoWidget* widget = this->createWidgetFromFile_json(fileName);
+    CocoWidget* widget = this->createWidgetFromJsonFile(fileName);
     cocos2d::CCSize winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
     this->adjustWidgetProperty(widget, winSize.width/this->getFileDesignWidth(),winSize.height/this->getFileDesignHeight(), scaleAdapt, equalProportions);
     return widget;
@@ -209,7 +204,7 @@ CocoWidget* UIHelper::seekWidgetByName(CocoWidget* root, const char *name)
     {
         return NULL;
     }
-    if (strcmp(root->getName().c_str(), name) == 0)
+    if (strcmp(root->getName(), name) == 0)
     {
         return root;
     }
@@ -223,6 +218,26 @@ CocoWidget* UIHelper::seekWidgetByName(CocoWidget* root, const char *name)
         }
     }
     return NULL;
+}
+
+void UIHelper::setFileDesignWidth(float width)
+{
+    m_fFileDesignWidth = width;
+}
+
+float UIHelper::getFileDesignWidth()
+{
+    return m_fFileDesignWidth;
+}
+
+void UIHelper::setFileDesignHeight(float height)
+{
+    m_fFileDesignHeight = height;
+}
+
+float UIHelper::getFileDesignHeight()
+{
+    return m_fFileDesignHeight;
 }
 
 NS_CC_EXT_END

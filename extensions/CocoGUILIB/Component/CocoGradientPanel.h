@@ -35,13 +35,13 @@ public:
     CocoGradientPanel();
     virtual ~CocoGradientPanel();
     static CocoGradientPanel* create();
-    virtual void initNodes();
     virtual void setBackGroundColorEnable(bool able);
     void setStartColor(const cocos2d::ccColor3B &color);
     void setEndColor(const cocos2d::ccColor3B &color);
     void setStartOpacity(int opacity);
     void setEndOpacity(int opacity);
 protected:
+    virtual void initNodes();
 };
 
 NS_CC_EXT_END

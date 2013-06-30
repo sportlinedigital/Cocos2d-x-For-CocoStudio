@@ -36,12 +36,13 @@ public:
     CocoLabelAtlas();
     virtual ~CocoLabelAtlas();
     static CocoLabelAtlas* create();
-    virtual void initNodes();
     void setProperty(const char* stringValue,const char* charMapFile, int itemWidth, int itemHeight, const char* startCharMap,bool useSpriteFrame = false);
     void setStringValue(const char* value);
     const char* getStringValue();
     virtual void setAnchorPoint(const cocos2d::CCPoint &pt);
     virtual cocos2d::CCNode* getValidNode();
+protected:
+    virtual void initNodes();
 protected:
     CLabelAtlas* m_pRenderLaberAtlas;
 };

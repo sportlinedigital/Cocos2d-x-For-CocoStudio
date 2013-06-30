@@ -35,10 +35,7 @@ public:
     CocoButton();
     virtual ~CocoButton();
     static CocoButton* create();
-    virtual bool init();
-    virtual void initNodes();
     virtual void initPressState(WidgetState state);
-    
     virtual void setTextures(const char* normal,const char* selected,const char* disabled,bool useSpriteFrame = false);
     virtual void setTexturesScale9(const char* normal,const char* selected,const char* disabled,cocos2d::CCRect capInsets,bool useSpriteFrame = false);
     void setNormalTexture(const char* normal,bool useSpriteFrame = false);
@@ -47,9 +44,6 @@ public:
     void setNormalTextureScale9(const char* normal,cocos2d::CCRect capInsets,bool useSpriteFrame = false);
     void setPressedTextureScale9(const char* selected,cocos2d::CCRect capInsets,bool useSpriteFrame = false);
     void setDisabledTextureScale9(const char* disabled,cocos2d::CCRect capInsets,bool useSpriteFrame = false);
-    virtual void onPressStateChangedToNormal();
-    virtual void onPressStateChangedToPressed();
-    virtual void onPressStateChangedToDisabled();
     virtual cocos2d::CCNode* getValidNode();
     virtual void setAnchorPoint(const cocos2d::CCPoint &pt);
     virtual void setScale9Enable(bool able);
@@ -59,6 +53,12 @@ public:
     virtual void setNormalSpriteFrame(cocos2d::CCSpriteFrame* frame);
     virtual void setPressedSpriteFrame(cocos2d::CCSpriteFrame* frame);
     virtual void setDisabledSpriteFrame(cocos2d::CCSpriteFrame* frame);
+protected:
+    virtual bool init();
+    virtual void initNodes();
+    virtual void onPressStateChangedToNormal();
+    virtual void onPressStateChangedToPressed();
+    virtual void onPressStateChangedToDisabled();
 protected:
     cocos2d::CCNode* m_pButtonNormal;
     cocos2d::CCNode* m_pButtonClicked;

@@ -37,7 +37,6 @@ public:
     CocoSlider();
     virtual ~CocoSlider();
     static CocoSlider* create();
-    virtual bool init();
     void setBarTexture(const char* fileName,bool useSpriteFrame = false);
     void setBarTextureScale9(const char* fileName,float x,float y,float width,float height,bool useSpriteFrame = false);
     void setBarTextureScale9Enable(bool able);
@@ -46,22 +45,24 @@ public:
     void setSlidBallPressedTexture(const char* pressed,bool useSpriteFrame = false);
     void setSlidBallDisabledTexture(const char* disabled,bool useSpriteFrame = false);
     void setBarLength(float length);
-    void setSlidBallPercent(int percent);
-    int getClickPercent(float location);
-    void checkSlidBoundary();
     void setShowProgressBar(bool show);
     void setProgressBarTextureScale9(const char* fileName,float x,float y,float width,float height,bool useSpriteFrame = false);
     void setProgressBarScale(int percent);
-    virtual bool onTouchPressed(cocos2d::CCPoint &touchPoint);
-    virtual bool onTouchMoved(cocos2d::CCPoint &touchPoint);
-    virtual bool onTouchReleased(cocos2d::CCPoint &touchPoint);
-    virtual bool onTouchCanceled(cocos2d::CCPoint &touchPoint);
-    float getPercentWithBallPos(float px,float py);
+    void setSlidBallPercent(int percent);
     virtual bool pointAtSelfBody(cocos2d::CCPoint &pt);
     virtual cocos2d::CCNode* getValidNode();
     virtual void addPercentChangedEvent(cocos2d::CCObject* target,SEL_PushEvent selector);
-    void percentChangedEvent();
     int getPercent();
+    virtual bool onTouchBegan(cocos2d::CCPoint &touchPoint);
+    virtual bool onTouchMoved(cocos2d::CCPoint &touchPoint);
+    virtual bool onTouchEnded(cocos2d::CCPoint &touchPoint);
+    virtual bool onTouchCancelled(cocos2d::CCPoint &touchPoint);
+protected:
+    virtual bool init();
+    int getClickPercent(float location);
+    void checkSlidBoundary();
+    float getPercentWithBallPos(float px,float py);
+    void percentChangedEvent();
 protected:
     cocos2d::CCNode*  m_pBarNode;
     float m_fMinLength;

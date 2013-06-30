@@ -152,7 +152,7 @@ void CocoCheckBox::setFrontCrossDisabledTexture(const char *frontCrossDisabled,b
     }
 }
 
-bool CocoCheckBox::onTouchReleased(cocos2d::CCPoint &touchPoint)
+bool CocoCheckBox::onTouchEnded(cocos2d::CCPoint &touchPoint)
 {
     if (this->m_bFocus)
     {
@@ -167,7 +167,7 @@ bool CocoCheckBox::onTouchReleased(cocos2d::CCPoint &touchPoint)
             this->selectedEvent();
         }
     }
-    this->setBeFocus(false);
+    this->setFocus(false);
     this->m_pWidgetParent->checkChildInfo(2,this,touchPoint);
     return true;
 }

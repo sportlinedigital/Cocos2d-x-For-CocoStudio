@@ -76,74 +76,43 @@ public:
     virtual ~CocoWidget();
     virtual void releaseResoures();
     static CocoWidget* create();
-    virtual bool init();
-    virtual void initNodes();
+    void initPressState(WidgetState state);
+    void setPressState(WidgetState state);
     virtual bool addChild(CocoWidget* child);
-    virtual void addChildNode(CocoWidget* child);
+    virtual bool removeChild(CocoWidget* child,bool cleanup);
+    virtual void removeFromParentAndCleanup(bool cleanup);
+    virtual void removeAllChildrenAndCleanUp(bool cleanup);
     virtual void setWidgetZOrder(int z);
     virtual int getWidgetZOrder();
     virtual void reorderChild(CocoWidget* child);
-    virtual void setNeedCheckVisibleDepandParent(bool need);
-    virtual bool removeChild(CocoWidget* child,bool cleanup);
-    virtual void removeChildMoveToTrash(CocoWidget* child);
-    virtual void removeChildReferenceOnly(CocoWidget* child);
-    virtual void removeFromParentAndCleanup(bool cleanup);
-    virtual void removeAllChildrenAndCleanUp(bool cleanup);
-    void setBeTouchAble(bool enable);
-    bool getBeTouchAble();
+    void setBeTouchEnable(bool enable);
+    bool getBeTouchEnable();
     void setUpdateEnable(bool enable);
     bool getUpdateEnable();
-    bool getBeFocus();
-    void setBeFocus(bool fucos);
-    void didNotSelectSelf();
-    virtual bool onTouchPressed(cocos2d::CCPoint &touchPoint);
-    virtual bool onTouchMoved(cocos2d::CCPoint &touchPoint);
-    virtual bool onTouchReleased(cocos2d::CCPoint &touchPoint);
-    virtual bool onTouchCanceled(cocos2d::CCPoint &touchPoint);
-    virtual bool onTouchLongClicked(cocos2d::CCPoint &touchPoint);
-    void initPressState(WidgetState state);
-    void setPressState(WidgetState state);
+    bool isFocus();
+    void setFocus(bool fucos);
     virtual void disable();
     virtual void active();
-    virtual bool getActive();
-    virtual void onPressStateChangedToNormal();
-    virtual void onPressStateChangedToPressed();
-    virtual void onPressStateChangedToDisabled();
+    virtual bool isActive();
+    void setVisible(bool visible);
+    bool isVisible();
     virtual cocos2d::CCRect getRect();
     virtual cocos2d::CCRect getRelativeRect();
     void getLocationInWindow();
-    virtual cocos2d::CCNode* getValidNode();
-    cocos2d::CCNode* getContainerNode();
-    virtual bool pointAtSelfBody(cocos2d::CCPoint &pt);
-    virtual bool hitTest(cocos2d::CCNode* node, cocos2d::CCPoint &pt);
-    bool checkVisibleDependParent(cocos2d::CCPoint &pt);
-    bool checkBeVisibleInParent();
-    virtual void checkChildInfo(int handleState,CocoWidget* sender,cocos2d::CCPoint &touchPoint);
-    void setVisible(bool visible);
-    bool getVisible();
     virtual float getRelativeLeftPos();
     virtual float getRelativeBottomPos();
     virtual float getRelativeRightPos();
     virtual float getRelativeTopPos();
-
+    virtual cocos2d::CCNode* getValidNode();
+    cocos2d::CCNode* getContainerNode();
     CocoWidget* getWidgetParent();
-    virtual bool getClipAble(){return false;};
-    virtual void update(float dt){};
     CocoWidget* getChildByName(const char* name);
     CocoWidget* getChildByTag(int tag);
-    //event
-    void pushDownEvent();
-    void moveEvent();
-    void releaseUpEvent();
-    void cancelUpEvent();
-    void longClickEvent();
-    
+    CCArray* getChildren();
     virtual void addPushDownEvent(cocos2d::CCObject* target,SEL_PushEvent selector);
     virtual void addMoveEvent(cocos2d::CCObject* target,SEL_MoveEvent selector);
     virtual void addReleaseEvent(cocos2d::CCObject* target,SEL_ReleaseEvent selector);
     virtual void addCancelEvent(cocos2d::CCObject* target,SEL_CancelEvent selector);
-    
-    
     //cocos2d property
     void setPosition(const cocos2d::CCPoint &pos);
     virtual void setAnchorPoint(const cocos2d::CCPoint &pt);
@@ -179,7 +148,29 @@ public:
     virtual int getOpacity();
     void setBlendFunc(cocos2d::ccBlendFunc blendFunc);
     void ignoreAnchorPointForPosition(bool ignore);
+    //cocos action
+    virtual void setActionManager(cocos2d::CCActionManager* actionManager);
+    virtual cocos2d::CCActionManager* getActionManager();
+    cocos2d::CCAction* runAction(cocos2d::CCAction* action);
+    void stopAllActions(void);
+    void stopAction(cocos2d::CCAction* action);
+    void stopActionByTag(int tag);
+    cocos2d::CCAction* getActionByTag(int tag);
     
+    
+    virtual void setNeedCheckVisibleDepandParent(bool need);
+    void didNotSelectSelf();
+    virtual bool onTouchBegan(cocos2d::CCPoint &touchPoint);
+    virtual bool onTouchMoved(cocos2d::CCPoint &touchPoint);
+    virtual bool onTouchEnded(cocos2d::CCPoint &touchPoint);
+    virtual bool onTouchCancelled(cocos2d::CCPoint &touchPoint);
+    virtual bool onTouchLongClicked(cocos2d::CCPoint &touchPoint);
+    virtual bool isClippingEnable(){return false;};
+    virtual void update(float dt){};
+    virtual bool pointAtSelfBody(cocos2d::CCPoint &pt);
+    bool checkVisibleDependParent(cocos2d::CCPoint &pt);
+    bool checkBeVisibleInParent();
+    virtual void checkChildInfo(int handleState,CocoWidget* sender,cocos2d::CCPoint &touchPoint);
     //widget prop
     virtual float getAbsoluteScaleX();
     virtual float getAbsoluteScaleY();
@@ -190,75 +181,43 @@ public:
     void setCreateFromFile(bool is);
     void setFileDesignSize(const CCSize &size);
     CCSize getFileDesignSize();
-    
     void setUILayer(UILayer* uiLayer);
     void updateChildrenUILayer(UILayer* uiLayer);
     void structureChangedEvent();
-    
     void disableUpdate();
-    
-    //cocos action
-    virtual void setActionManager(cocos2d::CCActionManager* actionManager);
-    /**
-     * Gets the CCActionManager object that is used by all actions.
-     * @see setActionManager(CCActionManager*)
-     * @return A CCActionManager object.
-     */
-    virtual cocos2d::CCActionManager* getActionManager();
-    
-    /**
-     * Executes an action, and returns the action that is executed.
-     *
-     * This node becomes the action's target. Refer to CCAction::getTarget()
-     * @warning Actions don't retain their target.
-     *
-     * @return An Action pointer
-     */
-    cocos2d::CCAction* runAction(cocos2d::CCAction* action);
-    
-    /**
-     * Stops and removes all actions from the running action list .
-     */
-    void stopAllActions(void);
-    
-    /**
-     * Stops and removes an action from the running action list.
-     *
-     * @param An action object to be removed.
-     */
-    void stopAction(cocos2d::CCAction* action);
-    
-    /**
-     * Removes an action from the running action list by its tag.
-     *
-     * @param A tag that indicates the action to be removed.
-     */
-    void stopActionByTag(int tag);
-    
-    /**
-     * Gets an action from the running action list by its tag.
-     *
-     * @see setTag(int), getTag().
-     *
-     * @return The action object with the given tag.
-     */
-    cocos2d::CCAction* getActionByTag(int tag);
+    CCPoint getTouchStartPos();
+    CCPoint getTouchMovePos();
+    CCPoint getTouchEndPos();
+    void setWidgetTag(int tag);
+    int getWidgetTag();
+    void setName(const char* name);
+    const char* getName();
+    void setUseMergedTexture(bool useMergedTexture);
+    bool getUseMergedTexture();
+    WidgetType getWidgetType();
 protected:
-    
-    
+    virtual bool init();
+    virtual void initNodes();
+    virtual void removeChildMoveToTrash(CocoWidget* child);
+    virtual void removeChildReferenceOnly(CocoWidget* child);
+    virtual void onPressStateChangedToNormal();
+    virtual void onPressStateChangedToPressed();
+    virtual void onPressStateChangedToDisabled();
+    void pushDownEvent();
+    void moveEvent();
+    void releaseUpEvent();
+    void cancelUpEvent();
+    void longClickEvent();
+    virtual bool hitTest(cocos2d::CCNode* node, cocos2d::CCPoint &pt);
+protected:
     bool m_bEnabled;
     bool m_bVisible;
     bool m_bActived;
     bool m_bFocus;
     bool m_bBeTouchEnabled;
     int m_nWidgetZOrder;
-    
     cocos2d::CCPoint m_anchorPoint;
-    
-
-    
     CocoWidget* m_pWidgetParent;
-    
     WidgetState m_nCurPressState;
     WidgetState m_nPrevPressstate;
     bool m_bUpdateEnable;
@@ -267,23 +226,16 @@ protected:
     float m_fContentSizeHeight;
     bool m_bIsCreatedFromFile;
     CCSize m_fileDesignSize;
-    
-    
     cocos2d::CCPoint m_locationInWindow;
     cocos2d::CCSize m_contentSize;
     cocos2d::CCRect m_rect;
     cocos2d::CCRect m_relativeRect;
-    
     bool m_bNeedCheckVisibleDependParent;
     bool m_bVisibleTouch;
-    CC_SYNTHESIZE_READONLY(cocos2d::CCArray*, m_children, Children);
-    CC_SYNTHESIZE_READONLY(cocos2d::CCPoint,m_touchStartPos,TouchStartPos)
-    CC_SYNTHESIZE_READONLY(cocos2d::CCPoint,m_touchMovePos,TouchMovePos)
-    CC_SYNTHESIZE_READONLY(cocos2d::CCPoint,m_touchEndPos,TouchEndPos)
-    CC_SYNTHESIZE(int, m_nWidgetTag, WidgetTag)
-    CC_SYNTHESIZE(std::string, m_strName, Name)
-    CC_SYNTHESIZE(bool,m_bUseMergedTexture,UseMergedTexture)
-    CC_SYNTHESIZE_READONLY(WidgetType, m_nWidgetType, WidgetType)
+    CCArray* m_children;
+    CCPoint m_touchStartPos;
+    CCPoint m_touchMovePos;
+    CCPoint m_touchEndPos;
     cocos2d::CCObject*       m_pPushListener;
     SEL_PushEvent    m_pfnPushSelector;
     cocos2d::CCObject*       m_pMoveListener;
@@ -301,7 +253,10 @@ protected:
     bool m_bOpacityDirty;
     float m_fAdaptScaleX;
     float m_fAdaptScaleY;
-    
+    int m_nWidgetTag;
+    std::string m_strName;
+    bool m_bUseMergedTexture;
+    WidgetType m_WidgetType;
     UILayer* m_pUILayer;
 };
 

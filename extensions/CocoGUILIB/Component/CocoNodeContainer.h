@@ -38,7 +38,6 @@ public:
     static CocoNodeContainer* create();
     void addCCNode(cocos2d::CCNode* node);
     void removeCCNode(bool cleanup);
-    
 protected:
     cocos2d::CCNode* m_pCCNode;
 };
