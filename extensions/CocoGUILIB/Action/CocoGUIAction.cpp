@@ -41,7 +41,7 @@ CocoGUIAction::~CocoGUIAction()
 	m_ActionNodeList->release();
 }
 
-void CocoGUIAction::initWithDictionary(cs::CSJsonDictionary *dic,CocoWidget* root)
+void CocoGUIAction::initWithDictionary(cs::CSJsonDictionary *dic,UIWidget* root)
 {
     this->setName(DICTOOL->getStringValue_json(dic, "name"));
     this->setLoop(DICTOOL->getBooleanValue_json(dic, "loop"));

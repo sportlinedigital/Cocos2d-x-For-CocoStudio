@@ -89,7 +89,7 @@ protected:
     
     CCPoint widgetLastLocal;
     CCPoint widgetLastNodePosition;
-    CocoWidget* lastWidgetParent;
+    UIWidget* lastWidgetParent;
 };
 
 #endif /* defined(__TestCpp__CocosGUISlotScene__) */

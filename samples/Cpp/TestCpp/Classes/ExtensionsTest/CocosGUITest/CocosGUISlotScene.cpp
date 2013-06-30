@@ -84,39 +84,39 @@ void CocosGUISlotScene::runThisTest()
     
     // gui
     
-    CocoWidget* widget = CCUIHELPER->createWidgetFromFile_json("slot/20_2.json");
+    UIWidget* widget = CCUIHELPER->createWidgetFromJsonFile("slot/20_2.json");
     ul->addWidget(widget);
     
     // root in json
-    CocoPanel* root = dynamic_cast<CocoPanel*>(ul->getWidgetByName("root"));
+    UIPanel* root = dynamic_cast<UIPanel*>(ul->getWidgetByName("root"));
     root->setWidgetTag(PANEL_TAG_20_2);
     
     // upPanel
-    CocoPanel* upPanel = dynamic_cast<CocoPanel*>(root->getChildByName("UP"));
+    UIPanel* upPanel = dynamic_cast<UIPanel*>(root->getChildByName("UP"));
     upPanel->setWidgetTag(PANEL_TAG_UP);
     
     // switch button
-    CocoTextButton* clothesBtn = dynamic_cast<CocoTextButton*>(upPanel->getChildByName("I_Button"));
+    UITextButton* clothesBtn = dynamic_cast<UITextButton*>(upPanel->getChildByName("I_Button"));
     clothesBtn->addReleaseEvent(this, coco_releaseselector(CocosGUISlotScene::switchBtnCallBack));
     clothesBtn->setWidgetTag(SWITCH_PANEL_BTN_TAG_CLOTHES);
     clothesBtn->disable();
     
-    CocoTextButton* weaponsBtn = dynamic_cast<CocoTextButton*>(upPanel->getChildByName("II_Button"));
+    UITextButton* weaponsBtn = dynamic_cast<UITextButton*>(upPanel->getChildByName("II_Button"));
     weaponsBtn->addReleaseEvent(this, coco_releaseselector(CocosGUISlotScene::switchBtnCallBack));
     weaponsBtn->setWidgetTag(SWITCH_PANEL_BTN_TAG_WEAPONS);
     
-    CocoTextButton* petsBtn = dynamic_cast<CocoTextButton*>(upPanel->getChildByName("III_Button"));
+    UITextButton* petsBtn = dynamic_cast<UITextButton*>(upPanel->getChildByName("III_Button"));
     petsBtn->addReleaseEvent(this, coco_releaseselector(CocosGUISlotScene::switchBtnCallBack));
     petsBtn->setWidgetTag(SWITCH_PANEL_BTN_TAG_PETS);
     
     // equip panel
-    CocoPanel* clothesPanel = dynamic_cast<CocoPanel*>(root->getChildByName("IX"));
+    UIPanel* clothesPanel = dynamic_cast<UIPanel*>(root->getChildByName("IX"));
     clothesPanel->setWidgetTag(PANEL_TAG_CLOTHES);
     
-    CocoPanel* weaponsPanel = dynamic_cast<CocoPanel*>(root->getChildByName("IIX"));
+    UIPanel* weaponsPanel = dynamic_cast<UIPanel*>(root->getChildByName("IIX"));
     weaponsPanel->setWidgetTag(PANEL_TAG_WEAPONS);
     
-    CocoPanel* petsPanel = dynamic_cast<CocoPanel*>(root->getChildByName("IIIX"));
+    UIPanel* petsPanel = dynamic_cast<UIPanel*>(root->getChildByName("IIIX"));
     petsPanel->setWidgetTag(PANEL_TAG_PETS);
     
     container_1_Zorder = clothesPanel->getWidgetZOrder();
@@ -130,25 +130,25 @@ void CocosGUISlotScene::runThisTest()
     // clothes equip slot
     CCARRAY_FOREACH(clothesPanel->getChildren(), obj)
     {
-        CocoWidget* child = dynamic_cast<CocoWidget*>(obj);
+        UIWidget* child = dynamic_cast<UIWidget*>(obj);
         m_dicEquipClothesSlot->setObject(child, child->getName());
     }
     // weapons equip slot
     CCARRAY_FOREACH(weaponsPanel->getChildren(), obj)
     {
-        CocoWidget* child = dynamic_cast<CocoWidget*>(obj);
+        UIWidget* child = dynamic_cast<UIWidget*>(obj);
         m_dicEquipWeaponsSlot->setObject(child, child->getName());
     }
     // pets equip slot
     CCARRAY_FOREACH(petsPanel->getChildren(), obj)
     {
-        CocoWidget* child = dynamic_cast<CocoWidget*>(obj);
+        UIWidget* child = dynamic_cast<UIWidget*>(obj);
         m_dicEquipPetsSlot->setObject(child, child->getName());
     }
     
     // actor
-    CocoImageView* walBG = dynamic_cast<CocoImageView*>(upPanel->getChildByName("WAL"));
-    CocoImageView* walImageView = CocoImageView::create();
+    UIImageView* walBG = dynamic_cast<UIImageView*>(upPanel->getChildByName("WAL"));
+    UIImageView* walImageView = UIImageView::create();
     walImageView->setTexture("slot/eg/1.png");
     walImageView->setAnchorPoint(ccp(0.5, 0.5));
     float wal_x = walBG->getRect().size.width / 2.04;
@@ -158,54 +158,54 @@ void CocosGUISlotScene::runThisTest()
     walBG->addChild(walImageView);
     
     // original clothes be used slot
-    CocoImageView* originalClothesSlot = dynamic_cast<CocoImageView*>(upPanel->getChildByName("1"));
+    UIImageView* originalClothesSlot = dynamic_cast<UIImageView*>(upPanel->getChildByName("1"));
     originalClothesSlot->setWidgetTag(IMAGEVIEW_TAG_SLOT_ORIGINAL_CLOTHES);
-    CocoImageView* originalClothes = CocoImageView::create();
+    UIImageView* originalClothes = UIImageView::create();
     originalClothes->setTexture("slot/eg/6.png");    
     originalClothesSlot->addChild(originalClothes);
     m_dicBeUsedSlot->setObject(originalClothesSlot, originalClothesSlot->getName());
     
     // other be used slot
-    CocoImageView* iv_2 = dynamic_cast<CocoImageView*>(upPanel->getChildByName("2"));
+    UIImageView* iv_2 = dynamic_cast<UIImageView*>(upPanel->getChildByName("2"));
     m_dicBeUsedSlot->setObject(iv_2, iv_2->getName());
-    CocoImageView* iv_3 = dynamic_cast<CocoImageView*>(upPanel->getChildByName("3"));
+    UIImageView* iv_3 = dynamic_cast<UIImageView*>(upPanel->getChildByName("3"));
     m_dicBeUsedSlot->setObject(iv_3, iv_3->getName());
-    CocoImageView* iv_4 = dynamic_cast<CocoImageView*>(upPanel->getChildByName("4"));
+    UIImageView* iv_4 = dynamic_cast<UIImageView*>(upPanel->getChildByName("4"));
     m_dicBeUsedSlot->setObject(iv_4, iv_4->getName());
-    CocoImageView* iv_5 = dynamic_cast<CocoImageView*>(upPanel->getChildByName("5"));
+    UIImageView* iv_5 = dynamic_cast<UIImageView*>(upPanel->getChildByName("5"));
     m_dicBeUsedSlot->setObject(iv_5, iv_5->getName());
-    CocoImageView* iv_6 = dynamic_cast<CocoImageView*>(upPanel->getChildByName("6"));
+    UIImageView* iv_6 = dynamic_cast<UIImageView*>(upPanel->getChildByName("6"));
     m_dicBeUsedSlot->setObject(iv_6, iv_6->getName());
     
     // equip
     createEquip();
     
     // initialize touch able
-    clothesPanel->setBeTouchAble(true);
+    clothesPanel->setBeTouchEnable(true);
     CCARRAY_FOREACH(clothesPanel->getChildren(), obj)
     {
-        CocoWidget* child = dynamic_cast<CocoWidget*>(obj);
-        child->setBeTouchAble(true);
+        UIWidget* child = dynamic_cast<UIWidget*>(obj);
+        child->setBeTouchEnable(true);
     }
-    weaponsPanel->setBeTouchAble(false);
+    weaponsPanel->setBeTouchEnable(false);
     CCARRAY_FOREACH(weaponsPanel->getChildren(), obj)
     {
-        CocoWidget* child = dynamic_cast<CocoWidget*>(obj);
-        child->setBeTouchAble(false);
+        UIWidget* child = dynamic_cast<UIWidget*>(obj);
+        child->setBeTouchEnable(false);
     }
-    petsPanel->setBeTouchAble(true);
+    petsPanel->setBeTouchEnable(true);
     CCARRAY_FOREACH(petsPanel->getChildren(), obj)
     {
-        CocoWidget* child = dynamic_cast<CocoWidget*>(obj);
-        child->setBeTouchAble(false);
+        UIWidget* child = dynamic_cast<UIWidget*>(obj);
+        child->setBeTouchEnable(false);
     }
     //
     
     // exit
-    CocoButton* exit = CocoButton::create();
+    UIButton* exit = UIButton::create();
     exit->setTextures("cocosgui/CloseNormal.png", "cocosgui/CloseSelected.png", "");
     exit->setPosition(ccp(430, 60));
-    exit->setBeTouchAble(true);
+    exit->setBeTouchEnable(true);
     exit->addReleaseEvent(this, coco_releaseselector(CocosGUISlotScene::toCocosGUITestScene));
     ul->addWidget(exit);
 }
@@ -230,18 +230,18 @@ void CocosGUISlotScene::toCocosGUITestScene(CCObject *pSender)
 void CocosGUISlotScene::switchBtnCallBack(CCObject *pSender)
 {
     // switch button
-    CocoWidget* widget = dynamic_cast<CocoWidget*>(pSender);
+    UIWidget* widget = dynamic_cast<UIWidget*>(pSender);
     
-    CocoPanel* root = dynamic_cast<CocoPanel*>(ul->getWidgetByTag(PANEL_TAG_20_2));
+    UIPanel* root = dynamic_cast<UIPanel*>(ul->getWidgetByTag(PANEL_TAG_20_2));
     
-    CocoPanel* clothesPanel = dynamic_cast<CocoPanel*>(root->getChildByTag(PANEL_TAG_CLOTHES));
-    CocoPanel* weaponsPanel = dynamic_cast<CocoPanel*>(root->getChildByTag(PANEL_TAG_WEAPONS));
-    CocoPanel* petsPanel = dynamic_cast<CocoPanel*>(root->getChildByTag(PANEL_TAG_PETS));
+    UIPanel* clothesPanel = dynamic_cast<UIPanel*>(root->getChildByTag(PANEL_TAG_CLOTHES));
+    UIPanel* weaponsPanel = dynamic_cast<UIPanel*>(root->getChildByTag(PANEL_TAG_WEAPONS));
+    UIPanel* petsPanel = dynamic_cast<UIPanel*>(root->getChildByTag(PANEL_TAG_PETS));
     
-    CocoPanel* upPanel = dynamic_cast<CocoPanel*>(root->getChildByTag(PANEL_TAG_UP));
-    CocoTextButton* clothesBtn = dynamic_cast<CocoTextButton*>(upPanel->getChildByTag(SWITCH_PANEL_BTN_TAG_CLOTHES));
-    CocoTextButton* weaponsBtn = dynamic_cast<CocoTextButton*>(upPanel->getChildByTag(SWITCH_PANEL_BTN_TAG_WEAPONS));
-    CocoTextButton* petsBtn = dynamic_cast<CocoTextButton*>(upPanel->getChildByTag(SWITCH_PANEL_BTN_TAG_PETS));
+    UIPanel* upPanel = dynamic_cast<UIPanel*>(root->getChildByTag(PANEL_TAG_UP));
+    UITextButton* clothesBtn = dynamic_cast<UITextButton*>(upPanel->getChildByTag(SWITCH_PANEL_BTN_TAG_CLOTHES));
+    UITextButton* weaponsBtn = dynamic_cast<UITextButton*>(upPanel->getChildByTag(SWITCH_PANEL_BTN_TAG_WEAPONS));
+    UITextButton* petsBtn = dynamic_cast<UITextButton*>(upPanel->getChildByTag(SWITCH_PANEL_BTN_TAG_PETS));
     
     clothesBtn->active();
     weaponsBtn->active();
@@ -267,40 +267,40 @@ void CocosGUISlotScene::switchBtnCallBack(CCObject *pSender)
             petsPanel->setPosition(container_3_Position);
             
             // equip slot touch able
-            clothesPanel->setBeTouchAble(true);
+            clothesPanel->setBeTouchEnable(true);
             CCARRAY_FOREACH(clothesPanel->getChildren(), obj)
             {
-                CocoWidget* child = dynamic_cast<CocoWidget*>(obj);
-                child->setBeTouchAble(true);
+                UIWidget* child = dynamic_cast<UIWidget*>(obj);
+                child->setBeTouchEnable(true);
             }
-            weaponsPanel->setBeTouchAble(false);
+            weaponsPanel->setBeTouchEnable(false);
             CCARRAY_FOREACH(weaponsPanel->getChildren(), obj)
             {
-                CocoWidget* child = dynamic_cast<CocoWidget*>(obj);
-                child->setBeTouchAble(false);
+                UIWidget* child = dynamic_cast<UIWidget*>(obj);
+                child->setBeTouchEnable(false);
             }
-            petsPanel->setBeTouchAble(true);
+            petsPanel->setBeTouchEnable(true);
             CCARRAY_FOREACH(petsPanel->getChildren(), obj)
             {
-                CocoWidget* child = dynamic_cast<CocoWidget*>(obj);
-                child->setBeTouchAble(false);
+                UIWidget* child = dynamic_cast<UIWidget*>(obj);
+                child->setBeTouchEnable(false);
             }
             
             // equip touch able
             CCDICT_FOREACH(m_dicEquipClothes, element)
             {
-                CocoWidget* widget = dynamic_cast<CocoWidget*>(element->getObject());
-                widget->setBeTouchAble(true);
+                UIWidget* widget = dynamic_cast<UIWidget*>(element->getObject());
+                widget->setBeTouchEnable(true);
             }
             CCDICT_FOREACH(m_dicEquipWeapons, element)
             {
-                CocoWidget* widget = dynamic_cast<CocoWidget*>(element->getObject());
-                widget->setBeTouchAble(false);
+                UIWidget* widget = dynamic_cast<UIWidget*>(element->getObject());
+                widget->setBeTouchEnable(false);
             }
             CCDICT_FOREACH(m_dicEquipPets, element)
             {
-                CocoWidget* widget = dynamic_cast<CocoWidget*>(element->getObject());
-                widget->setBeTouchAble(false);
+                UIWidget* widget = dynamic_cast<UIWidget*>(element->getObject());
+                widget->setBeTouchEnable(false);
             }
         }
             break;
@@ -320,40 +320,40 @@ void CocosGUISlotScene::switchBtnCallBack(CCObject *pSender)
             clothesPanel->setPosition(container_3_Position);
             
             // equip slot touch able
-            weaponsPanel->setBeTouchAble(true);
+            weaponsPanel->setBeTouchEnable(true);
             CCARRAY_FOREACH(weaponsPanel->getChildren(), obj)
             {
-                CocoWidget* child = dynamic_cast<CocoWidget*>(obj);
-                child->setBeTouchAble(true);
+                UIWidget* child = dynamic_cast<UIWidget*>(obj);
+                child->setBeTouchEnable(true);
             }
-            clothesPanel->setBeTouchAble(false);
+            clothesPanel->setBeTouchEnable(false);
             CCARRAY_FOREACH(clothesPanel->getChildren(), obj)
             {
-                CocoWidget* child = dynamic_cast<CocoWidget*>(obj);
-                child->setBeTouchAble(false);
+                UIWidget* child = dynamic_cast<UIWidget*>(obj);
+                child->setBeTouchEnable(false);
             }
-            petsPanel->setBeTouchAble(false);
+            petsPanel->setBeTouchEnable(false);
             CCARRAY_FOREACH(petsPanel->getChildren(), obj)
             {
-                CocoWidget* child = dynamic_cast<CocoWidget*>(obj);
-                child->setBeTouchAble(false);
+                UIWidget* child = dynamic_cast<UIWidget*>(obj);
+                child->setBeTouchEnable(false);
             }
             
             // equip touch able
             CCDICT_FOREACH(m_dicEquipClothes, element)
             {
-                CocoWidget* widget = dynamic_cast<CocoWidget*>(element->getObject());
-                widget->setBeTouchAble(false);
+                UIWidget* widget = dynamic_cast<UIWidget*>(element->getObject());
+                widget->setBeTouchEnable(false);
             }
                 CCDICT_FOREACH(m_dicEquipWeapons, element)
             {
-                CocoWidget* widget = dynamic_cast<CocoWidget*>(element->getObject());
-                widget->setBeTouchAble(true);
+                UIWidget* widget = dynamic_cast<UIWidget*>(element->getObject());
+                widget->setBeTouchEnable(true);
             }
                 CCDICT_FOREACH(m_dicEquipPets, element)
             {
-                CocoWidget* widget = dynamic_cast<CocoWidget*>(element->getObject());
-                widget->setBeTouchAble(false);
+                UIWidget* widget = dynamic_cast<UIWidget*>(element->getObject());
+                widget->setBeTouchEnable(false);
             }
         }
             break;
@@ -373,40 +373,40 @@ void CocosGUISlotScene::switchBtnCallBack(CCObject *pSender)
             weaponsPanel->setPosition(container_3_Position);
             
             // equip slot touch able
-            petsPanel->setBeTouchAble(true);
+            petsPanel->setBeTouchEnable(true);
             CCARRAY_FOREACH(petsPanel->getChildren(), obj)
             {
-                CocoWidget* child = dynamic_cast<CocoWidget*>(obj);
-                child->setBeTouchAble(true);
+                UIWidget* child = dynamic_cast<UIWidget*>(obj);
+                child->setBeTouchEnable(true);
             }
-            clothesPanel->setBeTouchAble(false);
+            clothesPanel->setBeTouchEnable(false);
             CCARRAY_FOREACH(clothesPanel->getChildren(), obj)
             {
-                CocoWidget* child = dynamic_cast<CocoWidget*>(obj);
-                child->setBeTouchAble(false);
+                UIWidget* child = dynamic_cast<UIWidget*>(obj);
+                child->setBeTouchEnable(false);
             }
-            weaponsPanel->setBeTouchAble(false);
+            weaponsPanel->setBeTouchEnable(false);
             CCARRAY_FOREACH(weaponsPanel->getChildren(), obj)
             {
-                CocoWidget* child = dynamic_cast<CocoWidget*>(obj);
-                child->setBeTouchAble(false);
+                UIWidget* child = dynamic_cast<UIWidget*>(obj);
+                child->setBeTouchEnable(false);
             }
             
             // equip touch able
             CCDICT_FOREACH(m_dicEquipClothes, element)
             {
-                CocoWidget* widget = dynamic_cast<CocoWidget*>(element->getObject());
-                widget->setBeTouchAble(false);
+                UIWidget* widget = dynamic_cast<UIWidget*>(element->getObject());
+                widget->setBeTouchEnable(false);
             }
             CCDICT_FOREACH(m_dicEquipWeapons, element)
             {
-                CocoWidget* widget = dynamic_cast<CocoWidget*>(element->getObject());
-                widget->setBeTouchAble(false);
+                UIWidget* widget = dynamic_cast<UIWidget*>(element->getObject());
+                widget->setBeTouchEnable(false);
             }
             CCDICT_FOREACH(m_dicEquipPets, element)
             {
-                CocoWidget* widget = dynamic_cast<CocoWidget*>(element->getObject());
-                widget->setBeTouchAble(true);
+                UIWidget* widget = dynamic_cast<UIWidget*>(element->getObject());
+                widget->setBeTouchEnable(true);
             }
         }
             break;
@@ -425,7 +425,7 @@ void CocosGUISlotScene::createEquip()
 
 void CocosGUISlotScene::createClothes()
 {
-    CocoPanel* clothesPanel = dynamic_cast<CocoPanel*>(ul->getWidgetByTag(PANEL_TAG_CLOTHES));
+    UIPanel* clothesPanel = dynamic_cast<UIPanel*>(ul->getWidgetByTag(PANEL_TAG_CLOTHES));
     
     // clothes
     float parent_w = clothesPanel->getRect().size.width;
@@ -452,17 +452,17 @@ void CocosGUISlotScene::createClothes()
     };
     for (int i = 0; i < clothes_column; ++i)
     {
-        CocoImageView* jacketIv = CocoImageView::create();
+        UIImageView* jacketIv = UIImageView::create();
         jacketIv->setTexture(jacket_png[i]);
         jacketIv->setAnchorPoint(ccp(0.5, 0.5));
         jacketIv->setPosition(ccp(offest_x + i * offest_x * 4, parent_h - offest_y));
-        CocoWidget* lastChild = dynamic_cast<CocoWidget*>(clothesPanel->getChildren()->lastObject());
+        UIWidget* lastChild = dynamic_cast<UIWidget*>(clothesPanel->getChildren()->lastObject());
         if (lastChild)
         {
             jacketIv->setWidgetZOrder(lastChild->getWidgetZOrder() + 1);
         }
         jacketIv->setName(jacket_name[i]);
-        jacketIv->setBeTouchAble(true);
+        jacketIv->setBeTouchEnable(true);
         jacketIv->addPushDownEvent(this, coco_pushselector(CocosGUISlotScene::touchEquip));
         jacketIv->addMoveEvent(this, coco_moveselector(CocosGUISlotScene::moveEquip));
         jacketIv->addReleaseEvent(this, coco_releaseselector(CocosGUISlotScene::dropEquip));        
@@ -470,7 +470,7 @@ void CocosGUISlotScene::createClothes()
         CCObject* obj = NULL;
         CCARRAY_FOREACH(clothesPanel->getChildren(), obj)
         {
-            CocoWidget* slot = dynamic_cast<CocoWidget*>(obj);
+            UIWidget* slot = dynamic_cast<UIWidget*>(obj);
             CCRect slot_rect = slot->getRelativeRect();
             if (slot_rect.containsPoint(jacketIv->getPosition()))
             {
@@ -499,16 +499,16 @@ void CocosGUISlotScene::createClothes()
     };
     for (int i = 0; i < clothes_column; ++i)
     {
-        CocoImageView* kimonoIv = CocoImageView::create();
+        UIImageView* kimonoIv = UIImageView::create();
         kimonoIv->setTexture(kimono_png[i]);
         kimonoIv->setPosition(ccp(offest_x + i * offest_x * 4, parent_h - offest_y * 3));
-        CocoWidget* lastChild = dynamic_cast<CocoWidget*>(clothesPanel->getChildren()->lastObject());
+        UIWidget* lastChild = dynamic_cast<UIWidget*>(clothesPanel->getChildren()->lastObject());
         if (lastChild)
         {
             kimonoIv->setWidgetZOrder(lastChild->getWidgetZOrder() + 1);
         }
         kimonoIv->setName(kimono_name[i]);
-        kimonoIv->setBeTouchAble(true);
+        kimonoIv->setBeTouchEnable(true);
         kimonoIv->addPushDownEvent(this, coco_pushselector(CocosGUISlotScene::touchEquip));
         kimonoIv->addMoveEvent(this, coco_moveselector(CocosGUISlotScene::moveEquip));
         kimonoIv->addReleaseEvent(this, coco_releaseselector(CocosGUISlotScene::dropEquip));
@@ -516,7 +516,7 @@ void CocosGUISlotScene::createClothes()
         CCObject* obj = NULL;
         CCARRAY_FOREACH(clothesPanel->getChildren(), obj)
         {
-            CocoWidget* slot = dynamic_cast<CocoWidget*>(obj);
+            UIWidget* slot = dynamic_cast<UIWidget*>(obj);
             CCRect slot_rect = slot->getRelativeRect();
             if (slot_rect.containsPoint(kimonoIv->getPosition()))
             {
@@ -534,7 +534,7 @@ void CocosGUISlotScene::createClothes()
 
 void CocosGUISlotScene::createWeapons()
 {
-    CocoPanel* weaponsPanel = dynamic_cast<CocoPanel*>(ul->getWidgetByTag(PANEL_TAG_WEAPONS));
+    UIPanel* weaponsPanel = dynamic_cast<UIPanel*>(ul->getWidgetByTag(PANEL_TAG_WEAPONS));
     
     // weapons
     float parent_w = weaponsPanel->getRect().size.width;
@@ -558,10 +558,10 @@ void CocosGUISlotScene::createWeapons()
     };
     for (int i = 0; i < sword_amount; ++i)
     {
-        CocoImageView* swordIv = CocoImageView::create();
+        UIImageView* swordIv = UIImageView::create();
         swordIv->setTexture(sword_png[i]);
         swordIv->setPosition(ccp(offest_x, parent_h - offest_y - i * (offest_y * 2)));
-        CocoWidget* lastChild = dynamic_cast<CocoWidget*>(weaponsPanel->getChildren()->lastObject());
+        UIWidget* lastChild = dynamic_cast<UIWidget*>(weaponsPanel->getChildren()->lastObject());
         if (lastChild)
         {
             swordIv->setWidgetZOrder(lastChild->getWidgetZOrder() + 1);
@@ -574,7 +574,7 @@ void CocosGUISlotScene::createWeapons()
         CCObject* obj = NULL;
         CCARRAY_FOREACH(weaponsPanel->getChildren(), obj)
         {
-            CocoWidget* slot = dynamic_cast<CocoWidget*>(obj);
+            UIWidget* slot = dynamic_cast<UIWidget*>(obj);
             CCRect slot_rect = slot->getRelativeRect();
             if (slot_rect.containsPoint(swordIv->getPosition()))
             {
@@ -605,10 +605,10 @@ void CocosGUISlotScene::createWeapons()
     };
     for (int i = 0; i < arrow_amount; ++i)
     {
-        CocoImageView* arrowIv = CocoImageView::create();
+        UIImageView* arrowIv = UIImageView::create();
         arrowIv->setTexture(arrow_png[i]);
         arrowIv->setPosition(ccp(offest_x * 5, parent_h - offest_y - i * (offest_y * 2)));
-        CocoWidget* lastChild = dynamic_cast<CocoWidget*>(weaponsPanel->getChildren()->lastObject());
+        UIWidget* lastChild = dynamic_cast<UIWidget*>(weaponsPanel->getChildren()->lastObject());
         if (lastChild)
         {
             arrowIv->setWidgetZOrder(lastChild->getWidgetZOrder() + 1);
@@ -621,7 +621,7 @@ void CocosGUISlotScene::createWeapons()
         CCObject* obj = NULL;
         CCARRAY_FOREACH(weaponsPanel->getChildren(), obj)
         {
-            CocoWidget* slot = dynamic_cast<CocoWidget*>(obj);
+            UIWidget* slot = dynamic_cast<UIWidget*>(obj);
             CCRect slot_rect = slot->getRelativeRect();
             if (slot_rect.containsPoint(arrowIv->getPosition()))
             {
@@ -648,10 +648,10 @@ void CocosGUISlotScene::createWeapons()
     };
     for (int i = 0; i < bomb_amount; ++i)
     {
-        CocoImageView* bombIv = CocoImageView::create();
+        UIImageView* bombIv = UIImageView::create();
         bombIv->setTexture(bomb_png[i]);
         bombIv->setPosition(ccp(offest_x * 9, parent_h - offest_y - i * (offest_y * 2)));
-        CocoWidget* lastChild = dynamic_cast<CocoWidget*>(weaponsPanel->getChildren()->lastObject());
+        UIWidget* lastChild = dynamic_cast<UIWidget*>(weaponsPanel->getChildren()->lastObject());
         if (lastChild)
         {
             bombIv->setWidgetZOrder(lastChild->getWidgetZOrder() + 1);
@@ -664,7 +664,7 @@ void CocosGUISlotScene::createWeapons()
         CCObject* obj = NULL;
         CCARRAY_FOREACH(weaponsPanel->getChildren(), obj)
         {
-            CocoWidget* slot = dynamic_cast<CocoWidget*>(obj);
+            UIWidget* slot = dynamic_cast<UIWidget*>(obj);
             CCRect slot_rect = slot->getRelativeRect();
             if (slot_rect.containsPoint(bombIv->getPosition()))
             {
@@ -682,7 +682,7 @@ void CocosGUISlotScene::createWeapons()
 
 void CocosGUISlotScene::createPets()
 {
-    CocoPanel* petsPanel = dynamic_cast<CocoPanel*>(ul->getWidgetByTag(PANEL_TAG_PETS));
+    UIPanel* petsPanel = dynamic_cast<UIPanel*>(ul->getWidgetByTag(PANEL_TAG_PETS));
     
     // pets
     float parent_w = petsPanel->getRect().size.width;
@@ -702,10 +702,10 @@ void CocosGUISlotScene::createPets()
     };
     for (int i = 0; i < dragon_amount; ++i)
     {
-        CocoImageView* dragonIv = CocoImageView::create();
+        UIImageView* dragonIv = UIImageView::create();
         dragonIv->setTexture(dragon_png[i]);
         dragonIv->setPosition(ccp(offest_x, parent_h - offest_y - i * (offest_y * 2)));
-        CocoWidget* lastChild = dynamic_cast<CocoWidget*>(petsPanel->getChildren()->lastObject());
+        UIWidget* lastChild = dynamic_cast<UIWidget*>(petsPanel->getChildren()->lastObject());
         if (lastChild)
         {
             dragonIv->setWidgetZOrder(lastChild->getWidgetZOrder() + 1);
@@ -718,7 +718,7 @@ void CocosGUISlotScene::createPets()
         CCObject* obj = NULL;
         CCARRAY_FOREACH(petsPanel->getChildren(), obj)
         {
-            CocoWidget* slot = dynamic_cast<CocoWidget*>(obj);
+            UIWidget* slot = dynamic_cast<UIWidget*>(obj);
             CCRect slot_rect = slot->getRelativeRect();
             if (slot_rect.containsPoint(dragonIv->getPosition()))
             {
@@ -745,10 +745,10 @@ void CocosGUISlotScene::createPets()
     };
     for (int i = 0; i < crab_amount; ++i)
     {
-        CocoImageView* crabIv = CocoImageView::create();
+        UIImageView* crabIv = UIImageView::create();
         crabIv->setTexture(crab_png[i]);
         crabIv->setPosition(ccp(offest_x * 5, parent_h - offest_y - i * (offest_y * 2)));
-        CocoWidget* lastChild = dynamic_cast<CocoWidget*>(petsPanel->getChildren()->lastObject());
+        UIWidget* lastChild = dynamic_cast<UIWidget*>(petsPanel->getChildren()->lastObject());
         if (lastChild)
         {
             crabIv->setWidgetZOrder(lastChild->getWidgetZOrder() + 1);
@@ -761,7 +761,7 @@ void CocosGUISlotScene::createPets()
         CCObject* obj = NULL;
         CCARRAY_FOREACH(petsPanel->getChildren(), obj)
         {
-            CocoWidget* slot = dynamic_cast<CocoWidget*>(obj);
+            UIWidget* slot = dynamic_cast<UIWidget*>(obj);
             CCRect slot_rect = slot->getRelativeRect();
             if (slot_rect.containsPoint(crabIv->getPosition()))
             {
@@ -780,7 +780,7 @@ void CocosGUISlotScene::createPets()
 
 void CocosGUISlotScene::touchEquip(CCObject *pSender)
 {
-    CocoWidget* widget = dynamic_cast<CocoWidget*>(pSender);
+    UIWidget* widget = dynamic_cast<UIWidget*>(pSender);
     CCPoint local = widget->getContainerNode()->convertToWorldSpace(CCPointZero);
 
     widgetLastLocal = local;
@@ -796,7 +796,7 @@ void CocosGUISlotScene::touchEquip(CCObject *pSender)
 
 void CocosGUISlotScene::moveEquip(CCObject* pSender)
 {
-    CocoWidget* widget = dynamic_cast<CocoWidget*>(pSender);
+    UIWidget* widget = dynamic_cast<UIWidget*>(pSender);
     
     lastPoint = movePoint;
     movePoint = widget->getTouchMovePos();
@@ -811,14 +811,14 @@ void CocosGUISlotScene::dropEquip(CCObject *pSender)
     bool isInUseSlot = false;
     bool isInEquipSlot = false;
     
-    CocoWidget* widget = dynamic_cast<CocoWidget*>(pSender);
+    UIWidget* widget = dynamic_cast<UIWidget*>(pSender);
     CCRect widget_rect = widget->getRect();
     
     // usedSlot
     CCDictElement* usedSlotElement = NULL;
     CCDICT_FOREACH(m_dicBeUsedSlot, usedSlotElement)
     {
-        CocoWidget* usedSlot = dynamic_cast<CocoWidget*>(usedSlotElement->getObject());
+        UIWidget* usedSlot = dynamic_cast<UIWidget*>(usedSlotElement->getObject());
         if (usedSlot->getChildren()->count() > 0)
         {
             continue;
@@ -858,7 +858,7 @@ void CocosGUISlotScene::dropEquip(CCObject *pSender)
     CCDictElement* equipSlotElement = NULL;
     CCDICT_FOREACH(dictionary, equipSlotElement)
     {
-        CocoWidget* equipSlot = dynamic_cast<CocoWidget*>(equipSlotElement->getObject());
+        UIWidget* equipSlot = dynamic_cast<UIWidget*>(equipSlotElement->getObject());
         if (equipSlot->getChildren()->count() > 0)
         {
             continue;
@@ -877,9 +877,9 @@ void CocosGUISlotScene::dropEquip(CCObject *pSender)
                     CCDictElement* equipClothes = NULL;
                     CCDICT_FOREACH(m_dicEquipClothes, equipClothes)
                     {
-                        CocoWidget* child = dynamic_cast<CocoWidget*>(equipClothes->getObject());
+                        UIWidget* child = dynamic_cast<UIWidget*>(equipClothes->getObject());
                         
-                        if (child->getName().compare(widget->getName()) == 0)
+                        if (strcmp(child->getName(), widget->getName()) == 0)
                         {
                             canDropInClothesSlot = true;
                             break;
@@ -906,9 +906,8 @@ void CocosGUISlotScene::dropEquip(CCObject *pSender)
                     CCDictElement* equipWeapons = NULL;
                     CCDICT_FOREACH(m_dicEquipWeapons, equipWeapons)
                     {
-                        CocoWidget* child = dynamic_cast<CocoWidget*>(equipWeapons->getObject());
-                        
-                        if (child->getName().compare(widget->getName()) == 0)
+                        UIWidget* child = dynamic_cast<UIWidget*>(equipWeapons->getObject());
+                        if (strcmp(child->getName(), widget->getName()) == 0)
                         {
                             canDropInWeaponsSlot = true;
                             break;
@@ -935,9 +934,9 @@ void CocosGUISlotScene::dropEquip(CCObject *pSender)
                     CCDictElement* equipPets = NULL;
                     CCDICT_FOREACH(m_dicEquipPets, equipPets)
                     {
-                        CocoWidget* child = dynamic_cast<CocoWidget*>(equipPets->getObject());
+                        UIWidget* child = dynamic_cast<UIWidget*>(equipPets->getObject());
                         
-                        if (child->getName().compare(widget->getName()) == 0)
+                        if (strcmp(child->getName(), widget->getName()) == 0)
                         {
                             canDropInPetsSlot = true;
                             break;
@@ -982,7 +981,7 @@ void CocosGUISlotScene::dropEquip(CCObject *pSender)
         CCCallFuncO* calllFunc0 = CCCallFuncO::create(this, callfuncO_selector(CocosGUISlotScene::backOver), widget);
         CCSequence* seq = CCSequence::create(ease, calllFunc0, NULL);
         widget->runAction(seq);
-        widget->setBeTouchAble(false);
+        widget->setBeTouchEnable(false);
     }
     
     widget->setColor(ccc3(255, 255, 255));
@@ -990,9 +989,9 @@ void CocosGUISlotScene::dropEquip(CCObject *pSender)
 
 void CocosGUISlotScene::backOver(CCObject *pObject)
 {
-    CocoWidget* widget = dynamic_cast<CocoWidget*>(pObject);
+    UIWidget* widget = dynamic_cast<UIWidget*>(pObject);
     
-    widget->setBeTouchAble(true);
+    widget->setBeTouchEnable(true);
     widget->removeFromParentAndCleanup(false);
     lastWidgetParent->addChild(widget);
     widget->setPosition(widgetLastNodePosition);

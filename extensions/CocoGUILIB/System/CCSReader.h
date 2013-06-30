@@ -25,7 +25,7 @@
 #ifndef __CCSREADER_H__
 #define __CCSREADER_H__
 
-#include "../BaseClasses/CocoWidget.h"
+#include "../BaseClasses/UIWidget.h"
 #include "../../CCArmature/external_tool/Json/CSContentJsonDictionary.h"
 
 NS_CC_EXT_BEGIN
@@ -38,27 +38,27 @@ public:
     ~CCSReader();
     static CCSReader* shareReader();
     
-    CocoWidget* widgetFromJsonFile(const char* fileName);
-    CocoWidget* widgetFromJsonDictionary(cs::CSJsonDictionary* data);
+    UIWidget* widgetFromJsonFile(const char* fileName);
+    UIWidget* widgetFromJsonDictionary(cs::CSJsonDictionary* data);
     
-    void setPropsForWidgetFromJsonDictionary(CocoWidget*widget,cs::CSJsonDictionary* options);
-    void setColorPropsForWidgetFromJsonDictionary(CocoWidget*widget,cs::CSJsonDictionary* options);
-    void setPropsForButtonFromJsonDictionary(CocoWidget*widget,cs::CSJsonDictionary* options);
-    void setPropsForCheckBoxFromJsonDictionary(CocoWidget*widget,cs::CSJsonDictionary* options);
-    void setPropsForImageViewFromJsonDictionary(CocoWidget*widget,cs::CSJsonDictionary* options);
-    void setPropsForLabelFromJsonDictionary(CocoWidget*widget,cs::CSJsonDictionary* options);
-    void setPropsForLabelAtlasFromJsonDictionary(CocoWidget*widget,cs::CSJsonDictionary* options);
-    void setPropsForContainerWidgetFromJsonDictionary(CocoWidget*widget,cs::CSJsonDictionary* options);
-    void setPropsForPanelFromJsonDictionary(CocoWidget*widget,cs::CSJsonDictionary* options);
-    void setPropsForScrollViewFromJsonDictionary(CocoWidget*widget,cs::CSJsonDictionary* options);
-    void setPropsForSliderFromJsonDictionary(CocoWidget*widget,cs::CSJsonDictionary* options);
-    void setPropsForTextAreaFromJsonDictionary(CocoWidget*widget,cs::CSJsonDictionary* options);
-    void setPropsForTextButtonFromJsonDictionary(CocoWidget*widget,cs::CSJsonDictionary* options);
-    void setPropsForTextFieldFromJsonDictionary(CocoWidget*widget,cs::CSJsonDictionary* options);
-    void setPropsForLoadingBarFromJsonDictionary(CocoWidget*widget,cs::CSJsonDictionary* options);
-    void setPropsForImageButtonFromJsonDictionary(CocoWidget* widget, cs::CSJsonDictionary* options);
-    void setPropsForListViewFromJsonDictionary(CocoWidget* widget, cs::CSJsonDictionary* options);
-    void setPropsForPageViewFromJsonDictionary(CocoWidget*widget,cs::CSJsonDictionary* options);
+    void setPropsForWidgetFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options);
+    void setColorPropsForWidgetFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options);
+    void setPropsForButtonFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options);
+    void setPropsForCheckBoxFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options);
+    void setPropsForImageViewFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options);
+    void setPropsForLabelFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options);
+    void setPropsForLabelAtlasFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options);
+    void setPropsForContainerWidgetFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options);
+    void setPropsForPanelFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options);
+    void setPropsForScrollViewFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options);
+    void setPropsForSliderFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options);
+    void setPropsForTextAreaFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options);
+    void setPropsForTextButtonFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options);
+    void setPropsForTextFieldFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options);
+    void setPropsForLoadingBarFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options);
+    void setPropsForImageButtonFromJsonDictionary(UIWidget* widget, cs::CSJsonDictionary* options);
+    void setPropsForListViewFromJsonDictionary(UIWidget* widget, cs::CSJsonDictionary* options);
+    void setPropsForPageViewFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options);
     
 protected:
     std::string m_strFilePath;

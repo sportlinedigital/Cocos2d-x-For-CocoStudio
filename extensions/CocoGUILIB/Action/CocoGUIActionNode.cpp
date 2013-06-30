@@ -50,7 +50,7 @@ CocoGUIActionNode::~CocoGUIActionNode()
 	m_ActionFrameList->release();
 }
 
-void CocoGUIActionNode::initWithDictionary(cs::CSJsonDictionary *dic,CocoWidget* root)
+void CocoGUIActionNode::initWithDictionary(cs::CSJsonDictionary *dic,UIWidget* root)
 {
     this->setName(DICTOOL->getStringValue_json(dic, "name"));
     int actionFrameCount = DICTOOL->getArrayCount_json(dic, "actionframelist");
@@ -63,7 +63,7 @@ void CocoGUIActionNode::initWithDictionary(cs::CSJsonDictionary *dic,CocoWidget*
     }
 }
 
-void CocoGUIActionNode::SetActionNode(CocoWidget* widget)
+void CocoGUIActionNode::SetActionNode(UIWidget* widget)
 {
 	m_actionNode = widget;
 

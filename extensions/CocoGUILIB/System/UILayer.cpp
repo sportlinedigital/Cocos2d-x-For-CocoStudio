@@ -50,7 +50,7 @@ bool UILayer::init()
 {
     if (CCLayer::init()) {
         cocos2d::CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, -1, false);
-        m_pRootWidget = CocoRootWidget::create();
+        m_pRootWidget = UIRootWidget::create();
         m_pRootWidget->setUILayer(this);
         addChild(m_pRootWidget->getContainerNode());
         m_pInputManager = new UIInputManager();
@@ -92,12 +92,12 @@ void UILayer::onEnterTransitionDidFinish()
     CCLayer::onEnterTransitionDidFinish();
 }
 
-void UILayer::addWidget(CocoWidget* widget)
+void UILayer::addWidget(UIWidget* widget)
 {
     m_pRootWidget->addChild(widget);
 }
 
-void UILayer::removeWidgetAndCleanUp(CocoWidget* widget,bool cleanup)
+void UILayer::removeWidgetAndCleanUp(UIWidget* widget,bool cleanup)
 {
     m_pRootWidget->removeChild(widget, cleanup);
 }
@@ -127,11 +127,11 @@ void UILayer::update(float dt)
 {
     for (int i=0; i<m_updateEnableWidget->count(); i++)
     {
-        dynamic_cast<CocoWidget*>(m_updateEnableWidget->objectAtIndex(i))->update(dt);
+        dynamic_cast<UIWidget*>(m_updateEnableWidget->objectAtIndex(i))->update(dt);
     }
 }
 
-void UILayer::addUpdateEnableWidget(CocoWidget* widget)
+void UILayer::addUpdateEnableWidget(UIWidget* widget)
 {
     if (!widget)
     {
@@ -144,7 +144,7 @@ void UILayer::addUpdateEnableWidget(CocoWidget* widget)
     this->m_updateEnableWidget->addObject(widget);
 }
 
-void UILayer::removeUpdateEnableWidget(CocoWidget* widget)
+void UILayer::removeUpdateEnableWidget(UIWidget* widget)
 {
     if (!widget)
     {
@@ -157,7 +157,7 @@ void UILayer::removeUpdateEnableWidget(CocoWidget* widget)
     this->m_updateEnableWidget->removeObject(widget);
 }
 
-CocoWidget* UILayer::getWidgetByTag(int tag)
+UIWidget* UILayer::getWidgetByTag(int tag)
 {
     if (!m_pRootWidget)
     {
@@ -166,7 +166,7 @@ CocoWidget* UILayer::getWidgetByTag(int tag)
     return CCUIHELPER->seekWidgetByTag(m_pRootWidget, tag);
 }
 
-CocoWidget* UILayer::getWidgetByName(const char* name)
+UIWidget* UILayer::getWidgetByName(const char* name)
 {
     if (!m_pRootWidget)
     {
@@ -175,7 +175,7 @@ CocoWidget* UILayer::getWidgetByName(const char* name)
     return CCUIHELPER->seekWidgetByName(m_pRootWidget, name);
 }
 
-CocoRootWidget* UILayer::getRootWidget()
+UIRootWidget* UILayer::getRootWidget()
 {
     return m_pRootWidget;
 }
@@ -198,7 +198,7 @@ void UILayer::clear()
 
 bool UILayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
-    if (m_pInputManager && m_pInputManager->onTouchPressed(pTouch))
+    if (m_pInputManager && m_pInputManager->onTouchBegan(pTouch))
     {
         return true;
     }
@@ -214,13 +214,13 @@ void UILayer::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 
 void UILayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
-    m_pInputManager->onTouchReleased(pTouch);
+    m_pInputManager->onTouchEnd(pTouch);
 //    CCLOG("ui layer end");
 }
 
 void UILayer::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 {
-    m_pInputManager->onTouchCanceled(pTouch);
+    m_pInputManager->onTouchCancelled(pTouch);
 //    CCLOG("ui layer cancel");
 }
 

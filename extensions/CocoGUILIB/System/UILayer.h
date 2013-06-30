@@ -28,7 +28,7 @@
 
 #include "cocos2d.h"
 #include "ExtensionMacros.h"
-#include "../BaseClasses/CocoRootWidget.h"
+#include "../BaseClasses/UIRootWidget.h"
 #include "../System/UIInputManager.h"
 
 NS_CC_EXT_BEGIN
@@ -60,25 +60,25 @@ public:
     virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
     
     
-    void addWidget(CocoWidget* widget);
-    void removeWidgetAndCleanUp(CocoWidget* widget,bool cleanup);
+    void addWidget(UIWidget* widget);
+    void removeWidgetAndCleanUp(UIWidget* widget,bool cleanup);
     virtual void setVisible(bool visible);
     void update(float dt);
-    void addUpdateEnableWidget(CocoWidget* widget);
-    void removeUpdateEnableWidget(CocoWidget* widget);
-    CocoWidget* getWidgetByTag(int tag);
-    CocoWidget* getWidgetByName(const char* name);
+    void addUpdateEnableWidget(UIWidget* widget);
+    void removeUpdateEnableWidget(UIWidget* widget);
+    UIWidget* getWidgetByTag(int tag);
+    UIWidget* getWidgetByName(const char* name);
     UIInputManager* getInputManager();
     virtual void clear();
     virtual void dispose();
-    CocoRootWidget* getRootWidget();
+    UIRootWidget* getRootWidget();
     
 //    void setUIType(GUITYPE type);
     
 protected:
 
 //    GUITYPE m_UIType;
-    CocoRootWidget* m_pRootWidget;
+    UIRootWidget* m_pRootWidget;
     UIInputManager* m_pInputManager;
     CCArray* m_updateEnableWidget;
 };

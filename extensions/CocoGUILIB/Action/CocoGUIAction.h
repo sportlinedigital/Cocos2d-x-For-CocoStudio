@@ -53,7 +53,7 @@ public:
 	//
 	CC_SYNTHESIZE(float, m_fUnitTime, UnitTime);
     
-    void initWithDictionary(cs::CSJsonDictionary* dic,CocoWidget* root);
+    void initWithDictionary(cs::CSJsonDictionary* dic,UIWidget* root);
 };
 
 NS_CC_EXT_END

@@ -37,7 +37,7 @@ UIWidgetPool::~UIWidgetPool()
     m_widgets->release();
 }
 
-void UIWidgetPool::push_back(CocoWidget *widget)
+void UIWidgetPool::push_back(UIWidget *widget)
 {
     m_widgets->addObject(widget);
 }
@@ -47,7 +47,7 @@ void UIWidgetPool::pop_back()
     m_widgets->removeLastObject();
 }
 
-void UIWidgetPool::push_front(CocoWidget *widget)
+void UIWidgetPool::push_front(UIWidget *widget)
 {
     m_widgets->insertObject(widget, 0);
 }
@@ -57,14 +57,14 @@ void UIWidgetPool::pop_front()
     m_widgets->removeObjectAtIndex(0);
 }
 
-CocoWidget* UIWidgetPool::begin()
+UIWidget* UIWidgetPool::begin()
 {
-    return dynamic_cast<CocoWidget*>(m_widgets->objectAtIndex(0));
+    return dynamic_cast<UIWidget*>(m_widgets->objectAtIndex(0));
 }
 
-CocoWidget* UIWidgetPool::rbegin()
+UIWidget* UIWidgetPool::rbegin()
 {
-    return dynamic_cast<CocoWidget*>(m_widgets->lastObject());
+    return dynamic_cast<UIWidget*>(m_widgets->lastObject());
 }
 
 bool UIWidgetPool::empty()

@@ -206,7 +206,7 @@ NS_CC_EXT_BEGIN
 				else if(comName != NULL && strcmp(comName, "GUIComponent") == 0)
 				{
 					cocos2d::extension::UILayer *pLayer = cocos2d::extension::UILayer::create();
-					CocoWidget* widget=cocos2d::extension::UIHelper::instance()->createWidgetFromFile_json(pPath.c_str());
+					UIWidget* widget=cocos2d::extension::UIHelper::instance()->createWidgetFromJsonFile(pPath.c_str());
 					pLayer->addWidget(widget);
 					CCComRender *pRender = CCComRender::create(pLayer, "GUIComponent");
 					if (name != NULL)
