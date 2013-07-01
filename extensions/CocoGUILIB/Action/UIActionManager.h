@@ -43,7 +43,7 @@ public:
     static UIActionManager* shareManager();
 	UIAction* GetActionByName(const char* actionName);
 
-	void PlayActionByName(const char* acitonName);
+	void PlayActionByName(const char* actionName);
     
     void initWithDictionary(cs::CSJsonDictionary* dic,UIWidget* root);
 };

@@ -123,7 +123,7 @@ UIWidget* CCSReader::widgetFromJsonDictionary(cs::CSJsonDictionary* data)
     }
     else if (classname && strcmp(classname, "PageView") == 0)
     {
-        widget = UIPageView::create();
+//        widget = UIPageView::create();
         this->setPropsForPageViewFromJsonDictionary(widget, uiOptions);
     }
     int childrenCount = DICTOOL->getArrayCount_json(data, "children");
@@ -185,7 +185,7 @@ UIWidget* CCSReader::widgetFromJsonFile(const char *fileName)
     cs::CSJsonDictionary* widgetTree = DICTOOL->getSubDictionary_json(jsonDict, "widgetTree");
     UIWidget* widget = this->widgetFromJsonDictionary(widgetTree);
     widget->setFileDesignSize(CCSizeMake(fileDesignWidth, fileDesignHeight));
-    cs::CSJsonDictionary* actions = DICTOOL->getSubDictionary_json(jsonDict, "actions");
+    cs::CSJsonDictionary* actions = DICTOOL->getSubDictionary_json(jsonDict, "animation");
     UIActionManager::shareManager()->initWithDictionary(actions,widget);
     delete jsonDict;
     jsonDict = NULL;

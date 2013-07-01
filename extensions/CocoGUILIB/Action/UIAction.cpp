@@ -57,15 +57,13 @@ void UIAction::initWithDictionary(cs::CSJsonDictionary *dic,UIWidget* root)
 
 void UIAction::Play()
 {
+    Stop();
 	int frameNum = m_ActionNodeList->count();
-
 	for ( int i = 0; i < frameNum; i++ )
 	{
 		UIActionNode* actionNode = (UIActionNode*)m_ActionNodeList->objectAtIndex(i);
-
 		actionNode->RunAction( this->getUnitTime(),this->getLoop() );
 	}
-
 }
 
 void UIAction::Pause()
@@ -80,7 +78,6 @@ void UIAction::Stop()
 	for ( int i = 0; i < frameNum; i++ )
 	{
 		UIActionNode* actionNode = (UIActionNode*)m_ActionNodeList->objectAtIndex(i);
-
 		actionNode->StopAction();
 	}
 }
