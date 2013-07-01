@@ -23,3 +23,93 @@
  ****************************************************************************/
 
 #include "UIPageView.h"
+
+NS_CC_EXT_BEGIN
+
+UIPageView::UIPageView()
+{
+    
+}
+
+UIPageView::~UIPageView()
+{
+    m_pages->release();
+}
+
+UIPageView* UIPageView::create()
+{
+    UIPageView* widget = new UIPageView();
+    if (widget && widget->init())
+    {
+        return widget;
+    }
+    CC_SAFE_DELETE(widget);
+    return NULL;
+}
+
+bool UIPageView::init()
+{
+    if (UIPanel::init()) {
+        m_pages = CCArray::create();
+        m_pages->retain();
+        return true;
+    }
+    return false;
+}
+
+void UIPageView::addWidgetToPage(UIWidget *widget, int pageIdx, bool forceCreate)
+{
+    
+}
+
+void UIPageView::addPage(UIContainerWidget* page)
+{
+    
+}
+
+void UIPageView::insertPage(UIContainerWidget* page, int idx)
+{
+    
+}
+
+void UIPageView::removePage(UIContainerWidget* page, bool cleanup)
+{
+    
+}
+
+bool UIPageView::addChild(UIWidget* widget)
+{
+    return UIPanel::addChild(widget);
+}
+
+bool UIPageView::removeChild(UIWidget* widget, bool cleanup)
+{
+    
+}
+
+void UIPageView::removeAllChildrenAndCleanUp(bool cleanup)
+{
+    
+}
+
+bool UIPageView::onTouchBegan(cocos2d::CCPoint &touchPoint)
+{
+    
+}
+
+bool UIPageView::onTouchMoved(cocos2d::CCPoint &touchPoint)
+{
+    
+}
+
+bool UIPageView::onTouchEnded(cocos2d::CCPoint &touchPoint)
+{
+    
+}
+
+bool UIPageView::onTouchCancelled(cocos2d::CCPoint &touchPoint)
+{
+    
+}
+
+NS_CC_EXT_END

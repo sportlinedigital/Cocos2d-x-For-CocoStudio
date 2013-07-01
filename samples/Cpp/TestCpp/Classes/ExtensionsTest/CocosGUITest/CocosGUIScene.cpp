@@ -105,7 +105,10 @@ void CocosGUITestScene::runThisTest()
 //    pn->addChild(btn);
     
     ul->addWidget(CCUIHELPER->createWidgetFromJsonFile("cocosgui/test/NewProject_1_1.json"));
-    
+//    UIWidget* pv = UIPageView::create();
+    UIPageView* pv = UIPageView::create();
+    pv->addPage(NULL);
+    pv->addWidgetToPage(NULL, 0, false);
 }
 void CocosGUITestScene::MainMenuCallback(CCObject* pSender)
 {
