@@ -85,8 +85,8 @@ void CocosGUITestScene::runThisTest()
 //    image->setBeTouchEnable(true);
 ////    image->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::MainMenuCallback));
 //    
-//    UIButton* exitBtn = dynamic_cast<UIButton*>(ul->getWidgetByName("exitbutton"));
-//    exitBtn->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::toCocosGUISlotScene));
+    UIButton* exitBtn = dynamic_cast<UIButton*>(ul->getWidgetByName("exitbutton"));
+    exitBtn->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::toCocosGUISlotScene));
 ////     */
 //    
 //    UICheckBox* cb = dynamic_cast<UICheckBox*>(ul->getWidgetByName("checkbox"));
@@ -112,8 +112,8 @@ void CocosGUITestScene::runThisTest()
 }
 void CocosGUITestScene::MainMenuCallback(CCObject* pSender)
 {
-//	TestScene::MainMenuCallback(pSender);
-    UIActionManager::shareManager()->PlayActionByName("Animation1");
+	TestScene::MainMenuCallback(pSender);
+//    UIActionManager::shareManager()->PlayActionByName("Animation1");
 }
 
 void CocosGUITestScene::toCocosGUISlotScene(CCObject* pSender)
