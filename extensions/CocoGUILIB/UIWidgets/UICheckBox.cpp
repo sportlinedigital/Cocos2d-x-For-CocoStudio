@@ -38,7 +38,7 @@ m_pfnUnSelectSelector(NULL),
 m_pBackGroundBoxDisabled(NULL),
 m_pFrontCrossDisabled(NULL)
 {
-
+    m_WidgetName = WIDGET_CHECKBOX;
 }
 
 UICheckBox::~UICheckBox()
@@ -152,7 +152,7 @@ void UICheckBox::setFrontCrossDisabledTexture(const char *frontCrossDisabled,boo
     }
 }
 
-bool UICheckBox::onTouchEnded(cocos2d::CCPoint &touchPoint)
+void UICheckBox::onTouchEnded(cocos2d::CCPoint &touchPoint)
 {
     if (this->m_bFocus)
     {
@@ -169,7 +169,6 @@ bool UICheckBox::onTouchEnded(cocos2d::CCPoint &touchPoint)
     }
     this->setFocus(false);
     this->m_pWidgetParent->checkChildInfo(2,this,touchPoint);
-    return true;
 }
 
 void UICheckBox::onPressStateChangedToNormal()

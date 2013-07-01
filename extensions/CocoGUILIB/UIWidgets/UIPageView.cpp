@@ -28,7 +28,7 @@ NS_CC_EXT_BEGIN
 
 UIPageView::UIPageView()
 {
-    
+    m_WidgetName = WIDGET_PAGEVIEW;
 }
 
 UIPageView::~UIPageView()
@@ -84,7 +84,13 @@ bool UIPageView::addChild(UIWidget* widget)
 
 bool UIPageView::removeChild(UIWidget* widget, bool cleanup)
 {
-    
+    if (UIPanel::removeChild(widget, cleanup)) {
+        if (m_pages->containsObject(widget)) {
+            m_pages->removeObject(widget);
+        }
+        return true;
+    }
+    return false;
 }
 
 void UIPageView::removeAllChildrenAndCleanUp(bool cleanup)
@@ -92,22 +98,22 @@ void UIPageView::removeAllChildrenAndCleanUp(bool cleanup)
     
 }
 
-bool UIPageView::onTouchBegan(cocos2d::CCPoint &touchPoint)
+void UIPageView::onTouchBegan(cocos2d::CCPoint &touchPoint)
 {
     
 }
 
-bool UIPageView::onTouchMoved(cocos2d::CCPoint &touchPoint)
+void UIPageView::onTouchMoved(cocos2d::CCPoint &touchPoint)
 {
     
 }
 
-bool UIPageView::onTouchEnded(cocos2d::CCPoint &touchPoint)
+void UIPageView::onTouchEnded(cocos2d::CCPoint &touchPoint)
 {
     
 }
 
-bool UIPageView::onTouchCancelled(cocos2d::CCPoint &touchPoint)
+void UIPageView::onTouchCancelled(cocos2d::CCPoint &touchPoint)
 {
     
 }

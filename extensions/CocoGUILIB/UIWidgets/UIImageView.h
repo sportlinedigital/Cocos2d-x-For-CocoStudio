@@ -56,8 +56,8 @@ public:
     void setCapInset(const CCRect &capInset);
     virtual cocos2d::CCNode* getValidNode();
     virtual void setAnchorPoint(const cocos2d::CCPoint &pt);
-    virtual bool onTouchBegan(cocos2d::CCPoint &touchPoint);
-    virtual bool onTouchEnded(cocos2d::CCPoint &touchPoint);
+    virtual void onTouchBegan(cocos2d::CCPoint &touchPoint);
+    virtual void onTouchEnded(cocos2d::CCPoint &touchPoint);
 protected:
     virtual void initNodes();
 protected:

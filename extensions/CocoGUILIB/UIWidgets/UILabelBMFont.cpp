@@ -29,7 +29,7 @@ NS_CC_EXT_BEGIN
 UILabelBMFont::UILabelBMFont():
 m_pLabelBMFont(NULL)
 {
-    
+    m_WidgetName = WIDGET_LABELBMFONT;
 }
 
 UILabelBMFont::~UILabelBMFont()

@@ -36,10 +36,11 @@ public:
     virtual ~UIGradientPanel();
     static UIGradientPanel* create();
     virtual void setBackGroundColorEnable(bool able);
-    void setStartColor(const cocos2d::ccColor3B &color);
-    void setEndColor(const cocos2d::ccColor3B &color);
+    void setStartColor(const ccColor3B &color);
+    void setEndColor(const ccColor3B &color);
     void setStartOpacity(int opacity);
     void setEndOpacity(int opacity);
+    void setVector(const CCPoint& vector);
 protected:
     virtual void initNodes();
 };

@@ -79,6 +79,7 @@ protected:
     cocos2d::CCLabelTTF* m_pNormalTitle;
     cocos2d::CCLabelTTF* m_pPressedTitle;
     cocos2d::CCLabelTTF* m_pDisabledTitle;
+    cocos2d::CCSize m_preferredSize;        
 };
 
 NS_CC_EXT_END

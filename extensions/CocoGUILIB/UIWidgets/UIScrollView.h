@@ -114,11 +114,11 @@ public:
     void addBerthToHorizontalCenterEvent(cocos2d::CCObject* target, SEL_BerthToHorizontalCenterEvent selector);
     
     void stopAction();
-    virtual bool onTouchBegan(cocos2d::CCPoint &touchPoint);
-    virtual bool onTouchMoved(cocos2d::CCPoint &touchPoint);
-    virtual bool onTouchEnded(cocos2d::CCPoint &touchPoint);
-    virtual bool onTouchCancelled(cocos2d::CCPoint &touchPoint);
-    virtual bool onTouchLongClicked(cocos2d::CCPoint &touchPoint);
+    virtual void onTouchBegan(cocos2d::CCPoint &touchPoint);
+    virtual void onTouchMoved(cocos2d::CCPoint &touchPoint);
+    virtual void onTouchEnded(cocos2d::CCPoint &touchPoint);
+    virtual void onTouchCancelled(cocos2d::CCPoint &touchPoint);
+    virtual void onTouchLongClicked(cocos2d::CCPoint &touchPoint);
     void setDirection(SCROLLVIEW_DIR dir);
     SCROLLVIEW_DIR getDirection();
     void setMoveMode(SCROLLVIEW_MOVE_MODE mode);

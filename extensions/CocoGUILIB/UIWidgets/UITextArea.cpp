@@ -28,7 +28,7 @@ NS_CC_EXT_BEGIN
 
 UITextArea::UITextArea()
 {
-    
+    m_WidgetName = WIDGET_TEXTAREA;
 }
 
 UITextArea::~UITextArea()

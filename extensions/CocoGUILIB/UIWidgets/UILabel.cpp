@@ -35,7 +35,7 @@ m_fOnSelectedScaleOffset(0.5),
 m_fNormalScaleValue(1),
 m_pRenderLabel(NULL)
 {
-
+    m_WidgetName = WIDGET_LABEL;
 }
 
 UILabel::~UILabel()
