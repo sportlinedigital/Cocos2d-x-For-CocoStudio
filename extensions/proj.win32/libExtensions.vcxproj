@@ -63,7 +63,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A\include;$(ProjectDir)..\..\external\chipmunk\include\chipmunk;$(ProjectDir)..\..\external\sqlite3\include;$(ProjectDir)..\..\external;$(ProjectDir)..\..\external\libwebsockets\win32\include;$(ProjectDir)..\..\extensions;$(ProjectDir)..\..\extensions\CocoGUILIB\BaseClasses;$(ProjectDir)..\..\extensions\CocoGUILIB\CGraphics;$(ProjectDir)..\..\extensions\CocoGUILIB\Component;$(ProjectDir)..\..\extensions\CocoGUILIB\System\GUICCBReader;$(ProjectDir)..\..\extensions\CocoGUILIB\System\Json;$(ProjectDir)..\..\extensions\CocoGUILIB\System;$(ProjectDir)..\..\extensions\CocoGUILIB\UIElements;$(ProjectDir)..\..\extensions\CCArmature;$(ProjectDir)..\..\extensions\CCArmature\external_tool\Json\lib_json;$(ProjectDir)..\..\extensions\CCArmature\external_tool\Json;$(ProjectDir)..\..\extensions\CCArmature\utils;$(ProjectDir)..\..\extensions\CCBReader;$(ProjectDir)..\..\extensions\GUI\CCControlExtension;$(ProjectDir)..\..\extensions\GUI\CCEditBox;$(ProjectDir)..\..\extensions\GUI\CCScrollView;$(ProjectDir)..\..\cocos2dx;$(ProjectDir)..\..\cocos2dx\include;$(ProjectDir)..\..\cocos2dx\kazmath\include;$(ProjectDir)..\..\cocos2dx\platform\win32;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32\pthread;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32\OGLES;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32\zlib;$(ProjectDir)..\..\CocosDenshion\include;..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A\include;$(ProjectDir)..\..\external\chipmunk\include\chipmunk;$(ProjectDir)..\..\external\sqlite3\include;$(ProjectDir)..\..\external;$(ProjectDir)..\..\external\libwebsockets\win32\include;$(ProjectDir)..\..\extensions;$(ProjectDir)..\..\extensions\CocoGUILIB\BaseClasses;$(ProjectDir)..\..\extensions\CocoGUILIB\Drawable;$(ProjectDir)..\..\extensions\CocoGUILIB\UIWidgets;$(ProjectDir)..\..\extensions\CocoGUILIB\Action;$(ProjectDir)..\..\extensions\CocoGUILIB\System;$(ProjectDir)..\..\extensions\CCArmature;$(ProjectDir)..\..\extensions\CCArmature\external_tool\Json\lib_json;$(ProjectDir)..\..\extensions\CCArmature\external_tool\Json;$(ProjectDir)..\..\extensions\CCArmature\utils;$(ProjectDir)..\..\extensions\CCBReader;$(ProjectDir)..\..\extensions\GUI\CCControlExtension;$(ProjectDir)..\..\extensions\GUI\CCEditBox;$(ProjectDir)..\..\extensions\GUI\CCScrollView;$(ProjectDir)..\..\cocos2dx;$(ProjectDir)..\..\cocos2dx\include;$(ProjectDir)..\..\cocos2dx\kazmath\include;$(ProjectDir)..\..\cocos2dx\platform\win32;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32\pthread;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32\OGLES;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32\zlib;$(ProjectDir)..\..\CocosDenshion\include;..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_LIB;COCOS2D_DEBUG=1;CC_ENABLE_CHIPMUNK_INTEGRATION=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -79,7 +79,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A\include;$(ProjectDir)..\..\external\chipmunk\include\chipmunk;$(ProjectDir)..\..\external\sqlite3\include;$(ProjectDir)..\..\external;$(ProjectDir)..\..\external\libwebsockets\win32\include;$(ProjectDir)..\..\extensions;$(ProjectDir)..\..\extensions\CocoGUILIB\BaseClasses;$(ProjectDir)..\..\extensions\CocoGUILIB\CGraphics;$(ProjectDir)..\..\extensions\CocoGUILIB\Component;$(ProjectDir)..\..\extensions\CocoGUILIB\System\GUICCBReader;$(ProjectDir)..\..\extensions\CocoGUILIB\System\Json;$(ProjectDir)..\..\extensions\CocoGUILIB\System;$(ProjectDir)..\..\extensions\CocoGUILIB\UIElements;$(ProjectDir)..\..\extensions\CCArmature\external_tool\Json\lib_json;$(ProjectDir)..\..\extensions\CCBReader;$(ProjectDir)..\..\extensions\GUI\CCControlExtension;$(ProjectDir)..\..\extensions\GUI\CCEditBox;$(ProjectDir)..\..\extensions\GUI\CCScrollView;$(ProjectDir)..\..\cocos2dx;$(ProjectDir)..\..\cocos2dx\include;$(ProjectDir)..\..\cocos2dx\kazmath\include;$(ProjectDir)..\..\cocos2dx\platform\win32;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32\pthread;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32\OGLES;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32\zlib;$(ProjectDir)..\..\CocosDenshion\include;..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A\include;$(ProjectDir)..\..\external\chipmunk\include\chipmunk;$(ProjectDir)..\..\external\sqlite3\include;$(ProjectDir)..\..\external;$(ProjectDir)..\..\external\libwebsockets\win32\include;$(ProjectDir)..\..\extensions;$(ProjectDir)..\..\extensions\CocoGUILIB\BaseClasses;$(ProjectDir)..\..\extensions\CocoGUILIB\Drawable;$(ProjectDir)..\..\extensions\CocoGUILIB\UIWidgets;$(ProjectDir)..\..\extensions\CocoGUILIB\Action;$(ProjectDir)..\..\extensions\CocoGUILIB\System;$(ProjectDir)..\..\extensions\CCArmature;$(ProjectDir)..\..\extensions\CCArmature\external_tool\Json\lib_json;$(ProjectDir)..\..\extensions\CCArmature\external_tool\Json;$(ProjectDir)..\..\extensions\CCArmature\utils;$(ProjectDir)..\..\extensions\CCBReader;$(ProjectDir)..\..\extensions\GUI\CCControlExtension;$(ProjectDir)..\..\extensions\GUI\CCEditBox;$(ProjectDir)..\..\extensions\GUI\CCScrollView;$(ProjectDir)..\..\cocos2dx;$(ProjectDir)..\..\cocos2dx\include;$(ProjectDir)..\..\cocos2dx\kazmath\include;$(ProjectDir)..\..\cocos2dx\platform\win32;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32\pthread;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32\OGLES;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32\zlib;$(ProjectDir)..\..\CocosDenshion\include;..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_LIB;CC_ENABLE_CHIPMUNK_INTEGRATION=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;COCOS2D_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -146,40 +146,39 @@
     <ClCompile Include="..\CocoGUILIB\Action\CocoGUIActionFrame.cpp" />
     <ClCompile Include="..\CocoGUILIB\Action\CocoGUIActionManager.cpp" />
     <ClCompile Include="..\CocoGUILIB\Action\CocoGUIActionNode.cpp" />
-    <ClCompile Include="..\CocoGUILIB\BaseClasses\CocoContainerWidget.cpp" />
-    <ClCompile Include="..\CocoGUILIB\BaseClasses\CocoRootWidget.cpp" />
-    <ClCompile Include="..\CocoGUILIB\BaseClasses\CocoWidget.cpp" />
-    <ClCompile Include="..\CocoGUILIB\CGraphics\CClipAbleLayerColor.cpp" />
-    <ClCompile Include="..\CocoGUILIB\CGraphics\CClipAbleLayerGradient.cpp" />
-    <ClCompile Include="..\CocoGUILIB\CGraphics\CClipAbleSprite.cpp" />
-    <ClCompile Include="..\CocoGUILIB\CGraphics\CLabelAtlas.cpp" />
-    <ClCompile Include="..\CocoGUILIB\CGraphics\CPrimitivesNode.cpp" />
-    <ClCompile Include="..\CocoGUILIB\CGraphics\CTextField.cpp" />
-    <ClCompile Include="..\CocoGUILIB\CGraphics\GUINodeRGBA.cpp" />
-    <ClCompile Include="..\CocoGUILIB\Component\CocoButton.cpp" />
-    <ClCompile Include="..\CocoGUILIB\Component\CocoCheckBox.cpp" />
-    <ClCompile Include="..\CocoGUILIB\Component\CocoControlButton.cpp" />
-    <ClCompile Include="..\CocoGUILIB\Component\CocoGradientPanel.cpp" />
-    <ClCompile Include="..\CocoGUILIB\Component\CocoImageView.cpp" />
-    <ClCompile Include="..\CocoGUILIB\Component\CocoLabel.cpp" />
-    <ClCompile Include="..\CocoGUILIB\Component\CocoLabelAtlas.cpp" />
-    <ClCompile Include="..\CocoGUILIB\Component\CocoLabelBMFont.cpp" />
-    <ClCompile Include="..\CocoGUILIB\Component\CocoListView.cpp" />
-    <ClCompile Include="..\CocoGUILIB\Component\CocoLoadingBar.cpp" />
-    <ClCompile Include="..\CocoGUILIB\Component\CocoNodeContainer.cpp" />
-    <ClCompile Include="..\CocoGUILIB\Component\CocoPageView.cpp" />
-    <ClCompile Include="..\CocoGUILIB\Component\CocoPanel.cpp" />
-    <ClCompile Include="..\CocoGUILIB\Component\CocoScrollView.cpp" />
-    <ClCompile Include="..\CocoGUILIB\Component\CocoSlider.cpp" />
-    <ClCompile Include="..\CocoGUILIB\Component\CocoTextArea.cpp" />
-    <ClCompile Include="..\CocoGUILIB\Component\CocoTextButton.cpp" />
-    <ClCompile Include="..\CocoGUILIB\Component\CocoTextField.cpp" />
+    <ClCompile Include="..\CocoGUILIB\BaseClasses\UIContainerWidget.cpp" />
+    <ClCompile Include="..\CocoGUILIB\BaseClasses\UIRootWidget.cpp" />
+    <ClCompile Include="..\CocoGUILIB\BaseClasses\UIWidget.cpp" />
+    <ClCompile Include="..\CocoGUILIB\Drawable\GUINodeRGBA.cpp" />
+    <ClCompile Include="..\CocoGUILIB\Drawable\UICCLabelAtlas.cpp" />
+    <ClCompile Include="..\CocoGUILIB\Drawable\UICCTextField.cpp" />
+    <ClCompile Include="..\CocoGUILIB\Drawable\UIClipAbleLayerColor.cpp" />
+    <ClCompile Include="..\CocoGUILIB\Drawable\UIClipAbleLayerGradient.cpp" />
+    <ClCompile Include="..\CocoGUILIB\Drawable\UIPrimitivesNode.cpp" />
     <ClCompile Include="..\CocoGUILIB\System\CCSReader.cpp" />
     <ClCompile Include="..\CocoGUILIB\System\CocosGUI.cpp" />
     <ClCompile Include="..\CocoGUILIB\System\UIHelper.cpp" />
     <ClCompile Include="..\CocoGUILIB\System\UIInputManager.cpp" />
     <ClCompile Include="..\CocoGUILIB\System\UILayer.cpp" />
     <ClCompile Include="..\CocoGUILIB\System\UIWidgetPool.cpp" />
+    <ClCompile Include="..\CocoGUILIB\UIWidgets\UIButton.cpp" />
+    <ClCompile Include="..\CocoGUILIB\UIWidgets\UICheckBox.cpp" />
+    <ClCompile Include="..\CocoGUILIB\UIWidgets\UIControlButton.cpp" />
+    <ClCompile Include="..\CocoGUILIB\UIWidgets\UIGradientPanel.cpp" />
+    <ClCompile Include="..\CocoGUILIB\UIWidgets\UIImageView.cpp" />
+    <ClCompile Include="..\CocoGUILIB\UIWidgets\UILabel.cpp" />
+    <ClCompile Include="..\CocoGUILIB\UIWidgets\UILabelAtlas.cpp" />
+    <ClCompile Include="..\CocoGUILIB\UIWidgets\UILabelBMFont.cpp" />
+    <ClCompile Include="..\CocoGUILIB\UIWidgets\UIListView.cpp" />
+    <ClCompile Include="..\CocoGUILIB\UIWidgets\UILoadingBar.cpp" />
+    <ClCompile Include="..\CocoGUILIB\UIWidgets\UINodeContainer.cpp" />
+    <ClCompile Include="..\CocoGUILIB\UIWidgets\UIPageView.cpp" />
+    <ClCompile Include="..\CocoGUILIB\UIWidgets\UIPanel.cpp" />
+    <ClCompile Include="..\CocoGUILIB\UIWidgets\UIScrollView.cpp" />
+    <ClCompile Include="..\CocoGUILIB\UIWidgets\UISlider.cpp" />
+    <ClCompile Include="..\CocoGUILIB\UIWidgets\UITextArea.cpp" />
+    <ClCompile Include="..\CocoGUILIB\UIWidgets\UITextButton.cpp" />
+    <ClCompile Include="..\CocoGUILIB\UIWidgets\UITextField.cpp" />
     <ClCompile Include="..\Components\CCComAttribute.cpp" />
     <ClCompile Include="..\Components\CCComAudio.cpp" />
     <ClCompile Include="..\Components\CCComController.cpp" />
@@ -303,40 +302,39 @@
     <ClInclude Include="..\CocoGUILIB\Action\CocoGUIActionFrame.h" />
     <ClInclude Include="..\CocoGUILIB\Action\CocoGUIActionManager.h" />
     <ClInclude Include="..\CocoGUILIB\Action\CocoGUIActionNode.h" />
-    <ClInclude Include="..\CocoGUILIB\BaseClasses\CocoContainerWidget.h" />
-    <ClInclude Include="..\CocoGUILIB\BaseClasses\CocoRootWidget.h" />
-    <ClInclude Include="..\CocoGUILIB\BaseClasses\CocoWidget.h" />
-    <ClInclude Include="..\CocoGUILIB\CGraphics\CClipAbleLayerColor.h" />
-    <ClInclude Include="..\CocoGUILIB\CGraphics\CClipAbleLayerGradient.h" />
-    <ClInclude Include="..\CocoGUILIB\CGraphics\CClipAbleSprite.h" />
-    <ClInclude Include="..\CocoGUILIB\CGraphics\CLabelAtlas.h" />
-    <ClInclude Include="..\CocoGUILIB\CGraphics\CPrimitivesNode.h" />
-    <ClInclude Include="..\CocoGUILIB\CGraphics\CTextField.h" />
-    <ClInclude Include="..\CocoGUILIB\CGraphics\GUINodeRGBA.h" />
-    <ClInclude Include="..\CocoGUILIB\Component\CocoButton.h" />
-    <ClInclude Include="..\CocoGUILIB\Component\CocoCheckBox.h" />
-    <ClInclude Include="..\CocoGUILIB\Component\CocoControlButton.h" />
-    <ClInclude Include="..\CocoGUILIB\Component\CocoGradientPanel.h" />
-    <ClInclude Include="..\CocoGUILIB\Component\CocoImageView.h" />
-    <ClInclude Include="..\CocoGUILIB\Component\CocoLabel.h" />
-    <ClInclude Include="..\CocoGUILIB\Component\CocoLabelAtlas.h" />
-    <ClInclude Include="..\CocoGUILIB\Component\CocoLabelBMFont.h" />
-    <ClInclude Include="..\CocoGUILIB\Component\CocoListView.h" />
-    <ClInclude Include="..\CocoGUILIB\Component\CocoLoadingBar.h" />
-    <ClInclude Include="..\CocoGUILIB\Component\CocoNodeContainer.h" />
-    <ClInclude Include="..\CocoGUILIB\Component\CocoPageView.h" />
-    <ClInclude Include="..\CocoGUILIB\Component\CocoPanel.h" />
-    <ClInclude Include="..\CocoGUILIB\Component\CocoScrollView.h" />
-    <ClInclude Include="..\CocoGUILIB\Component\CocoSlider.h" />
-    <ClInclude Include="..\CocoGUILIB\Component\CocoTextArea.h" />
-    <ClInclude Include="..\CocoGUILIB\Component\CocoTextButton.h" />
-    <ClInclude Include="..\CocoGUILIB\Component\CocoTextField.h" />
+    <ClInclude Include="..\CocoGUILIB\BaseClasses\UIContainerWidget.h" />
+    <ClInclude Include="..\CocoGUILIB\BaseClasses\UIRootWidget.h" />
+    <ClInclude Include="..\CocoGUILIB\BaseClasses\UIWidget.h" />
+    <ClInclude Include="..\CocoGUILIB\Drawable\GUINodeRGBA.h" />
+    <ClInclude Include="..\CocoGUILIB\Drawable\UICCLabelAtlas.h" />
+    <ClInclude Include="..\CocoGUILIB\Drawable\UICCTextField.h" />
+    <ClInclude Include="..\CocoGUILIB\Drawable\UIClipAbleLayerColor.h" />
+    <ClInclude Include="..\CocoGUILIB\Drawable\UIClipAbleLayerGradient.h" />
+    <ClInclude Include="..\CocoGUILIB\Drawable\UIPrimitivesNode.h" />
     <ClInclude Include="..\CocoGUILIB\System\CCSReader.h" />
     <ClInclude Include="..\CocoGUILIB\System\CocosGUI.h" />
     <ClInclude Include="..\CocoGUILIB\System\UIHelper.h" />
     <ClInclude Include="..\CocoGUILIB\System\UIInputManager.h" />
     <ClInclude Include="..\CocoGUILIB\System\UILayer.h" />
     <ClInclude Include="..\CocoGUILIB\System\UIWidgetPool.h" />
+    <ClInclude Include="..\CocoGUILIB\UIWidgets\UIButton.h" />
+    <ClInclude Include="..\CocoGUILIB\UIWidgets\UICheckBox.h" />
+    <ClInclude Include="..\CocoGUILIB\UIWidgets\UIControlButton.h" />
+    <ClInclude Include="..\CocoGUILIB\UIWidgets\UIGradientPanel.h" />
+    <ClInclude Include="..\CocoGUILIB\UIWidgets\UIImageView.h" />
+    <ClInclude Include="..\CocoGUILIB\UIWidgets\UILabel.h" />
+    <ClInclude Include="..\CocoGUILIB\UIWidgets\UILabelAtlas.h" />
+    <ClInclude Include="..\CocoGUILIB\UIWidgets\UILabelBMFont.h" />
+    <ClInclude Include="..\CocoGUILIB\UIWidgets\UIListView.h" />
+    <ClInclude Include="..\CocoGUILIB\UIWidgets\UILoadingBar.h" />
+    <ClInclude Include="..\CocoGUILIB\UIWidgets\UINodeContainer.h" />
+    <ClInclude Include="..\CocoGUILIB\UIWidgets\UIPageView.h" />
+    <ClInclude Include="..\CocoGUILIB\UIWidgets\UIPanel.h" />
+    <ClInclude Include="..\CocoGUILIB\UIWidgets\UIScrollView.h" />
+    <ClInclude Include="..\CocoGUILIB\UIWidgets\UISlider.h" />
+    <ClInclude Include="..\CocoGUILIB\UIWidgets\UITextArea.h" />
+    <ClInclude Include="..\CocoGUILIB\UIWidgets\UITextButton.h" />
+    <ClInclude Include="..\CocoGUILIB\UIWidgets\UITextField.h" />
     <ClInclude Include="..\Components\CCComAttribute.h" />
     <ClInclude Include="..\Components\CCComAudio.h" />
     <ClInclude Include="..\Components\CCComController.h" />
