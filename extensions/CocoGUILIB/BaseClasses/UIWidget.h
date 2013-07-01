@@ -220,6 +220,7 @@ public:
     void setUseMergedTexture(bool useMergedTexture);
     bool getUseMergedTexture();
     WidgetType getWidgetType();
+    WidgetName getWidgetName();
 protected:
     virtual bool init();
     virtual void initNodes();

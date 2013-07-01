@@ -1179,4 +1179,9 @@ WidgetType UIWidget::getWidgetType()
     return m_WidgetType;
 }
 
+WidgetName UIWidget::getWidgetName()
+{
+    return m_WidgetName;
+}
+
 NS_CC_EXT_END
