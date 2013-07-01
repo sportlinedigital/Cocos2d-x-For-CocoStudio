@@ -22,18 +22,18 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#ifndef __COCOGUIACTIONNODE_H__
-#define __COCOGUIACTIONNODE_H__
+#ifndef __UIACTIONNODE_H__
+#define __UIACTIONNODE_H__
 
 #include "cocos2d.h"
 #include "ExtensionMacros.h"
 #include "UIWidget.h"
-#include "CocoGUIActionFrame.h"
+#include "UIActionFrame.h"
 #include "../../CCArmature/external_tool/Json/CSContentJsonDictionary.h"
 
 NS_CC_EXT_BEGIN
 
-class CocoGUIActionNode:public cocos2d::CCObject
+class UIActionNode:public cocos2d::CCObject
 {
 protected:
 	int currentIndex;
@@ -43,18 +43,18 @@ protected:
 	cocos2d::CCArray* m_ActionFrameList;/*action frame*/
     CC_SYNTHESIZE(const char*, m_name, Name);
 public:
-    CocoGUIActionNode();
-    virtual ~CocoGUIActionNode();
+    UIActionNode();
+    virtual ~UIActionNode();
 
 	void SetActionNode(UIWidget* widget);
 
-	void InsertFrame(int index, CocoGUIActionFrame* frame);
-	void AddFrame(CocoGUIActionFrame* frame);
-	void DeleteFrame(CocoGUIActionFrame* frame);
+	void InsertFrame(int index, UIActionFrame* frame);
+	void AddFrame(UIActionFrame* frame);
+	void DeleteFrame(UIActionFrame* frame);
 	void ClearAllFrame();
 
 	void UpdateToFrameByIndex(int index);
-	void UpdateToFrame(CocoGUIActionFrame* frame);
+	void UpdateToFrame(UIActionFrame* frame);
 
 	void RunAction(float fUnitTime, bool bloop);
 	void StopAction();

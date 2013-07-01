@@ -22,8 +22,8 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#ifndef __UIClipAbleLayerGradient_H__
-#define __UIClipAbleLayerGradient_H__
+#ifndef __UICLIPABLELAYERGRADIENT_H__
+#define __UICLIPABLELAYERGRADIENT_H__
 
 #include "cocos2d.h"
 #include "ExtensionMacros.h"

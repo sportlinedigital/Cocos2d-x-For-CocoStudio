@@ -22,8 +22,8 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#ifndef __COCOGUIACTIONFRAME_H__
-#define __COCOGUIACTIONFRAME_H__
+#ifndef __UIACTIONFRAME_H__
+#define __UIACTIONFRAME_H__
 
 #include "cocos2d.h"
 #include "ExtensionMacros.h"
@@ -31,13 +31,13 @@
 
 NS_CC_EXT_BEGIN
 
-class CocoGUIActionFrame:public cocos2d::CCObject
+class UIActionFrame:public cocos2d::CCObject
 {
 protected:
 
 public:
-    CocoGUIActionFrame();
-    virtual ~CocoGUIActionFrame();
+    UIActionFrame();
+    virtual ~UIActionFrame();
 	//
 	CC_SYNTHESIZE(float, m_frameId, FrameId);
 	//

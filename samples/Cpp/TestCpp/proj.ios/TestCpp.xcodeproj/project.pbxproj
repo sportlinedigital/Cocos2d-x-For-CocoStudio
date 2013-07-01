@@ -373,10 +373,10 @@
 		50D5FE221779BFF6005E064C /* UILayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50D5FDFB1779BFF6005E064C /* UILayer.cpp */; };
 		50D5FE241779BFF6005E064C /* UIWidgetPool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50D5FDFF1779BFF6005E064C /* UIWidgetPool.cpp */; };
 		50D5FE2C1779C246005E064C /* CocosGUIScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50D5FE2A1779C246005E064C /* CocosGUIScene.cpp */; };
-		50D5FE361779C63D005E064C /* CocoGUIAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50D5FE2E1779C63D005E064C /* CocoGUIAction.cpp */; };
-		50D5FE371779C63D005E064C /* CocoGUIActionFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50D5FE301779C63D005E064C /* CocoGUIActionFrame.cpp */; };
-		50D5FE381779C63D005E064C /* CocoGUIActionManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50D5FE321779C63D005E064C /* CocoGUIActionManager.cpp */; };
-		50D5FE391779C63D005E064C /* CocoGUIActionNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50D5FE341779C63D005E064C /* CocoGUIActionNode.cpp */; };
+		50D5FE361779C63D005E064C /* UIAction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50D5FE2E1779C63D005E064C /* UIAction.cpp */; };
+		50D5FE371779C63D005E064C /* UIActionFrame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50D5FE301779C63D005E064C /* UIActionFrame.cpp */; };
+		50D5FE381779C63D005E064C /* UIActionManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50D5FE321779C63D005E064C /* UIActionManager.cpp */; };
+		50D5FE391779C63D005E064C /* UIActionNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50D5FE341779C63D005E064C /* UIActionNode.cpp */; };
 		50E32A70177C86A20027ED05 /* slot in Resources */ = {isa = PBXBuildFile; fileRef = 50E32A6F177C86A20027ED05 /* slot */; };
 		50E32A73177C86C30027ED05 /* CocosGUISlotScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50E32A71177C86C30027ED05 /* CocosGUISlotScene.cpp */; };
 		6442E66D17297DB40008499D /* TextureAtlasEncryptionTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6442E66B17297DB40008499D /* TextureAtlasEncryptionTest.cpp */; };
@@ -1174,14 +1174,14 @@
 		50D5FE001779BFF6005E064C /* UIWidgetPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIWidgetPool.h; sourceTree = "<group>"; };
 		50D5FE2A1779C246005E064C /* CocosGUIScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocosGUIScene.cpp; sourceTree = "<group>"; };
 		50D5FE2B1779C246005E064C /* CocosGUIScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosGUIScene.h; sourceTree = "<group>"; };
-		50D5FE2E1779C63D005E064C /* CocoGUIAction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoGUIAction.cpp; sourceTree = "<group>"; };
-		50D5FE2F1779C63D005E064C /* CocoGUIAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoGUIAction.h; sourceTree = "<group>"; };
-		50D5FE301779C63D005E064C /* CocoGUIActionFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoGUIActionFrame.cpp; sourceTree = "<group>"; };
-		50D5FE311779C63D005E064C /* CocoGUIActionFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoGUIActionFrame.h; sourceTree = "<group>"; };
-		50D5FE321779C63D005E064C /* CocoGUIActionManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoGUIActionManager.cpp; sourceTree = "<group>"; };
-		50D5FE331779C63D005E064C /* CocoGUIActionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoGUIActionManager.h; sourceTree = "<group>"; };
-		50D5FE341779C63D005E064C /* CocoGUIActionNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocoGUIActionNode.cpp; sourceTree = "<group>"; };
-		50D5FE351779C63D005E064C /* CocoGUIActionNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoGUIActionNode.h; sourceTree = "<group>"; };
+		50D5FE2E1779C63D005E064C /* UIAction.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIAction.cpp; sourceTree = "<group>"; };
+		50D5FE2F1779C63D005E064C /* UIAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIAction.h; sourceTree = "<group>"; };
+		50D5FE301779C63D005E064C /* UIActionFrame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIActionFrame.cpp; sourceTree = "<group>"; };
+		50D5FE311779C63D005E064C /* UIActionFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIActionFrame.h; sourceTree = "<group>"; };
+		50D5FE321779C63D005E064C /* UIActionManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIActionManager.cpp; sourceTree = "<group>"; };
+		50D5FE331779C63D005E064C /* UIActionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIActionManager.h; sourceTree = "<group>"; };
+		50D5FE341779C63D005E064C /* UIActionNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIActionNode.cpp; sourceTree = "<group>"; };
+		50D5FE351779C63D005E064C /* UIActionNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIActionNode.h; sourceTree = "<group>"; };
 		50E32A6F177C86A20027ED05 /* slot */ = {isa = PBXFileReference; lastKnownFileType = folder; path = slot; sourceTree = "<group>"; };
 		50E32A71177C86C30027ED05 /* CocosGUISlotScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocosGUISlotScene.cpp; sourceTree = "<group>"; };
 		50E32A72177C86C30027ED05 /* CocosGUISlotScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosGUISlotScene.h; sourceTree = "<group>"; };
@@ -2998,14 +2998,14 @@
 		50D5FE2D1779C63D005E064C /* Action */ = {
 			isa = PBXGroup;
 			children = (
-				50D5FE2E1779C63D005E064C /* CocoGUIAction.cpp */,
-				50D5FE2F1779C63D005E064C /* CocoGUIAction.h */,
-				50D5FE301779C63D005E064C /* CocoGUIActionFrame.cpp */,
-				50D5FE311779C63D005E064C /* CocoGUIActionFrame.h */,
-				50D5FE321779C63D005E064C /* CocoGUIActionManager.cpp */,
-				50D5FE331779C63D005E064C /* CocoGUIActionManager.h */,
-				50D5FE341779C63D005E064C /* CocoGUIActionNode.cpp */,
-				50D5FE351779C63D005E064C /* CocoGUIActionNode.h */,
+				50D5FE2E1779C63D005E064C /* UIAction.cpp */,
+				50D5FE2F1779C63D005E064C /* UIAction.h */,
+				50D5FE301779C63D005E064C /* UIActionFrame.cpp */,
+				50D5FE311779C63D005E064C /* UIActionFrame.h */,
+				50D5FE321779C63D005E064C /* UIActionManager.cpp */,
+				50D5FE331779C63D005E064C /* UIActionManager.h */,
+				50D5FE341779C63D005E064C /* UIActionNode.cpp */,
+				50D5FE351779C63D005E064C /* UIActionNode.h */,
 			);
 			path = Action;
 			sourceTree = "<group>";
@@ -3511,10 +3511,10 @@
 				50D5FE221779BFF6005E064C /* UILayer.cpp in Sources */,
 				50D5FE241779BFF6005E064C /* UIWidgetPool.cpp in Sources */,
 				50D5FE2C1779C246005E064C /* CocosGUIScene.cpp in Sources */,
-				50D5FE361779C63D005E064C /* CocoGUIAction.cpp in Sources */,
-				50D5FE371779C63D005E064C /* CocoGUIActionFrame.cpp in Sources */,
-				50D5FE381779C63D005E064C /* CocoGUIActionManager.cpp in Sources */,
-				50D5FE391779C63D005E064C /* CocoGUIActionNode.cpp in Sources */,
+				50D5FE361779C63D005E064C /* UIAction.cpp in Sources */,
+				50D5FE371779C63D005E064C /* UIActionFrame.cpp in Sources */,
+				50D5FE381779C63D005E064C /* UIActionManager.cpp in Sources */,
+				50D5FE391779C63D005E064C /* UIActionNode.cpp in Sources */,
 				50E32A73177C86C30027ED05 /* CocosGUISlotScene.cpp in Sources */,
 				50992024178057CA0062E19E /* GUINodeRGBA.cpp in Sources */,
 				50992025178057CA0062E19E /* UICCLabelAtlas.cpp in Sources */,

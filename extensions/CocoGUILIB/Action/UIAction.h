@@ -22,23 +22,23 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#ifndef __COCOGUIACTION_H__
-#define __COCOGUIACTION_H__
+#ifndef __UIACTION_H__
+#define __UIACTION_H__
 
 #include "cocos2d.h"
 #include "ExtensionMacros.h"
-#include "CocoGUIActionNode.h"
+#include "UIActionNode.h"
 #include "../../CCArmature/external_tool/Json/CSContentJsonDictionary.h"
 
 NS_CC_EXT_BEGIN
 
-class CocoGUIAction:public cocos2d::CCObject
+class UIAction:public cocos2d::CCObject
 {
 protected:
 	cocos2d::CCArray* m_ActionNodeList;/*actionnode*/
 public:
-    CocoGUIAction();
-    virtual ~CocoGUIAction();
+    UIAction();
+    virtual ~UIAction();
 
 	void Play();
 	void Pause();

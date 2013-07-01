@@ -22,76 +22,76 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#include "CocoGUIAction.h"
-#include "CocoGUIActionNode.h"
+#include "UIAction.h"
+#include "UIActionNode.h"
 #include "../../JsonReader/DictionaryHelper.h"
 
 
 NS_CC_EXT_BEGIN
 
-CocoGUIAction::CocoGUIAction()
+UIAction::UIAction()
 {
 	m_ActionNodeList = cocos2d::CCArray::create();
 	m_ActionNodeList->retain();
 }
 
-CocoGUIAction::~CocoGUIAction()
+UIAction::~UIAction()
 {
 	m_ActionNodeList->removeAllObjects();
 	m_ActionNodeList->release();
 }
 
-void CocoGUIAction::initWithDictionary(cs::CSJsonDictionary *dic,UIWidget* root)
+void UIAction::initWithDictionary(cs::CSJsonDictionary *dic,UIWidget* root)
 {
     this->setName(DICTOOL->getStringValue_json(dic, "name"));
     this->setLoop(DICTOOL->getBooleanValue_json(dic, "loop"));
     this->setUnitTime(DICTOOL->getFloatValue_json(dic, "unittime"));
     int actionNodeCount = DICTOOL->getArrayCount_json(dic, "actionnodelist");
     for (int i=0; i<actionNodeCount; i++) {
-        CocoGUIActionNode* actionNode = new CocoGUIActionNode();
+        UIActionNode* actionNode = new UIActionNode();
         cs::CSJsonDictionary* actionNodeDic = DICTOOL->getDictionaryFromArray_json(dic, "actionnodelist", i);
         actionNode->initWithDictionary(actionNodeDic,root);
         this->m_ActionNodeList->addObject(actionNode);
     }
 }
 
-void CocoGUIAction::Play()
+void UIAction::Play()
 {
 	int frameNum = m_ActionNodeList->count();
 
 	for ( int i = 0; i < frameNum; i++ )
 	{
-		CocoGUIActionNode* actionNode = (CocoGUIActionNode*)m_ActionNodeList->objectAtIndex(i);
+		UIActionNode* actionNode = (UIActionNode*)m_ActionNodeList->objectAtIndex(i);
 
 		actionNode->RunAction( this->getUnitTime(),this->getLoop() );
 	}
 
 }
 
-void CocoGUIAction::Pause()
+void UIAction::Pause()
 {
 
 }
 
-void CocoGUIAction::Stop()
+void UIAction::Stop()
 {
 	int frameNum = m_ActionNodeList->count();
 
 	for ( int i = 0; i < frameNum; i++ )
 	{
-		CocoGUIActionNode* actionNode = (CocoGUIActionNode*)m_ActionNodeList->objectAtIndex(i);
+		UIActionNode* actionNode = (UIActionNode*)m_ActionNodeList->objectAtIndex(i);
 
 		actionNode->StopAction();
 	}
 }
 
-void CocoGUIAction::UpdateToFrameByIndex(int index)
+void UIAction::UpdateToFrameByIndex(int index)
 {
 	int frameNum = m_ActionNodeList->count();
 
 	for ( int i = 0; i < frameNum; i++ )
 	{
-		CocoGUIActionNode* actionNode = (CocoGUIActionNode*)m_ActionNodeList->objectAtIndex(i);
+		UIActionNode* actionNode = (UIActionNode*)m_ActionNodeList->objectAtIndex(i);
 
 		actionNode->UpdateToFrameByIndex(index);
 	}
