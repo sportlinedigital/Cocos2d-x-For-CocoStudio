@@ -393,18 +393,6 @@
     <ClCompile Include="..\JsonReader\DictionaryHelper.cpp">
       <Filter>JsonReader</Filter>
     </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\Action\CocoGUIAction.cpp">
-      <Filter>CocoGUILIB\Action</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\Action\CocoGUIActionFrame.cpp">
-      <Filter>CocoGUILIB\Action</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\Action\CocoGUIActionManager.cpp">
-      <Filter>CocoGUILIB\Action</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\Action\CocoGUIActionNode.cpp">
-      <Filter>CocoGUILIB\Action</Filter>
-    </ClCompile>
     <ClCompile Include="..\CocoGUILIB\BaseClasses\UIContainerWidget.cpp">
       <Filter>CocoGUILIB\BaseClasses</Filter>
     </ClCompile>
@@ -503,6 +491,18 @@
     </ClCompile>
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UITextField.cpp">
       <Filter>CocoGUILIB\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\Action\UIAction.cpp">
+      <Filter>CocoGUILIB\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\Action\UIActionFrame.cpp">
+      <Filter>CocoGUILIB\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\Action\UIActionManager.cpp">
+      <Filter>CocoGUILIB\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\Action\UIActionNode.cpp">
+      <Filter>CocoGUILIB\Action</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -793,18 +793,6 @@
     <ClInclude Include="..\JsonReader\DictionaryHelper.h">
       <Filter>JsonReader</Filter>
     </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\Action\CocoGUIAction.h">
-      <Filter>CocoGUILIB\Action</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\Action\CocoGUIActionFrame.h">
-      <Filter>CocoGUILIB\Action</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\Action\CocoGUIActionManager.h">
-      <Filter>CocoGUILIB\Action</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\Action\CocoGUIActionNode.h">
-      <Filter>CocoGUILIB\Action</Filter>
-    </ClInclude>
     <ClInclude Include="..\CocoGUILIB\BaseClasses\UIContainerWidget.h">
       <Filter>CocoGUILIB\BaseClasses</Filter>
     </ClInclude>
@@ -903,6 +891,18 @@
     </ClInclude>
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UITextField.h">
       <Filter>CocoGUILIB\System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\Action\UIAction.h">
+      <Filter>CocoGUILIB\Action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\Action\UIActionFrame.h">
+      <Filter>CocoGUILIB\Action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\Action\UIActionManager.h">
+      <Filter>CocoGUILIB\Action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\Action\UIActionNode.h">
+      <Filter>CocoGUILIB\Action</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
