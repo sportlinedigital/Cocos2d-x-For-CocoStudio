@@ -26,6 +26,7 @@
 #include "CCScale9Sprite.h"
 #include "UIClipAbleLayerColor.h"
 
+
 NS_CC_EXT_BEGIN
 
 #define DYNAMIC_CAST_CLIPLAYERCOLOR dynamic_cast<UIClipAbleLayerColor*>(this->m_pCCRenderNode)
