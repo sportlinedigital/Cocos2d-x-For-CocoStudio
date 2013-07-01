@@ -42,10 +42,10 @@ public:
     
     virtual bool removeChild(UIWidget* widget, bool cleanup);
     virtual void removeAllChildrenAndCleanUp(bool cleanup);
-    virtual bool onTouchBegan(cocos2d::CCPoint &touchPoint);
-    virtual bool onTouchMoved(cocos2d::CCPoint &touchPoint);
-    virtual bool onTouchEnded(cocos2d::CCPoint &touchPoint);
-    virtual bool onTouchCancelled(cocos2d::CCPoint &touchPoint);
+    virtual void onTouchBegan(cocos2d::CCPoint &touchPoint);
+    virtual void onTouchMoved(cocos2d::CCPoint &touchPoint);
+    virtual void onTouchEnded(cocos2d::CCPoint &touchPoint);
+    virtual void onTouchCancelled(cocos2d::CCPoint &touchPoint);
 protected:
     virtual bool addChild(UIWidget* widget);
     virtual bool init();

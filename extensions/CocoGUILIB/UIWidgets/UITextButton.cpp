@@ -29,7 +29,7 @@ NS_CC_EXT_BEGIN
 UITextButton::UITextButton():
 m_pTextLable(NULL)
 {
-    
+    m_WidgetName = WIDGET_TEXTBUTTON;
 }
 
 UITextButton::~UITextButton()

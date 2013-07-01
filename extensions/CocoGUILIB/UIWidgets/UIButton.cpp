@@ -33,8 +33,7 @@ m_pButtonClicked(NULL),
 m_pButtonDisable(NULL),
 m_bScale9Enable(false)
 {
-    
-
+    m_WidgetName = WIDGET_BUTTON;
 }
 
 UIButton::~UIButton()
@@ -328,6 +327,10 @@ void UIButton::setAnchorPoint(const cocos2d::CCPoint &pt)
 
 void UIButton::setNormalSpriteFrame(cocos2d::CCSpriteFrame *frame)
 {
+    if (!frame)
+    {
+        return;
+    }
     if (m_bScale9Enable)
     {
         dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pButtonNormal)->setSpriteFrame(frame);
@@ -340,6 +343,10 @@ void UIButton::setNormalSpriteFrame(cocos2d::CCSpriteFrame *frame)
 
 void UIButton::setPressedSpriteFrame(cocos2d::CCSpriteFrame *frame)
 {
+    if (!frame)
+    {
+        return;
+    }
     if (m_bScale9Enable)
     {
         dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pButtonClicked)->setSpriteFrame(frame);
@@ -352,6 +359,10 @@ void UIButton::setPressedSpriteFrame(cocos2d::CCSpriteFrame *frame)
 
 void UIButton::setDisabledSpriteFrame(cocos2d::CCSpriteFrame *frame)
 {
+    if (!frame)
+    {
+        return;
+    }
     if (m_bScale9Enable)
     {
         dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pButtonDisable)->setSpriteFrame(frame);

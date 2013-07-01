@@ -36,6 +36,7 @@ m_fBarHeight(0),
 m_pRenderBar(NULL),
 m_bUseSpriteFrame(false)
 {
+    m_WidgetName = WIDGET_LOADINGBAR;
 }
 
 UILoadingBar::~UILoadingBar()

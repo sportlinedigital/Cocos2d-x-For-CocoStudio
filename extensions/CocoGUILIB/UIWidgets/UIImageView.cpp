@@ -41,7 +41,7 @@ m_bScale9Enable(false),
 m_pImageRender(NULL),
 m_strTextureFile("")
 {
-
+    m_WidgetName = WIDGET_IMAGEVIEW;
 }
 
 UIImageView::~UIImageView()
@@ -107,7 +107,7 @@ void UIImageView::setTextureRect(const cocos2d::CCRect &rect)
     }
 }
 
-bool UIImageView::onTouchBegan(cocos2d::CCPoint &touchPoint)
+void UIImageView::onTouchBegan(cocos2d::CCPoint &touchPoint)
 {
     this->setFocus(true);
     this->m_touchStartPos.x = touchPoint.x;
@@ -122,10 +122,9 @@ bool UIImageView::onTouchBegan(cocos2d::CCPoint &touchPoint)
         this->m_nClickCount++;
         this->m_touchRelease = false;
     }
-    return true;
 }
 
-bool UIImageView::onTouchEnded(cocos2d::CCPoint &touchPoint)
+void UIImageView::onTouchEnded(cocos2d::CCPoint &touchPoint)
 {
     if (this->m_bDoubleClickEnable)
     {
@@ -144,7 +143,6 @@ bool UIImageView::onTouchEnded(cocos2d::CCPoint &touchPoint)
     {
         UIWidget::onTouchEnded(touchPoint);
     }
-    return true;
 }
 
 void UIImageView::doubleClickEvent()
@@ -285,6 +283,10 @@ void UIImageView::setScale9Size(float width, float height)
 
 void UIImageView::setDisplayFrame(cocos2d::CCSpriteFrame *pNewFrame)
 {
+    if (!pNewFrame)
+    {
+        return;
+    }
     if (this->m_bScale9Enable)
     {
 //        DYNAMIC_CAST_SCALE9SPRITE->setDisplayFrame(pNewFrame);
@@ -297,6 +299,10 @@ void UIImageView::setDisplayFrame(cocos2d::CCSpriteFrame *pNewFrame)
 
 void UIImageView::setSpriteFrame(cocos2d::CCSpriteFrame *pNewFrame)
 {
+    if (!pNewFrame)
+    {
+        return;
+    }
     if (this->m_bScale9Enable)
     {
         DYNAMIC_CAST_SCALE9SPRITE->setSpriteFrame(pNewFrame);

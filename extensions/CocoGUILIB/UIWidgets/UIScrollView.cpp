@@ -88,7 +88,7 @@ m_pfnBerthToRightSelector(NULL),
 m_pBerthToHorizontalCenterListener(NULL),
 m_pfnBerthToHorizontalCenterSelector(NULL)
 {
-    
+    m_WidgetName = WIDGET_SCROLLVIEW;
 }
 
 UIScrollView::~UIScrollView()
@@ -246,6 +246,11 @@ void UIScrollView::initProperty()
 
 void UIScrollView::resetProperty()
 {
+    if (m_children->count() <= 0)
+    {
+        return;
+    }
+    
     float scroll_top = m_fTopBoundary;
     float scroll_left = m_fLeftBoundary;
     
@@ -1073,6 +1078,10 @@ void UIScrollView::drag(float offset)
 
 void UIScrollView::startRecordSlidAction()
 {
+    if (m_children->count() <= 0)
+    {
+        return;
+    }
     if (this->m_bAutoScroll){
         this->stopAutoScrollChildren();
     }
@@ -1091,6 +1100,10 @@ void UIScrollView::startRecordSlidAction()
 
 void UIScrollView::endRecordSlidAction()
 {
+    if (m_children->count() <= 0)
+    {
+        return;
+    }
     if (this->m_fSlidTime <= 0.016f)
     {
         return;
@@ -1192,35 +1205,32 @@ void UIScrollView::handleReleaseLogic(cocos2d::CCPoint &touchPoint)
     this->endRecordSlidAction();
 }    
 
-bool UIScrollView::onTouchBegan(cocos2d::CCPoint &touchPoint)
+void UIScrollView::onTouchBegan(cocos2d::CCPoint &touchPoint)
 {
     UIPanel::onTouchBegan(touchPoint);
     this->handlePressLogic(touchPoint);
-    return true;
 }
 
-bool UIScrollView::onTouchMoved(cocos2d::CCPoint &touchPoint)
+void UIScrollView::onTouchMoved(cocos2d::CCPoint &touchPoint)
 {
     UIPanel::onTouchMoved(touchPoint);
     this->handleMoveLogic(touchPoint);
-    return true;
 }
 
-bool UIScrollView::onTouchEnded(cocos2d::CCPoint &touchPoint)
+void UIScrollView::onTouchEnded(cocos2d::CCPoint &touchPoint)
 {
     UIPanel::onTouchEnded(touchPoint);
     this->handleReleaseLogic(touchPoint);
-    return true;
 }
 
-bool UIScrollView::onTouchCancelled(cocos2d::CCPoint &touchPoint)
+void UIScrollView::onTouchCancelled(cocos2d::CCPoint &touchPoint)
 {
-    return UIPanel::onTouchCancelled(touchPoint);
+    UIPanel::onTouchCancelled(touchPoint);
 }
 
-bool UIScrollView::onTouchLongClicked(cocos2d::CCPoint &touchPoint)
+void UIScrollView::onTouchLongClicked(cocos2d::CCPoint &touchPoint)
 {
-    return true;
+    
 }
 
 void UIScrollView::update(float dt)
@@ -1449,6 +1459,8 @@ void UIScrollView::stopAction()
 void UIScrollView::setDirection(SCROLLVIEW_DIR dir)
 {
     m_eDirection = dir;
+    
+    resetProperty();
 }
 
 SCROLLVIEW_DIR UIScrollView::getDirection()
