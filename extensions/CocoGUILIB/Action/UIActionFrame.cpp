@@ -22,21 +22,21 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#include "CocoGUIActionFrame.h"
+#include "UIActionFrame.h"
 #include "../../JsonReader/DictionaryHelper.h"
 
 NS_CC_EXT_BEGIN
 
-CocoGUIActionFrame::CocoGUIActionFrame()
+UIActionFrame::UIActionFrame()
 {
 
 }
-CocoGUIActionFrame::~CocoGUIActionFrame()
+UIActionFrame::~UIActionFrame()
 {
 
 }
 
-void CocoGUIActionFrame::initWithDictionary(cs::CSJsonDictionary *dic)
+void UIActionFrame::initWithDictionary(cs::CSJsonDictionary *dic)
 {
     this->setFrameId(DICTOOL->getIntValue_json(dic, "frameid"));
     this->setStartTime(DICTOOL->getFloatValue_json(dic, "starttime"));
