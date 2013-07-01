@@ -39,7 +39,7 @@ public:
     UIActionFrame();
     virtual ~UIActionFrame();
 	//
-	CC_SYNTHESIZE(float, m_frameId, FrameId);
+	CC_SYNTHESIZE(int, m_frameId, FrameId);
 	//
 	CC_SYNTHESIZE(float, m_startTime, StartTime);
 	//
