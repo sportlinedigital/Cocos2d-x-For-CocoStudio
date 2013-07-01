@@ -144,6 +144,16 @@ void UILabel::setFlipY(bool flipY)
     m_pRenderLabel->setFlipY(flipY);
 }
 
+bool UILabel::isFlipX()
+{
+    return m_pRenderLabel->isFlipX();
+}
+
+bool UILabel::isFlipY()
+{
+    return m_pRenderLabel->isFlipY();
+}
+
 void UILabel::setGravity(LabelGravity gravity)
 {
     this->m_nGravity = gravity;

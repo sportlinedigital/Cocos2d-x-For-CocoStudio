@@ -34,10 +34,24 @@ class UIPageView : public UIPanel{
 public:
     UIPageView();
     virtual ~UIPageView();
-    static UIPageView* create();               
-protected:
-protected:
+    static UIPageView* create();
+    void addWidgetToPage(UIWidget* widget, int pageIdx, bool forceCreate);
+    void addPage(UIContainerWidget* page);
+    void insertPage(UIContainerWidget* page, int idx);
+    void removePage(UIContainerWidget* page, bool cleanup);
     
+    virtual bool removeChild(UIWidget* widget, bool cleanup);
+    virtual void removeAllChildrenAndCleanUp(bool cleanup);
+    virtual bool onTouchBegan(cocos2d::CCPoint &touchPoint);
+    virtual bool onTouchMoved(cocos2d::CCPoint &touchPoint);
+    virtual bool onTouchEnded(cocos2d::CCPoint &touchPoint);
+    virtual bool onTouchCancelled(cocos2d::CCPoint &touchPoint);
+protected:
+    virtual bool addChild(UIWidget* widget);
+    virtual bool init();
+protected:
+    int m_nCurPageIdx;
+    CCArray* m_pages;
 };
 
 NS_CC_EXT_END

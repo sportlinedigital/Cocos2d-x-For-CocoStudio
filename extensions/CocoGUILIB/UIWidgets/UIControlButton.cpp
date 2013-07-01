@@ -156,24 +156,28 @@ void UIControlButton::setAnchorPoint(const cocos2d::CCPoint &pt)
     m_pDisabledBackGround->setAnchorPoint(pt);
 }
 
-void UIControlButton::setColor(int r,int g,int b)
-{
-    
-}
-
-void UIControlButton::setOpacity(int opcity)
-{
-    
-}
-
 void UIControlButton::setFlipX(bool flipX)
 {
-    
+    m_pNormalTitle->setFlipX(flipX);
+    m_pPressedTitle->setFlipX(flipX);
+    m_pDisabledTitle->setFlipX(flipX);
 }
 
 void UIControlButton::setFlipY(bool flipY)
 {
-    
+    m_pNormalTitle->setFlipY(flipY);
+    m_pPressedTitle->setFlipY(flipY);
+    m_pDisabledTitle->setFlipY(flipY);
+}
+
+bool UIControlButton::isFlipX()
+{
+    return this->m_pNormalTitle->isFlipX();
+}
+
+bool UIControlButton::isFlipY()
+{
+    return this->m_pNormalTitle->isFlipY();
 }
 
 void UIControlButton::setNormalTitle(const char *title)

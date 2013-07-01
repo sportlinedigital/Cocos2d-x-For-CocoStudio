@@ -123,7 +123,7 @@ UIWidget* CCSReader::widgetFromJsonDictionary(cs::CSJsonDictionary* data)
     }
     else if (classname && strcmp(classname, "PageView") == 0)
     {
-//        widget = UIPageView::create();
+        widget = UIPageView::create();
         this->setPropsForPageViewFromJsonDictionary(widget, uiOptions);
     }
     int childrenCount = DICTOOL->getArrayCount_json(data, "children");

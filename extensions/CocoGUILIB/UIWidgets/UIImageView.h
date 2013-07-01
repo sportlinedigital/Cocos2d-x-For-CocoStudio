@@ -42,6 +42,8 @@ public:
     void setDoubleClickEnable(bool able);
     virtual void setFlipX(bool flipX);
     virtual void setFlipY(bool flipY);
+    virtual bool isFlipX();
+    virtual bool isFlipY();
     void setScale9Enable(bool able);
     void setScale9Size(float width,float height);
     void setDisplayFrame(cocos2d::CCSpriteFrame *pNewFrame);

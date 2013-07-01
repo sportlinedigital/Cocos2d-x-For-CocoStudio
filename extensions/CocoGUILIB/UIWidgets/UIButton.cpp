@@ -307,6 +307,16 @@ void UIButton::setFlipY(bool flipY)
     dynamic_cast<cocos2d::CCSprite*>(this->m_pButtonDisable)->setFlipY(flipY);
 }
 
+bool UIButton::isFlipX()
+{
+    return dynamic_cast<cocos2d::CCSprite*>(this->m_pButtonNormal)->isFlipX();
+}
+
+bool UIButton::isFlipY()
+{
+    return dynamic_cast<cocos2d::CCSprite*>(this->m_pButtonNormal)->isFlipY();
+}
+
 void UIButton::setAnchorPoint(const cocos2d::CCPoint &pt)
 {
     UIWidget::setAnchorPoint(pt);

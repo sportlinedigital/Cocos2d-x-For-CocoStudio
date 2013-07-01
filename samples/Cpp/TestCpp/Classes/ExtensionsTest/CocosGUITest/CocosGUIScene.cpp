@@ -76,11 +76,11 @@ void CocosGUITestScene::runThisTest()
 //    ul->addWidget(CCUIHELPER->createWidgetFromFile_ccb("ccb_parse/HelloCocosBuilder.ccb"));
 
 //    /*
-//    ul->addWidget(CCUIHELPER->createWidgetFromJsonFile("cocosgui/CocoGUISample.json"));
-//    UIScrollView* sc = (UIScrollView*)(ul->getWidgetByName("scrollview"));
-//    sc->setUpdateEnable(true);
-//    sc->setMoveMode(SCROLLVIEW_MOVE_MODE_NORMAL);
-//    
+    ul->addWidget(CCUIHELPER->createWidgetFromJsonFile("cocosgui/CocoGUISample.json"));
+    UIScrollView* sc = (UIScrollView*)(ul->getWidgetByName("scrollview"));
+    sc->setUpdateEnable(true);
+    sc->setMoveMode(SCROLLVIEW_MOVE_MODE_NORMAL);
+//
 //    UIImageView* image = dynamic_cast<UIImageView*>(ul->getWidgetByName("imageview"));
 //    image->setBeTouchEnable(true);
 ////    image->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::MainMenuCallback));
@@ -104,8 +104,11 @@ void CocosGUITestScene::runThisTest()
 //    btn->setTextures("slot/2.png", NULL, NULL);
 //    pn->addChild(btn);
     
-    ul->addWidget(CCUIHELPER->createWidgetFromJsonFile("cocosgui/test/NewProject_1_1.json"));
-    
+//    ul->addWidget(CCUIHELPER->createWidgetFromJsonFile("cocosgui/test/NewProject_1_1.json"));
+////    UIWidget* pv = UIPageView::create();
+//    UIPageView* pv = UIPageView::create();
+//    pv->addPage(NULL);
+//    pv->addWidgetToPage(NULL, 0, false);
 }
 void CocosGUITestScene::MainMenuCallback(CCObject* pSender)
 {
