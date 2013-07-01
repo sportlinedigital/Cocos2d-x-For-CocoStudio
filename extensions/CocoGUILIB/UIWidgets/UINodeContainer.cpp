@@ -28,7 +28,7 @@ NS_CC_EXT_BEGIN
     
 UINodeContainer::UINodeContainer()
 {
-    
+    m_WidgetName = WIDGET_NODECONTAINER;
 }
 
 UINodeContainer::~UINodeContainer()

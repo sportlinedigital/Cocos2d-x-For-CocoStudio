@@ -22,37 +22,42 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#ifndef __COCOGUIACTION_H__
-#define __COCOGUIACTION_H__
+#ifndef __UIACTIONNODE_H__
+#define __UIACTIONNODE_H__
 
 #include "cocos2d.h"
 #include "ExtensionMacros.h"
-#include "CocoGUIActionNode.h"
+#include "UIWidget.h"
+#include "UIActionFrame.h"
 #include "../../CCArmature/external_tool/Json/CSContentJsonDictionary.h"
 
 NS_CC_EXT_BEGIN
 
-class CocoGUIAction:public cocos2d::CCObject
+class UIActionNode:public cocos2d::CCObject
 {
 protected:
-	cocos2d::CCArray* m_ActionNodeList;/*actionnode*/
+	int currentIndex;
+	CCAction* m_action;
+	UIWidget* m_actionNode;
+    //data
+	cocos2d::CCArray* m_ActionFrameList;/*action frame*/
+    CC_SYNTHESIZE(const char*, m_name, Name);
 public:
-    CocoGUIAction();
-    virtual ~CocoGUIAction();
+    UIActionNode();
+    virtual ~UIActionNode();
 
-	void Play();
-	void Pause();
-	void Stop();
+	void SetActionNode(UIWidget* widget);
+
+	void InsertFrame(int index, UIActionFrame* frame);
+	void AddFrame(UIActionFrame* frame);
+	void DeleteFrame(UIActionFrame* frame);
+	void ClearAllFrame();
 
 	void UpdateToFrameByIndex(int index);
+	void UpdateToFrame(UIActionFrame* frame);
 
-	//
-	CC_SYNTHESIZE(const char*, m_name, Name);
-	//
-	CC_SYNTHESIZE(bool, m_loop, Loop);
-	//
-	CC_SYNTHESIZE(float, m_fUnitTime, UnitTime);
-    
+	void RunAction(float fUnitTime, bool bloop);
+	void StopAction();
     void initWithDictionary(cs::CSJsonDictionary* dic,UIWidget* root);
 };
 

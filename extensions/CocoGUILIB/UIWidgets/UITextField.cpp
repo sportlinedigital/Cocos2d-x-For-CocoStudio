@@ -40,7 +40,7 @@ m_pfnDetachWithIMESelector(NULL),
 m_pfnInsertTextSelector(NULL),
 m_pfnDeleteBackwardSelector(NULL)
 {
-    
+    m_WidgetName = WIDGET_TEXTFIELD;
 }
 
 UITextField::~UITextField()
@@ -113,11 +113,10 @@ const char* UITextField::getStringValue()
     return m_pRenderTextField->getString();
 }
 
-bool UITextField::onTouchBegan(cocos2d::CCPoint &touchPoint)
+void UITextField::onTouchBegan(cocos2d::CCPoint &touchPoint)
 {
     UIWidget::onTouchBegan(touchPoint);
     m_pRenderTextField->openIME();
-    return true;
 }
 
 bool UITextField::pointAtSelfBody(cocos2d::CCPoint &pt)

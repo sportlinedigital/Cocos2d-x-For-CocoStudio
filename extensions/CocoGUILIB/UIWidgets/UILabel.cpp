@@ -35,7 +35,7 @@ m_fOnSelectedScaleOffset(0.5),
 m_fNormalScaleValue(1),
 m_pRenderLabel(NULL)
 {
-
+    m_WidgetName = WIDGET_LABEL;
 }
 
 UILabel::~UILabel()
@@ -142,6 +142,16 @@ void UILabel::setFlipX(bool flipX)
 void UILabel::setFlipY(bool flipY)
 {
     m_pRenderLabel->setFlipY(flipY);
+}
+
+bool UILabel::isFlipX()
+{
+    return m_pRenderLabel->isFlipX();
+}
+
+bool UILabel::isFlipY()
+{
+    return m_pRenderLabel->isFlipY();
 }
 
 void UILabel::setGravity(LabelGravity gravity)

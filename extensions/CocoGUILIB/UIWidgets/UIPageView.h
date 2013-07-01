@@ -29,134 +29,31 @@
 
 NS_CC_EXT_BEGIN
 
-enum PAGEVIEW_DIR
-{
-    PAGEVIEW_DIR_NONE,
-    PAGEVIEW_DIR_VERTICAL,
-    PAGEVIEW_DIR_HORIZONTAL
-};
-
-enum
-{
-    kCCScrollLayerStateIdle,
-    kCCScrollLayerStateSliding,
-};
-
-using namespace cocos2d;
-
-class UIPageView : public UIPanel
-{
+class UIPageView : public UIPanel{
+    
 public:
     UIPageView();
-    ~UIPageView();
+    virtual ~UIPageView();
     static UIPageView* create();
+    void addWidgetToPage(UIWidget* widget, int pageIdx, bool forceCreate);
+    void addPage(UIContainerWidget* page);
+    void insertPage(UIContainerWidget* page, int idx);
+    void removePage(UIContainerWidget* page, bool cleanup);
     
+    virtual bool removeChild(UIWidget* widget, bool cleanup);
+    virtual void removeAllChildrenAndCleanUp(bool cleanup);
+    virtual void onTouchBegan(cocos2d::CCPoint &touchPoint);
+    virtual void onTouchMoved(cocos2d::CCPoint &touchPoint);
+    virtual void onTouchEnded(cocos2d::CCPoint &touchPoint);
+    virtual void onTouchCancelled(cocos2d::CCPoint &touchPoint);
+protected:
     virtual bool addChild(UIWidget* widget);
-    virtual void initProperty();
-    virtual void resetProperty();
-//        virtual void setColorAndSize(int r,int g,int b,int o,float width,float height);
-    virtual void setSize(const CCSize &size);
-    
-    #pragma mark Updates
-    
-    /** Updates all pages positions & adds them as children if needed.
-     * Can be used to update position of pages after screen reshape, or
-     * for update after dynamic page add/remove.
-     */
-    void updatePages();
-    
-    #pragma mark Adding/Removing Pages
-    
-    /** Adds new page and reorders pages trying to set given number for newly added page.
-     * If number > pages count - adds new page to the right end of the scroll layer.
-     * If number <= 0 - adds new page to the left end of the scroll layer.
-     * @attention Designated addPage method.
-     */
-    void addPage(UIWidget* widget, int pageNumber);
-    
-    /** Adds new page to the right end of the scroll layer. */
-    void addPage(UIWidget* widget);
-    
-    /** Removes page if it's one of scroll layers pages (not children)
-     * Does nothing if page not found.
-     */
-    void removePage(UIWidget* widget);        
-    
-    /** Removes page with given number. Doesn nothing if there's no page for such number. */
-    void removePageWithNumber(int page);        
-    
-    #pragma mark Moving/Selecting Pages    
-    
-    /* Moves scrollLayer to page with given number & invokes delegate
-     * method scrollLayer:scrolledToPageNumber: at the end of CCMoveTo action.
-     * Does nothing if number >= totalScreens or < 0.
-     */
-    void moveToPage(int page);
-    
-    /* Immedeatly moves scrollLayer to page with given number without running CCMoveTo. 
-     * Does nothing if number >= totalScreens or < 0.
-     */
-    void selectPage(int page);
-    
-    void moveToPageEnded();
-    int pageNumberForPosition(CCPoint position);
-    CCPoint positionForPageWithNumber(int pageNumber);
-    
-    void moveChildren(float offset);
-    void stopAction();
-    virtual bool onTouchBegan(cocos2d::CCPoint &touchPoint);
-    virtual bool onTouchMoved(cocos2d::CCPoint &touchPoint);
-    virtual bool onTouchEnded(cocos2d::CCPoint &touchPoint);
-    virtual bool onTouchCancelled(cocos2d::CCPoint &touchPoint);
-protected:
     virtual bool init();
-
 protected:
-    // Holds the current page being displayed.
-    int currentScreen_;
-    
-    // Number of previous page being displayed.
-    int prevScreen_;
-    
-    // The x coord of initial point the user starts their swipe.
-    float startSwipe_;
-    
-    // For what distance user must slide finger to start scrolling menu.
-    float minimumTouchLengthToSlide;
-    
-    // For what distance user must slide finger to change the page.
-    float minimumTouchLengthToChangePage;                
-    
-    // Internal state of scrollLayer (scrolling or idle).
-    int state_;
-    
-    bool stealTouches;        
-    
-    // Holds current pages width offset.
-    CC_SYNTHESIZE(float, pagesWidthOffset, PagesWidthOffset);
-    
-    // Holds current margin offset
-    float marginOffset;
-    
-    /** Total pages available in scrollLayer. */
-    int totalScreens;
-    
-    /** Returns array of pages CCLayer's  */
-    cocos2d::CCArray* pages;        
-    
-    bool isRunningAction;
-    
-    float m_fTouchStartLocation;
-    float m_fTouchEndLocation;
-    float m_fTouchMoveStartLocation;
-    
-    float m_fDisBoundaryToChild_0;
-    float m_fDisBetweenChild;
-    float m_fDragForce;
-    
-    CC_SYNTHESIZE(PAGEVIEW_DIR, m_eDirection, Direction);
+    int m_nCurPageIdx;
+    CCArray* m_pages;
 };
 
 NS_CC_EXT_END
 
-#endif /* defined(__Test__UIPageView__) */
+#endif /* defined(__UIPageView__) */

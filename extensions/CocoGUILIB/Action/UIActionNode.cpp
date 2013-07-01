@@ -22,14 +22,14 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#include "CocoGUIActionNode.h"
-#include "CocoGUIActionFrame.h"
+#include "UIActionNode.h"
+#include "UIActionFrame.h"
 #include "../../JsonReader/DictionaryHelper.h"
 #include "../System/UIHelper.h"
 
 NS_CC_EXT_BEGIN
 
-CocoGUIActionNode::CocoGUIActionNode()
+UIActionNode::UIActionNode()
 {
 	currentIndex = 0;
 	m_actionNode = NULL;
@@ -40,7 +40,7 @@ CocoGUIActionNode::CocoGUIActionNode()
 	m_ActionFrameList->retain();
 }
 
-CocoGUIActionNode::~CocoGUIActionNode()
+UIActionNode::~UIActionNode()
 {
 	if (m_action != NULL)
 	{
@@ -50,46 +50,46 @@ CocoGUIActionNode::~CocoGUIActionNode()
 	m_ActionFrameList->release();
 }
 
-void CocoGUIActionNode::initWithDictionary(cs::CSJsonDictionary *dic,UIWidget* root)
+void UIActionNode::initWithDictionary(cs::CSJsonDictionary *dic,UIWidget* root)
 {
     this->setName(DICTOOL->getStringValue_json(dic, "name"));
     int actionFrameCount = DICTOOL->getArrayCount_json(dic, "actionframelist");
     this->SetActionNode(CCUIHELPER->seekWidgetByName(root, this->getName()));
     for (int i=0; i<actionFrameCount; i++) {
-        CocoGUIActionFrame* actionFrame = new CocoGUIActionFrame();
+        UIActionFrame* actionFrame = new UIActionFrame();
         cs::CSJsonDictionary* actionFrameDic = DICTOOL->getDictionaryFromArray_json(dic, "actionframelist", i);
         actionFrame->initWithDictionary(actionFrameDic);
         this->m_ActionFrameList->addObject(actionFrame);
     }
 }
 
-void CocoGUIActionNode::SetActionNode(UIWidget* widget)
+void UIActionNode::SetActionNode(UIWidget* widget)
 {
 	m_actionNode = widget;
 
 	//UpdateToFrameByIndex(currentIndex);
 }
-void CocoGUIActionNode::InsertFrame(int index, CocoGUIActionFrame* frame)
+void UIActionNode::InsertFrame(int index, UIActionFrame* frame)
 {
 	m_ActionFrameList->insertObject(frame,index);
 }
 
-void CocoGUIActionNode::AddFrame(CocoGUIActionFrame* frame)
+void UIActionNode::AddFrame(UIActionFrame* frame)
 {
 	m_ActionFrameList->addObject(frame);
 }
 
-void CocoGUIActionNode::DeleteFrame(CocoGUIActionFrame* frame)
+void UIActionNode::DeleteFrame(UIActionFrame* frame)
 {
 	m_ActionFrameList->removeObject(frame);
 }
 
-void CocoGUIActionNode::ClearAllFrame()
+void UIActionNode::ClearAllFrame()
 {
 	m_ActionFrameList->removeAllObjects();
 }
 
-void CocoGUIActionNode::UpdateToFrameByIndex(int index)
+void UIActionNode::UpdateToFrameByIndex(int index)
 {
 	currentIndex = index;
 
@@ -97,10 +97,10 @@ void CocoGUIActionNode::UpdateToFrameByIndex(int index)
 
 	bool bFindFrame = false;
 
-	CocoGUIActionFrame* frame = NULL;
+	UIActionFrame* frame = NULL;
 	for (int i = 0; i < frameNum; i++)
 	{
-		frame = (CocoGUIActionFrame*)m_ActionFrameList->objectAtIndex(index);
+		frame = (UIActionFrame*)m_ActionFrameList->objectAtIndex(index);
 		if (frame->getFrameId() == index)
 		{
 			bFindFrame = true;
@@ -115,7 +115,7 @@ void CocoGUIActionNode::UpdateToFrameByIndex(int index)
 	}
 }
 
-void CocoGUIActionNode::UpdateToFrame(CocoGUIActionFrame* frame)
+void UIActionNode::UpdateToFrame(UIActionFrame* frame)
 {
 	if ( m_actionNode == NULL || frame == NULL )
 	{
@@ -131,7 +131,7 @@ void CocoGUIActionNode::UpdateToFrame(CocoGUIActionFrame* frame)
 
 }
 
-void CocoGUIActionNode::RunAction(float fUnitTime, bool bloop)
+void UIActionNode::RunAction(float fUnitTime, bool bloop)
 {
 	int frameNum = m_ActionFrameList->count();
 
@@ -146,7 +146,7 @@ void CocoGUIActionNode::RunAction(float fUnitTime, bool bloop)
 	{
 		float duration;
 
-		CocoGUIActionFrame* frame = (CocoGUIActionFrame*)m_ActionFrameList->objectAtIndex(i);
+		UIActionFrame* frame = (UIActionFrame*)m_ActionFrameList->objectAtIndex(i);
 
 		if ( i == 0 )
 		{
@@ -155,7 +155,7 @@ void CocoGUIActionNode::RunAction(float fUnitTime, bool bloop)
 		}
 		else
 		{
-			CocoGUIActionFrame* frame_pre = (CocoGUIActionFrame*)m_ActionFrameList->objectAtIndex(i-1);
+			UIActionFrame* frame_pre = (UIActionFrame*)m_ActionFrameList->objectAtIndex(i-1);
 			duration = (frame->getFrameId() - frame_pre->getFrameId()) * fUnitTime;
 		}
 
@@ -199,14 +199,14 @@ void CocoGUIActionNode::RunAction(float fUnitTime, bool bloop)
 	}
 }
 
-void CocoGUIActionNode::StopAction()
+void UIActionNode::StopAction()
 {
     if (m_actionNode) {
         m_actionNode->stopAction(m_action);
     }
 }
 
-//void CocoGUIActionNode::RunToFrameByIndex(int index)
+//void UIActionNode::RunToFrameByIndex(int index)
 //{
 //	int frameNum = m_ActionFrameList->size();
 //
@@ -225,7 +225,7 @@ void CocoGUIActionNode::StopAction()
 //	RunToFrame(frame);
 //}
 //
-//void CocoGUIActionNode::RunToFrame(CocoGUIActionFrame* frame)
+//void UIActionNode::RunToFrame(CocoGUIActionFrame* frame)
 //{
 //	if ( m_actionNode == NULL || frame == NULL )
 //	{

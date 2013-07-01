@@ -28,7 +28,7 @@ NS_CC_EXT_BEGIN
 
 UITextArea::UITextArea()
 {
-    
+    m_WidgetName = WIDGET_TEXTAREA;
 }
 
 UITextArea::~UITextArea()
@@ -108,6 +108,16 @@ void UITextArea::setFlipX(bool flipX)
 void UITextArea::setFlipY(bool flipY)
 {
     m_pRenderLabel->setFlipY(flipY);
+}
+
+bool UITextArea::isFlipX()
+{
+    return m_pRenderLabel->isFlipX();
+}
+
+bool UITextArea::isFlipY()
+{
+    return m_pRenderLabel->isFlipY();
 }
 
 CCNode* UITextArea::getValidNode()

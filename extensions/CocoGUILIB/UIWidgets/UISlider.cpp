@@ -41,7 +41,7 @@ m_pfnPercentSelector(NULL),
 m_bBarScale9Enable(false),
 m_bShowProgressBar(false)
 {
-    
+    m_WidgetName = WIDGET_SLIDER;
 }
 
 UISlider::~UISlider()
@@ -236,7 +236,7 @@ void UISlider::setProgressBarScale(int percent)
     this->m_pProgressBarNode->setContentSize(cocos2d::CCSize(width, this->m_pProgressBarNode->getContentSize().height));
 }
 
-bool UISlider::onTouchBegan(cocos2d::CCPoint &touchPoint)
+void UISlider::onTouchBegan(cocos2d::CCPoint &touchPoint)
 {
     UIWidget::onTouchBegan(touchPoint);
     cocos2d::CCPoint nsp = this->m_pCCRenderNode->convertToNodeSpace(touchPoint);
@@ -248,10 +248,9 @@ bool UISlider::onTouchBegan(cocos2d::CCPoint &touchPoint)
     {
         this->setProgressBarScale(this->m_nBarPercent);
     }
-    return true;
 }
 
-bool UISlider::onTouchMoved(cocos2d::CCPoint &touchPoint)
+void UISlider::onTouchMoved(cocos2d::CCPoint &touchPoint)
 {
     cocos2d::CCPoint nsp = this->m_pCCRenderNode->convertToNodeSpace(touchPoint);
     this->m_pSlidBall->setPosition(ccp(nsp.x,0));
@@ -262,21 +261,18 @@ bool UISlider::onTouchMoved(cocos2d::CCPoint &touchPoint)
     {
         this->setProgressBarScale(this->m_nBarPercent);
     }
-    return true;
 }
 
-bool UISlider::onTouchEnded(cocos2d::CCPoint &touchPoint)
+void UISlider::onTouchEnded(cocos2d::CCPoint &touchPoint)
 {
     UIWidget::onTouchEnded(touchPoint);
     this->m_pSlidBall->setPressState(WidgetStateNormal);
-    return true;
 }
 
-bool UISlider::onTouchCancelled(cocos2d::CCPoint &touchPoint)
+void UISlider::onTouchCancelled(cocos2d::CCPoint &touchPoint)
 {
     UIWidget::onTouchCancelled(touchPoint);
     this->m_pSlidBall->setPressState(WidgetStateNormal);
-    return true;
 }
 
 float UISlider::getPercentWithBallPos(float px,float py)

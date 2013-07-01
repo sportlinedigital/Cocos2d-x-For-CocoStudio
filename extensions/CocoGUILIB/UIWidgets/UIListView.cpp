@@ -44,7 +44,7 @@ m_overBottomArray(NULL),
 m_overLeftArray(NULL),
 m_overRightArray(NULL)
 {
-    
+    m_WidgetName = WIDGET_LISTVIEW;
 }
 
 UIListView::~UIListView()

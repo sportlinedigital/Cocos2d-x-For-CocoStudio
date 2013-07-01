@@ -42,10 +42,10 @@ public:
     void setTitle(const char* titleNormal,const char* titlePressed,const char* titleDisabled);
     virtual cocos2d::CCNode* getValidNode();
     virtual void setAnchorPoint(const cocos2d::CCPoint &pt);
-    virtual void setColor(int r,int g,int b);
-    virtual void setOpacity(int opcity);
     virtual void setFlipX(bool flipX);
     virtual void setFlipY(bool flipY);
+    virtual bool isFlipX();
+    virtual bool isFlipY();
     void setNormalTitle(const char* title);
     void setPressedTitle(const char* title);
     void setDisabledTitle(const char* title);
@@ -79,6 +79,7 @@ protected:
     cocos2d::CCLabelTTF* m_pNormalTitle;
     cocos2d::CCLabelTTF* m_pPressedTitle;
     cocos2d::CCLabelTTF* m_pDisabledTitle;
+    cocos2d::CCSize m_preferredSize;        
 };
 
 NS_CC_EXT_END

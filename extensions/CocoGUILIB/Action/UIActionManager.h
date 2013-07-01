@@ -22,53 +22,32 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#include "CocoGUIActionManager.h"
-#include "../../JsonReader/DictionaryHelper.h"
-#include "CocoGUIAction.h"
+#ifndef __UIACTIONMANAGER_H__
+#define __UIACTIONMANAGER_H__
+
+#include "cocos2d.h"
+#include "ExtensionMacros.h"
+#include "UIAction.h"
+#include "../../CCArmature/external_tool/Json/CSContentJsonDictionary.h"
 
 NS_CC_EXT_BEGIN
 
-static CocoGUIActionManager* sharedActionManager = NULL;
-
-CocoGUIActionManager* CocoGUIActionManager::shareManager()
+class UIActionManager:public cocos2d::CCObject
 {
-    if (!sharedActionManager) {
-        sharedActionManager = new CocoGUIActionManager();
-    }
-    return sharedActionManager;
-}
+protected:
+	cocos2d::CCArray* m_ActionList;/*guiaction*/
 
-CocoGUIActionManager::CocoGUIActionManager()
-{
-	m_ActionList = cocos2d::CCArray::create();
-	m_ActionList->retain();
-}
+public:
+    UIActionManager();
+    virtual ~UIActionManager();
+    static UIActionManager* shareManager();
+	UIAction* GetActionByName(const char* actionName);
 
-CocoGUIActionManager::~CocoGUIActionManager()
-{
-	m_ActionList->removeAllObjects();
-	m_ActionList->release();
-}
-
-void CocoGUIActionManager::initWithDictionary(cs::CSJsonDictionary *dic,UIWidget* root)
-{
-    int actionCount = DICTOOL->getArrayCount_json(dic, "actionlist");
-    for (int i=0; i<actionCount; i++) {
-        CocoGUIAction* action = new CocoGUIAction();
-        cs::CSJsonDictionary* actionDic = DICTOOL->getDictionaryFromArray_json(dic, "actionlist", i);
-        action->initWithDictionary(actionDic,root);
-        this->m_ActionList->addObject(action);
-    }
-}
-
-CocoGUIAction* CocoGUIActionManager::GetActionByName(const char* actionName)
-{
-	return NULL;
-}
-
-void CocoGUIActionManager::PlayActionByName(const char* acitonName)
-{
-
-}
+	void PlayActionByName(const char* actionName);
+    
+    void initWithDictionary(cs::CSJsonDictionary* dic,UIWidget* root);
+};
 
 NS_CC_EXT_END
+
+#endif

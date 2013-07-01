@@ -58,6 +58,31 @@ typedef enum
     WidgetTypeContainer
 }WidgetType;
 
+typedef enum
+{
+    WIDGET_WIDGET,
+    WIDGET_ROOTWIDGET,
+    WIDGET_CONTAINERWIDGET,
+    WIDGET_BUTTON,
+    WIDGET_CHECKBOX,
+    WIDGET_CONTROLBUTTON,
+    WIDGET_GRADIENTPANEL,
+    WIDGET_IMAGEVIEW,
+    WIDGET_LABEL,
+    WIDGET_LABELATLAS,
+    WIDGET_LABELBMFONT,
+    WIDGET_LISTVIEW,
+    WIDGET_LOADINGBAR,
+    WIDGET_NODECONTAINER,
+    WIDGET_PANEL,
+    WIDGET_SCROLLVIEW,
+    WIDGET_SLIDER,
+    WIDGET_TEXTAREA,
+    WIDGET_TEXTBUTTON,
+    WIDGET_TEXTFIELD,
+    WIDGET_PAGEVIEW
+}WidgetName;
+
 typedef void (cocos2d::CCObject::*SEL_PushEvent)(cocos2d::CCObject*);
 typedef void (cocos2d::CCObject::*SEL_MoveEvent)(cocos2d::CCObject*);
 typedef void (cocos2d::CCObject::*SEL_ReleaseEvent)(cocos2d::CCObject*);
@@ -160,11 +185,11 @@ public:
     
     virtual void setNeedCheckVisibleDepandParent(bool need);
     void didNotSelectSelf();
-    virtual bool onTouchBegan(cocos2d::CCPoint &touchPoint);
-    virtual bool onTouchMoved(cocos2d::CCPoint &touchPoint);
-    virtual bool onTouchEnded(cocos2d::CCPoint &touchPoint);
-    virtual bool onTouchCancelled(cocos2d::CCPoint &touchPoint);
-    virtual bool onTouchLongClicked(cocos2d::CCPoint &touchPoint);
+    virtual void onTouchBegan(cocos2d::CCPoint &touchPoint);
+    virtual void onTouchMoved(cocos2d::CCPoint &touchPoint);
+    virtual void onTouchEnded(cocos2d::CCPoint &touchPoint);
+    virtual void onTouchCancelled(cocos2d::CCPoint &touchPoint);
+    virtual void onTouchLongClicked(cocos2d::CCPoint &touchPoint);
     virtual bool isClippingEnable(){return false;};
     virtual void update(float dt){};
     virtual bool pointAtSelfBody(cocos2d::CCPoint &pt);
@@ -195,6 +220,7 @@ public:
     void setUseMergedTexture(bool useMergedTexture);
     bool getUseMergedTexture();
     WidgetType getWidgetType();
+    WidgetName getWidgetName();
 protected:
     virtual bool init();
     virtual void initNodes();
@@ -257,6 +283,7 @@ protected:
     std::string m_strName;
     bool m_bUseMergedTexture;
     WidgetType m_WidgetType;
+    WidgetName m_WidgetName;
     UILayer* m_pUILayer;
 };
 

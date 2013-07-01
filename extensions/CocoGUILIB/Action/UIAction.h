@@ -22,28 +22,36 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#ifndef __COCOGUIACTIONMANAGER_H__
-#define __COCOGUIACTIONMANAGER_H__
+#ifndef __UIACTION_H__
+#define __UIACTION_H__
 
 #include "cocos2d.h"
 #include "ExtensionMacros.h"
-#include "CocoGUIAction.h"
+#include "UIActionNode.h"
 #include "../../CCArmature/external_tool/Json/CSContentJsonDictionary.h"
 
 NS_CC_EXT_BEGIN
 
-class CocoGUIActionManager:public cocos2d::CCObject
+class UIAction:public cocos2d::CCObject
 {
 protected:
-	cocos2d::CCArray* m_ActionList;/*guiaction*/
-
+	cocos2d::CCArray* m_ActionNodeList;/*actionnode*/
 public:
-    CocoGUIActionManager();
-    virtual ~CocoGUIActionManager();
-    static CocoGUIActionManager* shareManager();
-	CocoGUIAction* GetActionByName(const char* actionName);
+    UIAction();
+    virtual ~UIAction();
 
-	void PlayActionByName(const char* acitonName);
+	void Play();
+	void Pause();
+	void Stop();
+
+	void UpdateToFrameByIndex(int index);
+
+	//
+	CC_SYNTHESIZE(const char*, m_name, Name);
+	//
+	CC_SYNTHESIZE(bool, m_loop, Loop);
+	//
+	CC_SYNTHESIZE(float, m_fUnitTime, UnitTime);
     
     void initWithDictionary(cs::CSJsonDictionary* dic,UIWidget* root);
 };

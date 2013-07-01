@@ -50,6 +50,8 @@ public:
     virtual void setScale9Size(float width,float height);
     virtual void setFlipX(bool flipX);
     virtual void setFlipY(bool flipY);
+    virtual bool isFlipX();
+    virtual bool isFlipY();
     virtual void setNormalSpriteFrame(cocos2d::CCSpriteFrame* frame);
     virtual void setPressedSpriteFrame(cocos2d::CCSpriteFrame* frame);
     virtual void setDisabledSpriteFrame(cocos2d::CCSpriteFrame* frame);

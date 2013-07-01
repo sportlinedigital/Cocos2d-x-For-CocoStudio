@@ -38,6 +38,7 @@ m_bClipAble(false),
 m_renderType(RENDER_TYPE_LAYERCOLOR)
 {
     this->m_WidgetType = WidgetTypeContainer;
+    m_WidgetName = WIDGET_CONTAINERWIDGET;
 }
 
 UIContainerWidget::~UIContainerWidget()

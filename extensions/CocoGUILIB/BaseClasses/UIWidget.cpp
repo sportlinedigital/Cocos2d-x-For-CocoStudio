@@ -75,7 +75,7 @@ m_pUILayer(NULL),
 m_bIsCreatedFromFile(false),
 m_fileDesignSize(CCSizeZero)
 {
-    
+    m_WidgetName = WIDGET_WIDGET;
 }
 
 UIWidget::~UIWidget()
@@ -482,7 +482,7 @@ void UIWidget::didNotSelectSelf()
     
 }
 
-bool UIWidget::onTouchBegan(cocos2d::CCPoint &touchPoint)
+void UIWidget::onTouchBegan(cocos2d::CCPoint &touchPoint)
 {
     this->setFocus(true);
     this->m_touchStartPos.x = touchPoint.x;
@@ -492,10 +492,9 @@ bool UIWidget::onTouchBegan(cocos2d::CCPoint &touchPoint)
         this->m_pWidgetParent->checkChildInfo(0,this,touchPoint);
     }
     this->pushDownEvent();
-    return true;
 }
 
-bool UIWidget::onTouchMoved(cocos2d::CCPoint &touchPoint)
+void UIWidget::onTouchMoved(cocos2d::CCPoint &touchPoint)
 {
     this->m_touchMovePos.x = touchPoint.x;
     this->m_touchMovePos.y = touchPoint.y;
@@ -505,10 +504,9 @@ bool UIWidget::onTouchMoved(cocos2d::CCPoint &touchPoint)
         this->m_pWidgetParent->checkChildInfo(1,this,touchPoint);
     }
     this->moveEvent();
-    return true;
 }
 
-bool UIWidget::onTouchEnded(cocos2d::CCPoint &touchPoint)
+void UIWidget::onTouchEnded(cocos2d::CCPoint &touchPoint)
 {
     this->m_touchEndPos.x = touchPoint.x;
     this->m_touchEndPos.y = touchPoint.y;
@@ -526,19 +524,16 @@ bool UIWidget::onTouchEnded(cocos2d::CCPoint &touchPoint)
     {
         this->cancelUpEvent();
     }
-    return true;
 }
 
-bool UIWidget::onTouchCancelled(cocos2d::CCPoint &touchPoint)
+void UIWidget::onTouchCancelled(cocos2d::CCPoint &touchPoint)
 {
     this->setPressState(WidgetStateNormal);
-    return true;
 }
 
-bool UIWidget::onTouchLongClicked(cocos2d::CCPoint &touchPoint)
+void UIWidget::onTouchLongClicked(cocos2d::CCPoint &touchPoint)
 {
     this->longClickEvent();
-    return true;
 }
 
 void UIWidget::pushDownEvent()
@@ -1182,6 +1177,11 @@ bool UIWidget::getUseMergedTexture()
 WidgetType UIWidget::getWidgetType()
 {
     return m_WidgetType;
+}
+
+WidgetName UIWidget::getWidgetName()
+{
+    return m_WidgetName;
 }
 
 NS_CC_EXT_END

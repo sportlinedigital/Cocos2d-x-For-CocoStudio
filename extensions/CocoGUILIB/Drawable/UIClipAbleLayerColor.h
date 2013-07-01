@@ -22,8 +22,8 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#ifndef __UIClipAbleLayerColor_H__
-#define __UIClipAbleLayerColor_H__
+#ifndef __UICLIPABLELAYERCOLOR_H__
+#define __UICLIPABLELAYERCOLOR_H__
 
 #include "cocos2d.h"
 #include "ExtensionMacros.h"
