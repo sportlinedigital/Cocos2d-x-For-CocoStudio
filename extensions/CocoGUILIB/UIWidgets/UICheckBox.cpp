@@ -266,6 +266,16 @@ void UICheckBox::setFlipY(bool flipY)
     this->m_pFrontCrossDisabled->setFlipY(flipY);
 }
 
+bool UICheckBox::isFlipX()
+{
+    return this->m_pBackGroundBox->isFlipX();
+}
+
+bool UICheckBox::isFlipY()
+{
+    return this->m_pBackGroundBox->isFlipY();
+}
+
 void UICheckBox::setAnchorPoint(const cocos2d::CCPoint &pt)
 {
     UIWidget::setAnchorPoint(pt);

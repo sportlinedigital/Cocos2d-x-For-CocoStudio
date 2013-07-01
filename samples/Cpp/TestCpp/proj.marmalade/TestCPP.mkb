@@ -342,6 +342,16 @@ files
 	SceneEditorTestScene.cpp
 	SceneEditorTestScene.h
 
+    [Test/ExtensionsTest/CocosGUITest]
+	(../Classes/ExtensionsTest/CocosGUITest)
+	CocosGUISlotScene.cpp
+	CocosGUISlotScene.h
+
+    [Test/ExtensionsTest/CocosGUITest]
+	(../Classes/ExtensionsTest/CocosGUITest)
+	CocosGUIScene.cpp
+	CocosGUIScene.h
+
 	[Test/FontTest]
 	(../Classes/FontTest)
 	FontTest.cpp

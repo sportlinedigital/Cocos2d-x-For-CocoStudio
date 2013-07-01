@@ -220,6 +220,30 @@ void UIImageView::setFlipY(bool flipY)
     }
 }
 
+bool UIImageView::isFlipX()
+{
+    if (this->m_bScale9Enable)
+    {
+        return false;
+    }
+    else
+    {
+        return DYNAMIC_CAST_CCSPRITE->isFlipX();
+    }
+}
+
+bool UIImageView::isFlipY()
+{
+    if (this->m_bScale9Enable)
+    {
+        return false;
+    }
+    else
+    {
+        return DYNAMIC_CAST_CCSPRITE->isFlipY();
+    }
+}
+
 void UIImageView::setScale9Enable(bool able)
 {
     if (this->m_bScale9Enable == able)
