@@ -1199,4 +1199,33 @@ WidgetName UIWidget::getWidgetName()
     return m_WidgetName;
 }
 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+static const char* UTF8ToGBK(const char *strChar)
+{
+    iconv_t iconvH;
+    iconvH = iconv_open("gb2312","utf-8");
+    if (iconvH == 0)
+    {
+        return NULL;
+    }
+    
+    size_t strLength = strlen(strChar);
+    size_t outLength = strLength;
+    
+    size_t copyLength = outLength;
+    
+    char* outbuf =  new char[outLength + 1];
+    char* pBuff = outbuf;
+    memset( outbuf, 0, outLength + 1);
+    
+    if (-1 == iconv(iconvH, &strChar, &strLength, &outbuf, &outLength))
+    {
+        iconv_close(iconvH);
+        return NULL;
+    }
+    iconv_close(iconvH);
+    return pBuff;
+}
+#endif
+
 NS_CC_EXT_END

@@ -61,7 +61,13 @@ bool UITextButton::init()
 
 void UITextButton::setText(const char* text)
 {
-    this->m_pTextLable->setString(text);
+    std::string strText(text);
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	const char *des = UTF8ToGBK(strText.c_str());
+	strText.assign(des);
+	CC_SAFE_DELETE(des);
+#endif
+    this->m_pTextLable->setString(strText.c_str());
 }
 
 void UITextButton::setTextColor(int r,int g,int b)
