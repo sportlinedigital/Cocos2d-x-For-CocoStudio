@@ -76,6 +76,10 @@ void UILabel::initNodes()
 
 void UILabel::setText(const char* text)
 {
+	if (!text)
+	{
+		return;
+	}
     std::string strText(text);
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	const char *des = UTF8ToGBK(strText.c_str());

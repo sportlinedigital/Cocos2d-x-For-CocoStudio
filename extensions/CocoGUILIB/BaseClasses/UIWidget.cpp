@@ -25,6 +25,9 @@
 #include "UIWidget.h"
 #include "../System/UIHelper.h"
 #include "../System/UILayer.h"
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+#include "iconv/iconv.h"
+#endif
 
 NS_CC_EXT_BEGIN
 
@@ -1200,7 +1203,7 @@ WidgetName UIWidget::getWidgetName()
 }
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-static const char* UTF8ToGBK(const char *strChar)
+const char* UTF8ToGBK(const char *strChar)
 {
     iconv_t iconvH;
     iconvH = iconv_open("gb2312","utf-8");

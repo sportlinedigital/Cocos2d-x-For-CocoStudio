@@ -121,7 +121,7 @@ void CocosGUITestScene::toCocosGUISlotScene(CCObject* pSender)
     CocosGUISlotScene *pScene = new CocosGUISlotScene();
     if (pScene)
     {
-        ul->dispose();
+        ul->clear();
         
         pScene->runThisTest();
         pScene->release();
