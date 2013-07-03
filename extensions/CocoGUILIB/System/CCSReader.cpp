@@ -196,6 +196,7 @@ UIWidget* CCSReader::widgetFromJsonFile(const char *fileName)
 void CCSReader::setPropsForWidgetFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary *options)
 {
     widget->setWidgetTag(DICTOOL->getIntValue_json(options, "tag"));
+	widget->setActionTag(DICTOOL->getIntValue_json(options, "actiontag"));
     widget->setBeTouchEnable(DICTOOL->getBooleanValue_json(options, "touchAble"));
     const char* name = DICTOOL->getStringValue_json(options, "name");
     const char* widgetName = name?name:"default";
