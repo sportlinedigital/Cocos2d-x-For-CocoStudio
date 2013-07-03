@@ -160,7 +160,6 @@
     <ClCompile Include="..\CocoGUILIB\System\UIHelper.cpp" />
     <ClCompile Include="..\CocoGUILIB\System\UIInputManager.cpp" />
     <ClCompile Include="..\CocoGUILIB\System\UILayer.cpp" />
-    <ClCompile Include="..\CocoGUILIB\System\UIWidgetPool.cpp" />
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UIButton.cpp" />
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UICheckBox.cpp" />
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UIControlButton.cpp" />
@@ -316,7 +315,6 @@
     <ClInclude Include="..\CocoGUILIB\System\UIHelper.h" />
     <ClInclude Include="..\CocoGUILIB\System\UIInputManager.h" />
     <ClInclude Include="..\CocoGUILIB\System\UILayer.h" />
-    <ClInclude Include="..\CocoGUILIB\System\UIWidgetPool.h" />
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UIButton.h" />
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UICheckBox.h" />
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UIControlButton.h" />
