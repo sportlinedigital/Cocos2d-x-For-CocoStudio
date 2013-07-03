@@ -62,7 +62,17 @@ void UILabelBMFont::setFntFile(const char *fileName)
 
 void UILabelBMFont::setText(const char* value)
 {
-    this->m_pLabelBMFont->setString(value);
+	if (!value)
+	{
+		return;
+	}
+	std::string strText(value);
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	const char *des = UTF8ToGBK(strText.c_str());
+	strText.assign(des);
+	CC_SAFE_DELETE(des);
+#endif
+    this->m_pLabelBMFont->setString(strText.c_str());
 }
 
 const char* UILabelBMFont::getStringValue()
