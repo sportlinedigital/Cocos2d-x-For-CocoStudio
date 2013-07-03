@@ -220,6 +220,29 @@ UIWidget* UIHelper::seekWidgetByName(UIWidget* root, const char *name)
     return NULL;
 }
 
+UIWidget* UIHelper::seekActionWidgetByActionTag(UIWidget* root, int tag)
+{
+	if (!root)
+	{
+		return NULL;
+	}
+	if (root->getActionTag() == tag)
+	{
+		return root;
+	}
+	for (int i=0;i<root->getChildren()->count();i++)
+	{
+		UIWidget* child = (UIWidget*)(root->getChildren()->objectAtIndex(i));
+		UIWidget* res = seekActionWidgetByActionTag(child,tag);
+		if (res != NULL)
+		{
+			return res;
+		}
+	}
+	return NULL;
+}
+
+
 void UIHelper::setFileDesignWidth(float width)
 {
     m_fFileDesignWidth = width;
