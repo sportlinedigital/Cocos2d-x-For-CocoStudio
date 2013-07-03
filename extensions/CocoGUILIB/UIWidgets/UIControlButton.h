@@ -26,7 +26,7 @@
 #define __UICONTROLBUTTON_H__
 
 #include "cocos2d.h"
-#include "CCScale9Sprite.h"
+#include "../../GUI/CCControlExtension/CCScale9Sprite.h"
 #include "../BaseClasses/UIWidget.h"
 
 

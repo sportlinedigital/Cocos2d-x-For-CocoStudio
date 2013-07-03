@@ -23,7 +23,7 @@
  ****************************************************************************/
 
 #include "UIGradientPanel.h"
-#include "UIClipAbleLayerGradient.h"
+#include "../Drawable/UIClipAbleLayerGradient.h"
 
 NS_CC_EXT_BEGIN
 

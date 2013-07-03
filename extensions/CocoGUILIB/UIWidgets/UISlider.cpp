@@ -23,7 +23,7 @@
  ****************************************************************************/
 
 #include "UISlider.h"
-#include "CCScale9Sprite.h"
+#include "../../GUI/CCControlExtension/CCScale9Sprite.h"
 
 NS_CC_EXT_BEGIN
 
