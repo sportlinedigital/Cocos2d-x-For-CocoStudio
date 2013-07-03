@@ -163,7 +163,7 @@ void UIActionNode::RunAction(float fUnitTime, bool bloop)
 		CCRotateTo* action_2 = CCRotateTo::create(duration,frame->getRotation());
 		CCScaleTo* action_3 = CCScaleTo::create(duration,frame->getScaleX(),frame->getScaleY());
 		CCFadeTo* action_4 = CCFadeTo::create(duration,frame->getOpacity());
-		CCTintTo* action_5 = CCTintTo::create(duration,frame->getColor().r,frame->getColor().g,frame->getColor().r);
+		CCTintTo* action_5 = CCTintTo::create(duration,frame->getColor().r,frame->getColor().g,frame->getColor().b);
 
 		CCSpawn * actionSpawn = CCSpawn::create(action_1,action_2,action_3,action_4,action_5, NULL);
 		actionFrame->addObject( actionSpawn );
