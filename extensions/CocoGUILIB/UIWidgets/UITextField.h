@@ -47,6 +47,7 @@ public:
     virtual ~UITextField();
     static UITextField* create();
     virtual bool init();
+    virtual void releaseResoures();
     virtual void initNodes();
     void setTouchSize(float width,float height);
     void setText(const char* text);

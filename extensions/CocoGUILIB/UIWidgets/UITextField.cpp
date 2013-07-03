@@ -69,6 +69,13 @@ bool UITextField::init()
     return false;
 }
 
+void UITextField::releaseResoures()
+{
+    UIWidget::releaseResoures();
+    
+    setUpdateEnable(false);
+}
+
 void UITextField::initNodes()
 {
     UIWidget::initNodes();
