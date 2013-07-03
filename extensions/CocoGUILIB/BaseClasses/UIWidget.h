@@ -119,10 +119,12 @@ public:
     virtual void disable();
     virtual void active();
     virtual bool isActive();
+    void updateBeTouchEnable(bool enable);
     void setVisible(bool visible);
     bool isVisible();
     virtual cocos2d::CCRect getRect();
     virtual cocos2d::CCRect getRelativeRect();
+    virtual const CCSize& getContentSize(); 
     void getLocationInWindow();
     virtual float getRelativeLeftPos();
     virtual float getRelativeBottomPos();

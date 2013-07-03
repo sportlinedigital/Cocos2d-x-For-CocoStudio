@@ -98,7 +98,7 @@ bool UIContainerWidget::addChild(UIWidget* child)
     return true;
 }
 
-void UIContainerWidget::setClipAble(bool able)
+void UIContainerWidget::setClippingEnable(bool able)
 {
     this->m_bClipAble = able;
     switch (m_renderType) {
@@ -160,21 +160,9 @@ void UIContainerWidget::setSize(const cocos2d::CCSize &size)
     this->updateClipSize();
 }
 
-void UIContainerWidget::setWidth(float width)
-{
-    this->m_fWidth = width;
-    this->setSize(cocos2d::CCSize(width,this->m_fHeight));
-}
-
 float UIContainerWidget::getWidth()
 {
     return this->m_fWidth;
-}
-
-void UIContainerWidget::setHeight(float height)
-{
-    this->m_fHeight = height;
-    this->setSize(cocos2d::CCSize(this->m_fWidth,height));
 }
 
 float UIContainerWidget::getHeight()

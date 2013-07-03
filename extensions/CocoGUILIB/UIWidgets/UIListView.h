@@ -26,7 +26,6 @@
 #define __UILISTVIEW_H__
 
 #include "UIScrollView.h"
-#include "../System/UIWidgetPool.h"
 
 NS_CC_EXT_BEGIN
 
@@ -78,8 +77,12 @@ protected:
     cocos2d::CCObject* m_pUpdateChildListener;
     SEL_UpdateChildEvent m_pfnUpdateChildSelector;
     
+    CCArray* m_pChildPool;
+    CCArray* m_pUpdatePool;
+    /*
     UIWidgetPool* m_pChildPool;
     UIWidgetPool* m_pUpdatePool;
+     */
     
     int m_nDataLength;
     int m_nBegin;

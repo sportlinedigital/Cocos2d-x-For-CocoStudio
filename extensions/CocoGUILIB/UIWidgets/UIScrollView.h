@@ -167,7 +167,7 @@ protected:
 protected:
     SCROLLVIEW_DIR m_eDirection;
     SCROLLVIEW_MOVE_DIR m_eMoveDirection;
-    int m_nDirection;
+//    int m_nDirection;
     float m_fTouchStartLocation;
     float m_fTouchEndLocation;
     float m_fTouchMoveStartLocation;

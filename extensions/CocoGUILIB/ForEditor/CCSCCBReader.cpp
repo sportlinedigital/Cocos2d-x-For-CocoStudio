@@ -2149,7 +2149,7 @@ void CCSCCBReader::setPropsForContainerWidgetFromCCB(UIWidget *widget, UIWidget*
     UIContainerWidget* containerWidget = (UIContainerWidget*)widget;
     
     // ContainerWidget unique properties
-    containerWidget->setClipAble(false);
+    containerWidget->setClippingEnable(false);
 }
 
 void CCSCCBReader::setPropsForPanelFromCCB(UIWidget *widget, UIWidget* parent, CCDictionary *nodeGraph, CSJsonDictionary* options)
@@ -2382,7 +2382,7 @@ void CCSCCBReader::setPropsForScrollViewFromCCB(UIWidget *widget, UIWidget* pare
         {
             bool value = DICTOOL->getBooleanValue(item, "value");
             
-            scrollView->setClipAble(value);
+            scrollView->setClippingEnable(value);
             
             options->insertItem("clipAble", value);
         }
@@ -3531,7 +3531,7 @@ void CCSCCBReader::setPropsForContainerWidgetFromCCB(UIWidget *widget, UIWidget*
     UIContainerWidget* containerWidget = (UIContainerWidget*)widget;
     
     // ContainerWidget unique properties
-    containerWidget->setClipAble(false);
+    containerWidget->setClippingEnable(false);
 }
 
 void CCSCCBReader::setPropsForPanelFromCCB(UIWidget *widget, UIWidget* parent, CCDictionary *options)
@@ -3699,7 +3699,7 @@ void CCSCCBReader::setPropsForScrollViewFromCCB(UIWidget *widget, UIWidget* pare
         {
             bool value = DICTOOL->getBooleanValue(item, "value");
             
-            scrollView->setClipAble(value);
+            scrollView->setClippingEnable(value);
         }
         else if (strcmp(name, "bounces") == 0)
         {

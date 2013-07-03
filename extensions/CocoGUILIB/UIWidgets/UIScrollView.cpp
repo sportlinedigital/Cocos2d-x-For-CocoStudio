@@ -29,7 +29,6 @@ NS_CC_EXT_BEGIN
 UIScrollView::UIScrollView():
 m_eDirection(SCROLLVIEW_DIR_VERTICAL),
 m_eMoveDirection(SCROLLVIEW_MOVE_DIR_NONE),
-m_nDirection(0),
 m_fTouchStartLocation(0.0),
 m_fTouchEndLocation(0.0),
 m_fTouchMoveStartLocation(0.0),

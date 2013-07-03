@@ -356,6 +356,7 @@ void UIWidget::setNeedCheckVisibleDepandParent(bool need)
 void UIWidget::setBeTouchEnable(bool enable)
 {
     this->m_bBeTouchEnabled = enable;
+    updateBeTouchEnable(enable);
     structureChangedEvent();
 }
 
@@ -460,6 +461,15 @@ void UIWidget::active()
 bool UIWidget::isActive()
 {
     return this->m_bActived;
+}
+
+void UIWidget::updateBeTouchEnable(bool enable)
+{
+    for (int i = 0; i < this->m_children->count(); i++)
+    {
+        UIWidget* child = (UIWidget*)(this->m_children->objectAtIndex(i));
+        child->setBeTouchEnable(enable);
+    }
 }
 
 void UIWidget::onPressStateChangedToNormal()
@@ -660,6 +670,11 @@ cocos2d::CCRect UIWidget::getRelativeRect()
     this->m_relativeRect.size.width = width;
     this->m_relativeRect.size.height = height;
     return this->m_relativeRect;
+}
+
+const CCSize& UIWidget::getContentSize()
+{
+    return this->getValidNode()->getContentSize();
 }
 
 cocos2d::CCNode* UIWidget::getValidNode()
