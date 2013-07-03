@@ -76,6 +76,7 @@ m_fAdaptScaleY(1.0f),
 m_anchorPoint(ccp(0.5f, 0.5f)),
 m_pUILayer(NULL),
 m_bIsCreatedFromFile(false),
+m_nActionTag(0),
 m_fileDesignSize(CCSizeZero)
 {
     m_WidgetName = WIDGET_WIDGET;
@@ -1201,6 +1202,15 @@ WidgetType UIWidget::getWidgetType()
 WidgetName UIWidget::getWidgetName()
 {
     return m_WidgetName;
+}
+
+void UIWidget::setActionTag(int tag)
+{
+	m_nActionTag = tag;
+}
+int UIWidget::getActionTag()
+{
+	return m_nActionTag;
 }
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)

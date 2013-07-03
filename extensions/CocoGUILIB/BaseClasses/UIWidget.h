@@ -184,6 +184,8 @@ public:
     void stopActionByTag(int tag);
     cocos2d::CCAction* getActionByTag(int tag);
     
+	void setActionTag(int tag);
+	int getActionTag();
     
     virtual void setNeedCheckVisibleDepandParent(bool need);
     void didNotSelectSelf();
@@ -287,6 +289,7 @@ protected:
     WidgetType m_WidgetType;
     WidgetName m_WidgetName;
     UILayer* m_pUILayer;
+	int m_nActionTag;
 };
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
