@@ -171,15 +171,18 @@ UIWidget* CCSReader::widgetFromJsonFile(const char *fileName)
     
     unsigned long size = 0;
     des = (char*)(cocos2d::CCFileUtils::sharedFileUtils()->getFileData(jsonpath.c_str(),"r" , &size));
+	if(NULL == des || strcmp(des, "") == 0)
+	{
+		printf("read json file[%s] error!\n", fileName);
+		return NULL;
+	}
+	std::string strDes(des);
 	#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	std::string strDes = UTF8ToGBK(des);
+	strDes.assign(UTF8ToGBK(des));
 	#endif
     jsonDict = new cs::CSJsonDictionary();
     jsonDict->initWithDescription(strDes.c_str());
-    if(NULL == des || strcmp(des, "") == 0)
-    {
-        printf("read json file[%s] error!\n", fileName);
-    }
+
 //        float fileVersion = DICTOOL->getFloatValue_json(jsonDict, "version");
 //        if (fileVersion != kCCSVersion) {
 //            printf("WARNING! Incompatible json file version (file: %f reader: %f)\n", fileVersion, kCCSVersion);
