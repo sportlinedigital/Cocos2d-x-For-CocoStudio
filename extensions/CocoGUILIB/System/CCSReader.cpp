@@ -139,6 +139,29 @@ UIWidget* CCSReader::widgetFromJsonDictionary(cs::CSJsonDictionary* data)
     return widget;
 }
 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+
+static std::string UTF8ToGBK(const std::string& strUTF8)
+{
+	int len = MultiByteToWideChar(CP_UTF8, 0, strUTF8.c_str(), -1, NULL, 0);
+	wchar_t* wszGBK = new wchar_t[len + 1];
+	memset(wszGBK, 0, len * 2 + 2);
+	MultiByteToWideChar(CP_UTF8, 0, (LPCSTR)strUTF8.c_str(), -1, wszGBK, len);
+	len = WideCharToMultiByte(CP_ACP, 0, wszGBK, -1, NULL, 0, NULL, NULL);
+	char *szGBK = new char[len + 1];
+	memset(szGBK, 0, len + 1);
+	WideCharToMultiByte(CP_ACP,0, wszGBK, -1, szGBK, len, NULL, NULL);
+	//strUTF8 = szGBK;
+	std::string strTemp(szGBK);
+	delete[]szGBK;
+	delete[]wszGBK;
+	return strTemp;
+}
+
+#endif
+
+
+
 UIWidget* CCSReader::widgetFromJsonFile(const char *fileName)
 {
     const char *des = NULL;
@@ -148,12 +171,18 @@ UIWidget* CCSReader::widgetFromJsonFile(const char *fileName)
     
     unsigned long size = 0;
     des = (char*)(cocos2d::CCFileUtils::sharedFileUtils()->getFileData(jsonpath.c_str(),"r" , &size));
+	if(NULL == des || strcmp(des, "") == 0)
+	{
+		printf("read json file[%s] error!\n", fileName);
+		return NULL;
+	}
+	std::string strDes(des);
+	#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	strDes.assign(UTF8ToGBK(des));
+	#endif
     jsonDict = new cs::CSJsonDictionary();
-    jsonDict->initWithDescription(des);
-    if(NULL == des || strcmp(des, "") == 0)
-    {
-        printf("read json file[%s] error!\n", fileName);
-    }
+    jsonDict->initWithDescription(strDes.c_str());
+
 //        float fileVersion = DICTOOL->getFloatValue_json(jsonDict, "version");
 //        if (fileVersion != kCCSVersion) {
 //            printf("WARNING! Incompatible json file version (file: %f reader: %f)\n", fileVersion, kCCSVersion);

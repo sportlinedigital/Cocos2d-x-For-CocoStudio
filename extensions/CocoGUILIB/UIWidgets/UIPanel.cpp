@@ -23,8 +23,8 @@
  ****************************************************************************/
 
 #include "UIPanel.h"
-#include "CCScale9Sprite.h"
-#include "UIClipAbleLayerColor.h"
+#include "../../GUI/CCControlExtension/CCScale9Sprite.h"
+#include "../Drawable/UIClipAbleLayerColor.h"
 
 
 NS_CC_EXT_BEGIN

@@ -23,9 +23,6 @@
  ****************************************************************************/
 
 #include "UILabel.h"
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	#include "iconv/iconv.h"
-#endif
 
 NS_CC_EXT_BEGIN
 
@@ -81,15 +78,6 @@ void UILabel::setText(const char* text)
 		return;
 	}
     std::string strText(text);
-//#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-//	const char *des = UTF8ToGBK(strText.c_str());
-//	if (des == NULL)
-//	{
-//		return;
-//	}
-//	strText.assign(des);
-//	CC_SAFE_DELETE(des);
-//#endif
     m_pRenderLabel->setString(strText.c_str());
 }
 

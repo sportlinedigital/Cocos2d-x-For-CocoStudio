@@ -109,7 +109,6 @@ SOURCES = ../CCBReader/CCBFileLoader.cpp \
 ../CocoGUILIB/System/UIHelper.cpp \
 ../CocoGUILIB/System/UIInputManager.cpp \
 ../CocoGUILIB/System/UILayer.cpp \
-../CocoGUILIB/System/UIWidgetPool.cpp \
 ../CocoGUILIB/UIWidgets/UIButton.cpp \
 ../CocoGUILIB/UIWidgets/UICheckBox.cpp \
 ../CocoGUILIB/UIWidgets/UIControlButton.cpp \

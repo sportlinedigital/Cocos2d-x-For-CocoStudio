@@ -101,7 +101,8 @@ bool UIContainerWidget::addChild(UIWidget* child)
 void UIContainerWidget::setClippingEnable(bool able)
 {
     this->m_bClipAble = able;
-    switch (m_renderType) {
+    switch (m_renderType)
+    {
         case RENDER_TYPE_LAYERCOLOR:
             DYNAMIC_CAST_CLIPLAYERCOLOR->setClipAble(able);
             break;
@@ -111,7 +112,8 @@ void UIContainerWidget::setClippingEnable(bool able)
         default:
             break;
     }
-    for (int i=0; i<this->m_children->count(); i++) {
+    for (int i=0; i<this->m_children->count(); i++)
+    {
         UIWidget* child = (UIWidget*)(this->m_children->objectAtIndex(i));
         child->setNeedCheckVisibleDepandParent(able);
     }
@@ -225,11 +227,11 @@ void UIContainerWidget::updateClipSize()
 
 CCSize UIContainerWidget::getWrapSize() const
 {
-    for (int i=0; i<this->m_children->count(); i++) {
+    for (int i=0; i<this->m_children->count(); i++)
+    {
         UIWidget* child = dynamic_cast<UIWidget*>(m_children->objectAtIndex(i));
         switch (child->getWidgetType()) {
             case WidgetTypeWidget:
-                
                 break;
             case WidgetTypeContainer:
                 break;
