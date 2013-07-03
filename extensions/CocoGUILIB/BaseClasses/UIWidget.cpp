@@ -110,6 +110,7 @@ bool UIWidget::init()
 void UIWidget::releaseResoures()
 {
     this->setUpdateEnable(false);
+    this->m_pUILayer->getInputManager()->removeManageredWidget(this);
     this->setUILayer(NULL);
     this->removeAllChildrenAndCleanUp(true);
     this->m_pCCRenderNode->removeAllChildrenWithCleanup(true);
@@ -359,7 +360,7 @@ void UIWidget::setNeedCheckVisibleDepandParent(bool need)
 void UIWidget::setBeTouchEnable(bool enable)
 {
     this->m_bBeTouchEnabled = enable;
-    updateBeTouchEnable(enable);
+//    updateBeTouchEnable(enable);
     structureChangedEvent();
 }
 
