@@ -1,6 +1,6 @@
 #include "CocosGUIScene.h"
 #include "CocosGUISlotScene.h"
-#include "CCScale9Sprite.h"
+//#include "CCScale9Sprite.h"
 
 
 CocosGUITestScene::CocosGUITestScene(bool bPortrait)

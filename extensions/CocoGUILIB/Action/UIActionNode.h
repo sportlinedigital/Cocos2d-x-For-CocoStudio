@@ -27,7 +27,7 @@
 
 #include "cocos2d.h"
 #include "ExtensionMacros.h"
-#include "UIWidget.h"
+#include "../BaseClasses/UIWidget.h"
 #include "UIActionFrame.h"
 #include "../../CCArmature/external_tool/Json/CSContentJsonDictionary.h"
 
