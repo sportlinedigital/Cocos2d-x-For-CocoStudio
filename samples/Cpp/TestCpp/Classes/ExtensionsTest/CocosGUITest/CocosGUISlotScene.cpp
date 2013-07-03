@@ -217,14 +217,14 @@ void CocosGUISlotScene::MainMenuCallback(CCObject* pSender)
 
 void CocosGUISlotScene::toCocosGUITestScene(CCObject *pSender)
 {
-//    CocosGUITestScene *pScene = new CocosGUITestScene();
-//    if (pScene)
-//    {
-//        ul->dispose();
-//        
-//        pScene->runThisTest();
-//        pScene->release();
-//    }
+    CocosGUITestScene *pScene = new CocosGUITestScene();
+    if (pScene)
+    {
+        ul->dispose();
+        
+        pScene->runThisTest();
+        pScene->release();
+    }
 }
 
 void CocosGUISlotScene::switchBtnCallBack(CCObject *pSender)
