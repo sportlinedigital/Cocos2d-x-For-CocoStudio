@@ -63,6 +63,10 @@ void UITextArea::setText(const char* text)
     std::string strText(text);
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 	const char *des = UTF8ToGBK(strText.c_str());
+	if (des == NULL)
+	{
+		return;
+	}
 	strText.assign(des);
 	CC_SAFE_DELETE(des);
 #endif
