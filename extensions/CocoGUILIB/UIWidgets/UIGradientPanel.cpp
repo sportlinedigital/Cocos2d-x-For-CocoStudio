@@ -32,6 +32,7 @@ NS_CC_EXT_BEGIN
 UIGradientPanel::UIGradientPanel()
 {
     m_renderType = RENDER_TYPE_LAYERGRADIENT;
+    m_WidgetName = WIDGET_GRADIENTPANEL;
 }
 
 UIGradientPanel* UIGradientPanel::create()
@@ -78,6 +79,11 @@ void UIGradientPanel::setStartOpacity(int opacity)
 void UIGradientPanel::setEndOpacity(int opacity)
 {
     DYNAMIC_CAST_CLIPLAYERGRADIENT->setEndOpacity(opacity);
+}
+
+void UIGradientPanel::setVector(const CCPoint &vector)
+{
+    DYNAMIC_CAST_CLIPLAYERGRADIENT->setVector(vector);
 }
 
 NS_CC_EXT_END

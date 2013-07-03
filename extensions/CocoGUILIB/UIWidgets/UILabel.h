@@ -54,6 +54,8 @@ public:
     void clickScale(float scale);
     virtual void setFlipX(bool flipX);
     virtual void setFlipY(bool flipY);
+    virtual bool isFlipX();
+    virtual bool isFlipY();
     void setGravity(LabelGravity gravity);
     virtual void adaptSize(float xProportion,float yProportion);
     virtual cocos2d::CCNode* getValidNode();

@@ -53,7 +53,9 @@ public:
     virtual void addUnSelectEvent(cocos2d::CCObject* target,SEL_UnSelectEvent selector);
     virtual void setFlipX(bool flipX);
     virtual void setFlipY(bool flipY);
-    virtual bool onTouchEnded(cocos2d::CCPoint &touchPoint);
+    virtual bool isFlipX();
+    virtual bool isFlipY();
+    virtual void onTouchEnded(cocos2d::CCPoint &touchPoint);
 protected:
     virtual bool init();
     virtual void initNodes();

@@ -55,7 +55,7 @@ public:
     void setFontSize(int size);
     virtual void didNotSelectSelf();
     const char* getStringValue();
-    virtual bool onTouchBegan(cocos2d::CCPoint &touchPoint);
+    virtual void onTouchBegan(cocos2d::CCPoint &touchPoint);
     virtual bool pointAtSelfBody(cocos2d::CCPoint &pt);
     void setCharacterLength(int length);
     void setIsPassWord(bool isPassword);

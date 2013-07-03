@@ -23,6 +23,9 @@
  ****************************************************************************/
 
 #include "UILabel.h"
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	#include "iconv/iconv.h"
+#endif
 
 NS_CC_EXT_BEGIN
 
@@ -35,7 +38,7 @@ m_fOnSelectedScaleOffset(0.5),
 m_fNormalScaleValue(1),
 m_pRenderLabel(NULL)
 {
-
+    m_WidgetName = WIDGET_LABEL;
 }
 
 UILabel::~UILabel()
@@ -73,7 +76,17 @@ void UILabel::initNodes()
 
 void UILabel::setText(const char* text)
 {
-    m_pRenderLabel->setString(text);
+	if (!text)
+	{
+		return;
+	}
+    std::string strText(text);
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	const char *des = UTF8ToGBK(strText.c_str());
+	strText.assign(des);
+	CC_SAFE_DELETE(des);
+#endif
+    m_pRenderLabel->setString(strText.c_str());
 }
 
 const char* UILabel::getStringValue()
@@ -142,6 +155,16 @@ void UILabel::setFlipX(bool flipX)
 void UILabel::setFlipY(bool flipY)
 {
     m_pRenderLabel->setFlipY(flipY);
+}
+
+bool UILabel::isFlipX()
+{
+    return m_pRenderLabel->isFlipX();
+}
+
+bool UILabel::isFlipY()
+{
+    return m_pRenderLabel->isFlipY();
 }
 
 void UILabel::setGravity(LabelGravity gravity)

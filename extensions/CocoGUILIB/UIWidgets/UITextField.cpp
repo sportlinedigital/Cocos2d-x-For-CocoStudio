@@ -40,7 +40,7 @@ m_pfnDetachWithIMESelector(NULL),
 m_pfnInsertTextSelector(NULL),
 m_pfnDeleteBackwardSelector(NULL)
 {
-    
+    m_WidgetName = WIDGET_TEXTFIELD;
 }
 
 UITextField::~UITextField()
@@ -85,7 +85,17 @@ void UITextField::setTouchSize(float width,float height)
 
 void UITextField::setText(const char* text)
 {
-    m_pRenderTextField->setString(text);
+	if (!text)
+	{
+		return;
+	}
+    std::string strText(text);
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	const char *des = UTF8ToGBK(strText.c_str());
+	strText.assign(des);
+	CC_SAFE_DELETE(des);
+#endif
+    m_pRenderTextField->setString(strText.c_str());
 }
 
 void UITextField::setSize(cocos2d::CCSize &size)
@@ -113,11 +123,10 @@ const char* UITextField::getStringValue()
     return m_pRenderTextField->getString();
 }
 
-bool UITextField::onTouchBegan(cocos2d::CCPoint &touchPoint)
+void UITextField::onTouchBegan(cocos2d::CCPoint &touchPoint)
 {
     UIWidget::onTouchBegan(touchPoint);
     m_pRenderTextField->openIME();
-    return true;
 }
 
 bool UITextField::pointAtSelfBody(cocos2d::CCPoint &pt)

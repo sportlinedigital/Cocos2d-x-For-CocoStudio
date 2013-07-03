@@ -33,9 +33,10 @@ m_pDisabledBackGround(NULL),
 m_pNormalTitle(NULL),
 m_pPressedTitle(NULL),
 m_pDisabledTitle(NULL),
-m_bZoomOnTouchDown(true)
+m_bZoomOnTouchDown(true),
+m_preferredSize(CCSizeZero)
 {
-    
+    m_WidgetName = WIDGET_CONTROLBUTTON;
 }
 
 UIControlButton::~UIControlButton()
@@ -111,6 +112,10 @@ void UIControlButton::onPressStateChangedToNormal()
     }
     cocos2d::CCAction *zoomAction = cocos2d::CCScaleTo::create(0.05f, 1.0f);
     runAction(zoomAction);
+    
+    m_pNormalBackGround->setVisible(true);
+    m_pPressedBackGround->setVisible(false);
+    m_pDisabledBackGround->setVisible(false);
 }
 
 void UIControlButton::onPressStateChangedToPressed()
@@ -121,11 +126,17 @@ void UIControlButton::onPressStateChangedToPressed()
     }
     cocos2d::CCAction *zoomAction = cocos2d::CCScaleTo::create(0.05f, 1.1f);
     runAction(zoomAction);
+    
+    m_pNormalBackGround->setVisible(false);
+    m_pPressedBackGround->setVisible(true);
+    m_pDisabledBackGround->setVisible(false);
 }
 
 void UIControlButton::onPressStateChangedToDisabled()
 {
-    
+    m_pNormalBackGround->setVisible(false);
+    m_pPressedBackGround->setVisible(false);
+    m_pDisabledBackGround->setVisible(true);
 }
 
 cocos2d::CCNode* UIControlButton::getValidNode()
@@ -156,24 +167,28 @@ void UIControlButton::setAnchorPoint(const cocos2d::CCPoint &pt)
     m_pDisabledBackGround->setAnchorPoint(pt);
 }
 
-void UIControlButton::setColor(int r,int g,int b)
-{
-    
-}
-
-void UIControlButton::setOpacity(int opcity)
-{
-    
-}
-
 void UIControlButton::setFlipX(bool flipX)
 {
-    
+    m_pNormalTitle->setFlipX(flipX);
+    m_pPressedTitle->setFlipX(flipX);
+    m_pDisabledTitle->setFlipX(flipX);
 }
 
 void UIControlButton::setFlipY(bool flipY)
 {
-    
+    m_pNormalTitle->setFlipY(flipY);
+    m_pPressedTitle->setFlipY(flipY);
+    m_pDisabledTitle->setFlipY(flipY);
+}
+
+bool UIControlButton::isFlipX()
+{
+    return this->m_pNormalTitle->isFlipX();
+}
+
+bool UIControlButton::isFlipY()
+{
+    return this->m_pNormalTitle->isFlipY();
 }
 
 void UIControlButton::setNormalTitle(const char *title)
@@ -248,21 +263,38 @@ void UIControlButton::setPreferredSize(const cocos2d::CCSize &size)
     m_pNormalBackGround->setPreferredSize(size);
     m_pPressedBackGround->setPreferredSize(size);
     m_pDisabledBackGround->setPreferredSize(size);
+    
+    m_preferredSize = size;
 }
 
 void UIControlButton::setNormalBackgroundSpriteFrame(cocos2d::CCSpriteFrame *spriteFrame)
 {
+    if (!spriteFrame)
+    {
+        return;
+    }
     m_pNormalBackGround->setSpriteFrame(spriteFrame);
+    m_pNormalBackGround->setPreferredSize(m_preferredSize);
 }
 
 void UIControlButton::setPressedBackgroundSpriteFrame(cocos2d::CCSpriteFrame *spriteFrame)
 {
+    if (!spriteFrame)
+    {
+        return;
+    }
     m_pPressedBackGround->setSpriteFrame(spriteFrame);
+    m_pPressedBackGround->setPreferredSize(m_preferredSize);
 }
 
 void UIControlButton::setDisabledBackgroundSpriteFrame(cocos2d::CCSpriteFrame *spriteFrame)
 {
+    if (!spriteFrame)
+    {
+        return;
+    }
     m_pDisabledBackGround->setSpriteFrame(spriteFrame);
+    m_pDisabledBackGround->setPreferredSize(m_preferredSize);
 }
 
 void UIControlButton::setZoomOnTouchDown(bool zoom)

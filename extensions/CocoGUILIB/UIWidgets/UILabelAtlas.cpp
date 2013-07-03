@@ -29,7 +29,7 @@ NS_CC_EXT_BEGIN
 UILabelAtlas::UILabelAtlas():
 m_pRenderLaberAtlas(NULL)
 {
-
+    m_WidgetName = WIDGET_LABELATLAS;
 }
 
 UILabelAtlas::~UILabelAtlas()

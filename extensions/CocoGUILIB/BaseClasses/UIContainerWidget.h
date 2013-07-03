@@ -45,14 +45,12 @@ public:
     //Only containerWidget can use the LayoutParameter for doing layout to child widget
     virtual void setLayoutParameter(/*LayoutParameter * parmeter*/);
     virtual bool addChild(UIWidget* child);
-    virtual void setClipAble(bool able);
+    virtual void setClippingEnable(bool able);
     virtual void setClipRect(const cocos2d::CCRect &rect);
     virtual void updateWidth();
     virtual void updateHeight();
     virtual void setSize(const cocos2d::CCSize &size);
-    virtual void setWidth(float width);
     virtual float getWidth();
-    virtual void setHeight(float height);
     virtual float getHeight();
     virtual bool isClippingEnable();
     virtual bool hitTest(cocos2d::CCNode*node, cocos2d::CCPoint &pt);

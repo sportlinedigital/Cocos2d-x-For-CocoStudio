@@ -80,22 +80,40 @@ void CocosGUITestScene::runThisTest()
     UIScrollView* sc = (UIScrollView*)(ul->getWidgetByName("scrollview"));
     sc->setUpdateEnable(true);
     sc->setMoveMode(SCROLLVIEW_MOVE_MODE_NORMAL);
-    
-    UIImageView* image = dynamic_cast<UIImageView*>(ul->getWidgetByName("imageview"));
-    image->setBeTouchEnable(true);
-//    image->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::MainMenuCallback));
-    
+//
+//    UIImageView* image = dynamic_cast<UIImageView*>(ul->getWidgetByName("imageview"));
+//    image->setBeTouchEnable(true);
+////    image->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::MainMenuCallback));
+//    
     UIButton* exitBtn = dynamic_cast<UIButton*>(ul->getWidgetByName("exitbutton"));
     exitBtn->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::toCocosGUISlotScene));
-//     */
+////     */
+//    
+//    UICheckBox* cb = dynamic_cast<UICheckBox*>(ul->getWidgetByName("checkbox"));
+//    cb->addSelectEvent(this, coco_releaseselector(CocosGUITestScene::MainMenuCallback));
+//    
+//    UIPanel* pn = UIPanel::create();
+//    ul->addWidget(pn);
+//    pn->setBackGroundColorEnable(true);
+//    pn->setColor(ccc3(0, 255, 0));
+//    pn->setOpacity(255);
+//    pn->setSize(CCSizeMake(100, 100));
+//    pn->setPosition(ccp(100, 100));
+//    
+//    UIButton* btn = UIButton::create();
+//    btn->setTextures("slot/2.png", NULL, NULL);
+//    pn->addChild(btn);
     
-    UICheckBox* cb = dynamic_cast<UICheckBox*>(ul->getWidgetByName("checkbox"));
-    cb->addSelectEvent(this, coco_releaseselector(CocosGUITestScene::MainMenuCallback));
-    
+//    ul->addWidget(CCUIHELPER->createWidgetFromJsonFile("cocosgui/test/NewProject_1_1.json"));
+////    UIWidget* pv = UIPageView::create();
+//    UIPageView* pv = UIPageView::create();
+//    pv->addPage(NULL);
+//    pv->addWidgetToPage(NULL, 0, false);
 }
 void CocosGUITestScene::MainMenuCallback(CCObject* pSender)
 {
 	TestScene::MainMenuCallback(pSender);
+//    UIActionManager::shareManager()->PlayActionByName("Animation1");
 }
 
 void CocosGUITestScene::toCocosGUISlotScene(CCObject* pSender)
@@ -103,7 +121,7 @@ void CocosGUITestScene::toCocosGUISlotScene(CCObject* pSender)
     CocosGUISlotScene *pScene = new CocosGUISlotScene();
     if (pScene)
     {
-        ul->dispose();
+        ul->clear();
         
         pScene->runThisTest();
         pScene->release();

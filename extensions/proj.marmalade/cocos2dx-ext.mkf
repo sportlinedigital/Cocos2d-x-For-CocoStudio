@@ -122,4 +122,29 @@ files
     ("../JsonReader")
     "*.h"
     "*.cpp"
+
+       ["CocoGUILIB/BaseClasses"]
+    ("../CocoGUILIB/BaseClasses")
+    "*.h"
+    "*.cpp"
+
+       ["CocoGUILIB/UIWidgets"]
+    ("../CocoGUILIB/UIWidgets")
+    "*.h"
+    "*.cpp"
+
+       ["CocoGUILIB/Drawable"]
+    ("../CocoGUILIB/Drawable")
+    "*.h"
+    "*.cpp"
+
+       ["CocoGUILIB/Action"]
+    ("../CocoGUILIB/Action")
+    "*.h"
+    "*.cpp"
+
+       ["CocoGUILIB/System"]
+    ("../CocoGUILIB/System")
+    "*.h"
+    "*.cpp"
 }

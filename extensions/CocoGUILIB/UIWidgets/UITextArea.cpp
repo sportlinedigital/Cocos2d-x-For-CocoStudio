@@ -28,7 +28,7 @@ NS_CC_EXT_BEGIN
 
 UITextArea::UITextArea()
 {
-    
+    m_WidgetName = WIDGET_TEXTAREA;
 }
 
 UITextArea::~UITextArea()
@@ -56,7 +56,17 @@ void UITextArea::initNodes()
 
 void UITextArea::setText(const char* text)
 {
-    m_pRenderLabel->setString(text);
+	if (!text)
+	{
+		return;
+	}
+    std::string strText(text);
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	const char *des = UTF8ToGBK(strText.c_str());
+	strText.assign(des);
+	CC_SAFE_DELETE(des);
+#endif
+    m_pRenderLabel->setString(strText.c_str());
 }
 
 void UITextArea::setTextAreaSize(const cocos2d::CCSize &size)
@@ -108,6 +118,16 @@ void UITextArea::setFlipX(bool flipX)
 void UITextArea::setFlipY(bool flipY)
 {
     m_pRenderLabel->setFlipY(flipY);
+}
+
+bool UITextArea::isFlipX()
+{
+    return m_pRenderLabel->isFlipX();
+}
+
+bool UITextArea::isFlipY()
+{
+    return m_pRenderLabel->isFlipY();
 }
 
 CCNode* UITextArea::getValidNode()

@@ -44,13 +44,13 @@ m_overBottomArray(NULL),
 m_overLeftArray(NULL),
 m_overRightArray(NULL)
 {
-    
+    m_WidgetName = WIDGET_LISTVIEW;
 }
 
 UIListView::~UIListView()
-{
-    CC_SAFE_DELETE(m_pChildPool);
-    CC_SAFE_DELETE(m_pUpdatePool);
+{    
+    CC_SAFE_RELEASE_NULL(m_pChildPool);
+    CC_SAFE_RELEASE_NULL(m_pUpdatePool);
     CC_SAFE_RELEASE_NULL(m_overTopArray);
     CC_SAFE_RELEASE_NULL(m_overBottomArray);
     CC_SAFE_RELEASE_NULL(m_overLeftArray);
@@ -72,8 +72,14 @@ bool UIListView::init()
 {
     if (UIScrollView::init())
     {
+        m_pChildPool = CCArray::create();
+        m_pUpdatePool = CCArray::create();
+        CC_SAFE_RETAIN(m_pChildPool);
+        CC_SAFE_RETAIN(m_pUpdatePool);
+        /*
         m_pChildPool = new UIWidgetPool();
         m_pUpdatePool = new UIWidgetPool();
+         */
         m_overTopArray = cocos2d::CCArray::create();
         m_overBottomArray = cocos2d::CCArray::create();
         m_overLeftArray = cocos2d::CCArray::create();
@@ -117,8 +123,12 @@ void UIListView::removeAllChildrenAndCleanUp(bool cleanup)
 {
     UIScrollView::removeAllChildrenAndCleanUp(cleanup);
     
+    m_pUpdatePool->removeAllObjects();
+    m_pChildPool->removeAllObjects();
+    /*
     m_pUpdatePool->clear();
     m_pChildPool->clear();
+     */
 }
 
 bool UIListView::scrollChildren(float touchOffset)
@@ -143,7 +153,8 @@ bool UIListView::scrollChildren(float touchOffset)
             {
                 case SCROLLVIEW_MOVE_DIR_UP: // up
                     {
-                        UIWidget* child_last = m_pChildPool->rbegin();
+                        UIWidget* child_last = dynamic_cast<UIWidget*>(m_pChildPool->lastObject());
+//                        UIWidget* child_last = m_pChildPool->rbegin();
                         float child_last_bottom = child_last->getRelativeBottomPos();
                         float scroll_bottom = m_fBottomBoundary;
                         
@@ -197,7 +208,8 @@ bool UIListView::scrollChildren(float touchOffset)
                     
                 case SCROLLVIEW_MOVE_DIR_DOWN: // down
                     {
-                        UIWidget* child_0 = m_pChildPool->begin();
+                        UIWidget* child_0 = dynamic_cast<UIWidget*>(m_pChildPool->objectAtIndex(0));
+//                        UIWidget* child_0 = m_pChildPool->begin();
                         float child_0_top = child_0->getRelativeTopPos();
                         float scroll_top = m_fTopBoundary;
                         
@@ -266,7 +278,8 @@ bool UIListView::scrollChildren(float touchOffset)
             {
                 case SCROLLVIEW_MOVE_DIR_LEFT: // left
                     {
-                        UIWidget* child_last = m_pChildPool->rbegin();
+                        UIWidget* child_last = dynamic_cast<UIWidget*>(m_pChildPool->lastObject());
+//                        UIWidget* child_last = m_pChildPool->rbegin();
                         float child_last_right = child_last->getRelativeRightPos();
                         float scroll_right = m_fRightBoundary;
                         
@@ -320,7 +333,8 @@ bool UIListView::scrollChildren(float touchOffset)
                     
                 case SCROLLVIEW_MOVE_DIR_RIGHT: // right
                     {
-                        UIWidget* child_0 = m_pChildPool->begin();
+                        UIWidget* child_0 = dynamic_cast<UIWidget*>(m_pChildPool->objectAtIndex(0));
+//                        UIWidget* child_0 = m_pChildPool->begin();
                         float child_0_left = child_0->getRelativeLeftPos();
                         float scroll_left = m_fLeftBoundary;
                         
@@ -418,11 +432,13 @@ UIWidget* UIListView::getCheckPositionChild()
             switch (m_eMoveDirection)
             {
                 case SCROLLVIEW_MOVE_DIR_UP: // up
-                    child = m_pChildPool->rbegin();
+                    child = dynamic_cast<UIWidget*>(m_pChildPool->lastObject());
+//                    child = m_pChildPool->rbegin();
                     break;
                     
                 case SCROLLVIEW_MOVE_DIR_DOWN: // down
-                    child = m_pChildPool->begin();
+                    child = dynamic_cast<UIWidget*>(m_pChildPool->objectAtIndex(0));
+//                    child = m_pChildPool->begin();
                     break;
                     
                 default:
@@ -434,11 +450,13 @@ UIWidget* UIListView::getCheckPositionChild()
             switch (m_eMoveDirection)
             {
                 case SCROLLVIEW_MOVE_DIR_LEFT: // left
-                    child = m_pChildPool->rbegin();
+                    child = dynamic_cast<UIWidget*>(m_pChildPool->lastObject());
+//                    child = m_pChildPool->rbegin();
                     break;
                     
                 case SCROLLVIEW_MOVE_DIR_RIGHT: // right
-                    child = m_pChildPool->begin();
+                    child = dynamic_cast<UIWidget*>(m_pChildPool->objectAtIndex(0));
+//                    child = m_pChildPool->begin();
                     break;
                     
                 default:
@@ -467,15 +485,18 @@ void UIListView::initChildWithDataLength(int length)
         setUpdateChild(child);
         setUpdateDataIndex(i);
         initChildEvent();
-        m_pChildPool->push_back(child);
+        m_pChildPool->addObject(child);
+//        m_pChildPool->push_back(child);
         m_nEnd = i;
     }
 }
 
 UIWidget* UIListView::getChildFromUpdatePool()
 {
-    UIWidget* child = m_pUpdatePool->rbegin();
-    m_pUpdatePool->pop_back();
+    UIWidget* child = dynamic_cast<UIWidget*>(m_pUpdatePool->lastObject());
+    m_pUpdatePool->removeLastObject();
+//    UIWidget* child = m_pUpdatePool->rbegin();
+//    m_pUpdatePool->pop_back();
     return child;
 }
 
@@ -488,17 +509,23 @@ void UIListView::pushChildToPool()
             {
                 case SCROLLVIEW_MOVE_DIR_UP: // up
                     {
-                        UIWidget* child = m_pChildPool->begin();
-                        m_pUpdatePool->push_front(child);
-                        m_pChildPool->pop_front();
+                        UIWidget* child = dynamic_cast<UIWidget*>(m_pChildPool->objectAtIndex(0));
+                        m_pUpdatePool->insertObject(child, 0);
+                        m_pChildPool->removeObjectAtIndex(0);
+//                        UIWidget* child = m_pChildPool->begin();
+//                        m_pUpdatePool->push_front(child);
+//                        m_pChildPool->pop_front();
                     }
                     break;
                     
                 case SCROLLVIEW_MOVE_DIR_DOWN: // down
                     {
-                        UIWidget* child = m_pChildPool->rbegin();
-                        m_pUpdatePool->push_front(child);
-                        m_pChildPool->pop_back();
+                        UIWidget* child = dynamic_cast<UIWidget*>(m_pChildPool->lastObject());
+                        m_pUpdatePool->insertObject(child, 0);
+                        m_pChildPool->removeLastObject();
+//                        UIWidget* child = m_pChildPool->rbegin();
+//                        m_pUpdatePool->push_front(child);
+//                        m_pChildPool->pop_back();
                     }
                     break;
             }
@@ -509,17 +536,23 @@ void UIListView::pushChildToPool()
             {
                 case SCROLLVIEW_MOVE_DIR_LEFT: // left
                     {
-                        UIWidget* child = m_pChildPool->begin();
-                        m_pUpdatePool->push_front(child);
-                        m_pChildPool->pop_front();
+                        UIWidget* child = dynamic_cast<UIWidget*>(m_pChildPool->objectAtIndex(0));
+                        m_pUpdatePool->insertObject(child, 0);
+                        m_pChildPool->removeObjectAtIndex(0);
+//                        UIWidget* child = m_pChildPool->begin();
+//                        m_pUpdatePool->push_front(child);
+//                        m_pChildPool->pop_front();
                     }
                     break;
                     
                 case SCROLLVIEW_MOVE_DIR_RIGHT: // right
                     {
-                        UIWidget* child = m_pChildPool->rbegin();
-                        m_pUpdatePool->push_front(child);
-                        m_pChildPool->pop_back();                            
+                        UIWidget* child = dynamic_cast<UIWidget*>(m_pChildPool->lastObject());
+                        m_pUpdatePool->insertObject(child, 0);
+                        m_pChildPool->removeLastObject();
+//                        UIWidget* child = m_pChildPool->rbegin();
+//                        m_pUpdatePool->push_front(child);
+//                        m_pChildPool->pop_back();
                     }
                     break;
                 
@@ -556,7 +589,8 @@ void UIListView::getAndCallback()
                     if (m_bUpdateSuccess == false)
                     {
                         --m_nEnd;
-                        m_pChildPool->push_front(child);
+                        m_pChildPool->insertObject(child, 0);
+//                        m_pChildPool->push_front(child);
                         return;
                     }
                     ++m_nBegin;
@@ -571,7 +605,8 @@ void UIListView::getAndCallback()
                     if (m_bUpdateSuccess == false)
                     {
                         ++m_nBegin;
-                        m_pChildPool->push_back(child);
+                        m_pChildPool->addObject(child);
+//                        m_pChildPool->push_back(child);
                         return;
                     }
                     --m_nEnd;
@@ -594,7 +629,8 @@ void UIListView::getAndCallback()
                     if (m_bUpdateSuccess == false)
                     {
                         --m_nEnd;
-                        m_pChildPool->push_front(child);
+                        m_pChildPool->insertObject(child, 0);
+//                        m_pChildPool->push_front(child);
                         return;
                     }
                     ++m_nBegin;
@@ -609,7 +645,8 @@ void UIListView::getAndCallback()
                     if (m_bUpdateSuccess == false)
                     {
                         ++m_nBegin;
-                        m_pChildPool->push_back(child);
+                        m_pChildPool->addObject(child);
+//                        m_pChildPool->push_back(child);
                         return;
                     }
                     --m_nEnd;
@@ -630,11 +667,13 @@ void UIListView::getAndCallback()
             switch (m_eMoveDirection)
             {
                 case SCROLLVIEW_MOVE_DIR_UP: // up
-                    m_pChildPool->push_back(child);
+                    m_pChildPool->addObject(child);
+//                    m_pChildPool->push_back(child);
                     break;
                     
                 case SCROLLVIEW_MOVE_DIR_DOWN: // down
-                    m_pChildPool->push_front(child);
+                    m_pChildPool->insertObject(child, 0);
+//                    m_pChildPool->push_front(child);
                     break;
             }
             break;
@@ -643,11 +682,13 @@ void UIListView::getAndCallback()
             switch (m_eMoveDirection)
             {
                 case SCROLLVIEW_MOVE_DIR_LEFT: // left
-                    m_pChildPool->push_back(child);
+                    m_pChildPool->addObject(child);
+//                    m_pChildPool->push_back(child);
                     break;
                     
                 case SCROLLVIEW_MOVE_DIR_RIGHT: // right
-                    m_pChildPool->push_front(child);
+                    m_pChildPool->insertObject(child, 0);
+//                    m_pChildPool->push_front(child);
                     break;
                     
                 default:

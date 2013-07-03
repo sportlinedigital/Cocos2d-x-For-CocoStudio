@@ -25,6 +25,9 @@
 #include "UIWidget.h"
 #include "../System/UIHelper.h"
 #include "../System/UILayer.h"
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+#include "iconv/iconv.h"
+#endif
 
 NS_CC_EXT_BEGIN
 
@@ -75,7 +78,7 @@ m_pUILayer(NULL),
 m_bIsCreatedFromFile(false),
 m_fileDesignSize(CCSizeZero)
 {
-    
+    m_WidgetName = WIDGET_WIDGET;
 }
 
 UIWidget::~UIWidget()
@@ -107,6 +110,7 @@ bool UIWidget::init()
 void UIWidget::releaseResoures()
 {
     this->setUpdateEnable(false);
+    this->m_pUILayer->getInputManager()->removeManageredWidget(this);
     this->setUILayer(NULL);
     this->removeAllChildrenAndCleanUp(true);
     this->m_pCCRenderNode->removeAllChildrenWithCleanup(true);
@@ -356,6 +360,7 @@ void UIWidget::setNeedCheckVisibleDepandParent(bool need)
 void UIWidget::setBeTouchEnable(bool enable)
 {
     this->m_bBeTouchEnabled = enable;
+//    updateBeTouchEnable(enable);
     structureChangedEvent();
 }
 
@@ -462,6 +467,15 @@ bool UIWidget::isActive()
     return this->m_bActived;
 }
 
+void UIWidget::updateBeTouchEnable(bool enable)
+{
+    for (int i = 0; i < this->m_children->count(); i++)
+    {
+        UIWidget* child = (UIWidget*)(this->m_children->objectAtIndex(i));
+        child->setBeTouchEnable(enable);
+    }
+}
+
 void UIWidget::onPressStateChangedToNormal()
 {
     
@@ -482,7 +496,7 @@ void UIWidget::didNotSelectSelf()
     
 }
 
-bool UIWidget::onTouchBegan(cocos2d::CCPoint &touchPoint)
+void UIWidget::onTouchBegan(cocos2d::CCPoint &touchPoint)
 {
     this->setFocus(true);
     this->m_touchStartPos.x = touchPoint.x;
@@ -492,10 +506,9 @@ bool UIWidget::onTouchBegan(cocos2d::CCPoint &touchPoint)
         this->m_pWidgetParent->checkChildInfo(0,this,touchPoint);
     }
     this->pushDownEvent();
-    return true;
 }
 
-bool UIWidget::onTouchMoved(cocos2d::CCPoint &touchPoint)
+void UIWidget::onTouchMoved(cocos2d::CCPoint &touchPoint)
 {
     this->m_touchMovePos.x = touchPoint.x;
     this->m_touchMovePos.y = touchPoint.y;
@@ -505,10 +518,9 @@ bool UIWidget::onTouchMoved(cocos2d::CCPoint &touchPoint)
         this->m_pWidgetParent->checkChildInfo(1,this,touchPoint);
     }
     this->moveEvent();
-    return true;
 }
 
-bool UIWidget::onTouchEnded(cocos2d::CCPoint &touchPoint)
+void UIWidget::onTouchEnded(cocos2d::CCPoint &touchPoint)
 {
     this->m_touchEndPos.x = touchPoint.x;
     this->m_touchEndPos.y = touchPoint.y;
@@ -526,19 +538,16 @@ bool UIWidget::onTouchEnded(cocos2d::CCPoint &touchPoint)
     {
         this->cancelUpEvent();
     }
-    return true;
 }
 
-bool UIWidget::onTouchCancelled(cocos2d::CCPoint &touchPoint)
+void UIWidget::onTouchCancelled(cocos2d::CCPoint &touchPoint)
 {
     this->setPressState(WidgetStateNormal);
-    return true;
 }
 
-bool UIWidget::onTouchLongClicked(cocos2d::CCPoint &touchPoint)
+void UIWidget::onTouchLongClicked(cocos2d::CCPoint &touchPoint)
 {
     this->longClickEvent();
-    return true;
 }
 
 void UIWidget::pushDownEvent()
@@ -665,6 +674,11 @@ cocos2d::CCRect UIWidget::getRelativeRect()
     this->m_relativeRect.size.width = width;
     this->m_relativeRect.size.height = height;
     return this->m_relativeRect;
+}
+
+const CCSize& UIWidget::getContentSize()
+{
+    return this->getValidNode()->getContentSize();
 }
 
 cocos2d::CCNode* UIWidget::getValidNode()
@@ -1183,5 +1197,39 @@ WidgetType UIWidget::getWidgetType()
 {
     return m_WidgetType;
 }
+
+WidgetName UIWidget::getWidgetName()
+{
+    return m_WidgetName;
+}
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+const char* UTF8ToGBK(const char *strChar)
+{
+    iconv_t iconvH;
+    iconvH = iconv_open("gb2312","utf-8");
+    if (iconvH == 0)
+    {
+        return NULL;
+    }
+    
+    size_t strLength = strlen(strChar);
+    size_t outLength = strLength;
+    
+    size_t copyLength = outLength;
+    
+    char* outbuf =  new char[outLength + 1];
+    char* pBuff = outbuf;
+    memset( outbuf, 0, outLength + 1);
+    
+    if (-1 == iconv(iconvH, &strChar, &strLength, &outbuf, &outLength))
+    {
+        iconv_close(iconvH);
+        return NULL;
+    }
+    iconv_close(iconvH);
+    return pBuff;
+}
+#endif
 
 NS_CC_EXT_END

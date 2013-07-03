@@ -71,5 +71,6 @@
 #include "Components/CCComRender.h"
 
 #include "JsonReader/CCJsonReader.h"
+#include "CocoGUILIB/System/CocosGUI.h"
 
 #endif /* __COCOS2D_EXT_H__ */

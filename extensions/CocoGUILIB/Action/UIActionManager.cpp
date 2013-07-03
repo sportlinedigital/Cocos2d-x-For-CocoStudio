@@ -63,12 +63,21 @@ void UIActionManager::initWithDictionary(cs::CSJsonDictionary *dic,UIWidget* roo
 
 UIAction* UIActionManager::GetActionByName(const char* actionName)
 {
-	return NULL;
+    for (int i=0; i<m_ActionList->count(); i++) {
+        UIAction* action = dynamic_cast<UIAction*>(m_ActionList->objectAtIndex(i));
+        if (strcmp(actionName, action->getName()) == 0) {
+            return action;
+        }
+    }
+    return NULL;
 }
 
-void UIActionManager::PlayActionByName(const char* acitonName)
+void UIActionManager::PlayActionByName(const char* actionName)
 {
-
+    UIAction* action = GetActionByName(actionName);
+    if (action) {
+        action->Play();
+    }
 }
 
 NS_CC_EXT_END

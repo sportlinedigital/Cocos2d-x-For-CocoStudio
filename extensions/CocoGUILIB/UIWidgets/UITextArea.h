@@ -48,6 +48,8 @@ public:
     void setFontName(const char* fontName);
     virtual void setFlipX(bool flipX);
     virtual void setFlipY(bool flipY);
+    virtual bool isFlipX();
+    virtual bool isFlipY();
     virtual cocos2d::CCNode* getValidNode();
     virtual void setAnchorPoint(const cocos2d::CCPoint &pt);
 protected:

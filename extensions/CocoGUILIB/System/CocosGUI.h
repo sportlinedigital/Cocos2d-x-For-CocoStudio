@@ -50,6 +50,7 @@
 #include "UIHelper.h"
 #include "CCSReader.h"
 #include "UILayer.h"
+#include "../Action/UIActionManager.h"
     
 NS_CC_EXT_BEGIN
 

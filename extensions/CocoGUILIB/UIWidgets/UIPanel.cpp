@@ -36,7 +36,7 @@ m_bBackGroundScale9Enable(false),
 m_pBackGroundImage(NULL),
 m_bBackGroundInited(false)
 {
-
+    m_WidgetName = WIDGET_PANEL;
 }
 
 UIPanel* UIPanel::create()

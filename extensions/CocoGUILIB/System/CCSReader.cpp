@@ -185,7 +185,7 @@ UIWidget* CCSReader::widgetFromJsonFile(const char *fileName)
     cs::CSJsonDictionary* widgetTree = DICTOOL->getSubDictionary_json(jsonDict, "widgetTree");
     UIWidget* widget = this->widgetFromJsonDictionary(widgetTree);
     widget->setFileDesignSize(CCSizeMake(fileDesignWidth, fileDesignHeight));
-    cs::CSJsonDictionary* actions = DICTOOL->getSubDictionary_json(jsonDict, "actions");
+    cs::CSJsonDictionary* actions = DICTOOL->getSubDictionary_json(jsonDict, "animation");
     UIActionManager::shareManager()->initWithDictionary(actions,widget);
     delete jsonDict;
     jsonDict = NULL;
@@ -465,7 +465,7 @@ void CCSReader::setPropsForContainerWidgetFromJsonDictionary(UIWidget *widget, c
 {
     this->setPropsForWidgetFromJsonDictionary(widget, options);
     UIContainerWidget* containerWidget = (UIContainerWidget*)widget;
-    containerWidget->setClipAble(DICTOOL->getBooleanValue_json(options, "clipAble"));
+    containerWidget->setClippingEnable(DICTOOL->getBooleanValue_json(options, "clipAble"));
     this->setColorPropsForWidgetFromJsonDictionary(widget,options);
 }
 
