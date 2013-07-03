@@ -289,10 +289,6 @@ protected:
     UILayer* m_pUILayer;
 };
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	const char* UTF8ToGBK(const char *strChar);
-#endif
-
 NS_CC_EXT_END
 
 #endif /* defined(__CocoGUI__UIWidget__) */
