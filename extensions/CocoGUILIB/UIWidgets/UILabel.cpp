@@ -23,6 +23,9 @@
  ****************************************************************************/
 
 #include "UILabel.h"
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	#include "iconv/iconv.h"
+#endif
 
 NS_CC_EXT_BEGIN
 
@@ -71,9 +74,44 @@ void UILabel::initNodes()
     this->m_pCCRenderNode->addChild(m_pRenderLabel);
 }
 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+    static const char* UTF8ToGBK(const char *strChar) 
+    {
+        iconv_t iconvH;  
+        iconvH = iconv_open("gb2312","utf-8"); 
+        if (iconvH == 0) 
+        {  
+            return NULL; 
+        }  
+
+        size_t strLength = strlen(strChar); 
+        size_t outLength = strLength;  
+
+        size_t copyLength = outLength; 
+
+        char* outbuf =  new char[outLength + 1];  
+        char* pBuff = outbuf;  
+        memset( outbuf, 0, outLength + 1); 
+
+        if (-1 == iconv(iconvH, &strChar, &strLength, &outbuf, &outLength)) 
+        {  
+            iconv_close(iconvH); 
+            return NULL; 
+        }  
+        iconv_close(iconvH); 
+        return pBuff; 
+    }
+#endif
+
 void UILabel::setText(const char* text)
 {
-    m_pRenderLabel->setString(text);
+    std::string strText(text);
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	const char *des = UTF8ToGBK(strText.c_str());
+	strText.assign(des);
+	CC_SAFE_DELETE(des);
+#endif
+    m_pRenderLabel->setString(strText.c_str());
 }
 
 const char* UILabel::getStringValue()
