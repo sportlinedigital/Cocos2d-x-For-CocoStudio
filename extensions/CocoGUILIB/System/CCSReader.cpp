@@ -306,12 +306,13 @@ void CCSReader::setPropsForButtonFromJsonDictionary(UIWidget*widget,cs::CSJsonDi
         float ch = DICTOOL->getFloatValue_json(options, "capInsetsHeight");
 		if (widget->getUseMergedTexture())
 		{
-			 button->setTexturesScale9(normalFileName, pressedFileName, disabledFileName, cocos2d::CCRect(cx, cy, cw, ch),true);
+			 button->setTextures(normalFileName, pressedFileName, disabledFileName,true);
 		}
 		else
 		{
-			 button->setTexturesScale9(normalFileName_tp, pressedFileName_tp, disabledFileName_tp, cocos2d::CCRect(cx, cy, cw, ch));
+			 button->setTextures(normalFileName_tp, pressedFileName_tp, disabledFileName_tp);
 		}
+        button->setCapInsets(CCRectMake(cx, cy, cw, ch));
         bool sw = DICTOOL->checkObjectExist_json(options, "scale9Width");
         bool sh = DICTOOL->checkObjectExist_json(options, "scale9Height");
         if (sw && sh)
@@ -409,7 +410,7 @@ void CCSReader::setPropsForImageViewFromJsonDictionary(UIWidget*widget,cs::CSJso
 		}
         
         
-        imageView->setCapInset(cocos2d::CCRect(cx, cy, cw, ch));
+        imageView->setCapInset(CCRectMake(cx, cy, cw, ch));
         bool sw = DICTOOL->checkObjectExist_json(options, "scale9Width");
         bool sh = DICTOOL->checkObjectExist_json(options, "scale9Height");
         if (sw && sh)
@@ -529,12 +530,13 @@ void CCSReader::setPropsForPanelFromJsonDictionary(UIWidget*widget,cs::CSJsonDic
         float ch = DICTOOL->getFloatValue_json(options, "capInsetsHeight");
 		if (widget->getUseMergedTexture())
 		{
-			panel->setBackGroundImageScale9(imageFileName, cocos2d::CCRect(cx, cy, cw, ch),true);
+			panel->setBackGroundImage(imageFileName,true);
 		}
 		else
 		{
-            panel->setBackGroundImageScale9(imageFileName_tp, cocos2d::CCRect(cx, cy, cw, ch));
+            panel->setBackGroundImage(imageFileName_tp);
 		}
+        panel->setBackGroundImageCapInset(CCRectMake(cx, cy, cw, ch));
     }
     else
     {

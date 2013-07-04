@@ -37,13 +37,10 @@ public:
     static UIButton* create();
     virtual void initPressState(WidgetState state);
     virtual void setTextures(const char* normal,const char* selected,const char* disabled,bool useSpriteFrame = false);
-    virtual void setTexturesScale9(const char* normal,const char* selected,const char* disabled,cocos2d::CCRect capInsets,bool useSpriteFrame = false);
     void setNormalTexture(const char* normal,bool useSpriteFrame = false);
     void setPressedTexture(const char* selected,bool useSpriteFrame = false);
     void setDisabledTexture(const char* disabled,bool useSpriteFrame = false);
-    void setNormalTextureScale9(const char* normal,cocos2d::CCRect capInsets,bool useSpriteFrame = false);
-    void setPressedTextureScale9(const char* selected,cocos2d::CCRect capInsets,bool useSpriteFrame = false);
-    void setDisabledTextureScale9(const char* disabled,cocos2d::CCRect capInsets,bool useSpriteFrame = false);
+    void setCapInsets(const CCRect &capInset);
     virtual cocos2d::CCNode* getValidNode();
     virtual void setAnchorPoint(const cocos2d::CCPoint &pt);
     virtual void setScale9Enable(bool able);
@@ -65,7 +62,9 @@ protected:
     cocos2d::CCNode* m_pButtonNormal;
     cocos2d::CCNode* m_pButtonClicked;
     cocos2d::CCNode* m_pButtonDisable;
-    
+    std::string m_strNormalFileName;
+    std::string m_strClickedFileName;
+    std::string m_strDisabledFileName;
     bool m_bScale9Enable;
 };
 

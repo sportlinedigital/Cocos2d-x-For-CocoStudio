@@ -29,13 +29,13 @@ NS_CC_EXT_BEGIN
 UIScrollView::UIScrollView():
 m_eDirection(SCROLLVIEW_DIR_VERTICAL),
 m_eMoveDirection(SCROLLVIEW_MOVE_DIR_NONE),
-m_fTouchStartLocation(0.0),
-m_fTouchEndLocation(0.0),
-m_fTouchMoveStartLocation(0.0),
-m_fTopBoundary(0.0),
-m_fBottomBoundary(0.0),
-m_fLeftBoundary(0.0),
-m_fRightBoundary(0.0),
+m_fTouchStartLocation(0.0f),
+m_fTouchEndLocation(0.0f),
+m_fTouchMoveStartLocation(0.0f),
+m_fTopBoundary(0.0f),
+m_fBottomBoundary(0.0f),
+m_fLeftBoundary(0.0f),
+m_fRightBoundary(0.0f),
 m_pTopChild(NULL),
 m_pBottomChild(NULL),
 m_pLeftChild(NULL),
@@ -53,19 +53,19 @@ m_bBerthToRight(false),
 m_bBerthToVerticalCenter(false),
 m_bBerthToHorizontalCenter(false),
 m_bAutoScroll(false),
-m_fAutoScrollOriginalSpeed(0.0),
-m_fAutoScrollAcceleration(600.0),
+m_fAutoScrollOriginalSpeed(0.0f),
+m_fAutoScrollAcceleration(600.0f),
 m_bBePressed(false),
-m_fSlidTime(0.0),
-m_fChildrenSizeHeight(0.0),
-m_fChildrenSizeWidth(0.0),
-m_fChildFocusCancelOffset(5.0),
+m_fSlidTime(0.0f),
+m_fChildrenSizeHeight(0.0f),
+m_fChildrenSizeWidth(0.0f),
+m_fChildFocusCancelOffset(5.0f),
 m_eMoveMode(SCROLLVIEW_MOVE_MODE_NORMAL),
 isRunningAction(false),
 m_eBerthOrientation(SCROLLVIEW_BERTH_ORI_TOP),
-m_fDisBoundaryToChild_0(0.0),
-m_fDisBetweenChild(0.0),
-m_fDragForce(0.0),
+m_fDisBoundaryToChild_0(0.0f),
+m_fDisBetweenChild(0.0f),
+m_fDragForce(0.0f),
 m_pScrollToTopListener(NULL),
 m_pfnScrollToTopSelector(NULL),
 m_pScrollToBottomListener(NULL),
@@ -104,15 +104,6 @@ UIScrollView* UIScrollView::create()
     }
     CC_SAFE_DELETE(widget);
     return NULL;
-}
-
-bool UIScrollView::init()
-{
-    if (UIPanel::init())
-    {
-        return true;
-    }
-    return false;
 }
 
 void UIScrollView::setSize(const cocos2d::CCSize &size)

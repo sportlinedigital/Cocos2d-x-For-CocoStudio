@@ -33,8 +33,9 @@ m_nBarType(LoadingBarTypeLeft),
 m_nPercent(100),
 m_fTotalLength(0),
 m_fBarHeight(0),
-m_pRenderBar(NULL),
-m_bUseSpriteFrame(false)
+m_pRenderBar(NULL)
+//,
+//m_bUseSpriteFrame(false)
 {
     m_WidgetName = WIDGET_LOADINGBAR;
 }
@@ -95,7 +96,7 @@ int UILoadingBar::getDirection()
 
 void UILoadingBar::setTexture(const char* texture,bool useSpriteFrame)
 {
-    this->m_bUseSpriteFrame = useSpriteFrame;
+    setUseMergedTexture(useSpriteFrame);
     if (useSpriteFrame)
     {
         this->m_pRenderBar->initWithSpriteFrameName(texture);
@@ -136,7 +137,7 @@ void UILoadingBar::setPercent(int percent)
     float res = this->m_nPercent/100.0;
     
     int x = 0, y = 0;                        
-    if (this->m_bUseSpriteFrame)
+    if (getUseMergedTexture())
     {
         cocos2d::CCSprite* barNode = DYNAMIC_CAST_CCSPRITE;
         if (barNode)

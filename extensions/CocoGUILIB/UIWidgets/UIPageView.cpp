@@ -32,8 +32,13 @@ m_pages(NULL),
 m_touchMoveDir(PAGEVIEW_TOUCHLEFT),
 m_pLeftChild(NULL),
 m_pRightChild(NULL),
-m_fLeftBoundary(0.0),
-m_fRightBoundary(0.0)
+m_fLeftBoundary(0.0f),
+m_fRightBoundary(0.0f),
+m_bIsAutoScrolling(false),
+m_fAutoScrollDistance(0.0f),
+m_fAutoScrollSpeed(0.0f),
+m_nAutoScrollDir(0),
+m_fChildFocusCancelOffset(5.0f)
 {
     m_WidgetName = WIDGET_PAGEVIEW;
 }
@@ -60,6 +65,7 @@ bool UIPageView::init()
         m_pages = CCArray::create();
         m_pages->retain();
         setClippingEnable(true);
+        setUpdateEnable(true);
         return true;
     }
     return false;
@@ -81,7 +87,9 @@ void UIPageView::addWidgetToPage(UIWidget *widget, int pageIdx, bool forceCreate
                 CCLOG("pageIdx is %d, it will be added as page id [%d]",pageIdx,pageCount);
 //                pageIdx = pageCount;
             }
-            addPage(createPage());
+            UIPanel* newPage = createPage();
+            newPage->addChild(widget);
+            addPage(newPage);
         }
     }
     else
@@ -274,12 +282,61 @@ void UIPageView::removeAllChildrenAndCleanUp(bool cleanup)
 
 void UIPageView::scrollToPage(int idx)
 {
-    
+    if (idx < 0 || idx >= m_pages->count())
+    {
+        return;
+    }
+    m_nCurPageIdx = idx;
+    UIWidget* curPage = dynamic_cast<UIWidget*>(m_pages->objectAtIndex(idx));
+    m_fAutoScrollDistance = -(curPage->getPosition().x);
+    m_fAutoScrollSpeed = fabs(m_fAutoScrollDistance)/0.2f;
+    m_nAutoScrollDir = m_fAutoScrollDistance > 0 ? 1 : 0;
+    m_bIsAutoScrolling = true;
 }
 
 void UIPageView::update(float dt)
 {
-    
+    if (m_bIsAutoScrolling)
+    {
+        switch (m_nAutoScrollDir)
+        {
+            case 0:
+            {
+                float step = m_fAutoScrollSpeed*dt;
+                if (m_fAutoScrollDistance + step >= 0.0f)
+                {
+                    step = -m_fAutoScrollDistance;
+                    m_fAutoScrollDistance = 0.0f;
+                    m_bIsAutoScrolling = false;
+                }
+                else
+                {
+                    m_fAutoScrollDistance += step;
+                }
+                scrollPages(-step);
+                break;
+            }
+                break;
+            case 1:
+            {
+                float step = m_fAutoScrollSpeed*dt;
+                if (m_fAutoScrollDistance - step <= 0.0f)
+                {
+                    step = m_fAutoScrollDistance;
+                    m_fAutoScrollDistance = 0.0f;
+                    m_bIsAutoScrolling = false;
+                }
+                else
+                {
+                    m_fAutoScrollDistance -= step;
+                }
+                scrollPages(step);
+                break;
+            }
+            default:
+                break;
+        }
+    }
 }
 
 void UIPageView::onTouchBegan(cocos2d::CCPoint &touchPoint)
@@ -290,8 +347,19 @@ void UIPageView::onTouchBegan(cocos2d::CCPoint &touchPoint)
 
 void UIPageView::onTouchMoved(cocos2d::CCPoint &touchPoint)
 {
-    UIPanel::onTouchMoved(touchPoint);
+    this->m_touchMovePos.x = touchPoint.x;
+    this->m_touchMovePos.y = touchPoint.y;
     handleMoveLogic(touchPoint);
+    if (this->m_pWidgetParent)
+    {
+        this->m_pWidgetParent->checkChildInfo(1,this,touchPoint);
+    }
+    this->moveEvent();
+    if (!this->pointAtSelfBody(touchPoint))
+    {
+        this->setFocus(false);
+        onTouchEnded(touchPoint);
+    }
 }
 
 void UIPageView::onTouchEnded(cocos2d::CCPoint &touchPoint)
@@ -386,7 +454,71 @@ void UIPageView::handleMoveLogic(cocos2d::CCPoint &touchPoint)
 
 void UIPageView::handleReleaseLogic(cocos2d::CCPoint &touchPoint)
 {
-    
+    UIWidget* curPage = dynamic_cast<UIWidget*>(m_pages->objectAtIndex(m_nCurPageIdx));
+    if (curPage)
+    {
+        CCPoint curPagePos = curPage->getPosition();
+        int pageCount = m_pages->count();
+        float curPageLocation = curPagePos.x;
+        float pageWidth = getWidth();
+        float boundary = pageWidth/2.0f;
+        if (curPageLocation <= -boundary)
+        {
+            if (m_nCurPageIdx >= pageCount-1)
+            {
+                scrollPages(-curPageLocation);
+            }
+            else
+            {
+                scrollToPage(m_nCurPageIdx+1);
+            }
+        }
+        else if (curPageLocation >= boundary)
+        {
+            if (m_nCurPageIdx <= 0)
+            {
+                scrollPages(-curPageLocation);
+            }
+            else
+            {
+                scrollToPage(m_nCurPageIdx-1);
+            }
+        }
+        else
+        {
+            scrollToPage(m_nCurPageIdx);
+        }
+    }
+//    CCLOG("cur page idx == %d",m_nCurPageIdx);
+}
+
+void UIPageView::checkChildInfo(int handleState,UIWidget* sender,cocos2d::CCPoint &touchPoint)
+{
+    switch (handleState)
+    {
+        case 0:
+            this->handlePressLogic(touchPoint);
+            break;
+            
+        case 1:
+        {
+            float offset = 0;
+            offset = fabs(sender->getTouchStartPos().x - touchPoint.x);
+            if (offset > this->m_fChildFocusCancelOffset)
+            {
+                sender->setFocus(false);
+                this->handleMoveLogic(touchPoint);
+            }
+        }
+            break;
+            
+        case 2:
+            this->handleReleaseLogic(touchPoint);
+            break;
+            
+        case 3:
+            break;
+    }
 }
 
 NS_CC_EXT_END
