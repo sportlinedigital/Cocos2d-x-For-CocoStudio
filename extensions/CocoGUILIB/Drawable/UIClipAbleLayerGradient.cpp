@@ -54,7 +54,7 @@ UIClipAbleLayerGradient* UIClipAbleLayerGradient::create()
 
 void UIClipAbleLayerGradient::visit()
 {
-    if (this->m_bClipAble)
+    if (this->m_bClippingEnable)
     {
         glEnable(GL_SCISSOR_TEST);
         CCPoint local = this->convertToWorldSpace(CCPointZero);
@@ -78,9 +78,9 @@ void UIClipAbleLayerGradient::visit()
     }
 }
 
-void UIClipAbleLayerGradient::setClipAble(bool able)
+void UIClipAbleLayerGradient::setClippingEnable(bool able)
 {
-    this->m_bClipAble = able;
+    this->m_bClippingEnable = able;
 }
 
 void UIClipAbleLayerGradient::setColorEnable(bool enable)

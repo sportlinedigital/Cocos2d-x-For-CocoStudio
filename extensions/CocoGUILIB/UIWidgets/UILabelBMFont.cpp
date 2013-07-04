@@ -52,7 +52,7 @@ void UILabelBMFont::initNodes()
 {
     UIWidget::initNodes();
     this->m_pLabelBMFont = cocos2d::CCLabelBMFont::create();
-    this->m_pCCRenderNode->addChild(this->m_pLabelBMFont);
+    this->m_pRender->addChild(this->m_pLabelBMFont);
 }
 
 void UILabelBMFont::setFntFile(const char *fileName)

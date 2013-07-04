@@ -68,7 +68,7 @@ void UILabel::initNodes()
 {
     UIWidget::initNodes();
     this->m_pRenderLabel = cocos2d::CCLabelTTF::create();
-    this->m_pCCRenderNode->addChild(m_pRenderLabel);
+    this->m_pRender->addChild(m_pRenderLabel);
 }
 
 void UILabel::setText(const char* text)
@@ -136,7 +136,7 @@ void UILabel::onPressStateChangedToDisabled()
 
 void UILabel::clickScale(float scale)
 {
-    this->m_pCCRenderNode->setScale(scale);
+    this->m_pRender->setScale(scale);
 }
 
 void UILabel::setFlipX(bool flipX)

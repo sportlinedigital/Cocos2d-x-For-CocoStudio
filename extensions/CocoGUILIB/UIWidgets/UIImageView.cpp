@@ -64,7 +64,7 @@ void UIImageView::initNodes()
 {
     UIWidget::initNodes();
     this->m_pImageRender = cocos2d::CCSprite::create();
-    this->m_pCCRenderNode->addChild(m_pImageRender);
+    this->m_pRender->addChild(m_pImageRender);
 }
 
 void UIImageView::setTexture(const char* fileName,bool useSpriteFrame)
@@ -257,7 +257,7 @@ void UIImageView::setScale9Enable(bool able)
     this->m_nPrevPressstate = WidgetStateNone;
     this->m_nCurPressState = WidgetStateNone;
     this->m_bScale9Enable = able;
-    this->m_pCCRenderNode->removeChild(this->m_pImageRender, true);
+    this->m_pRender->removeChild(this->m_pImageRender, true);
     this->m_pImageRender = NULL;
     if (this->m_bScale9Enable)
     {
@@ -268,7 +268,7 @@ void UIImageView::setScale9Enable(bool able)
         this->m_pImageRender = cocos2d::CCSprite::create();
     }
     setTexture(m_strTextureFile.c_str(),getUseMergedTexture());
-    this->m_pCCRenderNode->addChild(m_pImageRender);
+    this->m_pRender->addChild(m_pImageRender);
 }
 
 void UIImageView::setScale9Size(float width, float height)

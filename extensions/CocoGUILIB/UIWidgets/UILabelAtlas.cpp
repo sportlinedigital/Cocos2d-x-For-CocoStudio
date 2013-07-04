@@ -52,7 +52,7 @@ void UILabelAtlas::initNodes()
 {
     UIWidget::initNodes();
     this->m_pRenderLaberAtlas = UICCLabelAtlas::create();
-    this->m_pCCRenderNode->addChild(m_pRenderLaberAtlas);
+    this->m_pRender->addChild(m_pRenderLaberAtlas);
 }
 
 void UILabelAtlas::setProperty(const char *stringValue, const char *charMapFile, int itemWidth, int itemHeight, const char *startCharMap,bool useSpriteFrame)

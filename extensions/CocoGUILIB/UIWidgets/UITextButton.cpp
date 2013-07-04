@@ -53,7 +53,7 @@ bool UITextButton::init()
     if (UIButton::init())
     {
         this->m_pTextLable = cocos2d::CCLabelTTF::create();
-        this->m_pCCRenderNode->addChild(this->m_pTextLable);
+        this->m_pRender->addChild(this->m_pTextLable);
         return true;
     }
     return false;

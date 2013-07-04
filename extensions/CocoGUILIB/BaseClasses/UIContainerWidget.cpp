@@ -28,8 +28,8 @@
 
 NS_CC_EXT_BEGIN
 
-#define DYNAMIC_CAST_CLIPLAYERCOLOR dynamic_cast<UIClipAbleLayerColor*>(this->m_pCCRenderNode)
-#define DYNAMIC_CAST_CLIPLAYERGRADIENT dynamic_cast<UIClipAbleLayerGradient*>(this->m_pCCRenderNode)
+#define DYNAMIC_CAST_CLIPLAYERCOLOR dynamic_cast<UIClipAbleLayerColor*>(this->m_pRender)
+#define DYNAMIC_CAST_CLIPLAYERGRADIENT dynamic_cast<UIClipAbleLayerGradient*>(this->m_pRender)
     
 UIContainerWidget::UIContainerWidget():
 m_fWidth(0.0),
@@ -71,7 +71,7 @@ bool UIContainerWidget::init()
 
 void UIContainerWidget::initNodes()
 {
-    this->m_pCCRenderNode = UIClipAbleLayerColor::create();
+    this->m_pRender = UIClipAbleLayerColor::create();
 }
 
 bool UIContainerWidget::isClippingEnable()
@@ -104,10 +104,10 @@ void UIContainerWidget::setClippingEnable(bool able)
     switch (m_renderType)
     {
         case RENDER_TYPE_LAYERCOLOR:
-            DYNAMIC_CAST_CLIPLAYERCOLOR->setClipAble(able);
+            DYNAMIC_CAST_CLIPLAYERCOLOR->setClippingEnable(able);
             break;
         case RENDER_TYPE_LAYERGRADIENT:
-            DYNAMIC_CAST_CLIPLAYERGRADIENT->setClipAble(able);
+            DYNAMIC_CAST_CLIPLAYERGRADIENT->setClippingEnable(able);
             break;
         default:
             break;

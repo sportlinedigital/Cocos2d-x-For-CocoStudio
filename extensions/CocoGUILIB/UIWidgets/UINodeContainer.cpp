@@ -65,7 +65,7 @@ void UINodeContainer::addCCNode(cocos2d::CCNode *node)
     }
     this->m_pCCNode = node;
     this->m_pCCNode->retain();
-    this->m_pCCRenderNode->addChild(node);
+    this->m_pRender->addChild(node);
 }
 
 void UINodeContainer::removeCCNode(bool cleanup)
@@ -75,7 +75,7 @@ void UINodeContainer::removeCCNode(bool cleanup)
         return;
     }
     this->m_pCCNode->release();
-    this->m_pCCRenderNode->removeChild(m_pCCNode,cleanup);
+    this->m_pRender->removeChild(m_pCCNode,cleanup);
     this->m_pCCNode = NULL;
 }
 

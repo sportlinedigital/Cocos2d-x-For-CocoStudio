@@ -428,7 +428,7 @@ void UIPageView::onTouchCancelled(cocos2d::CCPoint &touchPoint)
 
 void UIPageView::handlePressLogic(cocos2d::CCPoint &touchPoint)
 {
-    cocos2d::CCPoint nsp = this->m_pCCRenderNode->convertToNodeSpace(touchPoint);
+    cocos2d::CCPoint nsp = this->m_pRender->convertToNodeSpace(touchPoint);
     this->m_fTouchMoveStartLocation = nsp.x;
     this->m_fTouchStartLocation = nsp.x;
 //    this->startRecordSlidAction();
@@ -436,7 +436,7 @@ void UIPageView::handlePressLogic(cocos2d::CCPoint &touchPoint)
 
 void UIPageView::handleMoveLogic(cocos2d::CCPoint &touchPoint)
 {
-    cocos2d::CCPoint nsp = this->m_pCCRenderNode->convertToNodeSpace(touchPoint);
+    cocos2d::CCPoint nsp = this->m_pRender->convertToNodeSpace(touchPoint);
     float offset = 0.0;
     float moveX = nsp.x;
     offset = moveX - m_fTouchMoveStartLocation;

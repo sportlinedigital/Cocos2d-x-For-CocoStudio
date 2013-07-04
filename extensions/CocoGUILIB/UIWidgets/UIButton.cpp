@@ -81,9 +81,9 @@ void UIButton::initNodes()
         this->m_pButtonClicked = cocos2d::CCSprite::create();
         this->m_pButtonDisable = cocos2d::CCSprite::create();
     }
-    this->m_pCCRenderNode->addChild(this->m_pButtonNormal);
-    this->m_pCCRenderNode->addChild(this->m_pButtonClicked);
-    this->m_pCCRenderNode->addChild(this->m_pButtonDisable);
+    this->m_pRender->addChild(this->m_pButtonNormal);
+    this->m_pRender->addChild(this->m_pButtonClicked);
+    this->m_pRender->addChild(this->m_pButtonDisable);
 }
 
 void UIButton::initPressState(WidgetState state)
@@ -104,9 +104,9 @@ void UIButton::setScale9Enable(bool able)
     this->m_nCurPressState = WidgetStateNone;
     this->m_bScale9Enable = able;
     
-    this->m_pCCRenderNode->removeChild(this->m_pButtonNormal, true);
-    this->m_pCCRenderNode->removeChild(this->m_pButtonClicked, true);
-    this->m_pCCRenderNode->removeChild(this->m_pButtonDisable, true);
+    this->m_pRender->removeChild(this->m_pButtonNormal, true);
+    this->m_pRender->removeChild(this->m_pButtonClicked, true);
+    this->m_pRender->removeChild(this->m_pButtonDisable, true);
     
     this->m_pButtonNormal = NULL;
     this->m_pButtonClicked = NULL;
@@ -124,9 +124,9 @@ void UIButton::setScale9Enable(bool able)
         this->m_pButtonDisable = cocos2d::CCSprite::create();
     }
     setTextures(m_strNormalFileName.c_str(), m_strClickedFileName.c_str(), m_strDisabledFileName.c_str(),getUseMergedTexture());
-    this->m_pCCRenderNode->addChild(this->m_pButtonNormal);
-    this->m_pCCRenderNode->addChild(this->m_pButtonClicked);
-    this->m_pCCRenderNode->addChild(this->m_pButtonDisable);
+    this->m_pRender->addChild(this->m_pButtonNormal);
+    this->m_pRender->addChild(this->m_pButtonClicked);
+    this->m_pRender->addChild(this->m_pButtonDisable);
     this->initPressState(WidgetStateNormal);
 }
 

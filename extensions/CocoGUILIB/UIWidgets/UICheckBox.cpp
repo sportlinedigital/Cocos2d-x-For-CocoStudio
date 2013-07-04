@@ -76,11 +76,11 @@ void UICheckBox::initNodes()
     this->m_pFrontCross = cocos2d::CCSprite::create();
     this->m_pBackGroundBoxDisabled = cocos2d::CCSprite::create();
     this->m_pFrontCrossDisabled = cocos2d::CCSprite::create();
-    this->m_pCCRenderNode->addChild(m_pBackGroundBox);
-    this->m_pCCRenderNode->addChild(m_pBackGroundSelectedBox);
-    this->m_pCCRenderNode->addChild(m_pFrontCross);
-    this->m_pCCRenderNode->addChild(m_pBackGroundBoxDisabled);
-    this->m_pCCRenderNode->addChild(m_pFrontCrossDisabled);
+    this->m_pRender->addChild(m_pBackGroundBox);
+    this->m_pRender->addChild(m_pBackGroundSelectedBox);
+    this->m_pRender->addChild(m_pFrontCross);
+    this->m_pRender->addChild(m_pBackGroundBoxDisabled);
+    this->m_pRender->addChild(m_pFrontCrossDisabled);
 }
 
 void UICheckBox::setTextures(const char *backGround, const char *backGroundSelected, const char *cross,const char* backGroundDisabled,const char* frontCrossDisabled,bool useSpriteFrame)

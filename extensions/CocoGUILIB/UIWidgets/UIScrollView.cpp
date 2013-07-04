@@ -1109,7 +1109,7 @@ void UIScrollView::endRecordSlidAction()
 
 void UIScrollView::handlePressLogic(cocos2d::CCPoint &touchPoint)
 {        
-    cocos2d::CCPoint nsp = this->m_pCCRenderNode->convertToNodeSpace(touchPoint);
+    cocos2d::CCPoint nsp = this->m_pRender->convertToNodeSpace(touchPoint);
     switch (this->m_eDirection)
     {
         case SCROLLVIEW_DIR_VERTICAL: // vertical
@@ -1130,7 +1130,7 @@ void UIScrollView::handlePressLogic(cocos2d::CCPoint &touchPoint)
 
 void UIScrollView::handleMoveLogic(cocos2d::CCPoint &touchPoint)
 {
-    cocos2d::CCPoint nsp = this->m_pCCRenderNode->convertToNodeSpace(touchPoint);
+    cocos2d::CCPoint nsp = this->m_pRender->convertToNodeSpace(touchPoint);
     float offset = 0.0;
     
     switch (m_eDirection)
@@ -1178,7 +1178,7 @@ void UIScrollView::handleMoveLogic(cocos2d::CCPoint &touchPoint)
 
 void UIScrollView::handleReleaseLogic(cocos2d::CCPoint &touchPoint)
 {
-    cocos2d::CCPoint nsp = this->m_pCCRenderNode->convertToNodeSpace(touchPoint);
+    cocos2d::CCPoint nsp = this->m_pRender->convertToNodeSpace(touchPoint);
     switch (this->m_eDirection)
     {
         case SCROLLVIEW_DIR_VERTICAL: // vertical

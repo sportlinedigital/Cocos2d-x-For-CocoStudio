@@ -51,7 +51,7 @@ void UITextArea::initNodes()
 {
     UIWidget::initNodes();
     m_pRenderLabel = cocos2d::CCLabelTTF::create();
-    this->m_pCCRenderNode->addChild(m_pRenderLabel);
+    this->m_pRender->addChild(m_pRenderLabel);
 }
 
 void UITextArea::setText(const char* text)

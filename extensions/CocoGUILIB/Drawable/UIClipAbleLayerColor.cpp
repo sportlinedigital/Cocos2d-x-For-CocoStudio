@@ -52,7 +52,7 @@ UIClipAbleLayerColor* UIClipAbleLayerColor::create()
 
 void UIClipAbleLayerColor::visit()
 {
-    if (this->m_bClipAble)
+    if (this->m_bClippingEnable)
     {
         glEnable(GL_SCISSOR_TEST);
         CCPoint local = this->convertToWorldSpace(CCPointZero);
@@ -76,9 +76,9 @@ void UIClipAbleLayerColor::visit()
     }
 }
 
-void UIClipAbleLayerColor::setClipAble(bool able)
+void UIClipAbleLayerColor::setClippingEnable(bool able)
 {
-    this->m_bClipAble = able;
+    this->m_bClippingEnable = able;
 }
 
 void UIClipAbleLayerColor::setColorEnable(bool enable)

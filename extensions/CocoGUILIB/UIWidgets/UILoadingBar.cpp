@@ -60,7 +60,7 @@ void UILoadingBar::initNodes()
 {
     UIWidget::initNodes();
     this->m_pRenderBar = cocos2d::CCSprite::create();
-    this->m_pCCRenderNode->addChild(m_pRenderBar);
+    this->m_pRender->addChild(m_pRenderBar);
     this->m_pRenderBar->setAnchorPoint(ccp(0.0,0.5));
 }
 

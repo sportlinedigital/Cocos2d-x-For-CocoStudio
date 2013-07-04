@@ -65,7 +65,7 @@ bool UISlider::init()
     if (UIWidget::init())
     {
         this->m_pBarNode = cocos2d::CCSprite::create();
-        this->m_pCCRenderNode->addChild(m_pBarNode);
+        this->m_pRender->addChild(m_pBarNode);
         this->m_pSlidBall = UIButton::create();
         this->addChild(this->m_pSlidBall);
         return true;
@@ -116,7 +116,7 @@ void UISlider::setBarTextureScale9Enable(bool able)
     {
         return;
     }
-    this->m_pCCRenderNode->removeChild(this->m_pBarNode, true);
+    this->m_pRender->removeChild(this->m_pBarNode, true);
     this->m_pBarNode = NULL;
     this->m_bBarScale9Enable = able;
     if (this->m_bBarScale9Enable)
@@ -127,7 +127,7 @@ void UISlider::setBarTextureScale9Enable(bool able)
     {
         this->m_pBarNode = cocos2d::CCSprite::create();
     }
-    this->m_pCCRenderNode->addChild(this->m_pBarNode);
+    this->m_pRender->addChild(this->m_pBarNode);
 }
 
 void UISlider::setSlidBallTextures(const char* normal,const char* pressed,const char* disabled,bool useSpriteFrame)
@@ -200,7 +200,7 @@ void UISlider::setShowProgressBar(bool show)
     if (this->m_bShowProgressBar)
     {
         this->m_pProgressBarNode = cocos2d::extension::CCScale9Sprite::create();
-        this->m_pCCRenderNode->addChild(this->m_pProgressBarNode);
+        this->m_pRender->addChild(this->m_pProgressBarNode);
         
         this->m_pProgressBarNode->setZOrder(this->m_pBarNode->getZOrder() + 1);
         this->m_pSlidBall->setWidgetZOrder(this->m_pProgressBarNode->getZOrder() + 1);
@@ -209,7 +209,7 @@ void UISlider::setShowProgressBar(bool show)
     {
         if (this->m_pProgressBarNode != NULL)
         {
-            this->m_pCCRenderNode->removeChild(this->m_pProgressBarNode, true);
+            this->m_pRender->removeChild(this->m_pProgressBarNode, true);
         }
     }
 }
@@ -239,7 +239,7 @@ void UISlider::setProgressBarScale(int percent)
 void UISlider::onTouchBegan(cocos2d::CCPoint &touchPoint)
 {
     UIWidget::onTouchBegan(touchPoint);
-    cocos2d::CCPoint nsp = this->m_pCCRenderNode->convertToNodeSpace(touchPoint);
+    cocos2d::CCPoint nsp = this->m_pRender->convertToNodeSpace(touchPoint);
     this->m_pSlidBall->setPosition(ccp(nsp.x,0));
     this->m_pSlidBall->setPressState(WidgetStateSelected);
     this->m_nBarPercent = this->getPercentWithBallPos(this->m_pSlidBall->getPosition().x,0);
@@ -252,7 +252,7 @@ void UISlider::onTouchBegan(cocos2d::CCPoint &touchPoint)
 
 void UISlider::onTouchMoved(cocos2d::CCPoint &touchPoint)
 {
-    cocos2d::CCPoint nsp = this->m_pCCRenderNode->convertToNodeSpace(touchPoint);
+    cocos2d::CCPoint nsp = this->m_pRender->convertToNodeSpace(touchPoint);
     this->m_pSlidBall->setPosition(ccp(nsp.x,0));
     this->checkSlidBoundary();
     this->m_nBarPercent = this->getPercentWithBallPos(this->m_pSlidBall->getPosition().x,0);

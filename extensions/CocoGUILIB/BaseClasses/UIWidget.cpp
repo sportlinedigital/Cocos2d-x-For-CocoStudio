@@ -28,11 +28,11 @@
 
 NS_CC_EXT_BEGIN
 
-#define DYNAMIC_CAST_CCBLENDPROTOCOL dynamic_cast<cocos2d::CCBlendProtocol*>(this->m_pCCRenderNode)
+#define DYNAMIC_CAST_CCBLENDPROTOCOL dynamic_cast<cocos2d::CCBlendProtocol*>(this->m_pRender)
 
-#define DYNAMIC_CAST_CCRGBAPROTOCOL dynamic_cast<cocos2d::CCRGBAProtocol*>(this->m_pCCRenderNode)
+#define DYNAMIC_CAST_CCRGBAPROTOCOL dynamic_cast<cocos2d::CCRGBAProtocol*>(this->m_pRender)
 
-#define DYNAMIC_CAST_GUINODERGBA dynamic_cast<GUINodeRGBA*>(this->m_pCCRenderNode)
+#define DYNAMIC_CAST_GUINODERGBA dynamic_cast<GUINodeRGBA*>(this->m_pRender)
     
 UIWidget::UIWidget():
 m_bEnabled(true),
@@ -45,7 +45,7 @@ m_nPrevPressstate(WidgetStateNone),
 m_bBeTouchEnabled(false),
 m_nWidgetTag(-1),
 m_bUpdateEnable(false),
-m_pCCRenderNode(NULL),
+m_pRender(NULL),
 m_strName("default"),
 m_children(NULL),
 m_WidgetType(WidgetTypeWidget),
@@ -100,8 +100,8 @@ bool UIWidget::init()
     this->m_children = cocos2d::CCArray::create();
     this->m_children->retain();
     this->initNodes();
-    this->m_pCCRenderNode->retain();
-    this->m_pCCRenderNode->setZOrder(this->m_nWidgetZOrder);
+    this->m_pRender->retain();
+    this->m_pRender->setZOrder(this->m_nWidgetZOrder);
     return true;
 }
 
@@ -111,15 +111,15 @@ void UIWidget::releaseResoures()
     this->m_pUILayer->getInputManager()->removeManageredWidget(this);
     this->setUILayer(NULL);
     this->removeAllChildrenAndCleanUp(true);
-    this->m_pCCRenderNode->removeAllChildrenWithCleanup(true);
-    this->m_pCCRenderNode->removeFromParentAndCleanup(true);
-    this->m_pCCRenderNode->release();
+    this->m_pRender->removeAllChildrenWithCleanup(true);
+    this->m_pRender->removeFromParentAndCleanup(true);
+    this->m_pRender->release();
     this->m_children->release();
 }
 
 void UIWidget::initNodes()
 {
-    this->m_pCCRenderNode = GUINodeRGBA::create();
+    this->m_pRender = GUINodeRGBA::create();
 }
 
 bool UIWidget::addChild(UIWidget *child)
@@ -165,8 +165,8 @@ bool UIWidget::addChild(UIWidget *child)
             this->m_children->insertObject(child,0);
         }
     }
-    child->m_pCCRenderNode->setZOrder(child->getWidgetZOrder());
-    this->m_pCCRenderNode->addChild(child->m_pCCRenderNode);
+    child->m_pRender->setZOrder(child->getWidgetZOrder());
+    this->m_pRender->addChild(child->m_pRender);
     
     if (this->m_pUILayer) {
         for (int i=0; i<this->m_children->count(); i++) {
@@ -255,7 +255,7 @@ void UIWidget::removeChildReferenceOnly(UIWidget *child)
         child->structureChangedEvent();
         child->disableUpdate();
         child->updateChildrenUILayer(NULL);
-        this->m_pCCRenderNode->removeChild(child->m_pCCRenderNode, false);
+        this->m_pRender->removeChild(child->m_pRender, false);
         child->setNeedCheckVisibleDepandParent(false);
         this->m_children->removeObject(child);
         child->m_pWidgetParent = NULL;
@@ -294,7 +294,7 @@ void UIWidget::removeAllChildrenAndCleanUp(bool cleanup)
 void UIWidget::setWidgetZOrder(int z)
 {
     this->m_nWidgetZOrder = z;
-    this->m_pCCRenderNode->setZOrder(z);
+    this->m_pRender->setZOrder(z);
     if (this->m_pWidgetParent) {
         this->m_pWidgetParent->reorderChild(this);
     }
@@ -611,7 +611,7 @@ void UIWidget::addCancelEvent(cocos2d::CCObject *target, SEL_CancelEvent selecto
 
 void UIWidget::getLocationInWindow()
 {
-    this->m_locationInWindow = this->m_pCCRenderNode->convertToWorldSpace(cocos2d::CCPointZero);
+    this->m_locationInWindow = this->m_pRender->convertToWorldSpace(cocos2d::CCPointZero);
 }
 
 cocos2d::CCRect UIWidget::getRect()
@@ -681,12 +681,12 @@ const CCSize& UIWidget::getContentSize()
 
 cocos2d::CCNode* UIWidget::getValidNode()
 {
-    return this->m_pCCRenderNode;
+    return this->m_pRender;
 }
 
 cocos2d::CCNode* UIWidget::getContainerNode()
 {
-    return this->m_pCCRenderNode;
+    return this->m_pRender;
 }
 
 bool UIWidget::pointAtSelfBody(cocos2d::CCPoint &pt)
@@ -752,13 +752,13 @@ void UIWidget::checkChildInfo(int handleState, UIWidget *sender, cocos2d::CCPoin
 
 void UIWidget::setPosition(const cocos2d::CCPoint &pos)
 {
-    this->m_pCCRenderNode->setPosition(pos);
+    this->m_pRender->setPosition(pos);
 }
 
 void UIWidget::setAnchorPoint(const cocos2d::CCPoint &pt)
 {
     this->m_anchorPoint = pt;
-    this->m_pCCRenderNode->setAnchorPoint(pt);
+    this->m_pRender->setAnchorPoint(pt);
 }
 
 void UIWidget::updateAnchorPoint()
@@ -768,7 +768,7 @@ void UIWidget::updateAnchorPoint()
 
 cocos2d::CCPoint UIWidget::getPosition()
 {
-    return this->m_pCCRenderNode->getPosition();
+    return this->m_pRender->getPosition();
 }
 
 cocos2d::CCPoint UIWidget::getAnchorPoint()
@@ -778,7 +778,7 @@ cocos2d::CCPoint UIWidget::getAnchorPoint()
 
 void UIWidget::setScale(float scale)
 {
-    this->m_pCCRenderNode->setScale(scale);
+    this->m_pRender->setScale(scale);
     this->onScaleDirtyChanged();
 }
 
@@ -814,79 +814,79 @@ void UIWidget::onScaleYDirtyChanged()
 
 float UIWidget::getScale()
 {
-    return this->m_pCCRenderNode->getScale();
+    return this->m_pRender->getScale();
 }
 
 void UIWidget::setScaleX(float scaleX)
 {
-    this->m_pCCRenderNode->setScaleX(scaleX);
+    this->m_pRender->setScaleX(scaleX);
     this->onScaleXDirtyChanged();
 }
 
 float UIWidget::getScaleX()
 {
-    return this->m_pCCRenderNode->getScaleX();
+    return this->m_pRender->getScaleX();
 }
 
 void UIWidget::setScaleY(float scaleY)
 {
-    this->m_pCCRenderNode->setScaleY(scaleY);
+    this->m_pRender->setScaleY(scaleY);
     this->onScaleYDirtyChanged();
 }
 
 float UIWidget::getScaleY()
 {
-    return this->m_pCCRenderNode->getScaleY();
+    return this->m_pRender->getScaleY();
 }
 
 void UIWidget::setRotation(float rotation)
 {
-    this->m_pCCRenderNode->setRotation(rotation);
+    this->m_pRender->setRotation(rotation);
 }
 
 float UIWidget::getRotation()
 {
-    return this->m_pCCRenderNode->getRotation();
+    return this->m_pRender->getRotation();
 }
 
 void UIWidget::setRotationX(float rotationX)
 {
-    this->m_pCCRenderNode->setRotationX(rotationX);
+    this->m_pRender->setRotationX(rotationX);
 }
 
 float UIWidget::getRotationX()
 {
-    return this->m_pCCRenderNode->getRotationX();
+    return this->m_pRender->getRotationX();
 }
 
 void UIWidget::setRotationY(float rotationY)
 {
-    this->m_pCCRenderNode->setRotationY(rotationY);
+    this->m_pRender->setRotationY(rotationY);
 }
 
 float UIWidget::getRotationY()
 {
-    return this->m_pCCRenderNode->getRotationY();
+    return this->m_pRender->getRotationY();
 }
 
 void UIWidget::setSkewX(float skewX)
 {
-    this->m_pCCRenderNode->setSkewX(skewX);
+    this->m_pRender->setSkewX(skewX);
 }
 
 float UIWidget::getSkewX()
 {
-    return this->m_pCCRenderNode->getSkewX();
+    return this->m_pRender->getSkewX();
 }
 
 void UIWidget::setSkewY(float skewY)
 {
-    this->m_pCCRenderNode->setSkewY(skewY);
+    this->m_pRender->setSkewY(skewY);
 }
 
 float UIWidget::getSkewY()
 {
-    return this->m_pCCRenderNode->getSkewY();
+    return this->m_pRender->getSkewY();
 }
 
 void UIWidget::setVisible(bool visible)
@@ -894,7 +894,7 @@ void UIWidget::setVisible(bool visible)
     this->m_bVisibleDirty = true;
     this->updateChildrenVisibleDirty(this->m_bVisibleDirty);
     this->m_bVisible = visible;
-    this->m_pCCRenderNode->setVisible(visible);
+    this->m_pRender->setVisible(visible);
 }
 
 bool UIWidget::isVisible()
@@ -931,28 +931,12 @@ UIWidget* UIWidget::getWidgetParent()
 
 UIWidget* UIWidget::getChildByName(const char *name)
 {
-    for (int i=0; i<this->m_children->count(); i++)
-    {
-        UIWidget* child = (UIWidget*)(this->m_children->objectAtIndex(i));
-        if (strcmp(child->getName(), name) == 0)
-        {
-            return child;
-        }
-    }
-    return NULL;
+    return CCUIHELPER->seekWidgetByName(this, name);
 }
 
 UIWidget* UIWidget::getChildByTag(int tag)
 {
-    for (int i=0; i<this->m_children->count(); i++)
-    {
-        UIWidget* child = (UIWidget*)(this->m_children->objectAtIndex(i));
-        if (child->getWidgetTag() == tag)
-        {
-            return child;
-        }
-    }
-    return NULL;
+    return CCUIHELPER->seekWidgetByTag(this, tag);
 }
 
 CCArray* UIWidget::getChildren()
@@ -962,37 +946,37 @@ CCArray* UIWidget::getChildren()
 
 cocos2d::CCAction* UIWidget::runAction(cocos2d::CCAction *action)
 {
-    return this->m_pCCRenderNode->runAction(action);
+    return this->m_pRender->runAction(action);
 }
 
 void UIWidget::setActionManager(cocos2d::CCActionManager *actionManager)
 {
-    this->m_pCCRenderNode->setActionManager(actionManager);
+    this->m_pRender->setActionManager(actionManager);
 }
 
 cocos2d::CCActionManager* UIWidget::getActionManager()
 {
-    return this->m_pCCRenderNode->getActionManager();
+    return this->m_pRender->getActionManager();
 }
 
 void UIWidget::stopAllActions()
 {
-    this->m_pCCRenderNode->stopAllActions();
+    this->m_pRender->stopAllActions();
 }
 
 void UIWidget::stopAction(cocos2d::CCAction *action)
 {
-    this->m_pCCRenderNode->stopAction(action);
+    this->m_pRender->stopAction(action);
 }
 
 void UIWidget::stopActionByTag(int tag)
 {
-    this->m_pCCRenderNode->stopActionByTag(tag);
+    this->m_pRender->stopActionByTag(tag);
 }
 
 cocos2d::CCAction* UIWidget::getActionByTag(int tag)
 {
-    return this->m_pCCRenderNode->getActionByTag(tag);
+    return this->m_pRender->getActionByTag(tag);
 }
 
 float UIWidget::getAbsoluteScaleX()
@@ -1143,7 +1127,7 @@ void UIWidget::setBlendFunc(cocos2d::ccBlendFunc blendFunc)
 
 void UIWidget::ignoreAnchorPointForPosition(bool ignore)
 {
-    m_pCCRenderNode->ignoreAnchorPointForPosition(ignore);
+    m_pRender->ignoreAnchorPointForPosition(ignore);
 }
 
 CCPoint UIWidget::getTouchStartPos()

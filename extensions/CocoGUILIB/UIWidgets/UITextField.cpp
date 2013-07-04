@@ -73,7 +73,7 @@ void UITextField::initNodes()
 {
     UIWidget::initNodes();
     m_pRenderTextField = UICCTextField::create("input words here", "Thonburi", 20);
-    this->m_pCCRenderNode->addChild(m_pRenderTextField);
+    this->m_pRender->addChild(m_pRenderTextField);
 }
 
 void UITextField::setTouchSize(float width,float height)

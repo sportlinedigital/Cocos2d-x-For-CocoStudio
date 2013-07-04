@@ -58,12 +58,12 @@ bool UIControlButton::init()
 {
     if (UIWidget::init())
     {
-        this->m_pCCRenderNode->addChild(this->m_pNormalBackGround);
-        this->m_pCCRenderNode->addChild(this->m_pPressedBackGround);
-        this->m_pCCRenderNode->addChild(this->m_pDisabledBackGround);
-        this->m_pCCRenderNode->addChild(this->m_pNormalTitle);
-        this->m_pCCRenderNode->addChild(this->m_pPressedTitle);
-        this->m_pCCRenderNode->addChild(this->m_pDisabledTitle);
+        this->m_pRender->addChild(this->m_pNormalBackGround);
+        this->m_pRender->addChild(this->m_pPressedBackGround);
+        this->m_pRender->addChild(this->m_pDisabledBackGround);
+        this->m_pRender->addChild(this->m_pNormalTitle);
+        this->m_pRender->addChild(this->m_pPressedTitle);
+        this->m_pRender->addChild(this->m_pDisabledTitle);
         this->setPressState(WidgetStateNormal);
         return true;
     }
