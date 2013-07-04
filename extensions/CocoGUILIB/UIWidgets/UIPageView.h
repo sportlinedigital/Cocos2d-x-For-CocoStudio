@@ -57,6 +57,7 @@ public:
     virtual void onTouchEnded(cocos2d::CCPoint &touchPoint);
     virtual void onTouchCancelled(cocos2d::CCPoint &touchPoint);
     virtual void update(float dt);
+    virtual void checkChildInfo(int handleState,UIWidget* sender,cocos2d::CCPoint &touchPoint);
 protected:
     virtual bool addChild(UIWidget* widget);
     virtual bool init();
@@ -79,6 +80,11 @@ protected:
     UIWidget* m_pRightChild;
     float m_fLeftBoundary;
     float m_fRightBoundary;
+    bool m_bIsAutoScrolling;
+    float m_fAutoScrollDistance;
+    float m_fAutoScrollSpeed;
+    int m_nAutoScrollDir;
+    float m_fChildFocusCancelOffset;
 };
 
 NS_CC_EXT_END

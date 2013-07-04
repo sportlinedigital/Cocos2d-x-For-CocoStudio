@@ -126,7 +126,6 @@ public:
     void setBerthOrientation(SCROLLVIEW_BERTH_ORI mode);
     SCROLLVIEW_BERTH_ORI getBerthOrientation();
 protected:
-    virtual bool init();
     virtual void removeChildMoveToTrash(UIWidget* child);
     virtual void removeChildReferenceOnly(UIWidget* child);
     virtual void initProperty();

@@ -94,6 +94,11 @@ void UICheckBox::setTextures(const char *backGround, const char *backGroundSelec
 
 void UICheckBox::setBackGroundTexture(const char *backGround,bool useSpriteFrame)
 {
+    if (!backGround || strcmp(backGround, "") == 0)
+    {
+        return;
+    }
+    setUseMergedTexture(useSpriteFrame);
     if (useSpriteFrame)
     {
         this->m_pBackGroundBox->initWithSpriteFrameName(backGround);
@@ -106,6 +111,11 @@ void UICheckBox::setBackGroundTexture(const char *backGround,bool useSpriteFrame
 
 void UICheckBox::setBackGroundSelectedTexture(const char *backGroundSelected,bool useSpriteFrame)
 {
+    if (!backGroundSelected || strcmp(backGroundSelected, "") == 0)
+    {
+        return;
+    }
+    setUseMergedTexture(useSpriteFrame);
     if (useSpriteFrame)
     {
         this->m_pBackGroundSelectedBox->initWithSpriteFrameName(backGroundSelected);
@@ -118,6 +128,11 @@ void UICheckBox::setBackGroundSelectedTexture(const char *backGroundSelected,boo
 
 void UICheckBox::setFrontCrossTexture(const char *cross,bool useSpriteFrame)
 {
+    if (!cross || strcmp(cross, "") == 0)
+    {
+        return;
+    }
+    setUseMergedTexture(useSpriteFrame);
     if (useSpriteFrame)
     {
         this->m_pFrontCross->initWithSpriteFrameName(cross);
@@ -130,6 +145,11 @@ void UICheckBox::setFrontCrossTexture(const char *cross,bool useSpriteFrame)
 
 void UICheckBox::setBackGroundDisabledTexture(const char *backGroundDisabled,bool useSpriteFrame)
 {
+    if (!backGroundDisabled || strcmp(backGroundDisabled, "") == 0)
+    {
+        return;
+    }
+    setUseMergedTexture(useSpriteFrame);
     if (useSpriteFrame)
     {
         this->m_pBackGroundBoxDisabled->initWithSpriteFrameName(backGroundDisabled);
@@ -142,6 +162,11 @@ void UICheckBox::setBackGroundDisabledTexture(const char *backGroundDisabled,boo
 
 void UICheckBox::setFrontCrossDisabledTexture(const char *frontCrossDisabled,bool useSpriteFrame)
 {
+    if (!frontCrossDisabled || strcmp(frontCrossDisabled, "") == 0)
+    {
+        return;
+    }
+    setUseMergedTexture(useSpriteFrame);
     if (useSpriteFrame)
     {
         this->m_pFrontCrossDisabled->initWithSpriteFrameName(frontCrossDisabled);
