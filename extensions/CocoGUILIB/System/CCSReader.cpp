@@ -410,7 +410,7 @@ void CCSReader::setPropsForImageViewFromJsonDictionary(UIWidget*widget,cs::CSJso
 		}
         
         
-        imageView->setCapInset(CCRectMake(cx, cy, cw, ch));
+        imageView->setCapInsets(CCRectMake(cx, cy, cw, ch));
         bool sw = DICTOOL->checkObjectExist_json(options, "scale9Width");
         bool sh = DICTOOL->checkObjectExist_json(options, "scale9Height");
         if (sw && sh)
@@ -536,7 +536,7 @@ void CCSReader::setPropsForPanelFromJsonDictionary(UIWidget*widget,cs::CSJsonDic
 		{
             panel->setBackGroundImage(imageFileName_tp);
 		}
-        panel->setBackGroundImageCapInset(CCRectMake(cx, cy, cw, ch));
+        panel->setBackGroundImageCapInsets(CCRectMake(cx, cy, cw, ch));
     }
     else
     {

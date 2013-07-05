@@ -69,18 +69,9 @@ bool UIButton::init()
 void UIButton::initNodes()
 {
     UIWidget::initNodes();
-    if (this->m_bScale9Enable)
-    {
-        this->m_pButtonNormal = cocos2d::extension::CCScale9Sprite::create();
-        this->m_pButtonClicked = cocos2d::extension::CCScale9Sprite::create();
-        this->m_pButtonDisable = cocos2d::extension::CCScale9Sprite::create();
-    }
-    else
-    {
-        this->m_pButtonNormal = cocos2d::CCSprite::create();
-        this->m_pButtonClicked = cocos2d::CCSprite::create();
-        this->m_pButtonDisable = cocos2d::CCSprite::create();
-    }
+    this->m_pButtonNormal = cocos2d::CCSprite::create();
+    this->m_pButtonClicked = cocos2d::CCSprite::create();
+    this->m_pButtonDisable = cocos2d::CCSprite::create();
     this->m_pRender->addChild(this->m_pButtonNormal);
     this->m_pRender->addChild(this->m_pButtonClicked);
     this->m_pRender->addChild(this->m_pButtonDisable);
@@ -249,15 +240,15 @@ void UIButton::setDisabledTexture(const char* disabled,bool useSpriteFrame)
     this->updateAnchorPoint();
 }
 
-void UIButton::setCapInsets(const cocos2d::CCRect &capInset)
+void UIButton::setCapInsets(const cocos2d::CCRect &capInsets)
 {
     if (!m_bScale9Enable)
     {
         return;
     }
-    dynamic_cast<cocos2d::extension::CCScale9Sprite*>(this->m_pButtonNormal)->setCapInsets(capInset);
-    dynamic_cast<cocos2d::extension::CCScale9Sprite*>(this->m_pButtonClicked)->setCapInsets(capInset);
-    dynamic_cast<cocos2d::extension::CCScale9Sprite*>(this->m_pButtonDisable)->setCapInsets(capInset);
+    dynamic_cast<cocos2d::extension::CCScale9Sprite*>(this->m_pButtonNormal)->setCapInsets(capInsets);
+    dynamic_cast<cocos2d::extension::CCScale9Sprite*>(this->m_pButtonClicked)->setCapInsets(capInsets);
+    dynamic_cast<cocos2d::extension::CCScale9Sprite*>(this->m_pButtonDisable)->setCapInsets(capInsets);
 }
 
 void UIButton::onPressStateChangedToNormal()

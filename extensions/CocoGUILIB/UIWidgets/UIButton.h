@@ -40,7 +40,7 @@ public:
     void setNormalTexture(const char* normal,bool useSpriteFrame = false);
     void setPressedTexture(const char* selected,bool useSpriteFrame = false);
     void setDisabledTexture(const char* disabled,bool useSpriteFrame = false);
-    void setCapInsets(const CCRect &capInset);
+    void setCapInsets(const CCRect &capInsets);
     virtual cocos2d::CCNode* getValidNode();
     virtual void setAnchorPoint(const cocos2d::CCPoint &pt);
     virtual void setScale9Enable(bool able);

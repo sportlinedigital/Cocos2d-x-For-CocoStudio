@@ -33,8 +33,8 @@ NS_CC_EXT_BEGIN
 class UIClipAbleLayerColor : public cocos2d::CCLayerColor
 {
 public:
-    UIClipAbleLayerColor():m_bClippingEnable(false),m_fScissorX(0.0),m_fScissorY(0.0),m_fScissorWidth(0.0),m_fScissorHeight(0.0),m_bEnableCustomArea(false),m_bColorEnable(false){};
-    virtual ~UIClipAbleLayerColor(){};
+    UIClipAbleLayerColor();
+    virtual ~UIClipAbleLayerColor();
     static UIClipAbleLayerColor* create(const cocos2d::ccColor4B &color,float width ,float height);
     static UIClipAbleLayerColor* create();
     virtual void visit();
@@ -42,8 +42,11 @@ public:
     void setColorEnable(bool enable);
     bool getColorEnable();
     void setClipRect(const cocos2d::CCRect &rect);
+    const CCRect& getClippingRect() const;
     void setClipSize(float width,float height);
     virtual void draw();
+    virtual void setPosition(const CCPoint &pos);
+    virtual void onEnter();
 protected:
     bool m_bClippingEnable;
     float m_fScissorX;
@@ -52,6 +55,7 @@ protected:
     float m_fScissorHeight;
     bool m_bEnableCustomArea;
     bool m_bColorEnable;
+    CCPoint m_loacationInWorld;
 };
 
 NS_CC_EXT_END

@@ -25,7 +25,25 @@
 #include "UIClipAbleLayerColor.h"
 
 NS_CC_EXT_BEGIN
+
+UIClipAbleLayerColor::UIClipAbleLayerColor():
+m_bClippingEnable(false),
+m_fScissorX(0.0f),
+m_fScissorY(0.0),
+m_fScissorWidth(0.0),
+m_fScissorHeight(0.0),
+m_bEnableCustomArea(false),
+m_bColorEnable(false),
+m_loacationInWorld(ccp(0, 0))
+{
     
+}
+
+UIClipAbleLayerColor::~UIClipAbleLayerColor()
+{
+    
+}
+
 UIClipAbleLayerColor* UIClipAbleLayerColor::create(const cocos2d::ccColor4B &color,float width,float height)
 {
     UIClipAbleLayerColor * pLayer = new UIClipAbleLayerColor();
@@ -50,23 +68,27 @@ UIClipAbleLayerColor* UIClipAbleLayerColor::create()
     return NULL;
 }
 
+void UIClipAbleLayerColor::onEnter()
+{
+    CCLayerColor::onEnter();
+    m_loacationInWorld = convertToWorldSpace(CCPointZero);
+}
+
 void UIClipAbleLayerColor::visit()
 {
-    if (this->m_bClippingEnable)
+    if (m_bClippingEnable)
     {
         glEnable(GL_SCISSOR_TEST);
-        CCPoint local = this->convertToWorldSpace(CCPointZero);
         
-        if (this->m_bEnableCustomArea)
+        if (m_bEnableCustomArea)
         {
-            CCEGLView::sharedOpenGLView()->setScissorInPoints(local.x, local.y, this->m_fScissorWidth, this->m_fScissorHeight);
+            CCEGLView::sharedOpenGLView()->setScissorInPoints(m_loacationInWorld.x, m_loacationInWorld.y, m_fScissorWidth, m_fScissorHeight);
         }
         else
         {
-            CCSize s = this->boundingBox().size;
-            CCEGLView::sharedOpenGLView()->setScissorInPoints(local.x, local.y, s.width, s.height);
+            CCSize s = boundingBox().size;
+            CCEGLView::sharedOpenGLView()->setScissorInPoints(m_loacationInWorld.x, m_loacationInWorld.y, s.width, s.height);
         }
-        
         CCLayerColor::visit();
         glDisable(GL_SCISSOR_TEST);
     }
@@ -78,17 +100,17 @@ void UIClipAbleLayerColor::visit()
 
 void UIClipAbleLayerColor::setClippingEnable(bool able)
 {
-    this->m_bClippingEnable = able;
+    m_bClippingEnable = able;
 }
 
 void UIClipAbleLayerColor::setColorEnable(bool enable)
 {
-    this->m_bColorEnable = enable;
+    m_bColorEnable = enable;
 }
 
 bool UIClipAbleLayerColor::getColorEnable()
 {
-    return this->m_bColorEnable;
+    return m_bColorEnable;
 }
 
 void UIClipAbleLayerColor::setClipRect(const cocos2d::CCRect &rect)
@@ -96,20 +118,31 @@ void UIClipAbleLayerColor::setClipRect(const cocos2d::CCRect &rect)
     
 }
 
+const CCRect& UIClipAbleLayerColor::getClippingRect() const
+{
+    
+}
+
 void UIClipAbleLayerColor::setClipSize(float width, float height)
 {
-    this->m_bEnableCustomArea = true;
-    this->m_fScissorWidth = width;
-    this->m_fScissorHeight = height;
+    m_bEnableCustomArea = true;
+    m_fScissorWidth = width;
+    m_fScissorHeight = height;
 }
 
 void UIClipAbleLayerColor::draw()
 {
 //        to head off the draw call
-    if (this->m_bColorEnable)
+    if (m_bColorEnable)
     {
         CCLayerColor::draw();
     }
+}
+
+void UIClipAbleLayerColor::setPosition(const cocos2d::CCPoint &pos)
+{
+    CCLayerColor::setPosition(pos);
+    m_loacationInWorld = convertToWorldSpace(CCPointZero);
 }
 
 NS_CC_EXT_END

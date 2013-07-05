@@ -357,12 +357,12 @@ void UIImageView::setInsetBottom(float insetBottom)
     DYNAMIC_CAST_SCALE9SPRITE->setInsetBottom(insetBottom);
 }
 
-void UIImageView::setCapInset(const cocos2d::CCRect &capInset)
+void UIImageView::setCapInsets(const cocos2d::CCRect &capInsets)
 {
     if (!m_bScale9Enable) {
         return;
     }
-    DYNAMIC_CAST_SCALE9SPRITE->setCapInsets(capInset);
+    DYNAMIC_CAST_SCALE9SPRITE->setCapInsets(capInsets);
 }
 
 CCNode* UIImageView::getValidNode()

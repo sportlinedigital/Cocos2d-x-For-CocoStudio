@@ -53,7 +53,7 @@ public:
     void setInsetTop(float insetTop);
     void setInsetRight(float insetRight);
     void setInsetBottom(float insetBottom);
-    void setCapInset(const CCRect &capInset);
+    void setCapInsets(const CCRect &capInsets);
     virtual cocos2d::CCNode* getValidNode();
     virtual void setAnchorPoint(const cocos2d::CCPoint &pt);
     virtual void onTouchBegan(cocos2d::CCPoint &touchPoint);

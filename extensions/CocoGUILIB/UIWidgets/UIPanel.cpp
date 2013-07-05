@@ -130,7 +130,7 @@ void UIPanel::setBackGroundImage(const char* fileName,bool useSpriteFrame)
     this->m_pBackGroundImage->setPosition(ccp(this->m_pRender->getContentSize().width/2, this->m_pRender->getContentSize().height/2));
 }
 
-void UIPanel::setBackGroundImageCapInset(const cocos2d::CCRect &capInset)
+void UIPanel::setBackGroundImageCapInsets(const cocos2d::CCRect &capInsets)
 {
     
 }
