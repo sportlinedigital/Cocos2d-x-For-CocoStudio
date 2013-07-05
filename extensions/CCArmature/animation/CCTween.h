@@ -106,6 +106,11 @@ protected:
      */
     virtual CCFrameData *tweenNodeTo(float percent, CCFrameData *node = NULL);
 
+	/**
+     * According to the percent to calculate current color with tween effect
+     */
+	virtual void tweenColorTo(float percent, CCFrameData *node = NULL, bool dirty = false);
+
     /**
      * Update display index and process the key frame event when arrived a key frame
      */
@@ -125,9 +130,7 @@ protected:
 
     CCTweenType m_eFrameTweenEasing;	//! Dedermine which tween effect current frame use
 
-    bool m_bIsTweenKeyFrame;
-
-    int betweenDuration;			//! Current key frame will last betweenDuration frames
+    int m_iBetweenDuration;			//! Current key frame will last m_iBetweenDuration frames
     int m_iTotalDuration;
 
 

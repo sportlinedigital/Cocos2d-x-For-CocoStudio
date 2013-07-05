@@ -83,6 +83,7 @@ bool CCTween::init(CCBone *bone)
 
         m_pBone = bone;
         m_pTweenData = m_pBone->getTweenData();
+		m_pTweenData->displayIndex = -1;
 
         m_pAnimation = m_pBone->getArmature() != NULL ? m_pBone->getArmature()->getAnimation() : NULL;
 
@@ -94,43 +95,42 @@ bool CCTween::init(CCBone *bone)
 }
 
 
-void CCTween::play(CCMovementBoneData *_movementBoneData, int _durationTo, int _durationTween,  int _loop, int _tweenEasing)
+void CCTween::play(CCMovementBoneData *movementBoneData, int durationTo, int durationTween,  int loop, int tweenEasing)
 {
-    CCProcessBase::play(NULL, _durationTo, _durationTween, _loop, _tweenEasing);
+    CCProcessBase::play(NULL, durationTo, durationTween, loop, tweenEasing);
 
-    m_eLoopType = (AnimationType)_loop;
+    m_eLoopType = (AnimationType)loop;
 
     m_pCurrentKeyFrame = NULL;
-    m_bIsTweenKeyFrame = false;
 
     m_iTotalDuration = 0;
-    betweenDuration = 0;
+    m_iBetweenDuration = 0;
     m_iToIndex = 0;
 
-    setMovementBoneData(_movementBoneData);
+	bool difMovement = movementBoneData != m_pMovementBoneData;
 
+    setMovementBoneData(movementBoneData);
 
+	CCFrameData *nextKeyFrame = m_pMovementBoneData->getFrameData(0);
+	m_pTweenData->displayIndex = nextKeyFrame->displayIndex;
     if (m_pMovementBoneData->frameList.count() == 1)
     {
         m_eLoopType = SINGLE_FRAME;
-        CCFrameData *_nextKeyFrame = m_pMovementBoneData->getFrameData(0);
-        if(_durationTo == 0)
+        if(durationTo == 0)
         {
-            setBetween(_nextKeyFrame, _nextKeyFrame);
+            setBetween(nextKeyFrame, nextKeyFrame);
         }
         else
         {
-            m_pTweenData->displayIndex = _nextKeyFrame->displayIndex;
-            setBetween(m_pTweenData, _nextKeyFrame);
+            setBetween(m_pTweenData, nextKeyFrame);
         }
-        m_bIsTweenKeyFrame = true;
         m_eFrameTweenEasing = Linear;
         m_iRawDuration = m_pMovementBoneData->duration;
         m_iFromIndex = m_iToIndex = 0;
     }
     else if (m_pMovementBoneData->frameList.count() > 1)
     {
-        if (_loop)
+        if (loop)
         {
             m_eLoopType = ANIMATION_TO_LOOP_BACK;
             m_iRawDuration = m_pMovementBoneData->duration;
@@ -141,26 +141,30 @@ void CCTween::play(CCMovementBoneData *_movementBoneData, int _durationTo, int _
             m_iRawDuration = m_pMovementBoneData->duration - 1;
         }
 
-        m_iDurationTween = _durationTween * m_pMovementBoneData->scale;
+        m_iDurationTween = durationTween * m_pMovementBoneData->scale;
 
-        if (_loop && m_pMovementBoneData->delay != 0)
+        if (loop && m_pMovementBoneData->delay != 0)
         {
             setBetween(m_pTweenData, tweenNodeTo(updateFrameData(1 - m_pMovementBoneData->delay), m_pBetween));
-
         }
         else
         {
-            CCFrameData *_nextKeyFrame = m_pMovementBoneData->getFrameData(0);
-            setBetween(m_pTweenData, _nextKeyFrame);
-            m_bIsTweenKeyFrame = true;
+			if (!difMovement)
+			{
+				setBetween(nextKeyFrame, nextKeyFrame);
+			}
+			else
+			{
+				setBetween(m_pTweenData, nextKeyFrame);
+			}
         }
     }
+
+	tweenColorTo(0, m_pTweenData, true);
 }
 
 void CCTween::updateHandler()
 {
-
-
     if (m_fCurrentPercent >= 1)
     {
         switch(m_eLoopType)
@@ -196,7 +200,7 @@ void CCTween::updateHandler()
                 m_iNextFrameIndex = m_iDurationTween;
                 m_fCurrentFrame = m_fCurrentPercent * m_iNextFrameIndex;
                 m_iTotalDuration = 0;
-                betweenDuration = 0;
+                m_iBetweenDuration = 0;
                 m_iToIndex = 0;
                 break;
             }
@@ -223,7 +227,7 @@ void CCTween::updateHandler()
             }
 
             m_iTotalDuration = 0;
-            betweenDuration = 0;
+            m_iBetweenDuration = 0;
             m_iToIndex = 0;
         }
         break;
@@ -239,13 +243,12 @@ void CCTween::updateHandler()
             m_fCurrentFrame = fmodf(m_fCurrentFrame, m_iNextFrameIndex);
 
             m_iTotalDuration = 0;
-            betweenDuration = 0;
+            m_iBetweenDuration = 0;
             m_iToIndex = 0;
         }
         break;
         }
     }
-
 
     if (m_fCurrentPercent < 1 && m_eLoopType <= ANIMATION_TO_LOOP_BACK)
     {
@@ -273,15 +276,15 @@ void CCTween::setBetween(CCFrameData *from, CCFrameData *to)
 {
     do
     {
-        if(to->displayIndex < 0 && from->displayIndex > 0)
+		if(from->displayIndex < 0 && to->displayIndex >= 0)
+		{
+			m_pFrom->copy(to);
+			m_pBetween->subtract(to, to);
+			break;
+		}
+        else if(to->displayIndex < 0 && from->displayIndex >= 0)
         {
             m_pFrom->copy(from);
-            m_pBetween->subtract(to, to);
-            break;
-        }
-        else if(from->displayIndex < 0 && to->displayIndex > 0)
-        {
-            m_pFrom->copy(to);
             m_pBetween->subtract(to, to);
             break;
         }
@@ -344,25 +347,21 @@ CCFrameData *CCTween::tweenNodeTo(float percent, CCFrameData *node)
 
     m_pBone->setTransformDirty(true);
 
-    if(m_pBetween->isUseColorInfo)
-    {
-        node->a = m_pFrom->a + percent * m_pBetween->a;
-        node->r = m_pFrom->r + percent * m_pBetween->r;
-        node->g = m_pFrom->g + percent * m_pBetween->g;
-        node->b = m_pFrom->b + percent * m_pBetween->b;
-        m_pBone->updateColor();
-    }
-
-    //    CCPoint p1 = ccp(m_pFrom->x, m_pFrom->y);
-    //    CCPoint p2 = ccp(100, 0);
-    //    CCPoint p3 = ccp(200, 400);
-    //    CCPoint p4 = ccp(m_pFrom->x + m_pBetween->x, m_pFrom->y + m_pBetween->y);
-    //
-    //    CCPoint p = bezierTo(percent, p1, p2, p3, p4);
-    //    node->x = p.x;
-    //    node->y = p.y;
+    tweenColorTo(percent, node, m_pTweenData->isUseColorInfo);
 
     return node;
+}
+
+void CCTween::tweenColorTo(float percent, CCFrameData *node, bool dirty)
+{
+	if(node && dirty)
+	{
+		node->a = m_pFrom->a + percent * m_pBetween->a;
+		node->r = m_pFrom->r + percent * m_pBetween->r;
+		node->g = m_pFrom->g + percent * m_pBetween->g;
+		node->b = m_pFrom->b + percent * m_pBetween->b;
+		m_pBone->updateColor();
+	}
 }
 
 float CCTween::updateFrameData(float currentPrecent, bool activeFrame)
@@ -376,7 +375,7 @@ float CCTween::updateFrameData(float currentPrecent, bool activeFrame)
     bool isListEnd;
 
     //! If play to current frame's front or back, then find current frame again
-    if (playedTime >= m_iTotalDuration || playedTime < m_iTotalDuration - betweenDuration)
+    if (playedTime >= m_iTotalDuration || playedTime < m_iTotalDuration - m_iBetweenDuration)
     {
         /*
          *  Get frame length, if m_iToIndex >= _length, then set m_iToIndex to 0, start anew.
@@ -385,8 +384,8 @@ float CCTween::updateFrameData(float currentPrecent, bool activeFrame)
         int length = m_pMovementBoneData->frameList.count();
         do
         {
-            betweenDuration = m_pMovementBoneData->getFrameData(m_iToIndex)->duration;
-            m_iTotalDuration += betweenDuration;
+            m_iBetweenDuration = m_pMovementBoneData->getFrameData(m_iToIndex)->duration;
+            m_iTotalDuration += m_iBetweenDuration;
             m_iFromIndex = m_iToIndex;
 
             if (++m_iToIndex >= length)
@@ -414,7 +413,7 @@ float CCTween::updateFrameData(float currentPrecent, bool activeFrame)
         setBetween(from, to);
 
     }
-    currentPrecent = 1 - (m_iTotalDuration - playedTime) / (float)betweenDuration;
+    currentPrecent = 1 - (m_iTotalDuration - playedTime) / (float)m_iBetweenDuration;
 
 
     /*

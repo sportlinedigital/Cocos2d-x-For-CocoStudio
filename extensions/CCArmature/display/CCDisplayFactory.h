@@ -56,7 +56,6 @@ public:
 
 	static void addShaderDisplay(CCBone *bone, CCDecorativeDisplay *decoDisplay, CCDisplayData *displayData);
 	static void createShaderDisplay(CCBone *bone, CCDecorativeDisplay *decoDisplay);
-
 };
 
 

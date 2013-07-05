@@ -120,6 +120,11 @@ void CCDisplayManager::removeDisplay(int index)
     }
 }
 
+CCArray *CCDisplayManager::getDecorativeDisplayList()
+{
+	return m_pDecoDisplayList;
+}
+
 void CCDisplayManager::changeDisplayByIndex(int index, bool force)
 {
     CCAssert( (m_pDecoDisplayList ? index < (int)m_pDecoDisplayList->count() : true), "the _index value is out of range");
