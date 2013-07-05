@@ -79,7 +79,13 @@ void CCDisplayFactory::updateDisplay(CCBone *bone, CCDecorativeDisplay *decoDisp
         CCColliderDetector *detector = decoDisplay->getColliderDetector();
         if (detector)
         {
-            CCAffineTransform t = CCAffineTransformConcat(bone->nodeToArmatureTransform(), bone->getArmature()->nodeToWorldTransform());
+			CCNode *node = decoDisplay->getDisplay();
+			CCAffineTransform displayTransform = node->nodeToParentTransform();
+			CCPoint anchorPoint =  node->getAnchorPointInPoints();
+			anchorPoint = CCPointApplyAffineTransform(anchorPoint, displayTransform);
+			displayTransform.tx = anchorPoint.x;
+			displayTransform.ty = anchorPoint.y;
+            CCAffineTransform t = CCAffineTransformConcat(displayTransform, bone->getArmature()->nodeToWorldTransform());
             detector->updateTransform(t);
         }
     }
@@ -137,7 +143,7 @@ void CCDisplayFactory::createSpriteDisplay(CCBone *bone, CCDecorativeDisplay *de
         skin = CCSkin::createWithSpriteFrameName((textureName + ".png").c_str());
     }
 
-    CCTextureAtlas *atlas = CCSpriteFrameCacheHelper::sharedSpriteFrameCacheHelper()->getTextureAtlas((textureName + ".png").c_str());
+    CCTextureAtlas *atlas = CCSpriteFrameCacheHelper::sharedSpriteFrameCacheHelper()->getTextureAtlasWithDisplayName((textureName + ".png").c_str());
     skin->setTextureAtlas(atlas);
 
     CCTextureData *textureData = CCArmatureDataManager::sharedArmatureDataManager()->getTextureData(textureName.c_str());
@@ -148,7 +154,18 @@ void CCDisplayFactory::createSpriteDisplay(CCBone *bone, CCDecorativeDisplay *de
     }
 
     skin->setBone(bone);
-    skin->setSkinData(*bone->getBoneData());
+	CCArmature *armature = bone->getArmature();
+	if (armature)
+	{
+		if (armature->getArmatureData()->dataVersion >= 0.15f)
+		{
+			skin->setSkinData(displayData->skinData);
+		}
+		else
+		{
+			skin->setSkinData(*bone->getBoneData());
+		}
+	}
 
     decoDisplay->setDisplay(skin);
 
@@ -168,7 +185,7 @@ void CCDisplayFactory::createSpriteDisplay(CCBone *bone, CCDecorativeDisplay *de
 void CCDisplayFactory::updateSpriteDisplay(CCBone *bone, CCDecorativeDisplay *decoDisplay, float dt, bool dirty)
 {
     CCSkin *skin = (CCSkin *)decoDisplay->getDisplay();
-    skin->updateTransform();
+    skin->updateArmatureTransform();
 }
 
 

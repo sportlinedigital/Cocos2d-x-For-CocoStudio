@@ -407,9 +407,21 @@ void CCArmature::updateOffsetPoint()
     CCRect rect = boundingBox();
     setContentSize(rect.size);
     m_pOffsetPoint = ccp(-rect.origin.x,  -rect.origin.y);
-    setAnchorPoint(ccp(m_pOffsetPoint.x / rect.size.width, m_pOffsetPoint.y / rect.size.height));
+	if (rect.size.width != 0 && rect.size.height!= 0)
+	{
+		setAnchorPoint(ccp(m_pOffsetPoint.x / rect.size.width, m_pOffsetPoint.y / rect.size.height));
+	}
 }
 
+void CCArmature::setAnimation(CCArmatureAnimation *animation)
+{
+	m_pAnimation = animation;
+}
+
+CCArmatureAnimation *CCArmature::getAnimation()
+{
+	return m_pAnimation;
+}
 
 void CCArmature::update(float dt)
 {
@@ -457,7 +469,7 @@ void CCArmature::draw()
             if (m_pAtlas->getCapacity() == m_pAtlas->getTotalQuads() && !m_pAtlas->resizeCapacity(m_pAtlas->getCapacity() * 2))
                 return;
 
-            skin->draw();
+            skin->updateTransform();
         }
         else if(CCArmature *armature = dynamic_cast<CCArmature *>(node))
         {
