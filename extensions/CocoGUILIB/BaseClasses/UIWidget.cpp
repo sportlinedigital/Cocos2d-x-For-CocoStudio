@@ -73,6 +73,7 @@ m_fAdaptScaleY(1.0f),
 m_anchorPoint(ccp(0.5f, 0.5f)),
 m_pUILayer(NULL),
 m_bIsCreatedFromFile(false),
+m_nActionTag(0),
 m_fileDesignSize(CCSizeZero)
 {
     m_WidgetName = WIDGET_WIDGET;
@@ -107,6 +108,7 @@ bool UIWidget::init()
 void UIWidget::releaseResoures()
 {
     this->setUpdateEnable(false);
+    this->m_pUILayer->getInputManager()->removeManageredWidget(this);
     this->setUILayer(NULL);
     this->removeAllChildrenAndCleanUp(true);
     this->m_pCCRenderNode->removeAllChildrenWithCleanup(true);
@@ -356,6 +358,7 @@ void UIWidget::setNeedCheckVisibleDepandParent(bool need)
 void UIWidget::setBeTouchEnable(bool enable)
 {
     this->m_bBeTouchEnabled = enable;
+//    updateBeTouchEnable(enable);
     structureChangedEvent();
 }
 
@@ -460,6 +463,15 @@ void UIWidget::active()
 bool UIWidget::isActive()
 {
     return this->m_bActived;
+}
+
+void UIWidget::updateBeTouchEnable(bool enable)
+{
+    for (int i = 0; i < this->m_children->count(); i++)
+    {
+        UIWidget* child = (UIWidget*)(this->m_children->objectAtIndex(i));
+        child->setBeTouchEnable(enable);
+    }
 }
 
 void UIWidget::onPressStateChangedToNormal()
@@ -660,6 +672,11 @@ cocos2d::CCRect UIWidget::getRelativeRect()
     this->m_relativeRect.size.width = width;
     this->m_relativeRect.size.height = height;
     return this->m_relativeRect;
+}
+
+const CCSize& UIWidget::getContentSize()
+{
+    return this->getValidNode()->getContentSize();
 }
 
 cocos2d::CCNode* UIWidget::getValidNode()
@@ -1182,6 +1199,15 @@ WidgetType UIWidget::getWidgetType()
 WidgetName UIWidget::getWidgetName()
 {
     return m_WidgetName;
+}
+
+void UIWidget::setActionTag(int tag)
+{
+	m_nActionTag = tag;
+}
+int UIWidget::getActionTag()
+{
+	return m_nActionTag;
 }
 
 NS_CC_EXT_END

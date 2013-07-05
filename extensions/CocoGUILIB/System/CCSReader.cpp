@@ -139,6 +139,29 @@ UIWidget* CCSReader::widgetFromJsonDictionary(cs::CSJsonDictionary* data)
     return widget;
 }
 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+
+static std::string UTF8ToGBK(const std::string& strUTF8)
+{
+	int len = MultiByteToWideChar(CP_UTF8, 0, strUTF8.c_str(), -1, NULL, 0);
+	wchar_t* wszGBK = new wchar_t[len + 1];
+	memset(wszGBK, 0, len * 2 + 2);
+	MultiByteToWideChar(CP_UTF8, 0, (LPCSTR)strUTF8.c_str(), -1, wszGBK, len);
+	len = WideCharToMultiByte(CP_ACP, 0, wszGBK, -1, NULL, 0, NULL, NULL);
+	char *szGBK = new char[len + 1];
+	memset(szGBK, 0, len + 1);
+	WideCharToMultiByte(CP_ACP,0, wszGBK, -1, szGBK, len, NULL, NULL);
+	//strUTF8 = szGBK;
+	std::string strTemp(szGBK);
+	delete[]szGBK;
+	delete[]wszGBK;
+	return strTemp;
+}
+
+#endif
+
+
+
 UIWidget* CCSReader::widgetFromJsonFile(const char *fileName)
 {
     const char *des = NULL;
@@ -148,12 +171,18 @@ UIWidget* CCSReader::widgetFromJsonFile(const char *fileName)
     
     unsigned long size = 0;
     des = (char*)(cocos2d::CCFileUtils::sharedFileUtils()->getFileData(jsonpath.c_str(),"r" , &size));
+	if(NULL == des || strcmp(des, "") == 0)
+	{
+		printf("read json file[%s] error!\n", fileName);
+		return NULL;
+	}
+	std::string strDes(des);
+	#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+	strDes.assign(UTF8ToGBK(des));
+	#endif
     jsonDict = new cs::CSJsonDictionary();
-    jsonDict->initWithDescription(des);
-    if(NULL == des || strcmp(des, "") == 0)
-    {
-        printf("read json file[%s] error!\n", fileName);
-    }
+    jsonDict->initWithDescription(strDes.c_str());
+
 //        float fileVersion = DICTOOL->getFloatValue_json(jsonDict, "version");
 //        if (fileVersion != kCCSVersion) {
 //            printf("WARNING! Incompatible json file version (file: %f reader: %f)\n", fileVersion, kCCSVersion);
@@ -196,6 +225,7 @@ UIWidget* CCSReader::widgetFromJsonFile(const char *fileName)
 void CCSReader::setPropsForWidgetFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary *options)
 {
     widget->setWidgetTag(DICTOOL->getIntValue_json(options, "tag"));
+	widget->setActionTag(DICTOOL->getIntValue_json(options, "actiontag"));
     widget->setBeTouchEnable(DICTOOL->getBooleanValue_json(options, "touchAble"));
     const char* name = DICTOOL->getStringValue_json(options, "name");
     const char* widgetName = name?name:"default";
@@ -264,9 +294,9 @@ void CCSReader::setPropsForButtonFromJsonDictionary(UIWidget*widget,cs::CSJsonDi
     const char* pressedFileName = DICTOOL->getStringValue_json(options, "pressed");
     const char* disabledFileName = DICTOOL->getStringValue_json(options, "disabled");
 
-	const char* normalFileName_tp = normalFileName?tp_n.append(normalFileName).c_str():NULL;
-	const char* pressedFileName_tp = pressedFileName?tp_p.append(pressedFileName).c_str():NULL;
-	const char* disabledFileName_tp =  disabledFileName?tp_d.append(disabledFileName).c_str():NULL;
+	const char* normalFileName_tp = (normalFileName && (strcmp(normalFileName, "") != 0))?tp_n.append(normalFileName).c_str():NULL;
+	const char* pressedFileName_tp = (pressedFileName && (strcmp(pressedFileName, "") != 0))?tp_p.append(pressedFileName).c_str():NULL;
+	const char* disabledFileName_tp =  (disabledFileName && (strcmp(disabledFileName, "") != 0))?tp_d.append(disabledFileName).c_str():NULL;
     
     if (scale9Enable)
     {
@@ -276,12 +306,13 @@ void CCSReader::setPropsForButtonFromJsonDictionary(UIWidget*widget,cs::CSJsonDi
         float ch = DICTOOL->getFloatValue_json(options, "capInsetsHeight");
 		if (widget->getUseMergedTexture())
 		{
-			 button->setTexturesScale9(normalFileName, pressedFileName, disabledFileName, cocos2d::CCRect(cx, cy, cw, ch),true);
+			 button->setTextures(normalFileName, pressedFileName, disabledFileName,true);
 		}
 		else
 		{
-			 button->setTexturesScale9(normalFileName_tp, pressedFileName_tp, disabledFileName_tp, cocos2d::CCRect(cx, cy, cw, ch));
+			 button->setTextures(normalFileName_tp, pressedFileName_tp, disabledFileName_tp);
 		}
+        button->setCapInsets(CCRectMake(cx, cy, cw, ch));
         bool sw = DICTOOL->checkObjectExist_json(options, "scale9Width");
         bool sh = DICTOOL->checkObjectExist_json(options, "scale9Height");
         if (sw && sh)
@@ -322,11 +353,11 @@ void CCSReader::setPropsForCheckBoxFromJsonDictionary(UIWidget*widget,cs::CSJson
 	std::string tp_bd = m_strFilePath;
 	std::string tp_cd = m_strFilePath;
 
-	const char* backGroundFileName_tp = backGroundFileName?tp_b.append(backGroundFileName).c_str():NULL;
-	const char* backGroundSelectedFileName_tp = backGroundSelectedFileName?tp_bs.append(backGroundSelectedFileName).c_str():NULL;
-	const char* frontCrossFileName_tp = frontCrossFileName?tp_c.append(frontCrossFileName).c_str():NULL;
-	const char* backGroundDisabledFileName_tp = backGroundDisabledFileName?tp_bd.append(backGroundDisabledFileName).c_str():NULL;
-	const char* frontCrossDisabledFileName_tp = frontCrossDisabledFileName?tp_cd.append(frontCrossDisabledFileName).c_str():NULL;
+	const char* backGroundFileName_tp = (backGroundFileName && (strcmp(backGroundFileName, "") != 0))?tp_b.append(backGroundFileName).c_str():NULL;
+	const char* backGroundSelectedFileName_tp = (backGroundSelectedFileName && (strcmp(backGroundSelectedFileName, "") != 0))?tp_bs.append(backGroundSelectedFileName).c_str():NULL;
+	const char* frontCrossFileName_tp = (frontCrossFileName && (strcmp(frontCrossFileName, "") != 0))?tp_c.append(frontCrossFileName).c_str():NULL;
+	const char* backGroundDisabledFileName_tp = (backGroundDisabledFileName && (strcmp(backGroundDisabledFileName, "") != 0))?tp_bd.append(backGroundDisabledFileName).c_str():NULL;
+	const char* frontCrossDisabledFileName_tp = (frontCrossDisabledFileName && (strcmp(frontCrossDisabledFileName, "") != 0))?tp_cd.append(frontCrossDisabledFileName).c_str():NULL;
 
 	if (widget->getUseMergedTexture())
 	{
@@ -357,7 +388,7 @@ void CCSReader::setPropsForImageViewFromJsonDictionary(UIWidget*widget,cs::CSJso
 
 	std::string tp_i = m_strFilePath;
 	const char* imageFileName_tp = NULL;
-	if (imageFileName)
+	if (imageFileName && (strcmp(imageFileName, "") != 0))
 	{
 		imageFileName_tp = tp_i.append(imageFileName).c_str();
 	}
@@ -379,7 +410,7 @@ void CCSReader::setPropsForImageViewFromJsonDictionary(UIWidget*widget,cs::CSJso
 		}
         
         
-        imageView->setCapInset(cocos2d::CCRect(cx, cy, cw, ch));
+        imageView->setCapInset(CCRectMake(cx, cy, cw, ch));
         bool sw = DICTOOL->checkObjectExist_json(options, "scale9Width");
         bool sh = DICTOOL->checkObjectExist_json(options, "scale9Height");
         if (sw && sh)
@@ -449,7 +480,7 @@ void CCSReader::setPropsForLabelAtlasFromJsonDictionary(UIWidget*widget,cs::CSJs
     bool iw = DICTOOL->checkObjectExist_json(options, "itemWidth");
     bool ih = DICTOOL->checkObjectExist_json(options, "itemHeight");
     bool scm = DICTOOL->checkObjectExist_json(options, "startCharMap");
-    if (sv && cmf && iw && ih && scm)
+    if (sv && cmf && iw && ih && scm && (strcmp(DICTOOL->getStringValue_json(options, "startCharMap"), "") != 0))
     {
 		std::string tp_c = m_strFilePath;
 		const char* cmf_tp = NULL;
@@ -465,7 +496,7 @@ void CCSReader::setPropsForContainerWidgetFromJsonDictionary(UIWidget *widget, c
 {
     this->setPropsForWidgetFromJsonDictionary(widget, options);
     UIContainerWidget* containerWidget = (UIContainerWidget*)widget;
-    containerWidget->setClipAble(DICTOOL->getBooleanValue_json(options, "clipAble"));
+    containerWidget->setClippingEnable(DICTOOL->getBooleanValue_json(options, "clipAble"));
     this->setColorPropsForWidgetFromJsonDictionary(widget,options);
 }
 
@@ -490,7 +521,7 @@ void CCSReader::setPropsForPanelFromJsonDictionary(UIWidget*widget,cs::CSJsonDic
 
 	std::string tp_b = m_strFilePath;
 	const char* imageFileName = DICTOOL->getStringValue_json(options, "backGroundImage");
-    const char* imageFileName_tp = imageFileName?tp_b.append(imageFileName).c_str():NULL;
+    const char* imageFileName_tp = (imageFileName && (strcmp(imageFileName, "") != 0))?tp_b.append(imageFileName).c_str():NULL;
 
     if (backGroundScale9Enable) {
         float cx = DICTOOL->getFloatValue_json(options, "capInsetsX");
@@ -499,12 +530,13 @@ void CCSReader::setPropsForPanelFromJsonDictionary(UIWidget*widget,cs::CSJsonDic
         float ch = DICTOOL->getFloatValue_json(options, "capInsetsHeight");
 		if (widget->getUseMergedTexture())
 		{
-			panel->setBackGroundImageScale9(imageFileName, cocos2d::CCRect(cx, cy, cw, ch),true);
+			panel->setBackGroundImage(imageFileName,true);
 		}
 		else
 		{
-            panel->setBackGroundImageScale9(imageFileName_tp, cocos2d::CCRect(cx, cy, cw, ch));
+            panel->setBackGroundImage(imageFileName_tp);
 		}
+        panel->setBackGroundImageCapInset(CCRectMake(cx, cy, cw, ch));
     }
     else
     {
@@ -542,7 +574,7 @@ void CCSReader::setPropsForSliderFromJsonDictionary(UIWidget*widget,cs::CSJsonDi
         {
 			std::string tp_b = m_strFilePath;
 			const char*imageFileName =  DICTOOL->getStringValue_json(options, "barFileName");
-            const char* imageFileName_tp = imageFileName?tp_b.append(imageFileName).c_str():NULL;
+            const char* imageFileName_tp = (imageFileName && (strcmp(imageFileName, "") != 0))?tp_b.append(imageFileName).c_str():NULL;
 			if (widget->getUseMergedTexture())
 			{
 				 slider->setBarTextureScale9(imageFileName, 0, 0, 0, 0,true);
@@ -557,7 +589,7 @@ void CCSReader::setPropsForSliderFromJsonDictionary(UIWidget*widget,cs::CSJsonDi
         {
 			std::string tp_b = m_strFilePath;
 			const char*imageFileName =  DICTOOL->getStringValue_json(options, "barFileName");
-            const char* imageFileName_tp = imageFileName?tp_b.append(imageFileName).c_str():NULL;
+            const char* imageFileName_tp = (imageFileName && (strcmp(imageFileName, "") != 0))?tp_b.append(imageFileName).c_str():NULL;
 			if (widget->getUseMergedTexture())
 			{
 				slider->setBarTexture(imageFileName,true);
@@ -576,9 +608,9 @@ void CCSReader::setPropsForSliderFromJsonDictionary(UIWidget*widget,cs::CSJsonDi
 	const char* pressedFileName = DICTOOL->getStringValue_json(options, "ballPressed");
 	const char* disabledFileName = DICTOOL->getStringValue_json(options, "ballDisabled");
 
-	const char* normalFileName_tp = normalFileName?tp_n.append(normalFileName).c_str():NULL;
-	const char* pressedFileName_tp = pressedFileName?tp_p.append(pressedFileName).c_str():NULL;
-	const char* disabledFileName_tp =  disabledFileName?tp_d.append(disabledFileName).c_str():NULL;
+	const char* normalFileName_tp = (normalFileName && (strcmp(normalFileName, "") != 0))?tp_n.append(normalFileName).c_str():NULL;
+	const char* pressedFileName_tp = (pressedFileName && (strcmp(pressedFileName, "") != 0))?tp_p.append(pressedFileName).c_str():NULL;
+	const char* disabledFileName_tp =  (disabledFileName && (strcmp(disabledFileName, "") != 0))?tp_d.append(disabledFileName).c_str():NULL;
 	if (widget->getUseMergedTexture())
 	{
 		slider->setSlidBallTextures(normalFileName,pressedFileName,disabledFileName,true);
@@ -599,7 +631,7 @@ void CCSReader::setPropsForSliderFromJsonDictionary(UIWidget*widget,cs::CSJsonDi
         slider->setShowProgressBar(showProgressBar);
 		std::string tp_b = m_strFilePath;
 		const char*imageFileName =  DICTOOL->getStringValue_json(options, "progressBarFileName");
-        const char* imageFileName_tp = imageFileName?tp_b.append(imageFileName).c_str():NULL;
+        const char* imageFileName_tp = (imageFileName && (strcmp(imageFileName, "") != 0))?tp_b.append(imageFileName).c_str():NULL;
 		if (widget->getUseMergedTexture())
 		{
 			slider->setProgressBarTextureScale9(imageFileName, 0, 0, 0, 0, true);
@@ -704,7 +736,7 @@ void CCSReader::setPropsForLoadingBarFromJsonDictionary(UIWidget *widget, cs::CS
 
 	std::string tp_b = m_strFilePath;
 	const char*imageFileName =  DICTOOL->getStringValue_json(options, "texture");
-    const char* imageFileName_tp = imageFileName?tp_b.append(imageFileName).c_str():NULL;
+    const char* imageFileName_tp = (imageFileName && (strcmp(imageFileName, "") != 0))?tp_b.append(imageFileName).c_str():NULL;
 	if (widget->getUseMergedTexture())
 	{
 		loadingBar->setTexture(imageFileName,true);

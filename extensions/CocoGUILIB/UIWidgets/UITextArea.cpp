@@ -56,7 +56,12 @@ void UITextArea::initNodes()
 
 void UITextArea::setText(const char* text)
 {
-    m_pRenderLabel->setString(text);
+	if (!text)
+	{
+		return;
+	}
+    std::string strText(text);
+    m_pRenderLabel->setString(strText.c_str());
 }
 
 void UITextArea::setTextAreaSize(const cocos2d::CCSize &size)

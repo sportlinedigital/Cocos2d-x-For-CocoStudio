@@ -23,7 +23,7 @@
  ****************************************************************************/
 
 #include "UIImageView.h"
-#include "CCScale9Sprite.h"
+#include "../../GUI/CCControlExtension/CCScale9Sprite.h"
 
 NS_CC_EXT_BEGIN
 
@@ -69,7 +69,12 @@ void UIImageView::initNodes()
 
 void UIImageView::setTexture(const char* fileName,bool useSpriteFrame)
 {
+    if (!fileName || strcmp(fileName, "") == 0)
+    {
+        return;
+    }
     this->m_strTextureFile = fileName;
+    setUseMergedTexture(useSpriteFrame);
     if (useSpriteFrame)
     {
         if (this->m_bScale9Enable)
@@ -257,18 +262,12 @@ void UIImageView::setScale9Enable(bool able)
     if (this->m_bScale9Enable)
     {
         this->m_pImageRender = cocos2d::extension::CCScale9Sprite::create();
-        if (m_strTextureFile != "") {
-            DYNAMIC_CAST_SCALE9SPRITE->initWithFile(m_strTextureFile.c_str());
-        }
     }
     else
     {
         this->m_pImageRender = cocos2d::CCSprite::create();
-        if (m_strTextureFile != "") {
-            DYNAMIC_CAST_CCSPRITE->initWithFile(m_strTextureFile.c_str());
-        }
     }
-
+    setTexture(m_strTextureFile.c_str(),getUseMergedTexture());
     this->m_pCCRenderNode->addChild(m_pImageRender);
 }
 

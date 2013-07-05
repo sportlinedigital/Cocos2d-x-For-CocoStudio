@@ -73,7 +73,12 @@ void UILabel::initNodes()
 
 void UILabel::setText(const char* text)
 {
-    m_pRenderLabel->setString(text);
+	if (!text)
+	{
+		return;
+	}
+    std::string strText(text);
+    m_pRenderLabel->setString(strText.c_str());
 }
 
 const char* UILabel::getStringValue()

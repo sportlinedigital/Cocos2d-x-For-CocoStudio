@@ -52,9 +52,9 @@ UIActionNode::~UIActionNode()
 
 void UIActionNode::initWithDictionary(cs::CSJsonDictionary *dic,UIWidget* root)
 {
-    this->setName(DICTOOL->getStringValue_json(dic, "name"));
+    this->setActionTag(DICTOOL->getIntValue_json(dic, "actiontag"));
     int actionFrameCount = DICTOOL->getArrayCount_json(dic, "actionframelist");
-    this->SetActionNode(CCUIHELPER->seekWidgetByName(root, this->getName()));
+    this->SetActionNode(CCUIHELPER->seekActionWidgetByActionTag(root, this->getActionTag()));
     for (int i=0; i<actionFrameCount; i++) {
         UIActionFrame* actionFrame = new UIActionFrame();
         cs::CSJsonDictionary* actionFrameDic = DICTOOL->getDictionaryFromArray_json(dic, "actionframelist", i);
@@ -163,7 +163,7 @@ void UIActionNode::RunAction(float fUnitTime, bool bloop)
 		CCRotateTo* action_2 = CCRotateTo::create(duration,frame->getRotation());
 		CCScaleTo* action_3 = CCScaleTo::create(duration,frame->getScaleX(),frame->getScaleY());
 		CCFadeTo* action_4 = CCFadeTo::create(duration,frame->getOpacity());
-		CCTintTo* action_5 = CCTintTo::create(duration,frame->getColor().r,frame->getColor().g,frame->getColor().r);
+		CCTintTo* action_5 = CCTintTo::create(duration,frame->getColor().r,frame->getColor().g,frame->getColor().b);
 
 		CCSpawn * actionSpawn = CCSpawn::create(action_1,action_2,action_3,action_4,action_5, NULL);
 		actionFrame->addObject( actionSpawn );

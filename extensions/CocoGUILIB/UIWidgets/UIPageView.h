@@ -29,6 +29,11 @@
 
 NS_CC_EXT_BEGIN
 
+typedef enum {
+    PAGEVIEW_TOUCHLEFT,
+    PAGEVIEW_TOUCHRIGHT
+}PVTouchDir;
+
 class UIPageView : public UIPanel{
     
 public:
@@ -36,22 +41,50 @@ public:
     virtual ~UIPageView();
     static UIPageView* create();
     void addWidgetToPage(UIWidget* widget, int pageIdx, bool forceCreate);
+    UIPanel* createPage();
     void addPage(UIContainerWidget* page);
     void insertPage(UIContainerWidget* page, int idx);
     void removePage(UIContainerWidget* page, bool cleanup);
-    
+    void removePageAtIndex(int index, bool cleanup);
+    virtual void setSize(const cocos2d::CCSize &size);
+    void updateChildrenSize();
+    void updateChildrenPosition();
+    void scrollToPage(int idx);
     virtual bool removeChild(UIWidget* widget, bool cleanup);
     virtual void removeAllChildrenAndCleanUp(bool cleanup);
     virtual void onTouchBegan(cocos2d::CCPoint &touchPoint);
     virtual void onTouchMoved(cocos2d::CCPoint &touchPoint);
     virtual void onTouchEnded(cocos2d::CCPoint &touchPoint);
     virtual void onTouchCancelled(cocos2d::CCPoint &touchPoint);
+    virtual void update(float dt);
+    virtual void checkChildInfo(int handleState,UIWidget* sender,cocos2d::CCPoint &touchPoint);
 protected:
     virtual bool addChild(UIWidget* widget);
     virtual bool init();
+    float getPositionXByIndex(int idx);
+    void updateBoundaryPages();
+    void handlePressLogic(cocos2d::CCPoint &touchPoint);
+    void handleMoveLogic(cocos2d::CCPoint &touchPoint);
+    void handleReleaseLogic(cocos2d::CCPoint &touchPoint);
+    virtual bool scrollPages(float touchOffset);
+    void movePages(float offset);
 protected:
     int m_nCurPageIdx;
     CCArray* m_pages;
+    PVTouchDir m_touchMoveDir;
+    float m_fTouchStartLocation;
+    float m_fTouchEndLocation;
+    float m_fTouchMoveStartLocation;
+    CCPoint movePagePoint;
+    UIWidget* m_pLeftChild;
+    UIWidget* m_pRightChild;
+    float m_fLeftBoundary;
+    float m_fRightBoundary;
+    bool m_bIsAutoScrolling;
+    float m_fAutoScrollDistance;
+    float m_fAutoScrollSpeed;
+    int m_nAutoScrollDir;
+    float m_fChildFocusCancelOffset;
 };
 
 NS_CC_EXT_END

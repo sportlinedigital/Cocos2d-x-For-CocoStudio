@@ -85,7 +85,12 @@ void UITextField::setTouchSize(float width,float height)
 
 void UITextField::setText(const char* text)
 {
-    m_pRenderTextField->setString(text);
+	if (!text)
+	{
+		return;
+	}
+    std::string strText(text);
+    m_pRenderTextField->setString(strText.c_str());
 }
 
 void UITextField::setSize(cocos2d::CCSize &size)

@@ -27,7 +27,7 @@
 
 #include "cocos2d.h"
 #include "ExtensionMacros.h"
-#include "UIWidget.h"
+#include "../BaseClasses/UIWidget.h"
 #include "UIActionFrame.h"
 #include "../../CCArmature/external_tool/Json/CSContentJsonDictionary.h"
 
@@ -41,7 +41,7 @@ protected:
 	UIWidget* m_actionNode;
     //data
 	cocos2d::CCArray* m_ActionFrameList;/*action frame*/
-    CC_SYNTHESIZE(const char*, m_name, Name);
+    CC_SYNTHESIZE(int, m_Action, ActionTag);
 public:
     UIActionNode();
     virtual ~UIActionNode();

@@ -119,10 +119,12 @@ public:
     virtual void disable();
     virtual void active();
     virtual bool isActive();
+    void updateBeTouchEnable(bool enable);
     void setVisible(bool visible);
     bool isVisible();
     virtual cocos2d::CCRect getRect();
     virtual cocos2d::CCRect getRelativeRect();
+    virtual const CCSize& getContentSize(); 
     void getLocationInWindow();
     virtual float getRelativeLeftPos();
     virtual float getRelativeBottomPos();
@@ -182,6 +184,8 @@ public:
     void stopActionByTag(int tag);
     cocos2d::CCAction* getActionByTag(int tag);
     
+	void setActionTag(int tag);
+	int getActionTag();
     
     virtual void setNeedCheckVisibleDepandParent(bool need);
     void didNotSelectSelf();
@@ -285,6 +289,7 @@ protected:
     WidgetType m_WidgetType;
     WidgetName m_WidgetName;
     UILayer* m_pUILayer;
+	int m_nActionTag;
 };
 
 NS_CC_EXT_END

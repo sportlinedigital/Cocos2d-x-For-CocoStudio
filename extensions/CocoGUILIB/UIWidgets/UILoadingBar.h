@@ -57,7 +57,7 @@ protected:
     float m_fTotalLength;
     float m_fBarHeight;
     cocos2d::CCSprite* m_pRenderBar;
-    bool m_bUseSpriteFrame;
+//    bool m_bUseSpriteFrame;
 };
 
 NS_CC_EXT_END

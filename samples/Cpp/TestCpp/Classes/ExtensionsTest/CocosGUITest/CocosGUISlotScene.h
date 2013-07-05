@@ -6,7 +6,6 @@
 #include "cocos2d.h"
 #include "cocos-ext.h"
 #include "../../testBasic.h"
-#include "CocosGUI.h"
 
 #define SWITCH_PANEL_BTN_TAG_CLOTHES        1
 

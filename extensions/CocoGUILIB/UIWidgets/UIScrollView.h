@@ -126,7 +126,6 @@ public:
     void setBerthOrientation(SCROLLVIEW_BERTH_ORI mode);
     SCROLLVIEW_BERTH_ORI getBerthOrientation();
 protected:
-    virtual bool init();
     virtual void removeChildMoveToTrash(UIWidget* child);
     virtual void removeChildReferenceOnly(UIWidget* child);
     virtual void initProperty();
@@ -167,7 +166,7 @@ protected:
 protected:
     SCROLLVIEW_DIR m_eDirection;
     SCROLLVIEW_MOVE_DIR m_eMoveDirection;
-    int m_nDirection;
+//    int m_nDirection;
     float m_fTouchStartLocation;
     float m_fTouchEndLocation;
     float m_fTouchMoveStartLocation;

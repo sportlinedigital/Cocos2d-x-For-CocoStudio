@@ -98,10 +98,11 @@ bool UIContainerWidget::addChild(UIWidget* child)
     return true;
 }
 
-void UIContainerWidget::setClipAble(bool able)
+void UIContainerWidget::setClippingEnable(bool able)
 {
     this->m_bClipAble = able;
-    switch (m_renderType) {
+    switch (m_renderType)
+    {
         case RENDER_TYPE_LAYERCOLOR:
             DYNAMIC_CAST_CLIPLAYERCOLOR->setClipAble(able);
             break;
@@ -111,7 +112,8 @@ void UIContainerWidget::setClipAble(bool able)
         default:
             break;
     }
-    for (int i=0; i<this->m_children->count(); i++) {
+    for (int i=0; i<this->m_children->count(); i++)
+    {
         UIWidget* child = (UIWidget*)(this->m_children->objectAtIndex(i));
         child->setNeedCheckVisibleDepandParent(able);
     }
@@ -160,21 +162,9 @@ void UIContainerWidget::setSize(const cocos2d::CCSize &size)
     this->updateClipSize();
 }
 
-void UIContainerWidget::setWidth(float width)
-{
-    this->m_fWidth = width;
-    this->setSize(cocos2d::CCSize(width,this->m_fHeight));
-}
-
 float UIContainerWidget::getWidth()
 {
     return this->m_fWidth;
-}
-
-void UIContainerWidget::setHeight(float height)
-{
-    this->m_fHeight = height;
-    this->setSize(cocos2d::CCSize(this->m_fWidth,height));
 }
 
 float UIContainerWidget::getHeight()
@@ -237,11 +227,11 @@ void UIContainerWidget::updateClipSize()
 
 CCSize UIContainerWidget::getWrapSize() const
 {
-    for (int i=0; i<this->m_children->count(); i++) {
+    for (int i=0; i<this->m_children->count(); i++)
+    {
         UIWidget* child = dynamic_cast<UIWidget*>(m_children->objectAtIndex(i));
         switch (child->getWidgetType()) {
             case WidgetTypeWidget:
-                
                 break;
             case WidgetTypeContainer:
                 break;

@@ -49,6 +49,7 @@ public:
     void removeAllSpriteFrame();
     UIWidget* seekWidgetByTag(UIWidget* root, int tag);
     UIWidget* seekWidgetByName(UIWidget* root, const char* name);
+	UIWidget* seekActionWidgetByActionTag(UIWidget* root, int tag);
     void setFileDesignWidth(float width);
     float getFileDesignWidth();
     void setFileDesignHeight(float height);

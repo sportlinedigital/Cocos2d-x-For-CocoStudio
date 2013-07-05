@@ -28,13 +28,13 @@ void CocosGUISlotScene::onExit()
 {
     TestScene::onExit();
     
-    CC_SAFE_RELEASE(m_dicBeUsedSlot);
-    CC_SAFE_RELEASE(m_dicEquipClothesSlot);
-    CC_SAFE_RELEASE(m_dicEquipWeaponsSlot);
-    CC_SAFE_RELEASE(m_dicEquipPetsSlot);
-    CC_SAFE_RELEASE(m_dicEquipClothes);
-    CC_SAFE_RELEASE(m_dicEquipWeapons);
-    CC_SAFE_RELEASE(m_dicEquipPets);
+    //CC_SAFE_RELEASE(m_dicBeUsedSlot);
+    //CC_SAFE_RELEASE(m_dicEquipClothesSlot);
+    //CC_SAFE_RELEASE(m_dicEquipWeaponsSlot);
+    //CC_SAFE_RELEASE(m_dicEquipPetsSlot);
+    //CC_SAFE_RELEASE(m_dicEquipClothes);
+    //CC_SAFE_RELEASE(m_dicEquipWeapons);
+    //CC_SAFE_RELEASE(m_dicEquipPets);
 }
 
 void CocosGUISlotScene::runThisTest()
@@ -217,14 +217,14 @@ void CocosGUISlotScene::MainMenuCallback(CCObject* pSender)
 
 void CocosGUISlotScene::toCocosGUITestScene(CCObject *pSender)
 {
-//    CocosGUITestScene *pScene = new CocosGUITestScene();
-//    if (pScene)
-//    {
-//        ul->dispose();
-//        
-//        pScene->runThisTest();
-//        pScene->release();
-//    }
+    CocosGUITestScene *pScene = new CocosGUITestScene();
+    if (pScene)
+    {
+        ul->dispose();
+        
+        pScene->runThisTest();
+        pScene->release();
+    }
 }
 
 void CocosGUISlotScene::switchBtnCallBack(CCObject *pSender)
