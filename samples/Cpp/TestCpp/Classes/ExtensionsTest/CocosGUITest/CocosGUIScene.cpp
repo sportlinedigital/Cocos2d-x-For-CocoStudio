@@ -33,19 +33,23 @@ void CocosGUITestScene::runThisTest()
     pp->setOpacity(255);
     pp->setPosition(ccp(100, 100));
     pp->setSize(CCSizeMake(100, 100));
+
+
     ul->addWidget(pp);
     
     UIPanel* ps = UIPanel::create();
     ps->setBackGroundColorEnable(true);
     ps->setColor(ccc3(0, 0, 255));
     ps->setOpacity(255);
-    ps->setPosition(ccp(125, 125));
+    ps->setPosition(ccp(75, 75));
     ps->setSize(CCSizeMake(50, 50));
-//    pp->addChild(ps);
-    ul->addWidget(ps);
-    
+
+    pp->addChild(ps);
+//    ul->addWidget(ps);
     pp->setClippingEnable(true);
-    ps->setClippingEnable(true);
+        ps->setClippingEnable(true);
+
+//    ps->setCloseClip(false);
     
     
     UIButton* b1 = UIButton::create();

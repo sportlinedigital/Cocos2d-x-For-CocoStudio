@@ -30,23 +30,28 @@
 
 NS_CC_EXT_BEGIN
     
-class UIClipAbleLayerColor : public cocos2d::CCLayerColor
+class UIClippingLayerColor : public cocos2d::CCLayerColor
 {
 public:
-    UIClipAbleLayerColor();
-    virtual ~UIClipAbleLayerColor();
-    static UIClipAbleLayerColor* create(const cocos2d::ccColor4B &color,float width ,float height);
-    static UIClipAbleLayerColor* create();
+    UIClippingLayerColor();
+    virtual ~UIClippingLayerColor();
+    static UIClippingLayerColor* create(const cocos2d::ccColor4B &color,float width ,float height);
+    static UIClippingLayerColor* create();
     virtual void visit();
     void setClippingEnable(bool able);
+    bool isClippingEnable();
     void setColorEnable(bool enable);
     bool getColorEnable();
     void setClipRect(const cocos2d::CCRect &rect);
-    const CCRect& getClippingRect() const;
+    const CCRect& getClippingRect();
     void setClipSize(float width,float height);
     virtual void draw();
     virtual void setPosition(const CCPoint &pos);
     virtual void onEnter();
+    virtual void onExit();
+protected:
+    void checkClippingOption();
+    void updateChildrenClippingOptions();
 protected:
     bool m_bClippingEnable;
     float m_fScissorX;
@@ -55,7 +60,11 @@ protected:
     float m_fScissorHeight;
     bool m_bEnableCustomArea;
     bool m_bColorEnable;
+    bool m_bHandleScissor;
     CCPoint m_loacationInWorld;
+    CCRect m_clippingRect;
+    UIClippingLayerColor* m_pClippingParent;
+
 };
 
 NS_CC_EXT_END

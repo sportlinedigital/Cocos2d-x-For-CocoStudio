@@ -24,12 +24,12 @@
 
 #include "UIPanel.h"
 #include "../../GUI/CCControlExtension/CCScale9Sprite.h"
-#include "../Drawable/UIClipAbleLayerColor.h"
+#include "../Drawable/UIClippingLayerColor.h"
 
 
 NS_CC_EXT_BEGIN
 
-#define DYNAMIC_CAST_CLIPLAYERCOLOR dynamic_cast<UIClipAbleLayerColor*>(this->m_pRender)
+#define DYNAMIC_CAST_CLIPLAYERCOLOR dynamic_cast<UIClippingLayerColor*>(this->m_pRender)
 
 UIPanel::UIPanel():
 m_bBackGroundScale9Enable(false),
