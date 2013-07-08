@@ -417,9 +417,6 @@
     <ClCompile Include="..\CocoGUILIB\Drawable\UICCTextField.cpp">
       <Filter>CocoGUILIB\Drawable</Filter>
     </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\Drawable\UIClipAbleLayerColor.cpp">
-      <Filter>CocoGUILIB\Drawable</Filter>
-    </ClCompile>
     <ClCompile Include="..\CocoGUILIB\Drawable\UIClipAbleLayerGradient.cpp">
       <Filter>CocoGUILIB\Drawable</Filter>
     </ClCompile>
@@ -503,6 +500,9 @@
     </ClCompile>
     <ClCompile Include="..\CocoGUILIB\Action\UIActionFrameEasing.cpp">
       <Filter>CocoGUILIB\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\Drawable\UIClippingLayerColor.cpp">
+      <Filter>CocoGUILIB\Drawable</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -817,9 +817,6 @@
     <ClInclude Include="..\CocoGUILIB\Drawable\UICCTextField.h">
       <Filter>CocoGUILIB\Drawable</Filter>
     </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\Drawable\UIClipAbleLayerColor.h">
-      <Filter>CocoGUILIB\Drawable</Filter>
-    </ClInclude>
     <ClInclude Include="..\CocoGUILIB\Drawable\UIClipAbleLayerGradient.h">
       <Filter>CocoGUILIB\Drawable</Filter>
     </ClInclude>
@@ -903,6 +900,9 @@
     </ClInclude>
     <ClInclude Include="..\CocoGUILIB\Action\UIActionFrameEasing.h">
       <Filter>CocoGUILIB\Action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\Drawable\UIClippingLayerColor.h">
+      <Filter>CocoGUILIB\Drawable</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
