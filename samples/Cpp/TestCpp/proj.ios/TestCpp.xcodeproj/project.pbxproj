@@ -340,15 +340,11 @@
 		37EEEC44175DE5D3003C1193 /* ProjectileController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37EEEC3C175DE5D3003C1193 /* ProjectileController.cpp */; };
 		37EEEC45175DE5D3003C1193 /* SceneController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37EEEC3E175DE5D3003C1193 /* SceneController.cpp */; };
 		50992024178057CA0062E19E /* GUINodeRGBA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50992018178057CA0062E19E /* GUINodeRGBA.cpp */; };
-		50992025178057CA0062E19E /* UICCLabelAtlas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5099201A178057CA0062E19E /* UICCLabelAtlas.cpp */; };
 		50992026178057CA0062E19E /* UICCTextField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5099201C178057CA0062E19E /* UICCTextField.cpp */; };
-		50992027178057CA0062E19E /* UIClippingLayerColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5099201E178057CA0062E19E /* UIClippingLayerColor.cpp */; };
-		50992028178057CA0062E19E /* UIClipAbleLayerGradient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50992020178057CA0062E19E /* UIClipAbleLayerGradient.cpp */; };
-		50992029178057CA0062E19E /* UIPrimitivesNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50992022178057CA0062E19E /* UIPrimitivesNode.cpp */; };
+		50992027178057CA0062E19E /* UIClippingLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5099201E178057CA0062E19E /* UIClippingLayer.cpp */; };
 		5099204F178057E80062E19E /* UIButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5099202B178057E80062E19E /* UIButton.cpp */; };
 		50992050178057E80062E19E /* UICheckBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5099202D178057E80062E19E /* UICheckBox.cpp */; };
 		50992051178057E80062E19E /* UIControlButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5099202F178057E80062E19E /* UIControlButton.cpp */; };
-		50992052178057E80062E19E /* UIGradientPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50992031178057E80062E19E /* UIGradientPanel.cpp */; };
 		50992053178057E80062E19E /* UIImageView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50992033178057E80062E19E /* UIImageView.cpp */; };
 		50992054178057E80062E19E /* UILabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50992035178057E80062E19E /* UILabel.cpp */; };
 		50992055178057E80062E19E /* UILabelAtlas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50992037178057E80062E19E /* UILabelAtlas.cpp */; };
@@ -378,6 +374,7 @@
 		50E32A70177C86A20027ED05 /* slot in Resources */ = {isa = PBXBuildFile; fileRef = 50E32A6F177C86A20027ED05 /* slot */; };
 		50E32A73177C86C30027ED05 /* CocosGUISlotScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50E32A71177C86C30027ED05 /* CocosGUISlotScene.cpp */; };
 		50EFA20017816DD400373AF5 /* UIPageView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50EFA1FE17816DD400373AF5 /* UIPageView.cpp */; };
+		50EFA510178AAF8100373AF5 /* UICCLabelAtlas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50EFA50E178AAF8000373AF5 /* UICCLabelAtlas.cpp */; };
 		6442E66D17297DB40008499D /* TextureAtlasEncryptionTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6442E66B17297DB40008499D /* TextureAtlasEncryptionTest.cpp */; };
 		A059B9AD174D9B8E0078F84F /* ConfigurationTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A059B9AB174D9B8E0078F84F /* ConfigurationTest.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
@@ -1107,24 +1104,16 @@
 		37EEEC3F175DE5D3003C1193 /* SceneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneController.h; sourceTree = "<group>"; };
 		50992018178057CA0062E19E /* GUINodeRGBA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GUINodeRGBA.cpp; sourceTree = "<group>"; };
 		50992019178057CA0062E19E /* GUINodeRGBA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUINodeRGBA.h; sourceTree = "<group>"; };
-		5099201A178057CA0062E19E /* UICCLabelAtlas.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UICCLabelAtlas.cpp; sourceTree = "<group>"; };
-		5099201B178057CA0062E19E /* UICCLabelAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICCLabelAtlas.h; sourceTree = "<group>"; };
 		5099201C178057CA0062E19E /* UICCTextField.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UICCTextField.cpp; sourceTree = "<group>"; };
 		5099201D178057CA0062E19E /* UICCTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICCTextField.h; sourceTree = "<group>"; };
-		5099201E178057CA0062E19E /* UIClippingLayerColor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIClippingLayerColor.cpp; sourceTree = "<group>"; };
-		5099201F178057CA0062E19E /* UIClippingLayerColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIClippingLayerColor.h; sourceTree = "<group>"; };
-		50992020178057CA0062E19E /* UIClipAbleLayerGradient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIClipAbleLayerGradient.cpp; sourceTree = "<group>"; };
-		50992021178057CA0062E19E /* UIClipAbleLayerGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIClipAbleLayerGradient.h; sourceTree = "<group>"; };
-		50992022178057CA0062E19E /* UIPrimitivesNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIPrimitivesNode.cpp; sourceTree = "<group>"; };
-		50992023178057CA0062E19E /* UIPrimitivesNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPrimitivesNode.h; sourceTree = "<group>"; };
+		5099201E178057CA0062E19E /* UIClippingLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIClippingLayer.cpp; sourceTree = "<group>"; };
+		5099201F178057CA0062E19E /* UIClippingLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIClippingLayer.h; sourceTree = "<group>"; };
 		5099202B178057E80062E19E /* UIButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIButton.cpp; sourceTree = "<group>"; };
 		5099202C178057E80062E19E /* UIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIButton.h; sourceTree = "<group>"; };
 		5099202D178057E80062E19E /* UICheckBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UICheckBox.cpp; sourceTree = "<group>"; };
 		5099202E178057E80062E19E /* UICheckBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICheckBox.h; sourceTree = "<group>"; };
 		5099202F178057E80062E19E /* UIControlButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIControlButton.cpp; sourceTree = "<group>"; };
 		50992030178057E80062E19E /* UIControlButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIControlButton.h; sourceTree = "<group>"; };
-		50992031178057E80062E19E /* UIGradientPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIGradientPanel.cpp; sourceTree = "<group>"; };
-		50992032178057E80062E19E /* UIGradientPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIGradientPanel.h; sourceTree = "<group>"; };
 		50992033178057E80062E19E /* UIImageView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIImageView.cpp; sourceTree = "<group>"; };
 		50992034178057E80062E19E /* UIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageView.h; sourceTree = "<group>"; };
 		50992035178057E80062E19E /* UILabel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UILabel.cpp; sourceTree = "<group>"; };
@@ -1182,6 +1171,8 @@
 		50E32A72177C86C30027ED05 /* CocosGUISlotScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosGUISlotScene.h; sourceTree = "<group>"; };
 		50EFA1FE17816DD400373AF5 /* UIPageView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIPageView.cpp; sourceTree = "<group>"; };
 		50EFA1FF17816DD400373AF5 /* UIPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPageView.h; sourceTree = "<group>"; };
+		50EFA50E178AAF8000373AF5 /* UICCLabelAtlas.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UICCLabelAtlas.cpp; sourceTree = "<group>"; };
+		50EFA50F178AAF8000373AF5 /* UICCLabelAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICCLabelAtlas.h; sourceTree = "<group>"; };
 		6442E66B17297DB40008499D /* TextureAtlasEncryptionTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureAtlasEncryptionTest.cpp; sourceTree = "<group>"; };
 		6442E66C17297DB40008499D /* TextureAtlasEncryptionTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureAtlasEncryptionTest.h; sourceTree = "<group>"; };
 		A059B9AB174D9B8E0078F84F /* ConfigurationTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConfigurationTest.cpp; sourceTree = "<group>"; };
@@ -2877,18 +2868,14 @@
 		50992017178057CA0062E19E /* Drawable */ = {
 			isa = PBXGroup;
 			children = (
+				50EFA50E178AAF8000373AF5 /* UICCLabelAtlas.cpp */,
+				50EFA50F178AAF8000373AF5 /* UICCLabelAtlas.h */,
 				50992018178057CA0062E19E /* GUINodeRGBA.cpp */,
 				50992019178057CA0062E19E /* GUINodeRGBA.h */,
-				5099201A178057CA0062E19E /* UICCLabelAtlas.cpp */,
-				5099201B178057CA0062E19E /* UICCLabelAtlas.h */,
 				5099201C178057CA0062E19E /* UICCTextField.cpp */,
 				5099201D178057CA0062E19E /* UICCTextField.h */,
-				5099201E178057CA0062E19E /* UIClippingLayerColor.cpp */,
-				5099201F178057CA0062E19E /* UIClippingLayerColor.h */,
-				50992020178057CA0062E19E /* UIClipAbleLayerGradient.cpp */,
-				50992021178057CA0062E19E /* UIClipAbleLayerGradient.h */,
-				50992022178057CA0062E19E /* UIPrimitivesNode.cpp */,
-				50992023178057CA0062E19E /* UIPrimitivesNode.h */,
+				5099201E178057CA0062E19E /* UIClippingLayer.cpp */,
+				5099201F178057CA0062E19E /* UIClippingLayer.h */,
 			);
 			path = Drawable;
 			sourceTree = "<group>";
@@ -2902,8 +2889,6 @@
 				5099202E178057E80062E19E /* UICheckBox.h */,
 				5099202F178057E80062E19E /* UIControlButton.cpp */,
 				50992030178057E80062E19E /* UIControlButton.h */,
-				50992031178057E80062E19E /* UIGradientPanel.cpp */,
-				50992032178057E80062E19E /* UIGradientPanel.h */,
 				50992033178057E80062E19E /* UIImageView.cpp */,
 				50992034178057E80062E19E /* UIImageView.h */,
 				50992035178057E80062E19E /* UILabel.cpp */,
@@ -3511,15 +3496,11 @@
 				50D5FE391779C63D005E064C /* UIActionNode.cpp in Sources */,
 				50E32A73177C86C30027ED05 /* CocosGUISlotScene.cpp in Sources */,
 				50992024178057CA0062E19E /* GUINodeRGBA.cpp in Sources */,
-				50992025178057CA0062E19E /* UICCLabelAtlas.cpp in Sources */,
 				50992026178057CA0062E19E /* UICCTextField.cpp in Sources */,
-				50992027178057CA0062E19E /* UIClippingLayerColor.cpp in Sources */,
-				50992028178057CA0062E19E /* UIClipAbleLayerGradient.cpp in Sources */,
-				50992029178057CA0062E19E /* UIPrimitivesNode.cpp in Sources */,
+				50992027178057CA0062E19E /* UIClippingLayer.cpp in Sources */,
 				5099204F178057E80062E19E /* UIButton.cpp in Sources */,
 				50992050178057E80062E19E /* UICheckBox.cpp in Sources */,
 				50992051178057E80062E19E /* UIControlButton.cpp in Sources */,
-				50992052178057E80062E19E /* UIGradientPanel.cpp in Sources */,
 				50992053178057E80062E19E /* UIImageView.cpp in Sources */,
 				50992054178057E80062E19E /* UILabel.cpp in Sources */,
 				50992055178057E80062E19E /* UILabelAtlas.cpp in Sources */,
@@ -3534,6 +3515,7 @@
 				5099205F178057E80062E19E /* UITextButton.cpp in Sources */,
 				50992060178057E80062E19E /* UITextField.cpp in Sources */,
 				50EFA20017816DD400373AF5 /* UIPageView.cpp in Sources */,
+				50EFA510178AAF8100373AF5 /* UICCLabelAtlas.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

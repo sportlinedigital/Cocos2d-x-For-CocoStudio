@@ -63,6 +63,7 @@ public:
     void addWidget(UIWidget* widget);
     void removeWidgetAndCleanUp(UIWidget* widget,bool cleanup);
     virtual void setVisible(bool visible);
+    void setTouchPriority(int nPriority);
     void update(float dt);
     void addUpdateEnableWidget(UIWidget* widget);
     void removeUpdateEnableWidget(UIWidget* widget);

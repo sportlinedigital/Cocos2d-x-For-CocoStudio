@@ -76,11 +76,11 @@ void UITextField::initNodes()
     m_pRender->addChild(m_pRenderTextField);
 }
 
-void UITextField::setTouchSize(float width,float height)
+void UITextField::setTouchSize(const CCSize &size)
 {
     m_bUseTouchArea = true;
-    m_fTouchWidth = width;
-    m_fTouchHeight = height;
+    m_fTouchWidth = size.width;
+    m_fTouchHeight = size.height;
 }
 
 void UITextField::setText(const char* text)
@@ -93,7 +93,7 @@ void UITextField::setText(const char* text)
     m_pRenderTextField->setString(strText.c_str());
 }
 
-void UITextField::setSize(cocos2d::CCSize &size)
+void UITextField::setSize(const cocos2d::CCSize &size)
 {
     m_pRenderTextField->setDimensions(size);
 }

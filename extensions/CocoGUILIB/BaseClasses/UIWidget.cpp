@@ -107,6 +107,14 @@ bool UIWidget::init()
 
 void UIWidget::releaseResoures()
 {
+    m_pPushListener = NULL;
+    m_pfnPushSelector = NULL;
+    m_pMoveListener = NULL;
+    m_pfnMoveSelector = NULL;
+    m_pReleaseListener = NULL;
+    m_pfnReleaseSelector = NULL;
+    m_pCancelListener = NULL;
+    m_pfnCancelSelector = NULL;
     setUpdateEnable(false);
     if (m_pUILayer)
     {

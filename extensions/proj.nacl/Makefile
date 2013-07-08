@@ -102,9 +102,7 @@ EXTENSIONS_SOURCES = ../CCBReader/CCBFileLoader.cpp \
 ../CocoGUILIB/Drawable/GUINodeRGBA.cpp \
 ../CocoGUILIB/Drawable/UICCLabelAtlas.cpp \
 ../CocoGUILIB/Drawable/UICCTextField.cpp \
-../CocoGUILIB/Drawable/UIClipAbleLayerColor.cpp \
-../CocoGUILIB/Drawable/UIClipAbleLayerGradient.cpp \
-../CocoGUILIB/Drawable/UIPrimitivesNode.cpp \
+../CocoGUILIB/Drawable/UIClippingLayer.cpp \
 ../CocoGUILIB/System/CCSReader.cpp \
 ../CocoGUILIB/System/CocosGUI.cpp \
 ../CocoGUILIB/System/UIHelper.cpp \
@@ -113,7 +111,6 @@ EXTENSIONS_SOURCES = ../CCBReader/CCBFileLoader.cpp \
 ../CocoGUILIB/UIWidgets/UIButton.cpp \
 ../CocoGUILIB/UIWidgets/UICheckBox.cpp \
 ../CocoGUILIB/UIWidgets/UIControlButton.cpp \
-../CocoGUILIB/UIWidgets/UIGradientPanel.cpp \
 ../CocoGUILIB/UIWidgets/UIImageView.cpp \
 ../CocoGUILIB/UIWidgets/UILabel.cpp \
 ../CocoGUILIB/UIWidgets/UILabelAtlas.cpp \

@@ -49,7 +49,6 @@ UILayer::~UILayer()
 bool UILayer::init()
 {
     if (CCLayer::init()) {
-        cocos2d::CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, -1, false);
         m_pRootWidget = UIRootWidget::create();
         m_pRootWidget->setUILayer(this);
         addChild(m_pRootWidget->getContainerNode());
@@ -79,11 +78,13 @@ UILayer* UILayer::create(void)
 
 void UILayer::onEnter()
 {
+    cocos2d::CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, -1, true);
     CCLayer::onEnter();
 }
 
 void UILayer::onExit()
 {
+    CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
     CCLayer::onExit();
 }
 
@@ -106,6 +107,11 @@ void UILayer::setVisible(bool visible)
 {
     CCLayer::setVisible(visible);
     m_pRootWidget->setVisible(visible);
+}
+
+void UILayer::setTouchPriority(int nPriority)
+{
+    CCDirector::sharedDirector()->getTouchDispatcher()->setPriority(nPriority, this);
 }
 
 //void UILayer::setUIType(GUITYPE type)
@@ -187,7 +193,6 @@ UIInputManager* UILayer::getInputManager()
 
 void UILayer::dispose()
 {
-    CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
     removeFromParentAndCleanup(true);
 }
 
