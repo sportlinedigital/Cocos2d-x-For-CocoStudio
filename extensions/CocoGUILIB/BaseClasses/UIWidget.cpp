@@ -28,11 +28,11 @@
 
 NS_CC_EXT_BEGIN
 
-#define DYNAMIC_CAST_CCBLENDPROTOCOL dynamic_cast<cocos2d::CCBlendProtocol*>(this->m_pRender)
+#define DYNAMIC_CAST_CCBLENDPROTOCOL dynamic_cast<cocos2d::CCBlendProtocol*>(m_pRender)
 
-#define DYNAMIC_CAST_CCRGBAPROTOCOL dynamic_cast<cocos2d::CCRGBAProtocol*>(this->m_pRender)
+#define DYNAMIC_CAST_CCRGBAPROTOCOL dynamic_cast<cocos2d::CCRGBAProtocol*>(m_pRender)
 
-#define DYNAMIC_CAST_GUINODERGBA dynamic_cast<GUINodeRGBA*>(this->m_pRender)
+#define DYNAMIC_CAST_GUINODERGBA dynamic_cast<GUINodeRGBA*>(m_pRender)
     
 UIWidget::UIWidget():
 m_bEnabled(true),
@@ -97,29 +97,32 @@ UIWidget* UIWidget::create()
 
 bool UIWidget::init()
 {
-    this->m_children = cocos2d::CCArray::create();
-    this->m_children->retain();
-    this->initNodes();
-    this->m_pRender->retain();
-    this->m_pRender->setZOrder(this->m_nWidgetZOrder);
+    m_children = cocos2d::CCArray::create();
+    m_children->retain();
+    initNodes();
+    m_pRender->retain();
+    m_pRender->setZOrder(m_nWidgetZOrder);
     return true;
 }
 
 void UIWidget::releaseResoures()
 {
-    this->setUpdateEnable(false);
-    this->m_pUILayer->getInputManager()->removeManageredWidget(this);
-    this->setUILayer(NULL);
-    this->removeAllChildrenAndCleanUp(true);
-    this->m_pRender->removeAllChildrenWithCleanup(true);
-    this->m_pRender->removeFromParentAndCleanup(true);
-    this->m_pRender->release();
-    this->m_children->release();
+    setUpdateEnable(false);
+    if (m_pUILayer)
+    {
+        m_pUILayer->getInputManager()->removeManageredWidget(this);
+        setUILayer(NULL);
+    }
+    removeAllChildrenAndCleanUp(true);
+    m_pRender->removeAllChildrenWithCleanup(true);
+    m_pRender->removeFromParentAndCleanup(true);
+    m_pRender->release();
+    m_children->release();
 }
 
 void UIWidget::initNodes()
 {
-    this->m_pRender = GUINodeRGBA::create();
+    m_pRender = GUINodeRGBA::create();
 }
 
 bool UIWidget::addChild(UIWidget *child)
@@ -128,33 +131,33 @@ bool UIWidget::addChild(UIWidget *child)
     {
         return false;
     }
-    if (this->m_children->containsObject(child))
+    if (m_children->containsObject(child))
     {
         return false;
     }
     child->m_pWidgetParent = this;
-    int childrenCount = this->m_children->count();
+    int childrenCount = m_children->count();
     if (childrenCount <= 0)
     {
-        this->m_children->addObject(child);
+        m_children->addObject(child);
     }
     else
     {
         bool seekSucceed = false;
         for (int i=childrenCount-1; i>=0; --i)
         {
-            UIWidget* widget = (UIWidget*)(this->m_children->objectAtIndex(i));
+            UIWidget* widget = (UIWidget*)(m_children->objectAtIndex(i));
             if (child->getWidgetZOrder() >= widget->getWidgetZOrder())
             {
                 if (i == childrenCount-1)
                 {
-                    this->m_children->addObject(child);
+                    m_children->addObject(child);
                     seekSucceed = true;
                     break;
                 }
                 else
                 {
-                    this->m_children->insertObject(child, i+1);
+                    m_children->insertObject(child, i+1);
                     seekSucceed = true;
                     break;
                 }
@@ -162,16 +165,16 @@ bool UIWidget::addChild(UIWidget *child)
         }
         if (!seekSucceed)
         {
-            this->m_children->insertObject(child,0);
+            m_children->insertObject(child,0);
         }
     }
     child->m_pRender->setZOrder(child->getWidgetZOrder());
-    this->m_pRender->addChild(child->m_pRender);
+    m_pRender->addChild(child->m_pRender);
     
-    if (this->m_pUILayer) {
-        for (int i=0; i<this->m_children->count(); i++) {
-            UIWidget* child = (UIWidget*)(this->m_children->objectAtIndex(i));
-            child->updateChildrenUILayer(this->m_pUILayer);
+    if (m_pUILayer) {
+        for (int i=0; i<m_children->count(); i++) {
+            UIWidget* child = (UIWidget*)(m_children->objectAtIndex(i));
+            child->updateChildrenUILayer(m_pUILayer);
         }
     }
     structureChangedEvent();
@@ -180,16 +183,16 @@ bool UIWidget::addChild(UIWidget *child)
 
 void UIWidget::setUILayer(cocos2d::extension::UILayer *uiLayer)
 {
-    this->m_pUILayer = uiLayer;
+    m_pUILayer = uiLayer;
 }
 
 void UIWidget::updateChildrenUILayer(UILayer* uiLayer)
 {
-    this->setUILayer(uiLayer);
-    this->setUpdateEnable(this->getUpdateEnable());
-    for (int i=0; i<this->m_children->count(); i++) {
-        UIWidget* child = (UIWidget*)(this->m_children->objectAtIndex(i));
-        child->updateChildrenUILayer(this->m_pUILayer);
+    setUILayer(uiLayer);
+    setUpdateEnable(getUpdateEnable());
+    for (int i=0; i<m_children->count(); i++) {
+        UIWidget* child = (UIWidget*)(m_children->objectAtIndex(i));
+        child->updateChildrenUILayer(m_pUILayer);
     }
 }
 
@@ -198,16 +201,16 @@ void UIWidget::disableUpdate()
     if (m_pUILayer) {
         m_pUILayer->removeUpdateEnableWidget(this);
     }
-    for (int i=0; i<this->m_children->count(); i++) {
-        UIWidget* child = (UIWidget*)(this->m_children->objectAtIndex(i));
+    for (int i=0; i<m_children->count(); i++) {
+        UIWidget* child = (UIWidget*)(m_children->objectAtIndex(i));
         child->disableUpdate();
     }
 }
 
 void UIWidget::structureChangedEvent()
 {
-    if (this->m_pUILayer) {
-        this->m_pUILayer->getInputManager()->uiSceneHasChanged();
+    if (m_pUILayer) {
+        m_pUILayer->getInputManager()->uiSceneHasChanged();
     }
 }
 
@@ -219,11 +222,11 @@ bool UIWidget::removeChild(UIWidget *child, bool cleanup)
     }
     if (cleanup)
     {
-        this->removeChildMoveToTrash(child);
+        removeChildMoveToTrash(child);
     }
     else
     {
-        this->removeChildReferenceOnly(child);
+        removeChildReferenceOnly(child);
     }
     return true;
 }
@@ -234,9 +237,9 @@ void UIWidget::removeChildMoveToTrash(UIWidget *child)
     {
         return;
     }
-    if (this->m_children->containsObject(child))
+    if (m_children->containsObject(child))
     {
-        this->m_children->removeObject(child);
+        m_children->removeObject(child);
         child->structureChangedEvent();
         child->releaseResoures();
         child->m_pWidgetParent = NULL;
@@ -250,23 +253,23 @@ void UIWidget::removeChildReferenceOnly(UIWidget *child)
     {
         return;
     }
-    if (this->m_children->containsObject(child))
+    if (m_children->containsObject(child))
     {
         child->structureChangedEvent();
         child->disableUpdate();
         child->updateChildrenUILayer(NULL);
-        this->m_pRender->removeChild(child->m_pRender, false);
+        m_pRender->removeChild(child->m_pRender, false);
         child->setNeedCheckVisibleDepandParent(false);
-        this->m_children->removeObject(child);
+        m_children->removeObject(child);
         child->m_pWidgetParent = NULL;
     }
 }
 
 void UIWidget::removeFromParentAndCleanup(bool cleanup)
 {
-    if (this->m_pWidgetParent)
+    if (m_pWidgetParent)
     {
-        this->m_pWidgetParent->removeChild(this, cleanup);
+        m_pWidgetParent->removeChild(this, cleanup);
     }
     else
     {
@@ -279,7 +282,7 @@ void UIWidget::removeFromParentAndCleanup(bool cleanup)
 
 void UIWidget::removeAllChildrenAndCleanUp(bool cleanup)
 {
-    int times = this->m_children->count();
+    int times = m_children->count();
     for (int i=0;i<times;i++)
     {
         UIWidget* child = (UIWidget*)(m_children->lastObject());
@@ -293,42 +296,42 @@ void UIWidget::removeAllChildrenAndCleanUp(bool cleanup)
 
 void UIWidget::setWidgetZOrder(int z)
 {
-    this->m_nWidgetZOrder = z;
-    this->m_pRender->setZOrder(z);
-    if (this->m_pWidgetParent) {
-        this->m_pWidgetParent->reorderChild(this);
+    m_nWidgetZOrder = z;
+    m_pRender->setZOrder(z);
+    if (m_pWidgetParent) {
+        m_pWidgetParent->reorderChild(this);
     }
 }
 
 int UIWidget::getWidgetZOrder()
 {
-    return this->m_nWidgetZOrder;
+    return m_nWidgetZOrder;
 }
 
 void UIWidget::reorderChild(UIWidget* child)
 {
-    this->m_children->removeObject(child);
-    int childrenCount = this->m_children->count();
+    m_children->removeObject(child);
+    int childrenCount = m_children->count();
     if (childrenCount <= 0) {
-        this->m_children->addObject(child);
+        m_children->addObject(child);
     }
     else
     {
         bool seekSucceed = false;
         for (int i=childrenCount-1; i>=0; --i)
         {
-            UIWidget* widget = (UIWidget*)(this->m_children->objectAtIndex(i));
+            UIWidget* widget = (UIWidget*)(m_children->objectAtIndex(i));
             if (child->getWidgetZOrder() >= widget->getWidgetZOrder())
             {
                 if (i == childrenCount-1)
                 {
-                    this->m_children->addObject(child);
+                    m_children->addObject(child);
                     seekSucceed = true;
                     break;
                 }
                 else
                 {
-                    this->m_children->insertObject(child, i+1);
+                    m_children->insertObject(child, i+1);
                     seekSucceed = true;
                     break;
                 }
@@ -336,7 +339,7 @@ void UIWidget::reorderChild(UIWidget* child)
         }
         if (!seekSucceed)
         {
-            this->m_children->insertObject(child,0);
+            m_children->insertObject(child,0);
         }
     }
     structureChangedEvent();
@@ -344,12 +347,12 @@ void UIWidget::reorderChild(UIWidget* child)
 
 void UIWidget::setNeedCheckVisibleDepandParent(bool need)
 {
-    this->m_bNeedCheckVisibleDependParent = need;
-    if (this->m_children)
+    m_bNeedCheckVisibleDependParent = need;
+    if (m_children)
     {
-        for (int i=0;i<this->m_children->count();i++)
+        for (int i=0;i<m_children->count();i++)
         {
-            UIWidget* child = (UIWidget*)(this->m_children->objectAtIndex(i));
+            UIWidget* child = (UIWidget*)(m_children->objectAtIndex(i));
             child->setNeedCheckVisibleDepandParent(need);
         }
     }
@@ -357,14 +360,14 @@ void UIWidget::setNeedCheckVisibleDepandParent(bool need)
 
 void UIWidget::setBeTouchEnable(bool enable)
 {
-    this->m_bBeTouchEnabled = enable;
+    m_bBeTouchEnabled = enable;
 //    updateBeTouchEnable(enable);
     structureChangedEvent();
 }
 
 bool UIWidget::getBeTouchEnable()
 {
-    return this->m_bBeTouchEnabled;
+    return m_bBeTouchEnabled;
 }
 
 void UIWidget::setUpdateEnable(bool enable)
@@ -372,14 +375,14 @@ void UIWidget::setUpdateEnable(bool enable)
     m_bUpdateEnable = enable;
     if (enable)
     {
-        if (this->m_pUILayer)
+        if (m_pUILayer)
         {
             m_pUILayer->addUpdateEnableWidget(this);
         }
     }
     else
     {
-        if (this->m_pUILayer)
+        if (m_pUILayer)
         {
             m_pUILayer->removeUpdateEnableWidget(this);
         }
@@ -388,59 +391,59 @@ void UIWidget::setUpdateEnable(bool enable)
 
 bool UIWidget::getUpdateEnable()
 {
-    return this->m_bUpdateEnable;
+    return m_bUpdateEnable;
 }
 
 bool UIWidget::isFocus()
 {
-    return this->m_bFocus;
+    return m_bFocus;
 }
 
 void UIWidget::setFocus(bool fucos)
 {
-    if (fucos == this->m_bFocus)
+    if (fucos == m_bFocus)
     {
         return;
     }
-    this->m_bFocus = fucos;
-    if (this->m_bFocus)
+    m_bFocus = fucos;
+    if (m_bFocus)
     {
-        this->setPressState(WidgetStateSelected);
+        setPressState(WidgetStateSelected);
     }
     else
     {
-        this->setPressState(WidgetStateNormal);
+        setPressState(WidgetStateNormal);
     }
 }
 
 void UIWidget::initPressState(WidgetState state)
 {
-    if (this->m_nCurPressState == state)
+    if (m_nCurPressState == state)
     {
         return;
     }
-    this->m_nPrevPressstate = this->m_nCurPressState;
-    this->m_nCurPressState = state;
+    m_nPrevPressstate = m_nCurPressState;
+    m_nCurPressState = state;
 }
 
 void UIWidget::setPressState(WidgetState state)
 {
-    if (this->m_nCurPressState == state)
+    if (m_nCurPressState == state)
     {
         return;
     }
-    this->m_nPrevPressstate = this->m_nCurPressState;
-    this->m_nCurPressState = state;
-    switch (this->m_nCurPressState)
+    m_nPrevPressstate = m_nCurPressState;
+    m_nCurPressState = state;
+    switch (m_nCurPressState)
     {
         case WidgetStateNormal:
-            this->onPressStateChangedToNormal();
+            onPressStateChangedToNormal();
             break;
         case WidgetStateSelected:
-            this->onPressStateChangedToPressed();
+            onPressStateChangedToPressed();
             break;
         case WidgetStateDisabled:
-            this->onPressStateChangedToDisabled();
+            onPressStateChangedToDisabled();
             break;
         default:
             break;
@@ -450,26 +453,26 @@ void UIWidget::setPressState(WidgetState state)
 
 void UIWidget::disable()
 {
-    this->m_bActived = false;
-    this->setPressState(WidgetStateDisabled);
+    m_bActived = false;
+    setPressState(WidgetStateDisabled);
 }
 
 void UIWidget::active()
 {
-    this->m_bActived = true;
-    this->setPressState(WidgetStateNormal);
+    m_bActived = true;
+    setPressState(WidgetStateNormal);
 }
 
 bool UIWidget::isActive()
 {
-    return this->m_bActived;
+    return m_bActived;
 }
 
 void UIWidget::updateBeTouchEnable(bool enable)
 {
-    for (int i = 0; i < this->m_children->count(); i++)
+    for (int i = 0; i < m_children->count(); i++)
     {
-        UIWidget* child = (UIWidget*)(this->m_children->objectAtIndex(i));
+        UIWidget* child = (UIWidget*)(m_children->objectAtIndex(i));
         child->setBeTouchEnable(enable);
     }
 }
@@ -496,56 +499,56 @@ void UIWidget::didNotSelectSelf()
 
 void UIWidget::onTouchBegan(cocos2d::CCPoint &touchPoint)
 {
-    this->setFocus(true);
-    this->m_touchStartPos.x = touchPoint.x;
-    this->m_touchStartPos.y = touchPoint.y;
-    if (this->m_pWidgetParent)
+    setFocus(true);
+    m_touchStartPos.x = touchPoint.x;
+    m_touchStartPos.y = touchPoint.y;
+    if (m_pWidgetParent)
     {
-        this->m_pWidgetParent->checkChildInfo(0,this,touchPoint);
+        m_pWidgetParent->checkChildInfo(0,this,touchPoint);
     }
-    this->pushDownEvent();
+    pushDownEvent();
 }
 
 void UIWidget::onTouchMoved(cocos2d::CCPoint &touchPoint)
 {
-    this->m_touchMovePos.x = touchPoint.x;
-    this->m_touchMovePos.y = touchPoint.y;
-    this->setFocus(this->pointAtSelfBody(touchPoint));
-    if (this->m_pWidgetParent)
+    m_touchMovePos.x = touchPoint.x;
+    m_touchMovePos.y = touchPoint.y;
+    setFocus(pointAtSelfBody(touchPoint));
+    if (m_pWidgetParent)
     {
-        this->m_pWidgetParent->checkChildInfo(1,this,touchPoint);
+        m_pWidgetParent->checkChildInfo(1,this,touchPoint);
     }
-    this->moveEvent();
+    moveEvent();
 }
 
 void UIWidget::onTouchEnded(cocos2d::CCPoint &touchPoint)
 {
-    this->m_touchEndPos.x = touchPoint.x;
-    this->m_touchEndPos.y = touchPoint.y;
-    bool focus = this->m_bFocus;
-    this->setFocus(false);
-    if (this->m_pWidgetParent)
+    m_touchEndPos.x = touchPoint.x;
+    m_touchEndPos.y = touchPoint.y;
+    bool focus = m_bFocus;
+    setFocus(false);
+    if (m_pWidgetParent)
     {
-        this->m_pWidgetParent->checkChildInfo(2,this,touchPoint);
+        m_pWidgetParent->checkChildInfo(2,this,touchPoint);
     }
     if (focus)
     {
-        this->releaseUpEvent();
+        releaseUpEvent();
     }
     else
     {
-        this->cancelUpEvent();
+        cancelUpEvent();
     }
 }
 
 void UIWidget::onTouchCancelled(cocos2d::CCPoint &touchPoint)
 {
-    this->setPressState(WidgetStateNormal);
+    setPressState(WidgetStateNormal);
 }
 
 void UIWidget::onTouchLongClicked(cocos2d::CCPoint &touchPoint)
 {
-    this->longClickEvent();
+    longClickEvent();
 }
 
 void UIWidget::pushDownEvent()
@@ -587,115 +590,115 @@ void UIWidget::longClickEvent()
 
 void UIWidget::addPushDownEvent(cocos2d::CCObject*target, SEL_PushEvent selector)
 {
-    this->m_pPushListener = target;
-    this->m_pfnPushSelector = selector;
+    m_pPushListener = target;
+    m_pfnPushSelector = selector;
 }
 
 void UIWidget::addMoveEvent(cocos2d::CCObject* target,SEL_MoveEvent selector)
 {
-    this->m_pMoveListener = target;
-    this->m_pfnMoveSelector = selector;
+    m_pMoveListener = target;
+    m_pfnMoveSelector = selector;
 }
 
 void UIWidget::addReleaseEvent(cocos2d::CCObject* target,SEL_ReleaseEvent selector)
 {
-    this->m_pReleaseListener = target;
-    this->m_pfnReleaseSelector = selector;
+    m_pReleaseListener = target;
+    m_pfnReleaseSelector = selector;
 }
 
 void UIWidget::addCancelEvent(cocos2d::CCObject *target, SEL_CancelEvent selector)
 {
-    this->m_pCancelListener = target;
-    this->m_pfnCancelSelector = selector;
+    m_pCancelListener = target;
+    m_pfnCancelSelector = selector;
 }
 
 void UIWidget::getLocationInWindow()
 {
-    this->m_locationInWindow = this->m_pRender->convertToWorldSpace(cocos2d::CCPointZero);
+    m_locationInWindow = m_pRender->convertToWorldSpace(cocos2d::CCPointZero);
 }
 
 cocos2d::CCRect UIWidget::getRect()
 {
-    cocos2d::CCNode* validNode = this->getValidNode();
+    cocos2d::CCNode* validNode = getValidNode();
     float width = 0.0;
     float height = 0.0;
     float anchorPointX = 0.0;
     float anchorPointY = 0.0;
-    this->getLocationInWindow();
+    getLocationInWindow();
     cocos2d::CCSize nodeSize = validNode->getContentSize();
-    width = nodeSize.width*this->getAbsoluteScaleX();
-    height = nodeSize.height*this->getAbsoluteScaleY();
+    width = nodeSize.width*getAbsoluteScaleX();
+    height = nodeSize.height*getAbsoluteScaleY();
     cocos2d::CCPoint nodeAnchorPoint = validNode->getAnchorPoint();
     anchorPointX = nodeAnchorPoint.x;
     anchorPointY = nodeAnchorPoint.y;
-    switch (this->m_WidgetType)
+    switch (m_WidgetType)
     {
         case WidgetTypeWidget:
-            this->m_rect.origin.x = this->m_locationInWindow.x - width * anchorPointX;
-            this->m_rect.origin.y = this->m_locationInWindow.y - height * anchorPointY;
+            m_rect.origin.x = m_locationInWindow.x - width * anchorPointX;
+            m_rect.origin.y = m_locationInWindow.y - height * anchorPointY;
             break;
         case WidgetTypeContainer:
-            this->m_rect.origin.x = this->m_locationInWindow.x;
-            this->m_rect.origin.y = this->m_locationInWindow.y;
+            m_rect.origin.x = m_locationInWindow.x;
+            m_rect.origin.y = m_locationInWindow.y;
             break;
     }
-    this->m_rect.size.width = width;
-    this->m_rect.size.height = height;
+    m_rect.size.width = width;
+    m_rect.size.height = height;
     
-    return this->m_rect;
+    return m_rect;
 }
 
 cocos2d::CCRect UIWidget::getRelativeRect()
 {
-    cocos2d::CCNode* validNode = this->getValidNode();
+    cocos2d::CCNode* validNode = getValidNode();
     float width = 0.0;
     float height = 0.0;
     float anchorPointX = 0.0;
     float anchorPointY = 0.0;
     cocos2d::CCSize nodeSize = validNode->getContentSize();
-    width = nodeSize.width*this->getScaleX();
-    height = nodeSize.height*this->getScaleY();
+    width = nodeSize.width*getScaleX();
+    height = nodeSize.height*getScaleY();
     cocos2d::CCPoint nodeAnchorPoint = validNode->getAnchorPoint();
     anchorPointX = nodeAnchorPoint.x;
     anchorPointY = nodeAnchorPoint.y;
-    switch (this->m_WidgetType)
+    switch (m_WidgetType)
     {
         case WidgetTypeWidget:
-            this->m_relativeRect.origin.x = this->getPosition().x - width * anchorPointX;
-            this->m_relativeRect.origin.y = this->getPosition().y - height * anchorPointY;
+            m_relativeRect.origin.x = getPosition().x - width * anchorPointX;
+            m_relativeRect.origin.y = getPosition().y - height * anchorPointY;
             break;
         case WidgetTypeContainer:
-            this->m_relativeRect.origin.x = this->getPosition().x;
-            this->m_relativeRect.origin.y = this->getPosition().y;
+            m_relativeRect.origin.x = getPosition().x;
+            m_relativeRect.origin.y = getPosition().y;
             break;
     }
-    this->m_relativeRect.size.width = width;
-    this->m_relativeRect.size.height = height;
-    return this->m_relativeRect;
+    m_relativeRect.size.width = width;
+    m_relativeRect.size.height = height;
+    return m_relativeRect;
 }
 
 const CCSize& UIWidget::getContentSize()
 {
-    return this->getValidNode()->getContentSize();
+    return getValidNode()->getContentSize();
 }
 
 cocos2d::CCNode* UIWidget::getValidNode()
 {
-    return this->m_pRender;
+    return m_pRender;
 }
 
 cocos2d::CCNode* UIWidget::getContainerNode()
 {
-    return this->m_pRender;
+    return m_pRender;
 }
 
 bool UIWidget::pointAtSelfBody(cocos2d::CCPoint &pt)
 {
-    if (!this->getAbsoluteVisible())
+    if (!getAbsoluteVisible())
     {
         return false;
     }
-    return this->hitTest(this->getValidNode(),pt);
+    return hitTest(getValidNode(),pt);
 }
 
 bool UIWidget::hitTest(cocos2d::CCNode* node, cocos2d::CCPoint &pt)
@@ -711,20 +714,20 @@ bool UIWidget::hitTest(cocos2d::CCNode* node, cocos2d::CCPoint &pt)
 
 bool UIWidget::checkVisibleDependParent(cocos2d::CCPoint &pt)
 {
-    if (!this->m_bNeedCheckVisibleDependParent)
+    if (!m_bNeedCheckVisibleDependParent)
     {
         return true;
     }
-    if (this->m_pWidgetParent)
+    if (m_pWidgetParent)
     {
         bool bRet = false;
-        if (this->m_pWidgetParent->pointAtSelfBody(pt))
+        if (m_pWidgetParent->pointAtSelfBody(pt))
         {
             bRet = true;
         }
         if (bRet)
         {
-            return this->m_pWidgetParent->checkVisibleDependParent(pt);
+            return m_pWidgetParent->checkVisibleDependParent(pt);
         }
         return false;
     }
@@ -733,8 +736,8 @@ bool UIWidget::checkVisibleDependParent(cocos2d::CCPoint &pt)
 
 bool UIWidget::checkBeVisibleInParent()
 {   
-    cocos2d::CCRect parentRect = this->m_pWidgetParent->getRect();
-    cocos2d::CCRect selfRect = this->getRect();
+    cocos2d::CCRect parentRect = m_pWidgetParent->getRect();
+    cocos2d::CCRect selfRect = getRect();
     bool res = !((selfRect.origin.x+selfRect.size.width) < parentRect.origin.x ||
                 (parentRect.origin.x+parentRect.size.width) <   selfRect.origin.x ||
                 (selfRect.origin.y+selfRect.size.height) < parentRect.origin.y ||
@@ -744,189 +747,189 @@ bool UIWidget::checkBeVisibleInParent()
 
 void UIWidget::checkChildInfo(int handleState, UIWidget *sender, cocos2d::CCPoint &touchPoint)
 {
-    if (this->m_pWidgetParent)
+    if (m_pWidgetParent)
     {
-        this->m_pWidgetParent->checkChildInfo(handleState,sender,touchPoint);
+        m_pWidgetParent->checkChildInfo(handleState,sender,touchPoint);
     }
 }
 
 void UIWidget::setPosition(const cocos2d::CCPoint &pos)
 {
-    this->m_pRender->setPosition(pos);
+    m_pRender->setPosition(pos);
 }
 
 void UIWidget::setAnchorPoint(const cocos2d::CCPoint &pt)
 {
-    this->m_anchorPoint = pt;
-    this->m_pRender->setAnchorPoint(pt);
+    m_anchorPoint = pt;
+    m_pRender->setAnchorPoint(pt);
 }
 
 void UIWidget::updateAnchorPoint()
 {
-    this->setAnchorPoint(this->m_anchorPoint);
+    setAnchorPoint(m_anchorPoint);
 }
 
 cocos2d::CCPoint UIWidget::getPosition()
 {
-    return this->m_pRender->getPosition();
+    return m_pRender->getPosition();
 }
 
 cocos2d::CCPoint UIWidget::getAnchorPoint()
 {
-    return this->m_anchorPoint;
+    return m_anchorPoint;
 }
 
 void UIWidget::setScale(float scale)
 {
-    this->m_pRender->setScale(scale);
-    this->onScaleDirtyChanged();
+    m_pRender->setScale(scale);
+    onScaleDirtyChanged();
 }
 
 void UIWidget::onScaleDirtyChanged()
 {
-    this->m_bScaleXDirty = this->m_bScaleYDirty = true;
-    for (int i=0; i<this->getChildren()->count(); i++)
+    m_bScaleXDirty = m_bScaleYDirty = true;
+    for (int i=0; i<getChildren()->count(); i++)
     {
-        UIWidget* child = (UIWidget*)(this->getChildren()->objectAtIndex(i));
+        UIWidget* child = (UIWidget*)(getChildren()->objectAtIndex(i));
         child->onScaleDirtyChanged();
     }
 }
 
 void UIWidget::onScaleXDirtyChanged()
 {
-    this->m_bScaleXDirty = true;
-    for (int i=0; i<this->getChildren()->count(); i++)
+    m_bScaleXDirty = true;
+    for (int i=0; i<getChildren()->count(); i++)
     {
-        UIWidget* child = (UIWidget*)(this->getChildren()->objectAtIndex(i));
+        UIWidget* child = (UIWidget*)(getChildren()->objectAtIndex(i));
         child->onScaleXDirtyChanged();
     }
 }
 
 void UIWidget::onScaleYDirtyChanged()
 {
-    this->m_bScaleYDirty = true;
-    for (int i=0; i<this->getChildren()->count(); i++)
+    m_bScaleYDirty = true;
+    for (int i=0; i<getChildren()->count(); i++)
     {
-        UIWidget* child = (UIWidget*)(this->getChildren()->objectAtIndex(i));
+        UIWidget* child = (UIWidget*)(getChildren()->objectAtIndex(i));
         child->onScaleYDirtyChanged();
     }
 }
 
 float UIWidget::getScale()
 {
-    return this->m_pRender->getScale();
+    return m_pRender->getScale();
 }
 
 void UIWidget::setScaleX(float scaleX)
 {
-    this->m_pRender->setScaleX(scaleX);
-    this->onScaleXDirtyChanged();
+    m_pRender->setScaleX(scaleX);
+    onScaleXDirtyChanged();
 }
 
 float UIWidget::getScaleX()
 {
-    return this->m_pRender->getScaleX();
+    return m_pRender->getScaleX();
 }
 
 void UIWidget::setScaleY(float scaleY)
 {
-    this->m_pRender->setScaleY(scaleY);
-    this->onScaleYDirtyChanged();
+    m_pRender->setScaleY(scaleY);
+    onScaleYDirtyChanged();
 }
 
 float UIWidget::getScaleY()
 {
-    return this->m_pRender->getScaleY();
+    return m_pRender->getScaleY();
 }
 
 void UIWidget::setRotation(float rotation)
 {
-    this->m_pRender->setRotation(rotation);
+    m_pRender->setRotation(rotation);
 }
 
 float UIWidget::getRotation()
 {
-    return this->m_pRender->getRotation();
+    return m_pRender->getRotation();
 }
 
 void UIWidget::setRotationX(float rotationX)
 {
-    this->m_pRender->setRotationX(rotationX);
+    m_pRender->setRotationX(rotationX);
 }
 
 float UIWidget::getRotationX()
 {
-    return this->m_pRender->getRotationX();
+    return m_pRender->getRotationX();
 }
 
 void UIWidget::setRotationY(float rotationY)
 {
-    this->m_pRender->setRotationY(rotationY);
+    m_pRender->setRotationY(rotationY);
 }
 
 float UIWidget::getRotationY()
 {
-    return this->m_pRender->getRotationY();
+    return m_pRender->getRotationY();
 }
 
 void UIWidget::setSkewX(float skewX)
 {
-    this->m_pRender->setSkewX(skewX);
+    m_pRender->setSkewX(skewX);
 }
 
 float UIWidget::getSkewX()
 {
-    return this->m_pRender->getSkewX();
+    return m_pRender->getSkewX();
 }
 
 void UIWidget::setSkewY(float skewY)
 {
-    this->m_pRender->setSkewY(skewY);
+    m_pRender->setSkewY(skewY);
 }
 
 float UIWidget::getSkewY()
 {
-    return this->m_pRender->getSkewY();
+    return m_pRender->getSkewY();
 }
 
 void UIWidget::setVisible(bool visible)
 {
-    this->m_bVisibleDirty = true;
-    this->updateChildrenVisibleDirty(this->m_bVisibleDirty);
-    this->m_bVisible = visible;
-    this->m_pRender->setVisible(visible);
+    m_bVisibleDirty = true;
+    updateChildrenVisibleDirty(m_bVisibleDirty);
+    m_bVisible = visible;
+    m_pRender->setVisible(visible);
 }
 
 bool UIWidget::isVisible()
 {
-    return this->m_bVisible;
+    return m_bVisible;
 }
 
 float UIWidget::getRelativeLeftPos()
 {
-    return this->getRelativeRect().origin.x;
+    return getRelativeRect().origin.x;
 }
 
 float UIWidget::getRelativeBottomPos()
 {
-    return this->getRelativeRect().origin.y;
+    return getRelativeRect().origin.y;
 }
 
 float UIWidget::getRelativeRightPos()
 {
-    cocos2d::CCRect rect = this->getRelativeRect();
+    cocos2d::CCRect rect = getRelativeRect();
     return rect.origin.x + rect.size.width;
 }
 
 float UIWidget::getRelativeTopPos()
 {
-    cocos2d::CCRect rect = this->getRelativeRect();
+    cocos2d::CCRect rect = getRelativeRect();
     return rect.origin.y + rect.size.height;
 }
 
 UIWidget* UIWidget::getWidgetParent()
 {
-    return this->m_pWidgetParent;
+    return m_pWidgetParent;
 }
 
 UIWidget* UIWidget::getChildByName(const char *name)
@@ -946,79 +949,79 @@ CCArray* UIWidget::getChildren()
 
 cocos2d::CCAction* UIWidget::runAction(cocos2d::CCAction *action)
 {
-    return this->m_pRender->runAction(action);
+    return m_pRender->runAction(action);
 }
 
 void UIWidget::setActionManager(cocos2d::CCActionManager *actionManager)
 {
-    this->m_pRender->setActionManager(actionManager);
+    m_pRender->setActionManager(actionManager);
 }
 
 cocos2d::CCActionManager* UIWidget::getActionManager()
 {
-    return this->m_pRender->getActionManager();
+    return m_pRender->getActionManager();
 }
 
 void UIWidget::stopAllActions()
 {
-    this->m_pRender->stopAllActions();
+    m_pRender->stopAllActions();
 }
 
 void UIWidget::stopAction(cocos2d::CCAction *action)
 {
-    this->m_pRender->stopAction(action);
+    m_pRender->stopAction(action);
 }
 
 void UIWidget::stopActionByTag(int tag)
 {
-    this->m_pRender->stopActionByTag(tag);
+    m_pRender->stopActionByTag(tag);
 }
 
 cocos2d::CCAction* UIWidget::getActionByTag(int tag)
 {
-    return this->m_pRender->getActionByTag(tag);
+    return m_pRender->getActionByTag(tag);
 }
 
 float UIWidget::getAbsoluteScaleX()
 {
-    if (this->m_bScaleXDirty)
+    if (m_bScaleXDirty)
     {
-        float scaleX = this->getScaleX();
-        UIWidget* parent = this->getWidgetParent();
+        float scaleX = getScaleX();
+        UIWidget* parent = getWidgetParent();
         while (parent)
         {
             scaleX *= parent->getScaleX();
             parent = parent->getWidgetParent();
         }
-        this->m_fAbsoluteScaleX = scaleX;
-        this->m_bScaleXDirty = false;
+        m_fAbsoluteScaleX = scaleX;
+        m_bScaleXDirty = false;
     }
-    return this->m_fAbsoluteScaleX;
+    return m_fAbsoluteScaleX;
 }
 
 float UIWidget::getAbsoluteScaleY()
 {
-    if (this->m_bScaleYDirty)
+    if (m_bScaleYDirty)
     {
-        float scaleY = this->getScaleY();
-        UIWidget* parent = this->getWidgetParent();
+        float scaleY = getScaleY();
+        UIWidget* parent = getWidgetParent();
         while (parent)
         {
             scaleY *= parent->getScaleY();
             parent = parent->getWidgetParent();
         }
-        this->m_fAbsoluteScaleY = scaleY;
-        this->m_bScaleYDirty = false;
+        m_fAbsoluteScaleY = scaleY;
+        m_bScaleYDirty = false;
     }
-    return this->m_fAbsoluteScaleY;
+    return m_fAbsoluteScaleY;
 }
 
 bool UIWidget::getAbsoluteVisible()
 {
-    if (this->m_bVisibleDirty)
+    if (m_bVisibleDirty)
     {
         UIWidget* parent = this;
-        bool visible = this->isVisible();
+        bool visible = isVisible();
         while (parent){
             visible &= parent->isVisible();
             if (!visible)
@@ -1027,17 +1030,17 @@ bool UIWidget::getAbsoluteVisible()
             }
             parent = parent->getWidgetParent();
         }
-        this->m_bAbsoluteVisible = visible;
-        this->m_bVisibleDirty = false;
+        m_bAbsoluteVisible = visible;
+        m_bVisibleDirty = false;
     }
-    return this->m_bAbsoluteVisible;
+    return m_bAbsoluteVisible;
 }
 
 void UIWidget::updateChildrenVisibleDirty(bool dirty)
 {
-    for (int i=0; i<this->getChildren()->count(); i++)
+    for (int i=0; i<getChildren()->count(); i++)
     {
-        UIWidget* child = (UIWidget*)(this->getChildren()->objectAtIndex(i));
+        UIWidget* child = (UIWidget*)(getChildren()->objectAtIndex(i));
         child->m_bVisibleDirty = dirty;
         child->updateChildrenVisibleDirty(dirty);
     }
@@ -1045,9 +1048,9 @@ void UIWidget::updateChildrenVisibleDirty(bool dirty)
 
 void UIWidget::updateChildrenOpacityDirty(bool dirty)
 {
-    for (int i = 0; i < this->getChildren()->count(); ++i)
+    for (int i = 0; i < getChildren()->count(); ++i)
     {
-        UIWidget* child = (UIWidget*)(this->getChildren()->objectAtIndex(i));
+        UIWidget* child = (UIWidget*)(getChildren()->objectAtIndex(i));
         child->m_bOpacityDirty = dirty;
         child->updateChildrenOpacityDirty(dirty);
     }
@@ -1055,20 +1058,20 @@ void UIWidget::updateChildrenOpacityDirty(bool dirty)
 
 void UIWidget::adaptSize(float xProportion,float yProportion)
 {
-    this->m_fAdaptScaleX = xProportion;
-    this->m_fAdaptScaleY = yProportion;
-    this->setScaleX(m_fAdaptScaleX*this->getScaleX());
-    this->setScaleY(m_fAdaptScaleY*this->getScaleY());
+    m_fAdaptScaleX = xProportion;
+    m_fAdaptScaleY = yProportion;
+    setScaleX(m_fAdaptScaleX*getScaleX());
+    setScaleY(m_fAdaptScaleY*getScaleY());
 }
 
 void UIWidget::setCreateFromFile(bool is)
 {
-    this->m_bIsCreatedFromFile = is;
+    m_bIsCreatedFromFile = is;
 }
 
 void UIWidget::setFileDesignSize(const cocos2d::CCSize &size)
 {
-    this->m_fileDesignSize = size;
+    m_fileDesignSize = size;
 }
 
 CCSize UIWidget::getFileDesignSize()

@@ -110,13 +110,13 @@ void UILayer::setVisible(bool visible)
 
 //void UILayer::setUIType(GUITYPE type)
 //{
-//    this->m_UIType = type;
-//    switch (this->m_UIType) {
+//    m_UIType = type;
+//    switch (m_UIType) {
 //        case UILAYER_SCENE:
-//            this->m_pRootWidget->setPosition(CCPointZero);
+//            m_pRootWidget->setPosition(CCPointZero);
 //            break;
 //        case UILAYER_MODEL:
-//            this->m_pRootWidget->setPosition(ccp(-20, -20));
+//            m_pRootWidget->setPosition(ccp(-20, -20));
 //            break;
 //        default:
 //            break;
@@ -137,11 +137,11 @@ void UILayer::addUpdateEnableWidget(UIWidget* widget)
     {
         return;
     }
-    if (this->m_updateEnableWidget->containsObject(widget))
+    if (m_updateEnableWidget->containsObject(widget))
     {
         return;
     }
-    this->m_updateEnableWidget->addObject(widget);
+    m_updateEnableWidget->addObject(widget);
 }
 
 void UILayer::removeUpdateEnableWidget(UIWidget* widget)
@@ -150,11 +150,11 @@ void UILayer::removeUpdateEnableWidget(UIWidget* widget)
     {
         return;
     }
-    if (!this->m_updateEnableWidget->containsObject(widget))
+    if (!m_updateEnableWidget->containsObject(widget))
     {
         return;
     }
-    this->m_updateEnableWidget->removeObject(widget);
+    m_updateEnableWidget->removeObject(widget);
 }
 
 UIWidget* UILayer::getWidgetByTag(int tag)
@@ -182,18 +182,18 @@ UIRootWidget* UILayer::getRootWidget()
 
 UIInputManager* UILayer::getInputManager()
 {
-    return this->m_pInputManager;
+    return m_pInputManager;
 }
 
 void UILayer::dispose()
 {
     CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
-    this->removeFromParentAndCleanup(true);
+    removeFromParentAndCleanup(true);
 }
 
 void UILayer::clear()
 {
-    this->m_pRootWidget->removeAllChildrenAndCleanUp(true);
+    m_pRootWidget->removeAllChildrenAndCleanUp(true);
 }
 
 bool UILayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)

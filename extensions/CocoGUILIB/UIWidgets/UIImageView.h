@@ -45,7 +45,7 @@ public:
     virtual bool isFlipX();
     virtual bool isFlipY();
     void setScale9Enable(bool able);
-    void setScale9Size(float width,float height);
+    void setScale9Size(const CCSize &size);
     void setDisplayFrame(cocos2d::CCSpriteFrame *pNewFrame);
     void setSpriteFrame(cocos2d::CCSpriteFrame *pNewFrame);
     void setPreferredSize(const cocos2d::CCSize& pSize);
@@ -69,6 +69,8 @@ protected:
     bool m_bDoubleClickEnable;
     
     bool m_bScale9Enable;
+    CCRect m_capInsets;
+    CCSize m_scale9Size;
     CCNode* m_pImageRender;
     std::string m_strTextureFile;
 };

@@ -27,8 +27,8 @@
 
 NS_CC_EXT_BEGIN
 
-#define DYNAMIC_CAST_CCSPRITE dynamic_cast<cocos2d::CCSprite*>(this->m_pImageRender)
-#define DYNAMIC_CAST_SCALE9SPRITE dynamic_cast<cocos2d::extension::CCScale9Sprite*>(this->m_pImageRender)
+#define DYNAMIC_CAST_CCSPRITE dynamic_cast<cocos2d::CCSprite*>(m_pImageRender)
+#define DYNAMIC_CAST_SCALE9SPRITE dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pImageRender)
 
 UIImageView::UIImageView():
 m_nViewType(1),
@@ -39,7 +39,9 @@ m_touchRelease(false),
 m_bDoubleClickEnable(false),
 m_bScale9Enable(false),
 m_pImageRender(NULL),
-m_strTextureFile("")
+m_strTextureFile(""),
+m_capInsets(CCRectZero),
+m_scale9Size(CCSizeZero)
 {
     m_WidgetName = WIDGET_IMAGEVIEW;
 }
@@ -63,8 +65,8 @@ UIImageView* UIImageView::create()
 void UIImageView::initNodes()
 {
     UIWidget::initNodes();
-    this->m_pImageRender = cocos2d::CCSprite::create();
-    this->m_pRender->addChild(m_pImageRender);
+    m_pImageRender = cocos2d::CCSprite::create();
+    m_pRender->addChild(m_pImageRender);
 }
 
 void UIImageView::setTexture(const char* fileName,bool useSpriteFrame)
@@ -73,11 +75,11 @@ void UIImageView::setTexture(const char* fileName,bool useSpriteFrame)
     {
         return;
     }
-    this->m_strTextureFile = fileName;
+    m_strTextureFile = fileName;
     setUseMergedTexture(useSpriteFrame);
     if (useSpriteFrame)
     {
-        if (this->m_bScale9Enable)
+        if (m_bScale9Enable)
         {
             DYNAMIC_CAST_CCSPRITE->initWithSpriteFrameName(fileName);
         }
@@ -88,7 +90,7 @@ void UIImageView::setTexture(const char* fileName,bool useSpriteFrame)
     }
     else
     {
-        if (this->m_bScale9Enable)
+        if (m_bScale9Enable)
         {
             DYNAMIC_CAST_SCALE9SPRITE->initWithFile(fileName);
         }
@@ -102,7 +104,7 @@ void UIImageView::setTexture(const char* fileName,bool useSpriteFrame)
 
 void UIImageView::setTextureRect(const cocos2d::CCRect &rect)
 {
-    if (this->m_bScale9Enable)
+    if (m_bScale9Enable)
     {
 //        DYNAMIC_CAST_SCALE9SPRITE->setTextureRect(rect);
     }
@@ -114,34 +116,34 @@ void UIImageView::setTextureRect(const cocos2d::CCRect &rect)
 
 void UIImageView::onTouchBegan(cocos2d::CCPoint &touchPoint)
 {
-    this->setFocus(true);
-    this->m_touchStartPos.x = touchPoint.x;
-    this->m_touchStartPos.y = touchPoint.y;
-    this->m_pWidgetParent->checkChildInfo(0,this,touchPoint);
-    this->pushDownEvent();
+    setFocus(true);
+    m_touchStartPos.x = touchPoint.x;
+    m_touchStartPos.y = touchPoint.y;
+    m_pWidgetParent->checkChildInfo(0,this,touchPoint);
+    pushDownEvent();
     
-    if (this->m_bDoubleClickEnable)
+    if (m_bDoubleClickEnable)
     {
-        this->m_fClickTimeInterval = 0;
-        this->m_bStartCheckDoubleClick = true;
-        this->m_nClickCount++;
-        this->m_touchRelease = false;
+        m_fClickTimeInterval = 0;
+        m_bStartCheckDoubleClick = true;
+        m_nClickCount++;
+        m_touchRelease = false;
     }
 }
 
 void UIImageView::onTouchEnded(cocos2d::CCPoint &touchPoint)
 {
-    if (this->m_bDoubleClickEnable)
+    if (m_bDoubleClickEnable)
     {
-        if (this->m_nClickCount >= 2)
+        if (m_nClickCount >= 2)
         {
-            this->doubleClickEvent();
-            this->m_nClickCount = 0;
-            this->m_bStartCheckDoubleClick = false;
+            doubleClickEvent();
+            m_nClickCount = 0;
+            m_bStartCheckDoubleClick = false;
         }
         else
         {
-            this->m_touchRelease = true;
+            m_touchRelease = true;
         }
     }
     else
@@ -157,26 +159,26 @@ void UIImageView::doubleClickEvent()
 
 void UIImageView::checkDoubleClick(float dt)
 {
-    if (this->m_bStartCheckDoubleClick)
+    if (m_bStartCheckDoubleClick)
     {
-        this->m_fClickTimeInterval += dt;
-        if (this->m_fClickTimeInterval >= 200 && this->m_nClickCount > 0)
+        m_fClickTimeInterval += dt;
+        if (m_fClickTimeInterval >= 200 && m_nClickCount > 0)
         {
-            this->m_fClickTimeInterval = 0;
-            this->m_nClickCount--;
-            this->m_bStartCheckDoubleClick = false;
+            m_fClickTimeInterval = 0;
+            m_nClickCount--;
+            m_bStartCheckDoubleClick = false;
         }
     }
     else
     {
-        if (this->m_nClickCount <= 1)
+        if (m_nClickCount <= 1)
         {
-            if (this->m_touchRelease)
+            if (m_touchRelease)
             {
-                this->releaseUpEvent();
-                this->m_fClickTimeInterval = 0;
-                this->m_nClickCount = 0;
-                this->m_touchRelease = false;
+                releaseUpEvent();
+                m_fClickTimeInterval = 0;
+                m_nClickCount = 0;
+                m_touchRelease = false;
             }
         }
     }
@@ -184,11 +186,11 @@ void UIImageView::checkDoubleClick(float dt)
 
 void UIImageView::setDoubleClickEnable(bool able)
 {
-    if (able == this->m_bDoubleClickEnable)
+    if (able == m_bDoubleClickEnable)
     {
         return;
     }
-    this->m_bDoubleClickEnable = able;
+    m_bDoubleClickEnable = able;
     if (able)
     {
 //        COCOUISYSTEM->getUIInputManager()->addCheckedDoubleClickWidget(this);
@@ -201,9 +203,9 @@ void UIImageView::setDoubleClickEnable(bool able)
 
 void UIImageView::setFlipX(bool flipX)
 {
-    if (this->m_bScale9Enable)
+    if (m_bScale9Enable)
     {
-//            dynamic_cast<GUIScale9Sprite*>(this->m_pImage)->setFlipX(flipX);
+//            dynamic_cast<GUIScale9Sprite*>(m_pImage)->setFlipX(flipX);
     }
     else
     {
@@ -213,9 +215,9 @@ void UIImageView::setFlipX(bool flipX)
 
 void UIImageView::setFlipY(bool flipY)
 {
-    if (this->m_bScale9Enable)
+    if (m_bScale9Enable)
     {
-//            dynamic_cast<GUIScale9Sprite*>(this->m_pImage)->setFlipX(flipX);
+//            dynamic_cast<GUIScale9Sprite*>(m_pImage)->setFlipX(flipX);
     }
     else
     {
@@ -225,7 +227,7 @@ void UIImageView::setFlipY(bool flipY)
 
 bool UIImageView::isFlipX()
 {
-    if (this->m_bScale9Enable)
+    if (m_bScale9Enable)
     {
         return false;
     }
@@ -237,7 +239,7 @@ bool UIImageView::isFlipX()
 
 bool UIImageView::isFlipY()
 {
-    if (this->m_bScale9Enable)
+    if (m_bScale9Enable)
     {
         return false;
     }
@@ -249,35 +251,45 @@ bool UIImageView::isFlipY()
 
 void UIImageView::setScale9Enable(bool able)
 {
-    if (this->m_bScale9Enable == able)
+    if (m_bScale9Enable == able)
     {
         return;
     }
     
-    this->m_nPrevPressstate = WidgetStateNone;
-    this->m_nCurPressState = WidgetStateNone;
-    this->m_bScale9Enable = able;
-    this->m_pRender->removeChild(this->m_pImageRender, true);
-    this->m_pImageRender = NULL;
-    if (this->m_bScale9Enable)
+    m_nPrevPressstate = WidgetStateNone;
+    m_nCurPressState = WidgetStateNone;
+    m_bScale9Enable = able;
+    m_pRender->removeChild(m_pImageRender, true);
+    m_pImageRender = NULL;
+    if (m_bScale9Enable)
     {
-        this->m_pImageRender = cocos2d::extension::CCScale9Sprite::create();
+        m_pImageRender = cocos2d::extension::CCScale9Sprite::create();
     }
     else
     {
-        this->m_pImageRender = cocos2d::CCSprite::create();
+        m_pImageRender = cocos2d::CCSprite::create();
     }
     setTexture(m_strTextureFile.c_str(),getUseMergedTexture());
-    this->m_pRender->addChild(m_pImageRender);
+    m_pRender->addChild(m_pImageRender);
+    setCapInsets(m_capInsets);
+    setScale9Size(m_scale9Size);
 }
 
-void UIImageView::setScale9Size(float width, float height)
+void UIImageView::setScale9Size(const CCSize &size)
 {
-    if (!this->m_bScale9Enable)
+    if (size.equals(CCSizeZero))
     {
         return;
     }
-    DYNAMIC_CAST_SCALE9SPRITE->setContentSize(cocos2d::CCSize(width,height));
+    else
+    {
+        m_scale9Size = size;
+    }
+    if (!m_bScale9Enable)
+    {
+        return;
+    }
+    DYNAMIC_CAST_SCALE9SPRITE->setContentSize(size);
 }
 
 void UIImageView::setDisplayFrame(cocos2d::CCSpriteFrame *pNewFrame)
@@ -286,7 +298,7 @@ void UIImageView::setDisplayFrame(cocos2d::CCSpriteFrame *pNewFrame)
     {
         return;
     }
-    if (this->m_bScale9Enable)
+    if (m_bScale9Enable)
     {
 //        DYNAMIC_CAST_SCALE9SPRITE->setDisplayFrame(pNewFrame);
     }
@@ -302,7 +314,7 @@ void UIImageView::setSpriteFrame(cocos2d::CCSpriteFrame *pNewFrame)
     {
         return;
     }
-    if (this->m_bScale9Enable)
+    if (m_bScale9Enable)
     {
         DYNAMIC_CAST_SCALE9SPRITE->setSpriteFrame(pNewFrame);
     }
@@ -314,7 +326,7 @@ void UIImageView::setSpriteFrame(cocos2d::CCSpriteFrame *pNewFrame)
 
 void UIImageView::setPreferredSize(const cocos2d::CCSize &pSize)
 {
-    if (!this->m_bScale9Enable)
+    if (!m_bScale9Enable)
     {
         return;
     }
@@ -323,7 +335,7 @@ void UIImageView::setPreferredSize(const cocos2d::CCSize &pSize)
 
 void UIImageView::setInsetLeft(float insetLeft)
 {
-    if (!this->m_bScale9Enable)
+    if (!m_bScale9Enable)
     {
         return;
     }
@@ -332,7 +344,7 @@ void UIImageView::setInsetLeft(float insetLeft)
 
 void UIImageView::setInsetTop(float insetTop)
 {
-    if (!this->m_bScale9Enable)
+    if (!m_bScale9Enable)
     {
         return;
     }
@@ -341,7 +353,7 @@ void UIImageView::setInsetTop(float insetTop)
 
 void UIImageView::setInsetRight(float insetRight)
 {
-    if (!this->m_bScale9Enable)
+    if (!m_bScale9Enable)
     {
         return;
     }
@@ -350,7 +362,7 @@ void UIImageView::setInsetRight(float insetRight)
 
 void UIImageView::setInsetBottom(float insetBottom)
 {
-    if (!this->m_bScale9Enable)
+    if (!m_bScale9Enable)
     {
         return;
     }
@@ -359,7 +371,9 @@ void UIImageView::setInsetBottom(float insetBottom)
 
 void UIImageView::setCapInsets(const cocos2d::CCRect &capInsets)
 {
-    if (!m_bScale9Enable) {
+    m_capInsets = capInsets;
+    if (!m_bScale9Enable)
+    {
         return;
     }
     DYNAMIC_CAST_SCALE9SPRITE->setCapInsets(capInsets);
@@ -367,13 +381,13 @@ void UIImageView::setCapInsets(const cocos2d::CCRect &capInsets)
 
 CCNode* UIImageView::getValidNode()
 {
-    return this->m_pImageRender;
+    return m_pImageRender;
 }
 
 void UIImageView::setAnchorPoint(const cocos2d::CCPoint &pt)
 {
     UIWidget::setAnchorPoint(pt);
-    this->m_pImageRender->setAnchorPoint(pt);
+    m_pImageRender->setAnchorPoint(pt);
 }
 
 NS_CC_EXT_END

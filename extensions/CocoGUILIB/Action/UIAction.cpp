@@ -43,15 +43,15 @@ UIAction::~UIAction()
 
 void UIAction::initWithDictionary(cs::CSJsonDictionary *dic,UIWidget* root)
 {
-    this->setName(DICTOOL->getStringValue_json(dic, "name"));
-    this->setLoop(DICTOOL->getBooleanValue_json(dic, "loop"));
-    this->setUnitTime(DICTOOL->getFloatValue_json(dic, "unittime"));
+    setName(DICTOOL->getStringValue_json(dic, "name"));
+    setLoop(DICTOOL->getBooleanValue_json(dic, "loop"));
+    setUnitTime(DICTOOL->getFloatValue_json(dic, "unittime"));
     int actionNodeCount = DICTOOL->getArrayCount_json(dic, "actionnodelist");
     for (int i=0; i<actionNodeCount; i++) {
         UIActionNode* actionNode = new UIActionNode();
         cs::CSJsonDictionary* actionNodeDic = DICTOOL->getDictionaryFromArray_json(dic, "actionnodelist", i);
         actionNode->initWithDictionary(actionNodeDic,root);
-        this->m_ActionNodeList->addObject(actionNode);
+        m_ActionNodeList->addObject(actionNode);
     }
 }
 
@@ -62,7 +62,7 @@ void UIAction::Play()
 	for ( int i = 0; i < frameNum; i++ )
 	{
 		UIActionNode* actionNode = (UIActionNode*)m_ActionNodeList->objectAtIndex(i);
-		actionNode->RunAction( this->getUnitTime(),this->getLoop() );
+		actionNode->RunAction( getUnitTime(),getLoop() );
 	}
 }
 

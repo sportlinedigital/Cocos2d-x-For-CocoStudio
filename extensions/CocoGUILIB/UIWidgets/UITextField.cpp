@@ -73,14 +73,14 @@ void UITextField::initNodes()
 {
     UIWidget::initNodes();
     m_pRenderTextField = UICCTextField::create("input words here", "Thonburi", 20);
-    this->m_pRender->addChild(m_pRenderTextField);
+    m_pRender->addChild(m_pRenderTextField);
 }
 
 void UITextField::setTouchSize(float width,float height)
 {
-    this->m_bUseTouchArea = true;
-    this->m_fTouchWidth = width;
-    this->m_fTouchHeight = height;
+    m_bUseTouchArea = true;
+    m_fTouchWidth = width;
+    m_fTouchHeight = height;
 }
 
 void UITextField::setText(const char* text)
@@ -126,10 +126,10 @@ void UITextField::onTouchBegan(cocos2d::CCPoint &touchPoint)
 
 bool UITextField::pointAtSelfBody(cocos2d::CCPoint &pt)
 {
-    if (!this->m_bUseTouchArea){
+    if (!m_bUseTouchArea){
         return UIWidget::pointAtSelfBody(pt);
     }
-    if (!this->getAbsoluteVisible()) {
+    if (!getAbsoluteVisible()) {
         return false;
     }
     return false;
@@ -267,13 +267,13 @@ void UITextField::addDeleteBackwardEvent(cocos2d::CCObject *target, SEL_TextFiel
 
 CCNode* UITextField::getValidNode()
 {
-    return this->m_pRenderTextField;
+    return m_pRenderTextField;
 }
 
 void UITextField::setAnchorPoint(const cocos2d::CCPoint &pt)
 {
     UIWidget::setAnchorPoint(pt);
-    this->m_pRenderTextField->setAnchorPoint(pt);
+    m_pRenderTextField->setAnchorPoint(pt);
 }
 
 NS_CC_EXT_END

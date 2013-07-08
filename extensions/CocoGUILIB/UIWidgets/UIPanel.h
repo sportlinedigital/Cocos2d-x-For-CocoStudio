@@ -46,6 +46,7 @@ protected:
     bool m_bBackGroundScale9Enable;
     cocos2d::CCNode* m_pBackGroundImage;
     std::string m_strBackGroundImageFileName;
+    CCRect m_backGroundImageCapInsets;
 };
 
 NS_CC_EXT_END

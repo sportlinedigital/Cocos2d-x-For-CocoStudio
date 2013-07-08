@@ -52,8 +52,8 @@ bool UITextButton::init()
 {
     if (UIButton::init())
     {
-        this->m_pTextLable = cocos2d::CCLabelTTF::create();
-        this->m_pRender->addChild(this->m_pTextLable);
+        m_pTextLable = cocos2d::CCLabelTTF::create();
+        m_pRender->addChild(m_pTextLable);
         return true;
     }
     return false;
@@ -66,40 +66,40 @@ void UITextButton::setText(const char* text)
 		return;
 	}
     std::string strText(text);
-    this->m_pTextLable->setString(strText.c_str());
+    m_pTextLable->setString(strText.c_str());
 }
 
 void UITextButton::setTextColor(int r,int g,int b)
 {
-    this->m_pTextLable->setColor(cocos2d::ccc3(r, g, b));
+    m_pTextLable->setColor(cocos2d::ccc3(r, g, b));
 }
 
 void UITextButton::setFontSize(int size)
 {
-    this->m_pTextLable->setFontSize(size);
+    m_pTextLable->setFontSize(size);
 }
 
 void UITextButton::setFontName(const char *fontName)
 {
-    this->m_pTextLable->setFontName(fontName);
+    m_pTextLable->setFontName(fontName);
 }
 
 void UITextButton::setFlipX(bool flipX)
 {
     UIButton::setFlipX(flipX);
-    this->m_pTextLable->setFlipX(flipX);
+    m_pTextLable->setFlipX(flipX);
 }
 
 void UITextButton::setFlipY(bool flipY)
 {
     UIButton::setFlipY(flipY);
-    this->m_pTextLable->setFlipY(flipY);
+    m_pTextLable->setFlipY(flipY);
 }
 
 void UITextButton::setAnchorPoint(const cocos2d::CCPoint &pt)
 {
     UIButton::setAnchorPoint(pt);
-    this->m_pTextLable->setPosition(ccp(this->m_pButtonNormal->getContentSize().width*(0.5f-this->m_pButtonNormal->getAnchorPoint().x), this->m_pButtonNormal->getContentSize().height*(0.5f-this->m_pButtonNormal->getAnchorPoint().y)));
+    m_pTextLable->setPosition(ccp(m_pButtonNormal->getContentSize().width*(0.5f-m_pButtonNormal->getAnchorPoint().x), m_pButtonNormal->getContentSize().height*(0.5f-m_pButtonNormal->getAnchorPoint().y)));
 }
 
 NS_CC_EXT_END

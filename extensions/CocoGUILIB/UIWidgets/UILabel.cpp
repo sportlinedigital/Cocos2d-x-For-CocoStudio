@@ -58,7 +58,7 @@ bool UILabel::init()
 {
     if (UIWidget::init())
     {
-        this->setPressState(WidgetStateNormal);
+        setPressState(WidgetStateNormal);
         return true;
     }
     return false;
@@ -67,8 +67,8 @@ bool UILabel::init()
 void UILabel::initNodes()
 {
     UIWidget::initNodes();
-    this->m_pRenderLabel = cocos2d::CCLabelTTF::create();
-    this->m_pRender->addChild(m_pRenderLabel);
+    m_pRenderLabel = cocos2d::CCLabelTTF::create();
+    m_pRender->addChild(m_pRenderLabel);
 }
 
 void UILabel::setText(const char* text)
@@ -104,29 +104,29 @@ void UILabel::setFontName(const char* name)
 
 void UILabel::setTouchScaleChangeAble(bool able)
 {
-    this->m_bTouchScaleChangeAble = able;
-    this->m_fNormalScaleValue = this->getScale();
+    m_bTouchScaleChangeAble = able;
+    m_fNormalScaleValue = getScale();
 }
 
 bool UILabel::getTouchScaleChangeAble()
 {
-    return this->m_bTouchScaleChangeAble;
+    return m_bTouchScaleChangeAble;
 }
 
 void UILabel::onPressStateChangedToNormal()
 {
-    if (!this->m_bTouchScaleChangeAble){
+    if (!m_bTouchScaleChangeAble){
         return;
     }
-    this->clickScale(this->m_fNormalScaleValue);
+    clickScale(m_fNormalScaleValue);
 }
 
 void UILabel::onPressStateChangedToPressed()
 {
-    if (!this->m_bTouchScaleChangeAble){
+    if (!m_bTouchScaleChangeAble){
         return;
     }
-    this->clickScale(this->m_fNormalScaleValue + this->m_fOnSelectedScaleOffset);
+    clickScale(m_fNormalScaleValue + m_fOnSelectedScaleOffset);
 }
 
 void UILabel::onPressStateChangedToDisabled()
@@ -136,7 +136,7 @@ void UILabel::onPressStateChangedToDisabled()
 
 void UILabel::clickScale(float scale)
 {
-    this->m_pRender->setScale(scale);
+    m_pRender->setScale(scale);
 }
 
 void UILabel::setFlipX(bool flipX)
@@ -161,8 +161,8 @@ bool UILabel::isFlipY()
 
 void UILabel::setGravity(LabelGravity gravity)
 {
-    this->m_nGravity = gravity;
-    switch (this->m_nGravity)
+    m_nGravity = gravity;
+    switch (m_nGravity)
     {
         case LabelGravityCenter:
             m_pRenderLabel->setAnchorPoint(ccp(0.5, 0.5));
@@ -186,13 +186,13 @@ void UILabel::adaptSize(float xProportion, float yProportion)
 
 CCNode* UILabel::getValidNode()
 {
-    return this->m_pRenderLabel;
+    return m_pRenderLabel;
 }
 
 void UILabel::setAnchorPoint(const cocos2d::CCPoint &pt)
 {
     UIWidget::setAnchorPoint(pt);
-    this->m_pRenderLabel->setAnchorPoint(pt);
+    m_pRenderLabel->setAnchorPoint(pt);
 }
 
 NS_CC_EXT_END

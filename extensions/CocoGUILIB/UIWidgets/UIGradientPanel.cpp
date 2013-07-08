@@ -27,7 +27,7 @@
 
 NS_CC_EXT_BEGIN
 
-#define DYNAMIC_CAST_CLIPLAYERGRADIENT dynamic_cast<UIClipAbleLayerGradient*>(this->m_pRender)
+#define DYNAMIC_CAST_CLIPLAYERGRADIENT dynamic_cast<UIClipAbleLayerGradient*>(m_pRender)
 
 UIGradientPanel::UIGradientPanel()
 {
@@ -53,7 +53,7 @@ UIGradientPanel::~UIGradientPanel()
 
 void UIGradientPanel::initNodes()
 {
-    this->m_pRender = UIClipAbleLayerGradient::create();
+    m_pRender = UIClipAbleLayerGradient::create();
 }
 
 void UIGradientPanel::setStartColor(const cocos2d::ccColor3B &color)

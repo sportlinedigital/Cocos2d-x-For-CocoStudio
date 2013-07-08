@@ -51,8 +51,8 @@ UILabelAtlas* UILabelAtlas::create()
 void UILabelAtlas::initNodes()
 {
     UIWidget::initNodes();
-    this->m_pRenderLaberAtlas = UICCLabelAtlas::create();
-    this->m_pRender->addChild(m_pRenderLaberAtlas);
+    m_pRenderLaberAtlas = UICCLabelAtlas::create();
+    m_pRender->addChild(m_pRenderLaberAtlas);
 }
 
 void UILabelAtlas::setProperty(const char *stringValue, const char *charMapFile, int itemWidth, int itemHeight, const char *startCharMap,bool useSpriteFrame)
@@ -73,12 +73,12 @@ const char* UILabelAtlas::getStringValue()
 void UILabelAtlas::setAnchorPoint(const cocos2d::CCPoint &pt)
 {
     UIWidget::setAnchorPoint(pt);
-    this->m_pRenderLaberAtlas->setAnchorPoint(ccp(pt.x, pt.y-0.25f));
+    m_pRenderLaberAtlas->setAnchorPoint(ccp(pt.x, pt.y-0.25f));
 }
 
 CCNode* UILabelAtlas::getValidNode()
 {
-    return this->m_pRenderLaberAtlas;
+    return m_pRenderLaberAtlas;
 }
 
 NS_CC_EXT_END

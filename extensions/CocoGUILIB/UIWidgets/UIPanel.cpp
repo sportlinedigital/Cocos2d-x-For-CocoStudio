@@ -29,12 +29,13 @@
 
 NS_CC_EXT_BEGIN
 
-#define DYNAMIC_CAST_CLIPLAYERCOLOR dynamic_cast<UIClippingLayerColor*>(this->m_pRender)
+#define DYNAMIC_CAST_CLIPLAYERCOLOR dynamic_cast<UIClippingLayerColor*>(m_pRender)
 
 UIPanel::UIPanel():
 m_bBackGroundScale9Enable(false),
 m_pBackGroundImage(NULL),
-m_strBackGroundImageFileName("")
+m_strBackGroundImageFileName(""),
+m_backGroundImageCapInsets(CCRectZero)
 {
     m_WidgetName = WIDGET_PANEL;
 }
@@ -53,9 +54,9 @@ UIPanel* UIPanel::create()
 void UIPanel::initNodes()
 {
     UIContainerWidget::initNodes();
-    this->m_pBackGroundImage = cocos2d::CCSprite::create();
+    m_pBackGroundImage = cocos2d::CCSprite::create();
     m_pBackGroundImage->setZOrder(-1);
-    this->m_pRender->addChild(this->m_pBackGroundImage);
+    m_pRender->addChild(m_pBackGroundImage);
 }
 
 UIPanel::~UIPanel()
@@ -65,34 +66,35 @@ UIPanel::~UIPanel()
 
 void UIPanel::setBackGroundImageScale9Enable(bool able)
 {
-    if (this->m_bBackGroundScale9Enable == able)
+    if (m_bBackGroundScale9Enable == able)
     {
         return;
     }
-    this->m_pRender->removeChild(this->m_pBackGroundImage, true);
-    this->m_pBackGroundImage = NULL;
-    this->m_bBackGroundScale9Enable = able;
+    m_pRender->removeChild(m_pBackGroundImage, true);
+    m_pBackGroundImage = NULL;
+    m_bBackGroundScale9Enable = able;
     if (m_bBackGroundScale9Enable)
     {
-        this->m_pBackGroundImage = CCScale9Sprite::create();
-        this->m_pRender->addChild(this->m_pBackGroundImage);
+        m_pBackGroundImage = CCScale9Sprite::create();
+        m_pRender->addChild(m_pBackGroundImage);
     }
     else
     {
-        this->m_pBackGroundImage = CCSprite::create();
-        this->m_pRender->addChild(this->m_pBackGroundImage);
+        m_pBackGroundImage = CCSprite::create();
+        m_pRender->addChild(m_pBackGroundImage);
     }
     m_pBackGroundImage->setZOrder(-1);
     setBackGroundImage(m_strBackGroundImageFileName.c_str(),getUseMergedTexture());
+    setBackGroundImageCapInsets(m_backGroundImageCapInsets);
 }
     
 void UIPanel::setSize(const cocos2d::CCSize &size)
 {
     UIContainerWidget::setSize(size);
-    this->m_pBackGroundImage->setPosition(ccp(this->m_pRender->getContentSize().width/2.0f, this->m_pRender->getContentSize().height/2.0f));
-    if (this->m_bBackGroundScale9Enable)
+    m_pBackGroundImage->setPosition(ccp(m_pRender->getContentSize().width/2.0f, m_pRender->getContentSize().height/2.0f));
+    if (m_bBackGroundScale9Enable)
     {
-        dynamic_cast<cocos2d::extension::CCScale9Sprite*>(this->m_pBackGroundImage)->setContentSize(this->m_pRender->getContentSize());
+        dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pBackGroundImage)->setContentSize(m_pRender->getContentSize());
     }
 }
 
@@ -104,35 +106,39 @@ void UIPanel::setBackGroundImage(const char* fileName,bool useSpriteFrame)
     }
     m_strBackGroundImageFileName = fileName;
     setUseMergedTexture(useSpriteFrame);
-    if (this->m_bBackGroundScale9Enable)
+    if (m_bBackGroundScale9Enable)
     {
         if (useSpriteFrame)
         {
-            dynamic_cast<cocos2d::extension::CCScale9Sprite*>(this->m_pBackGroundImage)->initWithSpriteFrameName(fileName);
+            dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pBackGroundImage)->initWithSpriteFrameName(fileName);
         }
         else
         {
-            dynamic_cast<cocos2d::extension::CCScale9Sprite*>(this->m_pBackGroundImage)->initWithFile(fileName);
+            dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pBackGroundImage)->initWithFile(fileName);
         }
-        dynamic_cast<cocos2d::extension::CCScale9Sprite*>(this->m_pBackGroundImage)->setContentSize(this->m_pRender->getContentSize());
+        dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pBackGroundImage)->setContentSize(m_pRender->getContentSize());
     }
     else
     {
         if (useSpriteFrame)
         {
-            dynamic_cast<cocos2d::CCSprite*>(this->m_pBackGroundImage)->initWithSpriteFrameName(fileName);
+            dynamic_cast<cocos2d::CCSprite*>(m_pBackGroundImage)->initWithSpriteFrameName(fileName);
         }
         else
         {
-            dynamic_cast<cocos2d::CCSprite*>(this->m_pBackGroundImage)->initWithFile(fileName);
+            dynamic_cast<cocos2d::CCSprite*>(m_pBackGroundImage)->initWithFile(fileName);
         }
     }
-    this->m_pBackGroundImage->setPosition(ccp(this->m_pRender->getContentSize().width/2, this->m_pRender->getContentSize().height/2));
+    m_pBackGroundImage->setPosition(ccp(m_pRender->getContentSize().width/2, m_pRender->getContentSize().height/2));
 }
 
 void UIPanel::setBackGroundImageCapInsets(const cocos2d::CCRect &capInsets)
 {
-    
+    m_backGroundImageCapInsets = capInsets;
+    if (m_bBackGroundScale9Enable)
+    {
+        dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pBackGroundImage)->setCapInsets(capInsets);
+    }
 }
 
 void UIPanel::setBackGroundColorEnable(bool able)

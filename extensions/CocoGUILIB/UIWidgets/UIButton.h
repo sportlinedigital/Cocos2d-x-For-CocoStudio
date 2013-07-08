@@ -44,7 +44,7 @@ public:
     virtual cocos2d::CCNode* getValidNode();
     virtual void setAnchorPoint(const cocos2d::CCPoint &pt);
     virtual void setScale9Enable(bool able);
-    virtual void setScale9Size(float width,float height);
+    virtual void setScale9Size(const CCSize &size);
     virtual void setFlipX(bool flipX);
     virtual void setFlipY(bool flipY);
     virtual bool isFlipX();
@@ -66,6 +66,8 @@ protected:
     std::string m_strClickedFileName;
     std::string m_strDisabledFileName;
     bool m_bScale9Enable;
+    CCRect m_capInsets;
+    CCSize m_scale9Size;
 };
 
 NS_CC_EXT_END

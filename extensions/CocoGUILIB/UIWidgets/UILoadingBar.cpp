@@ -26,7 +26,7 @@
 
 NS_CC_EXT_BEGIN
 
-#define DYNAMIC_CAST_CCSPRITE dynamic_cast<cocos2d::CCSprite*>(this->m_pRenderBar)
+#define DYNAMIC_CAST_CCSPRITE dynamic_cast<cocos2d::CCSprite*>(m_pRenderBar)
 
 UILoadingBar::UILoadingBar():
 m_nBarType(LoadingBarTypeLeft),
@@ -34,8 +34,6 @@ m_nPercent(100),
 m_fTotalLength(0),
 m_fBarHeight(0),
 m_pRenderBar(NULL)
-//,
-//m_bUseSpriteFrame(false)
 {
     m_WidgetName = WIDGET_LOADINGBAR;
 }
@@ -59,31 +57,31 @@ UILoadingBar* UILoadingBar::create()
 void UILoadingBar::initNodes()
 {
     UIWidget::initNodes();
-    this->m_pRenderBar = cocos2d::CCSprite::create();
-    this->m_pRender->addChild(m_pRenderBar);
-    this->m_pRenderBar->setAnchorPoint(ccp(0.0,0.5));
+    m_pRenderBar = cocos2d::CCSprite::create();
+    m_pRender->addChild(m_pRenderBar);
+    m_pRenderBar->setAnchorPoint(ccp(0.0,0.5));
 }
 
 void UILoadingBar::setDirection(LoadingBarType dir)
 {
-    if (this->m_nBarType == dir)
+    if (m_nBarType == dir)
     {
         return;
     }
-    this->m_nBarType = dir;
+    m_nBarType = dir;
 
-    switch (this->m_nBarType)
+    switch (m_nBarType)
     {
         case LoadingBarTypeLeft:
-            this->m_pRenderBar->setAnchorPoint(ccp(0.0,0.5));
-            this->m_pRenderBar->setPosition(ccp(-this->m_fTotalLength*0.5f,0.0f));
-            this->m_pRenderBar->setFlipX(false);
+            m_pRenderBar->setAnchorPoint(ccp(0.0,0.5));
+            m_pRenderBar->setPosition(ccp(-m_fTotalLength*0.5f,0.0f));
+            m_pRenderBar->setFlipX(false);
             break;
         case LoadingBarTypeRight:
             
-            this->m_pRenderBar->setAnchorPoint(ccp(1.0,0.5));
-            this->m_pRenderBar->setPosition(ccp(this->m_fTotalLength*0.5f,0.0f));
-            this->m_pRenderBar->setFlipX(true);
+            m_pRenderBar->setAnchorPoint(ccp(1.0,0.5));
+            m_pRenderBar->setPosition(ccp(m_fTotalLength*0.5f,0.0f));
+            m_pRenderBar->setFlipX(true);
 
             break;
     }
@@ -91,7 +89,7 @@ void UILoadingBar::setDirection(LoadingBarType dir)
 
 int UILoadingBar::getDirection()
 {
-    return this->m_nBarType;
+    return m_nBarType;
 }
 
 void UILoadingBar::setTexture(const char* texture,bool useSpriteFrame)
@@ -99,26 +97,26 @@ void UILoadingBar::setTexture(const char* texture,bool useSpriteFrame)
     setUseMergedTexture(useSpriteFrame);
     if (useSpriteFrame)
     {
-        this->m_pRenderBar->initWithSpriteFrameName(texture);
+        m_pRenderBar->initWithSpriteFrameName(texture);
     }
     else
     {
-        this->m_pRenderBar->initWithFile(texture);
+        m_pRenderBar->initWithFile(texture);
     }
-    this->m_fTotalLength = this->m_pRenderBar->getContentSize().width;
-    this->m_fBarHeight = this->m_pRenderBar->getContentSize().height;
+    m_fTotalLength = m_pRenderBar->getContentSize().width;
+    m_fBarHeight = m_pRenderBar->getContentSize().height;
 
-    switch (this->m_nBarType)
+    switch (m_nBarType)
     {
     case LoadingBarTypeLeft:
-        this->m_pRenderBar->setAnchorPoint(ccp(0.0,0.5));
-        this->m_pRenderBar->setPosition(ccp(-this->m_fTotalLength*0.5f,0.0f));
-        this->m_pRenderBar->setFlipX(false);
+        m_pRenderBar->setAnchorPoint(ccp(0.0,0.5));
+        m_pRenderBar->setPosition(ccp(-m_fTotalLength*0.5f,0.0f));
+        m_pRenderBar->setFlipX(false);
         break;
     case LoadingBarTypeRight:
-        this->m_pRenderBar->setAnchorPoint(ccp(1.0,0.5));
-        this->m_pRenderBar->setPosition(ccp(this->m_fTotalLength*0.5f,0.0f));
-        this->m_pRenderBar->setFlipX(true);
+        m_pRenderBar->setAnchorPoint(ccp(1.0,0.5));
+        m_pRenderBar->setPosition(ccp(m_fTotalLength*0.5f,0.0f));
+        m_pRenderBar->setFlipX(true);
         break;
     }
 }
@@ -129,12 +127,12 @@ void UILoadingBar::setPercent(int percent)
     {
         return;
     }
-    if (this->m_fTotalLength <= 0)
+    if (m_fTotalLength <= 0)
     {
         return;
     }
-    this->m_nPercent = percent;
-    float res = this->m_nPercent/100.0;
+    m_nPercent = percent;
+    float res = m_nPercent/100.0;
     
     int x = 0, y = 0;                        
     if (getUseMergedTexture())
@@ -148,27 +146,27 @@ void UILoadingBar::setPercent(int percent)
         }
     }
     
-    this->m_pRenderBar->setTextureRect(cocos2d::CCRect(x, y, this->m_fTotalLength * res, this->m_fBarHeight));
+    m_pRenderBar->setTextureRect(cocos2d::CCRect(x, y, m_fTotalLength * res, m_fBarHeight));
 }
 
 int UILoadingBar::getPercent()
 {
-    return this->m_nPercent;
+    return m_nPercent;
 }
 
 cocos2d::CCNode* UILoadingBar::getValidNode()
 {
-    return this->m_pRenderBar;
+    return m_pRenderBar;
 }
 
 float UILoadingBar::getTotalWidth()
 {
-    return this->m_fTotalLength;
+    return m_fTotalLength;
 }
 
 float UILoadingBar::getTotalHeight()
 {
-    return this->m_fBarHeight;
+    return m_fBarHeight;
 }
 
 NS_CC_EXT_END
