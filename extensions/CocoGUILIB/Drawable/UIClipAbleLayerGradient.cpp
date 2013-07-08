@@ -54,18 +54,18 @@ UIClipAbleLayerGradient* UIClipAbleLayerGradient::create()
 
 void UIClipAbleLayerGradient::visit()
 {
-    if (this->m_bClipAble)
+    if (m_bClippingEnable)
     {
         glEnable(GL_SCISSOR_TEST);
-        CCPoint local = this->convertToWorldSpace(CCPointZero);
+        CCPoint local = convertToWorldSpace(CCPointZero);
         
-        if (this->m_bEnableCustomArea)
+        if (m_bEnableCustomArea)
         {
-            CCEGLView::sharedOpenGLView()->setScissorInPoints(local.x, local.y, this->m_fScissorWidth, this->m_fScissorHeight);
+            CCEGLView::sharedOpenGLView()->setScissorInPoints(local.x, local.y, m_fScissorWidth, m_fScissorHeight);
         }
         else
         {
-            CCSize s = this->boundingBox().size;
+            CCSize s = boundingBox().size;
             CCEGLView::sharedOpenGLView()->setScissorInPoints(local.x, local.y, s.width, s.height);
         }
         
@@ -78,19 +78,19 @@ void UIClipAbleLayerGradient::visit()
     }
 }
 
-void UIClipAbleLayerGradient::setClipAble(bool able)
+void UIClipAbleLayerGradient::setClippingEnable(bool able)
 {
-    this->m_bClipAble = able;
+    m_bClippingEnable = able;
 }
 
 void UIClipAbleLayerGradient::setColorEnable(bool enable)
 {
-    this->m_bColorEnable = enable;
+    m_bColorEnable = enable;
 }
 
 bool UIClipAbleLayerGradient::getColorEnable()
 {
-    return this->m_bColorEnable;
+    return m_bColorEnable;
 }
 
 void UIClipAbleLayerGradient::setClipRect(const cocos2d::CCRect &rect)
@@ -100,15 +100,15 @@ void UIClipAbleLayerGradient::setClipRect(const cocos2d::CCRect &rect)
 
 void UIClipAbleLayerGradient::setClipSize(float width, float height)
 {
-    this->m_bEnableCustomArea = true;
-    this->m_fScissorWidth = width;
-    this->m_fScissorHeight = height;
+    m_bEnableCustomArea = true;
+    m_fScissorWidth = width;
+    m_fScissorHeight = height;
 }
 
 void UIClipAbleLayerGradient::draw()
 {
     //        to head off the draw call
-    if (this->m_bColorEnable)
+    if (m_bColorEnable)
     {
         CCLayerColor::draw();
     }

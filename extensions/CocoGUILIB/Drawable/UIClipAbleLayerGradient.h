@@ -33,19 +33,19 @@ NS_CC_EXT_BEGIN
 class UIClipAbleLayerGradient : public cocos2d::CCLayerGradient
 {
 public:
-    UIClipAbleLayerGradient():m_bClipAble(false),m_fScissorX(0.0),m_fScissorY(0.0),m_fScissorWidth(0.0),m_fScissorHeight(0.0),m_bEnableCustomArea(false),m_bColorEnable(false){};
+    UIClipAbleLayerGradient():m_bClippingEnable(false),m_fScissorX(0.0),m_fScissorY(0.0),m_fScissorWidth(0.0),m_fScissorHeight(0.0),m_bEnableCustomArea(false),m_bColorEnable(false){};
     virtual ~UIClipAbleLayerGradient(){};
     static UIClipAbleLayerGradient* create(const cocos2d::ccColor4B &colorStart,const cocos2d::ccColor4B &colorEnd);
     static UIClipAbleLayerGradient* create();
     virtual void visit();
-    void setClipAble(bool able);
+    void setClippingEnable(bool able);
     void setColorEnable(bool enable);
     bool getColorEnable();
     void setClipRect(const cocos2d::CCRect &rect);
     void setClipSize(float width,float height);
     virtual void draw();
 protected:
-    bool m_bClipAble;
+    bool m_bClippingEnable;
     float m_fScissorX;
     float m_fScissorY;
     float m_fScissorWidth;

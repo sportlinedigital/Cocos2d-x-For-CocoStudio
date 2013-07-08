@@ -58,8 +58,8 @@ void GUINodeRGBA::addChild(cocos2d::CCNode *child)
     CCRGBAProtocol *item = dynamic_cast<CCRGBAProtocol*>(child);
     if (item)
     {
-        item->setColor(this->getColor());
-        item->setOpacity(this->getOpacity());
+        item->setColor(getColor());
+        item->setOpacity(getOpacity());
     }
 }
 

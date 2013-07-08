@@ -34,7 +34,7 @@ void CPrimitivesNode::setRect(CCRect rect)
 void CPrimitivesNode::draw()
 {
     CCLayerColor::draw();
-    ccDrawRect(this->point1, this->point2);
+    ccDrawRect(point1, point2);
 }
 
 NS_CC_EXT_END

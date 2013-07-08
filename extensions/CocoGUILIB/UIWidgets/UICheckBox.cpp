@@ -61,8 +61,8 @@ bool UICheckBox::init()
 {
     if (UIWidget::init())
     {
-        this->setPressState(WidgetStateNormal);
-        this->setSelectedState(false);
+        setPressState(WidgetStateNormal);
+        setSelectedState(false);
         return true;
     }
     return false;
@@ -71,25 +71,25 @@ bool UICheckBox::init()
 void UICheckBox::initNodes()
 {
     UIWidget::initNodes();
-    this->m_pBackGroundBox = cocos2d::CCSprite::create();
-    this->m_pBackGroundSelectedBox = cocos2d::CCSprite::create();
-    this->m_pFrontCross = cocos2d::CCSprite::create();
-    this->m_pBackGroundBoxDisabled = cocos2d::CCSprite::create();
-    this->m_pFrontCrossDisabled = cocos2d::CCSprite::create();
-    this->m_pCCRenderNode->addChild(m_pBackGroundBox);
-    this->m_pCCRenderNode->addChild(m_pBackGroundSelectedBox);
-    this->m_pCCRenderNode->addChild(m_pFrontCross);
-    this->m_pCCRenderNode->addChild(m_pBackGroundBoxDisabled);
-    this->m_pCCRenderNode->addChild(m_pFrontCrossDisabled);
+    m_pBackGroundBox = cocos2d::CCSprite::create();
+    m_pBackGroundSelectedBox = cocos2d::CCSprite::create();
+    m_pFrontCross = cocos2d::CCSprite::create();
+    m_pBackGroundBoxDisabled = cocos2d::CCSprite::create();
+    m_pFrontCrossDisabled = cocos2d::CCSprite::create();
+    m_pRender->addChild(m_pBackGroundBox);
+    m_pRender->addChild(m_pBackGroundSelectedBox);
+    m_pRender->addChild(m_pFrontCross);
+    m_pRender->addChild(m_pBackGroundBoxDisabled);
+    m_pRender->addChild(m_pFrontCrossDisabled);
 }
 
 void UICheckBox::setTextures(const char *backGround, const char *backGroundSelected, const char *cross,const char* backGroundDisabled,const char* frontCrossDisabled,bool useSpriteFrame)
 {
-    this->setBackGroundTexture(backGround,useSpriteFrame);
-    this->setBackGroundSelectedTexture(backGroundSelected,useSpriteFrame);
-    this->setFrontCrossTexture(cross,useSpriteFrame);
-    this->setBackGroundDisabledTexture(backGroundDisabled,useSpriteFrame);
-    this->setFrontCrossDisabledTexture(frontCrossDisabled,useSpriteFrame);
+    setBackGroundTexture(backGround,useSpriteFrame);
+    setBackGroundSelectedTexture(backGroundSelected,useSpriteFrame);
+    setFrontCrossTexture(cross,useSpriteFrame);
+    setBackGroundDisabledTexture(backGroundDisabled,useSpriteFrame);
+    setFrontCrossDisabledTexture(frontCrossDisabled,useSpriteFrame);
 }
 
 void UICheckBox::setBackGroundTexture(const char *backGround,bool useSpriteFrame)
@@ -101,11 +101,11 @@ void UICheckBox::setBackGroundTexture(const char *backGround,bool useSpriteFrame
     setUseMergedTexture(useSpriteFrame);
     if (useSpriteFrame)
     {
-        this->m_pBackGroundBox->initWithSpriteFrameName(backGround);
+        m_pBackGroundBox->initWithSpriteFrameName(backGround);
     }
     else
     {
-        this->m_pBackGroundBox->initWithFile(backGround);
+        m_pBackGroundBox->initWithFile(backGround);
     }
 }
 
@@ -118,11 +118,11 @@ void UICheckBox::setBackGroundSelectedTexture(const char *backGroundSelected,boo
     setUseMergedTexture(useSpriteFrame);
     if (useSpriteFrame)
     {
-        this->m_pBackGroundSelectedBox->initWithSpriteFrameName(backGroundSelected);
+        m_pBackGroundSelectedBox->initWithSpriteFrameName(backGroundSelected);
     }
     else
     {
-        this->m_pBackGroundSelectedBox->initWithFile(backGroundSelected);
+        m_pBackGroundSelectedBox->initWithFile(backGroundSelected);
     }
 }
 
@@ -135,11 +135,11 @@ void UICheckBox::setFrontCrossTexture(const char *cross,bool useSpriteFrame)
     setUseMergedTexture(useSpriteFrame);
     if (useSpriteFrame)
     {
-        this->m_pFrontCross->initWithSpriteFrameName(cross);
+        m_pFrontCross->initWithSpriteFrameName(cross);
     }
     else
     {
-        this->m_pFrontCross->initWithFile(cross);
+        m_pFrontCross->initWithFile(cross);
     }
 }
 
@@ -152,11 +152,11 @@ void UICheckBox::setBackGroundDisabledTexture(const char *backGroundDisabled,boo
     setUseMergedTexture(useSpriteFrame);
     if (useSpriteFrame)
     {
-        this->m_pBackGroundBoxDisabled->initWithSpriteFrameName(backGroundDisabled);
+        m_pBackGroundBoxDisabled->initWithSpriteFrameName(backGroundDisabled);
     }
     else
     {
-        this->m_pBackGroundBoxDisabled->initWithFile(backGroundDisabled);
+        m_pBackGroundBoxDisabled->initWithFile(backGroundDisabled);
     }
 }
 
@@ -169,74 +169,74 @@ void UICheckBox::setFrontCrossDisabledTexture(const char *frontCrossDisabled,boo
     setUseMergedTexture(useSpriteFrame);
     if (useSpriteFrame)
     {
-        this->m_pFrontCrossDisabled->initWithSpriteFrameName(frontCrossDisabled);
+        m_pFrontCrossDisabled->initWithSpriteFrameName(frontCrossDisabled);
     }
     else
     {
-        this->m_pFrontCrossDisabled->initWithFile(frontCrossDisabled);
+        m_pFrontCrossDisabled->initWithFile(frontCrossDisabled);
     }
 }
 
 void UICheckBox::onTouchEnded(cocos2d::CCPoint &touchPoint)
 {
-    if (this->m_bFocus)
+    if (m_bFocus)
     {
-        this->releaseUpEvent();
-        if (this->m_bIsSelected){
-            this->setSelectedState(false);
-            this->unSelectedEvent();
+        releaseUpEvent();
+        if (m_bIsSelected){
+            setSelectedState(false);
+            unSelectedEvent();
         }
         else
         {
-            this->setSelectedState(true);
-            this->selectedEvent();
+            setSelectedState(true);
+            selectedEvent();
         }
     }
-    this->setFocus(false);
-    this->m_pWidgetParent->checkChildInfo(2,this,touchPoint);
+    setFocus(false);
+    m_pWidgetParent->checkChildInfo(2,this,touchPoint);
 }
 
 void UICheckBox::onPressStateChangedToNormal()
 {
-    this->m_pBackGroundBox->setVisible(true);
-    this->m_pBackGroundSelectedBox->setVisible(false);
-    this->m_pBackGroundBoxDisabled->setVisible(false);
-    this->m_pFrontCrossDisabled->setVisible(false);
+    m_pBackGroundBox->setVisible(true);
+    m_pBackGroundSelectedBox->setVisible(false);
+    m_pBackGroundBoxDisabled->setVisible(false);
+    m_pFrontCrossDisabled->setVisible(false);
 }
 
 void UICheckBox::onPressStateChangedToPressed()
 {
-    this->m_pBackGroundBox->setVisible(false);
-    this->m_pBackGroundSelectedBox->setVisible(true);
-    this->m_pBackGroundBoxDisabled->setVisible(false);
-    this->m_pFrontCrossDisabled->setVisible(false);
+    m_pBackGroundBox->setVisible(false);
+    m_pBackGroundSelectedBox->setVisible(true);
+    m_pBackGroundBoxDisabled->setVisible(false);
+    m_pFrontCrossDisabled->setVisible(false);
 }
 
 void UICheckBox::onPressStateChangedToDisabled()
 {
-    this->m_pBackGroundBox->setVisible(false);
-    this->m_pBackGroundSelectedBox->setVisible(false);
-    this->m_pBackGroundBoxDisabled->setVisible(true);
-    this->m_pFrontCross->setVisible(false);
-    if (this->m_bIsSelected)
+    m_pBackGroundBox->setVisible(false);
+    m_pBackGroundSelectedBox->setVisible(false);
+    m_pBackGroundBoxDisabled->setVisible(true);
+    m_pFrontCross->setVisible(false);
+    if (m_bIsSelected)
     {
-        this->m_pFrontCrossDisabled->setVisible(true);
+        m_pFrontCrossDisabled->setVisible(true);
     }
 }
 
 void UICheckBox::setSelectedState(bool selected)
 {
-    if (selected == this->m_bIsSelected)
+    if (selected == m_bIsSelected)
     {
         return;
     }
-    this->m_bIsSelected = selected;
-    this->m_pFrontCross->setVisible(this->m_bIsSelected);
+    m_bIsSelected = selected;
+    m_pFrontCross->setVisible(m_bIsSelected);
 }
 
 bool UICheckBox::getSelectedState()
 {
-    return this->m_bIsSelected;
+    return m_bIsSelected;
 }
 
 void UICheckBox::selectedEvent()
@@ -257,57 +257,57 @@ void UICheckBox::unSelectedEvent()
 
 cocos2d::CCNode* UICheckBox::getValidNode()
 {
-    return this->m_pBackGroundBox;
+    return m_pBackGroundBox;
 }
 
 void UICheckBox::addSelectEvent(cocos2d::CCObject *target, SEL_SelectEvent selector)
 {
-    this->m_pSelectListener = target;
-    this->m_pfnSelectSelector = selector;
+    m_pSelectListener = target;
+    m_pfnSelectSelector = selector;
 }
 
 void UICheckBox::addUnSelectEvent(cocos2d::CCObject *target, SEL_UnSelectEvent selector)
 {
-    this->m_pUnSelectListener = target;
-    this->m_pfnUnSelectSelector = selector;
+    m_pUnSelectListener = target;
+    m_pfnUnSelectSelector = selector;
 }
 
 void UICheckBox::setFlipX(bool flipX)
 {
-    this->m_pBackGroundBox->setFlipX(flipX);
-    this->m_pBackGroundSelectedBox->setFlipX(flipX);
-    this->m_pFrontCross->setFlipX(flipX);
-    this->m_pBackGroundBoxDisabled->setFlipX(flipX);
-    this->m_pFrontCrossDisabled->setFlipX(flipX);
+    m_pBackGroundBox->setFlipX(flipX);
+    m_pBackGroundSelectedBox->setFlipX(flipX);
+    m_pFrontCross->setFlipX(flipX);
+    m_pBackGroundBoxDisabled->setFlipX(flipX);
+    m_pFrontCrossDisabled->setFlipX(flipX);
 }
 
 void UICheckBox::setFlipY(bool flipY)
 {
-    this->m_pBackGroundBox->setFlipX(flipY);
-    this->m_pBackGroundSelectedBox->setFlipY(flipY);
-    this->m_pFrontCross->setFlipY(flipY);
-    this->m_pBackGroundBoxDisabled->setFlipY(flipY);
-    this->m_pFrontCrossDisabled->setFlipY(flipY);
+    m_pBackGroundBox->setFlipX(flipY);
+    m_pBackGroundSelectedBox->setFlipY(flipY);
+    m_pFrontCross->setFlipY(flipY);
+    m_pBackGroundBoxDisabled->setFlipY(flipY);
+    m_pFrontCrossDisabled->setFlipY(flipY);
 }
 
 bool UICheckBox::isFlipX()
 {
-    return this->m_pBackGroundBox->isFlipX();
+    return m_pBackGroundBox->isFlipX();
 }
 
 bool UICheckBox::isFlipY()
 {
-    return this->m_pBackGroundBox->isFlipY();
+    return m_pBackGroundBox->isFlipY();
 }
 
 void UICheckBox::setAnchorPoint(const cocos2d::CCPoint &pt)
 {
     UIWidget::setAnchorPoint(pt);
-    this->m_pBackGroundBox->setAnchorPoint(pt);
-    this->m_pBackGroundSelectedBox->setAnchorPoint(pt);
-    this->m_pBackGroundBoxDisabled->setAnchorPoint(pt);
-    this->m_pFrontCross->setAnchorPoint(pt);
-    this->m_pFrontCrossDisabled->setAnchorPoint(pt);
+    m_pBackGroundBox->setAnchorPoint(pt);
+    m_pBackGroundSelectedBox->setAnchorPoint(pt);
+    m_pBackGroundBoxDisabled->setAnchorPoint(pt);
+    m_pFrontCross->setAnchorPoint(pt);
+    m_pFrontCrossDisabled->setAnchorPoint(pt);
 }
 
 NS_CC_EXT_END

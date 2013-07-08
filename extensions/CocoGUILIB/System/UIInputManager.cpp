@@ -37,10 +37,10 @@ m_fLongClickRecordTime(0.0),
 checkedDoubleClickWidget(NULL),
 m_pRootWidget(NULL)
 {
-    this->m_manageredWidget = cocos2d::CCArray::create();
-    this->m_manageredWidget->retain();
-    this->checkedDoubleClickWidget = cocos2d::CCArray::create();
-    this->checkedDoubleClickWidget->retain();
+    m_manageredWidget = cocos2d::CCArray::create();
+    m_manageredWidget->retain();
+    checkedDoubleClickWidget = cocos2d::CCArray::create();
+    checkedDoubleClickWidget->retain();
 }
 
 UIInputManager::~UIInputManager()
@@ -56,24 +56,24 @@ void UIInputManager::registWidget(UIWidget* widget)
     if (!widget){
         return;
     }
-    if (this->m_manageredWidget->containsObject(widget))
+    if (m_manageredWidget->containsObject(widget))
     {
         return;
     }
-    this->m_manageredWidget->addObject(widget);
+    m_manageredWidget->addObject(widget);
 }
 
 void UIInputManager::uiSceneHasChanged()
 {
-    this->m_bWidgetBeSorted = false;
+    m_bWidgetBeSorted = false;
 }
 
 void UIInputManager::sortWidgets(cocos2d::extension::UIWidget *widget)
 {
 
-    this->m_manageredWidget->removeAllObjects();
-    this->sortRootWidgets(widget);
-    this->m_bWidgetBeSorted = true;
+    m_manageredWidget->removeAllObjects();
+    sortRootWidgets(widget);
+    m_bWidgetBeSorted = true;
 }
 
 void UIInputManager::sortRootWidgets(UIWidget *root)
@@ -81,11 +81,11 @@ void UIInputManager::sortRootWidgets(UIWidget *root)
     for (int i=root->getChildren()->count()-1; i >= 0; i--)
     {
         UIWidget* widget = (UIWidget*)(root->getChildren()->objectAtIndex(i));
-        this->sortRootWidgets(widget);
+        sortRootWidgets(widget);
     }
     if (root->getBeTouchEnable())
     {
-        this->registWidget(root);
+        registWidget(root);
     }
 }
 
@@ -95,23 +95,23 @@ void UIInputManager::removeManageredWidget(UIWidget* widget)
     {
         return;
     }
-    if (!this->m_manageredWidget->containsObject(widget))
+    if (!m_manageredWidget->containsObject(widget))
     {
         return;
     }
-    this->m_manageredWidget->removeObject(widget);
+    m_manageredWidget->removeObject(widget);
 }
 
 UIWidget* UIInputManager::checkEventWidget(cocos2d::CCPoint &touchPoint)
 {
     if (!m_bWidgetBeSorted && m_pRootWidget)
     {
-        this->sortWidgets(m_pRootWidget);
+        sortWidgets(m_pRootWidget);
     }
-    int widgetCount = this->m_manageredWidget->count();
+    int widgetCount = m_manageredWidget->count();
     for (int i=0;i<widgetCount;i++)
     {
-        UIWidget* widget = (UIWidget*)(this->m_manageredWidget->objectAtIndex(i));
+        UIWidget* widget = (UIWidget*)(m_manageredWidget->objectAtIndex(i));
         
         if(widget->pointAtSelfBody(touchPoint))
         {
@@ -119,9 +119,9 @@ UIWidget* UIInputManager::checkEventWidget(cocos2d::CCPoint &touchPoint)
             {
                 continue;
             }
-            if (i != this->m_manageredWidget->count()-1){
+            if (i != m_manageredWidget->count()-1){
                 int j = i+1;
-                for (;j < this->m_manageredWidget->count();j++)
+                for (;j < m_manageredWidget->count();j++)
                 {
                     UIWidget* wid = (UIWidget*)(m_manageredWidget->objectAtIndex(j));
                     wid->didNotSelectSelf();
@@ -139,28 +139,28 @@ UIWidget* UIInputManager::checkEventWidget(cocos2d::CCPoint &touchPoint)
 
 void UIInputManager::addCheckedDoubleClickWidget(UIWidget* widget)
 {
-    if (this->checkedDoubleClickWidget->containsObject(widget))
+    if (checkedDoubleClickWidget->containsObject(widget))
     {
         return;
     }
-    this->checkedDoubleClickWidget->addObject(widget);
+    checkedDoubleClickWidget->addObject(widget);
 }
 
 void UIInputManager::update(float dt)
 {
-    if (this->m_bTouchDown)
+    if (m_bTouchDown)
     {
-        this->m_fLongClickRecordTime += dt;
-        if (this->m_fLongClickRecordTime >= this->m_fLongClickTime)
+        m_fLongClickRecordTime += dt;
+        if (m_fLongClickRecordTime >= m_fLongClickTime)
         {
-            this->m_fLongClickRecordTime = 0;
-            this->m_bTouchDown = false;
-            this->m_pCurSelectedWidget->onTouchLongClicked(this->touchBeganedPoint);
+            m_fLongClickRecordTime = 0;
+            m_bTouchDown = false;
+            m_pCurSelectedWidget->onTouchLongClicked(touchBeganedPoint);
         }
     }
-    for (int i=0;i<this->checkedDoubleClickWidget->count();i++)
+    for (int i=0;i<checkedDoubleClickWidget->count();i++)
     {
-        UIWidget* widget = (UIWidget*)(this->checkedDoubleClickWidget->objectAtIndex(i));
+        UIWidget* widget = (UIWidget*)(checkedDoubleClickWidget->objectAtIndex(i));
         if (!widget->isVisible())
         {
             continue;
@@ -170,66 +170,66 @@ void UIInputManager::update(float dt)
 
 bool UIInputManager::onTouchBegan(cocos2d::CCTouch* touch)
 {
-    this->touchBeganedPoint.x = touch->getLocation().x;
-    this->touchBeganedPoint.y = touch->getLocation().y;
-    UIWidget* hitWidget = this->checkEventWidget(this->touchBeganedPoint);
+    touchBeganedPoint.x = touch->getLocation().x;
+    touchBeganedPoint.y = touch->getLocation().y;
+    UIWidget* hitWidget = checkEventWidget(touchBeganedPoint);
     if (!hitWidget || !hitWidget->isActive())
     {
-        this->m_pCurSelectedWidget = NULL;
+        m_pCurSelectedWidget = NULL;
         return false;
     }
-    this->m_pCurSelectedWidget = hitWidget;
-    hitWidget->onTouchBegan(this->touchBeganedPoint);
-    this->m_bTouchDown = true;
+    m_pCurSelectedWidget = hitWidget;
+    hitWidget->onTouchBegan(touchBeganedPoint);
+    m_bTouchDown = true;
     return true;
 }
 
 bool UIInputManager::onTouchMoved(cocos2d::CCTouch* touch)
 {
-    UIWidget* hitWidget = this->m_pCurSelectedWidget;
+    UIWidget* hitWidget = m_pCurSelectedWidget;
     if (!hitWidget || !hitWidget->isActive())
     {
         return false;
     }
-    this->touchMovedPoint.x = touch->getLocation().x;
-    this->touchMovedPoint.y = touch->getLocation().y;
-    hitWidget->onTouchMoved(this->touchMovedPoint);
-    if (this->m_bTouchDown)
+    touchMovedPoint.x = touch->getLocation().x;
+    touchMovedPoint.y = touch->getLocation().y;
+    hitWidget->onTouchMoved(touchMovedPoint);
+    if (m_bTouchDown)
     {
-        this->m_fLongClickRecordTime = 0;
-        this->m_bTouchDown = false;
+        m_fLongClickRecordTime = 0;
+        m_bTouchDown = false;
     }
     return true;
 }
 
 bool UIInputManager::onTouchEnd(cocos2d::CCTouch* touch)
 {
-    this->m_bTouchDown = false;
-    UIWidget* hitWidget = this->m_pCurSelectedWidget;
+    m_bTouchDown = false;
+    UIWidget* hitWidget = m_pCurSelectedWidget;
     if (!hitWidget || !hitWidget->isActive())
     {
         return false;
     }
-    this->touchEndedPoint.x = touch->getLocation().x;
-    this->touchEndedPoint.y = touch->getLocation().y;
-    hitWidget->onTouchEnded(this->touchEndedPoint);
-    this->m_pCurSelectedWidget = NULL;
+    touchEndedPoint.x = touch->getLocation().x;
+    touchEndedPoint.y = touch->getLocation().y;
+    hitWidget->onTouchEnded(touchEndedPoint);
+    m_pCurSelectedWidget = NULL;
     hitWidget = NULL;
     return true;
 }
 
 bool UIInputManager::onTouchCancelled(cocos2d::CCTouch* touch)
 {
-    this->m_bTouchDown = false;
-    UIWidget* hitWidget = this->m_pCurSelectedWidget;
+    m_bTouchDown = false;
+    UIWidget* hitWidget = m_pCurSelectedWidget;
     if (!hitWidget || !hitWidget->isActive())
     {
         return false;
     }
-    this->touchEndedPoint.x = touch->getLocation().x;
-    this->touchEndedPoint.y = touch->getLocation().y;
-    hitWidget->onTouchCancelled(this->touchEndedPoint);
-    this->m_pCurSelectedWidget = NULL;
+    touchEndedPoint.x = touch->getLocation().x;
+    touchEndedPoint.y = touch->getLocation().y;
+    hitWidget->onTouchCancelled(touchEndedPoint);
+    m_pCurSelectedWidget = NULL;
     hitWidget = NULL;
     return true;
 }

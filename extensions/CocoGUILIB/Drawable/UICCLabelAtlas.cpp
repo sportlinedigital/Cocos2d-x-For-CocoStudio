@@ -51,12 +51,12 @@ UICCLabelAtlas* UICCLabelAtlas::create()
 
 void UICCLabelAtlas::setProperty(const char *string, const char *charMapFile, unsigned int itemWidth, unsigned int itemHeight, unsigned int startCharMap)
 {
-    this->initWithString(string, charMapFile, itemWidth, itemHeight, startCharMap);
+    initWithString(string, charMapFile, itemWidth, itemHeight, startCharMap);
 }
 
 void UICCLabelAtlas::setProperty(const char *string, cocos2d::CCTexture2D *texture, unsigned int itemWidth, unsigned int itemHeight, unsigned int startCharMap)
 {
-    this->initWithString(string, texture, itemWidth, itemHeight, startCharMap);
+    initWithString(string, texture, itemWidth, itemHeight, startCharMap);
 }
 
 void UICCLabelAtlas::draw()

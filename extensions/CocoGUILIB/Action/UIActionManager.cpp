@@ -57,7 +57,7 @@ void UIActionManager::initWithDictionary(cs::CSJsonDictionary *dic,UIWidget* roo
         UIAction* action = new UIAction();
         cs::CSJsonDictionary* actionDic = DICTOOL->getDictionaryFromArray_json(dic, "actionlist", i);
         action->initWithDictionary(actionDic,root);
-        this->m_ActionList->addObject(action);
+        m_ActionList->addObject(action);
     }
 }
 

@@ -27,92 +27,67 @@ void CocosGUITestScene::runThisTest()
     ul->scheduleUpdate();
     this->addChild(ul);
     
-    /*
-    CCSprite* spP = CCSprite::create("army_1.png");
-    CCSprite* spS = CCSprite::create("army_1.png");
-    spS->setPosition(ccp(0, 0));
-    
-    spP->addChild(spS);
-    
-    spP->setPosition(ccp(100, 100));
-    
-    ul->addChild(spP);
-    
-    CocoImageView* ivP = CocoImageView::create();
-    ivP->setTexture("army_1.png");
-    CocoImageView* ivS = CocoImageView::create();
-    ivS->setTexture("army_1.png");
-    ivS->setPosition(ccp(0+(-(ivP->getRelativeRect().size.width/2.0f)), 0+(-(ivP->getRelativeRect().size.height/2.0f))));
-    
-    ivP->addChild(ivS);
-    
-    ul->addWidget(ivP);
-    ivP->setPosition(ccp(300, 100));
-     */
-    
-    
-    /*
-    CCScale9Sprite* sp9 = CCScale9Sprite::create("army_1.png");
-    
-    ul->addChild(sp9);
-    
-    
-    CocoImageView* iv9 = CocoImageView::create();
-    iv9->setTexture("army_1.png");
-    
-    iv9->setScale9Enable(true);
-    
-    ul->addWidget(iv9);
-    iv9->setPosition(ccp(300, 100));
-    sp9->setPosition(ccp(100, 100));
-    
-    
-    iv9->setAnchorPoint(ccp(0, 0));
-    sp9->setAnchorPoint(ccp(0, 0));
-     */
-    
-
-//    ul->addWidget(CCUIHELPER->createWidgetFromFile_ccb("ccb_parse/Tests/TestSprites.ccb"));
-//    ul->addWidget(CCUIHELPER->createWidgetFromFile_ccb("ccb_parse/HelloCocosBuilder.ccb"));
-
-//    /*
-    ul->addWidget(CCUIHELPER->createWidgetFromJsonFile("cocosgui/CocoGUISample.json"));
-    UIScrollView* sc = (UIScrollView*)(ul->getWidgetByName("scrollview"));
-    sc->setUpdateEnable(true);
-    sc->setMoveMode(SCROLLVIEW_MOVE_MODE_NORMAL);
+//    UIPanel* pp = UIPanel::create();
+//    pp->setBackGroundColorEnable(true);
+//    pp->setColor(ccc3(0, 255, 0));
+//    pp->setOpacity(255);
+//    pp->setPosition(ccp(100, 100));
+//    pp->setSize(CCSizeMake(100, 100));
 //
-//    UIImageView* image = dynamic_cast<UIImageView*>(ul->getWidgetByName("imageview"));
-//    image->setBeTouchEnable(true);
-////    image->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::MainMenuCallback));
+//
+//    ul->addWidget(pp);
 //    
-    UIButton* exitBtn = dynamic_cast<UIButton*>(ul->getWidgetByName("exitbutton"));
-    exitBtn->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::toCocosGUISlotScene));
-////     */
+//    UIPanel* ps = UIPanel::create();
+//    ps->setBackGroundColorEnable(true);
+//    ps->setColor(ccc3(0, 0, 255));
+//    ps->setOpacity(255);
+//    ps->setPosition(ccp(75, 75));
+//    ps->setSize(CCSizeMake(50, 50));
+//
+//    pp->addChild(ps);
+////    ul->addWidget(ps);
+//    pp->setClippingEnable(true);
+//        ps->setClippingEnable(true);
+//
+////    ps->setCloseClip(false);
 //    
-//    UICheckBox* cb = dynamic_cast<UICheckBox*>(ul->getWidgetByName("checkbox"));
-//    cb->addSelectEvent(this, coco_releaseselector(CocosGUITestScene::MainMenuCallback));
 //    
-//    UIPanel* pn = UIPanel::create();
-//    ul->addWidget(pn);
-//    pn->setBackGroundColorEnable(true);
-//    pn->setColor(ccc3(0, 255, 0));
-//    pn->setOpacity(255);
-//    pn->setSize(CCSizeMake(100, 100));
-//    pn->setPosition(ccp(100, 100));
+//    UIButton* b1 = UIButton::create();
+//    b1->setTextures("cocosgui/CloseNormal.png", NULL, NULL);
 //    
-//    UIButton* btn = UIButton::create();
-//    btn->setTextures("slot/2.png", NULL, NULL);
-//    pn->addChild(btn);
+//    UIButton* b2 = UIButton::create();
+//    b2->setTextures("cocosgui/CloseNormal.png", NULL, NULL);
+//    
+//    pp->addChild(b1);
+//    ps->addChild(b2);
     
-//    ul->addWidget(CCUIHELPER->createWidgetFromJsonFile("cocosgui/test/NewProject_1_1.json"));
-////    UIWidget* pv = UIPageView::create();
-//    UIPageView* pv = UIPageView::create();
-//    pv->addPage(NULL);
-//    pv->addWidgetToPage(NULL, 0, false);
+//    ul->addWidget(CCUIHELPER->createWidgetFromJsonFile("cocosgui/CocoGUISample.json"));
+//    UIScrollView* sc = (UIScrollView*)(ul->getWidgetByName("scrollview"));
+//    sc->setUpdateEnable(true);
+////    sc->setMoveMode(SCROLLVIEW_MOVE_MODE_NORMAL);
+//    UIButton* exitBtn = dynamic_cast<UIButton*>(ul->getWidgetByName("exitbutton"));
+//    exitBtn->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::toCocosGUISlotScene));
+    
+    UIButton* btn = UIButton::create();
+    btn->setTextures("cocosgui/CloseNormal.png", "cocosgui/CloseNormal.png", "");
+    btn->setPosition(ccp(100, 100));
+    btn->setBeTouchEnable(true);
+    btn->setScale(2);
+    btn->setRotation(90);
+    btn->setScale9Size(CCSizeMake(100, 100));
+    ul->addWidget(btn);
+    
+    
+    btn->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::MainMenuCallback));
 }
 void CocosGUITestScene::MainMenuCallback(CCObject* pSender)
 {
-	TestScene::MainMenuCallback(pSender);
+    static bool is = true;
+    UIButton* btn = dynamic_cast<UIButton*>(pSender);
+    btn->setScale9Enable(is);
+    
+    is = !is;
+//	TestScene::MainMenuCallback(pSender);
 //    UIActionManager::shareManager()->PlayActionByName("Animation1");
 }
 

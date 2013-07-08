@@ -36,8 +36,7 @@ public:
     virtual ~UIPanel();
     static UIPanel* create();
     void setBackGroundImage(const char* fileName,bool useSpriteFrame = false);
-//    void setBackGroundImageScale9(const char* fileName,const cocos2d::CCRect &capInsets,bool useSpriteFrame = false);
-    void setBackGroundImageCapInset(const CCRect& capInset);
+    void setBackGroundImageCapInsets(const CCRect& capInsets);
     virtual void setBackGroundColorEnable(bool able);
     virtual void setSize(const cocos2d::CCSize &size);
     void setBackGroundImageScale9Enable(bool able);
@@ -47,6 +46,7 @@ protected:
     bool m_bBackGroundScale9Enable;
     cocos2d::CCNode* m_pBackGroundImage;
     std::string m_strBackGroundImageFileName;
+    CCRect m_backGroundImageCapInsets;
 };
 
 NS_CC_EXT_END

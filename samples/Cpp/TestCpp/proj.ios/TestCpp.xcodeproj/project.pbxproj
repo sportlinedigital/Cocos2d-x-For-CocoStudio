@@ -342,7 +342,7 @@
 		50992024178057CA0062E19E /* GUINodeRGBA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50992018178057CA0062E19E /* GUINodeRGBA.cpp */; };
 		50992025178057CA0062E19E /* UICCLabelAtlas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5099201A178057CA0062E19E /* UICCLabelAtlas.cpp */; };
 		50992026178057CA0062E19E /* UICCTextField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5099201C178057CA0062E19E /* UICCTextField.cpp */; };
-		50992027178057CA0062E19E /* UIClipAbleLayerColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5099201E178057CA0062E19E /* UIClipAbleLayerColor.cpp */; };
+		50992027178057CA0062E19E /* UIClippingLayerColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5099201E178057CA0062E19E /* UIClippingLayerColor.cpp */; };
 		50992028178057CA0062E19E /* UIClipAbleLayerGradient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50992020178057CA0062E19E /* UIClipAbleLayerGradient.cpp */; };
 		50992029178057CA0062E19E /* UIPrimitivesNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50992022178057CA0062E19E /* UIPrimitivesNode.cpp */; };
 		5099204F178057E80062E19E /* UIButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5099202B178057E80062E19E /* UIButton.cpp */; };
@@ -1111,8 +1111,8 @@
 		5099201B178057CA0062E19E /* UICCLabelAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICCLabelAtlas.h; sourceTree = "<group>"; };
 		5099201C178057CA0062E19E /* UICCTextField.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UICCTextField.cpp; sourceTree = "<group>"; };
 		5099201D178057CA0062E19E /* UICCTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICCTextField.h; sourceTree = "<group>"; };
-		5099201E178057CA0062E19E /* UIClipAbleLayerColor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIClipAbleLayerColor.cpp; sourceTree = "<group>"; };
-		5099201F178057CA0062E19E /* UIClipAbleLayerColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIClipAbleLayerColor.h; sourceTree = "<group>"; };
+		5099201E178057CA0062E19E /* UIClippingLayerColor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIClippingLayerColor.cpp; sourceTree = "<group>"; };
+		5099201F178057CA0062E19E /* UIClippingLayerColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIClippingLayerColor.h; sourceTree = "<group>"; };
 		50992020178057CA0062E19E /* UIClipAbleLayerGradient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIClipAbleLayerGradient.cpp; sourceTree = "<group>"; };
 		50992021178057CA0062E19E /* UIClipAbleLayerGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIClipAbleLayerGradient.h; sourceTree = "<group>"; };
 		50992022178057CA0062E19E /* UIPrimitivesNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIPrimitivesNode.cpp; sourceTree = "<group>"; };
@@ -2883,8 +2883,8 @@
 				5099201B178057CA0062E19E /* UICCLabelAtlas.h */,
 				5099201C178057CA0062E19E /* UICCTextField.cpp */,
 				5099201D178057CA0062E19E /* UICCTextField.h */,
-				5099201E178057CA0062E19E /* UIClipAbleLayerColor.cpp */,
-				5099201F178057CA0062E19E /* UIClipAbleLayerColor.h */,
+				5099201E178057CA0062E19E /* UIClippingLayerColor.cpp */,
+				5099201F178057CA0062E19E /* UIClippingLayerColor.h */,
 				50992020178057CA0062E19E /* UIClipAbleLayerGradient.cpp */,
 				50992021178057CA0062E19E /* UIClipAbleLayerGradient.h */,
 				50992022178057CA0062E19E /* UIPrimitivesNode.cpp */,
@@ -3513,7 +3513,7 @@
 				50992024178057CA0062E19E /* GUINodeRGBA.cpp in Sources */,
 				50992025178057CA0062E19E /* UICCLabelAtlas.cpp in Sources */,
 				50992026178057CA0062E19E /* UICCTextField.cpp in Sources */,
-				50992027178057CA0062E19E /* UIClipAbleLayerColor.cpp in Sources */,
+				50992027178057CA0062E19E /* UIClippingLayerColor.cpp in Sources */,
 				50992028178057CA0062E19E /* UIClipAbleLayerGradient.cpp in Sources */,
 				50992029178057CA0062E19E /* UIPrimitivesNode.cpp in Sources */,
 				5099204F178057E80062E19E /* UIButton.cpp in Sources */,

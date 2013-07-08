@@ -251,7 +251,7 @@ protected:
     WidgetState m_nCurPressState;
     WidgetState m_nPrevPressstate;
     bool m_bUpdateEnable;
-    cocos2d::CCNode* m_pCCRenderNode;
+    cocos2d::CCNode* m_pRender;
     float m_fContentSizeWidth;
     float m_fContentSizeHeight;
     bool m_bIsCreatedFromFile;

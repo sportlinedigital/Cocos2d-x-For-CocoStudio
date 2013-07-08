@@ -52,14 +52,14 @@ UIActionNode::~UIActionNode()
 
 void UIActionNode::initWithDictionary(cs::CSJsonDictionary *dic,UIWidget* root)
 {
-    this->setActionTag(DICTOOL->getIntValue_json(dic, "actiontag"));
+    setActionTag(DICTOOL->getIntValue_json(dic, "actiontag"));
     int actionFrameCount = DICTOOL->getArrayCount_json(dic, "actionframelist");
-    this->SetActionNode(CCUIHELPER->seekActionWidgetByActionTag(root, this->getActionTag()));
+    SetActionNode(CCUIHELPER->seekActionWidgetByActionTag(root, getActionTag()));
     for (int i=0; i<actionFrameCount; i++) {
         UIActionFrame* actionFrame = new UIActionFrame();
         cs::CSJsonDictionary* actionFrameDic = DICTOOL->getDictionaryFromArray_json(dic, "actionframelist", i);
         actionFrame->initWithDictionary(actionFrameDic);
-        this->m_ActionFrameList->addObject(actionFrame);
+        m_ActionFrameList->addObject(actionFrame);
     }
 }
 

@@ -39,10 +39,10 @@ UINodeContainer::~UINodeContainer()
 void UINodeContainer::releaseResoures()
 {
     UIWidget::releaseResoures();
-    if (this->m_pCCNode)
+    if (m_pCCNode)
     {
-        this->m_pCCNode->removeFromParentAndCleanup(true);
-        this->m_pCCNode->release();
+        m_pCCNode->removeFromParentAndCleanup(true);
+        m_pCCNode->release();
     }
 }
 
@@ -59,24 +59,24 @@ UINodeContainer* UINodeContainer::create()
 
 void UINodeContainer::addCCNode(cocos2d::CCNode *node)
 {
-    if (!node || this->m_pCCNode == node)
+    if (!node || m_pCCNode == node)
     {
         return;
     }
-    this->m_pCCNode = node;
-    this->m_pCCNode->retain();
-    this->m_pCCRenderNode->addChild(node);
+    m_pCCNode = node;
+    m_pCCNode->retain();
+    m_pRender->addChild(node);
 }
 
 void UINodeContainer::removeCCNode(bool cleanup)
 {
-    if (!this->m_pCCNode)
+    if (!m_pCCNode)
     {
         return;
     }
-    this->m_pCCNode->release();
-    this->m_pCCRenderNode->removeChild(m_pCCNode,cleanup);
-    this->m_pCCNode = NULL;
+    m_pCCNode->release();
+    m_pRender->removeChild(m_pCCNode,cleanup);
+    m_pCCNode = NULL;
 }
 
 NS_CC_EXT_END

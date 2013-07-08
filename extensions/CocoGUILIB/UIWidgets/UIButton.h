@@ -40,11 +40,11 @@ public:
     void setNormalTexture(const char* normal,bool useSpriteFrame = false);
     void setPressedTexture(const char* selected,bool useSpriteFrame = false);
     void setDisabledTexture(const char* disabled,bool useSpriteFrame = false);
-    void setCapInsets(const CCRect &capInset);
+    void setCapInsets(const CCRect &capInsets);
     virtual cocos2d::CCNode* getValidNode();
     virtual void setAnchorPoint(const cocos2d::CCPoint &pt);
     virtual void setScale9Enable(bool able);
-    virtual void setScale9Size(float width,float height);
+    virtual void setScale9Size(const CCSize &size);
     virtual void setFlipX(bool flipX);
     virtual void setFlipY(bool flipY);
     virtual bool isFlipX();
@@ -66,6 +66,8 @@ protected:
     std::string m_strClickedFileName;
     std::string m_strDisabledFileName;
     bool m_bScale9Enable;
+    CCRect m_capInsets;
+    CCSize m_scale9Size;
 };
 
 NS_CC_EXT_END

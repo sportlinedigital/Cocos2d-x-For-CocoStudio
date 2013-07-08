@@ -51,7 +51,7 @@ void UITextArea::initNodes()
 {
     UIWidget::initNodes();
     m_pRenderLabel = cocos2d::CCLabelTTF::create();
-    this->m_pCCRenderNode->addChild(m_pRenderLabel);
+    m_pRender->addChild(m_pRenderLabel);
 }
 
 void UITextArea::setText(const char* text)
@@ -127,13 +127,13 @@ bool UITextArea::isFlipY()
 
 CCNode* UITextArea::getValidNode()
 {
-    return this->m_pRenderLabel;
+    return m_pRenderLabel;
 }
 
 void UITextArea::setAnchorPoint(const cocos2d::CCPoint &pt)
 {
     UIWidget::setAnchorPoint(pt);
-    this->m_pRenderLabel->setAnchorPoint(pt);
+    m_pRenderLabel->setAnchorPoint(pt);
 }
 
 NS_CC_EXT_END

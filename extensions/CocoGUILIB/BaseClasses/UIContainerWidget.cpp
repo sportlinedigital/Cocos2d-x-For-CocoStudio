@@ -23,13 +23,13 @@
  ****************************************************************************/
 
 #include "UIContainerWidget.h"
-#include "../Drawable/UIClipAbleLayerColor.h"
+#include "../Drawable/UIClippingLayerColor.h"
 #include "../Drawable/UIClipAbleLayerGradient.h"
 
 NS_CC_EXT_BEGIN
 
-#define DYNAMIC_CAST_CLIPLAYERCOLOR dynamic_cast<UIClipAbleLayerColor*>(this->m_pCCRenderNode)
-#define DYNAMIC_CAST_CLIPLAYERGRADIENT dynamic_cast<UIClipAbleLayerGradient*>(this->m_pCCRenderNode)
+#define DYNAMIC_CAST_CLIPLAYERCOLOR dynamic_cast<UIClippingLayerColor*>(m_pRender)
+#define DYNAMIC_CAST_CLIPLAYERGRADIENT dynamic_cast<UIClipAbleLayerGradient*>(m_pRender)
     
 UIContainerWidget::UIContainerWidget():
 m_fWidth(0.0),
@@ -37,7 +37,7 @@ m_fHeight(0.0),
 m_bClipAble(false),
 m_renderType(RENDER_TYPE_LAYERCOLOR)
 {
-    this->m_WidgetType = WidgetTypeContainer;
+    m_WidgetType = WidgetTypeContainer;
     m_WidgetName = WIDGET_CONTAINERWIDGET;
 }
 
@@ -71,12 +71,12 @@ bool UIContainerWidget::init()
 
 void UIContainerWidget::initNodes()
 {
-    this->m_pCCRenderNode = UIClipAbleLayerColor::create();
+    m_pRender = UIClippingLayerColor::create();
 }
 
 bool UIContainerWidget::isClippingEnable()
 {
-    return this->m_bClipAble;
+    return m_bClipAble;
 }
 
 bool UIContainerWidget::addChild(UIWidget* child)
@@ -100,21 +100,21 @@ bool UIContainerWidget::addChild(UIWidget* child)
 
 void UIContainerWidget::setClippingEnable(bool able)
 {
-    this->m_bClipAble = able;
+    m_bClipAble = able;
     switch (m_renderType)
     {
         case RENDER_TYPE_LAYERCOLOR:
-            DYNAMIC_CAST_CLIPLAYERCOLOR->setClipAble(able);
+            DYNAMIC_CAST_CLIPLAYERCOLOR->setClippingEnable(able);
             break;
         case RENDER_TYPE_LAYERGRADIENT:
-            DYNAMIC_CAST_CLIPLAYERGRADIENT->setClipAble(able);
+            DYNAMIC_CAST_CLIPLAYERGRADIENT->setClippingEnable(able);
             break;
         default:
             break;
     }
-    for (int i=0; i<this->m_children->count(); i++)
+    for (int i=0; i<m_children->count(); i++)
     {
-        UIWidget* child = (UIWidget*)(this->m_children->objectAtIndex(i));
+        UIWidget* child = (UIWidget*)(m_children->objectAtIndex(i));
         child->setNeedCheckVisibleDepandParent(able);
     }
 }
@@ -157,19 +157,19 @@ void UIContainerWidget::setSize(const cocos2d::CCSize &size)
         default:
             break;
     }
-    this->m_fWidth = size.width;
-    this->m_fHeight = size.height;
-    this->updateClipSize();
+    m_fWidth = size.width;
+    m_fHeight = size.height;
+    updateClipSize();
 }
 
 float UIContainerWidget::getWidth()
 {
-    return this->m_fWidth;
+    return m_fWidth;
 }
 
 float UIContainerWidget::getHeight()
 {
-    return this->m_fHeight;
+    return m_fHeight;
 }
 
 bool UIContainerWidget::hitTest(cocos2d::CCNode *node, cocos2d::CCPoint &pt)
@@ -186,25 +186,25 @@ bool UIContainerWidget::hitTest(cocos2d::CCNode *node, cocos2d::CCPoint &pt)
 void UIContainerWidget::onScaleDirtyChanged()
 {
     UIWidget::onScaleDirtyChanged();
-    this->updateClipSize();
+    updateClipSize();
 }
 
 void UIContainerWidget::onScaleXDirtyChanged()
 {
     UIWidget::onScaleXDirtyChanged();
-    this->updateClipSize();
+    updateClipSize();
 }
 
 void UIContainerWidget::onScaleYDirtyChanged()
 {
     UIWidget::onScaleYDirtyChanged();
-    this->updateClipSize();
+    updateClipSize();
 }
 
 void UIContainerWidget::updateClipSize()
 {
-    float asx = this->getAbsoluteScaleX();
-    float asy = this->getAbsoluteScaleY();
+    float asx = getAbsoluteScaleX();
+    float asy = getAbsoluteScaleY();
     
     switch (m_renderType)
     {
@@ -227,7 +227,7 @@ void UIContainerWidget::updateClipSize()
 
 CCSize UIContainerWidget::getWrapSize() const
 {
-    for (int i=0; i<this->m_children->count(); i++)
+    for (int i=0; i<m_children->count(); i++)
     {
         UIWidget* child = dynamic_cast<UIWidget*>(m_children->objectAtIndex(i));
         switch (child->getWidgetType()) {

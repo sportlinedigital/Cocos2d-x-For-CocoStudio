@@ -51,13 +51,13 @@ UILabelBMFont* UILabelBMFont::create()
 void UILabelBMFont::initNodes()
 {
     UIWidget::initNodes();
-    this->m_pLabelBMFont = cocos2d::CCLabelBMFont::create();
-    this->m_pCCRenderNode->addChild(this->m_pLabelBMFont);
+    m_pLabelBMFont = cocos2d::CCLabelBMFont::create();
+    m_pRender->addChild(m_pLabelBMFont);
 }
 
 void UILabelBMFont::setFntFile(const char *fileName)
 {
-    this->m_pLabelBMFont->initWithString("", fileName);
+    m_pLabelBMFont->initWithString("", fileName);
 }
 
 void UILabelBMFont::setText(const char* value)
@@ -67,23 +67,23 @@ void UILabelBMFont::setText(const char* value)
 		return;
 	}
 	std::string strText(value);
-    this->m_pLabelBMFont->setString(strText.c_str());
+    m_pLabelBMFont->setString(strText.c_str());
 }
 
 const char* UILabelBMFont::getStringValue()
 {
-    return this->m_pLabelBMFont->getString();
+    return m_pLabelBMFont->getString();
 }
 
 CCNode* UILabelBMFont::getValidNode()
 {
-    return this->m_pLabelBMFont;
+    return m_pLabelBMFont;
 }
 
 void UILabelBMFont::setAnchorPoint(const cocos2d::CCPoint &pt)
 {
     UIWidget::setAnchorPoint(pt);
-    this->m_pLabelBMFont->setAnchorPoint(pt);
+    m_pLabelBMFont->setAnchorPoint(pt);
 }
 
 NS_CC_EXT_END
