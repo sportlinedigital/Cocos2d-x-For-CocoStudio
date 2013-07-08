@@ -501,6 +501,9 @@
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UITextField.cpp">
       <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\Action\UIActionFrameEasing.cpp">
+      <Filter>CocoGUILIB\Action</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\GUI\CCScrollView\CCScrollView.h">
@@ -897,6 +900,9 @@
     </ClInclude>
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UITextField.h">
       <Filter>CocoGUILIB\UIWidgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\Action\UIActionFrameEasing.h">
+      <Filter>CocoGUILIB\Action</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
