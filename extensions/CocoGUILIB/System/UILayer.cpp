@@ -48,8 +48,8 @@ UILayer::~UILayer()
 
 bool UILayer::init()
 {
-    if (CCLayer::init()) {
-        cocos2d::CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, -1, false);
+    if (CCLayer::init())
+    {
         m_pRootWidget = UIRootWidget::create();
         m_pRootWidget->setUILayer(this);
         addChild(m_pRootWidget->getContainerNode());
@@ -79,11 +79,13 @@ UILayer* UILayer::create(void)
 
 void UILayer::onEnter()
 {
+    cocos2d::CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, -1, true);
     CCLayer::onEnter();
 }
 
 void UILayer::onExit()
 {
+    CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
     CCLayer::onExit();
 }
 
@@ -108,6 +110,11 @@ void UILayer::setVisible(bool visible)
     m_pRootWidget->setVisible(visible);
 }
 
+void UILayer::setTouchPriority(int nPriority)
+{
+    CCDirector::sharedDirector()->getTouchDispatcher()->setPriority(nPriority, this);
+}
+
 //void UILayer::setUIType(GUITYPE type)
 //{
 //    m_UIType = type;
@@ -125,9 +132,11 @@ void UILayer::setVisible(bool visible)
 
 void UILayer::update(float dt)
 {
-    for (int i=0; i<m_updateEnableWidget->count(); i++)
+    ccArray* arrayWidget = m_updateEnableWidget->data;
+    int length = arrayWidget->num;
+    for (int i=0; i<length; i++)
     {
-        dynamic_cast<UIWidget*>(m_updateEnableWidget->objectAtIndex(i))->update(dt);
+        dynamic_cast<UIWidget*>(arrayWidget->arr[i])->update(dt);
     }
 }
 
@@ -187,7 +196,6 @@ UIInputManager* UILayer::getInputManager()
 
 void UILayer::dispose()
 {
-    CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
     removeFromParentAndCleanup(true);
 }
 

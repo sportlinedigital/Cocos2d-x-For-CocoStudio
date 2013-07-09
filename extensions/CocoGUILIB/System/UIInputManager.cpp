@@ -53,7 +53,8 @@ UIInputManager::~UIInputManager()
 
 void UIInputManager::registWidget(UIWidget* widget)
 {
-    if (!widget){
+    if (!widget)
+    {
         return;
     }
     if (m_manageredWidget->containsObject(widget))
@@ -70,7 +71,6 @@ void UIInputManager::uiSceneHasChanged()
 
 void UIInputManager::sortWidgets(cocos2d::extension::UIWidget *widget)
 {
-
     m_manageredWidget->removeAllObjects();
     sortRootWidgets(widget);
     m_bWidgetBeSorted = true;
@@ -78,12 +78,14 @@ void UIInputManager::sortWidgets(cocos2d::extension::UIWidget *widget)
 
 void UIInputManager::sortRootWidgets(UIWidget *root)
 {
-    for (int i=root->getChildren()->count()-1; i >= 0; i--)
+    ccArray* arrayRootChildren = root->getChildren()->data;
+    int length = arrayRootChildren->num;
+    for (int i=length-1; i >= 0; i--)
     {
-        UIWidget* widget = (UIWidget*)(root->getChildren()->objectAtIndex(i));
+        UIWidget* widget = (UIWidget*)(arrayRootChildren->arr[i]);
         sortRootWidgets(widget);
     }
-    if (root->getBeTouchEnable())
+    if (root->isTouchEnable())
     {
         registWidget(root);
     }
@@ -108,22 +110,23 @@ UIWidget* UIInputManager::checkEventWidget(cocos2d::CCPoint &touchPoint)
     {
         sortWidgets(m_pRootWidget);
     }
-    int widgetCount = m_manageredWidget->count();
+    ccArray* arrayWidget = m_manageredWidget->data;
+    int widgetCount = arrayWidget->num;
     for (int i=0;i<widgetCount;i++)
     {
-        UIWidget* widget = (UIWidget*)(m_manageredWidget->objectAtIndex(i));
-        
+        UIWidget* widget = (UIWidget*)(arrayWidget->arr[i]);
         if(widget->pointAtSelfBody(touchPoint))
         {
             if (!widget->checkVisibleDependParent(touchPoint))
             {
                 continue;
             }
-            if (i != m_manageredWidget->count()-1){
+            if (i != widgetCount-1)
+            {
                 int j = i+1;
-                for (;j < m_manageredWidget->count();j++)
+                for (;j < widgetCount;j++)
                 {
-                    UIWidget* wid = (UIWidget*)(m_manageredWidget->objectAtIndex(j));
+                    UIWidget* wid = (UIWidget*)(arrayWidget->arr[j]);
                     wid->didNotSelectSelf();
                 }
             }
@@ -158,9 +161,11 @@ void UIInputManager::update(float dt)
             m_pCurSelectedWidget->onTouchLongClicked(touchBeganedPoint);
         }
     }
-    for (int i=0;i<checkedDoubleClickWidget->count();i++)
+    ccArray* arrayWidget = checkedDoubleClickWidget->data;
+    int widgetCount = arrayWidget->num;
+    for (int i=0;i<widgetCount;i++)
     {
-        UIWidget* widget = (UIWidget*)(checkedDoubleClickWidget->objectAtIndex(i));
+        UIWidget* widget = (UIWidget*)(arrayWidget->arr[i]);
         if (!widget->isVisible())
         {
             continue;

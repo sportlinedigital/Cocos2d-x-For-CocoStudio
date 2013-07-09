@@ -22,45 +22,65 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#include "UIClippingLayerColor.h"
+#include "UIClippingLayer.h"
 
 NS_CC_EXT_BEGIN
 
-UIClippingLayerColor::UIClippingLayerColor():
+static void checkNodeClippingOption(cocos2d::CCNode *node)
+{
+    CCArray* nodeChildren = node->getChildren();
+    if (!nodeChildren)
+    {
+        return;
+    }
+    ccArray* arrayNodeChildren = nodeChildren->data;
+    int length = arrayNodeChildren->num;
+    for (int i=0; i<length; i++)
+    {
+        CCObject * oChild = arrayNodeChildren->arr[i];
+        UIClippingLayer* cChild = dynamic_cast<UIClippingLayer*>(oChild);
+        if (cChild)
+        {
+            cChild->checkClippingOption();
+            cChild->updateChildrenClippingOptions();
+        }
+        else
+        {
+            CCNode* nChild = dynamic_cast<CCNode*>(oChild);
+            checkNodeClippingOption(nChild);
+        }
+    }
+}
+
+UIClippingLayer::UIClippingLayer():
 m_bClippingEnable(false),
 m_fScissorX(0.0f),
-m_fScissorY(0.0),
-m_fScissorWidth(0.0),
-m_fScissorHeight(0.0),
+m_fScissorY(0.0f),
+m_fScissorWidth(0.0f),
+m_fScissorHeight(0.0f),
 m_bEnableCustomArea(false),
-m_bColorEnable(false),
-m_loacationInWorld(ccp(0, 0)),
+m_colorType(UL_C_NONE),
+m_loacationInWorld(CCPointZero),
 m_pClippingParent(NULL),
-m_bHandleScissor(true)
+m_bHandleScissor(true),
+m_pColorRender(NULL),
+m_pGradientRender(NULL),
+m_cColor(ccWHITE),
+m_gStartColor(ccWHITE),
+m_gEndColor(ccWHITE),
+m_nCOpacity(255)
 {
     
 }
 
-UIClippingLayerColor::~UIClippingLayerColor()
+UIClippingLayer::~UIClippingLayer()
 {
-    
+
 }
 
-UIClippingLayerColor* UIClippingLayerColor::create(const cocos2d::ccColor4B &color,float width,float height)
+UIClippingLayer* UIClippingLayer::create()
 {
-    UIClippingLayerColor * pLayer = new UIClippingLayerColor();
-    if( pLayer && pLayer->initWithColor(color,width,height))
-    {
-        pLayer->autorelease();
-        return pLayer;
-    }
-    CC_SAFE_DELETE(pLayer);
-    return NULL;
-}
-
-UIClippingLayerColor* UIClippingLayerColor::create()
-{
-    UIClippingLayerColor * pLayer = new UIClippingLayerColor();
+    UIClippingLayer * pLayer = new UIClippingLayer();
     if( pLayer && pLayer->init())
     {
         pLayer->autorelease();
@@ -70,21 +90,21 @@ UIClippingLayerColor* UIClippingLayerColor::create()
     return NULL;
 }
 
-void UIClippingLayerColor::onEnter()
+void UIClippingLayer::onEnter()
 {
-    CCLayerColor::onEnter();
+    CCLayer::onEnter();
     m_loacationInWorld = convertToWorldSpace(CCPointZero);
     checkClippingOption();
 }
 
-void UIClippingLayerColor::onExit()
+void UIClippingLayer::onExit()
 {
-    CCLayerColor::onExit();
+    CCLayer::onExit();
     m_pClippingParent = NULL;
     m_bHandleScissor = true;
 }
 
-void UIClippingLayerColor::checkClippingOption()
+void UIClippingLayer::checkClippingOption()
 {
     if (!m_bClippingEnable)
     {
@@ -96,7 +116,7 @@ void UIClippingLayerColor::checkClippingOption()
         parent = parent->getParent();
         if(parent)
         {
-            m_pClippingParent = dynamic_cast<UIClippingLayerColor*>(parent);
+            m_pClippingParent = dynamic_cast<UIClippingLayer*>(parent);
             if (m_pClippingParent && m_pClippingParent->isClippingEnable())
             {
                 m_bHandleScissor = false;
@@ -110,7 +130,7 @@ void UIClippingLayerColor::checkClippingOption()
     }
 }
 
-void UIClippingLayerColor::visit()
+void UIClippingLayer::visit()
 {
     if (m_bClippingEnable)
     {
@@ -129,7 +149,7 @@ void UIClippingLayerColor::visit()
             CCSize s = boundingBox().size;
             CCEGLView::sharedOpenGLView()->setScissorInPoints(m_loacationInWorld.x, m_loacationInWorld.y, s.width, s.height);
         }
-        CCLayerColor::visit();
+        CCLayer::visit();
         if (m_bHandleScissor)
         {
             glDisable(GL_SCISSOR_TEST);
@@ -142,55 +162,109 @@ void UIClippingLayerColor::visit()
                 CCEGLView::sharedOpenGLView()->setScissorInPoints(pClippingRect.origin.x, pClippingRect.origin.y, pClippingRect.size.width, pClippingRect.size.height);
             }
         }
-        
     }
     else
     {
-        CCLayerColor::visit();
+        CCLayer::visit();
     }
 }
 
-void UIClippingLayerColor::setClippingEnable(bool able)
+void UIClippingLayer::setClippingEnable(bool able)
 {
     m_bClippingEnable = able;
     checkClippingOption();
     updateChildrenClippingOptions();
 }
 
-void UIClippingLayerColor::updateChildrenClippingOptions()
+void UIClippingLayer::updateChildrenClippingOptions()
 {
-    for (int i=0; i<m_pChildren->count(); i++)
+    ccArray* arrayChildren = m_pChildren->data;
+    int childrenCount = arrayChildren->num;
+    for (int i=0; i<childrenCount; i++)
     {
-        UIClippingLayerColor* cChild = dynamic_cast<UIClippingLayerColor*>(m_pChildren->objectAtIndex(i));
+        CCObject * oChild = arrayChildren->arr[i];
+        UIClippingLayer* cChild = dynamic_cast<UIClippingLayer*>(oChild);
         if (cChild)
         {
             cChild->checkClippingOption();
             cChild->updateChildrenClippingOptions();
         }
+        else
+        {
+            CCNode* nChild = dynamic_cast<CCNode*>(oChild);
+            checkNodeClippingOption(nChild);
+        }
     }
 }
 
-bool UIClippingLayerColor::isClippingEnable()
+bool UIClippingLayer::isClippingEnable()
 {
     return m_bClippingEnable;
 }
 
-void UIClippingLayerColor::setColorEnable(bool enable)
+void UIClippingLayer::setColorType(UILayerColorType type)
 {
-    m_bColorEnable = enable;
+    if (m_colorType == type)
+    {
+        return;
+    }
+    switch (m_colorType)
+    {
+        case UL_C_NONE:
+            break;
+        case UL_C_COLOR:
+            if (m_pColorRender)
+            {
+                this->removeChild(m_pColorRender, true);
+                m_pColorRender = NULL;
+            }
+            break;
+        case UL_C_GRADIENT:
+            if (m_pGradientRender)
+            {
+                this->removeChild(m_pGradientRender, true);
+                m_pGradientRender = NULL;
+            }
+            break;
+        default:
+            break;
+    }
+    m_colorType = type;
+    switch (m_colorType)
+    {
+        case UL_C_NONE:
+            break;
+        case UL_C_COLOR:
+            m_pColorRender = CCLayerColor::create();
+            m_pColorRender->setContentSize(getContentSize());
+            m_pColorRender->setOpacity(m_nCOpacity);
+            m_pColorRender->setColor(m_cColor);
+            this->addChild(m_pColorRender,-1);
+            break;
+        case UL_C_GRADIENT:
+            m_pGradientRender = CCLayerGradient::create();
+            m_pGradientRender->setContentSize(getContentSize());
+            m_pGradientRender->setOpacity(m_nCOpacity);
+            m_pGradientRender->setStartColor(m_gStartColor);
+            m_pGradientRender->setEndColor(m_gEndColor);
+            this->addChild(m_pGradientRender,-1);
+            break;
+        default:
+            break;
+    }
 }
 
-bool UIClippingLayerColor::getColorEnable()
+bool UIClippingLayer::getColorType()
 {
-    return m_bColorEnable;
+    return m_colorType;
 }
 
-void UIClippingLayerColor::setClipRect(const cocos2d::CCRect &rect)
+void UIClippingLayer::setClipRect(const cocos2d::CCRect &rect)
 {
     
 }
 
-const CCRect& UIClippingLayerColor::getClippingRect()
+const CCRect& UIClippingLayer::getClippingRect()
 {
     if (m_pClippingParent)
     {
@@ -207,17 +281,17 @@ const CCRect& UIClippingLayerColor::getClippingRect()
             finalWidth += leftOffset;
         }
         float rightOffset = (m_loacationInWorld.x + m_fScissorWidth) - (pRect.origin.x + pRect.size.width);
-        if (rightOffset >= 0)
+        if (rightOffset >= 0.0f)
         {
             finalWidth -= rightOffset;
         }
         float topOffset = (m_loacationInWorld.y + m_fScissorHeight) - (pRect.origin.y + pRect.size.height);
-        if (topOffset >= 0)
+        if (topOffset >= 0.0f)
         {
             finalHeight -= topOffset;
         }
         float bottomOffset = m_loacationInWorld.y - pRect.origin.y;
-        if (bottomOffset <= 0)
+        if (bottomOffset <= 0.0f)
         {
             finalY = pRect.origin.x;
             finalHeight += bottomOffset;
@@ -234,9 +308,6 @@ const CCRect& UIClippingLayerColor::getClippingRect()
         m_clippingRect.origin.y = finalY;
         m_clippingRect.size.width = finalWidth;
         m_clippingRect.size.height = finalHeight;
-//        m_clippingRect.origin = m_loacationInWorld;
-//        m_clippingRect.size.width = m_fScissorWidth;
-//        m_clippingRect.size.height = m_fScissorHeight;
     }
     else
     {
@@ -248,26 +319,75 @@ const CCRect& UIClippingLayerColor::getClippingRect()
     
 }
 
-void UIClippingLayerColor::setClipSize(float width, float height)
+void UIClippingLayer::setClipSize(float width, float height)
 {
     m_bEnableCustomArea = true;
     m_fScissorWidth = width;
     m_fScissorHeight = height;
 }
 
-void UIClippingLayerColor::draw()
+void UIClippingLayer::setPosition(const cocos2d::CCPoint &pos)
 {
-//        to head off the draw call
-    if (m_bColorEnable)
+    CCLayer::setPosition(pos);
+    m_loacationInWorld = convertToWorldSpace(CCPointZero);
+}
+
+void UIClippingLayer::setColor(const ccColor3B &color)
+{
+    m_cColor = color;
+    if (m_pColorRender)
     {
-        CCLayerColor::draw();
+        m_pColorRender->setColor(color);
     }
 }
 
-void UIClippingLayerColor::setPosition(const cocos2d::CCPoint &pos)
+void UIClippingLayer::setStartColor(const ccColor3B &color)
 {
-    CCLayerColor::setPosition(pos);
-    m_loacationInWorld = convertToWorldSpace(CCPointZero);
+    m_gStartColor = color;
+    if (m_pGradientRender)
+    {
+        m_pGradientRender->setStartColor(color);
+    }
+}
+
+void UIClippingLayer::setEndColor(const ccColor3B &color)
+{
+    m_gEndColor = color;
+    if (m_pGradientRender)
+    {
+        m_pGradientRender->setEndColor(color);
+    }
+}
+
+void UIClippingLayer::setColorOpacity(int opacity)
+{
+    m_nCOpacity = opacity;
+    switch (m_colorType)
+    {
+        case UL_C_NONE:
+            break;
+        case UL_C_COLOR:
+            m_pColorRender->setOpacity(opacity);
+            break;
+        case UL_C_GRADIENT:
+            m_pGradientRender->setOpacity(opacity);
+            break;
+        default:
+            break;
+    }
+}
+
+void UIClippingLayer::setContentSize(const cocos2d::CCSize &size)
+{
+    CCLayer::setContentSize(size);
+    if (m_pColorRender)
+    {
+        m_pColorRender->setContentSize(size);
+    }
+    if (m_pGradientRender)
+    {
+        m_pGradientRender->setContentSize(size);
+    }
 }
 
 NS_CC_EXT_END

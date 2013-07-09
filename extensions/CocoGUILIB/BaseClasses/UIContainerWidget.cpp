@@ -23,13 +23,11 @@
  ****************************************************************************/
 
 #include "UIContainerWidget.h"
-#include "../Drawable/UIClippingLayerColor.h"
-#include "../Drawable/UIClipAbleLayerGradient.h"
+#include "../Drawable/UIClippingLayer.h"
 
 NS_CC_EXT_BEGIN
 
-#define DYNAMIC_CAST_CLIPLAYERCOLOR dynamic_cast<UIClippingLayerColor*>(m_pRender)
-#define DYNAMIC_CAST_CLIPLAYERGRADIENT dynamic_cast<UIClipAbleLayerGradient*>(m_pRender)
+#define DYNAMIC_CAST_CLIPPINGLAYER dynamic_cast<UIClippingLayer*>(m_pRender)
     
 UIContainerWidget::UIContainerWidget():
 m_fWidth(0.0),
@@ -49,7 +47,8 @@ UIContainerWidget::~UIContainerWidget()
 UIContainerWidget* UIContainerWidget::create()
 {
     UIContainerWidget* widget = new UIContainerWidget();
-    if (widget && widget->init()) {
+    if (widget && widget->init())
+    {
         return widget;
     }
     CC_SAFE_DELETE(widget);
@@ -71,7 +70,7 @@ bool UIContainerWidget::init()
 
 void UIContainerWidget::initNodes()
 {
-    m_pRender = UIClippingLayerColor::create();
+    m_pRender = UIClippingLayer::create();
 }
 
 bool UIContainerWidget::isClippingEnable()
@@ -84,15 +83,18 @@ bool UIContainerWidget::addChild(UIWidget* child)
     UIWidget::addChild(child);
     bool needSetChildCheckAble = false;
     UIWidget* parent = this;
-    while (parent != 0){
-        if (parent->isClippingEnable()){
+    while (parent)
+    {
+        if (parent->isClippingEnable())
+        {
             needSetChildCheckAble = true;
             break;
         }
         parent = parent->getWidgetParent();
     }
     
-    if (needSetChildCheckAble){
+    if (needSetChildCheckAble)
+    {
         child->setNeedCheckVisibleDepandParent(true);
     }
     return true;
@@ -101,37 +103,19 @@ bool UIContainerWidget::addChild(UIWidget* child)
 void UIContainerWidget::setClippingEnable(bool able)
 {
     m_bClipAble = able;
-    switch (m_renderType)
+    DYNAMIC_CAST_CLIPPINGLAYER->setClippingEnable(able);
+    ccArray* arrayChildren = m_children->data;
+    int childrenCount = arrayChildren->num;
+    for (int i=0; i<childrenCount; i++)
     {
-        case RENDER_TYPE_LAYERCOLOR:
-            DYNAMIC_CAST_CLIPLAYERCOLOR->setClippingEnable(able);
-            break;
-        case RENDER_TYPE_LAYERGRADIENT:
-            DYNAMIC_CAST_CLIPLAYERGRADIENT->setClippingEnable(able);
-            break;
-        default:
-            break;
-    }
-    for (int i=0; i<m_children->count(); i++)
-    {
-        UIWidget* child = (UIWidget*)(m_children->objectAtIndex(i));
+        UIWidget* child = (UIWidget*)(arrayChildren->arr[i]);
         child->setNeedCheckVisibleDepandParent(able);
     }
 }
 
 void UIContainerWidget::setClipRect(const cocos2d::CCRect &rect)
 {
-    switch (m_renderType)
-    {
-        case RENDER_TYPE_LAYERCOLOR:
-            DYNAMIC_CAST_CLIPLAYERCOLOR->setClipRect(rect);
-            break;
-        case RENDER_TYPE_LAYERGRADIENT:
-            DYNAMIC_CAST_CLIPLAYERGRADIENT->setClipRect(rect);
-            break;
-        default:
-            break;
-    }
+    DYNAMIC_CAST_CLIPPINGLAYER->setClipRect(rect);
 }
 
 void UIContainerWidget::updateWidth()
@@ -146,17 +130,7 @@ void UIContainerWidget::updateHeight()
 
 void UIContainerWidget::setSize(const cocos2d::CCSize &size)
 {
-    switch (m_renderType)
-    {
-        case RENDER_TYPE_LAYERCOLOR:
-            DYNAMIC_CAST_CLIPLAYERCOLOR->setContentSize(size);
-            break;
-        case RENDER_TYPE_LAYERGRADIENT:
-            DYNAMIC_CAST_CLIPLAYERGRADIENT->setContentSize(size);
-            break;
-        default:
-            break;
-    }
+    DYNAMIC_CAST_CLIPPINGLAYER->setContentSize(size);
     m_fWidth = size.width;
     m_fHeight = size.height;
     updateClipSize();
@@ -176,7 +150,7 @@ bool UIContainerWidget::hitTest(cocos2d::CCNode *node, cocos2d::CCPoint &pt)
 {
     cocos2d::CCPoint nsp = node->convertToNodeSpace(pt);
     cocos2d::CCSize bb = node->getContentSize();
-    if (nsp.x >= 0 && nsp.x <= bb.width && nsp.y >= 0 && nsp.y <= bb.height)
+    if (nsp.x >= 0.0f && nsp.x <= bb.width && nsp.y >= 0.0f && nsp.y <= bb.height)
     {
         return true;
     }
@@ -205,32 +179,19 @@ void UIContainerWidget::updateClipSize()
 {
     float asx = getAbsoluteScaleX();
     float asy = getAbsoluteScaleY();
-    
-    switch (m_renderType)
-    {
-        case RENDER_TYPE_LAYERCOLOR:
-        {
-            cocos2d::CCSize size = DYNAMIC_CAST_CLIPLAYERCOLOR->getContentSize();
-            DYNAMIC_CAST_CLIPLAYERCOLOR->setClipSize(size.width*asx, size.height*asy);
-            break;
-        }
-        case RENDER_TYPE_LAYERGRADIENT:
-        {
-            cocos2d::CCSize size = DYNAMIC_CAST_CLIPLAYERGRADIENT->getContentSize();
-            DYNAMIC_CAST_CLIPLAYERGRADIENT->setClipSize(size.width*asx, size.height*asy);
-            break;
-        }
-        default:
-            break;
-    }
+    cocos2d::CCSize size = DYNAMIC_CAST_CLIPPINGLAYER->getContentSize();
+    DYNAMIC_CAST_CLIPPINGLAYER->setClipSize(size.width*asx, size.height*asy);
 }
 
 CCSize UIContainerWidget::getWrapSize() const
 {
-    for (int i=0; i<m_children->count(); i++)
+    ccArray* arrayChildren = m_children->data;
+    int childrenCount = arrayChildren->num;
+    for (int i=0; i<childrenCount; i++)
     {
-        UIWidget* child = dynamic_cast<UIWidget*>(m_children->objectAtIndex(i));
-        switch (child->getWidgetType()) {
+        UIWidget* child = dynamic_cast<UIWidget*>(arrayChildren->arr[i]);
+        switch (child->getWidgetType())
+        {
             case WidgetTypeWidget:
                 break;
             case WidgetTypeContainer:

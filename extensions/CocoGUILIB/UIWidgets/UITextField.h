@@ -48,9 +48,9 @@ public:
     static UITextField* create();
     virtual bool init();
     virtual void initNodes();
-    void setTouchSize(float width,float height);
+    void setTouchSize(const CCSize &size);
     void setText(const char* text);
-    void setSize(cocos2d::CCSize &size);
+    void setSize(const cocos2d::CCSize &size);
     void setPlaceHolder(const char* value);
     void setFontSize(int size);
     virtual void didNotSelectSelf();

@@ -181,23 +181,23 @@ void CocosGUISlotScene::runThisTest()
     createEquip();
     
     // initialize touch able
-    clothesPanel->setBeTouchEnable(true);
+    clothesPanel->setTouchEnable(true);
     CCARRAY_FOREACH(clothesPanel->getChildren(), obj)
     {
         UIWidget* child = dynamic_cast<UIWidget*>(obj);
-        child->setBeTouchEnable(true);
+        child->setTouchEnable(true);
     }
-    weaponsPanel->setBeTouchEnable(false);
+    weaponsPanel->setTouchEnable(false);
     CCARRAY_FOREACH(weaponsPanel->getChildren(), obj)
     {
         UIWidget* child = dynamic_cast<UIWidget*>(obj);
-        child->setBeTouchEnable(false);
+        child->setTouchEnable(false);
     }
-    petsPanel->setBeTouchEnable(true);
+    petsPanel->setTouchEnable(true);
     CCARRAY_FOREACH(petsPanel->getChildren(), obj)
     {
         UIWidget* child = dynamic_cast<UIWidget*>(obj);
-        child->setBeTouchEnable(false);
+        child->setTouchEnable(false);
     }
     //
     
@@ -205,7 +205,7 @@ void CocosGUISlotScene::runThisTest()
     UIButton* exit = UIButton::create();
     exit->setTextures("cocosgui/CloseNormal.png", "cocosgui/CloseSelected.png", "");
     exit->setPosition(ccp(430, 60));
-    exit->setBeTouchEnable(true);
+    exit->setTouchEnable(true);
     exit->addReleaseEvent(this, coco_releaseselector(CocosGUISlotScene::toCocosGUITestScene));
     ul->addWidget(exit);
 }
@@ -267,40 +267,40 @@ void CocosGUISlotScene::switchBtnCallBack(CCObject *pSender)
             petsPanel->setPosition(container_3_Position);
             
             // equip slot touch able
-            clothesPanel->setBeTouchEnable(true);
+            clothesPanel->setTouchEnable(true);
             CCARRAY_FOREACH(clothesPanel->getChildren(), obj)
             {
                 UIWidget* child = dynamic_cast<UIWidget*>(obj);
-                child->setBeTouchEnable(true);
+                child->setTouchEnable(true);
             }
-            weaponsPanel->setBeTouchEnable(false);
+            weaponsPanel->setTouchEnable(false);
             CCARRAY_FOREACH(weaponsPanel->getChildren(), obj)
             {
                 UIWidget* child = dynamic_cast<UIWidget*>(obj);
-                child->setBeTouchEnable(false);
+                child->setTouchEnable(false);
             }
-            petsPanel->setBeTouchEnable(true);
+            petsPanel->setTouchEnable(true);
             CCARRAY_FOREACH(petsPanel->getChildren(), obj)
             {
                 UIWidget* child = dynamic_cast<UIWidget*>(obj);
-                child->setBeTouchEnable(false);
+                child->setTouchEnable(false);
             }
             
             // equip touch able
             CCDICT_FOREACH(m_dicEquipClothes, element)
             {
                 UIWidget* widget = dynamic_cast<UIWidget*>(element->getObject());
-                widget->setBeTouchEnable(true);
+                widget->setTouchEnable(true);
             }
             CCDICT_FOREACH(m_dicEquipWeapons, element)
             {
                 UIWidget* widget = dynamic_cast<UIWidget*>(element->getObject());
-                widget->setBeTouchEnable(false);
+                widget->setTouchEnable(false);
             }
             CCDICT_FOREACH(m_dicEquipPets, element)
             {
                 UIWidget* widget = dynamic_cast<UIWidget*>(element->getObject());
-                widget->setBeTouchEnable(false);
+                widget->setTouchEnable(false);
             }
         }
             break;
@@ -320,40 +320,40 @@ void CocosGUISlotScene::switchBtnCallBack(CCObject *pSender)
             clothesPanel->setPosition(container_3_Position);
             
             // equip slot touch able
-            weaponsPanel->setBeTouchEnable(true);
+            weaponsPanel->setTouchEnable(true);
             CCARRAY_FOREACH(weaponsPanel->getChildren(), obj)
             {
                 UIWidget* child = dynamic_cast<UIWidget*>(obj);
-                child->setBeTouchEnable(true);
+                child->setTouchEnable(true);
             }
-            clothesPanel->setBeTouchEnable(false);
+            clothesPanel->setTouchEnable(false);
             CCARRAY_FOREACH(clothesPanel->getChildren(), obj)
             {
                 UIWidget* child = dynamic_cast<UIWidget*>(obj);
-                child->setBeTouchEnable(false);
+                child->setTouchEnable(false);
             }
-            petsPanel->setBeTouchEnable(false);
+            petsPanel->setTouchEnable(false);
             CCARRAY_FOREACH(petsPanel->getChildren(), obj)
             {
                 UIWidget* child = dynamic_cast<UIWidget*>(obj);
-                child->setBeTouchEnable(false);
+                child->setTouchEnable(false);
             }
             
             // equip touch able
             CCDICT_FOREACH(m_dicEquipClothes, element)
             {
                 UIWidget* widget = dynamic_cast<UIWidget*>(element->getObject());
-                widget->setBeTouchEnable(false);
+                widget->setTouchEnable(false);
             }
                 CCDICT_FOREACH(m_dicEquipWeapons, element)
             {
                 UIWidget* widget = dynamic_cast<UIWidget*>(element->getObject());
-                widget->setBeTouchEnable(true);
+                widget->setTouchEnable(true);
             }
                 CCDICT_FOREACH(m_dicEquipPets, element)
             {
                 UIWidget* widget = dynamic_cast<UIWidget*>(element->getObject());
-                widget->setBeTouchEnable(false);
+                widget->setTouchEnable(false);
             }
         }
             break;
@@ -373,40 +373,40 @@ void CocosGUISlotScene::switchBtnCallBack(CCObject *pSender)
             weaponsPanel->setPosition(container_3_Position);
             
             // equip slot touch able
-            petsPanel->setBeTouchEnable(true);
+            petsPanel->setTouchEnable(true);
             CCARRAY_FOREACH(petsPanel->getChildren(), obj)
             {
                 UIWidget* child = dynamic_cast<UIWidget*>(obj);
-                child->setBeTouchEnable(true);
+                child->setTouchEnable(true);
             }
-            clothesPanel->setBeTouchEnable(false);
+            clothesPanel->setTouchEnable(false);
             CCARRAY_FOREACH(clothesPanel->getChildren(), obj)
             {
                 UIWidget* child = dynamic_cast<UIWidget*>(obj);
-                child->setBeTouchEnable(false);
+                child->setTouchEnable(false);
             }
-            weaponsPanel->setBeTouchEnable(false);
+            weaponsPanel->setTouchEnable(false);
             CCARRAY_FOREACH(weaponsPanel->getChildren(), obj)
             {
                 UIWidget* child = dynamic_cast<UIWidget*>(obj);
-                child->setBeTouchEnable(false);
+                child->setTouchEnable(false);
             }
             
             // equip touch able
             CCDICT_FOREACH(m_dicEquipClothes, element)
             {
                 UIWidget* widget = dynamic_cast<UIWidget*>(element->getObject());
-                widget->setBeTouchEnable(false);
+                widget->setTouchEnable(false);
             }
             CCDICT_FOREACH(m_dicEquipWeapons, element)
             {
                 UIWidget* widget = dynamic_cast<UIWidget*>(element->getObject());
-                widget->setBeTouchEnable(false);
+                widget->setTouchEnable(false);
             }
             CCDICT_FOREACH(m_dicEquipPets, element)
             {
                 UIWidget* widget = dynamic_cast<UIWidget*>(element->getObject());
-                widget->setBeTouchEnable(true);
+                widget->setTouchEnable(true);
             }
         }
             break;
@@ -462,7 +462,7 @@ void CocosGUISlotScene::createClothes()
             jacketIv->setWidgetZOrder(lastChild->getWidgetZOrder() + 1);
         }
         jacketIv->setName(jacket_name[i]);
-        jacketIv->setBeTouchEnable(true);
+        jacketIv->setTouchEnable(true);
         jacketIv->addPushDownEvent(this, coco_pushselector(CocosGUISlotScene::touchEquip));
         jacketIv->addMoveEvent(this, coco_moveselector(CocosGUISlotScene::moveEquip));
         jacketIv->addReleaseEvent(this, coco_releaseselector(CocosGUISlotScene::dropEquip));        
@@ -508,7 +508,7 @@ void CocosGUISlotScene::createClothes()
             kimonoIv->setWidgetZOrder(lastChild->getWidgetZOrder() + 1);
         }
         kimonoIv->setName(kimono_name[i]);
-        kimonoIv->setBeTouchEnable(true);
+        kimonoIv->setTouchEnable(true);
         kimonoIv->addPushDownEvent(this, coco_pushselector(CocosGUISlotScene::touchEquip));
         kimonoIv->addMoveEvent(this, coco_moveselector(CocosGUISlotScene::moveEquip));
         kimonoIv->addReleaseEvent(this, coco_releaseselector(CocosGUISlotScene::dropEquip));
@@ -981,7 +981,7 @@ void CocosGUISlotScene::dropEquip(CCObject *pSender)
         CCCallFuncO* calllFunc0 = CCCallFuncO::create(this, callfuncO_selector(CocosGUISlotScene::backOver), widget);
         CCSequence* seq = CCSequence::create(ease, calllFunc0, NULL);
         widget->runAction(seq);
-        widget->setBeTouchEnable(false);
+        widget->setTouchEnable(false);
     }
     
     widget->setColor(ccc3(255, 255, 255));
@@ -991,7 +991,7 @@ void CocosGUISlotScene::backOver(CCObject *pObject)
 {
     UIWidget* widget = dynamic_cast<UIWidget*>(pObject);
     
-    widget->setBeTouchEnable(true);
+    widget->setTouchEnable(true);
     widget->removeFromParentAndCleanup(false);
     lastWidgetParent->addChild(widget);
     widget->setPosition(widgetLastNodePosition);

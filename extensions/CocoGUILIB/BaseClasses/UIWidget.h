@@ -110,8 +110,8 @@ public:
     virtual void setWidgetZOrder(int z);
     virtual int getWidgetZOrder();
     virtual void reorderChild(UIWidget* child);
-    void setBeTouchEnable(bool enable);
-    bool getBeTouchEnable();
+    void setTouchEnable(bool enable);
+    bool isTouchEnable();
     void setUpdateEnable(bool enable);
     bool getUpdateEnable();
     bool isFocus();
@@ -244,7 +244,7 @@ protected:
     bool m_bVisible;
     bool m_bActived;
     bool m_bFocus;
-    bool m_bBeTouchEnabled;
+    bool m_bTouchEnabled;
     int m_nWidgetZOrder;
     cocos2d::CCPoint m_anchorPoint;
     UIWidget* m_pWidgetParent;

@@ -42,7 +42,7 @@ m_nWidgetZOrder(0),
 m_pWidgetParent(NULL),
 m_nCurPressState(WidgetStateNone),
 m_nPrevPressstate(WidgetStateNone),
-m_bBeTouchEnabled(false),
+m_bTouchEnabled(false),
 m_nWidgetTag(-1),
 m_bUpdateEnable(false),
 m_pRender(NULL),
@@ -62,8 +62,8 @@ m_pfnCancelSelector(NULL),
 m_fContentSizeHeight(0),
 m_fContentSizeWidth(0),
 m_bUseMergedTexture(false),
-m_fAbsoluteScaleX(1.0),
-m_fAbsoluteScaleY(1.0),
+m_fAbsoluteScaleX(1.0f),
+m_fAbsoluteScaleY(1.0f),
 m_bScaleXDirty(true),
 m_bScaleYDirty(true),
 m_bAbsoluteVisible(true),
@@ -107,6 +107,14 @@ bool UIWidget::init()
 
 void UIWidget::releaseResoures()
 {
+    m_pPushListener = NULL;
+    m_pfnPushSelector = NULL;
+    m_pMoveListener = NULL;
+    m_pfnMoveSelector = NULL;
+    m_pReleaseListener = NULL;
+    m_pfnReleaseSelector = NULL;
+    m_pCancelListener = NULL;
+    m_pfnCancelSelector = NULL;
     setUpdateEnable(false);
     if (m_pUILayer)
     {
@@ -136,7 +144,7 @@ bool UIWidget::addChild(UIWidget *child)
         return false;
     }
     child->m_pWidgetParent = this;
-    int childrenCount = m_children->count();
+    int childrenCount = m_children->data->num;
     if (childrenCount <= 0)
     {
         m_children->addObject(child);
@@ -144,9 +152,10 @@ bool UIWidget::addChild(UIWidget *child)
     else
     {
         bool seekSucceed = false;
+        ccArray* arrayChildren = m_children->data;
         for (int i=childrenCount-1; i>=0; --i)
         {
-            UIWidget* widget = (UIWidget*)(m_children->objectAtIndex(i));
+            UIWidget* widget = (UIWidget*)(arrayChildren->arr[i]);
             if (child->getWidgetZOrder() >= widget->getWidgetZOrder())
             {
                 if (i == childrenCount-1)
@@ -171,9 +180,12 @@ bool UIWidget::addChild(UIWidget *child)
     child->m_pRender->setZOrder(child->getWidgetZOrder());
     m_pRender->addChild(child->m_pRender);
     
-    if (m_pUILayer) {
-        for (int i=0; i<m_children->count(); i++) {
-            UIWidget* child = (UIWidget*)(m_children->objectAtIndex(i));
+    if (m_pUILayer)
+    {
+        int childrenCount = m_children->data->num;
+        ccArray* arrayChildren = m_children->data;
+        for (int i=0; i<childrenCount; i++) {
+            UIWidget* child = (UIWidget*)(arrayChildren->arr[i]);
             child->updateChildrenUILayer(m_pUILayer);
         }
     }
@@ -190,26 +202,33 @@ void UIWidget::updateChildrenUILayer(UILayer* uiLayer)
 {
     setUILayer(uiLayer);
     setUpdateEnable(getUpdateEnable());
-    for (int i=0; i<m_children->count(); i++) {
-        UIWidget* child = (UIWidget*)(m_children->objectAtIndex(i));
+    int childrenCount = m_children->data->num;
+    ccArray* arrayChildren = m_children->data;
+    for (int i=0; i<childrenCount; i++) {
+        UIWidget* child = (UIWidget*)(arrayChildren->arr[i]);
         child->updateChildrenUILayer(m_pUILayer);
     }
 }
 
 void UIWidget::disableUpdate()
 {
-    if (m_pUILayer) {
+    if (m_pUILayer)
+    {
         m_pUILayer->removeUpdateEnableWidget(this);
     }
-    for (int i=0; i<m_children->count(); i++) {
-        UIWidget* child = (UIWidget*)(m_children->objectAtIndex(i));
+    int childrenCount = m_children->data->num;
+    ccArray* arrayChildren = m_children->data;
+    for (int i=0; i<childrenCount; i++)
+    {
+        UIWidget* child = (UIWidget*)(arrayChildren->arr[i]);
         child->disableUpdate();
     }
 }
 
 void UIWidget::structureChangedEvent()
 {
-    if (m_pUILayer) {
+    if (m_pUILayer)
+    {
         m_pUILayer->getInputManager()->uiSceneHasChanged();
     }
 }
@@ -282,7 +301,7 @@ void UIWidget::removeFromParentAndCleanup(bool cleanup)
 
 void UIWidget::removeAllChildrenAndCleanUp(bool cleanup)
 {
-    int times = m_children->count();
+    int times = m_children->data->num;
     for (int i=0;i<times;i++)
     {
         UIWidget* child = (UIWidget*)(m_children->lastObject());
@@ -298,7 +317,8 @@ void UIWidget::setWidgetZOrder(int z)
 {
     m_nWidgetZOrder = z;
     m_pRender->setZOrder(z);
-    if (m_pWidgetParent) {
+    if (m_pWidgetParent)
+    {
         m_pWidgetParent->reorderChild(this);
     }
 }
@@ -311,16 +331,18 @@ int UIWidget::getWidgetZOrder()
 void UIWidget::reorderChild(UIWidget* child)
 {
     m_children->removeObject(child);
-    int childrenCount = m_children->count();
-    if (childrenCount <= 0) {
+    int childrenCount = m_children->data->num;
+    if (childrenCount <= 0)
+    {
         m_children->addObject(child);
     }
     else
     {
         bool seekSucceed = false;
+        ccArray* arrayChildren = m_children->data;
         for (int i=childrenCount-1; i>=0; --i)
         {
-            UIWidget* widget = (UIWidget*)(m_children->objectAtIndex(i));
+            UIWidget* widget = (UIWidget*)(arrayChildren->arr[i]);
             if (child->getWidgetZOrder() >= widget->getWidgetZOrder())
             {
                 if (i == childrenCount-1)
@@ -350,24 +372,25 @@ void UIWidget::setNeedCheckVisibleDepandParent(bool need)
     m_bNeedCheckVisibleDependParent = need;
     if (m_children)
     {
-        for (int i=0;i<m_children->count();i++)
+        ccArray* arrayChildren = m_children->data;
+        int childrenCount = arrayChildren->num;
+        for (int i=0;i<childrenCount;i++)
         {
-            UIWidget* child = (UIWidget*)(m_children->objectAtIndex(i));
+            UIWidget* child = (UIWidget*)(arrayChildren->arr[i]);
             child->setNeedCheckVisibleDepandParent(need);
         }
     }
 }
 
-void UIWidget::setBeTouchEnable(bool enable)
+void UIWidget::setTouchEnable(bool enable)
 {
-    m_bBeTouchEnabled = enable;
-//    updateBeTouchEnable(enable);
+    m_bTouchEnabled = enable;
     structureChangedEvent();
 }
 
-bool UIWidget::getBeTouchEnable()
+bool UIWidget::isTouchEnable()
 {
-    return m_bBeTouchEnabled;
+    return m_bTouchEnabled;
 }
 
 void UIWidget::setUpdateEnable(bool enable)
@@ -470,10 +493,12 @@ bool UIWidget::isActive()
 
 void UIWidget::updateBeTouchEnable(bool enable)
 {
-    for (int i = 0; i < m_children->count(); i++)
+    ccArray* arrayChildren = m_children->data;
+    int childrenCount = arrayChildren->num;
+    for (int i = 0; i < childrenCount; i++)
     {
-        UIWidget* child = (UIWidget*)(m_children->objectAtIndex(i));
-        child->setBeTouchEnable(enable);
+        UIWidget* child = (UIWidget*)(arrayChildren->arr[i]);
+        child->setTouchEnable(enable);
     }
 }
 
@@ -620,10 +645,10 @@ void UIWidget::getLocationInWindow()
 cocos2d::CCRect UIWidget::getRect()
 {
     cocos2d::CCNode* validNode = getValidNode();
-    float width = 0.0;
-    float height = 0.0;
-    float anchorPointX = 0.0;
-    float anchorPointY = 0.0;
+    float width = 0.0f;
+    float height = 0.0f;
+    float anchorPointX = 0.0f;
+    float anchorPointY = 0.0f;
     getLocationInWindow();
     cocos2d::CCSize nodeSize = validNode->getContentSize();
     width = nodeSize.width*getAbsoluteScaleX();
@@ -651,10 +676,10 @@ cocos2d::CCRect UIWidget::getRect()
 cocos2d::CCRect UIWidget::getRelativeRect()
 {
     cocos2d::CCNode* validNode = getValidNode();
-    float width = 0.0;
-    float height = 0.0;
-    float anchorPointX = 0.0;
-    float anchorPointY = 0.0;
+    float width = 0.0f;
+    float height = 0.0f;
+    float anchorPointX = 0.0f;
+    float anchorPointY = 0.0f;
     cocos2d::CCSize nodeSize = validNode->getContentSize();
     width = nodeSize.width*getScaleX();
     height = nodeSize.height*getScaleY();
@@ -705,7 +730,7 @@ bool UIWidget::hitTest(cocos2d::CCNode* node, cocos2d::CCPoint &pt)
 {
     cocos2d::CCPoint nsp = node->convertToNodeSpace(pt);
     cocos2d::CCRect bb = node->boundingBox();
-    if (nsp.x >= 0 && nsp.x <= bb.size.width && nsp.y >= 0 && nsp.y <= bb.size.height)
+    if (nsp.x >= 0.0f && nsp.x <= bb.size.width && nsp.y >= 0.0f && nsp.y <= bb.size.height)
     {
         return true;
     }
@@ -788,9 +813,11 @@ void UIWidget::setScale(float scale)
 void UIWidget::onScaleDirtyChanged()
 {
     m_bScaleXDirty = m_bScaleYDirty = true;
-    for (int i=0; i<getChildren()->count(); i++)
+    ccArray* arrayChildren = m_children->data;
+    int childrenCount = arrayChildren->num;
+    for (int i=0; i<childrenCount; i++)
     {
-        UIWidget* child = (UIWidget*)(getChildren()->objectAtIndex(i));
+        UIWidget* child = (UIWidget*)(arrayChildren->arr[i]);
         child->onScaleDirtyChanged();
     }
 }
@@ -798,9 +825,11 @@ void UIWidget::onScaleDirtyChanged()
 void UIWidget::onScaleXDirtyChanged()
 {
     m_bScaleXDirty = true;
-    for (int i=0; i<getChildren()->count(); i++)
+    ccArray* arrayChildren = m_children->data;
+    int childrenCount = arrayChildren->num;
+    for (int i=0; i<childrenCount; i++)
     {
-        UIWidget* child = (UIWidget*)(getChildren()->objectAtIndex(i));
+        UIWidget* child = (UIWidget*)(arrayChildren->arr[i]);
         child->onScaleXDirtyChanged();
     }
 }
@@ -808,9 +837,11 @@ void UIWidget::onScaleXDirtyChanged()
 void UIWidget::onScaleYDirtyChanged()
 {
     m_bScaleYDirty = true;
-    for (int i=0; i<getChildren()->count(); i++)
+    ccArray* arrayChildren = m_children->data;
+    int childrenCount = arrayChildren->num;
+    for (int i=0; i<childrenCount; i++)
     {
-        UIWidget* child = (UIWidget*)(getChildren()->objectAtIndex(i));
+        UIWidget* child = (UIWidget*)(arrayChildren->arr[i]);
         child->onScaleYDirtyChanged();
     }
 }
@@ -1038,9 +1069,11 @@ bool UIWidget::getAbsoluteVisible()
 
 void UIWidget::updateChildrenVisibleDirty(bool dirty)
 {
-    for (int i=0; i<getChildren()->count(); i++)
+    ccArray* arrayChildren = m_children->data;
+    int childrenCount = arrayChildren->num;
+    for (int i=0; i<childrenCount; i++)
     {
-        UIWidget* child = (UIWidget*)(getChildren()->objectAtIndex(i));
+        UIWidget* child = (UIWidget*)(arrayChildren->arr[i]);
         child->m_bVisibleDirty = dirty;
         child->updateChildrenVisibleDirty(dirty);
     }
@@ -1048,9 +1081,11 @@ void UIWidget::updateChildrenVisibleDirty(bool dirty)
 
 void UIWidget::updateChildrenOpacityDirty(bool dirty)
 {
-    for (int i = 0; i < getChildren()->count(); ++i)
+    ccArray* arrayChildren = m_children->data;
+    int childrenCount = arrayChildren->num;
+    for (int i = 0; i < childrenCount; i++)
     {
-        UIWidget* child = (UIWidget*)(getChildren()->objectAtIndex(i));
+        UIWidget* child = (UIWidget*)(arrayChildren->arr[i]);
         child->m_bOpacityDirty = dirty;
         child->updateChildrenOpacityDirty(dirty);
     }

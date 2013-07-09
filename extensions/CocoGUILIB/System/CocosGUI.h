@@ -36,7 +36,6 @@
 #include "../UIWidgets/UILabelAtlas.h"
 #include "../UIWidgets/UILoadingBar.h"
 #include "../UIWidgets/UIPanel.h"
-#include "../UIWidgets/UIGradientPanel.h"
 #include "../UIWidgets/UIScrollView.h"
 #include "../UIWidgets/UISlider.h"
 #include "../UIWidgets/UITextArea.h"

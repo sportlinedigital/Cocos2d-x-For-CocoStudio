@@ -122,9 +122,11 @@ void UIHelper::adjustWidgetProperty(UIWidget* root,float xProportion,float yProp
         root->setPosition(ccp(root->getPosition().x*xProportion, root->getPosition().y*yProportion));
 
     }
-    for (int i=0; i<root->getChildren()->count(); i++)
+    ccArray* arrayRootChildren = root->getChildren()->data;
+    int rootChildrenCount = arrayRootChildren->num;
+    for (int i=0; i<rootChildrenCount; i++)
     {
-        UIWidget* child = (UIWidget*)(root->getChildren()->objectAtIndex(i));
+        UIWidget* child = (UIWidget*)(arrayRootChildren->arr[i]);
         adjustWidgetProperty(child,xProportion,yProportion,scaleAdapt,equalProportions);
     }
 }
@@ -135,15 +137,16 @@ void UIHelper::addSpriteFrame(const char *fileName)
     {
         return;
     }
-    for (int i=0;i<m_textureFiles->count();i++)
+    ccArray* arrayTextures = m_textureFiles->data;
+    int length = arrayTextures->num;
+    for (int i=0;i<length;i++)
     {
-        cocos2d::CCString* file = (cocos2d::CCString*)(m_textureFiles->objectAtIndex(i));
+        cocos2d::CCString* file = (cocos2d::CCString*)(arrayTextures->arr[i]);
         if (strcmp(file->m_sString.c_str(), fileName) == 0)
         {
             return;
         }
     }
-    
     m_textureFiles->addObject(cocos2d::CCString::create(fileName));
     cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(fileName);
 }
@@ -154,9 +157,11 @@ void UIHelper::removeSpriteFrame(const char *fileName)
     {
         return;
     }
-    for (int i=0;i<m_textureFiles->count();i++)
+    ccArray* arrayTextures = m_textureFiles->data;
+    int length = arrayTextures->num;
+    for (int i=0;i<length;i++)
     {
-        cocos2d::CCString* file = (cocos2d::CCString*)(m_textureFiles->objectAtIndex(i));
+        cocos2d::CCString* file = (cocos2d::CCString*)(arrayTextures->arr[i]);
         if (strcmp(file->m_sString.c_str(), fileName) == 0)
         {
             cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFrameByName(fileName);
@@ -168,9 +173,11 @@ void UIHelper::removeSpriteFrame(const char *fileName)
 
 void UIHelper::removeAllSpriteFrame()
 {
-    for (int i=0;i<m_textureFiles->count();i++)
+    ccArray* arrayTextures = m_textureFiles->data;
+    int length = arrayTextures->num;
+    for (int i=0;i<length;i++)
     {
-        cocos2d::CCString* file = (cocos2d::CCString*)(m_textureFiles->objectAtIndex(i));
+        cocos2d::CCString* file = (cocos2d::CCString*)(arrayTextures->arr[i]);
         cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFrameByName(file->m_sString.c_str());
     }
     m_textureFiles->removeAllObjects();
@@ -186,9 +193,11 @@ UIWidget* UIHelper::seekWidgetByTag(UIWidget* root, int tag)
     {
         return root;
     }
-    for (int i=0;i<root->getChildren()->count();i++)
+    ccArray* arrayRootChildren = root->getChildren()->data;
+    int length = arrayRootChildren->num;
+    for (int i=0;i<length;i++)
     {
-        UIWidget* child = (UIWidget*)(root->getChildren()->objectAtIndex(i));
+        UIWidget* child = (UIWidget*)(arrayRootChildren->arr[i]);
         UIWidget* res = seekWidgetByTag(child,tag);
         if (res != NULL)
         {
@@ -208,9 +217,11 @@ UIWidget* UIHelper::seekWidgetByName(UIWidget* root, const char *name)
     {
         return root;
     }
-    for (int i=0;i<root->getChildren()->count();i++)
+    ccArray* arrayRootChildren = root->getChildren()->data;
+    int length = arrayRootChildren->num;
+    for (int i=0;i<length;i++)
     {
-        UIWidget* child = (UIWidget*)(root->getChildren()->objectAtIndex(i));
+        UIWidget* child = (UIWidget*)(arrayRootChildren->arr[i]);
         UIWidget* res = seekWidgetByName(child,name);
         if (res != NULL)
         {
@@ -230,9 +241,11 @@ UIWidget* UIHelper::seekActionWidgetByActionTag(UIWidget* root, int tag)
 	{
 		return root;
 	}
-	for (int i=0;i<root->getChildren()->count();i++)
+    ccArray* arrayRootChildren = root->getChildren()->data;
+    int length = arrayRootChildren->num;
+	for (int i=0;i<length;i++)
 	{
-		UIWidget* child = (UIWidget*)(root->getChildren()->objectAtIndex(i));
+		UIWidget* child = (UIWidget*)(arrayRootChildren->arr[i]);
 		UIWidget* res = seekActionWidgetByActionTag(child,tag);
 		if (res != NULL)
 		{

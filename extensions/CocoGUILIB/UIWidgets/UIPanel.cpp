@@ -24,12 +24,12 @@
 
 #include "UIPanel.h"
 #include "../../GUI/CCControlExtension/CCScale9Sprite.h"
-#include "../Drawable/UIClippingLayerColor.h"
+#include "../Drawable/UIClippingLayer.h"
 
 
 NS_CC_EXT_BEGIN
 
-#define DYNAMIC_CAST_CLIPLAYERCOLOR dynamic_cast<UIClippingLayerColor*>(m_pRender)
+#define DYNAMIC_CAST_CLIPPINGLAYER dynamic_cast<UIClippingLayer*>(m_pRender)
 
 UIPanel::UIPanel():
 m_bBackGroundScale9Enable(false),
@@ -141,9 +141,26 @@ void UIPanel::setBackGroundImageCapInsets(const cocos2d::CCRect &capInsets)
     }
 }
 
-void UIPanel::setBackGroundColorEnable(bool able)
+void UIPanel::setBackGroundColorType(PanelColorType type)
 {
-    DYNAMIC_CAST_CLIPLAYERCOLOR->setColorEnable(able);
+    DYNAMIC_CAST_CLIPPINGLAYER->setColorType((UILayerColorType)type);
+}
+
+void UIPanel::setBackGroundColor(const ccColor3B &color)
+{
+    DYNAMIC_CAST_CLIPPINGLAYER->setColor(color);
+}
+
+void UIPanel::setBackGroundColor(const ccColor3B &startColor, const ccColor3B &endColor)
+{
+    UIClippingLayer * render = DYNAMIC_CAST_CLIPPINGLAYER;
+    render->setStartColor(startColor);
+    render->setEndColor(endColor);
+}
+
+void UIPanel::setBackGroundColorOpacity(int opacity)
+{
+    DYNAMIC_CAST_CLIPPINGLAYER->setColorOpacity(opacity);
 }
 
 NS_CC_EXT_END

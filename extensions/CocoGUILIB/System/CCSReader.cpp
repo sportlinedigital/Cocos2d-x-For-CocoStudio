@@ -226,7 +226,7 @@ void CCSReader::setPropsForWidgetFromJsonDictionary(UIWidget*widget,cs::CSJsonDi
 {
     widget->setWidgetTag(DICTOOL->getIntValue_json(options, "tag"));
 	widget->setActionTag(DICTOOL->getIntValue_json(options, "actiontag"));
-    widget->setBeTouchEnable(DICTOOL->getBooleanValue_json(options, "touchAble"));
+    widget->setTouchEnable(DICTOOL->getBooleanValue_json(options, "touchAble"));
     const char* name = DICTOOL->getStringValue_json(options, "name");
     const char* widgetName = name?name:"default";
     widget->setName(widgetName);
@@ -480,7 +480,7 @@ void CCSReader::setPropsForLabelAtlasFromJsonDictionary(UIWidget*widget,cs::CSJs
     bool iw = DICTOOL->checkObjectExist_json(options, "itemWidth");
     bool ih = DICTOOL->checkObjectExist_json(options, "itemHeight");
     bool scm = DICTOOL->checkObjectExist_json(options, "startCharMap");
-    if (sv && cmf && iw && ih && scm && (strcmp(DICTOOL->getStringValue_json(options, "startCharMap"), "") != 0))
+    if (sv && cmf && iw && ih && scm && (strcmp(DICTOOL->getStringValue_json(options, "charMapFile"), "") != 0))
     {
 		std::string tp_c = m_strFilePath;
 		const char* cmf_tp = NULL;
@@ -723,7 +723,14 @@ void CCSReader::setPropsForTextFieldFromJsonDictionary(UIWidget*widget,cs::CSJso
     bool tsh = DICTOOL->checkObjectExist_json(options, "touchSizeHeight");
     if (tsw && tsh)
     {
-        textField->setTouchSize(DICTOOL->getFloatValue_json(options, "touchSizeWidth"), DICTOOL->getFloatValue_json(options,"touchSizeHeight"));
+        textField->setTouchSize(CCSizeMake(DICTOOL->getFloatValue_json(options, "touchSizeWidth"), DICTOOL->getFloatValue_json(options,"touchSizeHeight")));
+    }
+    
+    float dw = DICTOOL->getFloatValue_json(options, "width");
+    float dh = DICTOOL->getFloatValue_json(options, "height");
+    if (dw > 0.0f || dh > 0.0f)
+    {
+        textField->setSize(CCSizeMake(dw, dh));
     }
     
     setColorPropsForWidgetFromJsonDictionary(widget,options);
