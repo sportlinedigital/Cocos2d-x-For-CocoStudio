@@ -726,8 +726,8 @@ void CCSReader::setPropsForTextFieldFromJsonDictionary(UIWidget*widget,cs::CSJso
         textField->setTouchSize(CCSizeMake(DICTOOL->getFloatValue_json(options, "touchSizeWidth"), DICTOOL->getFloatValue_json(options,"touchSizeHeight")));
     }
     
-    bool dw = DICTOOL->getFloatValue_json(options, "width");
-    bool dh = DICTOOL->getFloatValue_json(options, "height");
+    float dw = DICTOOL->getFloatValue_json(options, "width");
+    float dh = DICTOOL->getFloatValue_json(options, "height");
     if (dw > 0.0f || dh > 0.0f)
     {
         textField->setSize(CCSizeMake(dw, dh));

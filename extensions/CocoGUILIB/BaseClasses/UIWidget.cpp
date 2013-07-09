@@ -62,8 +62,8 @@ m_pfnCancelSelector(NULL),
 m_fContentSizeHeight(0),
 m_fContentSizeWidth(0),
 m_bUseMergedTexture(false),
-m_fAbsoluteScaleX(1.0),
-m_fAbsoluteScaleY(1.0),
+m_fAbsoluteScaleX(1.0f),
+m_fAbsoluteScaleY(1.0f),
 m_bScaleXDirty(true),
 m_bScaleYDirty(true),
 m_bAbsoluteVisible(true),
@@ -645,10 +645,10 @@ void UIWidget::getLocationInWindow()
 cocos2d::CCRect UIWidget::getRect()
 {
     cocos2d::CCNode* validNode = getValidNode();
-    float width = 0.0;
-    float height = 0.0;
-    float anchorPointX = 0.0;
-    float anchorPointY = 0.0;
+    float width = 0.0f;
+    float height = 0.0f;
+    float anchorPointX = 0.0f;
+    float anchorPointY = 0.0f;
     getLocationInWindow();
     cocos2d::CCSize nodeSize = validNode->getContentSize();
     width = nodeSize.width*getAbsoluteScaleX();
@@ -676,10 +676,10 @@ cocos2d::CCRect UIWidget::getRect()
 cocos2d::CCRect UIWidget::getRelativeRect()
 {
     cocos2d::CCNode* validNode = getValidNode();
-    float width = 0.0;
-    float height = 0.0;
-    float anchorPointX = 0.0;
-    float anchorPointY = 0.0;
+    float width = 0.0f;
+    float height = 0.0f;
+    float anchorPointX = 0.0f;
+    float anchorPointY = 0.0f;
     cocos2d::CCSize nodeSize = validNode->getContentSize();
     width = nodeSize.width*getScaleX();
     height = nodeSize.height*getScaleY();
@@ -730,7 +730,7 @@ bool UIWidget::hitTest(cocos2d::CCNode* node, cocos2d::CCPoint &pt)
 {
     cocos2d::CCPoint nsp = node->convertToNodeSpace(pt);
     cocos2d::CCRect bb = node->boundingBox();
-    if (nsp.x >= 0 && nsp.x <= bb.size.width && nsp.y >= 0 && nsp.y <= bb.size.height)
+    if (nsp.x >= 0.0f && nsp.x <= bb.size.width && nsp.y >= 0.0f && nsp.y <= bb.size.height)
     {
         return true;
     }

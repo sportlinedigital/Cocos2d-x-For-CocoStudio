@@ -150,7 +150,7 @@ bool UIContainerWidget::hitTest(cocos2d::CCNode *node, cocos2d::CCPoint &pt)
 {
     cocos2d::CCPoint nsp = node->convertToNodeSpace(pt);
     cocos2d::CCSize bb = node->getContentSize();
-    if (nsp.x >= 0 && nsp.x <= bb.width && nsp.y >= 0 && nsp.y <= bb.height)
+    if (nsp.x >= 0.0f && nsp.x <= bb.width && nsp.y >= 0.0f && nsp.y <= bb.height)
     {
         return true;
     }
