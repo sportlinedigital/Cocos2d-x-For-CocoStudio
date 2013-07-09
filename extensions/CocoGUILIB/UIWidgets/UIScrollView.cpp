@@ -106,6 +106,16 @@ UIScrollView* UIScrollView::create()
     return NULL;
 }
 
+bool UIScrollView::init()
+{
+    if (UIPanel::init())
+    {
+        setUpdateEnable(true);
+        return true;
+    }
+    return false;
+}
+
 void UIScrollView::setSize(const cocos2d::CCSize &size)
 {
     UIPanel::setSize(size);

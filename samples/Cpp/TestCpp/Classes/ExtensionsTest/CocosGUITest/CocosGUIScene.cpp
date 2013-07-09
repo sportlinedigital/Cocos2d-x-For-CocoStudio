@@ -27,39 +27,39 @@ void CocosGUITestScene::runThisTest()
     ul->scheduleUpdate();
     this->addChild(ul);
     
-    UILayer* ul2 = UILayer::create();
-    this->addChild(ul2);
-    
-    UIPanel* p1 = UIPanel::create();
-    p1->setBackGroundImageScale9Enable(true);
-    p1->setBackGroundColorType(PANEL_COLOR_GRADIENT);
-    p1->setBackGroundColor(ccGREEN,ccWHITE);
-    p1->setOpacity(255);
-    p1->setPosition(ccp(100, 100));
-    p1->setSize(CCSizeMake(100, 100));
-    p1->setBeTouchEnable(true);
-    p1->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::MainMenuCallback));
-    
-    UIPanel* p2 = UIPanel::create();
-    p2->setBackGroundImageScale9Enable(true);
-    p2->setBackGroundColorType(PANEL_COLOR_SOLID);
-    p2->setBackGroundColor(ccGREEN);
-    p2->setOpacity(255);
-    p2->setPosition(ccp(150, 150));
-    p2->setSize(CCSizeMake(100, 100));
-    p2->setBeTouchEnable(true);
-    p2->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::toCocosGUISlotScene));
-    
-    ul->unscheduleUpdate();
-    CCLOG("p1 retain count == %d",ul->retainCount());
-    
-    ul->addWidget(p1);
-    ul2->addWidget(p2);
-    return;
+//    UILayer* ul2 = UILayer::create();
+//    this->addChild(ul2);
+//    
+//    UIPanel* p1 = UIPanel::create();
+//    p1->setBackGroundImageScale9Enable(true);
+//    p1->setBackGroundColorType(PANEL_COLOR_GRADIENT);
+//    p1->setBackGroundColor(ccGREEN,ccWHITE);
+//    p1->setOpacity(255);
+//    p1->setPosition(ccp(100, 100));
+//    p1->setSize(CCSizeMake(100, 100));
+//    p1->setTouchEnable(true);
+//    p1->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::MainMenuCallback));
+//    
+//    UIPanel* p2 = UIPanel::create();
+//    p2->setBackGroundImageScale9Enable(true);
+//    p2->setBackGroundColorType(PANEL_COLOR_SOLID);
+//    p2->setBackGroundColor(ccGREEN);
+//    p2->setOpacity(255);
+//    p2->setPosition(ccp(150, 150));
+//    p2->setSize(CCSizeMake(100, 100));
+//    p2->setTouchEnable(true);
+//    p2->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::toCocosGUISlotScene));
+//    
+//    ul->unscheduleUpdate();
+//    CCLOG("p1 retain count == %d",ul->retainCount());
+//    
+//    ul->addWidget(p1);
+//    ul2->addWidget(p2);
+//    return;
     
     ul->addWidget(CCUIHELPER->createWidgetFromJsonFile("cocosgui/CocoGUISample.json"));
-    UIScrollView* sc = (UIScrollView*)(ul->getWidgetByName("scrollview"));
-    sc->setUpdateEnable(true);
+//    UIScrollView* sc = (UIScrollView*)(ul->getWidgetByName("scrollview"));
+//    sc->setUpdateEnable(true);
     UIButton* exitBtn = dynamic_cast<UIButton*>(ul->getWidgetByName("exitbutton"));
     exitBtn->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::toCocosGUISlotScene));
 }

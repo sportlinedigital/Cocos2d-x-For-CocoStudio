@@ -128,6 +128,7 @@ public:
 protected:
     virtual void removeChildMoveToTrash(UIWidget* child);
     virtual void removeChildReferenceOnly(UIWidget* child);
+    virtual bool init();
     virtual void initProperty();
     virtual void resetProperty();
     void resortChildren();

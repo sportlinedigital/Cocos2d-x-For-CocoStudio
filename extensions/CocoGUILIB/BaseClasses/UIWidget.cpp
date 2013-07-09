@@ -144,7 +144,7 @@ bool UIWidget::addChild(UIWidget *child)
         return false;
     }
     child->m_pWidgetParent = this;
-    int childrenCount = m_children->count();
+    int childrenCount = m_children->data->num;
     if (childrenCount <= 0)
     {
         m_children->addObject(child);
@@ -152,9 +152,10 @@ bool UIWidget::addChild(UIWidget *child)
     else
     {
         bool seekSucceed = false;
+        ccArray* arrayChildren = m_children->data;
         for (int i=childrenCount-1; i>=0; --i)
         {
-            UIWidget* widget = (UIWidget*)(m_children->objectAtIndex(i));
+            UIWidget* widget = (UIWidget*)(arrayChildren->arr[i]);
             if (child->getWidgetZOrder() >= widget->getWidgetZOrder())
             {
                 if (i == childrenCount-1)
@@ -179,9 +180,12 @@ bool UIWidget::addChild(UIWidget *child)
     child->m_pRender->setZOrder(child->getWidgetZOrder());
     m_pRender->addChild(child->m_pRender);
     
-    if (m_pUILayer) {
-        for (int i=0; i<m_children->count(); i++) {
-            UIWidget* child = (UIWidget*)(m_children->objectAtIndex(i));
+    if (m_pUILayer)
+    {
+        int childrenCount = m_children->data->num;
+        ccArray* arrayChildren = m_children->data;
+        for (int i=0; i<childrenCount; i++) {
+            UIWidget* child = (UIWidget*)(arrayChildren->arr[i]);
             child->updateChildrenUILayer(m_pUILayer);
         }
     }
@@ -198,26 +202,33 @@ void UIWidget::updateChildrenUILayer(UILayer* uiLayer)
 {
     setUILayer(uiLayer);
     setUpdateEnable(getUpdateEnable());
-    for (int i=0; i<m_children->count(); i++) {
-        UIWidget* child = (UIWidget*)(m_children->objectAtIndex(i));
+    int childrenCount = m_children->data->num;
+    ccArray* arrayChildren = m_children->data;
+    for (int i=0; i<childrenCount; i++) {
+        UIWidget* child = (UIWidget*)(arrayChildren->arr[i]);
         child->updateChildrenUILayer(m_pUILayer);
     }
 }
 
 void UIWidget::disableUpdate()
 {
-    if (m_pUILayer) {
+    if (m_pUILayer)
+    {
         m_pUILayer->removeUpdateEnableWidget(this);
     }
-    for (int i=0; i<m_children->count(); i++) {
-        UIWidget* child = (UIWidget*)(m_children->objectAtIndex(i));
+    int childrenCount = m_children->data->num;
+    ccArray* arrayChildren = m_children->data;
+    for (int i=0; i<childrenCount; i++)
+    {
+        UIWidget* child = (UIWidget*)(arrayChildren->arr[i]);
         child->disableUpdate();
     }
 }
 
 void UIWidget::structureChangedEvent()
 {
-    if (m_pUILayer) {
+    if (m_pUILayer)
+    {
         m_pUILayer->getInputManager()->uiSceneHasChanged();
     }
 }
@@ -290,7 +301,7 @@ void UIWidget::removeFromParentAndCleanup(bool cleanup)
 
 void UIWidget::removeAllChildrenAndCleanUp(bool cleanup)
 {
-    int times = m_children->count();
+    int times = m_children->data->num;
     for (int i=0;i<times;i++)
     {
         UIWidget* child = (UIWidget*)(m_children->lastObject());
@@ -306,7 +317,8 @@ void UIWidget::setWidgetZOrder(int z)
 {
     m_nWidgetZOrder = z;
     m_pRender->setZOrder(z);
-    if (m_pWidgetParent) {
+    if (m_pWidgetParent)
+    {
         m_pWidgetParent->reorderChild(this);
     }
 }
@@ -320,7 +332,8 @@ void UIWidget::reorderChild(UIWidget* child)
 {
     m_children->removeObject(child);
     int childrenCount = m_children->count();
-    if (childrenCount <= 0) {
+    if (childrenCount <= 0)
+    {
         m_children->addObject(child);
     }
     else
@@ -366,14 +379,14 @@ void UIWidget::setNeedCheckVisibleDepandParent(bool need)
     }
 }
 
-void UIWidget::setBeTouchEnable(bool enable)
+void UIWidget::setTouchEnable(bool enable)
 {
     m_bBeTouchEnabled = enable;
 //    updateBeTouchEnable(enable);
     structureChangedEvent();
 }
 
-bool UIWidget::getBeTouchEnable()
+bool UIWidget::isTouchEnable()
 {
     return m_bBeTouchEnabled;
 }
@@ -481,7 +494,7 @@ void UIWidget::updateBeTouchEnable(bool enable)
     for (int i = 0; i < m_children->count(); i++)
     {
         UIWidget* child = (UIWidget*)(m_children->objectAtIndex(i));
-        child->setBeTouchEnable(enable);
+        child->setTouchEnable(enable);
     }
 }
 
