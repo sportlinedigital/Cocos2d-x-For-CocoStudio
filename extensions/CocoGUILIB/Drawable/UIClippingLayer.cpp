@@ -28,9 +28,16 @@ NS_CC_EXT_BEGIN
 
 static void checkNodeClippingOption(cocos2d::CCNode *node)
 {
-    for (int i=0; i<node->getChildrenCount(); i++)
+    CCArray* nodeChildren = node->getChildren();
+    if (!nodeChildren)
     {
-        CCObject * oChild = node->getChildren()->objectAtIndex(i);
+        return;
+    }
+    ccArray* arrayNodeChildren = nodeChildren->data;
+    int length = arrayNodeChildren->num;
+    for (int i=0; i<length; i++)
+    {
+        CCObject * oChild = arrayNodeChildren->arr[i];
         UIClippingLayer* cChild = dynamic_cast<UIClippingLayer*>(oChild);
         if (cChild)
         {
@@ -171,21 +178,21 @@ void UIClippingLayer::setClippingEnable(bool able)
 
 void UIClippingLayer::updateChildrenClippingOptions()
 {
-    for (int i=0; i<m_pChildren->count(); i++)
+    ccArray* arrayChildren = m_pChildren->data;
+    int childrenCount = arrayChildren->num;
+    for (int i=0; i<childrenCount; i++)
     {
-        CCObject * oChild = m_pChildren->objectAtIndex(i);
+        CCObject * oChild = arrayChildren->arr[i];
         UIClippingLayer* cChild = dynamic_cast<UIClippingLayer*>(oChild);
         if (cChild)
         {
             cChild->checkClippingOption();
             cChild->updateChildrenClippingOptions();
-            CCLOG("zenmekeneng");
         }
         else
         {
             CCNode* nChild = dynamic_cast<CCNode*>(oChild);
             checkNodeClippingOption(nChild);
-//            CCLOG("bukeneng");
         }
     }
 }

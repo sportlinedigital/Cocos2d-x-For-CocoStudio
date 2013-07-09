@@ -48,7 +48,8 @@ UILayer::~UILayer()
 
 bool UILayer::init()
 {
-    if (CCLayer::init()) {
+    if (CCLayer::init())
+    {
         m_pRootWidget = UIRootWidget::create();
         m_pRootWidget->setUILayer(this);
         addChild(m_pRootWidget->getContainerNode());
@@ -131,9 +132,11 @@ void UILayer::setTouchPriority(int nPriority)
 
 void UILayer::update(float dt)
 {
-    for (int i=0; i<m_updateEnableWidget->count(); i++)
+    ccArray* arrayWidget = m_updateEnableWidget->data;
+    int length = arrayWidget->num;
+    for (int i=0; i<length; i++)
     {
-        dynamic_cast<UIWidget*>(m_updateEnableWidget->objectAtIndex(i))->update(dt);
+        dynamic_cast<UIWidget*>(arrayWidget->arr[i])->update(dt);
     }
 }
 

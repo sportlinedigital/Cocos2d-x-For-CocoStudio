@@ -174,8 +174,10 @@ void UIPageView::insertPage(UIContainerWidget* page, int idx)
             CCLOG("page size does not match pageview size, it will be force sized!");
             page->setSize(pvSize);
         }
-        for (int i=(idx+1); i<m_pages->count(); i++) {
-            UIWidget* behindPage = dynamic_cast<UIWidget*>(m_pages->objectAtIndex(i));
+        ccArray* arrayPages = m_pages->data;
+        int length = arrayPages->num;
+        for (int i=(idx+1); i<length; i++) {
+            UIWidget* behindPage = dynamic_cast<UIWidget*>(arrayPages->arr[i]);
             CCPoint formerPos = behindPage->getPosition();
             behindPage->setPosition(ccp(formerPos.x+getWidth(), 0));
         }
@@ -209,7 +211,8 @@ void UIPageView::removePageAtIndex(int index, bool cleanup)
 
 void UIPageView::updateBoundaryPages()
 {
-    if (m_pages->count() <= 0) {
+    if (m_pages->count() <= 0)
+    {
         m_pLeftChild = NULL;
         m_pRightChild = NULL;
     }
@@ -257,7 +260,7 @@ void UIPageView::updateChildrenSize()
 
 void UIPageView::updateChildrenPosition()
 {
-    int pageCount = m_pages->count();
+    int pageCount = m_pages->data->num;
     if (pageCount <= 0)
     {
         m_nCurPageIdx = 0;
@@ -268,9 +271,10 @@ void UIPageView::updateChildrenPosition()
         m_nCurPageIdx = pageCount-1;
     }
     float pageWidth = getWidth();
+    ccArray* arrayPages = m_pages->data;
     for (int i=0; i<pageCount; i++)
     {
-        UIContainerWidget* page = dynamic_cast<UIContainerWidget*>(m_pages->objectAtIndex(i));
+        UIContainerWidget* page = dynamic_cast<UIContainerWidget*>(arrayPages->arr[i]);
         page->setPosition(ccp((i-m_nCurPageIdx)*pageWidth, 0));
     }
 }
@@ -371,9 +375,11 @@ void UIPageView::onTouchEnded(cocos2d::CCPoint &touchPoint)
 
 void UIPageView::movePages(float offset)
 {
-    for (int i = 0; i < m_pages->count(); i++)
+    ccArray* arrayPages = m_pages->data;
+    int length = arrayPages->num;
+    for (int i = 0; i < length; i++)
     {
-        UIWidget* child = (UIWidget*)(m_pages->objectAtIndex(i));
+        UIWidget* child = (UIWidget*)(arrayPages->arr[i]);
         movePagePoint.x = child->getPosition().x + offset;
         movePagePoint.y = child->getPosition().y;
         child->setPosition(movePagePoint);
@@ -500,7 +506,6 @@ void UIPageView::checkChildInfo(int handleState,UIWidget* sender,cocos2d::CCPoin
         case 0:
             handlePressLogic(touchPoint);
             break;
-            
         case 1:
         {
             float offset = 0;
@@ -512,7 +517,6 @@ void UIPageView::checkChildInfo(int handleState,UIWidget* sender,cocos2d::CCPoin
             }
         }
             break;
-            
         case 2:
             handleReleaseLogic(touchPoint);
             break;

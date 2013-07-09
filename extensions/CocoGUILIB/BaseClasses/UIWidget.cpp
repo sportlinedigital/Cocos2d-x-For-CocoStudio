@@ -42,7 +42,7 @@ m_nWidgetZOrder(0),
 m_pWidgetParent(NULL),
 m_nCurPressState(WidgetStateNone),
 m_nPrevPressstate(WidgetStateNone),
-m_bBeTouchEnabled(false),
+m_bTouchEnabled(false),
 m_nWidgetTag(-1),
 m_bUpdateEnable(false),
 m_pRender(NULL),
@@ -331,7 +331,7 @@ int UIWidget::getWidgetZOrder()
 void UIWidget::reorderChild(UIWidget* child)
 {
     m_children->removeObject(child);
-    int childrenCount = m_children->count();
+    int childrenCount = m_children->data->num;
     if (childrenCount <= 0)
     {
         m_children->addObject(child);
@@ -339,9 +339,10 @@ void UIWidget::reorderChild(UIWidget* child)
     else
     {
         bool seekSucceed = false;
+        ccArray* arrayChildren = m_children->data;
         for (int i=childrenCount-1; i>=0; --i)
         {
-            UIWidget* widget = (UIWidget*)(m_children->objectAtIndex(i));
+            UIWidget* widget = (UIWidget*)(arrayChildren->arr[i]);
             if (child->getWidgetZOrder() >= widget->getWidgetZOrder())
             {
                 if (i == childrenCount-1)
@@ -371,9 +372,11 @@ void UIWidget::setNeedCheckVisibleDepandParent(bool need)
     m_bNeedCheckVisibleDependParent = need;
     if (m_children)
     {
-        for (int i=0;i<m_children->count();i++)
+        ccArray* arrayChildren = m_children->data;
+        int childrenCount = arrayChildren->num;
+        for (int i=0;i<childrenCount;i++)
         {
-            UIWidget* child = (UIWidget*)(m_children->objectAtIndex(i));
+            UIWidget* child = (UIWidget*)(arrayChildren->arr[i]);
             child->setNeedCheckVisibleDepandParent(need);
         }
     }
@@ -381,14 +384,13 @@ void UIWidget::setNeedCheckVisibleDepandParent(bool need)
 
 void UIWidget::setTouchEnable(bool enable)
 {
-    m_bBeTouchEnabled = enable;
-//    updateBeTouchEnable(enable);
+    m_bTouchEnabled = enable;
     structureChangedEvent();
 }
 
 bool UIWidget::isTouchEnable()
 {
-    return m_bBeTouchEnabled;
+    return m_bTouchEnabled;
 }
 
 void UIWidget::setUpdateEnable(bool enable)
@@ -491,9 +493,11 @@ bool UIWidget::isActive()
 
 void UIWidget::updateBeTouchEnable(bool enable)
 {
-    for (int i = 0; i < m_children->count(); i++)
+    ccArray* arrayChildren = m_children->data;
+    int childrenCount = arrayChildren->num;
+    for (int i = 0; i < childrenCount; i++)
     {
-        UIWidget* child = (UIWidget*)(m_children->objectAtIndex(i));
+        UIWidget* child = (UIWidget*)(arrayChildren->arr[i]);
         child->setTouchEnable(enable);
     }
 }
@@ -809,9 +813,11 @@ void UIWidget::setScale(float scale)
 void UIWidget::onScaleDirtyChanged()
 {
     m_bScaleXDirty = m_bScaleYDirty = true;
-    for (int i=0; i<getChildren()->count(); i++)
+    ccArray* arrayChildren = m_children->data;
+    int childrenCount = arrayChildren->num;
+    for (int i=0; i<childrenCount; i++)
     {
-        UIWidget* child = (UIWidget*)(getChildren()->objectAtIndex(i));
+        UIWidget* child = (UIWidget*)(arrayChildren->arr[i]);
         child->onScaleDirtyChanged();
     }
 }
@@ -819,9 +825,11 @@ void UIWidget::onScaleDirtyChanged()
 void UIWidget::onScaleXDirtyChanged()
 {
     m_bScaleXDirty = true;
-    for (int i=0; i<getChildren()->count(); i++)
+    ccArray* arrayChildren = m_children->data;
+    int childrenCount = arrayChildren->num;
+    for (int i=0; i<childrenCount; i++)
     {
-        UIWidget* child = (UIWidget*)(getChildren()->objectAtIndex(i));
+        UIWidget* child = (UIWidget*)(arrayChildren->arr[i]);
         child->onScaleXDirtyChanged();
     }
 }
@@ -829,9 +837,11 @@ void UIWidget::onScaleXDirtyChanged()
 void UIWidget::onScaleYDirtyChanged()
 {
     m_bScaleYDirty = true;
-    for (int i=0; i<getChildren()->count(); i++)
+    ccArray* arrayChildren = m_children->data;
+    int childrenCount = arrayChildren->num;
+    for (int i=0; i<childrenCount; i++)
     {
-        UIWidget* child = (UIWidget*)(getChildren()->objectAtIndex(i));
+        UIWidget* child = (UIWidget*)(arrayChildren->arr[i]);
         child->onScaleYDirtyChanged();
     }
 }
@@ -1059,9 +1069,11 @@ bool UIWidget::getAbsoluteVisible()
 
 void UIWidget::updateChildrenVisibleDirty(bool dirty)
 {
-    for (int i=0; i<getChildren()->count(); i++)
+    ccArray* arrayChildren = m_children->data;
+    int childrenCount = arrayChildren->num;
+    for (int i=0; i<childrenCount; i++)
     {
-        UIWidget* child = (UIWidget*)(getChildren()->objectAtIndex(i));
+        UIWidget* child = (UIWidget*)(arrayChildren->arr[i]);
         child->m_bVisibleDirty = dirty;
         child->updateChildrenVisibleDirty(dirty);
     }
@@ -1069,9 +1081,11 @@ void UIWidget::updateChildrenVisibleDirty(bool dirty)
 
 void UIWidget::updateChildrenOpacityDirty(bool dirty)
 {
-    for (int i = 0; i < getChildren()->count(); ++i)
+    ccArray* arrayChildren = m_children->data;
+    int childrenCount = arrayChildren->num;
+    for (int i = 0; i < childrenCount; i++)
     {
-        UIWidget* child = (UIWidget*)(getChildren()->objectAtIndex(i));
+        UIWidget* child = (UIWidget*)(arrayChildren->arr[i]);
         child->m_bOpacityDirty = dirty;
         child->updateChildrenOpacityDirty(dirty);
     }

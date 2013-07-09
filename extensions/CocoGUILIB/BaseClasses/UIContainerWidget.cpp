@@ -47,7 +47,8 @@ UIContainerWidget::~UIContainerWidget()
 UIContainerWidget* UIContainerWidget::create()
 {
     UIContainerWidget* widget = new UIContainerWidget();
-    if (widget && widget->init()) {
+    if (widget && widget->init())
+    {
         return widget;
     }
     CC_SAFE_DELETE(widget);
@@ -82,15 +83,18 @@ bool UIContainerWidget::addChild(UIWidget* child)
     UIWidget::addChild(child);
     bool needSetChildCheckAble = false;
     UIWidget* parent = this;
-    while (parent != 0){
-        if (parent->isClippingEnable()){
+    while (parent)
+    {
+        if (parent->isClippingEnable())
+        {
             needSetChildCheckAble = true;
             break;
         }
         parent = parent->getWidgetParent();
     }
     
-    if (needSetChildCheckAble){
+    if (needSetChildCheckAble)
+    {
         child->setNeedCheckVisibleDepandParent(true);
     }
     return true;
@@ -100,9 +104,11 @@ void UIContainerWidget::setClippingEnable(bool able)
 {
     m_bClipAble = able;
     DYNAMIC_CAST_CLIPPINGLAYER->setClippingEnable(able);
-    for (int i=0; i<m_children->count(); i++)
+    ccArray* arrayChildren = m_children->data;
+    int childrenCount = arrayChildren->num;
+    for (int i=0; i<childrenCount; i++)
     {
-        UIWidget* child = (UIWidget*)(m_children->objectAtIndex(i));
+        UIWidget* child = (UIWidget*)(arrayChildren->arr[i]);
         child->setNeedCheckVisibleDepandParent(able);
     }
 }
@@ -179,10 +185,13 @@ void UIContainerWidget::updateClipSize()
 
 CCSize UIContainerWidget::getWrapSize() const
 {
-    for (int i=0; i<m_children->count(); i++)
+    ccArray* arrayChildren = m_children->data;
+    int childrenCount = arrayChildren->num;
+    for (int i=0; i<childrenCount; i++)
     {
-        UIWidget* child = dynamic_cast<UIWidget*>(m_children->objectAtIndex(i));
-        switch (child->getWidgetType()) {
+        UIWidget* child = dynamic_cast<UIWidget*>(arrayChildren->arr[i]);
+        switch (child->getWidgetType())
+        {
             case WidgetTypeWidget:
                 break;
             case WidgetTypeContainer:

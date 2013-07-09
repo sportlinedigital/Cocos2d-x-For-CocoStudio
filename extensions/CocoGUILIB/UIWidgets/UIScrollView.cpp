@@ -327,9 +327,11 @@ void UIScrollView::resortChildren()
     UIWidget* rightChild = (UIWidget*)(m_children->objectAtIndex(0));
     UIWidget* topChild = (UIWidget*)(m_children->objectAtIndex(0));
     UIWidget* bottomChild = (UIWidget*)(m_children->objectAtIndex(0));
-    for (int i = 0; i < m_children->count(); i++)
+    ccArray* arrayChildren = m_children->data;
+    int childrenCount = arrayChildren->num;
+    for (int i = 0; i < childrenCount; i++)
     {
-        UIWidget* child = (UIWidget*)(m_children->objectAtIndex(i));
+        UIWidget* child = (UIWidget*)(arrayChildren->arr[i]);
         if (leftChild->getRelativeRect().origin.x > child->getRelativeRect().origin.x)
         {
             leftChild = child;
@@ -357,27 +359,33 @@ void UIScrollView::moveChildren(float offset)
     switch (m_eDirection)
     {
         case SCROLLVIEW_DIR_VERTICAL: // vertical
-            for (int i = 0; i < m_children->count(); i++)
+        {
+            ccArray* arrayChildren = m_children->data;
+            int childrenCount = arrayChildren->num;
+            for (int i = 0; i < childrenCount; i++)
             {
-                UIWidget* child = (UIWidget*)(m_children->objectAtIndex(i));
+                UIWidget* child = (UIWidget*)(arrayChildren->arr[i]);
                 moveChildPoint.x = child->getPosition().x;
                 moveChildPoint.y = child->getPosition().y + offset;
                 child->setPosition(moveChildPoint);
                 child->setVisible(child->checkBeVisibleInParent());
             }
             break;
-            
+        }
         case SCROLLVIEW_DIR_HORIZONTAL: // horizontal
-            for (int i=0;i<m_children->count();i++)
+        {
+            ccArray* arrayChildren = m_children->data;
+            int childrenCount = arrayChildren->num;
+            for (int i=0;i<childrenCount;i++)
             {
-                UIWidget* child = (UIWidget*)(m_children->objectAtIndex(i));
+                UIWidget* child = (UIWidget*)(arrayChildren->arr[i]);
                 moveChildPoint.x = child->getPosition().x + offset;
                 moveChildPoint.y = child->getPosition().y;
                 child->setPosition(moveChildPoint);
                 child->setVisible(child->checkBeVisibleInParent());
             }
             break;
-            
+        }
         default:
             break;
     }
@@ -514,7 +522,6 @@ void UIScrollView::resetPositionWithAction()
     using namespace cocos2d;
     CCPoint delta = CCPointZero;
     UIWidget* child = getCheckPositionChild();
-    
     switch (m_eDirection)
     {
         case SCROLLVIEW_DIR_VERTICAL: // vertical
@@ -532,7 +539,6 @@ void UIScrollView::resetPositionWithAction()
                     break;
             }
             break;
-            
         case SCROLLVIEW_DIR_HORIZONTAL: // horizontal
             switch (m_eMoveDirection)
             {
@@ -543,20 +549,20 @@ void UIScrollView::resetPositionWithAction()
                 case SCROLLVIEW_MOVE_DIR_RIGHT: // right
                     delta.x = m_fLeftBoundary + m_fDisBoundaryToChild_0 - child->getRelativeLeftPos();
                     break;
-                    
                 default:
                     break;
             }
             break;
-            
         default:
             break;
     }
     
-    int times = m_children->count();
+//    int times = m_children->count();
+    ccArray* arrayChildren = m_children->data;
+    int times = arrayChildren->num;
     for (int i = 0; i < times - 1; ++i)
     {
-        UIWidget* child = dynamic_cast<UIWidget*>(m_children->objectAtIndex(i));
+        UIWidget* child = dynamic_cast<UIWidget*>(arrayChildren->arr[i]);
         CCMoveBy* moveBy = CCMoveBy::create(0.25, delta);
         CCEaseOut* ease = CCEaseOut::create(moveBy, 0.5);
         child->runAction(ease);
@@ -584,11 +590,9 @@ UIWidget* UIScrollView::getCheckPositionChild()
                 case SCROLLVIEW_MOVE_DIR_UP: // up
                     child = dynamic_cast<UIWidget*>(m_children->lastObject());
                     break;
-                    
                 case SCROLLVIEW_MOVE_DIR_DOWN: // down
                     child = dynamic_cast<UIWidget*>(m_children->objectAtIndex(0));
                     break;
-                    
                 default:
                     break;
             }
@@ -600,11 +604,9 @@ UIWidget* UIScrollView::getCheckPositionChild()
                 case SCROLLVIEW_MOVE_DIR_LEFT: // left
                     child = dynamic_cast<UIWidget*>(m_children->lastObject());
                     break;
-                    
                 case SCROLLVIEW_MOVE_DIR_RIGHT: // right
                     child = dynamic_cast<UIWidget*>(m_children->objectAtIndex(0));
                     break;
-                    
                 default:
                     break;
             }
@@ -627,36 +629,29 @@ void UIScrollView::handleScrollActionEvent()
                 case SCROLLVIEW_MOVE_DIR_UP: // up
                     scrollToBottomEvent();
                     break;
-                    
                 case SCROLLVIEW_MOVE_DIR_DOWN: // down
                     scrollToTopEvent();
                     break;
-                    
                 default:
                     break;
             }
             break;
-            
         case SCROLLVIEW_DIR_HORIZONTAL: // horizontal
             switch (m_eMoveDirection)
             {
                 case SCROLLVIEW_MOVE_DIR_LEFT: // left
                     scrollToRightEvent();
                     break;
-                    
                 case SCROLLVIEW_MOVE_DIR_RIGHT: // right
                     scrollToLeftEvent();
                     break;
-                    
                 default:
                     break;
             }
             break;
-            
         default:
             break;
     }
-    
     isRunningAction = false;
 }
 
@@ -1245,11 +1240,11 @@ void UIScrollView::update(float dt)
     {
         if (isRunningAction)
         {
-            int times = m_children->count();
-            
+            ccArray* arrayChildren = m_children->data;
+            int times = arrayChildren->num;
             for (int i = 0; i < times; ++i)
             {
-                UIWidget* child = dynamic_cast<UIWidget*>(m_children->objectAtIndex(i));
+                UIWidget* child = dynamic_cast<UIWidget*>(arrayChildren->arr[i]);
                 child->setVisible(child->checkBeVisibleInParent());
             }
         }
