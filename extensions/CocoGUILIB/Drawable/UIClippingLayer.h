@@ -82,6 +82,7 @@ protected:
     ccColor3B m_gStartColor;
     ccColor3B m_gEndColor;
     int m_nCOpacity;
+    CCRect m_parentClippingRect;
 };
 
 NS_CC_EXT_END

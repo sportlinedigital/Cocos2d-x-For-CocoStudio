@@ -68,7 +68,9 @@ m_pGradientRender(NULL),
 m_cColor(ccWHITE),
 m_gStartColor(ccWHITE),
 m_gEndColor(ccWHITE),
-m_nCOpacity(255)
+m_nCOpacity(255),
+m_parentClippingRect(CCRectZero),
+m_clippingRect(CCRectZero)
 {
     
 }
@@ -158,8 +160,7 @@ void UIClippingLayer::visit()
         {
             if (m_pClippingParent)
             {
-                CCRect pClippingRect = m_pClippingParent->getClippingRect();
-                CCEGLView::sharedOpenGLView()->setScissorInPoints(pClippingRect.origin.x, pClippingRect.origin.y, pClippingRect.size.width, pClippingRect.size.height);
+                CCEGLView::sharedOpenGLView()->setScissorInPoints(m_parentClippingRect.origin.x, m_parentClippingRect.origin.y, m_parentClippingRect.size.width, m_parentClippingRect.size.height);
             }
         }
     }
@@ -178,6 +179,10 @@ void UIClippingLayer::setClippingEnable(bool able)
 
 void UIClippingLayer::updateChildrenClippingOptions()
 {
+    if (!m_pChildren)
+    {
+        return;
+    }
     ccArray* arrayChildren = m_pChildren->data;
     int childrenCount = arrayChildren->num;
     for (int i=0; i<childrenCount; i++)
@@ -268,32 +273,32 @@ const CCRect& UIClippingLayer::getClippingRect()
 {
     if (m_pClippingParent)
     {
-        CCRect pRect = m_pClippingParent->getClippingRect();
+        m_parentClippingRect = m_pClippingParent->getClippingRect();
         float finalX = m_loacationInWorld.x;
         float finalY = m_loacationInWorld.y;
         float finalWidth = m_fScissorWidth;
         float finalHeight = m_fScissorHeight;
         
-        float leftOffset = m_loacationInWorld.x - pRect.origin.x;
+        float leftOffset = m_loacationInWorld.x - m_parentClippingRect.origin.x;
         if (leftOffset <= 0.0f)
         {
-            finalX = pRect.origin.x;
+            finalX = m_parentClippingRect.origin.x;
             finalWidth += leftOffset;
         }
-        float rightOffset = (m_loacationInWorld.x + m_fScissorWidth) - (pRect.origin.x + pRect.size.width);
+        float rightOffset = (m_loacationInWorld.x + m_fScissorWidth) - (m_parentClippingRect.origin.x + m_parentClippingRect.size.width);
         if (rightOffset >= 0.0f)
         {
             finalWidth -= rightOffset;
         }
-        float topOffset = (m_loacationInWorld.y + m_fScissorHeight) - (pRect.origin.y + pRect.size.height);
+        float topOffset = (m_loacationInWorld.y + m_fScissorHeight) - (m_parentClippingRect.origin.y + m_parentClippingRect.size.height);
         if (topOffset >= 0.0f)
         {
             finalHeight -= topOffset;
         }
-        float bottomOffset = m_loacationInWorld.y - pRect.origin.y;
+        float bottomOffset = m_loacationInWorld.y - m_parentClippingRect.origin.y;
         if (bottomOffset <= 0.0f)
         {
-            finalY = pRect.origin.x;
+            finalY = m_parentClippingRect.origin.x;
             finalHeight += bottomOffset;
         }
         if (finalWidth < 0.0f)

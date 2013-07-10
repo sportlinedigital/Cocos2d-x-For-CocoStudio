@@ -396,10 +396,6 @@ void CCSReader::setPropsForImageViewFromJsonDictionary(UIWidget*widget,cs::CSJso
 
     if (scale9Enable)
     {
-        float cx = DICTOOL->getFloatValue_json(options, "capInsetsX");
-        float cy = DICTOOL->getFloatValue_json(options, "capInsetsY");
-        float cw = DICTOOL->getFloatValue_json(options, "capInsetsWidth");
-        float ch = DICTOOL->getFloatValue_json(options, "capInsetsHeight");
         if (widget->getUseMergedTexture())
         {
 			imageView->setTexture(imageFileName,true);
@@ -409,8 +405,6 @@ void CCSReader::setPropsForImageViewFromJsonDictionary(UIWidget*widget,cs::CSJso
 			imageView->setTexture(imageFileName_tp);
 		}
         
-        
-        imageView->setCapInsets(CCRectMake(cx, cy, cw, ch));
         bool sw = DICTOOL->checkObjectExist_json(options, "scale9Width");
         bool sh = DICTOOL->checkObjectExist_json(options, "scale9Height");
         if (sw && sh)
@@ -419,6 +413,14 @@ void CCSReader::setPropsForImageViewFromJsonDictionary(UIWidget*widget,cs::CSJso
             float shf = DICTOOL->getFloatValue_json(options, "scale9Height");
             imageView->setScale9Size(CCSizeMake(swf, shf));
         }
+
+        float cx = DICTOOL->getFloatValue_json(options, "capInsetsX");
+        float cy = DICTOOL->getFloatValue_json(options, "capInsetsY");
+        float cw = DICTOOL->getFloatValue_json(options, "capInsetsWidth");
+        float ch = DICTOOL->getFloatValue_json(options, "capInsetsHeight");
+
+        imageView->setCapInsets(CCRectMake(cx, cy, cw, ch));
+
     }
     else
     {
@@ -509,21 +511,31 @@ void CCSReader::setPropsForPanelFromJsonDictionary(UIWidget*widget,cs::CSJsonDic
     int cr = DICTOOL->getIntValue_json(options, "colorR");
     int cg = DICTOOL->getIntValue_json(options, "colorG");
     int cb = DICTOOL->getIntValue_json(options, "colorB");
-    int co = DICTOOL->getIntValue_json(options, "colorO");
+    
+    int scr = DICTOOL->getIntValue_json(options, "startColorR");
+    int scg = DICTOOL->getIntValue_json(options, "startColorG");
+    int scb = DICTOOL->getIntValue_json(options, "startColorB");
+    
+    int ecr = DICTOOL->getIntValue_json(options, "endColorR");
+    int ecg = DICTOOL->getIntValue_json(options, "endColorG");
+    int ecb = DICTOOL->getIntValue_json(options, "endColorB");
+    
+    int co = DICTOOL->getIntValue_json(options, "colorOpacity");
+    
+    
     float w = DICTOOL->getFloatValue_json(options, "width");
     float h = DICTOOL->getFloatValue_json(options, "height");
-    if (co == 0)
-    {
-        co = 255;
-    }
-    panel->setColor(cocos2d::ccc3(cr, cg, cb));
+    panel->setBackGroundColor(ccc3(scr, scg, scb),ccc3(ecr, ecg, ecb));
+    panel->setBackGroundColor(ccc3(cr, cg, cb));
+    panel->setBackGroundColorOpacity(co);
     panel->setSize(CCSizeMake(w, h));
 
 	std::string tp_b = m_strFilePath;
 	const char* imageFileName = DICTOOL->getStringValue_json(options, "backGroundImage");
     const char* imageFileName_tp = (imageFileName && (strcmp(imageFileName, "") != 0))?tp_b.append(imageFileName).c_str():NULL;
 
-    if (backGroundScale9Enable) {
+    if (backGroundScale9Enable)
+    {
         float cx = DICTOOL->getFloatValue_json(options, "capInsetsX");
         float cy = DICTOOL->getFloatValue_json(options, "capInsetsY");
         float cw = DICTOOL->getFloatValue_json(options, "capInsetsWidth");
