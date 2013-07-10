@@ -81,7 +81,7 @@ void UIImageView::setTexture(const char* fileName,bool useSpriteFrame)
     {
         if (m_bScale9Enable)
         {
-            DYNAMIC_CAST_CCSPRITE->initWithSpriteFrameName(fileName);
+            DYNAMIC_CAST_SCALE9SPRITE->initWithSpriteFrameName(fileName);
         }
         else
         {

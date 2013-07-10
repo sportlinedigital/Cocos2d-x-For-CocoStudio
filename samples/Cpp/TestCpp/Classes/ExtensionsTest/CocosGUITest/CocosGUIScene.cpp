@@ -57,11 +57,11 @@ void CocosGUITestScene::runThisTest()
 //    ul2->addWidget(p2);
 //    return;
     
-    ul->addWidget(CCUIHELPER->createWidgetFromJsonFile("cocosgui/CocoGUISample.json"));
+    ul->addWidget(CCUIHELPER->createWidgetFromJsonFile("cocosgui/test/UI_Register.json"));
 //    UIScrollView* sc = (UIScrollView*)(ul->getWidgetByName("scrollview"));
 //    sc->setUpdateEnable(true);
-    UIButton* exitBtn = dynamic_cast<UIButton*>(ul->getWidgetByName("exitbutton"));
-    exitBtn->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::toCocosGUISlotScene));
+//    UIButton* exitBtn = dynamic_cast<UIButton*>(ul->getWidgetByName("exitbutton"));
+//    exitBtn->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::toCocosGUISlotScene));
 }
 void CocosGUITestScene::MainMenuCallback(CCObject* pSender)
 {

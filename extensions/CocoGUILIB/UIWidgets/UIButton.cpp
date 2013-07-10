@@ -306,7 +306,7 @@ cocos2d::CCNode* UIButton::getValidNode()
 
 void UIButton::setFlipX(bool flipX)
 {
-    if (!m_bScale9Enable)
+    if (m_bScale9Enable)
     {
         return;
     }
@@ -317,7 +317,7 @@ void UIButton::setFlipX(bool flipX)
 
 void UIButton::setFlipY(bool flipY)
 {
-    if (!m_bScale9Enable)
+    if (m_bScale9Enable)
     {
         return;
     }
@@ -328,7 +328,7 @@ void UIButton::setFlipY(bool flipY)
 
 bool UIButton::isFlipX()
 {
-    if (!m_bScale9Enable)
+    if (m_bScale9Enable)
     {
         return false;
     }
@@ -337,7 +337,7 @@ bool UIButton::isFlipX()
 
 bool UIButton::isFlipY()
 {
-    if (!m_bScale9Enable)
+    if (m_bScale9Enable)
     {
         return false;
     }
