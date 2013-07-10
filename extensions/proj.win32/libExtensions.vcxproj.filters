@@ -417,12 +417,6 @@
     <ClCompile Include="..\CocoGUILIB\Drawable\UICCTextField.cpp">
       <Filter>CocoGUILIB\Drawable</Filter>
     </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\Drawable\UIClipAbleLayerGradient.cpp">
-      <Filter>CocoGUILIB\Drawable</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\Drawable\UIPrimitivesNode.cpp">
-      <Filter>CocoGUILIB\Drawable</Filter>
-    </ClCompile>
     <ClCompile Include="..\CocoGUILIB\BaseClasses\UIContainerWidget.cpp">
       <Filter>CocoGUILIB\BaseClasses</Filter>
     </ClCompile>
@@ -451,9 +445,6 @@
       <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClCompile>
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UIControlButton.cpp">
-      <Filter>CocoGUILIB\UIWidgets</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\UIWidgets\UIGradientPanel.cpp">
       <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClCompile>
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UIImageView.cpp">
@@ -501,7 +492,7 @@
     <ClCompile Include="..\CocoGUILIB\Action\UIActionFrameEasing.cpp">
       <Filter>CocoGUILIB\Action</Filter>
     </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\Drawable\UIClippingLayerColor.cpp">
+    <ClCompile Include="..\CocoGUILIB\Drawable\UIClippingLayer.cpp">
       <Filter>CocoGUILIB\Drawable</Filter>
     </ClCompile>
   </ItemGroup>
@@ -817,12 +808,6 @@
     <ClInclude Include="..\CocoGUILIB\Drawable\UICCTextField.h">
       <Filter>CocoGUILIB\Drawable</Filter>
     </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\Drawable\UIClipAbleLayerGradient.h">
-      <Filter>CocoGUILIB\Drawable</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\Drawable\UIPrimitivesNode.h">
-      <Filter>CocoGUILIB\Drawable</Filter>
-    </ClInclude>
     <ClInclude Include="..\CocoGUILIB\BaseClasses\UIContainerWidget.h">
       <Filter>CocoGUILIB\BaseClasses</Filter>
     </ClInclude>
@@ -851,9 +836,6 @@
       <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClInclude>
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UIControlButton.h">
-      <Filter>CocoGUILIB\UIWidgets</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\UIWidgets\UIGradientPanel.h">
       <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClInclude>
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UIImageView.h">
@@ -901,7 +883,7 @@
     <ClInclude Include="..\CocoGUILIB\Action\UIActionFrameEasing.h">
       <Filter>CocoGUILIB\Action</Filter>
     </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\Drawable\UIClippingLayerColor.h">
+    <ClInclude Include="..\CocoGUILIB\Drawable\UIClippingLayer.h">
       <Filter>CocoGUILIB\Drawable</Filter>
     </ClInclude>
   </ItemGroup>
