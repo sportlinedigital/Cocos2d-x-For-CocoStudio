@@ -153,9 +153,7 @@
     <ClCompile Include="..\CocoGUILIB\Drawable\GUINodeRGBA.cpp" />
     <ClCompile Include="..\CocoGUILIB\Drawable\UICCLabelAtlas.cpp" />
     <ClCompile Include="..\CocoGUILIB\Drawable\UICCTextField.cpp" />
-    <ClCompile Include="..\CocoGUILIB\Drawable\UIClipAbleLayerGradient.cpp" />
-    <ClCompile Include="..\CocoGUILIB\Drawable\UIClippingLayerColor.cpp" />
-    <ClCompile Include="..\CocoGUILIB\Drawable\UIPrimitivesNode.cpp" />
+    <ClCompile Include="..\CocoGUILIB\Drawable\UIClippingLayer.cpp" />
     <ClCompile Include="..\CocoGUILIB\System\CCSReader.cpp" />
     <ClCompile Include="..\CocoGUILIB\System\CocosGUI.cpp" />
     <ClCompile Include="..\CocoGUILIB\System\UIHelper.cpp" />
@@ -164,7 +162,6 @@
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UIButton.cpp" />
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UICheckBox.cpp" />
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UIControlButton.cpp" />
-    <ClCompile Include="..\CocoGUILIB\UIWidgets\UIGradientPanel.cpp" />
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UIImageView.cpp" />
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UILabel.cpp" />
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UILabelAtlas.cpp" />
@@ -309,9 +306,7 @@
     <ClInclude Include="..\CocoGUILIB\Drawable\GUINodeRGBA.h" />
     <ClInclude Include="..\CocoGUILIB\Drawable\UICCLabelAtlas.h" />
     <ClInclude Include="..\CocoGUILIB\Drawable\UICCTextField.h" />
-    <ClInclude Include="..\CocoGUILIB\Drawable\UIClipAbleLayerGradient.h" />
-    <ClInclude Include="..\CocoGUILIB\Drawable\UIClippingLayerColor.h" />
-    <ClInclude Include="..\CocoGUILIB\Drawable\UIPrimitivesNode.h" />
+    <ClInclude Include="..\CocoGUILIB\Drawable\UIClippingLayer.h" />
     <ClInclude Include="..\CocoGUILIB\System\CCSReader.h" />
     <ClInclude Include="..\CocoGUILIB\System\CocosGUI.h" />
     <ClInclude Include="..\CocoGUILIB\System\UIHelper.h" />
@@ -320,7 +315,6 @@
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UIButton.h" />
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UICheckBox.h" />
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UIControlButton.h" />
-    <ClInclude Include="..\CocoGUILIB\UIWidgets\UIGradientPanel.h" />
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UIImageView.h" />
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UILabel.h" />
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UILabelAtlas.h" />
