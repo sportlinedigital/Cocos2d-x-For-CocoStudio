@@ -27,50 +27,103 @@ void CocosGUITestScene::runThisTest()
     ul->scheduleUpdate();
     this->addChild(ul);
     
-//    UILayer* ul2 = UILayer::create();
-//    this->addChild(ul2);
-//    
-//    UIPanel* p1 = UIPanel::create();
-//    p1->setBackGroundImageScale9Enable(true);
-//    p1->setBackGroundColorType(PANEL_COLOR_GRADIENT);
-//    p1->setBackGroundColor(ccGREEN,ccWHITE);
-//    p1->setOpacity(255);
-//    p1->setPosition(ccp(100, 100));
-//    p1->setSize(CCSizeMake(100, 100));
-//    p1->setTouchEnable(true);
-//    p1->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::MainMenuCallback));
-//    
-//    UIPanel* p2 = UIPanel::create();
-//    p2->setBackGroundImageScale9Enable(true);
-//    p2->setBackGroundColorType(PANEL_COLOR_SOLID);
-//    p2->setBackGroundColor(ccGREEN);
-//    p2->setOpacity(255);
-//    p2->setPosition(ccp(150, 150));
-//    p2->setSize(CCSizeMake(100, 100));
-//    p2->setTouchEnable(true);
-//    p2->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::toCocosGUISlotScene));
-//    
-//    ul->unscheduleUpdate();
-//    CCLOG("p1 retain count == %d",ul->retainCount());
-//    
-//    ul->addWidget(p1);
-//    ul2->addWidget(p2);
-//    return;
+    /*
+    CCSprite* spP = CCSprite::create("army_1.png");
+    CCSprite* spS = CCSprite::create("army_1.png");
+    spS->setPosition(ccp(0, 0));
     
-    ul->addWidget(CCUIHELPER->createWidgetFromJsonFile("cocosgui/test/UI_Register.json"));
-//    UIScrollView* sc = (UIScrollView*)(ul->getWidgetByName("scrollview"));
-//    sc->setUpdateEnable(true);
-//    UIButton* exitBtn = dynamic_cast<UIButton*>(ul->getWidgetByName("exitbutton"));
-//    exitBtn->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::toCocosGUISlotScene));
+    spP->addChild(spS);
+    
+    spP->setPosition(ccp(100, 100));
+    
+    ul->addChild(spP);
+    
+    CocoImageView* ivP = CocoImageView::create();
+    ivP->setTexture("army_1.png");
+    CocoImageView* ivS = CocoImageView::create();
+    ivS->setTexture("army_1.png");
+    ivS->setPosition(ccp(0+(-(ivP->getRelativeRect().size.width/2.0f)), 0+(-(ivP->getRelativeRect().size.height/2.0f))));
+    
+    ivP->addChild(ivS);
+    
+    ul->addWidget(ivP);
+    ivP->setPosition(ccp(300, 100));
+     */
+    
+    
+    /*
+    CCScale9Sprite* sp9 = CCScale9Sprite::create("army_1.png");
+    
+    ul->addChild(sp9);
+    
+    
+    CocoImageView* iv9 = CocoImageView::create();
+    iv9->setTexture("army_1.png");
+    
+    iv9->setScale9Enable(true);
+    
+    ul->addWidget(iv9);
+    iv9->setPosition(ccp(300, 100));
+    sp9->setPosition(ccp(100, 100));
+    
+    
+    iv9->setAnchorPoint(ccp(0, 0));
+    sp9->setAnchorPoint(ccp(0, 0));
+     */
+    
+
+//    ul->addWidget(CCUIHELPER->createWidgetFromFile_ccb("ccb_parse/Tests/TestSprites.ccb"));
+//    ul->addWidget(CCUIHELPER->createWidgetFromFile_ccb("ccb_parse/HelloCocosBuilder.ccb"));
+
+//    /*
+    ul->addWidget(CCUIHELPER->createWidgetFromJsonFile("cocosgui/CocoGUISample.json"));
+    UIScrollView* sc = (UIScrollView*)(ul->getWidgetByName("scrollview"));
+    sc->setUpdateEnable(true);
+    sc->setMoveMode(SCROLLVIEW_MOVE_MODE_NORMAL);
+//
+//    UIImageView* image = dynamic_cast<UIImageView*>(ul->getWidgetByName("imageview"));
+//    image->setBeTouchEnable(true);
+////    image->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::MainMenuCallback));
+//    
+    UIButton* exitBtn = dynamic_cast<UIButton*>(ul->getWidgetByName("exitbutton"));
+    exitBtn->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::toCocosGUISlotScene));
+////     */
+//    
+//    UICheckBox* cb = dynamic_cast<UICheckBox*>(ul->getWidgetByName("checkbox"));
+//    cb->addSelectEvent(this, coco_releaseselector(CocosGUITestScene::MainMenuCallback));
+//    
+//    UIPanel* pn = UIPanel::create();
+//    ul->addWidget(pn);
+//    pn->setBackGroundColorEnable(true);
+//    pn->setColor(ccc3(0, 255, 0));
+//    pn->setOpacity(255);
+//    pn->setSize(CCSizeMake(100, 100));
+//    pn->setPosition(ccp(100, 100));
+//    
+//    UIButton* btn = UIButton::create();
+//    btn->setTextures("slot/2.png", NULL, NULL);
+//    pn->addChild(btn);
+    
+//    ul->addWidget(CCUIHELPER->createWidgetFromJsonFile("cocosgui/test/NewProject_1_1.json"));
+////    UIWidget* pv = UIPageView::create();
+//    UIPageView* pv = UIPageView::create();
+//    pv->addPage(NULL);
+//    pv->addWidgetToPage(NULL, 0, false);
 }
 void CocosGUITestScene::MainMenuCallback(CCObject* pSender)
 {
-    CCLOG("p1 click");
-    CCLOG("p1 retain count == %d",ul->retainCount());
-    ul->removeFromParent();
+	TestScene::MainMenuCallback(pSender);
+//    UIActionManager::shareManager()->PlayActionByName("Animation1");
 }
 
 void CocosGUITestScene::toCocosGUISlotScene(CCObject* pSender)
-{
-    CCLOG("p2 click");
+{    
+    CocosGUISlotScene *pScene = new CocosGUISlotScene();
+    if (pScene)
+    {
+        ul->clear();
+        
+        pScene->runThisTest();
+        pScene->release();
+    }
 }

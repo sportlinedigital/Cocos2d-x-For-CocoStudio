@@ -501,7 +501,7 @@ LRESULT CCEGLView::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
             else
             {
                 char szUtf8[8] = {0};
-                int nLen = WideCharToMultiByte(CP_UTF8, 0, (LPCWSTR)&wParam, 1, szUtf8, sizeof(szUtf8), NULL, NULL);
+                int nLen = WideCharToMultiByte(CP_ACP, 0, (LPCWSTR)&wParam, 1, szUtf8, sizeof(szUtf8), NULL, NULL);
                 CCIMEDispatcher::sharedDispatcher()->dispatchInsertText(szUtf8, nLen);
             }
             if ( m_lpfnAccelerometerKeyHook!=NULL )
@@ -756,27 +756,5 @@ CCEGLView* CCEGLView::sharedOpenGLView()
     return s_pEglView;
 }
 
-//void CCEGLViewForEditor::centerWindow()
-//{
-//	if (! m_hWnd)
-//	{
-//		return;
-//	}
-//}
-//
-//LRESULT CCEGLViewForEditor::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
-//{
-//	
-//	return S_OK;
-//}
-//
-//CCEGLView* CCEGLViewForEditor::sharedOpenGLView()
-//{
-//	if (s_pEglView == NULL)
-//	{
-//		s_pEglView = new CCEGLViewForEditor();
-//	}
-//	return s_pEglView;
-//}
 
 NS_CC_END

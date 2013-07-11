@@ -24,7 +24,7 @@
 
 #include "UIAction.h"
 #include "UIActionNode.h"
-#include "../../JsonReader/DictionaryHelper.h"
+#include "../../CocostudioReader/DictionaryHelper.h"
 
 
 NS_CC_EXT_BEGIN

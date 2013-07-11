@@ -83,7 +83,6 @@ THE SOFTWARE.
 // Structure timeval has define in winsock.h, include windows.h for it.
 #include <Windows.h>
 
-
 #ifndef __MINGW32__
 
 #ifdef COCOS2D_DEBUG
