@@ -101,20 +101,6 @@ protected:
     float m_fFrameZoomFactor;
 };
 
-//class CC_DLL CCEGLViewForEditor : public CCEGLView
-//{
-//public:
-//	CCEGLViewForEditor():CCEGLView(){};
-//	virtual ~CCEGLViewForEditor(){};
-//
-//public:
-//	virtual void centerWindow();
-//	virtual LRESULT WindowProc(UINT message, WPARAM wParam, LPARAM lParam);
-//
-//	static CCEGLView* sharedOpenGLView();
-//};
-
-
 NS_CC_END
 
 #endif    // end of __CC_EGLVIEW_WIN32_H__

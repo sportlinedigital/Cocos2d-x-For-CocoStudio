@@ -208,9 +208,16 @@ void TestDragonBones20::onEnter()
 	armature = cocos2d::extension::CCArmature::create("Dragon");
 	armature->getAnimation()->playByIndex(1);
 	armature->getAnimation()->setAnimationScale(0.4f);
-	armature->setPosition(VisibleRect::center().x, VisibleRect::center().y * 0.3f);
+	armature->setPosition(VisibleRect::center().x - 100, VisibleRect::center().y * 0.3f);
 	armature->setScale(0.6f);
     addChild(armature);
+
+	armature = cocos2d::extension::CCArmature::create("Dragon");
+	armature->getAnimation()->playByIndex(0);
+	armature->getAnimation()->setAnimationScale(0.4f);
+	armature->setPosition(VisibleRect::center().x + 100, VisibleRect::center().y * 0.3f);
+	armature->setScale(0.6f);
+	addChild(armature);
 }
 
 std::string TestDragonBones20::title()
