@@ -172,6 +172,7 @@ void UITextField::update(float dt)
 bool UITextField::getAttachWithIME()
 {
 //    return m_pRenderTextField->getAttachWithIME();
+	return false;
 }
 
 void UITextField::setAttachWithIME(bool attach)
@@ -182,6 +183,7 @@ void UITextField::setAttachWithIME(bool attach)
 bool UITextField::getDetachWithIME()
 {
 //    return m_pRenderTextField->getDetachWithIME();
+	return false;
 }
 
 void UITextField::setDetachWithIME(bool detach)
@@ -192,6 +194,7 @@ void UITextField::setDetachWithIME(bool detach)
 bool UITextField::getInsertText()
 {
 //    return m_pRenderTextField->getInsertText();
+	return false;
 }
 
 void UITextField::setInsertText(bool insertText)
@@ -202,6 +205,7 @@ void UITextField::setInsertText(bool insertText)
 bool UITextField::getDeleteBackward()
 {
 //    return m_pRenderTextField->getDeleteBackward();
+	return false;
 }
 
 void UITextField::setDeleteBackward(bool deleteBackward)

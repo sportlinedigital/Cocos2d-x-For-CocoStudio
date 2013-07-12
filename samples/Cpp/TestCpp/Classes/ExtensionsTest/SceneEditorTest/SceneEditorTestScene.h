@@ -27,6 +27,12 @@ public:
     
     //back to Extensions Main Layer
     void toExtensionsMainLayer(cocos2d::CCObject *sender);
+
+	//get Fish based on Tag and name of Compoent
+	cocos2d::extension::CCArmature* getFish(int nTag, const char *pszName);
+
+private:
+	cocos2d::CCNode *m_pCurNode;
 };
 
 #endif  // __HELLOWORLD_SCENE_H__
