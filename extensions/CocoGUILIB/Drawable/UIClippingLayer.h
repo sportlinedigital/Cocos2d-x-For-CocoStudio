@@ -55,6 +55,7 @@ public:
     void setColor(const ccColor3B &color);
     void setStartColor(const ccColor3B &color);
     void setEndColor(const ccColor3B &color);
+    void setVector(const CCPoint &vector);
     void setColorOpacity(int opacity);
     virtual void onEnter();
     virtual void onExit();
@@ -81,6 +82,7 @@ protected:
     ccColor3B m_cColor;
     ccColor3B m_gStartColor;
     ccColor3B m_gEndColor;
+    CCPoint m_AlongVector;
     int m_nCOpacity;
     CCRect m_parentClippingRect;
 };

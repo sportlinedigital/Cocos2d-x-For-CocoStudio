@@ -72,7 +72,7 @@ bool UITextField::init()
 void UITextField::initNodes()
 {
     UIWidget::initNodes();
-    m_pRenderTextField = UICCTextField::create("input words here", "Thonburi", 20);
+    m_pRenderTextField = CCTextFieldTTF::textFieldWithPlaceHolder("input words here", "Thonburi", 20);
     m_pRender->addChild(m_pRenderTextField);
 }
 
@@ -110,7 +110,7 @@ void UITextField::setFontSize(int size)
 
 void UITextField::didNotSelectSelf()
 {
-    m_pRenderTextField->closeIME();
+    m_pRenderTextField->detachWithIME();
 }
 
 const char* UITextField::getStringValue()
@@ -121,7 +121,7 @@ const char* UITextField::getStringValue()
 void UITextField::onTouchBegan(cocos2d::CCPoint &touchPoint)
 {
     UIWidget::onTouchBegan(touchPoint);
-    m_pRenderTextField->openIME();
+    m_pRenderTextField->attachWithIME();
 }
 
 bool UITextField::pointAtSelfBody(cocos2d::CCPoint &pt)
@@ -137,12 +137,12 @@ bool UITextField::pointAtSelfBody(cocos2d::CCPoint &pt)
 
 void UITextField::setCharacterLength(int length)
 {
-    m_pRenderTextField->setCharacterLength(length);
+//    m_pRenderTextField->setCharacterLength(length);
 }
 
 void UITextField::setIsPassWord(bool isPassword)
 {
-    m_pRenderTextField->setIsPassword(isPassword);
+//    m_pRenderTextField->setIsPassword(isPassword);
 }
 
 void UITextField::update(float dt)
@@ -171,42 +171,42 @@ void UITextField::update(float dt)
 
 bool UITextField::getAttachWithIME()
 {
-    return m_pRenderTextField->getAttachWithIME();
+//    return m_pRenderTextField->getAttachWithIME();
 }
 
 void UITextField::setAttachWithIME(bool attach)
 {
-    m_pRenderTextField->setAttachWithIME(attach);
+//    m_pRenderTextField->setAttachWithIME(attach);
 }
 
 bool UITextField::getDetachWithIME()
 {
-    return m_pRenderTextField->getDetachWithIME();
+//    return m_pRenderTextField->getDetachWithIME();
 }
 
 void UITextField::setDetachWithIME(bool detach)
 {
-    m_pRenderTextField->setDetachWithIME(detach);
+//    m_pRenderTextField->setDetachWithIME(detach);
 }
 
 bool UITextField::getInsertText()
 {
-    return m_pRenderTextField->getInsertText();
+//    return m_pRenderTextField->getInsertText();
 }
 
 void UITextField::setInsertText(bool insertText)
 {
-    m_pRenderTextField->setInsertText(insertText);
+//    m_pRenderTextField->setInsertText(insertText);
 }
 
 bool UITextField::getDeleteBackward()
 {
-    return m_pRenderTextField->getDeleteBackward();
+//    return m_pRenderTextField->getDeleteBackward();
 }
 
 void UITextField::setDeleteBackward(bool deleteBackward)
 {
-    m_pRenderTextField->setDeleteBackward(deleteBackward);
+//    m_pRenderTextField->setDeleteBackward(deleteBackward);
 }
 
 void UITextField::attachWithIMEEvent()

@@ -1,22 +1,21 @@
 #include "CocosGUIScene.h"
-#include "CocosGUISlotScene.h"
-//#include "CCScale9Sprite.h"
+#include "CocosGUIExamplesScene.h"
 
 
 CocosGUITestScene::CocosGUITestScene(bool bPortrait)
 {
 	TestScene::init();
     
-	CCSprite *bg = CCSprite::create("armature/bg.jpg");
-	bg->setPosition(VisibleRect::center());
-    
-	float scaleX = VisibleRect::getVisibleRect().size.width / bg->getContentSize().width;
-	float scaleY = VisibleRect::getVisibleRect().size.height / bg->getContentSize().height;
-    
-	bg->setScaleX(scaleX);
-	bg->setScaleY(scaleY);
-    
-	addChild(bg);
+//	CCSprite *bg = CCSprite::create("armature/bg.jpg");
+//	bg->setPosition(VisibleRect::center());
+//    
+//	float scaleX = VisibleRect::getVisibleRect().size.width / bg->getContentSize().width;
+//	float scaleY = VisibleRect::getVisibleRect().size.height / bg->getContentSize().height;
+//    
+//	bg->setScaleX(scaleX);
+//	bg->setScaleY(scaleY);
+//    
+//	addChild(bg);
 }
 void CocosGUITestScene::runThisTest()
 {
@@ -57,20 +56,43 @@ void CocosGUITestScene::runThisTest()
 //    ul2->addWidget(p2);
 //    return;
     
-    ul->addWidget(CCUIHELPER->createWidgetFromJsonFile("cocosgui/test/UI_Register.json"));
-//    UIScrollView* sc = (UIScrollView*)(ul->getWidgetByName("scrollview"));
-//    sc->setUpdateEnable(true);
-//    UIButton* exitBtn = dynamic_cast<UIButton*>(ul->getWidgetByName("exitbutton"));
-//    exitBtn->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::toCocosGUISlotScene));
+    ul->addWidget(CCUIHELPER->createWidgetFromJsonFile("cocosgui/CocoGUISample.json"));
+    UIButton* exitBtn = dynamic_cast<UIButton*>(ul->getWidgetByName("exitbutton"));
+    exitBtn->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::toCocosGUIExampleScene));
+    
+//    UIPanel* p = UIPanel::create();
+//    p->setSize(CCSizeMake(100, 100));
+//    p->setPosition(ccp(100, 100));
+//    p->setBackGroundColorType(PANEL_COLOR_SOLID);
+//    p->setBackGroundColor(ccGREEN);
+//    p->setClippingEnable(true);
+//    ul->addWidget(p);
+//    UINodeContainer* nc = UINodeContainer::create();
+//    nc->addCCNode(CCSprite::create("cocosgui/CloseNormal.png"));
+//    p->addChild(nc);
 }
 void CocosGUITestScene::MainMenuCallback(CCObject* pSender)
 {
     CCLOG("p1 click");
     CCLOG("p1 retain count == %d",ul->retainCount());
+    ul->setTouchPriority(1);
     ul->removeFromParent();
+    TestScene::MainMenuCallback(pSender);
 }
 
-void CocosGUITestScene::toCocosGUISlotScene(CCObject* pSender)
+void CocosGUITestScene::toCocosGUIExampleScene(CCObject* pSender)
 {
     CCLOG("p2 click");
+    ul->removeFromParent();
+    runCocosGUIExampleScene();
+}
+
+void runCocosGUIExampleScene()
+{
+    CocosGUIExamplesScene* pScene = new CocosGUIExamplesScene();
+    if (pScene)
+    {
+        pScene->runThisTest();
+        pScene->release();
+    }    
 }

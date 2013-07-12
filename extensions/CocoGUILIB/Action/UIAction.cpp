@@ -47,7 +47,8 @@ void UIAction::initWithDictionary(cs::CSJsonDictionary *dic,UIWidget* root)
     setLoop(DICTOOL->getBooleanValue_json(dic, "loop"));
     setUnitTime(DICTOOL->getFloatValue_json(dic, "unittime"));
     int actionNodeCount = DICTOOL->getArrayCount_json(dic, "actionnodelist");
-    for (int i=0; i<actionNodeCount; i++) {
+    for (int i=0; i<actionNodeCount; i++)
+    {
         UIActionNode* actionNode = new UIActionNode();
         cs::CSJsonDictionary* actionNodeDic = DICTOOL->getDictionaryFromArray_json(dic, "actionnodelist", i);
         actionNode->initWithDictionary(actionNodeDic,root);

@@ -26,7 +26,6 @@
 #define __UITEXTFIELD_H__
 
 #include "../BaseClasses/UIWidget.h"
-#include "../Drawable/UICCTextField.h"
 
 
 NS_CC_EXT_BEGIN
@@ -35,10 +34,10 @@ typedef void (cocos2d::CCObject::*SEL_TextFieldAttachWithIMEEvent)(cocos2d::CCOb
 typedef void (cocos2d::CCObject::*SEL_TextFieldDetachWithIMEEvent)(cocos2d::CCObject*);
 typedef void (cocos2d::CCObject::*SEL_TextFieldInsertTextEvent)(cocos2d::CCObject*);
 typedef void (cocos2d::CCObject::*SEL_TextFieldDeleteBackwardEvent)(cocos2d::CCObject*);
-#define coco_TextFieldAttachWithIMESelector(_SELECTOR) (cs::SEL_TextFieldAttachWithIMEEvent)(&_SELECTOR)
-#define coco_TextFieldDetachWithIMESelector(_SELECTOR) (cs::SEL_TextFieldDetachWithIMEEvent)(&_SELECTOR)
-#define coco_TextFieldInsertTextSelector(_SELECTOR) (cs::SEL_TextFieldInsertTextEvent)(&_SELECTOR)
-#define coco_TextFieldDeleteBackwardSelector(_SELECTOR) (cs::SEL_TextFieldDeleteBackwardEvent)(&_SELECTOR)
+#define coco_TextFieldAttachWithIMESelector(_SELECTOR) (SEL_TextFieldAttachWithIMEEvent)(&_SELECTOR)
+#define coco_TextFieldDetachWithIMESelector(_SELECTOR) (SEL_TextFieldDetachWithIMEEvent)(&_SELECTOR)
+#define coco_TextFieldInsertTextSelector(_SELECTOR) (SEL_TextFieldInsertTextEvent)(&_SELECTOR)
+#define coco_TextFieldDeleteBackwardSelector(_SELECTOR) (SEL_TextFieldDeleteBackwardEvent)(&_SELECTOR)
 
 class UITextField : public UIWidget
 {
@@ -95,7 +94,7 @@ protected:
     SEL_TextFieldInsertTextEvent m_pfnInsertTextSelector;
     SEL_TextFieldDeleteBackwardEvent m_pfnDeleteBackwardSelector;
     
-    UICCTextField* m_pRenderTextField;
+    CCTextFieldTTF * m_pRenderTextField;
 };
 
 NS_CC_EXT_END

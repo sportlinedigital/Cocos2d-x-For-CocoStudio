@@ -163,4 +163,9 @@ void UIPanel::setBackGroundColorOpacity(int opacity)
     DYNAMIC_CAST_CLIPPINGLAYER->setColorOpacity(opacity);
 }
 
+void UIPanel::setBackGroundColorVector(const cocos2d::CCPoint &vector)
+{
+    DYNAMIC_CAST_CLIPPINGLAYER->setVector(vector);
+}
+
 NS_CC_EXT_END

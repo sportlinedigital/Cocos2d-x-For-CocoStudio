@@ -53,7 +53,8 @@ UIActionManager::~UIActionManager()
 void UIActionManager::initWithDictionary(cs::CSJsonDictionary *dic,UIWidget* root)
 {
     int actionCount = DICTOOL->getArrayCount_json(dic, "actionlist");
-    for (int i=0; i<actionCount; i++) {
+    for (int i=0; i<actionCount; i++)
+    {
         UIAction* action = new UIAction();
         cs::CSJsonDictionary* actionDic = DICTOOL->getDictionaryFromArray_json(dic, "actionlist", i);
         action->initWithDictionary(actionDic,root);
@@ -63,9 +64,11 @@ void UIActionManager::initWithDictionary(cs::CSJsonDictionary *dic,UIWidget* roo
 
 UIAction* UIActionManager::GetActionByName(const char* actionName)
 {
-    for (int i=0; i<m_ActionList->count(); i++) {
+    for (int i=0; i<m_ActionList->count(); i++)
+    {
         UIAction* action = dynamic_cast<UIAction*>(m_ActionList->objectAtIndex(i));
-        if (strcmp(actionName, action->getName()) == 0) {
+        if (strcmp(actionName, action->getName()) == 0)
+        {
             return action;
         }
     }
@@ -75,7 +78,8 @@ UIAction* UIActionManager::GetActionByName(const char* actionName)
 void UIActionManager::PlayActionByName(const char* actionName)
 {
     UIAction* action = GetActionByName(actionName);
-    if (action) {
+    if (action)
+    {
         action->Play();
     }
 }

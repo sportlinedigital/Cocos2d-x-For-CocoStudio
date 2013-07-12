@@ -27,7 +27,6 @@
 
 #include "cocos2d.h"
 #include "ExtensionMacros.h"
-#include "../Drawable/GUINodeRGBA.h"
 
 NS_CC_EXT_BEGIN
 
@@ -93,6 +92,7 @@ typedef void (cocos2d::CCObject::*SEL_CancelEvent)(cocos2d::CCObject*);
 #define coco_cancelselector(_SELECTOR) (cocos2d::extension::SEL_CancelEvent)(&_SELECTOR)
 
 class UILayer;
+class UIActionNode;
 
 class UIWidget : public cocos2d::CCObject
 {
@@ -110,14 +110,17 @@ public:
     virtual void setWidgetZOrder(int z);
     virtual int getWidgetZOrder();
     virtual void reorderChild(UIWidget* child);
-    void setTouchEnable(bool enable);
+    void setTouchEnable(bool enable, bool containChildren = false);
+    void updateChildrenTouchEnable(bool enable, bool containChildren);
     bool isTouchEnable();
     void setUpdateEnable(bool enable);
     bool getUpdateEnable();
     bool isFocus();
     void setFocus(bool fucos);
-    virtual void disable();
-    virtual void active();
+    virtual void disable(bool containChildren = false);
+    virtual void active(bool containChildren = false);
+    void updateChildrenActive();
+    void updateChildrenDisable();
     virtual bool isActive();
     void updateBeTouchEnable(bool enable);
     void setVisible(bool visible);
@@ -173,6 +176,10 @@ public:
     virtual const cocos2d::ccColor3B& getColor();
     virtual void setOpacity(int opacity);
     virtual int getOpacity();
+    virtual bool isCascadeOpacityEnabled();
+    virtual void setCascadeOpacityEnabled(bool cascadeOpacityEnabled);
+    virtual bool isCascadeColorEnabled();
+    virtual void setCascadeColorEnabled(bool cascadeColorEnabled);
     void setBlendFunc(cocos2d::ccBlendFunc blendFunc);
     void ignoreAnchorPointForPosition(bool ignore);
     //cocos action
@@ -225,6 +232,7 @@ public:
     bool getUseMergedTexture();
     WidgetType getWidgetType();
     WidgetName getWidgetName();
+    void setBindingAction(UIActionNode* actionNode);
 protected:
     virtual bool init();
     virtual void initNodes();
@@ -239,6 +247,7 @@ protected:
     void cancelUpEvent();
     void longClickEvent();
     virtual bool hitTest(cocos2d::CCNode* node, cocos2d::CCPoint &pt);
+    UIActionNode* m_pBindingAction;
 protected:
     bool m_bEnabled;
     bool m_bVisible;

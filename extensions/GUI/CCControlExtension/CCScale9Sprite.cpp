@@ -726,9 +726,23 @@ void CCScale9Sprite::setOpacityModifyRGB(bool var)
         }
     }
 }
+
+
 bool CCScale9Sprite::isOpacityModifyRGB()
 {
     return _opacityModifyRGB;
+}
+
+void CCScale9Sprite::updateDisplayedOpacity(GLubyte parentOpacity)
+{
+    CCNodeRGBA::updateDisplayedOpacity(parentOpacity);
+    setOpacity(parentOpacity);
+}
+
+void CCScale9Sprite::updateDisplayedColor(const cocos2d::ccColor3B &color)
+{
+    CCNodeRGBA::updateDisplayedColor(color);
+    setColor(color);
 }
 
 void CCScale9Sprite::setSpriteFrame(CCSpriteFrame * spriteFrame)

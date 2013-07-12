@@ -8,6 +8,8 @@
 using namespace cocos2d;
 using namespace cocos2d::extension;
 
+void runCocosGUIExampleScene();
+
 class CocosGUITestScene : public TestScene
 {
 public:
@@ -18,7 +20,7 @@ public:
 	// The CallBack for back to the main menu scene
 	virtual void MainMenuCallback(CCObject* pSender);
     
-    void toCocosGUISlotScene(CCObject* pSender);
+    void toCocosGUIExampleScene(CCObject* pSender);
     
     UILayer* ul;
 };

@@ -213,6 +213,15 @@ UIWidget* CCSReader::widgetFromJsonFile(const char *fileName)
     }
     cs::CSJsonDictionary* widgetTree = DICTOOL->getSubDictionary_json(jsonDict, "widgetTree");
     UIWidget* widget = widgetFromJsonDictionary(widgetTree);
+    
+    /* *********temp********* */
+    if (widget->getContentSize().equals(CCSizeZero))
+    {
+        UIContainerWidget* rootWidget = dynamic_cast<UIContainerWidget*>(widget);
+        rootWidget->setSize(CCSizeMake(fileDesignWidth, fileDesignHeight));
+    }
+    /* ********************** */
+    
     widget->setFileDesignSize(CCSizeMake(fileDesignWidth, fileDesignHeight));
     cs::CSJsonDictionary* actions = DICTOOL->getSubDictionary_json(jsonDict, "animation");
     UIActionManager::shareManager()->initWithDictionary(actions,widget);
@@ -699,10 +708,13 @@ void CCSReader::setPropsForTextButtonFromJsonDictionary(UIWidget*widget,cs::CSJs
     textButton->setText(DICTOOL->getStringValue_json(options, "text"));
     textButton->setFlipX(DICTOOL->getBooleanValue_json(options, "flipX"));
     textButton->setFlipY(DICTOOL->getBooleanValue_json(options, "flipY"));
-    int cr = DICTOOL->getIntValue_json(options, "textColorR");
-    int cg = DICTOOL->getIntValue_json(options, "textColorG");
-    int cb = DICTOOL->getIntValue_json(options, "textColorB");
-    textButton->setTextColor(cr,cg,cb);
+    bool cr = DICTOOL->checkObjectExist_json(options, "textColorR");
+    bool cg = DICTOOL->checkObjectExist_json(options, "textColorG");
+    bool cb = DICTOOL->checkObjectExist_json(options, "textColorB");
+    int cri = cr?DICTOOL->checkObjectExist_json(options, "textColorR"):255;
+    int cgi = cg?DICTOOL->checkObjectExist_json(options, "textColorG"):255;
+    int cbi = cb?DICTOOL->checkObjectExist_json(options, "textColorB"):255;
+    textButton->setTextColor(cri,cgi,cbi);
     bool fs = DICTOOL->checkObjectExist_json(options, "fontSize");
     if (fs)
     {

@@ -79,13 +79,15 @@ UILayer* UILayer::create(void)
 
 void UILayer::onEnter()
 {
-    cocos2d::CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, -1, true);
+    setTouchMode(kCCTouchesOneByOne);
+    setTouchEnabled(true);
     CCLayer::onEnter();
+    
 }
 
 void UILayer::onExit()
 {
-    CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
+    setTouchEnabled(false);
     CCLayer::onExit();
 }
 
@@ -108,11 +110,6 @@ void UILayer::setVisible(bool visible)
 {
     CCLayer::setVisible(visible);
     m_pRootWidget->setVisible(visible);
-}
-
-void UILayer::setTouchPriority(int nPriority)
-{
-    CCDirector::sharedDirector()->getTouchDispatcher()->setPriority(nPriority, this);
 }
 
 //void UILayer::setUIType(GUITYPE type)

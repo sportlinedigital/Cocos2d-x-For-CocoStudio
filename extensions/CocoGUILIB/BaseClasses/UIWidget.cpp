@@ -25,6 +25,7 @@
 #include "UIWidget.h"
 #include "../System/UIHelper.h"
 #include "../System/UILayer.h"
+#include "../Action/UIActionNode.h"
 
 NS_CC_EXT_BEGIN
 
@@ -32,7 +33,7 @@ NS_CC_EXT_BEGIN
 
 #define DYNAMIC_CAST_CCRGBAPROTOCOL dynamic_cast<cocos2d::CCRGBAProtocol*>(m_pRender)
 
-#define DYNAMIC_CAST_GUINODERGBA dynamic_cast<GUINodeRGBA*>(m_pRender)
+#define DYNAMIC_CAST_CCNODERGBA dynamic_cast<CCNodeRGBA*>(m_pRender)
     
 UIWidget::UIWidget():
 m_bEnabled(true),
@@ -74,7 +75,8 @@ m_anchorPoint(ccp(0.5f, 0.5f)),
 m_pUILayer(NULL),
 m_bIsCreatedFromFile(false),
 m_nActionTag(0),
-m_fileDesignSize(CCSizeZero)
+m_fileDesignSize(CCSizeZero),
+m_pBindingAction(NULL)
 {
     m_WidgetName = WIDGET_WIDGET;
 }
@@ -107,6 +109,10 @@ bool UIWidget::init()
 
 void UIWidget::releaseResoures()
 {
+    if (m_pBindingAction)
+    {
+        m_pBindingAction->releaseBindingWidget();
+    }
     m_pPushListener = NULL;
     m_pfnPushSelector = NULL;
     m_pMoveListener = NULL;
@@ -130,7 +136,13 @@ void UIWidget::releaseResoures()
 
 void UIWidget::initNodes()
 {
-    m_pRender = GUINodeRGBA::create();
+    m_pRender = CCNodeRGBA::create();
+    CCNodeRGBA* renderRGBA = dynamic_cast<CCNodeRGBA*>(m_pRender);
+    if (renderRGBA)
+    {
+        renderRGBA->setCascadeColorEnabled(true);
+        renderRGBA->setCascadeOpacityEnabled(true);
+    }
 }
 
 bool UIWidget::addChild(UIWidget *child)
@@ -382,10 +394,25 @@ void UIWidget::setNeedCheckVisibleDepandParent(bool need)
     }
 }
 
-void UIWidget::setTouchEnable(bool enable)
+void UIWidget::setTouchEnable(bool enable, bool containChildren)
 {
     m_bTouchEnabled = enable;
+    if (containChildren)
+    {
+        updateChildrenTouchEnable(enable, containChildren);
+    }
     structureChangedEvent();
+}
+
+void UIWidget::updateChildrenTouchEnable(bool enable, bool containChildren)
+{
+    ccArray* arrayChildren = m_children->data;
+    int childrenCount = arrayChildren->num;
+    for (int i = 0; i < childrenCount; i++)
+    {
+        UIWidget* child = (UIWidget*)(arrayChildren->arr[i]);
+        child->setTouchEnable(enable, containChildren);
+    }
 }
 
 bool UIWidget::isTouchEnable()
@@ -474,18 +501,47 @@ void UIWidget::setPressState(WidgetState state)
     }
 }
 
-void UIWidget::disable()
+void UIWidget::disable(bool containChildren)
 {
     m_bActived = false;
     setPressState(WidgetStateDisabled);
+    if (containChildren)
+    {
+        updateChildrenDisable();
+    }
 }
 
-void UIWidget::active()
+void UIWidget::active(bool containChildren)
 {
     m_bActived = true;
     setPressState(WidgetStateNormal);
+    if (containChildren)
+    {
+        updateChildrenActive();
+    }
 }
 
+void UIWidget::updateChildrenActive()
+{
+    ccArray* arrayChildren = m_children->data;
+    int childrenCount = arrayChildren->num;
+    for (int i = 0; i < childrenCount; i++)
+    {
+        UIWidget* child = dynamic_cast<UIWidget*>(arrayChildren->arr[i]);
+        child->active();
+    }
+}
+
+void UIWidget::updateChildrenDisable()
+{
+    ccArray* arrayChildren = m_children->data;
+    int childrenCount = arrayChildren->num;
+    for (int i = 0; i < childrenCount; i++)
+    {
+        UIWidget* child = dynamic_cast<UIWidget*>(arrayChildren->arr[i]);
+        child->disable(true);
+    }
+}
 bool UIWidget::isActive()
 {
     return m_bActived;
@@ -1116,7 +1172,7 @@ CCSize UIWidget::getFileDesignSize()
 
 void UIWidget::setColor(const cocos2d::ccColor3B &color)
 {
-    GUINodeRGBA * guiNode = DYNAMIC_CAST_GUINODERGBA;
+    CCNodeRGBA * guiNode = DYNAMIC_CAST_CCNODERGBA;
     if (guiNode)
     {
         guiNode->setColor(color);
@@ -1141,7 +1197,7 @@ const cocos2d::ccColor3B& UIWidget::getColor()
 
 void UIWidget::setOpacity(int opacity)
 {
-    GUINodeRGBA * guiNode = DYNAMIC_CAST_GUINODERGBA;
+    CCNodeRGBA * guiNode = DYNAMIC_CAST_CCNODERGBA;
     if (guiNode)
     {
         guiNode->setOpacity(opacity);
@@ -1162,6 +1218,44 @@ int UIWidget::getOpacity()
         return rgbap->getOpacity();
     }
     return 0;
+}
+
+bool UIWidget::isCascadeOpacityEnabled()
+{
+    CCNodeRGBA* node = DYNAMIC_CAST_CCNODERGBA;
+    if (node)
+    {
+        return node->isCascadeOpacityEnabled();
+    }
+    return false;
+}
+
+void UIWidget::setCascadeOpacityEnabled(bool cascadeOpacityEnabled)
+{
+    CCNodeRGBA* node = DYNAMIC_CAST_CCNODERGBA;
+    if (node)
+    {
+        node->setCascadeOpacityEnabled(cascadeOpacityEnabled);
+    }
+}
+
+bool UIWidget::isCascadeColorEnabled()
+{
+    CCNodeRGBA* node = DYNAMIC_CAST_CCNODERGBA;
+    if (node)
+    {
+        return node->isCascadeColorEnabled();
+    }
+    return false;
+}
+
+void UIWidget::setCascadeColorEnabled(bool cascadeColorEnabled)
+{
+    CCNodeRGBA* node = DYNAMIC_CAST_CCNODERGBA;
+    if (node)
+    {
+        node->setCascadeColorEnabled(cascadeColorEnabled);
+    }
 }
 
 void UIWidget::setBlendFunc(cocos2d::ccBlendFunc blendFunc)
@@ -1237,9 +1331,15 @@ void UIWidget::setActionTag(int tag)
 {
 	m_nActionTag = tag;
 }
+
 int UIWidget::getActionTag()
 {
 	return m_nActionTag;
+}
+
+void UIWidget::setBindingAction(cocos2d::extension::UIActionNode *actionNode)
+{
+    m_pBindingAction = actionNode;
 }
 
 NS_CC_EXT_END
