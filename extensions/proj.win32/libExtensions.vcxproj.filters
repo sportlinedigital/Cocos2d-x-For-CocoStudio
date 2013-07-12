@@ -82,6 +82,9 @@
     <Filter Include="CocoGUILIB\System">
       <UniqueIdentifier>{970ace6e-a20b-4851-abf4-9c653584c5a9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CocoAction">
+      <UniqueIdentifier>{b6a6876f-bf7f-45d5-920c-89c52909743a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\GUI\CCScrollView\CCScrollView.cpp">
@@ -495,6 +498,24 @@
     <ClCompile Include="..\CocoGUILIB\Drawable\UIClippingLayer.cpp">
       <Filter>CocoGUILIB\Drawable</Filter>
     </ClCompile>
+    <ClCompile Include="..\CocoAction\CocoActionFrame.cpp">
+      <Filter>CocoAction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoAction\CocoActionFrameEasing.cpp">
+      <Filter>CocoAction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoAction\CocoActionManager.cpp">
+      <Filter>CocoAction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoAction\CocoActionNode.cpp">
+      <Filter>CocoAction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoAction\CocoActionObject.cpp">
+      <Filter>CocoAction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoAction\CocoActionNodeFrame.cpp">
+      <Filter>CocoAction</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\GUI\CCScrollView\CCScrollView.h">
@@ -885,6 +906,24 @@
     </ClInclude>
     <ClInclude Include="..\CocoGUILIB\Drawable\UIClippingLayer.h">
       <Filter>CocoGUILIB\Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoAction\CocoActionFrame.h">
+      <Filter>CocoAction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoAction\CocoActionFrameEasing.h">
+      <Filter>CocoAction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoAction\CocoActionManager.h">
+      <Filter>CocoAction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoAction\CocoActionNode.h">
+      <Filter>CocoAction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoAction\CocoActionObject.h">
+      <Filter>CocoAction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoAction\CocoActionNodeFrame.h">
+      <Filter>CocoAction</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

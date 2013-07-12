@@ -1131,7 +1131,12 @@ void UIWidget::setColor(const cocos2d::ccColor3B &color)
 
 const cocos2d::ccColor3B& UIWidget::getColor()
 {
-    return DYNAMIC_CAST_CCRGBAPROTOCOL->getColor();
+    CCRGBAProtocol* rgbap = DYNAMIC_CAST_CCRGBAPROTOCOL;
+    if (rgbap)
+    {
+        return rgbap->getColor();
+    }
+    return ccWHITE;
 }
 
 void UIWidget::setOpacity(int opacity)
@@ -1151,7 +1156,12 @@ void UIWidget::setOpacity(int opacity)
 
 int UIWidget::getOpacity()
 {
-    return DYNAMIC_CAST_CCRGBAPROTOCOL->getOpacity();
+    CCRGBAProtocol* rgbap = DYNAMIC_CAST_CCRGBAPROTOCOL;
+    if (rgbap)
+    {
+        return rgbap->getOpacity();
+    }
+    return 0;
 }
 
 void UIWidget::setBlendFunc(cocos2d::ccBlendFunc blendFunc)
