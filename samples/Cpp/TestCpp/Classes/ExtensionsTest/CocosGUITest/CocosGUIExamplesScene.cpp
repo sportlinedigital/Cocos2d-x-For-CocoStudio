@@ -6,38 +6,39 @@
 
 const char* weapon_introduce_text[31] =
 {
-    "中文: 武器", 
-    "日本语: 武器",
-    "韩语: 무기 ",
-    "英语: weapon ",
-    "法语: arme ",
-    "俄语: oружие",
-    "德语: waffe",
-    "西班牙语: arma",
-    "葡萄牙语: arma",
-    "意大利语: arma",
-    "希腊语: Όπλο",
-    "荷兰语: wapen",
-    "瑞典语: vapen",
-    "阿拉伯语: سلاح",
-    "捷克语: zbraň",
-    "丹麦语: våben",
-    "芬兰语: ase",
-    "挪威语: våpen",
-    "保加利亚语: Оръжие",
-    "波斯语: سلاح",
-    "豪萨语: makami",
-    "希伯莱语: נשק",
-    "印地语: हथियार",
-    "匈牙利语: fegyver",
-    "普什图语: وسله",
-    "波兰语: broń",
-    "罗马尼亚语: arma",
-    "塞尔维亚语: Pucnjava iz vatrenog oru ja",
-    "泰语: tinyinjin",
-    "土耳其语: silahı",
-    "乌尔都语: شستر",    
+	"Chinese: 1",
+	"Japanese: 2",
+	"Korean: 3",
+	"English: 4",
+	"French: 5",
+	"Russian: 6",
+	"German: 7",
+	"Spanish: 8",
+	"Portuguese: 9",
+	"Italian: 10",
+	"Greek: 11",
+	"Dutch: 12",
+	"Swedish: 13",
+	"Arabic: 14",
+	"Czech: 15",
+	"Danish: 16",
+	"Finnish: 17",
+	"Norwegian:18",
+	"Bulgarian: 19",
+	"Persian: 20",
+	"Hausa: 21",
+	"Schieber Lai: 22",
+	"Hindi: 23",
+	"Hungarian: 24",
+	"Pushtu: 25",
+	"Polish: 26",
+	"Romanian: 27",
+	"Serbian: 28",
+	"Thai: 29",
+	"Turkish: 30",
+	"Urdu: 31",
 };
+
 
 CocosGUIExamplesScene::CocosGUIExamplesScene(bool bPortrait)
 {
@@ -167,7 +168,7 @@ void CocosGUIExamplesScene::ExamplesShowWeapon(CCObject* pSender)
     // introduce panel
     UIPanel* weapon_introduce_panel = dynamic_cast<UIPanel*>(weapon_root->getChildByName("introduce_panel"));
     UITextArea* weapon_introduce_text = dynamic_cast<UITextArea*>(weapon_introduce_panel->getChildByName("introduce_text"));
-    weapon_introduce_text->setText("点击武器图标查看武器介绍，滑动武器库查看更多武器");
+    weapon_introduce_text->setText("Please touch weapon icon to watch introduce,and scroll panel to check more");
     
     // weapon panel
     UIPanel* weapon_panel = dynamic_cast<UIPanel*>(weapon_root->getChildByName("weapon_panel"));
