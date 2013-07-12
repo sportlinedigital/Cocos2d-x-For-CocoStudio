@@ -56,26 +56,17 @@ void CocosGUITestScene::runThisTest()
 //    ul2->addWidget(p2);
 //    return;
     
+    
+
     ul->addWidget(CCUIHELPER->createWidgetFromJsonFile("cocosgui/CocoGUISample.json"));
+
     UIButton* exitBtn = dynamic_cast<UIButton*>(ul->getWidgetByName("exitbutton"));
     exitBtn->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::toCocosGUIExampleScene));
-    
-//    UIPanel* p = UIPanel::create();
-//    p->setSize(CCSizeMake(100, 100));
-//    p->setPosition(ccp(100, 100));
-//    p->setBackGroundColorType(PANEL_COLOR_SOLID);
-//    p->setBackGroundColor(ccGREEN);
-//    p->setClippingEnable(true);
-//    ul->addWidget(p);
-//    UINodeContainer* nc = UINodeContainer::create();
-//    nc->addCCNode(CCSprite::create("cocosgui/CloseNormal.png"));
-//    p->addChild(nc);
 }
 void CocosGUITestScene::MainMenuCallback(CCObject* pSender)
 {
     CCLOG("p1 click");
     CCLOG("p1 retain count == %d",ul->retainCount());
-    ul->setTouchPriority(1);
     ul->removeFromParent();
     TestScene::MainMenuCallback(pSender);
 }
@@ -84,15 +75,11 @@ void CocosGUITestScene::toCocosGUIExampleScene(CCObject* pSender)
 {
     CCLOG("p2 click");
     ul->removeFromParent();
-    runCocosGUIExampleScene();
-}
-
-void runCocosGUIExampleScene()
-{
+    
     CocosGUIExamplesScene* pScene = new CocosGUIExamplesScene();
     if (pScene)
     {
         pScene->runThisTest();
         pScene->release();
-    }    
+    }
 }

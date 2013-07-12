@@ -101,7 +101,7 @@ NS_CC_EXT_BEGIN
                     cocos2d::CCSprite *pSprite = CCSprite::create(pPath.c_str());
 					
                     CCComRender *pRender = CCComRender::create(pSprite, "CCSprite");
-                    if (name != NULL && strcmp(name, "") != 0)
+                    if (name != NULL)
                     {
                         pRender->setName(name);
                     }
@@ -112,7 +112,7 @@ NS_CC_EXT_BEGIN
                 {
                     cocos2d::CCTMXTiledMap *pTmx = CCTMXTiledMap::create(pPath.c_str());
                     CCComRender *pRender = CCComRender::create(pTmx, "CCTMXTiledMap");
-                    if (name != NULL && strcmp(name, "") != 0)
+                    if (name != NULL)
                     {
                         pRender->setName(name);
                     }
@@ -129,7 +129,7 @@ NS_CC_EXT_BEGIN
 
 					pParticle->setPosition(0, 0);
                     CCComRender *pRender = CCComRender::create(pParticle, "CCParticleSystemQuad");
-                    if (name != NULL && strcmp(name, "") != 0)
+                    if (name != NULL)
                     {
                         pRender->setName(name);
                     }
@@ -178,7 +178,7 @@ NS_CC_EXT_BEGIN
                     
                     CCArmature *pAr = CCArmature::create(name);
                     CCComRender *pRender = CCComRender::create(pAr, "CCArmature");
-                    if (name != NULL && strcmp(name, "") != 0)
+                    if (name != NULL)
                     {
                         pRender->setName(name);
                     }
@@ -190,29 +190,17 @@ NS_CC_EXT_BEGIN
                 {
                     CCComAudio *pAudio = CCComAudio::create();
                     pAudio->preloadEffect(pPath.c_str());
-					if (name != NULL && strcmp(name, "") != 0)
-					{
-						pAudio->setName(name);
-					}
                     gb->addComponent(pAudio);
                 }
                 else if(comName != NULL && strcmp(comName, "CCComAttribute") == 0)
                 {
                     CCComAttribute *pAttribute = CCComAttribute::create();
-					if (name != NULL && strcmp(name, "") != 0)
-					{
-						pAttribute->setName(name);
-					}
                     gb->addComponent(pAttribute);
                 }
                 else if (comName != NULL && strcmp(comName, "CCBackgroundAudio") == 0)
                 {
                     CCComAudio *pAudio = CCComAudio::create();
                     pAudio->preloadBackgroundMusic(pPath.c_str());
-					if (name != NULL && strcmp(name, "") != 0)
-					{
-						pAudio->setName(name);
-					}
                     gb->addComponent(pAudio);
                 }
 				else if(comName != NULL && strcmp(comName, "GUIComponent") == 0)
@@ -221,7 +209,7 @@ NS_CC_EXT_BEGIN
 					UIWidget* widget=cocos2d::extension::UIHelper::instance()->createWidgetFromJsonFile(pPath.c_str());
 					pLayer->addWidget(widget);
 					CCComRender *pRender = CCComRender::create(pLayer, "GUIComponent");
-					if (name != NULL && strcmp(name, "") != 0)
+					if (name != NULL)
 					{
 						pRender->setName(name);
 					}

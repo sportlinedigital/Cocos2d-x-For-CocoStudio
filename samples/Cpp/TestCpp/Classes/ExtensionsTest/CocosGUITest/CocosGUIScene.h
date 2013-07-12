@@ -8,8 +8,6 @@
 using namespace cocos2d;
 using namespace cocos2d::extension;
 
-void runCocosGUIExampleScene();
-
 class CocosGUITestScene : public TestScene
 {
 public:

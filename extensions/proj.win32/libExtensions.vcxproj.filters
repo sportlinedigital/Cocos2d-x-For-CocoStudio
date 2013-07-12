@@ -61,26 +61,29 @@
     <Filter Include="Components">
       <UniqueIdentifier>{e82b14bf-eb08-4a40-a9a2-cc92a154d9b9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="CocoGUILIB">
-      <UniqueIdentifier>{4903d3aa-9cb9-441a-9912-d5dc84b02a4a}</UniqueIdentifier>
+    <Filter Include="NewFilter2">
+      <UniqueIdentifier>{7e9b0ea0-c344-484e-b2d4-c7c478c45919}</UniqueIdentifier>
     </Filter>
-    <Filter Include="JsonReader">
-      <UniqueIdentifier>{98a32c85-66fa-4674-91a2-b834fa19833a}</UniqueIdentifier>
+    <Filter Include="CocoGUILIB">
+      <UniqueIdentifier>{d2fb4d1c-d4fa-4270-b26d-9666ac84f652}</UniqueIdentifier>
     </Filter>
     <Filter Include="CocoGUILIB\Action">
-      <UniqueIdentifier>{e8d01539-b058-44c4-9828-7701a24a9055}</UniqueIdentifier>
+      <UniqueIdentifier>{107e4a5d-33e3-4795-9abf-18ebbf937ecd}</UniqueIdentifier>
     </Filter>
     <Filter Include="CocoGUILIB\BaseClasses">
-      <UniqueIdentifier>{d18dcbde-3eff-4d99-bc2e-5073c59b2fec}</UniqueIdentifier>
+      <UniqueIdentifier>{5dd0ca29-1913-4536-b72b-d5780490918a}</UniqueIdentifier>
     </Filter>
     <Filter Include="CocoGUILIB\Drawable">
-      <UniqueIdentifier>{a6589dfc-e07a-4704-aaf3-f97feb887c62}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="CocoGUILIB\UIWidgets">
-      <UniqueIdentifier>{f03096f4-7ebd-4c52-b43b-55e25a25610f}</UniqueIdentifier>
+      <UniqueIdentifier>{b351307c-e799-4487-a51d-c2e2507eb129}</UniqueIdentifier>
     </Filter>
     <Filter Include="CocoGUILIB\System">
-      <UniqueIdentifier>{970ace6e-a20b-4851-abf4-9c653584c5a9}</UniqueIdentifier>
+      <UniqueIdentifier>{c93885f4-1bc3-4c4b-b674-101af5c1a84a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CocoGUILIB\UIWidgets">
+      <UniqueIdentifier>{3bb395e1-a9db-4945-87d8-b57a60fb788b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CocostudioReader">
+      <UniqueIdentifier>{bb55ef06-8fad-4ca3-80f0-15c48b325da1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -387,11 +390,38 @@
     <ClCompile Include="..\Components\CCComRender.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="..\JsonReader\CCJsonReader.cpp">
-      <Filter>JsonReader</Filter>
+    <ClCompile Include="..\CocoGUILIB\Action\UIAction.cpp">
+      <Filter>CocoGUILIB\Action</Filter>
     </ClCompile>
-    <ClCompile Include="..\JsonReader\DictionaryHelper.cpp">
-      <Filter>JsonReader</Filter>
+    <ClCompile Include="..\CocoGUILIB\Action\UIActionFrame.cpp">
+      <Filter>CocoGUILIB\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\Action\UIActionManager.cpp">
+      <Filter>CocoGUILIB\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\Action\UIActionNode.cpp">
+      <Filter>CocoGUILIB\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\BaseClasses\UIContainerWidget.cpp">
+      <Filter>CocoGUILIB\BaseClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\BaseClasses\UIRootWidget.cpp">
+      <Filter>CocoGUILIB\BaseClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\BaseClasses\UIWidget.cpp">
+      <Filter>CocoGUILIB\BaseClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\Drawable\GUINodeRGBA.cpp">
+      <Filter>CocoGUILIB\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\Drawable\UICCLabelAtlas.cpp">
+      <Filter>CocoGUILIB\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\Drawable\UICCTextField.cpp">
+      <Filter>CocoGUILIB\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\Drawable\UIClippingLayer.cpp">
+      <Filter>CocoGUILIB\Drawable</Filter>
     </ClCompile>
     <ClCompile Include="..\CocoGUILIB\System\CCSReader.cpp">
       <Filter>CocoGUILIB\System</Filter>
@@ -408,42 +438,6 @@
     <ClCompile Include="..\CocoGUILIB\System\UILayer.cpp">
       <Filter>CocoGUILIB\System</Filter>
     </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\Drawable\GUINodeRGBA.cpp">
-      <Filter>CocoGUILIB\Drawable</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\Drawable\UICCLabelAtlas.cpp">
-      <Filter>CocoGUILIB\Drawable</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\Drawable\UICCTextField.cpp">
-      <Filter>CocoGUILIB\Drawable</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\Drawable\UIClipAbleLayerGradient.cpp">
-      <Filter>CocoGUILIB\Drawable</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\Drawable\UIPrimitivesNode.cpp">
-      <Filter>CocoGUILIB\Drawable</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\BaseClasses\UIContainerWidget.cpp">
-      <Filter>CocoGUILIB\BaseClasses</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\BaseClasses\UIRootWidget.cpp">
-      <Filter>CocoGUILIB\BaseClasses</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\BaseClasses\UIWidget.cpp">
-      <Filter>CocoGUILIB\BaseClasses</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\Action\UIAction.cpp">
-      <Filter>CocoGUILIB\Action</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\Action\UIActionFrame.cpp">
-      <Filter>CocoGUILIB\Action</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\Action\UIActionManager.cpp">
-      <Filter>CocoGUILIB\Action</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\Action\UIActionNode.cpp">
-      <Filter>CocoGUILIB\Action</Filter>
-    </ClCompile>
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UIButton.cpp">
       <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClCompile>
@@ -451,9 +445,6 @@
       <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClCompile>
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UIControlButton.cpp">
-      <Filter>CocoGUILIB\UIWidgets</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\UIWidgets\UIGradientPanel.cpp">
       <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClCompile>
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UIImageView.cpp">
@@ -498,11 +489,11 @@
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UITextField.cpp">
       <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\Action\UIActionFrameEasing.cpp">
-      <Filter>CocoGUILIB\Action</Filter>
+    <ClCompile Include="..\CocostudioReader\CCJsonReader.cpp">
+      <Filter>CocostudioReader</Filter>
     </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\Drawable\UIClippingLayerColor.cpp">
-      <Filter>CocoGUILIB\Drawable</Filter>
+    <ClCompile Include="..\CocostudioReader\DictionaryHelper.cpp">
+      <Filter>CocostudioReader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -787,11 +778,38 @@
     <ClInclude Include="..\Components\CCComRender.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\JsonReader\CCJsonReader.h">
-      <Filter>JsonReader</Filter>
+    <ClInclude Include="..\CocoGUILIB\Action\UIAction.h">
+      <Filter>CocoGUILIB\Action</Filter>
     </ClInclude>
-    <ClInclude Include="..\JsonReader\DictionaryHelper.h">
-      <Filter>JsonReader</Filter>
+    <ClInclude Include="..\CocoGUILIB\Action\UIActionFrame.h">
+      <Filter>CocoGUILIB\Action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\Action\UIActionManager.h">
+      <Filter>CocoGUILIB\Action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\Action\UIActionNode.h">
+      <Filter>CocoGUILIB\Action</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\BaseClasses\UIContainerWidget.h">
+      <Filter>CocoGUILIB\BaseClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\BaseClasses\UIRootWidget.h">
+      <Filter>CocoGUILIB\BaseClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\BaseClasses\UIWidget.h">
+      <Filter>CocoGUILIB\BaseClasses</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\Drawable\GUINodeRGBA.h">
+      <Filter>CocoGUILIB\Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\Drawable\UICCLabelAtlas.h">
+      <Filter>CocoGUILIB\Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\Drawable\UICCTextField.h">
+      <Filter>CocoGUILIB\Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\Drawable\UIClippingLayer.h">
+      <Filter>CocoGUILIB\Drawable</Filter>
     </ClInclude>
     <ClInclude Include="..\CocoGUILIB\System\CCSReader.h">
       <Filter>CocoGUILIB\System</Filter>
@@ -808,42 +826,6 @@
     <ClInclude Include="..\CocoGUILIB\System\UILayer.h">
       <Filter>CocoGUILIB\System</Filter>
     </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\Drawable\GUINodeRGBA.h">
-      <Filter>CocoGUILIB\Drawable</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\Drawable\UICCLabelAtlas.h">
-      <Filter>CocoGUILIB\Drawable</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\Drawable\UICCTextField.h">
-      <Filter>CocoGUILIB\Drawable</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\Drawable\UIClipAbleLayerGradient.h">
-      <Filter>CocoGUILIB\Drawable</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\Drawable\UIPrimitivesNode.h">
-      <Filter>CocoGUILIB\Drawable</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\BaseClasses\UIContainerWidget.h">
-      <Filter>CocoGUILIB\BaseClasses</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\BaseClasses\UIRootWidget.h">
-      <Filter>CocoGUILIB\BaseClasses</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\BaseClasses\UIWidget.h">
-      <Filter>CocoGUILIB\BaseClasses</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\Action\UIAction.h">
-      <Filter>CocoGUILIB\Action</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\Action\UIActionFrame.h">
-      <Filter>CocoGUILIB\Action</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\Action\UIActionManager.h">
-      <Filter>CocoGUILIB\Action</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\Action\UIActionNode.h">
-      <Filter>CocoGUILIB\Action</Filter>
-    </ClInclude>
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UIButton.h">
       <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClInclude>
@@ -851,9 +833,6 @@
       <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClInclude>
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UIControlButton.h">
-      <Filter>CocoGUILIB\UIWidgets</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\UIWidgets\UIGradientPanel.h">
       <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClInclude>
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UIImageView.h">
@@ -898,11 +877,11 @@
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UITextField.h">
       <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\Action\UIActionFrameEasing.h">
-      <Filter>CocoGUILIB\Action</Filter>
+    <ClInclude Include="..\CocostudioReader\CCJsonReader.h">
+      <Filter>CocostudioReader</Filter>
     </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\Drawable\UIClippingLayerColor.h">
-      <Filter>CocoGUILIB\Drawable</Filter>
+    <ClInclude Include="..\CocostudioReader\DictionaryHelper.h">
+      <Filter>CocostudioReader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
