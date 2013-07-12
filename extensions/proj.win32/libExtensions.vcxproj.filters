@@ -411,13 +411,7 @@
     <ClCompile Include="..\CocoGUILIB\BaseClasses\UIWidget.cpp">
       <Filter>CocoGUILIB\BaseClasses</Filter>
     </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\Drawable\GUINodeRGBA.cpp">
-      <Filter>CocoGUILIB\Drawable</Filter>
-    </ClCompile>
     <ClCompile Include="..\CocoGUILIB\Drawable\UICCLabelAtlas.cpp">
-      <Filter>CocoGUILIB\Drawable</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\Drawable\UICCTextField.cpp">
       <Filter>CocoGUILIB\Drawable</Filter>
     </ClCompile>
     <ClCompile Include="..\CocoGUILIB\Drawable\UIClippingLayer.cpp">
@@ -799,13 +793,7 @@
     <ClInclude Include="..\CocoGUILIB\BaseClasses\UIWidget.h">
       <Filter>CocoGUILIB\BaseClasses</Filter>
     </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\Drawable\GUINodeRGBA.h">
-      <Filter>CocoGUILIB\Drawable</Filter>
-    </ClInclude>
     <ClInclude Include="..\CocoGUILIB\Drawable\UICCLabelAtlas.h">
-      <Filter>CocoGUILIB\Drawable</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\Drawable\UICCTextField.h">
       <Filter>CocoGUILIB\Drawable</Filter>
     </ClInclude>
     <ClInclude Include="..\CocoGUILIB\Drawable\UIClippingLayer.h">
