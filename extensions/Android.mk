@@ -85,9 +85,7 @@ CocoGUILIB/Action/UIActionNode.cpp \
 CocoGUILIB/BaseClasses/UIContainerWidget.cpp \
 CocoGUILIB/BaseClasses/UIRootWidget.cpp \
 CocoGUILIB/BaseClasses/UIWidget.cpp \
-CocoGUILIB/Drawable/GUINodeRGBA.cpp \
 CocoGUILIB/Drawable/UICCLabelAtlas.cpp \
-CocoGUILIB/Drawable/UICCTextField.cpp \
 CocoGUILIB/Drawable/UIClippingLayer.cpp \
 CocoGUILIB/System/CCSReader.cpp \
 CocoGUILIB/System/CocosGUI.cpp \

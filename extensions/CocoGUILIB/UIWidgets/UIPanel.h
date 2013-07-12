@@ -50,6 +50,7 @@ public:
     void setBackGroundColor(const ccColor3B &color);
     void setBackGroundColor(const ccColor3B &startColor, const ccColor3B &endColor);
     void setBackGroundColorOpacity(int opacity);
+    void setBackGroundColorVector(const CCPoint &vector);
 protected:
     virtual void initNodes();
 protected:

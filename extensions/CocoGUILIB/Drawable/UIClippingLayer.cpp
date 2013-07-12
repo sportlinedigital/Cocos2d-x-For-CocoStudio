@@ -70,7 +70,8 @@ m_gStartColor(ccWHITE),
 m_gEndColor(ccWHITE),
 m_nCOpacity(255),
 m_parentClippingRect(CCRectZero),
-m_clippingRect(CCRectZero)
+m_clippingRect(CCRectZero),
+m_AlongVector(CCPointZero)
 {
     
 }
@@ -252,6 +253,7 @@ void UIClippingLayer::setColorType(UILayerColorType type)
             m_pGradientRender->setOpacity(m_nCOpacity);
             m_pGradientRender->setStartColor(m_gStartColor);
             m_pGradientRender->setEndColor(m_gEndColor);
+            m_pGradientRender->setVector(m_AlongVector);
             this->addChild(m_pGradientRender,-1);
             break;
         default:
@@ -361,6 +363,15 @@ void UIClippingLayer::setEndColor(const ccColor3B &color)
     if (m_pGradientRender)
     {
         m_pGradientRender->setEndColor(color);
+    }
+}
+
+void UIClippingLayer::setVector(const cocos2d::CCPoint &vector)
+{
+    m_AlongVector = vector;
+    if (m_pGradientRender)
+    {
+        setVector(vector);
     }
 }
 

@@ -52,10 +52,12 @@ UIActionNode::~UIActionNode()
 
 void UIActionNode::initWithDictionary(cs::CSJsonDictionary *dic,UIWidget* root)
 {
-    setActionTag(DICTOOL->getIntValue_json(dic, "actiontag"));
+    setActionTag(DICTOOL->getIntValue_json(dic, "ActionTag"));
     int actionFrameCount = DICTOOL->getArrayCount_json(dic, "actionframelist");
     SetActionNode(CCUIHELPER->seekActionWidgetByActionTag(root, getActionTag()));
-    for (int i=0; i<actionFrameCount; i++) {
+    
+    for (int i=0; i<actionFrameCount; i++)
+    {
         UIActionFrame* actionFrame = new UIActionFrame();
         cs::CSJsonDictionary* actionFrameDic = DICTOOL->getDictionaryFromArray_json(dic, "actionframelist", i);
         actionFrame->initWithDictionary(actionFrameDic);
@@ -69,6 +71,12 @@ void UIActionNode::SetActionNode(UIWidget* widget)
 
 	//UpdateToFrameByIndex(currentIndex);
 }
+
+void UIActionNode::releaseBindingWidget()
+{
+    m_actionNode = NULL;
+}
+
 void UIActionNode::InsertFrame(int index, UIActionFrame* frame)
 {
 	m_ActionFrameList->insertObject(frame,index);

@@ -70,7 +70,7 @@ Classes/ExtensionsTest/ComponentsTest/SceneController.cpp \
 \
 Classes/ExtensionsTest/SceneEditorTest/SceneEditorTestScene.cpp \
 \
-Classes/ExtensionsTest/CocosGUITest/CocosGUISlotScene.cpp \
+Classes/ExtensionsTest/CocosGUITest/CocosGUIExamplesScene.cpp \
 \
 Classes/ExtensionsTest/CocosGUITest/CocosGUIScene.cpp \
 \

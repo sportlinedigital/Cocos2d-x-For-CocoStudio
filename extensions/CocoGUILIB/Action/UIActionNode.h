@@ -41,7 +41,7 @@ protected:
 	UIWidget* m_actionNode;
     //data
 	cocos2d::CCArray* m_ActionFrameList;/*action frame*/
-    CC_SYNTHESIZE(int, m_Action, ActionTag);
+    CC_SYNTHESIZE(int, m_nActionTag, ActionTag);
 public:
     UIActionNode();
     virtual ~UIActionNode();
@@ -59,6 +59,7 @@ public:
 	void RunAction(float fUnitTime, bool bloop);
 	void StopAction();
     void initWithDictionary(cs::CSJsonDictionary* dic,UIWidget* root);
+    void releaseBindingWidget();
 };
 
 NS_CC_EXT_END

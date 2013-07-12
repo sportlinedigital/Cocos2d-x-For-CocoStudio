@@ -61,7 +61,8 @@ void UICCLabelAtlas::setProperty(const char *string, cocos2d::CCTexture2D *textu
 
 void UICCLabelAtlas::draw()
 {
-    if (strcmp("", getString()) == 0)
+    
+    if (!m_pTextureAtlas)
     {
         return;
     }
