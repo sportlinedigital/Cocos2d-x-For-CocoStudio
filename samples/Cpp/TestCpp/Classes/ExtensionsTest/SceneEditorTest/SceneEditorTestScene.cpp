@@ -89,6 +89,7 @@ cocos2d::CCNode* SceneEditorTestLayer::createGameScene()
 
 void SceneEditorTestLayer::toExtensionsMainLayer(cocos2d::CCObject *sender)
 {
+
 	ExtensionsTestScene *pScene = new ExtensionsTestScene();
 	pScene->runThisTest();
 	pScene->release();

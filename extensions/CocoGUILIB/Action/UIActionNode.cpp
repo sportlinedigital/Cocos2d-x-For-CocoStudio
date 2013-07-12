@@ -54,7 +54,14 @@ void UIActionNode::initWithDictionary(cs::CSJsonDictionary *dic,UIWidget* root)
 {
     setActionTag(DICTOOL->getIntValue_json(dic, "ActionTag"));
     int actionFrameCount = DICTOOL->getArrayCount_json(dic, "actionframelist");
-    SetActionNode(CCUIHELPER->seekActionWidgetByActionTag(root, getActionTag()));
+	UIWidget* bindingWidget = CCUIHELPER->seekActionWidgetByActionTag(root, getActionTag());
+	if (bindingWidget)
+	{
+		SetActionNode(bindingWidget);
+		bindingWidget->setBindingAction(this);
+	}
+	
+    
     
     for (int i=0; i<actionFrameCount; i++)
     {
