@@ -56,6 +56,7 @@ void UIActionManager::initWithDictionary(cs::CSJsonDictionary *dic,UIWidget* roo
     for (int i=0; i<actionCount; i++)
     {
         UIAction* action = new UIAction();
+        action->autorelease();
         cs::CSJsonDictionary* actionDic = DICTOOL->getDictionaryFromArray_json(dic, "actionlist", i);
         action->initWithDictionary(actionDic,root);
         m_ActionList->addObject(action);
@@ -82,6 +83,20 @@ void UIActionManager::PlayActionByName(const char* actionName)
     {
         action->Play();
     }
+}
+
+/*temp */
+void UIActionManager::releaseActions()
+{
+    m_ActionList->removeAllObjects();
+//    int times = m_ActionList->data->num;
+//    for (int i=0; i<times; i++)
+//    {
+//        UIAction* action = dynamic_cast<UIAction*>(m_ActionList->lastObject());
+//        m_ActionList->removeObject(action);
+//        delete action;
+//        action = NULL;
+//    }
 }
 
 NS_CC_EXT_END

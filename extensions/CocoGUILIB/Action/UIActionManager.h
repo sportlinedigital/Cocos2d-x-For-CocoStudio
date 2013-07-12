@@ -46,6 +46,7 @@ public:
 	void PlayActionByName(const char* actionName);
     
     void initWithDictionary(cs::CSJsonDictionary* dic,UIWidget* root);
+    void releaseActions();
 };
 
 NS_CC_EXT_END

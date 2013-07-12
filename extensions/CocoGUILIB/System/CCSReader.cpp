@@ -224,6 +224,9 @@ UIWidget* CCSReader::widgetFromJsonFile(const char *fileName)
     
     widget->setFileDesignSize(CCSizeMake(fileDesignWidth, fileDesignHeight));
     cs::CSJsonDictionary* actions = DICTOOL->getSubDictionary_json(jsonDict, "animation");
+    /* *********temp********* */
+    UIActionManager::shareManager()->releaseActions();
+    /* ********************** */
     UIActionManager::shareManager()->initWithDictionary(actions,widget);
     delete jsonDict;
     jsonDict = NULL;
