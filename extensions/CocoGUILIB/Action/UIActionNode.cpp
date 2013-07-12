@@ -46,6 +46,10 @@ UIActionNode::~UIActionNode()
 	{
 		m_action->release();
 	}
+    if (m_actionNode)
+    {
+        m_actionNode->setBindingAction(NULL);
+    }
 	m_ActionFrameList->removeAllObjects();
 	m_ActionFrameList->release();
 }
@@ -60,12 +64,11 @@ void UIActionNode::initWithDictionary(cs::CSJsonDictionary *dic,UIWidget* root)
 		SetActionNode(bindingWidget);
 		bindingWidget->setBindingAction(this);
 	}
-	
-    
     
     for (int i=0; i<actionFrameCount; i++)
     {
         UIActionFrame* actionFrame = new UIActionFrame();
+        actionFrame->autorelease();
         cs::CSJsonDictionary* actionFrameDic = DICTOOL->getDictionaryFromArray_json(dic, "actionframelist", i);
         actionFrame->initWithDictionary(actionFrameDic);
         m_ActionFrameList->addObject(actionFrame);
