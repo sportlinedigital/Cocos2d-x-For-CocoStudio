@@ -1154,6 +1154,7 @@
 		37EEEC3F175DE5D3003C1193 /* SceneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneController.h; sourceTree = "<group>"; };
 		504D89391793A77D00E8ED0D /* UISwitch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UISwitch.cpp; sourceTree = "<group>"; };
 		504D893A1793A77D00E8ED0D /* UISwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISwitch.h; sourceTree = "<group>"; };
+		504D893C1794003A00E8ED0D /* EncodedHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncodedHelper.h; sourceTree = "<group>"; };
 		509BEEE0178FBC0200E0EEAC /* CocosGUIExamplesScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocosGUIExamplesScene.cpp; sourceTree = "<group>"; };
 		509BEEE1178FBC0200E0EEAC /* CocosGUIExamplesScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosGUIExamplesScene.h; sourceTree = "<group>"; };
 		509BEF8F178FBD5800E0EEAC /* cocosgui */ = {isa = PBXFileReference; lastKnownFileType = folder; path = cocosgui; sourceTree = "<group>"; };
@@ -2801,6 +2802,7 @@
 		377992CC178C270500C68990 /* CocostudioReader */ = {
 			isa = PBXGroup;
 			children = (
+				504D893C1794003A00E8ED0D /* EncodedHelper.h */,
 				377992CD178C270500C68990 /* CCJsonReader.cpp */,
 				377992CE178C270500C68990 /* CCJsonReader.h */,
 				377992CF178C270500C68990 /* DictionaryHelper.cpp */,

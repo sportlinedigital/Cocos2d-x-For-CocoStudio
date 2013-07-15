@@ -58,10 +58,32 @@ void CocosGUITestScene::runThisTest()
     
     
 
-    ul->addWidget(CCUIHELPER->createWidgetFromJsonFile("cocosgui/CocoGUISample.json"));
-
-    UIButton* exitBtn = dynamic_cast<UIButton*>(ul->getWidgetByName("exitbutton"));
-    exitBtn->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::toCocosGUIExampleScene));
+    ul->addWidget(CCUIHELPER->createWidgetFromJsonFile("cocosgui/test/55555._1/55555._1.ExportJson"));
+//
+//    UIButton* exitBtn = dynamic_cast<UIButton*>(ul->getWidgetByName("exitbutton"));
+//    exitBtn->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::toCocosGUIExampleScene));
+    
+//    CCSprite* sp = CCSprite::create("cocosgui/CloseNormal.png");
+    
+//    UIPanel* panel = UIPanel::create();
+//    panel->setSize(CCSizeMake(100, 100));
+//    panel->setPosition(ccp(100, 100));
+    
+//    panel->setBackGroundColorType(PANEL_COLOR_SOLID);
+//    panel->setBackGroundColor(ccGREEN);
+//    
+//    ul->addWidget(panel);
+//    
+//    
+//    panel->setClippingEnable(true);
+//    
+////    UINodeContainer* nc = UINodeContainer::create();
+////    nc->addCCNode(sp);
+//    UIButton* btn = UIButton::create();
+//    btn->setTextures("cocosgui/CloseNormal.png", "", NULL);
+//    btn->setOpacity(100);
+//    panel->addChild(btn);
+    
 }
 void CocosGUITestScene::MainMenuCallback(CCObject* pSender)
 {
