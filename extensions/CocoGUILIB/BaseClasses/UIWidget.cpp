@@ -104,6 +104,12 @@ bool UIWidget::init()
     initNodes();
     m_pRender->retain();
     m_pRender->setZOrder(m_nWidgetZOrder);
+    CCRGBAProtocol* renderRGBA = DYNAMIC_CAST_CCRGBAPROTOCOL;
+    if (renderRGBA)
+    {
+        renderRGBA->setCascadeColorEnabled(true);
+        renderRGBA->setCascadeOpacityEnabled(true);
+    }
     return true;
 }
 
@@ -137,12 +143,6 @@ void UIWidget::releaseResoures()
 void UIWidget::initNodes()
 {
     m_pRender = CCNodeRGBA::create();
-    CCNodeRGBA* renderRGBA = dynamic_cast<CCNodeRGBA*>(m_pRender);
-    if (renderRGBA)
-    {
-        renderRGBA->setCascadeColorEnabled(true);
-        renderRGBA->setCascadeOpacityEnabled(true);
-    }
 }
 
 bool UIWidget::addChild(UIWidget *child)
@@ -1172,12 +1172,6 @@ CCSize UIWidget::getFileDesignSize()
 
 void UIWidget::setColor(const cocos2d::ccColor3B &color)
 {
-    CCNodeRGBA * guiNode = DYNAMIC_CAST_CCNODERGBA;
-    if (guiNode)
-    {
-        guiNode->setColor(color);
-        return;
-    }
     cocos2d::CCRGBAProtocol* rgbap = DYNAMIC_CAST_CCRGBAPROTOCOL;
     if (rgbap)
     {
@@ -1197,12 +1191,6 @@ const cocos2d::ccColor3B& UIWidget::getColor()
 
 void UIWidget::setOpacity(int opacity)
 {
-    CCNodeRGBA * guiNode = DYNAMIC_CAST_CCNODERGBA;
-    if (guiNode)
-    {
-        guiNode->setOpacity(opacity);
-        return;
-    }
     cocos2d::CCRGBAProtocol* rgbap = DYNAMIC_CAST_CCRGBAPROTOCOL;
     if (rgbap)
     {
@@ -1222,39 +1210,39 @@ int UIWidget::getOpacity()
 
 bool UIWidget::isCascadeOpacityEnabled()
 {
-    CCNodeRGBA* node = DYNAMIC_CAST_CCNODERGBA;
-    if (node)
+    CCRGBAProtocol* rgbap = DYNAMIC_CAST_CCRGBAPROTOCOL;
+    if (rgbap)
     {
-        return node->isCascadeOpacityEnabled();
+        return rgbap->isCascadeOpacityEnabled();
     }
     return false;
 }
 
 void UIWidget::setCascadeOpacityEnabled(bool cascadeOpacityEnabled)
 {
-    CCNodeRGBA* node = DYNAMIC_CAST_CCNODERGBA;
-    if (node)
+    CCRGBAProtocol* rgbap = DYNAMIC_CAST_CCRGBAPROTOCOL;
+    if (rgbap)
     {
-        node->setCascadeOpacityEnabled(cascadeOpacityEnabled);
+        rgbap->setCascadeOpacityEnabled(cascadeOpacityEnabled);
     }
 }
 
 bool UIWidget::isCascadeColorEnabled()
 {
-    CCNodeRGBA* node = DYNAMIC_CAST_CCNODERGBA;
-    if (node)
+    CCRGBAProtocol* rgbap = DYNAMIC_CAST_CCRGBAPROTOCOL;
+    if (rgbap)
     {
-        return node->isCascadeColorEnabled();
+        return rgbap->isCascadeColorEnabled();
     }
     return false;
 }
 
 void UIWidget::setCascadeColorEnabled(bool cascadeColorEnabled)
 {
-    CCNodeRGBA* node = DYNAMIC_CAST_CCNODERGBA;
-    if (node)
+    CCRGBAProtocol* rgbap = DYNAMIC_CAST_CCRGBAPROTOCOL;
+    if (rgbap)
     {
-        node->setCascadeColorEnabled(cascadeColorEnabled);
+        rgbap->setCascadeColorEnabled(cascadeColorEnabled);
     }
 }
 

@@ -59,6 +59,7 @@ public:
     void setPropsForImageButtonFromJsonDictionary(UIWidget* widget, cs::CSJsonDictionary* options);
     void setPropsForListViewFromJsonDictionary(UIWidget* widget, cs::CSJsonDictionary* options);
     void setPropsForPageViewFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options);
+    void setPropsForLabelBMFontFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options);
     
 protected:
     std::string m_strFilePath;

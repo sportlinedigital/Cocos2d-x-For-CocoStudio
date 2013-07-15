@@ -126,6 +126,12 @@ UIWidget* CCSReader::widgetFromJsonDictionary(cs::CSJsonDictionary* data)
         widget = UIPageView::create();
         setPropsForPageViewFromJsonDictionary(widget, uiOptions);
     }
+    else if (classname && strcmp(classname, "LabelBMFont") == 0)
+    {
+        widget = UILabelBMFont::create();
+        setPropsForLabelBMFontFromJsonDictionary(widget, uiOptions);
+    }
+    
     int childrenCount = DICTOOL->getArrayCount_json(data, "children");
     for (int i=0;i<childrenCount;i++)
     {
@@ -792,6 +798,26 @@ void CCSReader::setPropsForListViewFromJsonDictionary(UIWidget *widget, cs::CSJs
 void CCSReader::setPropsForPageViewFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options)
 {
     setPropsForPanelFromJsonDictionary(widget, options);
+    setColorPropsForWidgetFromJsonDictionary(widget,options);
+}
+
+void CCSReader::setPropsForLabelBMFontFromJsonDictionary(extension::UIWidget *widget, cs::CSJsonDictionary *options)
+{
+    setPropsForWidgetFromJsonDictionary(widget, options);
+    
+    UILabelBMFont* labelBMFont = (UILabelBMFont*)widget;
+    
+    std::string tp_c = m_strFilePath;
+    const char* cmf_tp = NULL;
+//    const char* cmft = DICTOOL->getStringValue_json(options, "fileName");
+    const char* cmft = "UIResForEditor/FNT/markerfelt24shadow.fnt";
+    cmf_tp = tp_c.append(cmft).c_str();
+    
+    labelBMFont->setFntFile(cmf_tp);
+    
+    const char* text = DICTOOL->getStringValue_json(options, "text");
+    labelBMFont->setText(text);
+    
     setColorPropsForWidgetFromJsonDictionary(widget,options);
 }
 

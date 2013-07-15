@@ -148,24 +148,24 @@ void UIPanel::setBackGroundColorType(PanelColorType type)
 
 void UIPanel::setBackGroundColor(const ccColor3B &color)
 {
-    DYNAMIC_CAST_CLIPPINGLAYER->setColor(color);
+    DYNAMIC_CAST_CLIPPINGLAYER->setBGColor(color);
 }
 
 void UIPanel::setBackGroundColor(const ccColor3B &startColor, const ccColor3B &endColor)
 {
     UIClippingLayer * render = DYNAMIC_CAST_CLIPPINGLAYER;
-    render->setStartColor(startColor);
-    render->setEndColor(endColor);
+    render->setBGStartColor(startColor);
+    render->setBGEndColor(endColor);
 }
 
 void UIPanel::setBackGroundColorOpacity(int opacity)
 {
-    DYNAMIC_CAST_CLIPPINGLAYER->setColorOpacity(opacity);
+    DYNAMIC_CAST_CLIPPINGLAYER->setBGColorOpacity(opacity);
 }
 
 void UIPanel::setBackGroundColorVector(const cocos2d::CCPoint &vector)
 {
-    DYNAMIC_CAST_CLIPPINGLAYER->setVector(vector);
+    DYNAMIC_CAST_CLIPPINGLAYER->setBGVector(vector);
 }
 
 NS_CC_EXT_END
