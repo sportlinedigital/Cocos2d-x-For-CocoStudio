@@ -95,14 +95,14 @@ UIClippingLayer* UIClippingLayer::create()
 
 void UIClippingLayer::onEnter()
 {
-    CCLayer::onEnter();
+    CCLayerRGBA::onEnter();
     m_loacationInWorld = convertToWorldSpace(CCPointZero);
     checkClippingOption();
 }
 
 void UIClippingLayer::onExit()
 {
-    CCLayer::onExit();
+    CCLayerRGBA::onExit();
     m_pClippingParent = NULL;
     m_bHandleScissor = true;
 }
@@ -152,7 +152,7 @@ void UIClippingLayer::visit()
             CCSize s = boundingBox().size;
             CCEGLView::sharedOpenGLView()->setScissorInPoints(m_loacationInWorld.x, m_loacationInWorld.y, s.width, s.height);
         }
-        CCLayer::visit();
+        CCLayerRGBA::visit();
         if (m_bHandleScissor)
         {
             glDisable(GL_SCISSOR_TEST);
@@ -167,7 +167,7 @@ void UIClippingLayer::visit()
     }
     else
     {
-        CCLayer::visit();
+        CCLayerRGBA::visit();
     }
 }
 
@@ -335,11 +335,11 @@ void UIClippingLayer::setClipSize(float width, float height)
 
 void UIClippingLayer::setPosition(const cocos2d::CCPoint &pos)
 {
-    CCLayer::setPosition(pos);
+    CCLayerRGBA::setPosition(pos);
     m_loacationInWorld = convertToWorldSpace(CCPointZero);
 }
 
-void UIClippingLayer::setColor(const ccColor3B &color)
+void UIClippingLayer::setBGColor(const ccColor3B &color)
 {
     m_cColor = color;
     if (m_pColorRender)
@@ -348,7 +348,7 @@ void UIClippingLayer::setColor(const ccColor3B &color)
     }
 }
 
-void UIClippingLayer::setStartColor(const ccColor3B &color)
+void UIClippingLayer::setBGStartColor(const ccColor3B &color)
 {
     m_gStartColor = color;
     if (m_pGradientRender)
@@ -357,7 +357,7 @@ void UIClippingLayer::setStartColor(const ccColor3B &color)
     }
 }
 
-void UIClippingLayer::setEndColor(const ccColor3B &color)
+void UIClippingLayer::setBGEndColor(const ccColor3B &color)
 {
     m_gEndColor = color;
     if (m_pGradientRender)
@@ -366,16 +366,16 @@ void UIClippingLayer::setEndColor(const ccColor3B &color)
     }
 }
 
-void UIClippingLayer::setVector(const cocos2d::CCPoint &vector)
+void UIClippingLayer::setBGVector(const cocos2d::CCPoint &vector)
 {
     m_AlongVector = vector;
     if (m_pGradientRender)
     {
-        setVector(vector);
+        m_pGradientRender->setVector(vector);
     }
 }
 
-void UIClippingLayer::setColorOpacity(int opacity)
+void UIClippingLayer::setBGColorOpacity(int opacity)
 {
     m_nCOpacity = opacity;
     switch (m_colorType)
@@ -395,7 +395,7 @@ void UIClippingLayer::setColorOpacity(int opacity)
 
 void UIClippingLayer::setContentSize(const cocos2d::CCSize &size)
 {
-    CCLayer::setContentSize(size);
+    CCLayerRGBA::setContentSize(size);
     if (m_pColorRender)
     {
         m_pColorRender->setContentSize(size);

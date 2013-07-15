@@ -22,52 +22,24 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#ifndef __UICONTAINERWIDGET_H__
-#define __UICONTAINERWIDGET_H__
+#ifndef __UISWITCH_H__
+#define __UISWITCH_H__
 
-#include "UIWidget.h"
+#include "../BaseClasses/UIWidget.h"
 
 NS_CC_EXT_BEGIN
-    
-typedef enum
-{
-    RENDER_TYPE_LAYERCOLOR,
-    RENDER_TYPE_LAYERGRADIENT
-}RenderType;
 
-
-class UIContainerWidget : public UIWidget
+class UISwitch : public UIWidget
 {
 public:
-    UIContainerWidget();
-    virtual ~UIContainerWidget();
-    static UIContainerWidget* create();
-    //Only containerWidget can use the LayoutParameter for doing layout to child widget
-    virtual void setLayoutParameter(/*LayoutParameter * parmeter*/);
-    virtual bool addChild(UIWidget* child);
-    virtual void setClippingEnable(bool able);
-    virtual void setClipRect(const cocos2d::CCRect &rect);
-    virtual void updateWidth();
-    virtual void updateHeight();
-    virtual void setSize(const cocos2d::CCSize &size);
-    virtual float getWidth();
-    virtual float getHeight();
-    virtual bool isClippingEnable();
-    virtual bool hitTest(cocos2d::CCNode*node, cocos2d::CCPoint &pt);
-    virtual void onScaleDirtyChanged();
-    virtual void onScaleXDirtyChanged();
-    virtual void onScaleYDirtyChanged();
-    CCSize getWrapSize() const;
+    UISwitch();
+    virtual ~UISwitch();
+    static UISwitch* create();
+    
 protected:
-    virtual void initNodes();
-    virtual void updateClipSize();
-protected:    
-    float m_fWidth;
-    float m_fHeight;
-    bool m_bClipAble;
-    RenderType m_renderType;
+    
 };
 
 NS_CC_EXT_END
 
-#endif /* defined(__CocoGUI__CocoContainerWidget__) */
+#endif /* defined(UISwitch__) */

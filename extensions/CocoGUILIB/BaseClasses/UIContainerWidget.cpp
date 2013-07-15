@@ -60,14 +60,6 @@ void UIContainerWidget::setLayoutParameter(/*LayoutParameter * parmeter*/)
     
 }
 
-bool UIContainerWidget::init()
-{
-    if (UIWidget::init()) {
-        return true;
-    }
-    return false;
-}
-
 void UIContainerWidget::initNodes()
 {
     m_pRender = UIClippingLayer::create();
