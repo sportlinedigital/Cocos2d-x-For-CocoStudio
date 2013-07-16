@@ -125,7 +125,6 @@ void UIContainerWidget::setSize(const cocos2d::CCSize &size)
     DYNAMIC_CAST_CLIPPINGLAYER->setContentSize(size);
     m_fWidth = size.width;
     m_fHeight = size.height;
-    updateClipSize();
 }
 
 float UIContainerWidget::getWidth()
@@ -147,32 +146,6 @@ bool UIContainerWidget::hitTest(cocos2d::CCNode *node, cocos2d::CCPoint &pt)
         return true;
     }
     return false;
-}
-
-void UIContainerWidget::onScaleDirtyChanged()
-{
-    UIWidget::onScaleDirtyChanged();
-    updateClipSize();
-}
-
-void UIContainerWidget::onScaleXDirtyChanged()
-{
-    UIWidget::onScaleXDirtyChanged();
-    updateClipSize();
-}
-
-void UIContainerWidget::onScaleYDirtyChanged()
-{
-    UIWidget::onScaleYDirtyChanged();
-    updateClipSize();
-}
-
-void UIContainerWidget::updateClipSize()
-{
-    float asx = getAbsoluteScaleX();
-    float asy = getAbsoluteScaleY();
-    cocos2d::CCSize size = DYNAMIC_CAST_CLIPPINGLAYER->getContentSize();
-    DYNAMIC_CAST_CLIPPINGLAYER->setClipSize(size.width*asx, size.height*asy);
 }
 
 CCSize UIContainerWidget::getWrapSize() const

@@ -142,16 +142,16 @@ void UIClippingLayer::visit()
             glEnable(GL_SCISSOR_TEST);
         }
         
-        if (m_bEnableCustomArea)
-        {
+//        if (m_bEnableCustomArea)
+//        {
             CCRect clippingRect = getClippingRect();
             CCEGLView::sharedOpenGLView()->setScissorInPoints(clippingRect.origin.x, clippingRect.origin.y, clippingRect.size.width, clippingRect.size.height);
-        }
-        else
-        {
-            CCSize s = boundingBox().size;
-            CCEGLView::sharedOpenGLView()->setScissorInPoints(m_loacationInWorld.x, m_loacationInWorld.y, s.width, s.height);
-        }
+//        }
+//        else
+//        {
+//            CCSize s = boundingBox().size;
+//            CCEGLView::sharedOpenGLView()->setScissorInPoints(m_loacationInWorld.x, m_loacationInWorld.y, s.width, s.height);
+//        }
         CCLayerRGBA::visit();
         if (m_bHandleScissor)
         {
@@ -273,32 +273,37 @@ void UIClippingLayer::setClipRect(const cocos2d::CCRect &rect)
 
 const CCRect& UIClippingLayer::getClippingRect()
 {
+//    CCSize s;
+    CCAffineTransform t = nodeToWorldTransform();
+    float scissorWidth = m_obContentSize.width*t.a;
+    float scissorHeight = m_obContentSize.height*t.d;
+    
     if (m_pClippingParent)
     {
         m_parentClippingRect = m_pClippingParent->getClippingRect();
         float finalX = m_loacationInWorld.x;
         float finalY = m_loacationInWorld.y;
-        float finalWidth = m_fScissorWidth;
-        float finalHeight = m_fScissorHeight;
+        float finalWidth = scissorWidth;
+        float finalHeight = scissorHeight;
         
         float leftOffset = m_loacationInWorld.x - m_parentClippingRect.origin.x;
-        if (leftOffset <= 0.0f)
+        if (leftOffset < 0.0f)
         {
             finalX = m_parentClippingRect.origin.x;
             finalWidth += leftOffset;
         }
-        float rightOffset = (m_loacationInWorld.x + m_fScissorWidth) - (m_parentClippingRect.origin.x + m_parentClippingRect.size.width);
-        if (rightOffset >= 0.0f)
+        float rightOffset = (m_loacationInWorld.x + scissorWidth) - (m_parentClippingRect.origin.x + m_parentClippingRect.size.width);
+        if (rightOffset > 0.0f)
         {
             finalWidth -= rightOffset;
         }
-        float topOffset = (m_loacationInWorld.y + m_fScissorHeight) - (m_parentClippingRect.origin.y + m_parentClippingRect.size.height);
-        if (topOffset >= 0.0f)
+        float topOffset = (m_loacationInWorld.y + scissorHeight) - (m_parentClippingRect.origin.y + m_parentClippingRect.size.height);
+        if (topOffset > 0.0f)
         {
             finalHeight -= topOffset;
         }
         float bottomOffset = m_loacationInWorld.y - m_parentClippingRect.origin.y;
-        if (bottomOffset <= 0.0f)
+        if (bottomOffset < 0.0f)
         {
             finalY = m_parentClippingRect.origin.x;
             finalHeight += bottomOffset;
@@ -319,15 +324,15 @@ const CCRect& UIClippingLayer::getClippingRect()
     else
     {
         m_clippingRect.origin = m_loacationInWorld;
-        m_clippingRect.size.width = m_fScissorWidth;
-        m_clippingRect.size.height = m_fScissorHeight;
+        m_clippingRect.size.width = scissorWidth;
+        m_clippingRect.size.height = scissorHeight;
     }
     return m_clippingRect;
-    
 }
 
 void UIClippingLayer::setClipSize(float width, float height)
 {
+    return;
     m_bEnableCustomArea = true;
     m_fScissorWidth = width;
     m_fScissorHeight = height;

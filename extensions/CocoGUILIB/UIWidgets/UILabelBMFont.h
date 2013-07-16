@@ -49,4 +49,4 @@ protected:
     
 NS_CC_EXT_END
 
-#endif /* defined(__Test__UILabelBMFont__) */
+#endif /* defined(__UILabelBMFont__) */

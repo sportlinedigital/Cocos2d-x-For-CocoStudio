@@ -487,8 +487,6 @@ void CCSReader::setPropsForLabelFromJsonDictionary(UIWidget*widget,cs::CSJsonDic
     label->setFlipX(DICTOOL->getBooleanValue_json(options, "flipX"));
     label->setFlipY(DICTOOL->getBooleanValue_json(options, "flipY"));
     setColorPropsForWidgetFromJsonDictionary(widget,options);
-    int gravity = DICTOOL->getIntValue_json(options, "gravity");
-    label->setGravity((LabelGravity)gravity);
 }
 
 void CCSReader::setPropsForLabelAtlasFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options)

@@ -58,7 +58,12 @@ void CocosGUITestScene::runThisTest()
     
     
 
-    ul->addWidget(CCUIHELPER->createWidgetFromJsonFile("cocosgui/test/55555._1/55555._1.ExportJson"));
+    ul->addWidget(CCUIHELPER->createWidgetFromJsonFile("cocosgui/CocoGUISample.json"));
+    
+    ul->setScale(0.5f);
+    ul->getWidgetByName("scrollview")->setScale(2);
+//    ul->getWidgetByName("scrollview")->setRotation(90);
+    
 //
 //    UIButton* exitBtn = dynamic_cast<UIButton*>(ul->getWidgetByName("exitbutton"));
 //    exitBtn->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::toCocosGUIExampleScene));

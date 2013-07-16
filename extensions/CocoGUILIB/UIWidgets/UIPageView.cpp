@@ -127,7 +127,7 @@ void UIPageView::addPage(UIContainerWidget* page)
     }
     CCSize pSize = page->getContentSize();
     CCSize pvSize = getContentSize();
-    if (pSize.width != pvSize.width || pSize.height != pvSize.height);
+    if (!pSize.equals(pvSize))
     {
         CCLOG("page size does not match pageview size, it will be force sized!");
         page->setSize(pvSize);
@@ -169,7 +169,7 @@ void UIPageView::insertPage(UIContainerWidget* page, int idx)
         addChild(page);
         CCSize pSize = page->getContentSize();
         CCSize pvSize = getContentSize();
-        if (pSize.width != pvSize.width || pSize.height != pvSize.height);
+        if (!pSize.equals(pvSize))
         {
             CCLOG("page size does not match pageview size, it will be force sized!");
             page->setSize(pvSize);
