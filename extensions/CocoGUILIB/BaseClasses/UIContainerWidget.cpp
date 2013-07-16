@@ -55,6 +55,22 @@ UIContainerWidget* UIContainerWidget::create()
     return NULL;
 }
 
+bool UIContainerWidget::init()
+{
+    m_children = cocos2d::CCArray::create();
+    m_children->retain();
+    initNodes();
+    m_pRender->retain();
+    m_pRender->setZOrder(m_nWidgetZOrder);
+    CCRGBAProtocol* renderRGBA = dynamic_cast<CCRGBAProtocol*>(m_pRender);
+    if (renderRGBA)
+    {
+        renderRGBA->setCascadeColorEnabled(false);
+        renderRGBA->setCascadeOpacityEnabled(false);
+    }
+    return true;
+}
+
 void UIContainerWidget::setLayoutParameter(/*LayoutParameter * parmeter*/)
 {
     

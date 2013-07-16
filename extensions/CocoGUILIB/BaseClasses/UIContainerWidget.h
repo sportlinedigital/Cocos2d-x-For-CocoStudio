@@ -56,6 +56,7 @@ public:
     virtual bool hitTest(cocos2d::CCNode*node, cocos2d::CCPoint &pt);
     CCSize getWrapSize() const;
 protected:
+    virtual bool init();
     virtual void initNodes();
 protected:    
     float m_fWidth;

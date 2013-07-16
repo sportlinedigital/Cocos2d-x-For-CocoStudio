@@ -50,7 +50,6 @@ public:
     bool getColorType();
     void setClipRect(const cocos2d::CCRect &rect);
     const CCRect& getClippingRect();
-    void setClipSize(float width,float height);
     virtual void setPosition(const CCPoint &pos);
     void setBGColor(const ccColor3B &color);
     void setBGStartColor(const ccColor3B &color);
@@ -69,8 +68,6 @@ protected:
     bool m_bClippingEnable;
     float m_fScissorX;
     float m_fScissorY;
-    float m_fScissorWidth;
-    float m_fScissorHeight;
     bool m_bEnableCustomArea;
     bool m_bHandleScissor;
     CCPoint m_loacationInWorld;
