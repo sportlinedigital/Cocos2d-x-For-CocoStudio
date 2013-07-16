@@ -24,6 +24,10 @@
 
 #include "UILabelBMFont.h"
 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+#include "../../CocostudioReader/EncodedHelper.h"
+#endif
+
 NS_CC_EXT_BEGIN
     
 UILabelBMFont::UILabelBMFont():
@@ -66,8 +70,22 @@ void UILabelBMFont::setText(const char* value)
 	{
 		return;
 	}
+	m_pLabelBMFont->setString(value);
+}
+
+void UILabelBMFont::setTextASCII(const char* value)
+{
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+    
+	if (!value)
+	{
+		return;
+	}
 	std::string strText(value);
-    m_pLabelBMFont->setString(strText.c_str());
+	std::string result = ASCII2UTF_8(strText);
+	m_pLabelBMFont->setString(result.c_str());
+    
+#endif
 }
 
 const char* UILabelBMFont::getStringValue()
