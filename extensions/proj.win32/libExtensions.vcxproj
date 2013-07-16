@@ -142,6 +142,12 @@
     <ClCompile Include="..\CCBReader\CCScale9SpriteLoader.cpp" />
     <ClCompile Include="..\CCBReader\CCScrollViewLoader.cpp" />
     <ClCompile Include="..\CCBReader\CCSpriteLoader.cpp" />
+    <ClCompile Include="..\CocoAction\CocoActionNodeFrame.cpp" />
+    <ClCompile Include="..\CocoAction\CocoActionObject.cpp" />
+    <ClCompile Include="..\CocoAction\CocoActionFrame.cpp" />
+    <ClCompile Include="..\CocoAction\CocoActionFrameEasing.cpp" />
+    <ClCompile Include="..\CocoAction\CocoActionManager.cpp" />
+    <ClCompile Include="..\CocoAction\CocoActionNode.cpp" />
     <ClCompile Include="..\CocoGUILIB\Action\UIAction.cpp" />
     <ClCompile Include="..\CocoGUILIB\Action\UIActionFrame.cpp" />
     <ClCompile Include="..\CocoGUILIB\Action\UIActionManager.cpp" />
@@ -292,6 +298,12 @@
     <ClInclude Include="..\CCBReader\CCScale9SpriteLoader.h" />
     <ClInclude Include="..\CCBReader\CCScrollViewLoader.h" />
     <ClInclude Include="..\CCBReader\CCSpriteLoader.h" />
+    <ClInclude Include="..\CocoAction\CocoActionNodeFrame.h" />
+    <ClInclude Include="..\CocoAction\CocoActionObject.h" />
+    <ClInclude Include="..\CocoAction\CocoActionFrame.h" />
+    <ClInclude Include="..\CocoAction\CocoActionFrameEasing.h" />
+    <ClInclude Include="..\CocoAction\CocoActionManager.h" />
+    <ClInclude Include="..\CocoAction\CocoActionNode.h" />
     <ClInclude Include="..\CocoGUILIB\Action\UIAction.h" />
     <ClInclude Include="..\CocoGUILIB\Action\UIActionFrame.h" />
     <ClInclude Include="..\CocoGUILIB\Action\UIActionManager.h" />
