@@ -107,8 +107,8 @@ bool UIWidget::init()
     CCRGBAProtocol* renderRGBA = DYNAMIC_CAST_CCRGBAPROTOCOL;
     if (renderRGBA)
     {
-        renderRGBA->setCascadeColorEnabled(false);
-        renderRGBA->setCascadeOpacityEnabled(false);
+        renderRGBA->setCascadeColorEnabled(true);
+        renderRGBA->setCascadeOpacityEnabled(true);
     }
     return true;
 }

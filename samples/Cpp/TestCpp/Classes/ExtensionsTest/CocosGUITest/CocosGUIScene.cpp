@@ -60,9 +60,11 @@ void CocosGUITestScene::runThisTest()
 
     ul->addWidget(CCUIHELPER->createWidgetFromJsonFile("cocosgui/CocoGUISample.json"));
     
-    ul->setScale(0.5f);
-    ul->getWidgetByName("scrollview")->setScale(2);
+//    ul->setScale(0.5f);
+//    ul->getWidgetByName("scrollview")->setScale(2);
 //    ul->getWidgetByName("scrollview")->setRotation(90);
+    
+    ul->getWidgetByName("animationbutton")->setColor(ccGREEN);
     
 //
 //    UIButton* exitBtn = dynamic_cast<UIButton*>(ul->getWidgetByName("exitbutton"));
