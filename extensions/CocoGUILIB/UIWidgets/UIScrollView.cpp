@@ -111,6 +111,7 @@ bool UIScrollView::init()
     if (UIPanel::init())
     {
         setUpdateEnable(true);
+        setTouchEnable(true);
         return true;
     }
     return false;

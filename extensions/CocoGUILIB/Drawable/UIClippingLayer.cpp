@@ -56,8 +56,6 @@ UIClippingLayer::UIClippingLayer():
 m_bClippingEnable(false),
 m_fScissorX(0.0f),
 m_fScissorY(0.0f),
-m_fScissorWidth(0.0f),
-m_fScissorHeight(0.0f),
 m_bEnableCustomArea(false),
 m_colorType(UL_C_NONE),
 m_loacationInWorld(CCPointZero),
@@ -141,17 +139,8 @@ void UIClippingLayer::visit()
         {
             glEnable(GL_SCISSOR_TEST);
         }
-        
-//        if (m_bEnableCustomArea)
-//        {
-            CCRect clippingRect = getClippingRect();
-            CCEGLView::sharedOpenGLView()->setScissorInPoints(clippingRect.origin.x, clippingRect.origin.y, clippingRect.size.width, clippingRect.size.height);
-//        }
-//        else
-//        {
-//            CCSize s = boundingBox().size;
-//            CCEGLView::sharedOpenGLView()->setScissorInPoints(m_loacationInWorld.x, m_loacationInWorld.y, s.width, s.height);
-//        }
+        CCRect clippingRect = getClippingRect();
+        CCEGLView::sharedOpenGLView()->setScissorInPoints(clippingRect.origin.x, clippingRect.origin.y, clippingRect.size.width, clippingRect.size.height);
         CCLayerRGBA::visit();
         if (m_bHandleScissor)
         {
@@ -328,14 +317,6 @@ const CCRect& UIClippingLayer::getClippingRect()
         m_clippingRect.size.height = scissorHeight;
     }
     return m_clippingRect;
-}
-
-void UIClippingLayer::setClipSize(float width, float height)
-{
-    return;
-    m_bEnableCustomArea = true;
-    m_fScissorWidth = width;
-    m_fScissorHeight = height;
 }
 
 void UIClippingLayer::setPosition(const cocos2d::CCPoint &pos)
