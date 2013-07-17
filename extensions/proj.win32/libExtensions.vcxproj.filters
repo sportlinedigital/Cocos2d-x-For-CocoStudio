@@ -507,9 +507,6 @@
     <ClCompile Include="..\CocoAction\CocoActionObject.cpp">
       <Filter>CocoAction</Filter>
     </ClCompile>
-    <ClCompile Include="..\CocoAction\CocoActionNodeFrame.cpp">
-      <Filter>CocoAction</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\GUI\CCScrollView\CCScrollView.h">
@@ -905,9 +902,6 @@
       <Filter>CocoAction</Filter>
     </ClInclude>
     <ClInclude Include="..\CocoAction\CocoActionObject.h">
-      <Filter>CocoAction</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoAction\CocoActionNodeFrame.h">
       <Filter>CocoAction</Filter>
     </ClInclude>
   </ItemGroup>
