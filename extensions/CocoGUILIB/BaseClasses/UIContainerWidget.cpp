@@ -55,6 +55,7 @@ UIContainerWidget* UIContainerWidget::create()
     return NULL;
 }
 
+/*****************temp***********/
 bool UIContainerWidget::init()
 {
     m_children = cocos2d::CCArray::create();
@@ -70,6 +71,7 @@ bool UIContainerWidget::init()
     }
     return true;
 }
+/********************************/
 
 void UIContainerWidget::setLayoutParameter(/*LayoutParameter * parmeter*/)
 {

@@ -64,23 +64,26 @@ void CocosGUITestScene::runThisTest()
 //    ul->getWidgetByName("scrollview")->setScale(2);
 //    ul->getWidgetByName("scrollview")->setRotation(90);
     
-    ul->getWidgetByName("animationbutton")->setColor(ccGREEN);
+//    ul->getWidgetByName("animationbutton")->setColor(ccGREEN);
     
 //
-//    UIButton* exitBtn = dynamic_cast<UIButton*>(ul->getWidgetByName("exitbutton"));
-//    exitBtn->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::toCocosGUIExampleScene));
+    UIButton* exitBtn = dynamic_cast<UIButton*>(ul->getWidgetByName("exitbutton"));
+    exitBtn->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::toCocosGUIExampleScene));
     
 //    CCSprite* sp = CCSprite::create("cocosgui/CloseNormal.png");
     
 //    UIPanel* panel = UIPanel::create();
 //    panel->setSize(CCSizeMake(100, 100));
 //    panel->setPosition(ccp(100, 100));
-    
+//    panel->setBackGroundColorOpacity(100);
+//    panel->setOpacity(1);
 //    panel->setBackGroundColorType(PANEL_COLOR_SOLID);
 //    panel->setBackGroundColor(ccGREEN);
 //    
-//    ul->addWidget(panel);
+//    panel->setBackGroundImage("cocosgui/animationbuttonpressed.png");
 //    
+//    ul->addWidget(panel);
+//
 //    
 //    panel->setClippingEnable(true);
 //    
@@ -90,6 +93,7 @@ void CocosGUITestScene::runThisTest()
 //    btn->setTextures("cocosgui/CloseNormal.png", "", NULL);
 //    btn->setOpacity(100);
 //    panel->addChild(btn);
+    
     
 }
 void CocosGUITestScene::MainMenuCallback(CCObject* pSender)

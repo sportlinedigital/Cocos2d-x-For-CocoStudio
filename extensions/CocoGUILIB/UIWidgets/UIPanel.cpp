@@ -168,4 +168,30 @@ void UIPanel::setBackGroundColorVector(const cocos2d::CCPoint &vector)
     DYNAMIC_CAST_CLIPPINGLAYER->setBGVector(vector);
 }
 
+void UIPanel::setColor(const cocos2d::ccColor3B &color)
+{
+    UIWidget::setColor(color);
+    if (m_pBackGroundImage)
+    {
+        CCRGBAProtocol* rgbap = dynamic_cast<CCRGBAProtocol*>(m_pBackGroundImage);
+        if (rgbap)
+        {
+            rgbap->setColor(color);
+        }
+    }
+}
+
+void UIPanel::setOpacity(int opacity)
+{
+    UIWidget::setOpacity(opacity);
+    if (m_pBackGroundImage)
+    {
+        CCRGBAProtocol* rgbap = dynamic_cast<CCRGBAProtocol*>(m_pBackGroundImage);
+        if (rgbap)
+        {
+            rgbap->setOpacity(opacity);
+        }
+    }
+}
+
 NS_CC_EXT_END
