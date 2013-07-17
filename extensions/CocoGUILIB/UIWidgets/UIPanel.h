@@ -51,6 +51,8 @@ public:
     void setBackGroundColor(const ccColor3B &startColor, const ccColor3B &endColor);
     void setBackGroundColorOpacity(int opacity);
     void setBackGroundColorVector(const CCPoint &vector);
+    virtual void setColor(const cocos2d::ccColor3B &color);
+    virtual void setOpacity(int opacity);
 protected:
     virtual void initNodes();
 protected:

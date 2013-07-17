@@ -294,7 +294,6 @@
 		377993F7178C29E100C68990 /* animations in Resources */ = {isa = PBXBuildFile; fileRef = 377993CE178C29E100C68990 /* animations */; };
 		377993F8178C29E100C68990 /* app.icf in Resources */ = {isa = PBXBuildFile; fileRef = 377993CF178C29E100C68990 /* app.icf */; };
 		377993F9178C29E100C68990 /* armature in Resources */ = {isa = PBXBuildFile; fileRef = 377993D0178C29E100C68990 /* armature */; };
-		377993FA178C29E100C68990 /* army_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 377993D1178C29E100C68990 /* army_1.png */; };
 		377993FB178C29E100C68990 /* background-music-aac.wav in Resources */ = {isa = PBXBuildFile; fileRef = 377993D2178C29E100C68990 /* background-music-aac.wav */; };
 		377993FC178C29E100C68990 /* background.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 377993D3178C29E100C68990 /* background.mp3 */; };
 		377993FD178C29E100C68990 /* background.ogg in Resources */ = {isa = PBXBuildFile; fileRef = 377993D4178C29E100C68990 /* background.ogg */; };
@@ -305,7 +304,6 @@
 		37799402178C29E100C68990 /* cocosgui in Resources */ = {isa = PBXBuildFile; fileRef = 377993D9178C29E100C68990 /* cocosgui */; };
 		37799403178C29E100C68990 /* components in Resources */ = {isa = PBXBuildFile; fileRef = 377993DA178C29E100C68990 /* components */; };
 		37799404178C29E100C68990 /* configs in Resources */ = {isa = PBXBuildFile; fileRef = 377993DB178C29E100C68990 /* configs */; };
-		37799405178C29E100C68990 /* defaultParticleSystem.plist in Resources */ = {isa = PBXBuildFile; fileRef = 377993DC178C29E100C68990 /* defaultParticleSystem.plist */; };
 		37799406178C29E100C68990 /* development.icf in Resources */ = {isa = PBXBuildFile; fileRef = 377993DD178C29E100C68990 /* development.icf */; };
 		37799407178C29E100C68990 /* effect1.raw in Resources */ = {isa = PBXBuildFile; fileRef = 377993DE178C29E100C68990 /* effect1.raw */; };
 		37799408178C29E100C68990 /* effect1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 377993DF178C29E100C68990 /* effect1.wav */; };
@@ -319,17 +317,13 @@
 		37799410178C29E100C68990 /* Images in Resources */ = {isa = PBXBuildFile; fileRef = 377993E7178C29E100C68990 /* Images */; };
 		37799411178C29E100C68990 /* ipad in Resources */ = {isa = PBXBuildFile; fileRef = 377993E8178C29E100C68990 /* ipad */; };
 		37799412178C29E100C68990 /* ipadhd in Resources */ = {isa = PBXBuildFile; fileRef = 377993E9178C29E100C68990 /* ipadhd */; };
-		37799413178C29E100C68990 /* map in Resources */ = {isa = PBXBuildFile; fileRef = 377993EA178C29E100C68990 /* map */; };
 		37799414178C29E100C68990 /* Misc in Resources */ = {isa = PBXBuildFile; fileRef = 377993EB178C29E100C68990 /* Misc */; };
 		37799415178C29E100C68990 /* music.mid in Resources */ = {isa = PBXBuildFile; fileRef = 377993EC178C29E100C68990 /* music.mid */; };
-		37799416178C29E100C68990 /* NewProject123.json in Resources */ = {isa = PBXBuildFile; fileRef = 377993ED178C29E100C68990 /* NewProject123.json */; };
 		37799417178C29E100C68990 /* Particles in Resources */ = {isa = PBXBuildFile; fileRef = 377993EE178C29E100C68990 /* Particles */; };
 		37799418178C29E100C68990 /* pew-pew-lei.wav in Resources */ = {isa = PBXBuildFile; fileRef = 377993EF178C29E100C68990 /* pew-pew-lei.wav */; };
 		37799419178C29E100C68990 /* Shaders in Resources */ = {isa = PBXBuildFile; fileRef = 377993F0178C29E100C68990 /* Shaders */; };
 		3779941B178C29E100C68990 /* spine in Resources */ = {isa = PBXBuildFile; fileRef = 377993F2178C29E100C68990 /* spine */; };
-		3779941C178C29E100C68990 /* TestBone in Resources */ = {isa = PBXBuildFile; fileRef = 377993F3178C29E100C68990 /* TestBone */; };
 		3779941D178C29E100C68990 /* TileMaps in Resources */ = {isa = PBXBuildFile; fileRef = 377993F4178C29E100C68990 /* TileMaps */; };
-		3779941E178C29E100C68990 /* xiaowangshu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 377993F5178C29E100C68990 /* xiaowangshu.mp3 */; };
 		3779941F178C29E100C68990 /* zwoptex in Resources */ = {isa = PBXBuildFile; fileRef = 377993F6178C29E100C68990 /* zwoptex */; };
 		379F8E24176328840028C07D /* CCArmatureAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 379F8DDB176328840028C07D /* CCArmatureAnimation.cpp */; };
 		379F8E25176328840028C07D /* CCProcessBase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 379F8DDD176328840028C07D /* CCProcessBase.cpp */; };
@@ -1032,7 +1026,6 @@
 		377993CE178C29E100C68990 /* animations */ = {isa = PBXFileReference; lastKnownFileType = folder; path = animations; sourceTree = "<group>"; };
 		377993CF178C29E100C68990 /* app.icf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = app.icf; sourceTree = "<group>"; };
 		377993D0178C29E100C68990 /* armature */ = {isa = PBXFileReference; lastKnownFileType = folder; path = armature; sourceTree = "<group>"; };
-		377993D1178C29E100C68990 /* army_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = army_1.png; sourceTree = "<group>"; };
 		377993D2178C29E100C68990 /* background-music-aac.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "background-music-aac.wav"; sourceTree = "<group>"; };
 		377993D3178C29E100C68990 /* background.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = background.mp3; sourceTree = "<group>"; };
 		377993D4178C29E100C68990 /* background.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = background.ogg; sourceTree = "<group>"; };
@@ -1043,7 +1036,6 @@
 		377993D9178C29E100C68990 /* cocosgui */ = {isa = PBXFileReference; lastKnownFileType = folder; path = cocosgui; sourceTree = "<group>"; };
 		377993DA178C29E100C68990 /* components */ = {isa = PBXFileReference; lastKnownFileType = folder; path = components; sourceTree = "<group>"; };
 		377993DB178C29E100C68990 /* configs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = configs; sourceTree = "<group>"; };
-		377993DC178C29E100C68990 /* defaultParticleSystem.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = defaultParticleSystem.plist; sourceTree = "<group>"; };
 		377993DD178C29E100C68990 /* development.icf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = development.icf; sourceTree = "<group>"; };
 		377993DE178C29E100C68990 /* effect1.raw */ = {isa = PBXFileReference; lastKnownFileType = file; path = effect1.raw; sourceTree = "<group>"; };
 		377993DF178C29E100C68990 /* effect1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = effect1.wav; sourceTree = "<group>"; };
@@ -1057,17 +1049,13 @@
 		377993E7178C29E100C68990 /* Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Images; sourceTree = "<group>"; };
 		377993E8178C29E100C68990 /* ipad */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ipad; sourceTree = "<group>"; };
 		377993E9178C29E100C68990 /* ipadhd */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ipadhd; sourceTree = "<group>"; };
-		377993EA178C29E100C68990 /* map */ = {isa = PBXFileReference; lastKnownFileType = folder; path = map; sourceTree = "<group>"; };
 		377993EB178C29E100C68990 /* Misc */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Misc; sourceTree = "<group>"; };
 		377993EC178C29E100C68990 /* music.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = music.mid; sourceTree = "<group>"; };
-		377993ED178C29E100C68990 /* NewProject123.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NewProject123.json; sourceTree = "<group>"; };
 		377993EE178C29E100C68990 /* Particles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Particles; sourceTree = "<group>"; };
 		377993EF178C29E100C68990 /* pew-pew-lei.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "pew-pew-lei.wav"; sourceTree = "<group>"; };
 		377993F0178C29E100C68990 /* Shaders */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Shaders; sourceTree = "<group>"; };
 		377993F2178C29E100C68990 /* spine */ = {isa = PBXFileReference; lastKnownFileType = folder; path = spine; sourceTree = "<group>"; };
-		377993F3178C29E100C68990 /* TestBone */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TestBone; sourceTree = "<group>"; };
 		377993F4178C29E100C68990 /* TileMaps */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TileMaps; sourceTree = "<group>"; };
-		377993F5178C29E100C68990 /* xiaowangshu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = xiaowangshu.mp3; sourceTree = "<group>"; };
 		377993F6178C29E100C68990 /* zwoptex */ = {isa = PBXFileReference; lastKnownFileType = folder; path = zwoptex; sourceTree = "<group>"; };
 		379F8DDB176328840028C07D /* CCArmatureAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCArmatureAnimation.cpp; sourceTree = "<group>"; };
 		379F8DDC176328840028C07D /* CCArmatureAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCArmatureAnimation.h; sourceTree = "<group>"; };
@@ -2959,7 +2947,6 @@
 				377993CE178C29E100C68990 /* animations */,
 				377993CF178C29E100C68990 /* app.icf */,
 				377993D0178C29E100C68990 /* armature */,
-				377993D1178C29E100C68990 /* army_1.png */,
 				377993D2178C29E100C68990 /* background-music-aac.wav */,
 				377993D3178C29E100C68990 /* background.mp3 */,
 				377993D4178C29E100C68990 /* background.ogg */,
@@ -2970,7 +2957,6 @@
 				377993D9178C29E100C68990 /* cocosgui */,
 				377993DA178C29E100C68990 /* components */,
 				377993DB178C29E100C68990 /* configs */,
-				377993DC178C29E100C68990 /* defaultParticleSystem.plist */,
 				377993DD178C29E100C68990 /* development.icf */,
 				377993DE178C29E100C68990 /* effect1.raw */,
 				377993DF178C29E100C68990 /* effect1.wav */,
@@ -2984,17 +2970,13 @@
 				377993E7178C29E100C68990 /* Images */,
 				377993E8178C29E100C68990 /* ipad */,
 				377993E9178C29E100C68990 /* ipadhd */,
-				377993EA178C29E100C68990 /* map */,
 				377993EB178C29E100C68990 /* Misc */,
 				377993EC178C29E100C68990 /* music.mid */,
-				377993ED178C29E100C68990 /* NewProject123.json */,
 				377993EE178C29E100C68990 /* Particles */,
 				377993EF178C29E100C68990 /* pew-pew-lei.wav */,
 				377993F0178C29E100C68990 /* Shaders */,
 				377993F2178C29E100C68990 /* spine */,
-				377993F3178C29E100C68990 /* TestBone */,
 				377993F4178C29E100C68990 /* TileMaps */,
-				377993F5178C29E100C68990 /* xiaowangshu.mp3 */,
 				377993F6178C29E100C68990 /* zwoptex */,
 			);
 			name = Resources;
@@ -3115,7 +3097,6 @@
 				377993F7178C29E100C68990 /* animations in Resources */,
 				377993F8178C29E100C68990 /* app.icf in Resources */,
 				377993F9178C29E100C68990 /* armature in Resources */,
-				377993FA178C29E100C68990 /* army_1.png in Resources */,
 				377993FB178C29E100C68990 /* background-music-aac.wav in Resources */,
 				377993FC178C29E100C68990 /* background.mp3 in Resources */,
 				377993FD178C29E100C68990 /* background.ogg in Resources */,
@@ -3125,7 +3106,6 @@
 				37799402178C29E100C68990 /* cocosgui in Resources */,
 				37799403178C29E100C68990 /* components in Resources */,
 				37799404178C29E100C68990 /* configs in Resources */,
-				37799405178C29E100C68990 /* defaultParticleSystem.plist in Resources */,
 				37799406178C29E100C68990 /* development.icf in Resources */,
 				37799407178C29E100C68990 /* effect1.raw in Resources */,
 				37799408178C29E100C68990 /* effect1.wav in Resources */,
@@ -3139,17 +3119,13 @@
 				37799410178C29E100C68990 /* Images in Resources */,
 				37799411178C29E100C68990 /* ipad in Resources */,
 				37799412178C29E100C68990 /* ipadhd in Resources */,
-				37799413178C29E100C68990 /* map in Resources */,
 				37799414178C29E100C68990 /* Misc in Resources */,
 				37799415178C29E100C68990 /* music.mid in Resources */,
-				37799416178C29E100C68990 /* NewProject123.json in Resources */,
 				37799417178C29E100C68990 /* Particles in Resources */,
 				37799418178C29E100C68990 /* pew-pew-lei.wav in Resources */,
 				37799419178C29E100C68990 /* Shaders in Resources */,
 				3779941B178C29E100C68990 /* spine in Resources */,
-				3779941C178C29E100C68990 /* TestBone in Resources */,
 				3779941D178C29E100C68990 /* TileMaps in Resources */,
-				3779941E178C29E100C68990 /* xiaowangshu.mp3 in Resources */,
 				3779941F178C29E100C68990 /* zwoptex in Resources */,
 				509BEF9E178FBE1000E0EEAC /* cocosgui in Resources */,
 			);
