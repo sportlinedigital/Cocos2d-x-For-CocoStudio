@@ -183,9 +183,6 @@ UIWidget* CCSReader::widgetFromJsonFile(const char *fileName)
 		return NULL;
 	}
 	std::string strDes(des);
-	#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-	strDes.assign(UTF8ToGBK(des));
-	#endif
     jsonDict = new cs::CSJsonDictionary();
     jsonDict->initWithDescription(strDes.c_str());
 
