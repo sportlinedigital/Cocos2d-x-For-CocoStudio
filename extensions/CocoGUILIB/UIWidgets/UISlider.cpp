@@ -96,6 +96,8 @@ void UISlider::setBarTexture(const char* fileName,TextureResType texType)
         default:
             break;
     }
+    dynamic_cast<cocos2d::CCSprite*>(m_pBarNode)->setColor(getColor());
+    dynamic_cast<cocos2d::CCSprite*>(m_pBarNode)->setOpacity(getOpacity());
     m_fBarLength = m_pBarNode->getContentSize().width;
     setSlidBallPercent(m_nBarPercent);
 }
@@ -119,6 +121,8 @@ void UISlider::setBarTextureScale9(const char *fileName, float x, float y, float
         default:
             break;
     }
+    dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pBarNode)->setColor(getColor());
+    dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pBarNode)->setOpacity(getOpacity());
     dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pBarNode)->setContentSize(cocos2d::CCSize(m_fBarLength, m_pBarNode->getContentSize().height));
     setSlidBallPercent(m_nBarPercent);
 }
@@ -237,6 +241,8 @@ void UISlider::setProgressBarTextureScale9(const char *fileName, float x, float 
     {
         dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pProgressBarNode)->initWithFile(fileName, cocos2d::CCRect(x,y,width,height));
     }
+    dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pProgressBarNode)->setColor(getColor());
+    dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pProgressBarNode)->setOpacity(getOpacity());
     dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pProgressBarNode)->setContentSize(cocos2d::CCSize(m_fBarLength, m_pProgressBarNode->getContentSize().height));
     m_pProgressBarNode->setAnchorPoint(ccp(0.0, 0.5));
     m_pProgressBarNode->setPosition(ccp(m_pBarNode->getPosition().x - m_pBarNode->getContentSize().width / 2, m_pBarNode->getPosition().y));

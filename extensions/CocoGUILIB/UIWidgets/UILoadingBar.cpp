@@ -108,7 +108,9 @@ void UILoadingBar::setTexture(const char* texture,TextureResType texType)
         default:
             break;
     }
-
+    m_pRenderBar->setColor(getColor());
+    m_pRenderBar->setOpacity(getOpacity());
+    
     m_fTotalLength = m_pRenderBar->getContentSize().width;
     m_fBarHeight = m_pRenderBar->getContentSize().height;
 

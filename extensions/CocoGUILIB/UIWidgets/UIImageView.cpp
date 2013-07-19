@@ -85,20 +85,28 @@ void UIImageView::setTexture(const char *fileName, TextureResType texType)
             if (m_bScale9Enable)
             {
                 DYNAMIC_CAST_SCALE9SPRITE->initWithFile(fileName);
+                DYNAMIC_CAST_SCALE9SPRITE->setColor(getColor());
+                DYNAMIC_CAST_SCALE9SPRITE->setOpacity(getOpacity());
             }
             else
             {
                 DYNAMIC_CAST_CCSPRITE->initWithFile(fileName);
+                DYNAMIC_CAST_CCSPRITE->setColor(getColor());
+                DYNAMIC_CAST_CCSPRITE->setOpacity(getOpacity());
             }
             break;
         case UI_TEX_TYPE_PLIST:
             if (m_bScale9Enable)
             {
                 DYNAMIC_CAST_SCALE9SPRITE->initWithSpriteFrameName(fileName);
+                DYNAMIC_CAST_SCALE9SPRITE->setColor(getColor());
+                DYNAMIC_CAST_SCALE9SPRITE->setOpacity(getOpacity());
             }
             else
             {
                 DYNAMIC_CAST_CCSPRITE->initWithSpriteFrameName(fileName);
+                DYNAMIC_CAST_CCSPRITE->setColor(getColor());
+                DYNAMIC_CAST_CCSPRITE->setOpacity(getOpacity());
             }
             break;
         default:

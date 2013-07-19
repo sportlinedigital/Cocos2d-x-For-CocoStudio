@@ -22,41 +22,41 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#ifndef __COCOSGUI_H__
-#define __COCOSGUI_H__
+#ifndef __TestCpp__UIWrapPanel__
+#define __TestCpp__UIWrapPanel__
 
+#include "UIPanel.h"
 
-#include "../BaseClasses/UIWidget.h"
-#include "../BaseClasses/UIContainerWidget.h"
-#include "../BaseClasses/UIRootWidget.h"
-#include "../UIWidgets/UIButton.h"
-#include "../UIWidgets/UICheckBox.h"
-#include "../UIWidgets/UIImageView.h"
-#include "../UIWidgets/UILabel.h"
-#include "../UIWidgets/UILabelAtlas.h"
-#include "../UIWidgets/UILoadingBar.h"
-#include "../UIWidgets/UIPanel.h"
-#include "../UIWidgets/UIScrollView.h"
-#include "../UIWidgets/UISlider.h"
-#include "../UIWidgets/UITextArea.h"
-#include "../UIWidgets/UITextButton.h"
-#include "../UIWidgets/UITextField.h"
-#include "../UIWidgets/UIListView.h"
-#include "../UIWidgets/UINodeContainer.h"
-#include "../UIWidgets/UIControlButton.h"
-#include "../UIWidgets/UILabelBMFont.h"
-#include "../UIWidgets/UIPageView.h"
-#include "../UIWidgets/UIWrapPanel.h"
-#include "../UIWidgets/UIDragPanel.h"
-#include "UIHelper.h"
-#include "CCSReader.h"
-#include "UILayer.h"
-#include "../Action/UIActionManager.h"
-    
 NS_CC_EXT_BEGIN
 
-const char* CocosGUIVersion();
+class UIWrapPanel : public UIPanel
+{
+public:
+    UIWrapPanel();
+    ~UIWrapPanel();
+    static UIWrapPanel* create();
+    
+    virtual bool init();
+    virtual bool addChild(UIWidget* widget);
+    virtual void removeAllChildrenAndCleanUp(bool cleanup);
+    virtual void removeChildMoveToTrash(UIWidget* child);
+    virtual void removeChildReferenceOnly(UIWidget* child);
+    
+    virtual void updateWidthAndHeight();
+    
+    float getLeftBoundary();
+    float getTopBoundary();
+    float getRightBoundary();
+    float getBottomBoundary();
+    
+protected:
+    float m_fLeftBoundary;
+    float m_fRightBoundary;
+    float m_fTopBoundary;
+    float m_fBottomBoundary;
+
+};
 
 NS_CC_EXT_END
 
-#endif /* defined(__CocosGUITest__Cocos__) */
+#endif /* defined(__TestCpp__UIWrapPanel__) */

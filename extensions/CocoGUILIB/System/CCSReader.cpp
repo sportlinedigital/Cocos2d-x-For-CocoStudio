@@ -137,7 +137,12 @@ UIWidget* CCSReader::widgetFromJsonDictionary(cs::CSJsonDictionary* data)
         widget = UILabelBMFont::create();
         setPropsForLabelBMFontFromJsonDictionary(widget, uiOptions);
     }
-    
+    else if (classname && strcmp(classname, "DragPanel") == 0)
+    {
+        widget = UIDragPanel::create();
+        setPropsForDragPanelFromJsonDictionary(widget, uiOptions);
+    }
+
     int childrenCount = DICTOOL->getArrayCount_json(data, "children");
     for (int i=0;i<childrenCount;i++)
     {
@@ -1296,6 +1301,11 @@ void CCSReader::setPropsForTextFieldFromJsonDictionary(UIWidget*widget,cs::CSJso
     {
         textField->setFontSize(DICTOOL->getIntValue_json(options, "fontSize"));
     }
+    bool fn = DICTOOL->checkObjectExist_json(options, "fontName");
+    if (fn)
+    {
+        textField->setFontName(DICTOOL->getStringValue_json(options, "fontName"));
+    }
     bool tsw = DICTOOL->checkObjectExist_json(options, "touchSizeWidth");
     bool tsh = DICTOOL->checkObjectExist_json(options, "touchSizeHeight");
     if (tsw && tsh)
@@ -1400,6 +1410,18 @@ void CCSReader::setPropsForLabelBMFontFromJsonDictionary(extension::UIWidget *wi
     labelBMFont->setText(text);
     
     setColorPropsForWidgetFromJsonDictionary(widget,options);
+}
+
+void CCSReader::setPropsForDragPanelFromJsonDictionary(UIWidget *widget, cs::CSJsonDictionary *options)
+{
+    setPropsForPanelFromJsonDictionary(widget, options);
+    
+    UIDragPanel* dragPanel = (UIDragPanel*)widget;
+    
+    bool bounceEnable = DICTOOL->getBooleanValue_json(options, "bounceEnable");
+    dragPanel->setBounceEnable(bounceEnable);
+    
+    setColorPropsForWidgetFromJsonDictionary(widget, options);
 }
 
 NS_CC_EXT_END

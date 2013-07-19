@@ -179,6 +179,8 @@ void UIButton::setNormalTexture(const char* normal,TextureResType texType)
             default:
                 break;
         }
+        dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pButtonNormal)->setColor(getColor());
+        dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pButtonNormal)->setOpacity(getOpacity());
     }
     else
     {
@@ -193,6 +195,8 @@ void UIButton::setNormalTexture(const char* normal,TextureResType texType)
             default:
                 break;
         }
+        dynamic_cast<cocos2d::CCSprite*>(m_pButtonNormal)->setColor(getColor());
+        dynamic_cast<cocos2d::CCSprite*>(m_pButtonNormal)->setOpacity(getOpacity());
     }
     updateAnchorPoint();
 }
@@ -219,6 +223,8 @@ void UIButton::setPressedTexture(const char* selected,TextureResType texType)
             default:
                 break;
         }
+        dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pButtonClicked)->setColor(getColor());
+        dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pButtonClicked)->setOpacity(getOpacity());
     }
     else
     {
@@ -233,6 +239,8 @@ void UIButton::setPressedTexture(const char* selected,TextureResType texType)
             default:
                 break;
         }
+        dynamic_cast<cocos2d::CCSprite*>(m_pButtonClicked)->setColor(getColor());
+        dynamic_cast<cocos2d::CCSprite*>(m_pButtonClicked)->setOpacity(getOpacity());
     }
     updateAnchorPoint();
 }
@@ -259,6 +267,8 @@ void UIButton::setDisabledTexture(const char* disabled,TextureResType texType)
             default:
                 break;
         }
+        dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pButtonDisable)->setColor(getColor());
+        dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pButtonDisable)->setOpacity(getOpacity());
     }
     else
     {
@@ -273,6 +283,8 @@ void UIButton::setDisabledTexture(const char* disabled,TextureResType texType)
             default:
                 break;
         }
+        dynamic_cast<cocos2d::CCSprite*>(m_pButtonDisable)->setColor(getColor());
+        dynamic_cast<cocos2d::CCSprite*>(m_pButtonDisable)->setOpacity(getOpacity());
     }
     updateAnchorPoint();
 }

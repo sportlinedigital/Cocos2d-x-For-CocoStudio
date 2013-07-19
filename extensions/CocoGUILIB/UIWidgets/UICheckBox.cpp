@@ -116,6 +116,8 @@ void UICheckBox::setBackGroundTexture(const char *backGround,TextureResType texT
         default:
             break;
     }
+    m_pBackGroundBox->setColor(getColor());
+    m_pBackGroundBox->setOpacity(getOpacity());
 }
 
 void UICheckBox::setBackGroundSelectedTexture(const char *backGroundSelected,TextureResType texType)
@@ -137,6 +139,8 @@ void UICheckBox::setBackGroundSelectedTexture(const char *backGroundSelected,Tex
         default:
             break;
     }
+    m_pBackGroundSelectedBox->setColor(getColor());
+    m_pBackGroundSelectedBox->setOpacity(getOpacity());
 }
 
 void UICheckBox::setFrontCrossTexture(const char *cross,TextureResType texType)
@@ -158,6 +162,8 @@ void UICheckBox::setFrontCrossTexture(const char *cross,TextureResType texType)
         default:
             break;
     }
+    m_pFrontCross->setColor(getColor());
+    m_pFrontCross->setOpacity(getOpacity());
 }
 
 void UICheckBox::setBackGroundDisabledTexture(const char *backGroundDisabled,TextureResType texType)
@@ -179,6 +185,8 @@ void UICheckBox::setBackGroundDisabledTexture(const char *backGroundDisabled,Tex
         default:
             break;
     }
+    m_pBackGroundBoxDisabled->setColor(getColor());
+    m_pBackGroundBoxDisabled->setOpacity(getOpacity());
 }
 
 void UICheckBox::setFrontCrossDisabledTexture(const char *frontCrossDisabled,TextureResType texType)
@@ -200,6 +208,8 @@ void UICheckBox::setFrontCrossDisabledTexture(const char *frontCrossDisabled,Tex
         default:
             break;
     }
+    m_pFrontCrossDisabled->setColor(getColor());
+    m_pFrontCross->setOpacity(getOpacity());
 }
 
 void UICheckBox::onTouchEnded(cocos2d::CCPoint &touchPoint)

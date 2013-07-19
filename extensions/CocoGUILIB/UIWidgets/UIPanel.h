@@ -53,8 +53,10 @@ public:
     void setBackGroundColorVector(const CCPoint &vector);
     virtual void setColor(const cocos2d::ccColor3B &color);
     virtual void setOpacity(int opacity);
+    void removeBackGroundImage();
 protected:
     virtual void initNodes();
+    void addBackGroundImage();
 protected:
     bool m_bBackGroundScale9Enable;
     cocos2d::CCNode* m_pBackGroundImage;

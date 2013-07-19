@@ -88,6 +88,13 @@ void UIControlButton::setTextures(const char* backgroundNormal,const char* backg
     m_pPressedBackGround->initWithFile(backgroundPressed);
     m_pDisabledBackGround->initWithFile(backgroundDisabled);
     
+    m_pNormalBackGround->setColor(getColor());
+    m_pNormalBackGround->setOpacity(getOpacity());
+    m_pPressedBackGround->setColor(getColor());
+    m_pPressedBackGround->setOpacity(getOpacity());
+    m_pDisabledBackGround->setColor(getColor());
+    m_pDisabledBackGround->setOpacity(getOpacity());
+    
     m_pNormalBackGround->setContentSize(cocos2d::CCSize(m_pNormalTitle->boundingBox().size.width+8*2,m_pNormalTitle->boundingBox().size.height+2*2));
     m_pPressedBackGround->setContentSize(cocos2d::CCSize(m_pPressedTitle->boundingBox().size.width+8*2,m_pPressedTitle->boundingBox().size.height+2*2));
     m_pDisabledBackGround->setContentSize(cocos2d::CCSize(m_pDisabledTitle->boundingBox().size.width+8*2,m_pDisabledTitle->boundingBox().size.height+2*2));
@@ -274,6 +281,8 @@ void UIControlButton::setNormalBackgroundSpriteFrame(cocos2d::CCSpriteFrame *spr
         return;
     }
     m_pNormalBackGround->setSpriteFrame(spriteFrame);
+    m_pNormalBackGround->setColor(getColor());
+    m_pNormalBackGround->setOpacity(getOpacity());
     m_pNormalBackGround->setPreferredSize(m_preferredSize);
 }
 
@@ -284,6 +293,8 @@ void UIControlButton::setPressedBackgroundSpriteFrame(cocos2d::CCSpriteFrame *sp
         return;
     }
     m_pPressedBackGround->setSpriteFrame(spriteFrame);
+    m_pPressedBackGround->setColor(getColor());
+    m_pPressedBackGround->setOpacity(getOpacity());
     m_pPressedBackGround->setPreferredSize(m_preferredSize);
 }
 
@@ -294,6 +305,8 @@ void UIControlButton::setDisabledBackgroundSpriteFrame(cocos2d::CCSpriteFrame *s
         return;
     }
     m_pDisabledBackGround->setSpriteFrame(spriteFrame);
+    m_pDisabledBackGround->setColor(getColor());
+    m_pDisabledBackGround->setOpacity(getOpacity());
     m_pDisabledBackGround->setPreferredSize(m_preferredSize);
 }
 

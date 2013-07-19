@@ -108,6 +108,11 @@ void UITextField::setFontSize(int size)
     m_pRenderTextField->setFontSize(size);
 }
 
+void UITextField::setFontName(const char *name)
+{
+    m_pRenderTextField->setFontName(name);
+}
+
 void UITextField::didNotSelectSelf()
 {
     m_pRenderTextField->detachWithIME();
@@ -278,6 +283,18 @@ void UITextField::setAnchorPoint(const cocos2d::CCPoint &pt)
 {
     UIWidget::setAnchorPoint(pt);
     m_pRenderTextField->setAnchorPoint(pt);
+}
+
+void UITextField::setColor(const ccColor3B &color)
+{
+    UIWidget::setColor(color);
+    m_pRenderTextField->setColor(color);
+}
+
+void UITextField::setOpacity(int opacity)
+{
+    UIWidget::setOpacity(opacity);
+    m_pRenderTextField->setOpacity(opacity);
 }
 
 NS_CC_EXT_END
