@@ -369,6 +369,8 @@
 		37EEEC44175DE5D3003C1193 /* ProjectileController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37EEEC3C175DE5D3003C1193 /* ProjectileController.cpp */; };
 		37EEEC45175DE5D3003C1193 /* SceneController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37EEEC3E175DE5D3003C1193 /* SceneController.cpp */; };
 		504D893B1793A77D00E8ED0D /* UISwitch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504D89391793A77D00E8ED0D /* UISwitch.cpp */; };
+		504D895B17995BBB00E8ED0D /* UIDragPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504D895717995BB600E8ED0D /* UIDragPanel.cpp */; };
+		504D895C17995BBB00E8ED0D /* UIWrapPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504D895917995BB800E8ED0D /* UIWrapPanel.cpp */; };
 		509BEEE2178FBC0200E0EEAC /* CocosGUIExamplesScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509BEEE0178FBC0200E0EEAC /* CocosGUIExamplesScene.cpp */; };
 		6442E66D17297DB40008499D /* TextureAtlasEncryptionTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6442E66B17297DB40008499D /* TextureAtlasEncryptionTest.cpp */; };
 		A059B9AD174D9B8E0078F84F /* ConfigurationTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A059B9AB174D9B8E0078F84F /* ConfigurationTest.cpp */; };
@@ -1160,7 +1162,10 @@
 		37EEEC3F175DE5D3003C1193 /* SceneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneController.h; sourceTree = "<group>"; };
 		504D89391793A77D00E8ED0D /* UISwitch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UISwitch.cpp; sourceTree = "<group>"; };
 		504D893A1793A77D00E8ED0D /* UISwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISwitch.h; sourceTree = "<group>"; };
-		504D893C1794003A00E8ED0D /* EncodedHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EncodedHelper.h; sourceTree = "<group>"; };
+		504D895717995BB600E8ED0D /* UIDragPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIDragPanel.cpp; sourceTree = "<group>"; };
+		504D895817995BB700E8ED0D /* UIDragPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDragPanel.h; sourceTree = "<group>"; };
+		504D895917995BB800E8ED0D /* UIWrapPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIWrapPanel.cpp; sourceTree = "<group>"; };
+		504D895A17995BB900E8ED0D /* UIWrapPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIWrapPanel.h; sourceTree = "<group>"; };
 		509BEEE0178FBC0200E0EEAC /* CocosGUIExamplesScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocosGUIExamplesScene.cpp; sourceTree = "<group>"; };
 		509BEEE1178FBC0200E0EEAC /* CocosGUIExamplesScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosGUIExamplesScene.h; sourceTree = "<group>"; };
 		6442E66B17297DB40008499D /* TextureAtlasEncryptionTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureAtlasEncryptionTest.cpp; sourceTree = "<group>"; };
@@ -2800,7 +2805,6 @@
 		377992CC178C270500C68990 /* CocostudioReader */ = {
 			isa = PBXGroup;
 			children = (
-				504D893C1794003A00E8ED0D /* EncodedHelper.h */,
 				377992CD178C270500C68990 /* CCJsonReader.cpp */,
 				377992CE178C270500C68990 /* CCJsonReader.h */,
 				377992CF178C270500C68990 /* DictionaryHelper.cpp */,
@@ -2916,6 +2920,10 @@
 				3779931A178C272000C68990 /* UITextField.h */,
 				504D89391793A77D00E8ED0D /* UISwitch.cpp */,
 				504D893A1793A77D00E8ED0D /* UISwitch.h */,
+				504D895717995BB600E8ED0D /* UIDragPanel.cpp */,
+				504D895817995BB700E8ED0D /* UIDragPanel.h */,
+				504D895917995BB800E8ED0D /* UIWrapPanel.cpp */,
+				504D895A17995BB900E8ED0D /* UIWrapPanel.h */,
 			);
 			path = UIWidgets;
 			sourceTree = "<group>";
@@ -3495,6 +3503,8 @@
 				37799346178C279A00C68990 /* SceneEditorTestScene.cpp in Sources */,
 				509BEEE2178FBC0200E0EEAC /* CocosGUIExamplesScene.cpp in Sources */,
 				504D893B1793A77D00E8ED0D /* UISwitch.cpp in Sources */,
+				504D895B17995BBB00E8ED0D /* UIDragPanel.cpp in Sources */,
+				504D895C17995BBB00E8ED0D /* UIWrapPanel.cpp in Sources */,
 				37C7EF7A179652E800A60CCA /* class.js in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

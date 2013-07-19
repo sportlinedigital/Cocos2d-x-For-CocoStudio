@@ -41,6 +41,8 @@ public:
     UIWidget* widgetFromJsonFile(const char* fileName);
     UIWidget* widgetFromJsonDictionary(cs::CSJsonDictionary* data);
     
+    int getVersionInteger(const char* str);
+    
     void setPropsForWidgetFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options);
     void setColorPropsForWidgetFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options);
     void setPropsForButtonFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options);
@@ -60,9 +62,11 @@ public:
     void setPropsForListViewFromJsonDictionary(UIWidget* widget, cs::CSJsonDictionary* options);
     void setPropsForPageViewFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options);
     void setPropsForLabelBMFontFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options);
+    void setPropsForDragPanelFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options);
     
 protected:
     std::string m_strFilePath;
+    bool m_bOlderVersion;
 };
 
 NS_CC_EXT_END

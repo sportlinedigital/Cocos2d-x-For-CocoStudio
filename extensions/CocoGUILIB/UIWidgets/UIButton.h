@@ -36,10 +36,10 @@ public:
     virtual ~UIButton();
     static UIButton* create();
     virtual void initPressState(WidgetState state);
-    virtual void setTextures(const char* normal,const char* selected,const char* disabled,bool useSpriteFrame = false);
-    void setNormalTexture(const char* normal,bool useSpriteFrame = false);
-    void setPressedTexture(const char* selected,bool useSpriteFrame = false);
-    void setDisabledTexture(const char* disabled,bool useSpriteFrame = false);
+    virtual void setTextures(const char* normal,const char* selected,const char* disabled,TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void setNormalTexture(const char* normal, TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void setPressedTexture(const char* selected, TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void setDisabledTexture(const char* disabled, TextureResType texType = UI_TEX_TYPE_LOCAL);
     void setCapInsets(const CCRect &capInsets);
     virtual cocos2d::CCNode* getValidNode();
     virtual void setAnchorPoint(const cocos2d::CCPoint &pt);
@@ -68,6 +68,9 @@ protected:
     bool m_bScale9Enable;
     CCRect m_capInsets;
     CCSize m_scale9Size;
+    TextureResType m_eNormalTexType;
+    TextureResType m_ePressedTexType;
+    TextureResType m_eDisabledTexType;
 };
 
 NS_CC_EXT_END

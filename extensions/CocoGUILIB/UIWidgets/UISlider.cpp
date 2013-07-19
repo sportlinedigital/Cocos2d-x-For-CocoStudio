@@ -39,7 +39,12 @@ m_pBarNode(NULL),
 m_pPercentListener(NULL),
 m_pfnPercentSelector(NULL),
 m_bBarScale9Enable(false),
-m_bShowProgressBar(false)
+m_bShowProgressBar(false),
+m_eBarTexType(UI_TEX_TYPE_LOCAL),
+m_eBarTexS9Type(UI_TEX_TYPE_LOCAL),
+m_eBallNTexType(UI_TEX_TYPE_LOCAL),
+m_eBallPTexType(UI_TEX_TYPE_LOCAL),
+m_eBallDTexType(UI_TEX_TYPE_LOCAL)
 {
     m_WidgetName = WIDGET_SLIDER;
 }
@@ -73,39 +78,51 @@ bool UISlider::init()
     return false;
 }
 
-void UISlider::setBarTexture(const char* fileName,bool useSpriteFrame)
+void UISlider::setBarTexture(const char* fileName,TextureResType texType)
 {
     if (m_bBarScale9Enable)
     {
         return;
     }
-    if (useSpriteFrame)
+    m_eBarTexType = texType;
+    switch (m_eBarTexType)
     {
-        dynamic_cast<cocos2d::CCSprite*>(m_pBarNode)->initWithSpriteFrameName(fileName);
+        case UI_TEX_TYPE_LOCAL:
+            dynamic_cast<cocos2d::CCSprite*>(m_pBarNode)->initWithFile(fileName);
+            break;
+        case UI_TEX_TYPE_PLIST:
+            dynamic_cast<cocos2d::CCSprite*>(m_pBarNode)->initWithSpriteFrameName(fileName);
+            break;
+        default:
+            break;
     }
-    else
-    {
-        dynamic_cast<cocos2d::CCSprite*>(m_pBarNode)->initWithFile(fileName);
-    }
+    dynamic_cast<cocos2d::CCSprite*>(m_pBarNode)->setColor(getColor());
+    dynamic_cast<cocos2d::CCSprite*>(m_pBarNode)->setOpacity(getOpacity());
     m_fBarLength = m_pBarNode->getContentSize().width;
     setSlidBallPercent(m_nBarPercent);
 }
 
 
-void UISlider::setBarTextureScale9(const char *fileName, float x, float y, float width, float height,bool useSpriteFrame)
+void UISlider::setBarTextureScale9(const char *fileName, float x, float y, float width, float height,TextureResType texType)
 {
     if (!m_bBarScale9Enable)
     {
         return;
     }
-    if (useSpriteFrame)
+    m_eBarTexS9Type = texType;
+    switch (m_eBarTexS9Type)
     {
-        dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pBarNode)->initWithSpriteFrameName(fileName);
+        case UI_TEX_TYPE_LOCAL:
+            dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pBarNode)->initWithFile(fileName);
+            break;
+        case UI_TEX_TYPE_PLIST:
+            dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pBarNode)->initWithSpriteFrameName(fileName);
+            break;
+        default:
+            break;
     }
-    else
-    {
-        dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pBarNode)->initWithFile(fileName);
-    }
+    dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pBarNode)->setColor(getColor());
+    dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pBarNode)->setOpacity(getOpacity());
     dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pBarNode)->setContentSize(cocos2d::CCSize(m_fBarLength, m_pBarNode->getContentSize().height));
     setSlidBallPercent(m_nBarPercent);
 }
@@ -130,24 +147,24 @@ void UISlider::setBarTextureScale9Enable(bool able)
     m_pRender->addChild(m_pBarNode);
 }
 
-void UISlider::setSlidBallTextures(const char* normal,const char* pressed,const char* disabled,bool useSpriteFrame)
+void UISlider::setSlidBallTextures(const char* normal,const char* pressed,const char* disabled,TextureResType texType)
 {
-    m_pSlidBall->setTextures(normal, pressed, disabled,useSpriteFrame);
+    m_pSlidBall->setTextures(normal, pressed, disabled,texType);
 }
 
-void UISlider::setSlidBallNormalTexture(const char* normal,bool useSpriteFrame)
+void UISlider::setSlidBallNormalTexture(const char* normal,TextureResType texType)
 {
-    m_pSlidBall->setNormalTexture(normal,useSpriteFrame);
+    m_pSlidBall->setNormalTexture(normal,texType);
 }
 
-void UISlider::setSlidBallPressedTexture(const char* pressed,bool useSpriteFrame)
+void UISlider::setSlidBallPressedTexture(const char* pressed,TextureResType texType)
 {
-    m_pSlidBall->setPressedTexture(pressed,useSpriteFrame);
+    m_pSlidBall->setPressedTexture(pressed,texType);
 }
 
-void UISlider::setSlidBallDisabledTexture(const char* disabled,bool useSpriteFrame)
+void UISlider::setSlidBallDisabledTexture(const char* disabled,TextureResType texType)
 {
-    m_pSlidBall->setDisabledTexture(disabled,useSpriteFrame);
+    m_pSlidBall->setDisabledTexture(disabled,texType);
 }
 
 void UISlider::setBarLength(float length)
@@ -224,6 +241,8 @@ void UISlider::setProgressBarTextureScale9(const char *fileName, float x, float 
     {
         dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pProgressBarNode)->initWithFile(fileName, cocos2d::CCRect(x,y,width,height));
     }
+    dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pProgressBarNode)->setColor(getColor());
+    dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pProgressBarNode)->setOpacity(getOpacity());
     dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pProgressBarNode)->setContentSize(cocos2d::CCSize(m_fBarLength, m_pProgressBarNode->getContentSize().height));
     m_pProgressBarNode->setAnchorPoint(ccp(0.0, 0.5));
     m_pProgressBarNode->setPosition(ccp(m_pBarNode->getPosition().x - m_pBarNode->getContentSize().width / 2, m_pBarNode->getPosition().y));

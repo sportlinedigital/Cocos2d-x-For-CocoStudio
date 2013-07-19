@@ -52,6 +52,7 @@ public:
     void setSize(const cocos2d::CCSize &size);
     void setPlaceHolder(const char* value);
     void setFontSize(int size);
+    void setFontName(const char* name);
     virtual void didNotSelectSelf();
     const char* getStringValue();
     virtual void onTouchBegan(cocos2d::CCPoint &touchPoint);
@@ -73,6 +74,8 @@ public:
     void addDeleteBackwardEvent(cocos2d::CCObject* target, SEL_TextFieldDeleteBackwardEvent selecor);
     virtual cocos2d::CCNode* getValidNode();
     virtual void setAnchorPoint(const cocos2d::CCPoint &pt);
+    virtual void setColor(const cocos2d::ccColor3B &color);
+    virtual void setOpacity(int opacity);
 protected:
     // event
     void attachWithIMEEvent();

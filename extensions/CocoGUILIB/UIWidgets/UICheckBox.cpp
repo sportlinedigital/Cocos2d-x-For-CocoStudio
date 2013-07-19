@@ -36,7 +36,12 @@ m_pfnSelectSelector(NULL),
 m_pUnSelectListener(NULL),
 m_pfnUnSelectSelector(NULL),
 m_pBackGroundBoxDisabled(NULL),
-m_pFrontCrossDisabled(NULL)
+m_pFrontCrossDisabled(NULL),
+m_eBackGroundTexType(UI_TEX_TYPE_LOCAL),
+m_eBackGroundSelectedTexType(UI_TEX_TYPE_LOCAL),
+m_eFrontCrossTexType(UI_TEX_TYPE_LOCAL),
+m_eBackGroundDisabledTexType(UI_TEX_TYPE_LOCAL),
+m_eFrontCrossDisabledTexType(UI_TEX_TYPE_LOCAL)
 {
     m_WidgetName = WIDGET_CHECKBOX;
 }
@@ -83,98 +88,128 @@ void UICheckBox::initNodes()
     m_pRender->addChild(m_pFrontCrossDisabled);
 }
 
-void UICheckBox::setTextures(const char *backGround, const char *backGroundSelected, const char *cross,const char* backGroundDisabled,const char* frontCrossDisabled,bool useSpriteFrame)
+void UICheckBox::setTextures(const char *backGround, const char *backGroundSelected, const char *cross,const char* backGroundDisabled,const char* frontCrossDisabled,TextureResType texType)
 {
-    setBackGroundTexture(backGround,useSpriteFrame);
-    setBackGroundSelectedTexture(backGroundSelected,useSpriteFrame);
-    setFrontCrossTexture(cross,useSpriteFrame);
-    setBackGroundDisabledTexture(backGroundDisabled,useSpriteFrame);
-    setFrontCrossDisabledTexture(frontCrossDisabled,useSpriteFrame);
+    setBackGroundTexture(backGround,texType);
+    setBackGroundSelectedTexture(backGroundSelected,texType);
+    setFrontCrossTexture(cross,texType);
+    setBackGroundDisabledTexture(backGroundDisabled,texType);
+    setFrontCrossDisabledTexture(frontCrossDisabled,texType);
 }
 
-void UICheckBox::setBackGroundTexture(const char *backGround,bool useSpriteFrame)
+void UICheckBox::setBackGroundTexture(const char *backGround,TextureResType texType)
 {
     if (!backGround || strcmp(backGround, "") == 0)
     {
         return;
     }
-    setUseMergedTexture(useSpriteFrame);
-    if (useSpriteFrame)
+//    setUseMergedTexture(useSpriteFrame);
+    m_eBackGroundTexType = texType;
+    switch (m_eBackGroundTexType)
     {
-        m_pBackGroundBox->initWithSpriteFrameName(backGround);
+        case UI_TEX_TYPE_LOCAL:
+            m_pBackGroundBox->initWithFile(backGround);
+            break;
+        case UI_TEX_TYPE_PLIST:
+            m_pBackGroundBox->initWithSpriteFrameName(backGround);
+            break;
+        default:
+            break;
     }
-    else
-    {
-        m_pBackGroundBox->initWithFile(backGround);
-    }
+    m_pBackGroundBox->setColor(getColor());
+    m_pBackGroundBox->setOpacity(getOpacity());
 }
 
-void UICheckBox::setBackGroundSelectedTexture(const char *backGroundSelected,bool useSpriteFrame)
+void UICheckBox::setBackGroundSelectedTexture(const char *backGroundSelected,TextureResType texType)
 {
     if (!backGroundSelected || strcmp(backGroundSelected, "") == 0)
     {
         return;
     }
-    setUseMergedTexture(useSpriteFrame);
-    if (useSpriteFrame)
+//    setUseMergedTexture(useSpriteFrame);
+    m_eBackGroundSelectedTexType = texType;
+    switch (m_eBackGroundSelectedTexType)
     {
-        m_pBackGroundSelectedBox->initWithSpriteFrameName(backGroundSelected);
+        case UI_TEX_TYPE_LOCAL:
+            m_pBackGroundSelectedBox->initWithFile(backGroundSelected);
+            break;
+        case UI_TEX_TYPE_PLIST:
+            m_pBackGroundSelectedBox->initWithSpriteFrameName(backGroundSelected);
+            break;
+        default:
+            break;
     }
-    else
-    {
-        m_pBackGroundSelectedBox->initWithFile(backGroundSelected);
-    }
+    m_pBackGroundSelectedBox->setColor(getColor());
+    m_pBackGroundSelectedBox->setOpacity(getOpacity());
 }
 
-void UICheckBox::setFrontCrossTexture(const char *cross,bool useSpriteFrame)
+void UICheckBox::setFrontCrossTexture(const char *cross,TextureResType texType)
 {
     if (!cross || strcmp(cross, "") == 0)
     {
         return;
     }
-    setUseMergedTexture(useSpriteFrame);
-    if (useSpriteFrame)
+//    setUseMergedTexture(useSpriteFrame);
+    m_eFrontCrossTexType = texType;
+    switch (m_eFrontCrossTexType)
     {
-        m_pFrontCross->initWithSpriteFrameName(cross);
+        case UI_TEX_TYPE_LOCAL:
+            m_pFrontCross->initWithFile(cross);
+            break;
+        case UI_TEX_TYPE_PLIST:
+            m_pFrontCross->initWithSpriteFrameName(cross);
+            break;
+        default:
+            break;
     }
-    else
-    {
-        m_pFrontCross->initWithFile(cross);
-    }
+    m_pFrontCross->setColor(getColor());
+    m_pFrontCross->setOpacity(getOpacity());
 }
 
-void UICheckBox::setBackGroundDisabledTexture(const char *backGroundDisabled,bool useSpriteFrame)
+void UICheckBox::setBackGroundDisabledTexture(const char *backGroundDisabled,TextureResType texType)
 {
     if (!backGroundDisabled || strcmp(backGroundDisabled, "") == 0)
     {
         return;
     }
-    setUseMergedTexture(useSpriteFrame);
-    if (useSpriteFrame)
+//    setUseMergedTexture(useSpriteFrame);
+    m_eBackGroundDisabledTexType = texType;
+    switch (m_eBackGroundDisabledTexType)
     {
-        m_pBackGroundBoxDisabled->initWithSpriteFrameName(backGroundDisabled);
+        case UI_TEX_TYPE_LOCAL:
+            m_pBackGroundBoxDisabled->initWithFile(backGroundDisabled);
+            break;
+        case UI_TEX_TYPE_PLIST:
+            m_pBackGroundBoxDisabled->initWithSpriteFrameName(backGroundDisabled);
+            break;
+        default:
+            break;
     }
-    else
-    {
-        m_pBackGroundBoxDisabled->initWithFile(backGroundDisabled);
-    }
+    m_pBackGroundBoxDisabled->setColor(getColor());
+    m_pBackGroundBoxDisabled->setOpacity(getOpacity());
 }
 
-void UICheckBox::setFrontCrossDisabledTexture(const char *frontCrossDisabled,bool useSpriteFrame)
+void UICheckBox::setFrontCrossDisabledTexture(const char *frontCrossDisabled,TextureResType texType)
 {
     if (!frontCrossDisabled || strcmp(frontCrossDisabled, "") == 0)
     {
         return;
     }
-    setUseMergedTexture(useSpriteFrame);
-    if (useSpriteFrame)
+//    setUseMergedTexture(useSpriteFrame);
+    m_eFrontCrossDisabledTexType = texType;
+    switch (m_eFrontCrossDisabledTexType)
     {
-        m_pFrontCrossDisabled->initWithSpriteFrameName(frontCrossDisabled);
+        case UI_TEX_TYPE_LOCAL:
+            m_pFrontCrossDisabled->initWithFile(frontCrossDisabled);
+            break;
+        case UI_TEX_TYPE_PLIST:
+            m_pFrontCrossDisabled->initWithSpriteFrameName(frontCrossDisabled);
+            break;
+        default:
+            break;
     }
-    else
-    {
-        m_pFrontCrossDisabled->initWithFile(frontCrossDisabled);
-    }
+    m_pFrontCrossDisabled->setColor(getColor());
+    m_pFrontCross->setOpacity(getOpacity());
 }
 
 void UICheckBox::onTouchEnded(cocos2d::CCPoint &touchPoint)
