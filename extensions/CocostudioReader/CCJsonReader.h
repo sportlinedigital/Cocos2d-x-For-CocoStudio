@@ -31,6 +31,16 @@
 
 NS_CC_EXT_BEGIN
 
+	struct Version
+	{
+	public:
+		Version();
+		~Version();
+	public:
+		int toInt();
+		std::string m_strV;
+	};
+
 	class CCJsonReader
 	{
 		public:
@@ -42,13 +52,20 @@ NS_CC_EXT_BEGIN
     
             cocos2d::CCNode* createNodeWithJsonFile(const char *pszFileName);
 
-            cocos2d::CCNode* createObject(cs::CSJsonDictionary * inputFiles, cocos2d::CCNode* parent);
-	
+			// all version
+			cocos2d::CCNode* createObject(cs::CSJsonDictionary * inputFiles, cocos2d::CCNode* parent);
+			//version "0.2.4.1"
+            cocos2d::CCNode* createObject0241(cs::CSJsonDictionary * inputFiles, cocos2d::CCNode* parent);
+			//version "0.2.5.0"
+			cocos2d::CCNode* createObject0250(cs::CSJsonDictionary * inputFiles, cocos2d::CCNode* parent);
+
             void setPropertyFromJsonDict(cocos2d::CCNode *node, cs::CSJsonDictionary* dict);
-        
+		public:
             static CCJsonReader* s_sharedJsonReader;
         
             static void purgeJsonReader();
+		private:
+			
 	};
 
 
