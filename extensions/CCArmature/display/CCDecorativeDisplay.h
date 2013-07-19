@@ -30,7 +30,7 @@ THE SOFTWARE.
 #include "../datas/CCDatas.h"
 
 
-#if ENABLE_PHYSICS_DETECT
+#if ENABLE_PHYSICS_BOX2D_DETECT || ENABLE_PHYSICS_CHIPMUNK_DETECT
 #include "../physics/CCColliderDetector.h"
 #endif
 
@@ -51,7 +51,7 @@ protected:
     CC_SYNTHESIZE_RETAIN(CCNode *, m_pDisplay, Display);
     CC_SYNTHESIZE_RETAIN(CCDisplayData *, m_pDisplayData, DisplayData);
 
-#if ENABLE_PHYSICS_DETECT
+#if ENABLE_PHYSICS_BOX2D_DETECT || ENABLE_PHYSICS_CHIPMUNK_DETECT
     CC_SYNTHESIZE_RETAIN(CCColliderDetector *, m_pColliderDetector, ColliderDetector);
 #endif
 };

@@ -23,12 +23,13 @@ THE SOFTWARE.
 ****************************************************************************/
 
 #include "CCDatas.h"
-#include "CCArmature/utils/CCUtilMath.h"
+#include "../utils/CCUtilMath.h"
+#include "../utils/CCTransformHelp.h"
 
 NS_CC_EXT_BEGIN
 
 
-	CCBaseData::CCBaseData()
+CCBaseData::CCBaseData()
 	: x(0.0f)
 	, y(0.0f)
 	, zOrder(0)
@@ -172,6 +173,8 @@ void CCSpriteDisplayData::copy(CCSpriteDisplayData *displayData)
 {
     displayName = displayData->displayName;
     displayType = displayData->displayType;
+
+	skinData = displayData->skinData;
 }
 
 CCArmatureDisplayData::CCArmatureDisplayData(void)
@@ -242,6 +245,11 @@ CCDisplayData *CCBoneData::getDisplayData(int index)
 {
     return (CCDisplayData *)displayDataList.objectAtIndex(index);
 }
+void CCBoneData::updateBoneDataTransform()
+{
+	CCTransformHelp::nodeToMatrix(*this, boneDataTransform);
+}
+
 
 CCArmatureData::CCArmatureData()
 	:dataVersion(0.1f)
@@ -268,14 +276,15 @@ CCBoneData *CCArmatureData::getBoneData(const char *boneName)
 }
 
 CCFrameData::CCFrameData(void)
-    : duration(1)
+    : frameID(0)
+	, duration(1)
     , tweenEasing(Linear)
     , displayIndex(0)
 
-    , m_strMovement("")
-    , m_strEvent("")
-    , m_strSound("")
-    , m_strSoundEffect("")
+    , strMovement("")
+    , strEvent("")
+    , strSound("")
+    , strSoundEffect("")
 {
 }
 
@@ -312,7 +321,6 @@ bool CCMovementBoneData::init()
 void CCMovementBoneData::addFrameData(CCFrameData *frameData)
 {
     frameList.addObject(frameData);
-    duration += frameData->duration;
 }
 
 CCFrameData *CCMovementBoneData::getFrameData(int index)

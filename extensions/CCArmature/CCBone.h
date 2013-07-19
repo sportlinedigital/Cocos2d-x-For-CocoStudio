@@ -80,6 +80,8 @@ public:
      */
     void addDisplay(CCDisplayData *displayData, int index);
 
+	void addDisplay(CCNode *display, int index);
+
     void changeDisplayByIndex(int index, bool force);
 
     /**
@@ -124,9 +126,13 @@ public:
     //! Update color to render display
     void updateColor();
 
-    CCTween *getTween();
+	//! Update zorder
+	void updateZOrder();
 
     virtual void setZOrder(int zOrder);
+
+	CCTween *getTween();
+
     /*
      * Whether or not the bone's transform property changed. if true, the bone will update the transform.
      */
@@ -135,7 +141,9 @@ public:
     virtual bool isTransformDirty();
 
     virtual CCAffineTransform nodeToArmatureTransform();
+	virtual CCAffineTransform nodeToWorldTransform();
 
+	CCNode *getDisplayRenderNode();
 public:
     /*
      *  The origin state of the CCBone. Display's state is effected by m_pBoneData, m_pNode, m_pTweenData

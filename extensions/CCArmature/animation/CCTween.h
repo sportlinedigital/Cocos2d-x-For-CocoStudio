@@ -94,7 +94,7 @@ protected:
     /**
      * Calculate which frame arrived, and if current frame have event, then call the event listener
      */
-    virtual float updateFrameData(float currentPrecent, bool activeFrame = false);
+    virtual float updateFrameData(float currentPrecent);
 
     /**
      * Calculate the between value of _from and _to, and give it to between frame data
@@ -124,7 +124,6 @@ protected:
     CCFrameData *m_pTo;				//! To frame data, used for calculate between value
     CCFrameData *m_pBetween;			//! Between frame data, used for calculate current CCFrameData(m_pNode) value
 
-    CCFrameData *m_pCurrentKeyFrame;	//! A weak reference to the current CCFrameData. The data is in the data pool
 
     CCBone *m_pBone;					//! A weak reference to the CCBone
 
@@ -138,6 +137,8 @@ protected:
     int m_iToIndex;					//! The next frame index in FrameList of CCMovementBoneData, it's different from m_iFrameIndex
 
     CCArmatureAnimation *m_pAnimation;
+
+	bool m_bNeedTweenTo;
 };
 
 NS_CC_EXT_END

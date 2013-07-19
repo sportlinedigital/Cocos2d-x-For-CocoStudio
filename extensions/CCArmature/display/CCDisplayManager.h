@@ -50,7 +50,7 @@ public:
      * If display is a sprite, and it have texture info in the TexutreData, then use TexutreData to init the display's anchor point
      * If the display is a CCArmature, then create a new CCArmature
      */
-    void initDisplayList(CCBoneData *boneData);
+    virtual void initDisplayList(CCBoneData *boneData);
 
     /**
      * Add display and use  _DisplayData init the display.
@@ -64,6 +64,8 @@ public:
      *					-1 : append display from back
      */
     void addDisplay(CCDisplayData *displayData, int index);
+
+	void addDisplay(CCNode *display, int index);
 
     void removeDisplay(int index);
 

@@ -219,6 +219,18 @@ void CCBone::updateColor()
     }
 }
 
+void CCBone::updateZOrder()
+{
+	if (m_pArmature->getArmatureData()->dataVersion >= VERSION_COMBINED)
+	{
+		int zorder = m_pTweenData->zOrder + m_pBoneData->zOrder;
+		setZOrder(zorder);
+	}
+	else
+	{
+		setZOrder(m_pTweenData->zOrder);
+	}
+}
 
 void CCBone::addChildBone(CCBone *child)
 {
@@ -320,9 +332,24 @@ CCAffineTransform CCBone::nodeToArmatureTransform()
 	return m_tWorldTransform;
 }
 
-void CCBone::addDisplay(CCDisplayData *_displayData, int _index)
+CCAffineTransform CCBone::nodeToWorldTransform()
 {
-    m_pDisplayManager->addDisplay(_displayData, _index);
+	return CCAffineTransformConcat(m_tWorldTransform, m_pArmature->nodeToWorldTransform());
+}
+
+CCNode *CCBone::getDisplayRenderNode()
+{
+	return m_pDisplayManager->getDisplayRenderNode();
+}
+
+void CCBone::addDisplay(CCDisplayData *displayData, int index)
+{
+    m_pDisplayManager->addDisplay(displayData, index);
+}
+
+void CCBone::addDisplay(CCNode *display, int index)
+{
+	m_pDisplayManager->addDisplay(display, index);
 }
 
 void CCBone::changeDisplayByIndex(int _index, bool _force)

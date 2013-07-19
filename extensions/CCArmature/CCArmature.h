@@ -30,6 +30,9 @@ THE SOFTWARE.
 #include "display/CCBatchNode.h"
 #include "animation/CCArmatureAnimation.h"
 
+class b2Body;
+struct cpBody;
+
 NS_CC_EXT_BEGIN
     
 class  CCArmature : public CCNodeRGBA, public CCBlendProtocol 
@@ -142,6 +145,8 @@ protected:
 	CC_SYNTHESIZE(CCTextureAtlas*, m_pAtlas, TextureAtlas);
 
 	CC_SYNTHESIZE(CCBone*, m_pParentBone, ParentBone);
+
+	CC_SYNTHESIZE(float, m_fVersion, Version);
 protected:
     CCDictionary *m_pBoneDic;                    //! The dictionary of the bones, include all bones in the armature, no matter it is the direct bone or the indirect bone. It is different from m_pChindren.
 
@@ -154,6 +159,12 @@ protected:
 	CCPoint m_pOffsetPoint;
 
 	CCArmatureAnimation *m_pAnimation;
+
+#if ENABLE_PHYSICS_BOX2D_DETECT
+	CC_PROPERTY(b2Body*, m_pB2Body, B2Body);
+#elif ENABLE_PHYSICS_CHIPMUNK_DETECT
+	CC_PROPERTY(cpBody*, m_pCPBody, CPBody);
+#endif
 };
 
 NS_CC_EXT_END

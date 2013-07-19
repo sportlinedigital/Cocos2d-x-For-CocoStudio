@@ -175,7 +175,6 @@ CCTextureAtlas *CCSpriteFrameCacheHelper::getTextureAtlasWithDisplayName(const c
 	return getTextureAtlasWithImageName(textureName);
 }
 
-
 CCSpriteFrameCacheHelper::CCSpriteFrameCacheHelper()
 {
     m_pDisplay2TextureAtlas = new CCDictionary();
