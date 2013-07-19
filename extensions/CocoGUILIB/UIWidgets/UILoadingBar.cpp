@@ -33,7 +33,8 @@ m_nBarType(LoadingBarTypeLeft),
 m_nPercent(100),
 m_fTotalLength(0),
 m_fBarHeight(0),
-m_pRenderBar(NULL)
+m_pRenderBar(NULL),
+m_eRenderBarTexType(UI_TEX_TYPE_LOCAL)
 {
     m_WidgetName = WIDGET_LOADINGBAR;
 }
@@ -92,17 +93,24 @@ int UILoadingBar::getDirection()
     return m_nBarType;
 }
 
-void UILoadingBar::setTexture(const char* texture,bool useSpriteFrame)
+void UILoadingBar::setTexture(const char* texture,TextureResType texType)
 {
-    setUseMergedTexture(useSpriteFrame);
-    if (useSpriteFrame)
+//    setUseMergedTexture(useSpriteFrame);
+    m_eRenderBarTexType = texType;
+    switch (m_eRenderBarTexType)
     {
-        m_pRenderBar->initWithSpriteFrameName(texture);
+        case UI_TEX_TYPE_LOCAL:
+            m_pRenderBar->initWithFile(texture);
+            break;
+        case UI_TEX_TYPE_PLIST:
+            m_pRenderBar->initWithSpriteFrameName(texture);
+            break;
+        default:
+            break;
     }
-    else
-    {
-        m_pRenderBar->initWithFile(texture);
-    }
+    m_pRenderBar->setColor(getColor());
+    m_pRenderBar->setOpacity(getOpacity());
+    
     m_fTotalLength = m_pRenderBar->getContentSize().width;
     m_fBarHeight = m_pRenderBar->getContentSize().height;
 
@@ -134,16 +142,22 @@ void UILoadingBar::setPercent(int percent)
     m_nPercent = percent;
     float res = m_nPercent/100.0;
     
-    int x = 0, y = 0;                        
-    if (getUseMergedTexture())
+    int x = 0, y = 0;
+    switch (m_eRenderBarTexType)
     {
-        cocos2d::CCSprite* barNode = DYNAMIC_CAST_CCSPRITE;
-        if (barNode)
+        case UI_TEX_TYPE_PLIST:
         {
-            cocos2d::CCPoint to = barNode->getTextureRect().origin;
-            x = to.x;
-            y = to.y;
+            cocos2d::CCSprite* barNode = DYNAMIC_CAST_CCSPRITE;
+            if (barNode)
+            {
+                cocos2d::CCPoint to = barNode->getTextureRect().origin;
+                x = to.x;
+                y = to.y;
+            }
+            break;
         }
+        default:
+            break;
     }
     
     m_pRenderBar->setTextureRect(cocos2d::CCRect(x, y, m_fTotalLength * res, m_fBarHeight));

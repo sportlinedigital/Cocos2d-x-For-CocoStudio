@@ -42,7 +42,7 @@ public:
     UIPanel();
     virtual ~UIPanel();
     static UIPanel* create();
-    void setBackGroundImage(const char* fileName,bool useSpriteFrame = false);
+    void setBackGroundImage(const char* fileName,TextureResType texType = UI_TEX_TYPE_LOCAL);
     void setBackGroundImageCapInsets(const CCRect& capInsets);
     virtual void setBackGroundColorType(PanelColorType type);
     virtual void setSize(const cocos2d::CCSize &size);
@@ -53,14 +53,17 @@ public:
     void setBackGroundColorVector(const CCPoint &vector);
     virtual void setColor(const cocos2d::ccColor3B &color);
     virtual void setOpacity(int opacity);
+    void removeBackGroundImage();
 protected:
     virtual void initNodes();
+    void addBackGroundImage();
 protected:
     bool m_bBackGroundScale9Enable;
     cocos2d::CCNode* m_pBackGroundImage;
     std::string m_strBackGroundImageFileName;
     CCRect m_backGroundImageCapInsets;
     PanelColorType m_colorType;
+    TextureResType m_eBGImageTexType;
 };
 
 NS_CC_EXT_END

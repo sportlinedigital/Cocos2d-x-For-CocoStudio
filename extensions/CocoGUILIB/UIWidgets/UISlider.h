@@ -37,13 +37,13 @@ public:
     UISlider();
     virtual ~UISlider();
     static UISlider* create();
-    void setBarTexture(const char* fileName,bool useSpriteFrame = false);
-    void setBarTextureScale9(const char* fileName,float x,float y,float width,float height,bool useSpriteFrame = false);
+    void setBarTexture(const char* fileName,TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void setBarTextureScale9(const char* fileName,float x,float y,float width,float height,TextureResType texType = UI_TEX_TYPE_LOCAL);
     void setBarTextureScale9Enable(bool able);
-    void setSlidBallTextures(const char* normal,const char* pressed,const char* disabled,bool useSpriteFrame = false);
-    void setSlidBallNormalTexture(const char* normal,bool useSpriteFrame = false);
-    void setSlidBallPressedTexture(const char* pressed,bool useSpriteFrame = false);
-    void setSlidBallDisabledTexture(const char* disabled,bool useSpriteFrame = false);
+    void setSlidBallTextures(const char* normal,const char* pressed,const char* disabled,TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void setSlidBallNormalTexture(const char* normal,TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void setSlidBallPressedTexture(const char* pressed,TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void setSlidBallDisabledTexture(const char* disabled,TextureResType texType = UI_TEX_TYPE_LOCAL);
     void setBarLength(float length);
     void setShowProgressBar(bool show);
     void setProgressBarTextureScale9(const char* fileName,float x,float y,float width,float height,bool useSpriteFrame = false);
@@ -77,6 +77,11 @@ protected:
     cocos2d::CCNode* m_pProgressBarNode;
     cocos2d::CCObject*       m_pPercentListener;
     SEL_PushEvent    m_pfnPercentSelector;
+    TextureResType m_eBarTexType;
+    TextureResType m_eBarTexS9Type;
+    TextureResType m_eBallNTexType;
+    TextureResType m_eBallPTexType;
+    TextureResType m_eBallDTexType;
 };
 
 NS_CC_EXT_END

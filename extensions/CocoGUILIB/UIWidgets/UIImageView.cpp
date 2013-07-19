@@ -41,7 +41,8 @@ m_bScale9Enable(false),
 m_pImageRender(NULL),
 m_strTextureFile(""),
 m_capInsets(CCRectZero),
-m_scale9Size(CCSizeZero)
+m_scale9Size(CCSizeZero),
+m_eImageTexType(UI_TEX_TYPE_LOCAL)
 {
     m_WidgetName = WIDGET_IMAGEVIEW;
 }
@@ -69,37 +70,48 @@ void UIImageView::initNodes()
     m_pRender->addChild(m_pImageRender);
 }
 
-void UIImageView::setTexture(const char* fileName,bool useSpriteFrame)
+void UIImageView::setTexture(const char *fileName, TextureResType texType)
 {
     if (!fileName || strcmp(fileName, "") == 0)
     {
         return;
     }
     m_strTextureFile = fileName;
-    setUseMergedTexture(useSpriteFrame);
-    if (useSpriteFrame)
+//    setUseMergedTexture(useSpriteFrame);
+    m_eImageTexType = texType;
+    switch (m_eImageTexType)
     {
-        if (m_bScale9Enable)
-        {
-            DYNAMIC_CAST_SCALE9SPRITE->initWithSpriteFrameName(fileName);
-        }
-        else
-        {
-            DYNAMIC_CAST_CCSPRITE->initWithSpriteFrameName(fileName);
-        }
+        case UI_TEX_TYPE_LOCAL:
+            if (m_bScale9Enable)
+            {
+                DYNAMIC_CAST_SCALE9SPRITE->initWithFile(fileName);
+                DYNAMIC_CAST_SCALE9SPRITE->setColor(getColor());
+                DYNAMIC_CAST_SCALE9SPRITE->setOpacity(getOpacity());
+            }
+            else
+            {
+                DYNAMIC_CAST_CCSPRITE->initWithFile(fileName);
+                DYNAMIC_CAST_CCSPRITE->setColor(getColor());
+                DYNAMIC_CAST_CCSPRITE->setOpacity(getOpacity());
+            }
+            break;
+        case UI_TEX_TYPE_PLIST:
+            if (m_bScale9Enable)
+            {
+                DYNAMIC_CAST_SCALE9SPRITE->initWithSpriteFrameName(fileName);
+                DYNAMIC_CAST_SCALE9SPRITE->setColor(getColor());
+                DYNAMIC_CAST_SCALE9SPRITE->setOpacity(getOpacity());
+            }
+            else
+            {
+                DYNAMIC_CAST_CCSPRITE->initWithSpriteFrameName(fileName);
+                DYNAMIC_CAST_CCSPRITE->setColor(getColor());
+                DYNAMIC_CAST_CCSPRITE->setOpacity(getOpacity());
+            }
+            break;
+        default:
+            break;
     }
-    else
-    {
-        if (m_bScale9Enable)
-        {
-            DYNAMIC_CAST_SCALE9SPRITE->initWithFile(fileName);
-        }
-        else
-        {
-            DYNAMIC_CAST_CCSPRITE->initWithFile(fileName);
-        }
-    }
-    
 }
 
 void UIImageView::setTextureRect(const cocos2d::CCRect &rect)
@@ -269,7 +281,7 @@ void UIImageView::setScale9Enable(bool able)
     {
         m_pImageRender = cocos2d::CCSprite::create();
     }
-    setTexture(m_strTextureFile.c_str(),getUseMergedTexture());
+    setTexture(m_strTextureFile.c_str(),m_eImageTexType);
     m_pRender->addChild(m_pImageRender);
     setCapInsets(m_capInsets);
     setScale9Size(m_scale9Size);
