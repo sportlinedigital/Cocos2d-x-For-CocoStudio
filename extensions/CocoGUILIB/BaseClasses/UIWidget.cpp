@@ -62,7 +62,7 @@ m_pCancelListener(NULL),
 m_pfnCancelSelector(NULL),
 m_fContentSizeHeight(0),
 m_fContentSizeWidth(0),
-m_bUseMergedTexture(false),
+//m_bUseMergedTexture(false),
 m_fAbsoluteScaleX(1.0f),
 m_fAbsoluteScaleY(1.0f),
 m_bScaleXDirty(true),
@@ -1295,15 +1295,15 @@ const char* UIWidget::getName()
     return m_strName.c_str();
 }
 
-void UIWidget::setUseMergedTexture(bool useMergedTexture)
-{
-    m_bUseMergedTexture = useMergedTexture;
-}
-
-bool UIWidget::getUseMergedTexture()
-{
-    return m_bUseMergedTexture;
-}
+//void UIWidget::setUseMergedTexture(bool useMergedTexture)
+//{
+//    m_bUseMergedTexture = useMergedTexture;
+//}
+//
+//bool UIWidget::getUseMergedTexture()
+//{
+//    return m_bUseMergedTexture;
+//}
 
 WidgetType UIWidget::getWidgetType()
 {

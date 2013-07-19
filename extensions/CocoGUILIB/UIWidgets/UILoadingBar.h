@@ -43,7 +43,7 @@ public:
     static UILoadingBar* create();
     void setDirection(LoadingBarType dir);
     int getDirection();
-    void setTexture(const char* texture,bool useSpriteFrame = false);
+    void setTexture(const char* texture,TextureResType texType = UI_TEX_TYPE_LOCAL);
     void setPercent(int percent);
     int getPercent();
     float getTotalWidth();
@@ -56,7 +56,8 @@ protected:
     int m_nPercent;
     float m_fTotalLength;
     float m_fBarHeight;
-    cocos2d::CCSprite* m_pRenderBar;
+    CCSprite* m_pRenderBar;
+    TextureResType m_eRenderBarTexType;
 //    bool m_bUseSpriteFrame;
 };
 

@@ -36,7 +36,10 @@ m_strClickedFileName(""),
 m_strDisabledFileName(""),
 m_strNormalFileName(""),
 m_capInsets(CCRectZero),
-m_scale9Size(CCSizeZero)
+m_scale9Size(CCSizeZero),
+m_eNormalTexType(UI_TEX_TYPE_LOCAL),
+m_ePressedTexType(UI_TEX_TYPE_LOCAL),
+m_eDisabledTexType(UI_TEX_TYPE_LOCAL)
 {
     m_WidgetName = WIDGET_BUTTON;
 }
@@ -116,7 +119,10 @@ void UIButton::setScale9Enable(bool able)
         m_pButtonClicked = cocos2d::CCSprite::create();
         m_pButtonDisable = cocos2d::CCSprite::create();
     }
-    setTextures(m_strNormalFileName.c_str(), m_strClickedFileName.c_str(), m_strDisabledFileName.c_str(),getUseMergedTexture());
+//    setTextures(m_strNormalFileName.c_str(), m_strClickedFileName.c_str(), m_strDisabledFileName.c_str(),getUseMergedTexture());
+    setNormalTexture(m_strNormalFileName.c_str(), m_eNormalTexType);
+    setPressedTexture(m_strClickedFileName.c_str(), m_ePressedTexType);
+    setDisabledTexture(m_strDisabledFileName.c_str(), m_eDisabledTexType);
     m_pRender->addChild(m_pButtonNormal);
     m_pRender->addChild(m_pButtonClicked);
     m_pRender->addChild(m_pButtonDisable);
@@ -144,110 +150,130 @@ void UIButton::setScale9Size(const CCSize &size)
     dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pButtonDisable)->setContentSize(size);
 }
 
-void UIButton::setTextures(const char* normal,const char* selected,const char* disabled,bool useSpriteFrame)
+void UIButton::setTextures(const char* normal,const char* selected,const char* disabled,TextureResType texType)
 {
-    setNormalTexture(normal,useSpriteFrame);
-    setPressedTexture(selected,useSpriteFrame);
-    setDisabledTexture(disabled,useSpriteFrame);
+    setNormalTexture(normal,texType);
+    setPressedTexture(selected,texType);
+    setDisabledTexture(disabled,texType);
 }
 
-void UIButton::setNormalTexture(const char* normal,bool useSpriteFrame)
+void UIButton::setNormalTexture(const char* normal,TextureResType texType)
 {
     if (!normal || strcmp(normal, "") == 0)
     {
         return;
     }
     m_strNormalFileName = normal;
-    setUseMergedTexture(useSpriteFrame);
+//    setUseMergedTexture(useSpriteFrame);
+    m_eNormalTexType = texType;
     if (m_bScale9Enable)
     {
-        if (useSpriteFrame)
+        switch (m_eNormalTexType)
         {
-            dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pButtonNormal)->initWithSpriteFrameName(normal);
-        }
-        else
-        {
-            dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pButtonNormal)->initWithFile(normal);
+            case UI_TEX_TYPE_LOCAL:
+                dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pButtonNormal)->initWithFile(normal);
+                break;
+            case UI_TEX_TYPE_PLIST:
+                dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pButtonNormal)->initWithSpriteFrameName(normal);
+                break;
+            default:
+                break;
         }
     }
     else
     {
-        if (useSpriteFrame)
+        switch (m_eNormalTexType)
         {
-            dynamic_cast<cocos2d::CCSprite*>(m_pButtonNormal)->initWithSpriteFrameName(normal);
-        }
-        else
-        {
-            dynamic_cast<cocos2d::CCSprite*>(m_pButtonNormal)->initWithFile(normal);
+            case UI_TEX_TYPE_LOCAL:
+                dynamic_cast<cocos2d::CCSprite*>(m_pButtonNormal)->initWithFile(normal);
+                break;
+            case UI_TEX_TYPE_PLIST:
+                dynamic_cast<cocos2d::CCSprite*>(m_pButtonNormal)->initWithSpriteFrameName(normal);
+                break;
+            default:
+                break;
         }
     }
     updateAnchorPoint();
 }
 
-void UIButton::setPressedTexture(const char* selected,bool useSpriteFrame)
+void UIButton::setPressedTexture(const char* selected,TextureResType texType)
 {
     if (!selected || strcmp(selected, "") == 0)
     {
         return;
     }
     m_strClickedFileName = selected;
-    setUseMergedTexture(useSpriteFrame);
+//    setUseMergedTexture(useSpriteFrame);
+    m_ePressedTexType = texType;
     if (m_bScale9Enable)
     {
-        if (useSpriteFrame)
+        switch (m_ePressedTexType)
         {
-            dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pButtonClicked)->initWithSpriteFrameName(selected);
-        }
-        else
-        {
-            dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pButtonClicked)->initWithFile(selected);
+            case UI_TEX_TYPE_LOCAL:
+                dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pButtonClicked)->initWithFile(selected);
+                break;
+            case UI_TEX_TYPE_PLIST:
+                dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pButtonClicked)->initWithSpriteFrameName(selected);
+                break;
+            default:
+                break;
         }
     }
     else
     {
-        if (useSpriteFrame)
+        switch (m_ePressedTexType)
         {
-            dynamic_cast<cocos2d::CCSprite*>(m_pButtonClicked)->initWithSpriteFrameName(selected);
-        }
-        else
-        {
-            dynamic_cast<cocos2d::CCSprite*>(m_pButtonClicked)->initWithFile(selected);
+            case UI_TEX_TYPE_LOCAL:
+                dynamic_cast<cocos2d::CCSprite*>(m_pButtonClicked)->initWithFile(selected);
+                break;
+            case UI_TEX_TYPE_PLIST:
+                dynamic_cast<cocos2d::CCSprite*>(m_pButtonClicked)->initWithSpriteFrameName(selected);
+                break;
+            default:
+                break;
         }
     }
     updateAnchorPoint();
 }
 
-void UIButton::setDisabledTexture(const char* disabled,bool useSpriteFrame)
+void UIButton::setDisabledTexture(const char* disabled,TextureResType texType)
 {
     if (!disabled || strcmp(disabled, "") == 0)
     {
         return;
     }
     m_strDisabledFileName = disabled;
-    setUseMergedTexture(useSpriteFrame);
+//    setUseMergedTexture(useSpriteFrame);
+    m_eDisabledTexType = texType;
     if (m_bScale9Enable)
     {
-        if (useSpriteFrame)
+        switch (m_eDisabledTexType)
         {
-            dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pButtonDisable)->initWithSpriteFrameName(disabled);
-        }
-        else
-        {
-            dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pButtonDisable)->initWithFile(disabled);
+            case UI_TEX_TYPE_LOCAL:
+                dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pButtonDisable)->initWithFile(disabled);
+                break;
+            case UI_TEX_TYPE_PLIST:
+                dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pButtonDisable)->initWithSpriteFrameName(disabled);
+                break;
+            default:
+                break;
         }
     }
     else
     {
-        if (useSpriteFrame)
+        switch (m_eDisabledTexType)
         {
-            dynamic_cast<cocos2d::CCSprite*>(m_pButtonDisable)->initWithSpriteFrameName(disabled);
-        }
-        else
-        {
-            dynamic_cast<cocos2d::CCSprite*>(m_pButtonDisable)->initWithFile(disabled);
+            case UI_TEX_TYPE_LOCAL:
+                dynamic_cast<cocos2d::CCSprite*>(m_pButtonDisable)->initWithFile(disabled);
+                break;
+            case UI_TEX_TYPE_PLIST:
+                dynamic_cast<cocos2d::CCSprite*>(m_pButtonDisable)->initWithSpriteFrameName(disabled);
+                break;
+            default:
+                break;
         }
     }
-
     updateAnchorPoint();
 }
 

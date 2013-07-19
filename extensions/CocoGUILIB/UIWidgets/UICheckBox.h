@@ -39,12 +39,12 @@ public:
     UICheckBox();
     virtual ~UICheckBox();
     static UICheckBox* create();
-    void setTextures(const char* backGround,const char* backGroundSelected,const char* cross,const char* backGroundDisabled,const char* frontCrossDisabled,bool useSpriteFrame = false);
-    void setBackGroundTexture(const char* backGround,bool useSpriteFrame = false);
-    void setBackGroundSelectedTexture(const char* backGroundSelected,bool useSpriteFrame = false);
-    void setFrontCrossTexture(const char* cross,bool useSpriteFrame = false);
-    void setBackGroundDisabledTexture(const char* backGroundDisabled,bool useSpriteFrame = false);
-    void setFrontCrossDisabledTexture(const char* frontCrossDisabled,bool useSpriteFrame = false);
+    void setTextures(const char* backGround,const char* backGroundSelected,const char* cross,const char* backGroundDisabled,const char* frontCrossDisabled,TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void setBackGroundTexture(const char* backGround,TextureResType type = UI_TEX_TYPE_LOCAL);
+    void setBackGroundSelectedTexture(const char* backGroundSelected,TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void setFrontCrossTexture(const char* cross,TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void setBackGroundDisabledTexture(const char* backGroundDisabled,TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void setFrontCrossDisabledTexture(const char* frontCrossDisabled,TextureResType texType = UI_TEX_TYPE_LOCAL);
     void setSelectedState(bool selected);
     bool getSelectedState();
     virtual cocos2d::CCNode* getValidNode();
@@ -75,6 +75,11 @@ protected:
     SEL_SelectEvent    m_pfnSelectSelector;
     cocos2d::CCObject*       m_pUnSelectListener;
     SEL_UnSelectEvent    m_pfnUnSelectSelector;
+    TextureResType m_eBackGroundTexType;
+    TextureResType m_eBackGroundSelectedTexType;
+    TextureResType m_eFrontCrossTexType;
+    TextureResType m_eBackGroundDisabledTexType;
+    TextureResType m_eFrontCrossDisabledTexType;
 };
 
 NS_CC_EXT_END

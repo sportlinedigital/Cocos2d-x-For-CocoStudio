@@ -82,6 +82,12 @@ typedef enum
     WIDGET_PAGEVIEW
 }WidgetName;
 
+typedef enum
+{
+    UI_TEX_TYPE_LOCAL,
+    UI_TEX_TYPE_PLIST
+}TextureResType;
+
 typedef void (cocos2d::CCObject::*SEL_PushEvent)(cocos2d::CCObject*);
 typedef void (cocos2d::CCObject::*SEL_MoveEvent)(cocos2d::CCObject*);
 typedef void (cocos2d::CCObject::*SEL_ReleaseEvent)(cocos2d::CCObject*);
@@ -228,8 +234,8 @@ public:
     int getWidgetTag();
     void setName(const char* name);
     const char* getName();
-    void setUseMergedTexture(bool useMergedTexture);
-    bool getUseMergedTexture();
+//    void setUseMergedTexture(bool useMergedTexture);
+//    bool getUseMergedTexture();
     WidgetType getWidgetType();
     WidgetName getWidgetName();
     void setBindingAction(UIActionNode* actionNode);
@@ -294,7 +300,7 @@ protected:
     float m_fAdaptScaleY;
     int m_nWidgetTag;
     std::string m_strName;
-    bool m_bUseMergedTexture;
+//    bool m_bUseMergedTexture;
     WidgetType m_WidgetType;
     WidgetName m_WidgetName;
     UILayer* m_pUILayer;

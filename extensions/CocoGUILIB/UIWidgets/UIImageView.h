@@ -35,7 +35,7 @@ public:
     UIImageView();
     virtual ~UIImageView();
     static UIImageView* create();
-    virtual void setTexture(const char* fileName,bool useSpriteFrame = false);
+    virtual void setTexture(const char* fileName,TextureResType texType = UI_TEX_TYPE_LOCAL);
     virtual void setTextureRect(const cocos2d::CCRect& rect);
     void doubleClickEvent();
     void checkDoubleClick(float dt);
@@ -73,6 +73,7 @@ protected:
     CCSize m_scale9Size;
     CCNode* m_pImageRender;
     std::string m_strTextureFile;
+    TextureResType m_eImageTexType;
 };
 
 NS_CC_EXT_END
