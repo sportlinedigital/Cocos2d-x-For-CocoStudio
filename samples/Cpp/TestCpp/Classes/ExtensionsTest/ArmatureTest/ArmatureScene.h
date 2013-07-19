@@ -127,6 +127,7 @@ public:
 class TestUseMutiplePicture : public ArmatureTestLayer
 {
 	virtual void onEnter();
+	virtual void onExit();
 	virtual std::string title();
 	virtual std::string subtitle();
 	virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
@@ -139,6 +140,7 @@ class TestUseMutiplePicture : public ArmatureTestLayer
 class TestParticleDisplay : public ArmatureTestLayer
 {
 	virtual void onEnter();
+	virtual void onExit();
 	virtual std::string title();
 	virtual std::string subtitle();
 	virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
@@ -158,6 +160,7 @@ public:
 	~TestColliderDetector();
 
 	virtual void onEnter();
+	virtual void onExit();
 	virtual std::string title();
 	virtual void draw();
 	virtual void update(float delta);
@@ -207,6 +210,7 @@ class TestArmatureNesting : public ArmatureTestLayer
 {
 public:
 	virtual void onEnter();
+	virtual void onExit();
 	virtual std::string title();
 	virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
 	virtual void registerWithTouchDispatcher();

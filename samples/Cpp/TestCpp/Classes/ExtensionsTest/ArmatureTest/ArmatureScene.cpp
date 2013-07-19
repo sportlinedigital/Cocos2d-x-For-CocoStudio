@@ -162,6 +162,7 @@ void ArmatureTestLayer::onEnter()
 }
 void ArmatureTestLayer::onExit()
 {
+	removeAllChildren();
 }
 
 std::string ArmatureTestLayer::title()
@@ -447,6 +448,11 @@ void TestParticleDisplay::onEnter()
 	bone->setScale(1.2f);
 	armature->addBone(bone, "bady-a30");
 }
+void TestParticleDisplay::onExit()
+{
+	CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
+	ArmatureTestLayer::onExit();
+}
 std::string TestParticleDisplay::title()
 {
 	return "Test Particle Display";
@@ -492,6 +498,11 @@ void TestUseMutiplePicture::onEnter()
 		displayData.setParam(weapon[i].c_str());
 		armature->getBone("weapon")->addDisplay(&displayData, i);
 	}
+}
+void TestUseMutiplePicture::onExit()
+{
+	CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
+	ArmatureTestLayer::onExit();
 }
 std::string TestUseMutiplePicture::title()
 {
@@ -609,16 +620,6 @@ void TestColliderDetector::destroyCPBody(cpBody *body)
 
 TestColliderDetector::~TestColliderDetector()
 {
-#if ENABLE_PHYSICS_BOX2D_DETECT
-	CC_SAFE_DELETE(world);
-	CC_SAFE_DELETE(listener);
-	CC_SAFE_DELETE(debugDraw);
-#elif ENABLE_PHYSICS_CHIPMUNK_DETECT
-	destroyCPBody(armature2->getCPBody());
-	destroyCPBody(bullet->getCPBody());
-
-	cpSpaceFree(space);
-#endif
 }
 
 void TestColliderDetector::onEnter()
@@ -646,6 +647,21 @@ void TestColliderDetector::onEnter()
 	addChild(bullet);
 
 	initWorld();
+}
+void TestColliderDetector::onExit()
+{
+#if ENABLE_PHYSICS_BOX2D_DETECT
+	CC_SAFE_DELETE(world);
+	CC_SAFE_DELETE(listener);
+	CC_SAFE_DELETE(debugDraw);
+#elif ENABLE_PHYSICS_CHIPMUNK_DETECT
+	destroyCPBody(armature2->getCPBody());
+	destroyCPBody(bullet->getCPBody());
+
+	cpSpaceFree(space);
+#endif
+
+	ArmatureTestLayer::onExit();
 }
 std::string TestColliderDetector::title()
 {
@@ -854,6 +870,11 @@ void TestArmatureNesting::onEnter()
 
 	weaponIndex = 0;
 }
+void TestArmatureNesting::onExit()
+{
+	CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
+	ArmatureTestLayer::onExit();
+}
 std::string TestArmatureNesting::title()
 {
 	return "Test CCArmature Nesting";
@@ -863,8 +884,12 @@ bool TestArmatureNesting::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 	++weaponIndex;
 	weaponIndex = weaponIndex % 4;
 
-	armature->getBone("armInside")->getChildArmature()->getAnimation()->playByIndex(weaponIndex);
-	armature->getBone("armOutside")->getChildArmature()->getAnimation()->playByIndex(weaponIndex);
+	if(armature != NULL)
+	{
+		armature->getBone("armInside")->getChildArmature()->getAnimation()->playByIndex(weaponIndex);
+		armature->getBone("armOutside")->getChildArmature()->getAnimation()->playByIndex(weaponIndex);
+	}
+
 	return false;
 }
 void TestArmatureNesting::registerWithTouchDispatcher()
