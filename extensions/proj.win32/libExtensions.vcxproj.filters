@@ -85,6 +85,9 @@
     <Filter Include="CocostudioReader">
       <UniqueIdentifier>{bb55ef06-8fad-4ca3-80f0-15c48b325da1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CocoAction">
+      <UniqueIdentifier>{b6a6876f-bf7f-45d5-920c-89c52909743a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\GUI\CCScrollView\CCScrollView.cpp">
@@ -480,6 +483,27 @@
     <ClCompile Include="..\CocostudioReader\DictionaryHelper.cpp">
       <Filter>CocostudioReader</Filter>
     </ClCompile>
+    <ClCompile Include="..\CocoAction\CocoActionFrame.cpp">
+      <Filter>CocoAction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoAction\CocoActionFrameEasing.cpp">
+      <Filter>CocoAction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoAction\CocoActionManager.cpp">
+      <Filter>CocoAction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoAction\CocoActionNode.cpp">
+      <Filter>CocoAction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoAction\CocoActionObject.cpp">
+      <Filter>CocoAction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\UIWidgets\UIDragPanel.cpp">
+      <Filter>CocoGUILIB\UIWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\UIWidgets\UIWrapPanel.cpp">
+      <Filter>CocoGUILIB\UIWidgets</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\GUI\CCScrollView\CCScrollView.h">
@@ -852,6 +876,27 @@
     </ClInclude>
     <ClInclude Include="..\CocostudioReader\DictionaryHelper.h">
       <Filter>CocostudioReader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoAction\CocoActionFrame.h">
+      <Filter>CocoAction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoAction\CocoActionFrameEasing.h">
+      <Filter>CocoAction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoAction\CocoActionManager.h">
+      <Filter>CocoAction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoAction\CocoActionNode.h">
+      <Filter>CocoAction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoAction\CocoActionObject.h">
+      <Filter>CocoAction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\UIWidgets\UIDragPanel.h">
+      <Filter>CocoGUILIB\UIWidgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\UIWidgets\UIWrapPanel.h">
+      <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

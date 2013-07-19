@@ -139,6 +139,11 @@
     <ClCompile Include="..\CCBReader\CCScale9SpriteLoader.cpp" />
     <ClCompile Include="..\CCBReader\CCScrollViewLoader.cpp" />
     <ClCompile Include="..\CCBReader\CCSpriteLoader.cpp" />
+    <ClCompile Include="..\CocoAction\CocoActionObject.cpp" />
+    <ClCompile Include="..\CocoAction\CocoActionFrame.cpp" />
+    <ClCompile Include="..\CocoAction\CocoActionFrameEasing.cpp" />
+    <ClCompile Include="..\CocoAction\CocoActionManager.cpp" />
+    <ClCompile Include="..\CocoAction\CocoActionNode.cpp" />
     <ClCompile Include="..\CocoGUILIB\Action\UIAction.cpp" />
     <ClCompile Include="..\CocoGUILIB\Action\UIActionFrame.cpp" />
     <ClCompile Include="..\CocoGUILIB\Action\UIActionManager.cpp" />
@@ -156,6 +161,7 @@
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UIButton.cpp" />
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UICheckBox.cpp" />
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UIControlButton.cpp" />
+    <ClCompile Include="..\CocoGUILIB\UIWidgets\UIDragPanel.cpp" />
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UIImageView.cpp" />
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UILabel.cpp" />
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UILabelAtlas.cpp" />
@@ -170,6 +176,7 @@
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UITextArea.cpp" />
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UITextButton.cpp" />
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UITextField.cpp" />
+    <ClCompile Include="..\CocoGUILIB\UIWidgets\UIWrapPanel.cpp" />
     <ClCompile Include="..\CocostudioReader\CCJsonReader.cpp" />
     <ClCompile Include="..\CocostudioReader\DictionaryHelper.cpp" />
     <ClCompile Include="..\Components\CCComAttribute.cpp" />
@@ -286,6 +293,11 @@
     <ClInclude Include="..\CCBReader\CCScale9SpriteLoader.h" />
     <ClInclude Include="..\CCBReader\CCScrollViewLoader.h" />
     <ClInclude Include="..\CCBReader\CCSpriteLoader.h" />
+    <ClInclude Include="..\CocoAction\CocoActionObject.h" />
+    <ClInclude Include="..\CocoAction\CocoActionFrame.h" />
+    <ClInclude Include="..\CocoAction\CocoActionFrameEasing.h" />
+    <ClInclude Include="..\CocoAction\CocoActionManager.h" />
+    <ClInclude Include="..\CocoAction\CocoActionNode.h" />
     <ClInclude Include="..\CocoGUILIB\Action\UIAction.h" />
     <ClInclude Include="..\CocoGUILIB\Action\UIActionFrame.h" />
     <ClInclude Include="..\CocoGUILIB\Action\UIActionManager.h" />
@@ -303,6 +315,7 @@
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UIButton.h" />
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UICheckBox.h" />
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UIControlButton.h" />
+    <ClInclude Include="..\CocoGUILIB\UIWidgets\UIDragPanel.h" />
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UIImageView.h" />
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UILabel.h" />
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UILabelAtlas.h" />
@@ -317,6 +330,7 @@
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UITextArea.h" />
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UITextButton.h" />
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UITextField.h" />
+    <ClInclude Include="..\CocoGUILIB\UIWidgets\UIWrapPanel.h" />
     <ClInclude Include="..\CocostudioReader\CCJsonReader.h" />
     <ClInclude Include="..\CocostudioReader\DictionaryHelper.h" />
     <ClInclude Include="..\Components\CCComAttribute.h" />
