@@ -206,6 +206,16 @@ void UIClippingLayer::setColorType(UILayerColorType type)
     switch (m_colorType)
     {
         case UL_C_NONE:
+            if (m_pColorRender)
+            {
+                this->removeChild(m_pColorRender, true);
+                m_pColorRender = NULL;
+            }
+            if (m_pGradientRender)
+            {
+                this->removeChild(m_pGradientRender, true);
+                m_pGradientRender = NULL;
+            }
             break;
         case UL_C_COLOR:
             if (m_pColorRender)
