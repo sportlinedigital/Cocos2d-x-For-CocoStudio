@@ -56,6 +56,19 @@ CCSReader* CCSReader::shareReader()
 
 int CCSReader::getVersionInteger(const char *str)
 {
+    std::string strVersion = str;
+    int length = strVersion.length();
+    if (length < 7)
+    {
+        return 0;
+    }
+    else
+    {
+        CCLOG("posssssss %s",strVersion.c_str());
+        int pos = strVersion.find_first_of(".", 0, length);
+        CCLOG("pos %d",pos);
+    }
+    
     return 0;
 }
 
@@ -198,8 +211,8 @@ UIWidget* CCSReader::widgetFromJsonFile(const char *fileName)
     jsonDict->initWithDescription(strDes.c_str());
 
     const char* fileVersion = DICTOOL->getStringValue_json(jsonDict, "version");
-    
-    if (!fileVersion || getVersionInteger(fileVersion) < 250)
+    getVersionInteger("0.2.4.1");
+    if (!fileVersion || getVersionInteger("0.2.4.1") < 250)
     {
         m_bOlderVersion = true;
     }
