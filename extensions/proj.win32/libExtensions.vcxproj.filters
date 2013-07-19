@@ -498,6 +498,12 @@
     <ClCompile Include="..\CocoAction\CocoActionObject.cpp">
       <Filter>CocoAction</Filter>
     </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\UIWidgets\UIDragPanel.cpp">
+      <Filter>CocoGUILIB\UIWidgets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\UIWidgets\UIWrapPanel.cpp">
+      <Filter>CocoGUILIB\UIWidgets</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\GUI\CCScrollView\CCScrollView.h">
@@ -885,6 +891,12 @@
     </ClInclude>
     <ClInclude Include="..\CocoAction\CocoActionObject.h">
       <Filter>CocoAction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\UIWidgets\UIDragPanel.h">
+      <Filter>CocoGUILIB\UIWidgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\UIWidgets\UIWrapPanel.h">
+      <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
