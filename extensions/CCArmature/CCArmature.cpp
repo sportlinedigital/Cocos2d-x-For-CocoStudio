@@ -304,8 +304,11 @@ void CCArmature::changeBoneParent(CCBone *bone, const char *parentName)
 {
     CCAssert(bone != NULL, "bone must be added to the bone dictionary!");
 
-    bone->getParentBone()->getChildren()->removeObject(bone);
-    bone->setParentBone(NULL);
+    if(bone->getParentBone())
+	{
+		bone->getParentBone()->getChildren()->removeObject(bone);
+		bone->setParentBone(NULL);
+	}
 
     if (parentName != NULL)
     {
@@ -407,9 +410,21 @@ void CCArmature::updateOffsetPoint()
     CCRect rect = boundingBox();
     setContentSize(rect.size);
     m_pOffsetPoint = ccp(-rect.origin.x,  -rect.origin.y);
-    setAnchorPoint(ccp(m_pOffsetPoint.x / rect.size.width, m_pOffsetPoint.y / rect.size.height));
+	if (rect.size.width != 0 && rect.size.height!= 0)
+	{
+		setAnchorPoint(ccp(m_pOffsetPoint.x / rect.size.width, m_pOffsetPoint.y / rect.size.height));
+	}
 }
 
+void CCArmature::setAnimation(CCArmatureAnimation *animation)
+{
+	m_pAnimation = animation;
+}
+
+CCArmatureAnimation *CCArmature::getAnimation()
+{
+	return m_pAnimation;
+}
 
 void CCArmature::update(float dt)
 {
@@ -457,7 +472,7 @@ void CCArmature::draw()
             if (m_pAtlas->getCapacity() == m_pAtlas->getTotalQuads() && !m_pAtlas->resizeCapacity(m_pAtlas->getCapacity() * 2))
                 return;
 
-            skin->draw();
+            skin->updateTransform();
         }
         else if(CCArmature *armature = dynamic_cast<CCArmature *>(node))
         {
@@ -574,5 +589,66 @@ CCBone *CCArmature::getBoneAtPoint(float x, float y)
     }
     return NULL;
 }
+
+#if ENABLE_PHYSICS_BOX2D_DETECT
+b2Body *CCArmature::getB2Body()
+{
+	return m_pB2Body;
+}
+
+void CCArmature::setB2Body(b2Body *body)
+{
+	m_pB2Body = body;
+	
+	CCObject *object = NULL;
+	CCARRAY_FOREACH(m_pChildren, object)
+	{
+		if (CCBone *bone = dynamic_cast<CCBone*>(object))
+		{
+			CCArray *displayList = bone->getDisplayManager()->getDecorativeDisplayList();
+
+			CCObject *displayObject = NULL;
+			CCARRAY_FOREACH(displayList, displayObject)
+			{
+				CCColliderDetector *detector = ((CCDecorativeDisplay*)displayObject)->getColliderDetector();
+				if (detector != NULL)
+				{
+					detector->setB2Body(m_pB2Body);
+				}
+			}
+		}
+	}
+}
+#elif ENABLE_PHYSICS_CHIPMUNK_DETECT
+cpBody *CCArmature::getCPBody()
+{
+	return m_pCPBody;
+}
+
+void CCArmature::setCPBody(cpBody *body)
+{
+	m_pCPBody = body;
+
+	CCObject *object = NULL;
+	CCARRAY_FOREACH(m_pChildren, object)
+	{
+		if (CCBone *bone = dynamic_cast<CCBone*>(object))
+		{
+			CCArray *displayList = bone->getDisplayManager()->getDecorativeDisplayList();
+
+			CCObject *displayObject = NULL;
+			CCARRAY_FOREACH(displayList, displayObject)
+			{
+				CCColliderDetector *detector = ((CCDecorativeDisplay*)displayObject)->getColliderDetector();
+				if (detector != NULL)
+				{
+					detector->setCPBody(m_pCPBody);
+				}
+			}
+		}
+	}
+}
+#endif
+
 
 NS_CC_EXT_END
