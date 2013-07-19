@@ -102,16 +102,13 @@
     <ClCompile Include="..\CCArmature\display\CCDecorativeDisplay.cpp" />
     <ClCompile Include="..\CCArmature\display\CCDisplayFactory.cpp" />
     <ClCompile Include="..\CCArmature\display\CCDisplayManager.cpp" />
-    <ClCompile Include="..\CCArmature\display\CCShaderNode.cpp" />
     <ClCompile Include="..\CCArmature\display\CCSkin.cpp" />
     <ClCompile Include="..\CCArmature\external_tool\CCTexture2DMutable.cpp" />
-    <ClCompile Include="..\CCArmature\external_tool\GLES-Render.cpp" />
     <ClCompile Include="..\CCArmature\external_tool\Json\CSContentJsonDictionary.cpp" />
     <ClCompile Include="..\CCArmature\external_tool\Json\lib_json\json_reader.cpp" />
     <ClCompile Include="..\CCArmature\external_tool\Json\lib_json\json_value.cpp" />
     <ClCompile Include="..\CCArmature\external_tool\Json\lib_json\json_writer.cpp" />
     <ClCompile Include="..\CCArmature\physics\CCColliderDetector.cpp" />
-    <ClCompile Include="..\CCArmature\physics\CCPhysicsWorld.cpp" />
     <ClCompile Include="..\CCArmature\utils\CCArmatureDataManager.cpp" />
     <ClCompile Include="..\CCArmature\utils\CCDataReaderHelper.cpp" />
     <ClCompile Include="..\CCArmature\utils\CCSpriteFrameCacheHelper.cpp" />
@@ -142,6 +139,11 @@
     <ClCompile Include="..\CCBReader\CCScale9SpriteLoader.cpp" />
     <ClCompile Include="..\CCBReader\CCScrollViewLoader.cpp" />
     <ClCompile Include="..\CCBReader\CCSpriteLoader.cpp" />
+    <ClCompile Include="..\CocoAction\CocoActionObject.cpp" />
+    <ClCompile Include="..\CocoAction\CocoActionFrame.cpp" />
+    <ClCompile Include="..\CocoAction\CocoActionFrameEasing.cpp" />
+    <ClCompile Include="..\CocoAction\CocoActionManager.cpp" />
+    <ClCompile Include="..\CocoAction\CocoActionNode.cpp" />
     <ClCompile Include="..\CocoGUILIB\Action\UIAction.cpp" />
     <ClCompile Include="..\CocoGUILIB\Action\UIActionFrame.cpp" />
     <ClCompile Include="..\CocoGUILIB\Action\UIActionManager.cpp" />
@@ -159,6 +161,7 @@
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UIButton.cpp" />
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UICheckBox.cpp" />
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UIControlButton.cpp" />
+    <ClCompile Include="..\CocoGUILIB\UIWidgets\UIDragPanel.cpp" />
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UIImageView.cpp" />
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UILabel.cpp" />
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UILabelAtlas.cpp" />
@@ -173,6 +176,7 @@
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UITextArea.cpp" />
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UITextButton.cpp" />
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UITextField.cpp" />
+    <ClCompile Include="..\CocoGUILIB\UIWidgets\UIWrapPanel.cpp" />
     <ClCompile Include="..\CocostudioReader\CCJsonReader.cpp" />
     <ClCompile Include="..\CocostudioReader\DictionaryHelper.cpp" />
     <ClCompile Include="..\Components\CCComAttribute.cpp" />
@@ -238,10 +242,8 @@
     <ClInclude Include="..\CCArmature\display\CCDecorativeDisplay.h" />
     <ClInclude Include="..\CCArmature\display\CCDisplayFactory.h" />
     <ClInclude Include="..\CCArmature\display\CCDisplayManager.h" />
-    <ClInclude Include="..\CCArmature\display\CCShaderNode.h" />
     <ClInclude Include="..\CCArmature\display\CCSkin.h" />
     <ClInclude Include="..\CCArmature\external_tool\CCTexture2DMutable.h" />
-    <ClInclude Include="..\CCArmature\external_tool\GLES-Render.h" />
     <ClInclude Include="..\CCArmature\external_tool\Json\CSContentJsonDictionary.h" />
     <ClInclude Include="..\CCArmature\external_tool\Json\lib_json\autolink.h" />
     <ClInclude Include="..\CCArmature\external_tool\Json\lib_json\config.h" />
@@ -255,7 +257,6 @@
     <ClInclude Include="..\CCArmature\external_tool\Json\lib_json\writer.h" />
     <ClInclude Include="..\CCArmature\external_tool\sigslot.h" />
     <ClInclude Include="..\CCArmature\physics\CCColliderDetector.h" />
-    <ClInclude Include="..\CCArmature\physics\CCPhysicsWorld.h" />
     <ClInclude Include="..\CCArmature\utils\CCArmatureDataManager.h" />
     <ClInclude Include="..\CCArmature\utils\CCArmatureDefine.h" />
     <ClInclude Include="..\CCArmature\utils\CCConstValue.h" />
@@ -292,6 +293,11 @@
     <ClInclude Include="..\CCBReader\CCScale9SpriteLoader.h" />
     <ClInclude Include="..\CCBReader\CCScrollViewLoader.h" />
     <ClInclude Include="..\CCBReader\CCSpriteLoader.h" />
+    <ClInclude Include="..\CocoAction\CocoActionObject.h" />
+    <ClInclude Include="..\CocoAction\CocoActionFrame.h" />
+    <ClInclude Include="..\CocoAction\CocoActionFrameEasing.h" />
+    <ClInclude Include="..\CocoAction\CocoActionManager.h" />
+    <ClInclude Include="..\CocoAction\CocoActionNode.h" />
     <ClInclude Include="..\CocoGUILIB\Action\UIAction.h" />
     <ClInclude Include="..\CocoGUILIB\Action\UIActionFrame.h" />
     <ClInclude Include="..\CocoGUILIB\Action\UIActionManager.h" />
@@ -309,6 +315,7 @@
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UIButton.h" />
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UICheckBox.h" />
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UIControlButton.h" />
+    <ClInclude Include="..\CocoGUILIB\UIWidgets\UIDragPanel.h" />
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UIImageView.h" />
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UILabel.h" />
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UILabelAtlas.h" />
@@ -323,6 +330,7 @@
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UITextArea.h" />
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UITextButton.h" />
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UITextField.h" />
+    <ClInclude Include="..\CocoGUILIB\UIWidgets\UIWrapPanel.h" />
     <ClInclude Include="..\CocostudioReader\CCJsonReader.h" />
     <ClInclude Include="..\CocostudioReader\DictionaryHelper.h" />
     <ClInclude Include="..\Components\CCComAttribute.h" />
