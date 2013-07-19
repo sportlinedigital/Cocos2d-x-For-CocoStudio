@@ -350,6 +350,10 @@ NS_CC_EXT_BEGIN
 
 					if (nResType == 0)
 					{
+						if (pPath.find(".png") == pPath.npos)
+						{
+							continue;
+						}
 						pSprite = CCSprite::create(pPath.c_str());
 					}
 					else if (nResType == 1)
@@ -382,6 +386,10 @@ NS_CC_EXT_BEGIN
 					cocos2d::CCTMXTiledMap *pTmx = NULL;
 					if (nResType == 0)
 					{
+						if (pPath.find(".tmx") == pPath.npos)
+						{
+							continue;
+						}
 						pTmx = CCTMXTiledMap::create(pPath.c_str());
 					}
 					else
