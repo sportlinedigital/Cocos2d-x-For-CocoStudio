@@ -756,27 +756,5 @@ CCEGLView* CCEGLView::sharedOpenGLView()
     return s_pEglView;
 }
 
-//void CCEGLViewForEditor::centerWindow()
-//{
-//	if (! m_hWnd)
-//	{
-//		return;
-//	}
-//}
-//
-//LRESULT CCEGLViewForEditor::WindowProc(UINT message, WPARAM wParam, LPARAM lParam)
-//{
-//	
-//	return S_OK;
-//}
-//
-//CCEGLView* CCEGLViewForEditor::sharedOpenGLView()
-//{
-//	if (s_pEglView == NULL)
-//	{
-//		s_pEglView = new CCEGLViewForEditor();
-//	}
-//	return s_pEglView;
-//}
 
 NS_CC_END

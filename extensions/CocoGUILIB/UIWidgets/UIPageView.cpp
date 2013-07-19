@@ -61,7 +61,8 @@ UIPageView* UIPageView::create()
 
 bool UIPageView::init()
 {
-    if (UIPanel::init()) {
+    if (UIPanel::init())
+    {
         m_pages = CCArray::create();
         m_pages->retain();
         setClippingEnable(true);
@@ -126,14 +127,14 @@ void UIPageView::addPage(UIContainerWidget* page)
     }
     CCSize pSize = page->getContentSize();
     CCSize pvSize = getContentSize();
-    if (pSize.width != pvSize.width || pSize.height != pvSize.height);
+    if (!pSize.equals(pvSize))
     {
         CCLOG("page size does not match pageview size, it will be force sized!");
         page->setSize(pvSize);
     }
     page->setPosition(ccp(getPositionXByIndex(m_pages->count()), 0));
     m_pages->addObject(page);
-    this->addChild(page);
+    addChild(page);
     updateBoundaryPages();
 }
 
@@ -168,13 +169,15 @@ void UIPageView::insertPage(UIContainerWidget* page, int idx)
         addChild(page);
         CCSize pSize = page->getContentSize();
         CCSize pvSize = getContentSize();
-        if (pSize.width != pvSize.width || pSize.height != pvSize.height);
+        if (!pSize.equals(pvSize))
         {
             CCLOG("page size does not match pageview size, it will be force sized!");
             page->setSize(pvSize);
         }
-        for (int i=(idx+1); i<m_pages->count(); i++) {
-            UIWidget* behindPage = dynamic_cast<UIWidget*>(m_pages->objectAtIndex(i));
+        ccArray* arrayPages = m_pages->data;
+        int length = arrayPages->num;
+        for (int i=(idx+1); i<length; i++) {
+            UIWidget* behindPage = dynamic_cast<UIWidget*>(arrayPages->arr[i]);
             CCPoint formerPos = behindPage->getPosition();
             behindPage->setPosition(ccp(formerPos.x+getWidth(), 0));
         }
@@ -208,7 +211,8 @@ void UIPageView::removePageAtIndex(int index, bool cleanup)
 
 void UIPageView::updateBoundaryPages()
 {
-    if (m_pages->count() <= 0) {
+    if (m_pages->count() <= 0)
+    {
         m_pLeftChild = NULL;
         m_pRightChild = NULL;
     }
@@ -246,7 +250,7 @@ void UIPageView::setSize(const cocos2d::CCSize &size)
 
 void UIPageView::updateChildrenSize()
 {
-    CCSize selfSize = this->getContentSize();
+    CCSize selfSize = getContentSize();
     for (int i=0; i<m_pages->count(); i++)
     {
         UIContainerWidget* page = dynamic_cast<UIContainerWidget*>(m_pages->objectAtIndex(i));
@@ -256,7 +260,7 @@ void UIPageView::updateChildrenSize()
 
 void UIPageView::updateChildrenPosition()
 {
-    int pageCount = m_pages->count();
+    int pageCount = m_pages->data->num;
     if (pageCount <= 0)
     {
         m_nCurPageIdx = 0;
@@ -267,9 +271,10 @@ void UIPageView::updateChildrenPosition()
         m_nCurPageIdx = pageCount-1;
     }
     float pageWidth = getWidth();
+    ccArray* arrayPages = m_pages->data;
     for (int i=0; i<pageCount; i++)
     {
-        UIContainerWidget* page = dynamic_cast<UIContainerWidget*>(m_pages->objectAtIndex(i));
+        UIContainerWidget* page = dynamic_cast<UIContainerWidget*>(arrayPages->arr[i]);
         page->setPosition(ccp((i-m_nCurPageIdx)*pageWidth, 0));
     }
 }
@@ -347,17 +352,17 @@ void UIPageView::onTouchBegan(cocos2d::CCPoint &touchPoint)
 
 void UIPageView::onTouchMoved(cocos2d::CCPoint &touchPoint)
 {
-    this->m_touchMovePos.x = touchPoint.x;
-    this->m_touchMovePos.y = touchPoint.y;
+    m_touchMovePos.x = touchPoint.x;
+    m_touchMovePos.y = touchPoint.y;
     handleMoveLogic(touchPoint);
-    if (this->m_pWidgetParent)
+    if (m_pWidgetParent)
     {
-        this->m_pWidgetParent->checkChildInfo(1,this,touchPoint);
+        m_pWidgetParent->checkChildInfo(1,this,touchPoint);
     }
-    this->moveEvent();
-    if (!this->pointAtSelfBody(touchPoint))
+    moveEvent();
+    if (!pointAtSelfBody(touchPoint))
     {
-        this->setFocus(false);
+        setFocus(false);
         onTouchEnded(touchPoint);
     }
 }
@@ -370,12 +375,14 @@ void UIPageView::onTouchEnded(cocos2d::CCPoint &touchPoint)
 
 void UIPageView::movePages(float offset)
 {
-    for (int i = 0; i < this->m_pages->count(); i++)
+    ccArray* arrayPages = m_pages->data;
+    int length = arrayPages->num;
+    for (int i = 0; i < length; i++)
     {
-        UIWidget* child = (UIWidget*)(this->m_pages->objectAtIndex(i));
+        UIWidget* child = (UIWidget*)(arrayPages->arr[i]);
         movePagePoint.x = child->getPosition().x + offset;
         movePagePoint.y = child->getPosition().y;
-        child->setPosition(this->movePagePoint);
+        child->setPosition(movePagePoint);
         child->setVisible(child->checkBeVisibleInParent());
     }
 }
@@ -428,15 +435,15 @@ void UIPageView::onTouchCancelled(cocos2d::CCPoint &touchPoint)
 
 void UIPageView::handlePressLogic(cocos2d::CCPoint &touchPoint)
 {
-    cocos2d::CCPoint nsp = this->m_pCCRenderNode->convertToNodeSpace(touchPoint);
-    this->m_fTouchMoveStartLocation = nsp.x;
-    this->m_fTouchStartLocation = nsp.x;
-//    this->startRecordSlidAction();
+    cocos2d::CCPoint nsp = m_pRender->convertToNodeSpace(touchPoint);
+    m_fTouchMoveStartLocation = nsp.x;
+    m_fTouchStartLocation = nsp.x;
+//    startRecordSlidAction();
 }
 
 void UIPageView::handleMoveLogic(cocos2d::CCPoint &touchPoint)
 {
-    cocos2d::CCPoint nsp = this->m_pCCRenderNode->convertToNodeSpace(touchPoint);
+    cocos2d::CCPoint nsp = m_pRender->convertToNodeSpace(touchPoint);
     float offset = 0.0;
     float moveX = nsp.x;
     offset = moveX - m_fTouchMoveStartLocation;
@@ -497,23 +504,21 @@ void UIPageView::checkChildInfo(int handleState,UIWidget* sender,cocos2d::CCPoin
     switch (handleState)
     {
         case 0:
-            this->handlePressLogic(touchPoint);
+            handlePressLogic(touchPoint);
             break;
-            
         case 1:
         {
             float offset = 0;
             offset = fabs(sender->getTouchStartPos().x - touchPoint.x);
-            if (offset > this->m_fChildFocusCancelOffset)
+            if (offset > m_fChildFocusCancelOffset)
             {
                 sender->setFocus(false);
-                this->handleMoveLogic(touchPoint);
+                handleMoveLogic(touchPoint);
             }
         }
             break;
-            
         case 2:
-            this->handleReleaseLogic(touchPoint);
+            handleReleaseLogic(touchPoint);
             break;
             
         case 3:

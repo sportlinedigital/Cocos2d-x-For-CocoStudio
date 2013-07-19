@@ -24,7 +24,7 @@
 
 #include "UIActionNode.h"
 #include "UIActionFrame.h"
-#include "../../JsonReader/DictionaryHelper.h"
+#include "../../CocostudioReader/DictionaryHelper.h"
 #include "../System/UIHelper.h"
 
 NS_CC_EXT_BEGIN
@@ -46,20 +46,32 @@ UIActionNode::~UIActionNode()
 	{
 		m_action->release();
 	}
+    if (m_actionNode)
+    {
+        m_actionNode->setBindingAction(NULL);
+    }
 	m_ActionFrameList->removeAllObjects();
 	m_ActionFrameList->release();
 }
 
 void UIActionNode::initWithDictionary(cs::CSJsonDictionary *dic,UIWidget* root)
 {
-    this->setActionTag(DICTOOL->getIntValue_json(dic, "actiontag"));
+    setActionTag(DICTOOL->getIntValue_json(dic, "ActionTag"));
     int actionFrameCount = DICTOOL->getArrayCount_json(dic, "actionframelist");
-    this->SetActionNode(CCUIHELPER->seekActionWidgetByActionTag(root, this->getActionTag()));
-    for (int i=0; i<actionFrameCount; i++) {
+	UIWidget* bindingWidget = CCUIHELPER->seekActionWidgetByActionTag(root, getActionTag());
+	if (bindingWidget)
+	{
+		SetActionNode(bindingWidget);
+		bindingWidget->setBindingAction(this);
+	}
+    
+    for (int i=0; i<actionFrameCount; i++)
+    {
         UIActionFrame* actionFrame = new UIActionFrame();
+        actionFrame->autorelease();
         cs::CSJsonDictionary* actionFrameDic = DICTOOL->getDictionaryFromArray_json(dic, "actionframelist", i);
         actionFrame->initWithDictionary(actionFrameDic);
-        this->m_ActionFrameList->addObject(actionFrame);
+        m_ActionFrameList->addObject(actionFrame);
     }
 }
 
@@ -69,6 +81,12 @@ void UIActionNode::SetActionNode(UIWidget* widget)
 
 	//UpdateToFrameByIndex(currentIndex);
 }
+
+void UIActionNode::releaseBindingWidget()
+{
+    m_actionNode = NULL;
+}
+
 void UIActionNode::InsertFrame(int index, UIActionFrame* frame)
 {
 	m_ActionFrameList->insertObject(frame,index);

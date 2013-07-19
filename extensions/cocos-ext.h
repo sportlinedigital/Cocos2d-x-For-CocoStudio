@@ -56,7 +56,6 @@
 #include "CCArmature/utils/CCDataReaderHelper.h"
 #include "CCArmature/utils/CCTweenFunction.h"
 #include "CCArmature/external_tool/sigslot.h"
-
 // Physics integration
 #if CC_ENABLE_CHIPMUNK_INTEGRATION || CC_ENABLE_BOX2D_INTEGRATION
 #include "physics_nodes/CCPhysicsDebugNode.h"
@@ -70,7 +69,6 @@
 #include "Components/CCComController.h"
 #include "Components/CCComRender.h"
 
-#include "JsonReader/CCJsonReader.h"
+#include "CocostudioReader/CCJsonReader.h"
 #include "CocoGUILIB/System/CocosGUI.h"
-
 #endif /* __COCOS2D_EXT_H__ */

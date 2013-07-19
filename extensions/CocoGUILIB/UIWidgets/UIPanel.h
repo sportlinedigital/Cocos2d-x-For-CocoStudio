@@ -29,6 +29,13 @@
 
 NS_CC_EXT_BEGIN
 
+typedef enum
+{
+    PANEL_COLOR_NONE,
+    PANEL_COLOR_SOLID,
+    PANEL_COLOR_GRADIENT
+}PanelColorType;
+
 class UIPanel : public UIContainerWidget
 {
 public:
@@ -36,17 +43,24 @@ public:
     virtual ~UIPanel();
     static UIPanel* create();
     void setBackGroundImage(const char* fileName,bool useSpriteFrame = false);
-//    void setBackGroundImageScale9(const char* fileName,const cocos2d::CCRect &capInsets,bool useSpriteFrame = false);
-    void setBackGroundImageCapInset(const CCRect& capInset);
-    virtual void setBackGroundColorEnable(bool able);
+    void setBackGroundImageCapInsets(const CCRect& capInsets);
+    virtual void setBackGroundColorType(PanelColorType type);
     virtual void setSize(const cocos2d::CCSize &size);
     void setBackGroundImageScale9Enable(bool able);
+    void setBackGroundColor(const ccColor3B &color);
+    void setBackGroundColor(const ccColor3B &startColor, const ccColor3B &endColor);
+    void setBackGroundColorOpacity(int opacity);
+    void setBackGroundColorVector(const CCPoint &vector);
+    virtual void setColor(const cocos2d::ccColor3B &color);
+    virtual void setOpacity(int opacity);
 protected:
     virtual void initNodes();
 protected:
     bool m_bBackGroundScale9Enable;
     cocos2d::CCNode* m_pBackGroundImage;
     std::string m_strBackGroundImageFileName;
+    CCRect m_backGroundImageCapInsets;
+    PanelColorType m_colorType;
 };
 
 NS_CC_EXT_END

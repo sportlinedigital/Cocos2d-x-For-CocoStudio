@@ -37,6 +37,7 @@ public:
     static UILabelBMFont* create();
     void setFntFile(const char* fileName);
     void setText(const char* value);
+	void setTextASCII(const char* value);
     const char* getStringValue();
     virtual cocos2d::CCNode* getValidNode();
     virtual void setAnchorPoint(const cocos2d::CCPoint &pt);
@@ -48,4 +49,4 @@ protected:
     
 NS_CC_EXT_END
 
-#endif /* defined(__Test__UILabelBMFont__) */
+#endif /* defined(__UILabelBMFont__) */

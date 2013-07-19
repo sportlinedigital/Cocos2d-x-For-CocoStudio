@@ -67,6 +67,7 @@ EXTENSIONS_SOURCES = ../CCBReader/CCBFileLoader.cpp \
 ../Components/CCComAudio.cpp \
 ../Components/CCComController.cpp \
 ../Components/CCInputDelegate.cpp \
+../Components/CCComRender.cpp \
 ../CCArmature/CCArmature.cpp \
 ../CCArmature/CCBone.cpp \
 ../CCArmature/animation/CCArmatureAnimation.cpp \
@@ -99,12 +100,8 @@ EXTENSIONS_SOURCES = ../CCBReader/CCBFileLoader.cpp \
 ../CocoGUILIB/BaseClasses/UIContainerWidget.cpp \
 ../CocoGUILIB/BaseClasses/UIRootWidget.cpp \
 ../CocoGUILIB/BaseClasses/UIWidget.cpp \
-../CocoGUILIB/Drawable/GUINodeRGBA.cpp \
 ../CocoGUILIB/Drawable/UICCLabelAtlas.cpp \
-../CocoGUILIB/Drawable/UICCTextField.cpp \
-../CocoGUILIB/Drawable/UIClipAbleLayerColor.cpp \
-../CocoGUILIB/Drawable/UIClipAbleLayerGradient.cpp \
-../CocoGUILIB/Drawable/UIPrimitivesNode.cpp \
+../CocoGUILIB/Drawable/UIClippingLayer.cpp \
 ../CocoGUILIB/System/CCSReader.cpp \
 ../CocoGUILIB/System/CocosGUI.cpp \
 ../CocoGUILIB/System/UIHelper.cpp \
@@ -113,7 +110,6 @@ EXTENSIONS_SOURCES = ../CCBReader/CCBFileLoader.cpp \
 ../CocoGUILIB/UIWidgets/UIButton.cpp \
 ../CocoGUILIB/UIWidgets/UICheckBox.cpp \
 ../CocoGUILIB/UIWidgets/UIControlButton.cpp \
-../CocoGUILIB/UIWidgets/UIGradientPanel.cpp \
 ../CocoGUILIB/UIWidgets/UIImageView.cpp \
 ../CocoGUILIB/UIWidgets/UILabel.cpp \
 ../CocoGUILIB/UIWidgets/UILabelAtlas.cpp \
@@ -128,8 +124,8 @@ EXTENSIONS_SOURCES = ../CCBReader/CCBFileLoader.cpp \
 ../CocoGUILIB/UIWidgets/UITextArea.cpp \
 ../CocoGUILIB/UIWidgets/UITextButton.cpp \
 ../CocoGUILIB/UIWidgets/UITextField.cpp \
-../JsonReader/CCJsonReader.cpp \
-../JsonReader/DictionaryHelper.cpp 
+../CocostudioReader/CCJsonReader.cpp \
+../CocostudioReader/DictionaryHelper.cpp 
 
 all:
 

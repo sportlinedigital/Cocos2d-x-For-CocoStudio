@@ -54,10 +54,6 @@ public:
     virtual float getHeight();
     virtual bool isClippingEnable();
     virtual bool hitTest(cocos2d::CCNode*node, cocos2d::CCPoint &pt);
-    virtual void updateClipSize();
-    virtual void onScaleDirtyChanged();
-    virtual void onScaleXDirtyChanged();
-    virtual void onScaleYDirtyChanged();
     CCSize getWrapSize() const;
 protected:
     virtual bool init();

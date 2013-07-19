@@ -72,15 +72,15 @@ bool UITextField::init()
 void UITextField::initNodes()
 {
     UIWidget::initNodes();
-    m_pRenderTextField = UICCTextField::create("input words here", "Thonburi", 20);
-    this->m_pCCRenderNode->addChild(m_pRenderTextField);
+    m_pRenderTextField = CCTextFieldTTF::textFieldWithPlaceHolder("input words here", "Thonburi", 20);
+    m_pRender->addChild(m_pRenderTextField);
 }
 
-void UITextField::setTouchSize(float width,float height)
+void UITextField::setTouchSize(const CCSize &size)
 {
-    this->m_bUseTouchArea = true;
-    this->m_fTouchWidth = width;
-    this->m_fTouchHeight = height;
+    m_bUseTouchArea = true;
+    m_fTouchWidth = size.width;
+    m_fTouchHeight = size.height;
 }
 
 void UITextField::setText(const char* text)
@@ -93,7 +93,7 @@ void UITextField::setText(const char* text)
     m_pRenderTextField->setString(strText.c_str());
 }
 
-void UITextField::setSize(cocos2d::CCSize &size)
+void UITextField::setSize(const cocos2d::CCSize &size)
 {
     m_pRenderTextField->setDimensions(size);
 }
@@ -110,7 +110,7 @@ void UITextField::setFontSize(int size)
 
 void UITextField::didNotSelectSelf()
 {
-    m_pRenderTextField->closeIME();
+    m_pRenderTextField->detachWithIME();
 }
 
 const char* UITextField::getStringValue()
@@ -121,15 +121,15 @@ const char* UITextField::getStringValue()
 void UITextField::onTouchBegan(cocos2d::CCPoint &touchPoint)
 {
     UIWidget::onTouchBegan(touchPoint);
-    m_pRenderTextField->openIME();
+    m_pRenderTextField->attachWithIME();
 }
 
 bool UITextField::pointAtSelfBody(cocos2d::CCPoint &pt)
 {
-    if (!this->m_bUseTouchArea){
+    if (!m_bUseTouchArea){
         return UIWidget::pointAtSelfBody(pt);
     }
-    if (!this->getAbsoluteVisible()) {
+    if (!getAbsoluteVisible()) {
         return false;
     }
     return false;
@@ -137,12 +137,12 @@ bool UITextField::pointAtSelfBody(cocos2d::CCPoint &pt)
 
 void UITextField::setCharacterLength(int length)
 {
-    m_pRenderTextField->setCharacterLength(length);
+//    m_pRenderTextField->setCharacterLength(length);
 }
 
 void UITextField::setIsPassWord(bool isPassword)
 {
-    m_pRenderTextField->setIsPassword(isPassword);
+//    m_pRenderTextField->setIsPassword(isPassword);
 }
 
 void UITextField::update(float dt)
@@ -171,42 +171,46 @@ void UITextField::update(float dt)
 
 bool UITextField::getAttachWithIME()
 {
-    return m_pRenderTextField->getAttachWithIME();
+//    return m_pRenderTextField->getAttachWithIME();
+	return false;
 }
 
 void UITextField::setAttachWithIME(bool attach)
 {
-    m_pRenderTextField->setAttachWithIME(attach);
+//    m_pRenderTextField->setAttachWithIME(attach);
 }
 
 bool UITextField::getDetachWithIME()
 {
-    return m_pRenderTextField->getDetachWithIME();
+//    return m_pRenderTextField->getDetachWithIME();
+	return false;
 }
 
 void UITextField::setDetachWithIME(bool detach)
 {
-    m_pRenderTextField->setDetachWithIME(detach);
+//    m_pRenderTextField->setDetachWithIME(detach);
 }
 
 bool UITextField::getInsertText()
 {
-    return m_pRenderTextField->getInsertText();
+//    return m_pRenderTextField->getInsertText();
+	return false;
 }
 
 void UITextField::setInsertText(bool insertText)
 {
-    m_pRenderTextField->setInsertText(insertText);
+//    m_pRenderTextField->setInsertText(insertText);
 }
 
 bool UITextField::getDeleteBackward()
 {
-    return m_pRenderTextField->getDeleteBackward();
+//    return m_pRenderTextField->getDeleteBackward();
+	return false;
 }
 
 void UITextField::setDeleteBackward(bool deleteBackward)
 {
-    m_pRenderTextField->setDeleteBackward(deleteBackward);
+//    m_pRenderTextField->setDeleteBackward(deleteBackward);
 }
 
 void UITextField::attachWithIMEEvent()
@@ -267,13 +271,13 @@ void UITextField::addDeleteBackwardEvent(cocos2d::CCObject *target, SEL_TextFiel
 
 CCNode* UITextField::getValidNode()
 {
-    return this->m_pRenderTextField;
+    return m_pRenderTextField;
 }
 
 void UITextField::setAnchorPoint(const cocos2d::CCPoint &pt)
 {
     UIWidget::setAnchorPoint(pt);
-    this->m_pRenderTextField->setAnchorPoint(pt);
+    m_pRenderTextField->setAnchorPoint(pt);
 }
 
 NS_CC_EXT_END

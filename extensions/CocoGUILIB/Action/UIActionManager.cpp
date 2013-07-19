@@ -23,7 +23,7 @@
  ****************************************************************************/
 
 #include "UIActionManager.h"
-#include "../../JsonReader/DictionaryHelper.h"
+#include "../../CocostudioReader/DictionaryHelper.h"
 #include "UIAction.h"
 
 NS_CC_EXT_BEGIN
@@ -53,19 +53,23 @@ UIActionManager::~UIActionManager()
 void UIActionManager::initWithDictionary(cs::CSJsonDictionary *dic,UIWidget* root)
 {
     int actionCount = DICTOOL->getArrayCount_json(dic, "actionlist");
-    for (int i=0; i<actionCount; i++) {
+    for (int i=0; i<actionCount; i++)
+    {
         UIAction* action = new UIAction();
+        action->autorelease();
         cs::CSJsonDictionary* actionDic = DICTOOL->getDictionaryFromArray_json(dic, "actionlist", i);
         action->initWithDictionary(actionDic,root);
-        this->m_ActionList->addObject(action);
+        m_ActionList->addObject(action);
     }
 }
 
 UIAction* UIActionManager::GetActionByName(const char* actionName)
 {
-    for (int i=0; i<m_ActionList->count(); i++) {
+    for (int i=0; i<m_ActionList->count(); i++)
+    {
         UIAction* action = dynamic_cast<UIAction*>(m_ActionList->objectAtIndex(i));
-        if (strcmp(actionName, action->getName()) == 0) {
+        if (strcmp(actionName, action->getName()) == 0)
+        {
             return action;
         }
     }
@@ -75,9 +79,24 @@ UIAction* UIActionManager::GetActionByName(const char* actionName)
 void UIActionManager::PlayActionByName(const char* actionName)
 {
     UIAction* action = GetActionByName(actionName);
-    if (action) {
+    if (action)
+    {
         action->Play();
     }
+}
+
+/*temp */
+void UIActionManager::releaseActions()
+{
+    m_ActionList->removeAllObjects();
+//    int times = m_ActionList->data->num;
+//    for (int i=0; i<times; i++)
+//    {
+//        UIAction* action = dynamic_cast<UIAction*>(m_ActionList->lastObject());
+//        m_ActionList->removeObject(action);
+//        delete action;
+//        action = NULL;
+//    }
 }
 
 NS_CC_EXT_END

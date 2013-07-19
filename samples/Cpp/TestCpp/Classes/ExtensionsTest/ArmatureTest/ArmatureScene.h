@@ -6,6 +6,23 @@
 #include "../../VisibleRect.h"
 #include "../../testBasic.h"
 
+#include "CCArmature/CCArmature.h"
+#include "CCArmature/CCBone.h"
+#include "CCArmature/animation/CCArmatureAnimation.h"
+#include "CCArmature/datas/CCDatas.h"
+#include "CCArmature/display/CCBatchNode.h"
+#include "CCArmature/display/CCDecorativeDisplay.h"
+#include "CCArmature/display/CCDisplayManager.h"
+#include "CCArmature/display/CCSkin.h"
+#include "CCArmature/physics/CCColliderDetector.h"
+#include "CCArmature/physics/CCPhysicsWorld.h"
+#include "CCArmature/utils/CCArmatureDataManager.h"
+#include "CCArmature/utils/CCConstValue.h"
+#include "CCArmature/utils/CCDataReaderHelper.h"
+#include "CCArmature/utils/CCTweenFunction.h"
+#include "CCArmature/external_tool/sigslot.h"
+
+
 class ArmatureTestScene : public TestScene
 {
 public: 
@@ -120,6 +137,7 @@ public:
 class TestUseMutiplePicture : public ArmatureTestLayer
 {
 	virtual void onEnter();
+	virtual void onExit();
 	virtual std::string title();
 	virtual std::string subtitle();
 	virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
@@ -132,6 +150,7 @@ class TestUseMutiplePicture : public ArmatureTestLayer
 class TestParticleDisplay : public ArmatureTestLayer
 {
 	virtual void onEnter();
+	virtual void onExit();
 	virtual std::string title();
 	virtual std::string subtitle();
 	virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
@@ -177,6 +196,7 @@ class TestArmatureNesting : public ArmatureTestLayer
 {
 public:
 	virtual void onEnter();
+	virtual void onExit();
 	virtual std::string title();
 	virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
 	virtual void registerWithTouchDispatcher();

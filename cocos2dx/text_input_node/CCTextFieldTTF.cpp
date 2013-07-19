@@ -221,7 +221,7 @@ void CCTextFieldTTF::deleteBackward()
     // get the delete byte number
     int nDeleteLen = 1;    // default, erase 1 byte
 
-    while(0x80 == (0xC0 & m_pInputText->at(nStrLen - nDeleteLen)))
+	 while(0x80 == (0xC0 & m_pInputText->at(nStrLen - nDeleteLen)))
     {
         ++nDeleteLen;
     }

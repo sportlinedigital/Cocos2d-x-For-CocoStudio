@@ -23,7 +23,7 @@
  ****************************************************************************/
 
 #include "UIActionFrame.h"
-#include "../../JsonReader/DictionaryHelper.h"
+#include "../../CocostudioReader/DictionaryHelper.h"
 
 NS_CC_EXT_BEGIN
 
@@ -38,14 +38,14 @@ UIActionFrame::~UIActionFrame()
 
 void UIActionFrame::initWithDictionary(cs::CSJsonDictionary *dic)
 {
-    this->setFrameId(DICTOOL->getIntValue_json(dic, "frameid"));
-    this->setStartTime(DICTOOL->getFloatValue_json(dic, "starttime"));
-    this->setPosition(ccp(DICTOOL->getFloatValue_json(dic, "positionx"), DICTOOL->getFloatValue_json(dic, "positiony")));
-    this->setScaleX(DICTOOL->getFloatValue_json(dic, "scalex"));
-    this->setScaleY(DICTOOL->getFloatValue_json(dic, "scaley"));
-    this->setRotation(DICTOOL->getFloatValue_json(dic, "rotation"));
-    this->setOpacity(DICTOOL->getIntValue_json(dic, "opacity"));
-    this->setColor(ccc3(DICTOOL->getIntValue_json(dic, "colorr"), DICTOOL->getIntValue_json(dic, "colorg"), DICTOOL->getIntValue_json(dic, "colorb")));
+    setFrameId(DICTOOL->getIntValue_json(dic, "frameid"));
+    setStartTime(DICTOOL->getFloatValue_json(dic, "starttime"));
+    setPosition(ccp(DICTOOL->getFloatValue_json(dic, "positionx"), DICTOOL->getFloatValue_json(dic, "positiony")));
+    setScaleX(DICTOOL->getFloatValue_json(dic, "scalex"));
+    setScaleY(DICTOOL->getFloatValue_json(dic, "scaley"));
+    setRotation(DICTOOL->getFloatValue_json(dic, "rotation"));
+    setOpacity(DICTOOL->getIntValue_json(dic, "opacity"));
+    setColor(ccc3(DICTOOL->getIntValue_json(dic, "colorr"), DICTOOL->getIntValue_json(dic, "colorg"), DICTOOL->getIntValue_json(dic, "colorb")));
 }
 
 NS_CC_EXT_END

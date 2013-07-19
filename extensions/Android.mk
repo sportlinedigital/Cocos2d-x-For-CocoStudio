@@ -85,12 +85,8 @@ CocoGUILIB/Action/UIActionNode.cpp \
 CocoGUILIB/BaseClasses/UIContainerWidget.cpp \
 CocoGUILIB/BaseClasses/UIRootWidget.cpp \
 CocoGUILIB/BaseClasses/UIWidget.cpp \
-CocoGUILIB/Drawable/GUINodeRGBA.cpp \
 CocoGUILIB/Drawable/UICCLabelAtlas.cpp \
-CocoGUILIB/Drawable/UICCTextField.cpp \
-CocoGUILIB/Drawable/UIClipAbleLayerColor.cpp \
-CocoGUILIB/Drawable/UIClipAbleLayerGradient.cpp \
-CocoGUILIB/Drawable/UIPrimitivesNode.cpp \
+CocoGUILIB/Drawable/UIClippingLayer.cpp \
 CocoGUILIB/System/CCSReader.cpp \
 CocoGUILIB/System/CocosGUI.cpp \
 CocoGUILIB/System/UIHelper.cpp \
@@ -99,7 +95,6 @@ CocoGUILIB/System/UILayer.cpp \
 CocoGUILIB/UIWidgets/UIButton.cpp \
 CocoGUILIB/UIWidgets/UICheckBox.cpp \
 CocoGUILIB/UIWidgets/UIControlButton.cpp \
-CocoGUILIB/UIWidgets/UIGradientPanel.cpp \
 CocoGUILIB/UIWidgets/UIImageView.cpp \
 CocoGUILIB/UIWidgets/UILabel.cpp \
 CocoGUILIB/UIWidgets/UILabelAtlas.cpp \
@@ -140,8 +135,8 @@ Components/CCComAudio.cpp \
 Components/CCComController.cpp \
 Components/CCComRender.cpp \
 Components/CCInputDelegate.cpp \
-JsonReader/CCJsonReader.cpp \
-JsonReader/DictionaryHelper.cpp \
+CocostudioReader/CCJsonReader.cpp \
+CocostudioReader/DictionaryHelper.cpp \
 
 LOCAL_WHOLE_STATIC_LIBRARIES := cocos2dx_static
 LOCAL_WHOLE_STATIC_LIBRARIES += cocosdenshion_static

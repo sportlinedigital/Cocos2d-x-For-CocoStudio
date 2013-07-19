@@ -478,10 +478,11 @@ void UIListView::initChildWithDataLength(int length)
     m_nEnd = 0;        
     
     // init child pool
-    int times = m_children->count();
+    ccArray* arrayChildren = m_children->data;
+    int times = arrayChildren->num;
     for (int i = 0; i < times; ++i)
     {
-        UIWidget* child = dynamic_cast<UIWidget*>(m_children->objectAtIndex(i));
+        UIWidget* child = dynamic_cast<UIWidget*>(arrayChildren->arr[i]);
         setUpdateChild(child);
         setUpdateDataIndex(i);
         initChildEvent();
@@ -745,10 +746,12 @@ void UIListView::collectOverTopChild()
         m_overTopArray->removeAllObjects();
     }
     
-    int times = m_children->count();
+    
+    ccArray* arrayChildren = m_children->data;
+    int times = arrayChildren->num;
     for (int i = 0; i < times; ++i)
     {
-        UIWidget* child = dynamic_cast<UIWidget*>(m_children->objectAtIndex(i));
+        UIWidget* child = dynamic_cast<UIWidget*>(arrayChildren->arr[i]);
         float child_bottom = child->getRelativeBottomPos();
         
         if (child_bottom >= scroll_top)
@@ -767,10 +770,11 @@ void UIListView::collectOverBottomChild()
         m_overBottomArray->removeAllObjects();
     }
     
-    int times = m_children->count();
+    ccArray* arrayChildren = m_children->data;
+    int times = arrayChildren->num;
     for (int i = 0; i < times; ++i)
     {
-        UIWidget* child = dynamic_cast<UIWidget*>(m_children->objectAtIndex(i));
+        UIWidget* child = dynamic_cast<UIWidget*>(arrayChildren->arr[i]);
         float child_top = child->getRelativeTopPos();
         
         if (child_top <= scroll_bottom)
@@ -789,10 +793,11 @@ void UIListView::collectOverLeftChild()
         m_overLeftArray->removeAllObjects();
     }
     
-    int times = m_children->count();
+    ccArray* arrayChildren = m_children->data;
+    int times = arrayChildren->num;
     for (int i = 0; i < times; ++i)
     {
-        UIWidget* child = dynamic_cast<UIWidget*>(m_children->objectAtIndex(i));
+        UIWidget* child = dynamic_cast<UIWidget*>(arrayChildren->arr[i]);
         float child_right = child->getRelativeRightPos();
         
         if (child_right <= scroll_left)
@@ -811,10 +816,11 @@ void UIListView::collectOverRightChild()
         m_overRightArray->removeAllObjects();
     }
     
-    int times = m_children->count();
+    ccArray* arrayChildren = m_children->data;
+    int times = arrayChildren->num;
     for (int i = 0; i < times; ++i)
     {
-        UIWidget* child = dynamic_cast<UIWidget*>(m_children->objectAtIndex(i));
+        UIWidget* child = dynamic_cast<UIWidget*>(arrayChildren->arr[i]);
         float child_left = child->getRelativeLeftPos();
         
         if (child_left >= scroll_right)

@@ -344,8 +344,8 @@ files
 
     [Test/ExtensionsTest/CocosGUITest]
 	(../Classes/ExtensionsTest/CocosGUITest)
-	CocosGUISlotScene.cpp
-	CocosGUISlotScene.h
+	CocosGUIExamplesScene.cpp
+	CocosGUIExamplesScene.h
 
     [Test/ExtensionsTest/CocosGUITest]
 	(../Classes/ExtensionsTest/CocosGUITest)

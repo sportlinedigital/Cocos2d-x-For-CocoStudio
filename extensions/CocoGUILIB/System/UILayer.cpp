@@ -48,8 +48,8 @@ UILayer::~UILayer()
 
 bool UILayer::init()
 {
-    if (CCLayer::init()) {
-        cocos2d::CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, -1, false);
+    if (CCLayer::init())
+    {
         m_pRootWidget = UIRootWidget::create();
         m_pRootWidget->setUILayer(this);
         addChild(m_pRootWidget->getContainerNode());
@@ -79,11 +79,15 @@ UILayer* UILayer::create(void)
 
 void UILayer::onEnter()
 {
+    setTouchMode(kCCTouchesOneByOne);
+    setTouchEnabled(true);
     CCLayer::onEnter();
+    
 }
 
 void UILayer::onExit()
 {
+    setTouchEnabled(false);
     CCLayer::onExit();
 }
 
@@ -110,13 +114,13 @@ void UILayer::setVisible(bool visible)
 
 //void UILayer::setUIType(GUITYPE type)
 //{
-//    this->m_UIType = type;
-//    switch (this->m_UIType) {
+//    m_UIType = type;
+//    switch (m_UIType) {
 //        case UILAYER_SCENE:
-//            this->m_pRootWidget->setPosition(CCPointZero);
+//            m_pRootWidget->setPosition(CCPointZero);
 //            break;
 //        case UILAYER_MODEL:
-//            this->m_pRootWidget->setPosition(ccp(-20, -20));
+//            m_pRootWidget->setPosition(ccp(-20, -20));
 //            break;
 //        default:
 //            break;
@@ -125,9 +129,11 @@ void UILayer::setVisible(bool visible)
 
 void UILayer::update(float dt)
 {
-    for (int i=0; i<m_updateEnableWidget->count(); i++)
+    ccArray* arrayWidget = m_updateEnableWidget->data;
+    int length = arrayWidget->num;
+    for (int i=0; i<length; i++)
     {
-        dynamic_cast<UIWidget*>(m_updateEnableWidget->objectAtIndex(i))->update(dt);
+        dynamic_cast<UIWidget*>(arrayWidget->arr[i])->update(dt);
     }
 }
 
@@ -137,11 +143,11 @@ void UILayer::addUpdateEnableWidget(UIWidget* widget)
     {
         return;
     }
-    if (this->m_updateEnableWidget->containsObject(widget))
+    if (m_updateEnableWidget->containsObject(widget))
     {
         return;
     }
-    this->m_updateEnableWidget->addObject(widget);
+    m_updateEnableWidget->addObject(widget);
 }
 
 void UILayer::removeUpdateEnableWidget(UIWidget* widget)
@@ -150,11 +156,11 @@ void UILayer::removeUpdateEnableWidget(UIWidget* widget)
     {
         return;
     }
-    if (!this->m_updateEnableWidget->containsObject(widget))
+    if (!m_updateEnableWidget->containsObject(widget))
     {
         return;
     }
-    this->m_updateEnableWidget->removeObject(widget);
+    m_updateEnableWidget->removeObject(widget);
 }
 
 UIWidget* UILayer::getWidgetByTag(int tag)
@@ -182,18 +188,17 @@ UIRootWidget* UILayer::getRootWidget()
 
 UIInputManager* UILayer::getInputManager()
 {
-    return this->m_pInputManager;
+    return m_pInputManager;
 }
 
 void UILayer::dispose()
 {
-    CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
-    this->removeFromParentAndCleanup(true);
+    removeFromParentAndCleanup(true);
 }
 
 void UILayer::clear()
 {
-    this->m_pRootWidget->removeAllChildrenAndCleanUp(true);
+    m_pRootWidget->removeAllChildrenAndCleanUp(true);
 }
 
 bool UILayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)

@@ -106,11 +106,22 @@ UIScrollView* UIScrollView::create()
     return NULL;
 }
 
+bool UIScrollView::init()
+{
+    if (UIPanel::init())
+    {
+        setUpdateEnable(true);
+        setTouchEnable(true);
+        return true;
+    }
+    return false;
+}
+
 void UIScrollView::setSize(const cocos2d::CCSize &size)
 {
     UIPanel::setSize(size);
-    this->m_fTopBoundary = size.height;
-    this->m_fRightBoundary = size.width;
+    m_fTopBoundary = size.height;
+    m_fRightBoundary = size.width;
     
     switch (m_eDirection)
     {
@@ -129,38 +140,38 @@ void UIScrollView::setSize(const cocos2d::CCSize &size)
 
 bool UIScrollView::addChild(UIWidget* widget)
 {
-    if (this->m_children->count() <= 0)
+    if (m_children->count() <= 0)
     {
-        this->m_pTopChild = widget;
-        this->m_pBottomChild = widget;
-        this->m_pLeftChild = widget;
-        this->m_pRightChild = widget;
+        m_pTopChild = widget;
+        m_pBottomChild = widget;
+        m_pLeftChild = widget;
+        m_pRightChild = widget;
     }
     else
     {
-        if (widget->getRelativeRect().origin.y + widget->getRelativeRect().size.height > this->m_pTopChild->getRelativeRect().origin.y + this->m_pTopChild->getRelativeRect().size.height)
+        if (widget->getRelativeRect().origin.y + widget->getRelativeRect().size.height > m_pTopChild->getRelativeRect().origin.y + m_pTopChild->getRelativeRect().size.height)
         {
-            this->m_pTopChild = widget;
+            m_pTopChild = widget;
         }
-        if (widget->getRelativeRect().origin.y < this->m_pBottomChild->getRelativeRect().origin.y)
+        if (widget->getRelativeRect().origin.y < m_pBottomChild->getRelativeRect().origin.y)
         {
-            this->m_pBottomChild = widget;
+            m_pBottomChild = widget;
         }
-        if (widget->getRelativeRect().origin.x + widget->getRelativeRect().size.width > this->m_pRightChild->getRelativeRect().origin.x + this->m_pRightChild->getRelativeRect().size.width)
+        if (widget->getRelativeRect().origin.x + widget->getRelativeRect().size.width > m_pRightChild->getRelativeRect().origin.x + m_pRightChild->getRelativeRect().size.width)
         {
-            this->m_pRightChild = widget;
+            m_pRightChild = widget;
         }
-        if (widget->getRelativeRect().origin.x < this->m_pLeftChild->getRelativeRect().origin.x)
+        if (widget->getRelativeRect().origin.x < m_pLeftChild->getRelativeRect().origin.x)
         {
-            this->m_pLeftChild = widget;
+            m_pLeftChild = widget;
         }
     }
-    this->m_fChildrenSizeHeight = this->m_pTopChild->getRelativeTopPos()-this->m_pBottomChild->getRelativeBottomPos();
-    this->m_fChildrenSizeWidth = this->m_pRightChild->getRelativeRightPos()-this->m_pLeftChild->getRelativeLeftPos();
+    m_fChildrenSizeHeight = m_pTopChild->getRelativeTopPos()-m_pBottomChild->getRelativeBottomPos();
+    m_fChildrenSizeWidth = m_pRightChild->getRelativeRightPos()-m_pLeftChild->getRelativeLeftPos();
     UIPanel::addChild(widget);
     widget->setVisible(widget->checkBeVisibleInParent());
     
-    this->initProperty();
+    initProperty();
     
     return true;
 }
@@ -172,7 +183,7 @@ void UIScrollView::removeChildMoveToTrash(UIWidget* child)
         return;
     }
     UIPanel::removeChildMoveToTrash(child);
-    this->resortChildren();
+    resortChildren();
 }
 
 void UIScrollView::removeChildReferenceOnly(UIWidget* child)
@@ -182,16 +193,16 @@ void UIScrollView::removeChildReferenceOnly(UIWidget* child)
         return;
     }
     UIPanel::removeChildReferenceOnly(child);
-    this->resortChildren();
+    resortChildren();
 }
 
 void UIScrollView::removeAllChildrenAndCleanUp(bool cleanup)
 {
     UIPanel::removeAllChildrenAndCleanUp(cleanup);
-    this->m_pTopChild = NULL;
-    this->m_pBottomChild = NULL;
-    this->m_pLeftChild = NULL;
-    this->m_pRightChild = NULL;
+    m_pTopChild = NULL;
+    m_pBottomChild = NULL;
+    m_pLeftChild = NULL;
+    m_pRightChild = NULL;
 }
 
 void UIScrollView::initProperty()
@@ -309,17 +320,19 @@ void UIScrollView::resetProperty()
 
 void UIScrollView::resortChildren()
 {
-    if (!this->m_children || this->m_children->count() <= 0)
+    if (!m_children || m_children->count() <= 0)
     {
         return;
     }
-    UIWidget* leftChild = (UIWidget*)(this->m_children->objectAtIndex(0));
-    UIWidget* rightChild = (UIWidget*)(this->m_children->objectAtIndex(0));
-    UIWidget* topChild = (UIWidget*)(this->m_children->objectAtIndex(0));
-    UIWidget* bottomChild = (UIWidget*)(this->m_children->objectAtIndex(0));
-    for (int i = 0; i < this->m_children->count(); i++)
+    UIWidget* leftChild = (UIWidget*)(m_children->objectAtIndex(0));
+    UIWidget* rightChild = (UIWidget*)(m_children->objectAtIndex(0));
+    UIWidget* topChild = (UIWidget*)(m_children->objectAtIndex(0));
+    UIWidget* bottomChild = (UIWidget*)(m_children->objectAtIndex(0));
+    ccArray* arrayChildren = m_children->data;
+    int childrenCount = arrayChildren->num;
+    for (int i = 0; i < childrenCount; i++)
     {
-        UIWidget* child = (UIWidget*)(this->m_children->objectAtIndex(i));
+        UIWidget* child = (UIWidget*)(arrayChildren->arr[i]);
         if (leftChild->getRelativeRect().origin.x > child->getRelativeRect().origin.x)
         {
             leftChild = child;
@@ -336,38 +349,44 @@ void UIScrollView::resortChildren()
             bottomChild = child;
         }
     }
-    this->m_pTopChild = topChild;
-    this->m_pBottomChild = bottomChild;
-    this->m_pLeftChild = leftChild;
-    this->m_pRightChild = rightChild;
+    m_pTopChild = topChild;
+    m_pBottomChild = bottomChild;
+    m_pLeftChild = leftChild;
+    m_pRightChild = rightChild;
 }
 
 void UIScrollView::moveChildren(float offset)
 {
-    switch (this->m_eDirection)
+    switch (m_eDirection)
     {
         case SCROLLVIEW_DIR_VERTICAL: // vertical
-            for (int i = 0; i < this->m_children->count(); i++)
+        {
+            ccArray* arrayChildren = m_children->data;
+            int childrenCount = arrayChildren->num;
+            for (int i = 0; i < childrenCount; i++)
             {
-                UIWidget* child = (UIWidget*)(this->m_children->objectAtIndex(i));
-                this->moveChildPoint.x = child->getPosition().x;
-                this->moveChildPoint.y = child->getPosition().y + offset;
-                child->setPosition(this->moveChildPoint);
+                UIWidget* child = (UIWidget*)(arrayChildren->arr[i]);
+                moveChildPoint.x = child->getPosition().x;
+                moveChildPoint.y = child->getPosition().y + offset;
+                child->setPosition(moveChildPoint);
                 child->setVisible(child->checkBeVisibleInParent());
             }
             break;
-            
+        }
         case SCROLLVIEW_DIR_HORIZONTAL: // horizontal
-            for (int i=0;i<this->m_children->count();i++)
+        {
+            ccArray* arrayChildren = m_children->data;
+            int childrenCount = arrayChildren->num;
+            for (int i=0;i<childrenCount;i++)
             {
-                UIWidget* child = (UIWidget*)(this->m_children->objectAtIndex(i));
-                this->moveChildPoint.x = child->getPosition().x + offset;
-                this->moveChildPoint.y = child->getPosition().y;
-                child->setPosition(this->moveChildPoint);
+                UIWidget* child = (UIWidget*)(arrayChildren->arr[i]);
+                moveChildPoint.x = child->getPosition().x + offset;
+                moveChildPoint.y = child->getPosition().y;
+                child->setPosition(moveChildPoint);
                 child->setVisible(child->checkBeVisibleInParent());
             }
             break;
-            
+        }
         default:
             break;
     }
@@ -375,22 +394,22 @@ void UIScrollView::moveChildren(float offset)
 
 void UIScrollView::autoScrollChildren(float dt)
 {
-    switch (this->m_eDirection)
+    switch (m_eDirection)
     {
         case SCROLLVIEW_DIR_VERTICAL: // vertical
-            switch (this->m_eMoveDirection)
+            switch (m_eMoveDirection)
             {                        
                 case SCROLLVIEW_MOVE_DIR_UP: // up
                     {
-                        float curDis = this->getCurAutoScrollDistance(dt);
+                        float curDis = getCurAutoScrollDistance(dt);
                         if (curDis <= 0)
                         {
                             curDis = 0;
-                            this->stopAutoScrollChildren();
+                            stopAutoScrollChildren();
                         }
-                        if (!this->scrollChildren(curDis))
+                        if (!scrollChildren(curDis))
                         {
-                            this->stopAutoScrollChildren();
+                            stopAutoScrollChildren();
                             
                             if (m_eMoveMode == SCROLLVIEW_MOVE_MODE_ACTION)
                             {
@@ -402,15 +421,15 @@ void UIScrollView::autoScrollChildren(float dt)
                     
                 case SCROLLVIEW_MOVE_DIR_DOWN: // down
                     {
-                        float curDis = this->getCurAutoScrollDistance(dt);
+                        float curDis = getCurAutoScrollDistance(dt);
                         if (curDis <= 0)
                         {
                             curDis = 0;
-                            this->stopAutoScrollChildren();
+                            stopAutoScrollChildren();
                         }
-                        if (!this->scrollChildren(-curDis))
+                        if (!scrollChildren(-curDis))
                         {
-                            this->stopAutoScrollChildren();
+                            stopAutoScrollChildren();
                             
                             if (m_eMoveMode == SCROLLVIEW_MOVE_MODE_ACTION)
                             {
@@ -426,19 +445,19 @@ void UIScrollView::autoScrollChildren(float dt)
             break;
             
         case SCROLLVIEW_DIR_HORIZONTAL: // horizontal
-            switch (this->m_eMoveDirection)
+            switch (m_eMoveDirection)
             {
                 case SCROLLVIEW_MOVE_DIR_LEFT: // left
                     {
-                        float curDis = this->getCurAutoScrollDistance(dt);
+                        float curDis = getCurAutoScrollDistance(dt);
                         if (curDis <= 0)
                         {
                             curDis = 0;
-                            this->stopAutoScrollChildren();
+                            stopAutoScrollChildren();
                         }
-                        if (!this->scrollChildren(-curDis))
+                        if (!scrollChildren(-curDis))
                         {
-                            this->stopAutoScrollChildren();
+                            stopAutoScrollChildren();
                             
                             if (m_eMoveMode == SCROLLVIEW_MOVE_MODE_ACTION)
                             {
@@ -450,15 +469,15 @@ void UIScrollView::autoScrollChildren(float dt)
                     
                 case SCROLLVIEW_MOVE_DIR_RIGHT: // right
                     {
-                        float curDis = this->getCurAutoScrollDistance(dt);
+                        float curDis = getCurAutoScrollDistance(dt);
                         if (curDis <= 0)
                         {
                             curDis = 0;
-                            this->stopAutoScrollChildren();
+                            stopAutoScrollChildren();
                         }
-                        if (!this->scrollChildren(curDis))
+                        if (!scrollChildren(curDis))
                         {
-                            this->stopAutoScrollChildren();
+                            stopAutoScrollChildren();
                             
                             if (m_eMoveMode == SCROLLVIEW_MOVE_MODE_ACTION)
                             {
@@ -480,21 +499,21 @@ void UIScrollView::autoScrollChildren(float dt)
 
 void UIScrollView::startAutoScrollChildren(float v)
 {
-    this->m_fAutoScrollOriginalSpeed = v;
-    this->m_bAutoScroll = true;
+    m_fAutoScrollOriginalSpeed = v;
+    m_bAutoScroll = true;
 }
 
 void UIScrollView::stopAutoScrollChildren()
 {
-    this->m_bAutoScroll = false;
-    this->m_fAutoScrollOriginalSpeed = 0.0;
+    m_bAutoScroll = false;
+    m_fAutoScrollOriginalSpeed = 0.0;
 }
 
 float UIScrollView::getCurAutoScrollDistance(float time)
 {
     float dt = time;
-    this->m_fAutoScrollOriginalSpeed -= this->m_fAutoScrollAcceleration*dt;
-    float distance = this->m_fAutoScrollOriginalSpeed*dt;
+    m_fAutoScrollOriginalSpeed -= m_fAutoScrollAcceleration*dt;
+    float distance = m_fAutoScrollOriginalSpeed*dt;
     distance = MIN(distance, m_fDisBetweenChild);
     return distance;
 }
@@ -504,7 +523,6 @@ void UIScrollView::resetPositionWithAction()
     using namespace cocos2d;
     CCPoint delta = CCPointZero;
     UIWidget* child = getCheckPositionChild();
-    
     switch (m_eDirection)
     {
         case SCROLLVIEW_DIR_VERTICAL: // vertical
@@ -522,7 +540,6 @@ void UIScrollView::resetPositionWithAction()
                     break;
             }
             break;
-            
         case SCROLLVIEW_DIR_HORIZONTAL: // horizontal
             switch (m_eMoveDirection)
             {
@@ -533,20 +550,20 @@ void UIScrollView::resetPositionWithAction()
                 case SCROLLVIEW_MOVE_DIR_RIGHT: // right
                     delta.x = m_fLeftBoundary + m_fDisBoundaryToChild_0 - child->getRelativeLeftPos();
                     break;
-                    
                 default:
                     break;
             }
             break;
-            
         default:
             break;
     }
     
-    int times = m_children->count();
+//    int times = m_children->count();
+    ccArray* arrayChildren = m_children->data;
+    int times = arrayChildren->num;
     for (int i = 0; i < times - 1; ++i)
     {
-        UIWidget* child = dynamic_cast<UIWidget*>(m_children->objectAtIndex(i));
+        UIWidget* child = dynamic_cast<UIWidget*>(arrayChildren->arr[i]);
         CCMoveBy* moveBy = CCMoveBy::create(0.25, delta);
         CCEaseOut* ease = CCEaseOut::create(moveBy, 0.5);
         child->runAction(ease);
@@ -574,11 +591,9 @@ UIWidget* UIScrollView::getCheckPositionChild()
                 case SCROLLVIEW_MOVE_DIR_UP: // up
                     child = dynamic_cast<UIWidget*>(m_children->lastObject());
                     break;
-                    
                 case SCROLLVIEW_MOVE_DIR_DOWN: // down
                     child = dynamic_cast<UIWidget*>(m_children->objectAtIndex(0));
                     break;
-                    
                 default:
                     break;
             }
@@ -590,11 +605,9 @@ UIWidget* UIScrollView::getCheckPositionChild()
                 case SCROLLVIEW_MOVE_DIR_LEFT: // left
                     child = dynamic_cast<UIWidget*>(m_children->lastObject());
                     break;
-                    
                 case SCROLLVIEW_MOVE_DIR_RIGHT: // right
                     child = dynamic_cast<UIWidget*>(m_children->objectAtIndex(0));
                     break;
-                    
                 default:
                     break;
             }
@@ -617,36 +630,29 @@ void UIScrollView::handleScrollActionEvent()
                 case SCROLLVIEW_MOVE_DIR_UP: // up
                     scrollToBottomEvent();
                     break;
-                    
                 case SCROLLVIEW_MOVE_DIR_DOWN: // down
                     scrollToTopEvent();
                     break;
-                    
                 default:
                     break;
             }
             break;
-            
         case SCROLLVIEW_DIR_HORIZONTAL: // horizontal
             switch (m_eMoveDirection)
             {
                 case SCROLLVIEW_MOVE_DIR_LEFT: // left
                     scrollToRightEvent();
                     break;
-                    
                 case SCROLLVIEW_MOVE_DIR_RIGHT: // right
                     scrollToLeftEvent();
                     break;
-                    
                 default:
                     break;
             }
             break;
-            
         default:
             break;
     }
-    
     isRunningAction = false;
 }
 
@@ -1033,14 +1039,14 @@ bool UIScrollView::scrollChildren(float touchOffset)
 
 void UIScrollView::scrollToBottom()
 {
-    this->m_eMoveDirection = SCROLLVIEW_MOVE_DIR_UP; // up
-    this->scrollChildren(this->m_fChildrenSizeHeight);
+    m_eMoveDirection = SCROLLVIEW_MOVE_DIR_UP; // up
+    scrollChildren(m_fChildrenSizeHeight);
 }
 
 void UIScrollView::scrollToTop()
 {
-    this->m_eMoveDirection = SCROLLVIEW_MOVE_DIR_DOWN; // down
-    this->scrollChildren(-this->m_fChildrenSizeHeight);
+    m_eMoveDirection = SCROLLVIEW_MOVE_DIR_DOWN; // down
+    scrollChildren(-m_fChildrenSizeHeight);
 }
 
 void UIScrollView::drag(float offset)
@@ -1072,11 +1078,11 @@ void UIScrollView::startRecordSlidAction()
     {
         return;
     }
-    if (this->m_bAutoScroll){
-        this->stopAutoScrollChildren();
+    if (m_bAutoScroll){
+        stopAutoScrollChildren();
     }
-    this->m_bBePressed = true;
-    this->m_fSlidTime = 0.0;
+    m_bBePressed = true;
+    m_fSlidTime = 0.0;
     
     if (m_eMoveMode == SCROLLVIEW_MOVE_MODE_ACTION)
     {
@@ -1094,43 +1100,43 @@ void UIScrollView::endRecordSlidAction()
     {
         return;
     }
-    if (this->m_fSlidTime <= 0.016f)
+    if (m_fSlidTime <= 0.016f)
     {
         return;
     }
     float totalDis = 0;
-    totalDis = this->m_fTouchEndLocation-this->m_fTouchStartLocation;
-    float orSpeed = fabs(totalDis)/(this->m_fSlidTime);
-    this->startAutoScrollChildren(orSpeed);
+    totalDis = m_fTouchEndLocation-m_fTouchStartLocation;
+    float orSpeed = fabs(totalDis)/(m_fSlidTime);
+    startAutoScrollChildren(orSpeed);
     
-    this->m_bBePressed = false;
-    this->m_fSlidTime = 0.0;
+    m_bBePressed = false;
+    m_fSlidTime = 0.0;
 }
 
 void UIScrollView::handlePressLogic(cocos2d::CCPoint &touchPoint)
 {        
-    cocos2d::CCPoint nsp = this->m_pCCRenderNode->convertToNodeSpace(touchPoint);
-    switch (this->m_eDirection)
+    cocos2d::CCPoint nsp = m_pRender->convertToNodeSpace(touchPoint);
+    switch (m_eDirection)
     {
         case SCROLLVIEW_DIR_VERTICAL: // vertical
-            this->m_fTouchMoveStartLocation = nsp.y;
-            this->m_fTouchStartLocation = nsp.y;
+            m_fTouchMoveStartLocation = nsp.y;
+            m_fTouchStartLocation = nsp.y;
             break;
             
         case SCROLLVIEW_DIR_HORIZONTAL: // horizontal
-            this->m_fTouchMoveStartLocation = nsp.x;
-            this->m_fTouchStartLocation = nsp.x;
+            m_fTouchMoveStartLocation = nsp.x;
+            m_fTouchStartLocation = nsp.x;
             break;
             
         default:
             break;
     }
-    this->startRecordSlidAction();
+    startRecordSlidAction();
 }
 
 void UIScrollView::handleMoveLogic(cocos2d::CCPoint &touchPoint)
 {
-    cocos2d::CCPoint nsp = this->m_pCCRenderNode->convertToNodeSpace(touchPoint);
+    cocos2d::CCPoint nsp = m_pRender->convertToNodeSpace(touchPoint);
     float offset = 0.0;
     
     switch (m_eDirection)
@@ -1173,44 +1179,44 @@ void UIScrollView::handleMoveLogic(cocos2d::CCPoint &touchPoint)
             break;
     }
     
-    this->drag(offset);
+    drag(offset);
 }
 
 void UIScrollView::handleReleaseLogic(cocos2d::CCPoint &touchPoint)
 {
-    cocos2d::CCPoint nsp = this->m_pCCRenderNode->convertToNodeSpace(touchPoint);
-    switch (this->m_eDirection)
+    cocos2d::CCPoint nsp = m_pRender->convertToNodeSpace(touchPoint);
+    switch (m_eDirection)
     {
         case SCROLLVIEW_DIR_VERTICAL: // vertical
-            this->m_fTouchEndLocation = nsp.y;
+            m_fTouchEndLocation = nsp.y;
             break;
             
         case SCROLLVIEW_DIR_HORIZONTAL: // horizontal
-            this->m_fTouchEndLocation = nsp.x;
+            m_fTouchEndLocation = nsp.x;
             break;
             
         default:
             break;
     }
-    this->endRecordSlidAction();
+    endRecordSlidAction();
 }    
 
 void UIScrollView::onTouchBegan(cocos2d::CCPoint &touchPoint)
 {
     UIPanel::onTouchBegan(touchPoint);
-    this->handlePressLogic(touchPoint);
+    handlePressLogic(touchPoint);
 }
 
 void UIScrollView::onTouchMoved(cocos2d::CCPoint &touchPoint)
 {
     UIPanel::onTouchMoved(touchPoint);
-    this->handleMoveLogic(touchPoint);
+    handleMoveLogic(touchPoint);
 }
 
 void UIScrollView::onTouchEnded(cocos2d::CCPoint &touchPoint)
 {
     UIPanel::onTouchEnded(touchPoint);
-    this->handleReleaseLogic(touchPoint);
+    handleReleaseLogic(touchPoint);
 }
 
 void UIScrollView::onTouchCancelled(cocos2d::CCPoint &touchPoint)
@@ -1225,21 +1231,21 @@ void UIScrollView::onTouchLongClicked(cocos2d::CCPoint &touchPoint)
 
 void UIScrollView::update(float dt)
 {
-    if (this->m_bAutoScroll)
+    if (m_bAutoScroll)
     {
-        this->autoScrollChildren(dt);
+        autoScrollChildren(dt);
     }
-    this->recordSlidTime(dt);
+    recordSlidTime(dt);
     
     if (m_eMoveMode == SCROLLVIEW_MOVE_MODE_ACTION)
     {
         if (isRunningAction)
         {
-            int times = m_children->count();
-            
+            ccArray* arrayChildren = m_children->data;
+            int times = arrayChildren->num;
             for (int i = 0; i < times; ++i)
             {
-                UIWidget* child = dynamic_cast<UIWidget*>(m_children->objectAtIndex(i));
+                UIWidget* child = dynamic_cast<UIWidget*>(arrayChildren->arr[i]);
                 child->setVisible(child->checkBeVisibleInParent());
             }
         }
@@ -1248,9 +1254,9 @@ void UIScrollView::update(float dt)
 
 void UIScrollView::recordSlidTime(float dt)
 {
-    if (this->m_bBePressed)
+    if (m_bBePressed)
     {
-        this->m_fSlidTime += dt;
+        m_fSlidTime += dt;
     }
 }
 
@@ -1259,13 +1265,13 @@ void UIScrollView::checkChildInfo(int handleState,UIWidget* sender,cocos2d::CCPo
     switch (handleState)
     {
         case 0:
-            this->handlePressLogic(touchPoint);
+            handlePressLogic(touchPoint);
             break;
             
         case 1:
             {
                 float offset = 0;
-                switch (this->m_eDirection)
+                switch (m_eDirection)
                 {
                     case SCROLLVIEW_DIR_VERTICAL: // vertical
                         offset = fabs(sender->getTouchStartPos().y - touchPoint.y);
@@ -1278,16 +1284,16 @@ void UIScrollView::checkChildInfo(int handleState,UIWidget* sender,cocos2d::CCPo
                     default:
                         break;
                 }
-                if (offset > this->m_fChildFocusCancelOffset)
+                if (offset > m_fChildFocusCancelOffset)
                 {
                     sender->setFocus(false);
-                    this->handleMoveLogic(touchPoint);
+                    handleMoveLogic(touchPoint);
                 }
             }
             break;
             
         case 2:
-            this->handleReleaseLogic(touchPoint);
+            handleReleaseLogic(touchPoint);
             break;
             
         case 3:

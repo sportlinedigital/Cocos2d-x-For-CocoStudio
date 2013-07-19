@@ -161,6 +161,7 @@ void ArmatureTestLayer::onEnter()
 }
 void ArmatureTestLayer::onExit()
 {
+	removeAllChildren();
 }
 
 std::string ArmatureTestLayer::title()
@@ -208,9 +209,16 @@ void TestDragonBones20::onEnter()
 	armature = cocos2d::extension::CCArmature::create("Dragon");
 	armature->getAnimation()->playByIndex(1);
 	armature->getAnimation()->setAnimationScale(0.4f);
-	armature->setPosition(VisibleRect::center().x, VisibleRect::center().y * 0.3f);
+	armature->setPosition(VisibleRect::center().x - 100, VisibleRect::center().y * 0.3f);
 	armature->setScale(0.6f);
     addChild(armature);
+
+	armature = cocos2d::extension::CCArmature::create("Dragon");
+	armature->getAnimation()->playByIndex(0);
+	armature->getAnimation()->setAnimationScale(0.4f);
+	armature->setPosition(VisibleRect::center().x + 100, VisibleRect::center().y * 0.3f);
+	armature->setScale(0.6f);
+	addChild(armature);
 }
 
 std::string TestDragonBones20::title()
@@ -444,6 +452,10 @@ void TestParticleDisplay::onEnter()
 	bone->setScale(1.2f);
 	armature->addBone(bone, "bady-a30");
 }
+void TestParticleDisplay::onExit()
+{
+	CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
+}
 std::string TestParticleDisplay::title()
 {
 	return "Test Particle Display";
@@ -489,6 +501,10 @@ void TestUseMutiplePicture::onEnter()
 		displayData.setParam(weapon[i].c_str());
 		armature->getBone("weapon")->addDisplay(&displayData, i);
 	}
+}
+void TestUseMutiplePicture::onExit()
+{
+	CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
 }
 std::string TestUseMutiplePicture::title()
 {
@@ -629,6 +645,10 @@ void TestArmatureNesting::onEnter()
 
 	weaponIndex = 0;
 }
+void TestArmatureNesting::onExit()
+{
+	CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
+}
 std::string TestArmatureNesting::title()
 {
 	return "Test CCArmature Nesting";
@@ -637,9 +657,11 @@ bool TestArmatureNesting::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
 	++weaponIndex;
 	weaponIndex = weaponIndex % 4;
-
-	armature->getBone("armInside")->getChildArmature()->getAnimation()->playByIndex(weaponIndex);
-	armature->getBone("armOutside")->getChildArmature()->getAnimation()->playByIndex(weaponIndex);
+	if(armature != NULL)
+	{
+		armature->getBone("armInside")->getChildArmature()->getAnimation()->playByIndex(weaponIndex);
+		armature->getBone("armOutside")->getChildArmature()->getAnimation()->playByIndex(weaponIndex);
+	}
 	return false;
 }
 void TestArmatureNesting::registerWithTouchDispatcher()

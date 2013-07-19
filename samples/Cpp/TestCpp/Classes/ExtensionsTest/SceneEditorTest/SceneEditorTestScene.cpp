@@ -1,6 +1,6 @@
 #include "SceneEditorTestScene.h"
 #include "../ExtensionsTest.h"
-#include "JsonReader/CCJsonReader.h"
+#include "CocostudioReader/CCJsonReader.h"
 
 using namespace cocos2d;
 using namespace cocos2d::extension;
@@ -11,6 +11,7 @@ SceneEditorTestLayer::~SceneEditorTestLayer()
 
 SceneEditorTestLayer::SceneEditorTestLayer()
 {
+	m_pCurNode = NULL;
 }
 
 CCScene* SceneEditorTestLayer::scene()
@@ -54,21 +55,41 @@ bool SceneEditorTestLayer::init()
 
 cocos2d::CCNode* SceneEditorTestLayer::createGameScene()
 {
-    CCNode *pNode = CCJsonReader::sharedJsonReader()->createNodeWithJsonFile("NewProject123.json");
-    
+    CCNode *pNode = CCJsonReader::sharedJsonReader()->createNodeWithJsonFile("FishJoy2.json");
+	if (pNode == NULL)
+	{
+		return NULL;
+	}
+	m_pCurNode = pNode;
+
+	//play back music
+    CCComAudio *pAudio = (CCComAudio*)(pNode->getComponent("Audio"));
+	pAudio->playBackgroundMusic(pAudio->getFile(), pAudio->getIsLoop());
+
+	//fishes
+	CCArmature *pBlowFish = getFish(5, "blowFish");
+	CCArmature *pButterFlyFish = getFish(6, "butterFlyFish");
+	pBlowFish->getAnimation()->playByIndex(0);
+	pButterFlyFish->getAnimation()->playByIndex(0);
+
     CCMenuItemFont *itemBack = CCMenuItemFont::create("Back", this, menu_selector(SceneEditorTestLayer::toExtensionsMainLayer));
         itemBack->setColor(ccc3(255, 255, 255));
         itemBack->setPosition(ccp(VisibleRect::rightBottom().x - 50, VisibleRect::rightBottom().y + 25));
         CCMenu *menuBack = CCMenu::create(itemBack, NULL);
         menuBack->setPosition(CCPointZero);
-    
+		menuBack->setZOrder(4);
+
     pNode->addChild(menuBack);
     
+	//ui action
+	cocos2d::extension::UIActionManager::shareManager()->PlayActionByName("Animation1");
+
     return pNode;
 }
 
 void SceneEditorTestLayer::toExtensionsMainLayer(cocos2d::CCObject *sender)
 {
+
 	ExtensionsTestScene *pScene = new ExtensionsTestScene();
 	pScene->runThisTest();
 	pScene->release();
@@ -79,4 +100,14 @@ void runSceneEditorTestLayer()
 {
     CCScene *pScene = SceneEditorTestLayer::scene();
     CCDirector::sharedDirector()->replaceScene(pScene);
+}
+
+CCArmature* SceneEditorTestLayer::getFish(int nTag, const char *pszName)
+{
+	if (m_pCurNode == NULL)
+	{
+		return NULL;
+	}
+	CCComRender *pFishRender = (CCComRender*)(m_pCurNode->getChildByTag(nTag)->getComponent(pszName));
+	return (CCArmature *)(pFishRender->getRender());
 }
