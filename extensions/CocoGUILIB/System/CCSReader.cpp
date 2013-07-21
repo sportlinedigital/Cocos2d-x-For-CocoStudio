@@ -56,7 +56,24 @@ CCSReader* CCSReader::shareReader()
 
 int CCSReader::getVersionInteger(const char *str)
 {
-    return 0;
+    /*********temp***********/
+    std::string strVersion = str;
+    int length = strVersion.length();
+    if (length < 7)
+    {
+        return 0;
+    }
+    else
+    {
+        
+        if (strVersion.compare("0.2.5.0") != 0)
+        {
+            return 0;
+        }
+    }
+    
+    return 250;
+    /************************/
 }
 
 UIWidget* CCSReader::widgetFromJsonDictionary(cs::CSJsonDictionary* data)
@@ -198,7 +215,6 @@ UIWidget* CCSReader::widgetFromJsonFile(const char *fileName)
     jsonDict->initWithDescription(strDes.c_str());
 
     const char* fileVersion = DICTOOL->getStringValue_json(jsonDict, "version");
-    
     if (!fileVersion || getVersionInteger(fileVersion) < 250)
     {
         m_bOlderVersion = true;
@@ -305,6 +321,10 @@ void CCSReader::setColorPropsForWidgetFromJsonDictionary(UIWidget *widget, cs::C
     bool apy = DICTOOL->checkObjectExist_json(options, "anchorPointY");
     float apyf = apy ? DICTOOL->getFloatValue_json(options, "anchorPointY") : 0.5f;
     widget->setAnchorPoint(ccp(apxf, apyf));
+    bool flipX = DICTOOL->getBooleanValue_json(options, "flipX");
+    bool flipY = DICTOOL->getBooleanValue_json(options, "flipY");
+    widget->setFlipX(flipX);
+    widget->setFlipY(flipY);
 }
 
 void CCSReader::setPropsForButtonFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options)
@@ -678,10 +698,6 @@ void CCSReader::setPropsForImageViewFromJsonDictionary(UIWidget*widget,cs::CSJso
                 imageView->setTexture(imageFileName_tp);
             }
         }
-        bool flipX = DICTOOL->getBooleanValue_json(options, "flipX");
-        bool flipY = DICTOOL->getBooleanValue_json(options, "flipY");
-        imageView->setFlipX(flipX);
-        imageView->setFlipY(flipY);
         setColorPropsForWidgetFromJsonDictionary(widget,options);
     }
     else
@@ -745,10 +761,6 @@ void CCSReader::setPropsForImageViewFromJsonDictionary(UIWidget*widget,cs::CSJso
             imageView->setCapInsets(CCRectMake(cx, cy, cw, ch));
             
         }
-        bool flipX = DICTOOL->getBooleanValue_json(options, "flipX");
-        bool flipY = DICTOOL->getBooleanValue_json(options, "flipY");
-        imageView->setFlipX(flipX);
-        imageView->setFlipY(flipY);
         setColorPropsForWidgetFromJsonDictionary(widget,options);
     }
 }
@@ -779,8 +791,6 @@ void CCSReader::setPropsForLabelFromJsonDictionary(UIWidget*widget,cs::CSJsonDic
     int cb = cbo?DICTOOL->getIntValue_json(options, "colorB"):255;
     ccColor3B tc = ccc3(cr, cg, cb);
     label->setColor(tc);
-    label->setFlipX(DICTOOL->getBooleanValue_json(options, "flipX"));
-    label->setFlipY(DICTOOL->getBooleanValue_json(options, "flipY"));
     setColorPropsForWidgetFromJsonDictionary(widget,options);
 }
 
@@ -1066,14 +1076,14 @@ void CCSReader::setPropsForSliderFromJsonDictionary(UIWidget*widget,cs::CSJsonDi
                     case 0:
                     {
                         std::string tp_b = m_strFilePath;
-                        const char*imageFileName =  DICTOOL->getStringValue_json(options, "path");
+                        const char*imageFileName =  DICTOOL->getStringValue_json(imageFileNameDic, "path");
                         const char* imageFileName_tp = (imageFileName && (strcmp(imageFileName, "") != 0))?tp_b.append(imageFileName).c_str():NULL;
                         slider->setBarTextureScale9(imageFileName_tp, 0, 0, 0, 0);
                         break;
                     }
                     case 1:
                     {
-                        const char*imageFileName =  DICTOOL->getStringValue_json(options, "path");
+                        const char*imageFileName =  DICTOOL->getStringValue_json(imageFileNameDic, "path");
                         slider->setBarTextureScale9(imageFileName, 0, 0, 0, 0,UI_TEX_TYPE_PLIST);
                         break;
                     }
@@ -1091,14 +1101,14 @@ void CCSReader::setPropsForSliderFromJsonDictionary(UIWidget*widget,cs::CSJsonDi
                     case 0:
                     {
                         std::string tp_b = m_strFilePath;
-                        const char*imageFileName =  DICTOOL->getStringValue_json(options, "path");
+                        const char*imageFileName =  DICTOOL->getStringValue_json(imageFileNameDic, "path");
                         const char* imageFileName_tp = (imageFileName && (strcmp(imageFileName, "") != 0))?tp_b.append(imageFileName).c_str():NULL;
                         slider->setBarTexture(imageFileName_tp);
                         break;
                     }
                     case 1:
                     {
-                        const char*imageFileName =  DICTOOL->getStringValue_json(options, "path");
+                        const char*imageFileName =  DICTOOL->getStringValue_json(imageFileNameDic, "path");
                         slider->setBarTexture(imageFileName,UI_TEX_TYPE_PLIST);
                         break;
                     }
@@ -1261,8 +1271,6 @@ void CCSReader::setPropsForTextButtonFromJsonDictionary(UIWidget*widget,cs::CSJs
     setPropsForButtonFromJsonDictionary(widget, options);
     UITextButton* textButton = (UITextButton*)widget;
     textButton->setText(DICTOOL->getStringValue_json(options, "text"));
-    textButton->setFlipX(DICTOOL->getBooleanValue_json(options, "flipX"));
-    textButton->setFlipY(DICTOOL->getBooleanValue_json(options, "flipY"));
     bool cr = DICTOOL->checkObjectExist_json(options, "textColorR");
     bool cg = DICTOOL->checkObjectExist_json(options, "textColorG");
     bool cb = DICTOOL->checkObjectExist_json(options, "textColorB");
