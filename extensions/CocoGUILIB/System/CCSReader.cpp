@@ -56,6 +56,7 @@ CCSReader* CCSReader::shareReader()
 
 int CCSReader::getVersionInteger(const char *str)
 {
+    /*********temp***********/
     std::string strVersion = str;
     int length = strVersion.length();
     if (length < 7)
@@ -64,12 +65,15 @@ int CCSReader::getVersionInteger(const char *str)
     }
     else
     {
-        CCLOG("posssssss %s",strVersion.c_str());
-        int pos = strVersion.find_first_of(".", 0, length);
-        CCLOG("pos %d",pos);
+        
+        if (strVersion.compare("0.2.5.0") != 0)
+        {
+            return 0;
+        }
     }
     
-    return 0;
+    return 250;
+    /************************/
 }
 
 UIWidget* CCSReader::widgetFromJsonDictionary(cs::CSJsonDictionary* data)
@@ -211,8 +215,7 @@ UIWidget* CCSReader::widgetFromJsonFile(const char *fileName)
     jsonDict->initWithDescription(strDes.c_str());
 
     const char* fileVersion = DICTOOL->getStringValue_json(jsonDict, "version");
-    getVersionInteger("0.2.4.1");
-    if (!fileVersion || getVersionInteger("0.2.4.1") < 250)
+    if (!fileVersion || getVersionInteger(fileVersion) < 250)
     {
         m_bOlderVersion = true;
     }
@@ -318,6 +321,10 @@ void CCSReader::setColorPropsForWidgetFromJsonDictionary(UIWidget *widget, cs::C
     bool apy = DICTOOL->checkObjectExist_json(options, "anchorPointY");
     float apyf = apy ? DICTOOL->getFloatValue_json(options, "anchorPointY") : 0.5f;
     widget->setAnchorPoint(ccp(apxf, apyf));
+    bool flipX = DICTOOL->getBooleanValue_json(options, "flipX");
+    bool flipY = DICTOOL->getBooleanValue_json(options, "flipY");
+    widget->setFlipX(flipX);
+    widget->setFlipY(flipY);
 }
 
 void CCSReader::setPropsForButtonFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options)
@@ -691,10 +698,6 @@ void CCSReader::setPropsForImageViewFromJsonDictionary(UIWidget*widget,cs::CSJso
                 imageView->setTexture(imageFileName_tp);
             }
         }
-        bool flipX = DICTOOL->getBooleanValue_json(options, "flipX");
-        bool flipY = DICTOOL->getBooleanValue_json(options, "flipY");
-        imageView->setFlipX(flipX);
-        imageView->setFlipY(flipY);
         setColorPropsForWidgetFromJsonDictionary(widget,options);
     }
     else
@@ -758,10 +761,6 @@ void CCSReader::setPropsForImageViewFromJsonDictionary(UIWidget*widget,cs::CSJso
             imageView->setCapInsets(CCRectMake(cx, cy, cw, ch));
             
         }
-        bool flipX = DICTOOL->getBooleanValue_json(options, "flipX");
-        bool flipY = DICTOOL->getBooleanValue_json(options, "flipY");
-        imageView->setFlipX(flipX);
-        imageView->setFlipY(flipY);
         setColorPropsForWidgetFromJsonDictionary(widget,options);
     }
 }
@@ -792,8 +791,6 @@ void CCSReader::setPropsForLabelFromJsonDictionary(UIWidget*widget,cs::CSJsonDic
     int cb = cbo?DICTOOL->getIntValue_json(options, "colorB"):255;
     ccColor3B tc = ccc3(cr, cg, cb);
     label->setColor(tc);
-    label->setFlipX(DICTOOL->getBooleanValue_json(options, "flipX"));
-    label->setFlipY(DICTOOL->getBooleanValue_json(options, "flipY"));
     setColorPropsForWidgetFromJsonDictionary(widget,options);
 }
 
@@ -1274,8 +1271,6 @@ void CCSReader::setPropsForTextButtonFromJsonDictionary(UIWidget*widget,cs::CSJs
     setPropsForButtonFromJsonDictionary(widget, options);
     UITextButton* textButton = (UITextButton*)widget;
     textButton->setText(DICTOOL->getStringValue_json(options, "text"));
-    textButton->setFlipX(DICTOOL->getBooleanValue_json(options, "flipX"));
-    textButton->setFlipY(DICTOOL->getBooleanValue_json(options, "flipY"));
     bool cr = DICTOOL->checkObjectExist_json(options, "textColorR");
     bool cg = DICTOOL->checkObjectExist_json(options, "textColorG");
     bool cb = DICTOOL->checkObjectExist_json(options, "textColorB");
