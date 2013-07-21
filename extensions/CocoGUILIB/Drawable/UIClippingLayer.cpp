@@ -273,10 +273,10 @@ void UIClippingLayer::setClipRect(const cocos2d::CCRect &rect)
 const CCRect& UIClippingLayer::getClippingRect()
 {
 //    CCSize s;
+    m_loacationInWorld = convertToWorldSpace(CCPointZero);
     CCAffineTransform t = nodeToWorldTransform();
     float scissorWidth = m_obContentSize.width*t.a;
     float scissorHeight = m_obContentSize.height*t.d;
-    
     if (m_pClippingParent)
     {
         m_parentClippingRect = m_pClippingParent->getClippingRect();
@@ -332,7 +332,7 @@ const CCRect& UIClippingLayer::getClippingRect()
 void UIClippingLayer::setPosition(const cocos2d::CCPoint &pos)
 {
     CCLayerRGBA::setPosition(pos);
-    m_loacationInWorld = convertToWorldSpace(CCPointZero);
+//    m_loacationInWorld = convertToWorldSpace(CCPointZero);
 }
 
 void UIClippingLayer::setBGColor(const ccColor3B &color)

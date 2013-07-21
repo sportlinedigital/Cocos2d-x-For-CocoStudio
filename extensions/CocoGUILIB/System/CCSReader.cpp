@@ -1076,14 +1076,14 @@ void CCSReader::setPropsForSliderFromJsonDictionary(UIWidget*widget,cs::CSJsonDi
                     case 0:
                     {
                         std::string tp_b = m_strFilePath;
-                        const char*imageFileName =  DICTOOL->getStringValue_json(options, "path");
+                        const char*imageFileName =  DICTOOL->getStringValue_json(imageFileNameDic, "path");
                         const char* imageFileName_tp = (imageFileName && (strcmp(imageFileName, "") != 0))?tp_b.append(imageFileName).c_str():NULL;
                         slider->setBarTextureScale9(imageFileName_tp, 0, 0, 0, 0);
                         break;
                     }
                     case 1:
                     {
-                        const char*imageFileName =  DICTOOL->getStringValue_json(options, "path");
+                        const char*imageFileName =  DICTOOL->getStringValue_json(imageFileNameDic, "path");
                         slider->setBarTextureScale9(imageFileName, 0, 0, 0, 0,UI_TEX_TYPE_PLIST);
                         break;
                     }
@@ -1101,14 +1101,14 @@ void CCSReader::setPropsForSliderFromJsonDictionary(UIWidget*widget,cs::CSJsonDi
                     case 0:
                     {
                         std::string tp_b = m_strFilePath;
-                        const char*imageFileName =  DICTOOL->getStringValue_json(options, "path");
+                        const char*imageFileName =  DICTOOL->getStringValue_json(imageFileNameDic, "path");
                         const char* imageFileName_tp = (imageFileName && (strcmp(imageFileName, "") != 0))?tp_b.append(imageFileName).c_str():NULL;
                         slider->setBarTexture(imageFileName_tp);
                         break;
                     }
                     case 1:
                     {
-                        const char*imageFileName =  DICTOOL->getStringValue_json(options, "path");
+                        const char*imageFileName =  DICTOOL->getStringValue_json(imageFileNameDic, "path");
                         slider->setBarTexture(imageFileName,UI_TEX_TYPE_PLIST);
                         break;
                     }
