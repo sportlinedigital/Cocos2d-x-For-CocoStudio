@@ -35,17 +35,18 @@ NS_CC_EXT_BEGIN
 class UIActionManager:public cocos2d::CCObject
 {
 protected:
-	cocos2d::CCArray* m_ActionList;/*guiaction*/
+//	cocos2d::CCArray* m_ActionList;/*guiaction*/
+    CCDictionary* m_pActionDic;
 
 public:
     UIActionManager();
     virtual ~UIActionManager();
     static UIActionManager* shareManager();
-	UIAction* GetActionByName(const char* actionName);
+	UIAction* GetActionByName(const char* jsonName,const char* actionName);
 
-	void PlayActionByName(const char* actionName);
+	void PlayActionByName(const char* jsonName,const char* actionName);
     
-    void initWithDictionary(cs::CSJsonDictionary* dic,UIWidget* root);
+    void initWithDictionary(const char* jsonName, cs::CSJsonDictionary* dic,UIWidget* root);
     void releaseActions();
 };
 

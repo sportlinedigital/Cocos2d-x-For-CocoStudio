@@ -42,18 +42,13 @@ public:
     virtual void removeChildMoveToTrash(UIWidget* child);
     virtual void removeChildReferenceOnly(UIWidget* child);
     
-    virtual void updateWidthAndHeight();
-    
-    float getLeftBoundary();
-    float getTopBoundary();
-    float getRightBoundary();
-    float getBottomBoundary();
+    virtual void updateWidthAndHeight();    
     
 protected:
-    float m_fLeftBoundary;
-    float m_fRightBoundary;
-    float m_fTopBoundary;
-    float m_fBottomBoundary;
+//    float m_fLeftBoundary;
+//    float m_fRightBoundary;
+//    float m_fTopBoundary;
+//    float m_fBottomBoundary;
 
 };
 

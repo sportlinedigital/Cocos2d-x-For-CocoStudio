@@ -61,14 +61,14 @@ enum DRAGPANEL_MOVE_TYPE
 enum DRAGPANEL_BERTH_DIR
 {
     DRAGPANEL_BERTH_DIR_NONE,
-    DRAGPANEL_BERTH_DIR_LEFT,
-    DRAGPANEL_BERTH_DIR_RIGHT,
-    DRAGPANEL_BERTH_DIR_TOP,
-    DRAGPANEL_BERTH_DIR_BOTTOM,
     DRAGPANEL_BERTH_DIR_LEFTBOTTOM,
     DRAGPANEL_BERTH_DIR_LFETTOP,
     DRAGPANEL_BERTH_DIR_RIGHTBOTTOM,
     DRAGPANEL_BERTH_DIR_RIGHTTOP,
+    DRAGPANEL_BERTH_DIR_LEFT,
+    DRAGPANEL_BERTH_DIR_TOP,
+    DRAGPANEL_BERTH_DIR_RIGHT,
+    DRAGPANEL_BERTH_DIR_BOTTOM,
 };
 
 enum DRAGPANEL_BOUNCE_DIR
@@ -163,15 +163,18 @@ public:
     void setAutoMoveDuration(float duration);
     void setAutoMoveEaseRate(float rate);        
     
+    // berth
+    bool isBerth();
+    
     // berth event
-    void addBerthToLeftEvent(CCObject* target, SEL_DragPanelBerthToLeftEvent selector);
-    void addBerthToRightEvent(CCObject* target, SEL_DragPanelBerthToRightEvent selector);
-    void addBerthToTopEvent(CCObject* target, SEL_DragPanelBerthToTopEvent selector);
-    void addBerthToBottomEvent(CCObject* target, SEL_DragPanelBerthToBottomEvent selector);
     void addBerthToLeftBottomEvent(CCObject* target, SEL_DragPanelBerthToLeftBottomEvent selector);
     void addBerthToLeftTopEvent(CCObject* target, SEL_DragPanelBerthToLeftTopEvent selector);
     void addBerthToRightBottomEvent(CCObject* target, SEL_DragPanelBerthToRightBottomEvent selector);
     void addBerthToRightTopEvent(CCObject* target, SEL_DragPanelBerthToRightTopEvent selector);
+    void addBerthToLeftEvent(CCObject* target, SEL_DragPanelBerthToLeftEvent selector);
+    void addBerthToTopEvent(CCObject* target, SEL_DragPanelBerthToTopEvent selector);
+    void addBerthToRightEvent(CCObject* target, SEL_DragPanelBerthToRightEvent selector);
+    void addBerthToBottomEvent(CCObject* target, SEL_DragPanelBerthToBottomEvent selector);
     
     // bounce
     bool isBounceEnable();
@@ -205,14 +208,12 @@ protected:
     // berth
     // check if move to boundary with update
     bool checkToBoundaryWithDeltaPosition(const CCPoint& delta);
-    // check if move to boundary with touch
-    bool checkTouchMoveToBoundary(const CCPoint& delta);
-    
-    // check berth
-    bool checkBerth();
     
     // calculate to boundary delta
     CCPoint calculateToBoundaryDeltaPosition(CCPoint delta);
+    
+    // check berth
+    bool checkBerth();
     
     // berth event
     void berthEvent();
@@ -282,15 +283,6 @@ protected:
     
     // berth
     DRAGPANEL_BERTH_DIR m_eBerthDirection;
-    bool m_bBerth;
-    bool m_bBerthToLeft;
-    bool m_bBerthToRight;
-    bool m_bBerthToTop;
-    bool m_bBerthToBottom;
-    bool m_bBerthToLeftBottom;
-    bool m_bBerthToLeftTop;
-    bool m_bBerthToRightBottom;
-    bool m_bBerthToRightTop;
     
     // berth event
     CCObject* m_pBerthToLeftListener;
