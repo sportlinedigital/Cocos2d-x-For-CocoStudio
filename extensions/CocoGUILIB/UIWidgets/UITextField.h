@@ -26,6 +26,7 @@
 #define __UITEXTFIELD_H__
 
 #include "../BaseClasses/UIWidget.h"
+#include "../Drawable/UICCTextField.h"
 
 
 NS_CC_EXT_BEGIN
@@ -97,7 +98,7 @@ protected:
     SEL_TextFieldInsertTextEvent m_pfnInsertTextSelector;
     SEL_TextFieldDeleteBackwardEvent m_pfnDeleteBackwardSelector;
     
-    CCTextFieldTTF * m_pRenderTextField;
+    UICCTextField* m_pRenderTextField;
 };
 
 NS_CC_EXT_END
