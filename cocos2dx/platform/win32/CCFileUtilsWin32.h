@@ -49,6 +49,12 @@ public:
     virtual std::string getWritablePath();
     virtual bool isFileExist(const std::string& strFilePath);
     virtual bool isAbsolutePath(const std::string& strPath);
+	virtual void addSearchPath(const char* path);
+	virtual void removeSearchPath(const char *path);
+
+	/* transfer utf8 to gbk */
+	std::string utf8Togbk(const char *src);
+
 };
 
 // end of platform group
