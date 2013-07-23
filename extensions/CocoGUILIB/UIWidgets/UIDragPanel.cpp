@@ -34,6 +34,7 @@ UIDragPanel::UIDragPanel()
 , m_eDirection(DRAGPANEL_DIR_BOTH)
 , m_eMoveDirection(DRAGPANEL_MOVE_DIR_ANY)
  */
+, m_fSlidTime(0.0f)
 , m_bTouchPressed(false)
 , m_bTouchMoved(false)
 , m_bTouchReleased(false)
@@ -181,6 +182,8 @@ void UIDragPanel::update(float dt)
             actionStep(dt);
         }
     }
+    
+    recordSlidTime(dt);
 }
 
 bool UIDragPanel::addChild(UIWidget *widget)
@@ -242,10 +245,10 @@ void UIDragPanel::handlePressLogic(cocos2d::CCPoint &touchPoint)
         }
     }
     
-    CCPoint innernsp = m_pInnerPanel->getContainerNode()->convertToNodeSpace(touchPoint);
-    m_touchStartNodeSpace = innernsp;
+    CCPoint nsp = getContainerNode()->convertToNodeSpace(touchPoint);
+    m_touchStartNodeSpace = nsp;
     
-    m_touchStartWorldSpace = touchPoint;
+    m_touchStartWorldSpace = touchPoint;    
 }
 
 void UIDragPanel::handleMoveLogic(cocos2d::CCPoint &touchPoint)
@@ -260,15 +263,55 @@ void UIDragPanel::handleMoveLogic(cocos2d::CCPoint &touchPoint)
     {
         return;
     }
-    
-    // check berth
-    if (m_eBerthDirection != DRAGPANEL_BERTH_DIR_NONE)
-    {
-        return;
-    }
-    
+        
     m_bTouchMoved = true;
     
+    /* gui mark */
+    CCPoint nsp = getContainerNode()->convertToNodeSpace(touchPoint);
+    CCPoint delta = ccpSub(nsp, m_touchStartNodeSpace);
+    m_touchStartNodeSpace = nsp;
+    
+    // reset berth dir to none
+    if (!m_bBounceEnable)
+    {
+        m_eBerthDirection = DRAGPANEL_BERTH_DIR_NONE;
+    }
+    
+    // check will berth (bounce disable)
+    if (!m_bBounceEnable)
+    {
+        if (checkToBoundaryWithDeltaPosition(delta))
+        {
+            delta = calculateToBoundaryDeltaPosition(delta);
+        }                        
+    }
+    // move
+    moveWithDelta(delta);
+    // check bounce or berth
+    if (m_bBounceEnable)
+    {
+        // bounce
+        if (!pointAtSelfBody(touchPoint))
+        {
+            m_bTouchMoved = false;
+            
+            if (checkNeedBounce())
+            {
+                m_bTouchCanceld = true;
+                startBounce();
+            }
+        }
+    }
+    else
+    {
+        // berth
+        if (checkBerth())
+        {
+            berthEvent();
+        }
+    }        
+    // before
+    /*
     if (pointAtSelfBody(touchPoint))
     {
         CCPoint innernsp = m_pInnerPanel->getContainerNode()->convertToNodeSpace(touchPoint);
@@ -292,7 +335,7 @@ void UIDragPanel::handleMoveLogic(cocos2d::CCPoint &touchPoint)
     else
     {
         m_bTouchMoved = false;
-        
+     
         // bounce
         if (m_bBounceEnable)
         {
@@ -303,6 +346,8 @@ void UIDragPanel::handleMoveLogic(cocos2d::CCPoint &touchPoint)
             }
         }
     }
+     */
+    //
 }
 
 void UIDragPanel::handleReleaseLogic(cocos2d::CCPoint &touchPoint)
@@ -312,27 +357,22 @@ void UIDragPanel::handleReleaseLogic(cocos2d::CCPoint &touchPoint)
         return;
     }
     
+    m_bTouchPressed = false;
+    m_bTouchMoved = false;
+    m_bTouchReleased = true;
+    m_bTouchCanceld = false;
+    
     // check touch out of drag panel boundary
     if (m_bTouchCanceld)
     {
         return;
     }
     
-    m_bTouchPressed = false;
-    m_bTouchMoved = false;
-    m_bTouchReleased = true;
-    m_bTouchCanceld = false;
-    
-    // check berth
-    if (m_eBerthDirection != DRAGPANEL_BERTH_DIR_NONE)
+    if (pointAtSelfBody(touchPoint))
     {
-        m_eBerthDirection = DRAGPANEL_BERTH_DIR_NONE;
-        return;
-    }    
-    
-    m_touchEndWorldSpace = touchPoint;
-    
-    startAutoMove();
+        m_touchEndWorldSpace = touchPoint;
+        startAutoMove();
+    }
 }
 
 void UIDragPanel::checkChildInfo(int handleState, UIWidget *sender, CCPoint &touchPoint)
@@ -393,6 +433,14 @@ DRAGPANEL_MOVE_DIR UIDragPanel::getMoveDirection()
 }
  */
 
+void UIDragPanel::recordSlidTime(float dt)
+{
+    if (m_bTouchPressed)
+    {
+        m_fSlidTime += dt;
+    }
+}
+
 // check if dragpanel rect contain inner rect
 bool UIDragPanel::checkContainInnerRect()
 {
@@ -411,7 +459,7 @@ bool UIDragPanel::checkContainInnerRect()
 
 // move
 void UIDragPanel::moveWithDelta(const CCPoint &delta)
-{
+{    
     CCPoint newPos = ccpAdd(m_pInnerPanel->getPosition(), delta);
     m_pInnerPanel->setPosition(newPos);
 }
@@ -447,6 +495,9 @@ void UIDragPanel::startAutoMove()
     actionStop();
     
     CCPoint delta = ccpSub(m_touchEndWorldSpace, m_touchStartWorldSpace);
+    delta.x /= m_fSlidTime * 60;
+    delta.y /= m_fSlidTime * 60;
+    m_fSlidTime = 0.0;
     
     // bounceEnable is disable
     if (!m_bBounceEnable)

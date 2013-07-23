@@ -58,8 +58,13 @@ public:
     const char* getStringValue();
     virtual void onTouchBegan(cocos2d::CCPoint &touchPoint);
     virtual bool pointAtSelfBody(cocos2d::CCPoint &pt);
-    void setCharacterLength(int length);
-    void setIsPassWord(bool isPassword);
+    void setMaxLengthEnable(bool enable);
+    bool isMaxLengthEnable();
+    void setMaxLength(int length);
+    int getMaxLength();
+    void setPasswordEnable(bool enable);
+    bool isPasswordEnable();
+    void setPasswordStyleText(const char* styleText);
     void update(float dt);
     bool getAttachWithIME();
     void setAttachWithIME(bool attach);

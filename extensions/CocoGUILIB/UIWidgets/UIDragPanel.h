@@ -193,6 +193,8 @@ public:
     void addBounceToBottomEvent(CCObject* target, SEL_DragPanelBounceToBottomEvent selector);    
     
 protected:
+    void recordSlidTime(float dt);
+    
     // check if dragpanel rect contain inner rect
     bool checkContainInnerRect();
     
@@ -272,7 +274,9 @@ protected:
     
     CCPoint m_touchStartNodeSpace;
     CCPoint m_touchStartWorldSpace;
-    CCPoint m_touchEndWorldSpace;        
+    CCPoint m_touchEndWorldSpace;
+    
+    float m_fSlidTime;
     
     // move type
     DRAGPANEL_MOVE_TYPE m_eMoveType;

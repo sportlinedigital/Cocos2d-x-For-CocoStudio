@@ -33,7 +33,8 @@ UIContainerWidget::UIContainerWidget():
 m_fWidth(0.0),
 m_fHeight(0.0),
 m_bClipAble(false),
-m_renderType(RENDER_TYPE_LAYERCOLOR)
+m_renderType(RENDER_TYPE_LAYERCOLOR),
+m_eLayoutType(UI_LAYOUT_ABSOLUTE)
 {
     m_WidgetType = WidgetTypeContainer;
     m_WidgetName = WIDGET_CONTAINERWIDGET;
@@ -73,9 +74,57 @@ bool UIContainerWidget::init()
 }
 /********************************/
 
-void UIContainerWidget::setLayoutParameter(/*LayoutParameter * parmeter*/)
+void UIContainerWidget::setLayoutParameter(LayoutType type)
 {
-    
+    if (type == m_eLayoutType)
+    {
+        return;
+    }
+    m_eLayoutType = type;
+    doLayout();
+}
+
+void UIContainerWidget::doLayout()
+{
+    switch (m_eLayoutType)
+    {
+        case UI_LAYOUT_ABSOLUTE:
+        {
+            ccArray* arrayChildren = m_children->data;
+            int childrenCount = arrayChildren->num;
+            for (int i=0; i<childrenCount; i++)
+            {
+                UIWidget* child = dynamic_cast<UIWidget*>(arrayChildren->arr[i]);
+                child->setPosition(child->getPosition());
+            }
+            break;
+        }
+        case UI_LAYOUT_LINEAR_VERTICAL:
+        {
+            ccArray* arrayChildren = m_children->data;
+            int childrenCount = arrayChildren->num;
+            for (int i=0; i<childrenCount; i++)
+            {
+                UIWidget* child = dynamic_cast<UIWidget*>(arrayChildren->arr[i]);
+                child->setPosition(child->getPosition());
+            }
+            break;
+        }
+        case UI_LAYOUT_LINEAR_HORIZONTAL:
+            break;
+        case UI_LAYOUT_RELATIVE:
+            break;
+        case UI_LAYOUT_GRID:
+            break;
+        case UI_LAYOUT_BORDER:
+            break;
+        case UI_LAYOUT_FRAME:
+            break;
+        case UI_LAYOUT_TABLE:
+            break;
+        default:
+            break;
+    }
 }
 
 void UIContainerWidget::initNodes()

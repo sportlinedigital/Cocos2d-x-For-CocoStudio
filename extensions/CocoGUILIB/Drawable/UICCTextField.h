@@ -53,11 +53,14 @@ public:
     void openIME();
     void closeIME();
     
-    void setPswText(const char* text);
-    void setCharacterLength(int length);
-    int getCharacterLength();
-    void setIsPassword(bool password);
-    bool getIsPassword();
+    void setMaxLengthEnable(bool enable);
+    bool isMaxLengthEnable();
+    void setMaxLength(int length);
+    int getMaxLength();
+    void setPasswordEnable(bool enable);
+    bool isPasswordEnable();
+    void setPasswordStyleText(const char* styleText);
+    void setPasswordText(const char* text);
     void setAttachWithIME(bool attach);
     bool getAttachWithIME();
     void setDetachWithIME(bool detach);
@@ -67,15 +70,14 @@ public:
     void setDeleteBackward(bool deleteBackward);
     bool getDeleteBackward();
 protected:
-    // intput limit character amount
-    int m_nCharacterLength;
-    bool m_bIsPassword;
+    bool m_bMaxLengthEnable;
+    int m_nMaxLength;
+    bool m_bPasswordEnable;
+    std::string m_strPasswordStyleText;
     bool m_bAttachWithIME;
     bool m_bDetachWithIME;
     bool m_bInsertText;
-    bool m_bDeleteBackward;
-    
-    int m_nTextTotalLength;
+    bool m_bDeleteBackward;    
 };
 
 NS_CC_EXT_END

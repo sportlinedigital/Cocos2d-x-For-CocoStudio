@@ -140,14 +140,39 @@ bool UITextField::pointAtSelfBody(cocos2d::CCPoint &pt)
     return false;
 }
 
-void UITextField::setCharacterLength(int length)
+void UITextField::setMaxLengthEnable(bool enable)
 {
-    m_pRenderTextField->setCharacterLength(length);
+    m_pRenderTextField->setMaxLengthEnable(enable);
 }
 
-void UITextField::setIsPassWord(bool isPassword)
+bool UITextField::isMaxLengthEnable()
 {
-    m_pRenderTextField->setIsPassword(isPassword);
+    return m_pRenderTextField->isMaxLengthEnable();
+}
+
+void UITextField::setMaxLength(int length)
+{
+    m_pRenderTextField->setMaxLength(length);
+}
+
+int UITextField::getMaxLength()
+{
+    return m_pRenderTextField->getMaxLength();
+}
+
+void UITextField::setPasswordEnable(bool enable)
+{
+    m_pRenderTextField->setPasswordEnable(enable);
+}
+
+bool UITextField::isPasswordEnable()
+{
+    return m_pRenderTextField->isPasswordEnable();
+}
+
+void UITextField::setPasswordStyleText(const char *styleText)
+{
+    m_pRenderTextField->setPasswordStyleText(styleText);
 }
 
 void UITextField::update(float dt)

@@ -797,23 +797,59 @@ void CCSReader::setPropsForLabelFromJsonDictionary(UIWidget*widget,cs::CSJsonDic
 
 void CCSReader::setPropsForLabelAtlasFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options)
 {
-    setPropsForWidgetFromJsonDictionary(widget, options);
-    UILabelAtlas* labelAtlas = (UILabelAtlas*)widget;
-    bool sv = DICTOOL->checkObjectExist_json(options, "stringValue");
-    bool cmf = DICTOOL->checkObjectExist_json(options, "charMapFile");
-    bool iw = DICTOOL->checkObjectExist_json(options, "itemWidth");
-    bool ih = DICTOOL->checkObjectExist_json(options, "itemHeight");
-    bool scm = DICTOOL->checkObjectExist_json(options, "startCharMap");
-    if (sv && cmf && iw && ih && scm && (strcmp(DICTOOL->getStringValue_json(options, "charMapFile"), "") != 0))
+    if (m_bOlderVersion)
     {
-		std::string tp_c = m_strFilePath;
-		const char* cmf_tp = NULL;
-		const char* cmft = DICTOOL->getStringValue_json(options, "charMapFile");
-		cmf_tp = tp_c.append(cmft).c_str();
-
-        labelAtlas->setProperty(DICTOOL->getStringValue_json(options, "stringValue"),cmf_tp,DICTOOL->getIntValue_json(options, "itemWidth"),DICTOOL->getIntValue_json(options,"itemHeight"),DICTOOL->getStringValue_json(options, "startCharMap"));
+        setPropsForWidgetFromJsonDictionary(widget, options);
+        UILabelAtlas* labelAtlas = (UILabelAtlas*)widget;
+        bool sv = DICTOOL->checkObjectExist_json(options, "stringValue");
+        bool cmf = DICTOOL->checkObjectExist_json(options, "charMapFile");
+        bool iw = DICTOOL->checkObjectExist_json(options, "itemWidth");
+        bool ih = DICTOOL->checkObjectExist_json(options, "itemHeight");
+        bool scm = DICTOOL->checkObjectExist_json(options, "startCharMap");
+        if (sv && cmf && iw && ih && scm && (strcmp(DICTOOL->getStringValue_json(options, "charMapFile"), "") != 0))
+        {
+            std::string tp_c = m_strFilePath;
+            const char* cmf_tp = NULL;
+            const char* cmft = DICTOOL->getStringValue_json(options, "charMapFile");
+            cmf_tp = tp_c.append(cmft).c_str();
+            
+            labelAtlas->setProperty(DICTOOL->getStringValue_json(options, "stringValue"),cmf_tp,DICTOOL->getIntValue_json(options, "itemWidth"),DICTOOL->getIntValue_json(options,"itemHeight"),DICTOOL->getStringValue_json(options, "startCharMap"));
+        }
+        setColorPropsForWidgetFromJsonDictionary(widget,options);
     }
-    setColorPropsForWidgetFromJsonDictionary(widget,options);
+    else
+    {
+        setPropsForWidgetFromJsonDictionary(widget, options);
+        UILabelAtlas* labelAtlas = (UILabelAtlas*)widget;
+        bool sv = DICTOOL->checkObjectExist_json(options, "stringValue");
+        bool cmf = DICTOOL->checkObjectExist_json(options, "charMapFile");
+        bool iw = DICTOOL->checkObjectExist_json(options, "itemWidth");
+        bool ih = DICTOOL->checkObjectExist_json(options, "itemHeight");
+        bool scm = DICTOOL->checkObjectExist_json(options, "startCharMap");
+        if (sv && cmf && iw && ih && scm)
+        {
+            
+            cs::CSJsonDictionary* cmftDic = DICTOOL->getSubDictionary_json(options, "charMapFile");
+            int cmfType = DICTOOL->getIntValue_json(cmftDic, "resourceType");
+            switch (cmfType)
+            {
+                case 0:
+                {
+                    std::string tp_c = m_strFilePath;
+                    const char* cmfPath = DICTOOL->getStringValue_json(cmftDic, "path");
+                    const char* cmf_tp = tp_c.append(cmfPath).c_str();
+                    labelAtlas->setProperty(DICTOOL->getStringValue_json(options, "stringValue"),cmf_tp,DICTOOL->getIntValue_json(options, "itemWidth"),DICTOOL->getIntValue_json(options,"itemHeight"),DICTOOL->getStringValue_json(options, "startCharMap"));       
+                    break;
+                }
+                case 1:
+                    CCLOG("Wrong res type of LabelAtlas!");
+                    break;
+                default:
+                    break;
+            }
+        }
+        setColorPropsForWidgetFromJsonDictionary(widget,options);
+    }
 }
 
 void CCSReader::setPropsForContainerWidgetFromJsonDictionary(UIWidget *widget, cs::CSJsonDictionary *options)
@@ -1400,22 +1436,42 @@ void CCSReader::setPropsForPageViewFromJsonDictionary(UIWidget*widget,cs::CSJson
 
 void CCSReader::setPropsForLabelBMFontFromJsonDictionary(extension::UIWidget *widget, cs::CSJsonDictionary *options)
 {
-    setPropsForWidgetFromJsonDictionary(widget, options);
-    
-    UILabelBMFont* labelBMFont = (UILabelBMFont*)widget;
-    
-    std::string tp_c = m_strFilePath;
-    const char* cmf_tp = NULL;
-//    const char* cmft = DICTOOL->getStringValue_json(options, "fileName");
-    const char* cmft = "UIResForEditor/FNT/markerfelt24shadow.fnt";
-    cmf_tp = tp_c.append(cmft).c_str();
-    
-    labelBMFont->setFntFile(cmf_tp);
-    
-    const char* text = DICTOOL->getStringValue_json(options, "text");
-    labelBMFont->setText(text);
-    
-    setColorPropsForWidgetFromJsonDictionary(widget,options);
+    if (m_bOlderVersion)
+    {
+        setPropsForWidgetFromJsonDictionary(widget, options);
+        
+        UILabelBMFont* labelBMFont = (UILabelBMFont*)widget;
+        
+        std::string tp_c = m_strFilePath;
+        const char* cmf_tp = NULL;
+        const char* cmft = DICTOOL->getStringValue_json(options, "fileName");
+        cmf_tp = tp_c.append(cmft).c_str();
+        
+        labelBMFont->setFntFile(cmf_tp);
+        
+        const char* text = DICTOOL->getStringValue_json(options, "text");
+        labelBMFont->setText(text);
+        
+        setColorPropsForWidgetFromJsonDictionary(widget,options);
+    }
+    else
+    {
+        setPropsForWidgetFromJsonDictionary(widget, options);
+        
+        UILabelBMFont* labelBMFont = (UILabelBMFont*)widget;
+        
+        std::string tp_c = m_strFilePath;
+        const char* cmf_tp = NULL;
+        const char* cmft = DICTOOL->getStringValue_json(options, "fileName");
+        cmf_tp = tp_c.append(cmft).c_str();
+        
+        labelBMFont->setFntFile(cmf_tp);
+        
+        const char* text = DICTOOL->getStringValue_json(options, "text");
+        labelBMFont->setText(text);
+        
+        setColorPropsForWidgetFromJsonDictionary(widget,options);
+    }
 }
 
 void CCSReader::setPropsForDragPanelFromJsonDictionary(UIWidget *widget, cs::CSJsonDictionary *options)
