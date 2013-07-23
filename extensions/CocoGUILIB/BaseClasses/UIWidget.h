@@ -27,6 +27,7 @@
 
 #include "cocos2d.h"
 #include "ExtensionMacros.h"
+#include "../Layouts/UILayoutPrameter.h"
 
 NS_CC_EXT_BEGIN
 
@@ -305,6 +306,7 @@ protected:
     WidgetName m_WidgetName;
     UILayer* m_pUILayer;
 	int m_nActionTag;
+    UILayoutPrameter* m_pLayoutPrameter;
 };
 
 NS_CC_EXT_END

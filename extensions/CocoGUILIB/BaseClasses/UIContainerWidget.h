@@ -26,7 +26,6 @@
 #define __UICONTAINERWIDGET_H__
 
 #include "UIWidget.h"
-#include "../Layouts/UILayoutPrameter.h"
 
 NS_CC_EXT_BEGIN
     
@@ -55,8 +54,8 @@ public:
     UIContainerWidget();
     virtual ~UIContainerWidget();
     static UIContainerWidget* create();
-    //Only containerWidget can use the LayoutParameter for doing layout to child widget
-    virtual void setLayoutParameter(LayoutType type);
+    //Only containerWidget can use the LayoutType for doing layout to child widget
+    virtual void setLayoutType(LayoutType type);
     virtual void doLayout();
     virtual bool addChild(UIWidget* child);
     virtual void setClippingEnable(bool able);

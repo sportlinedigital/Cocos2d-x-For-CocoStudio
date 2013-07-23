@@ -74,7 +74,7 @@ bool UIContainerWidget::init()
 }
 /********************************/
 
-void UIContainerWidget::setLayoutParameter(LayoutType type)
+void UIContainerWidget::setLayoutType(LayoutType type)
 {
     if (type == m_eLayoutType)
     {
@@ -103,15 +103,28 @@ void UIContainerWidget::doLayout()
         {
             ccArray* arrayChildren = m_children->data;
             int childrenCount = arrayChildren->num;
+            float topBoundary = m_fHeight;
             for (int i=0; i<childrenCount; i++)
             {
                 UIWidget* child = dynamic_cast<UIWidget*>(arrayChildren->arr[i]);
-                child->setPosition(child->getPosition());
+                child->setPosition(ccp(0, topBoundary-(child->getAnchorPoint().y*child->getContentSize().height)));
+                topBoundary = child->getPosition().y-(child->getAnchorPoint().y*child->getContentSize().height);
             }
             break;
         }
         case UI_LAYOUT_LINEAR_HORIZONTAL:
+        {
+            ccArray* arrayChildren = m_children->data;
+            int childrenCount = arrayChildren->num;
+            float leftBoundary = 0;
+            for (int i=0; i<childrenCount; i++)
+            {
+                UIWidget* child = dynamic_cast<UIWidget*>(arrayChildren->arr[i]);
+                child->setPosition(ccp(leftBoundary+5+(child->getAnchorPoint().x*child->getContentSize().width), 0));
+                leftBoundary = child->getPosition().x+(child->getAnchorPoint().x*child->getContentSize().width);
+            }
             break;
+        }
         case UI_LAYOUT_RELATIVE:
             break;
         case UI_LAYOUT_GRID:

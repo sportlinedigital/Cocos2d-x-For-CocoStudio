@@ -76,7 +76,8 @@ m_pUILayer(NULL),
 m_bIsCreatedFromFile(false),
 m_nActionTag(0),
 m_fileDesignSize(CCSizeZero),
-m_pBindingAction(NULL)
+m_pBindingAction(NULL),
+m_pLayoutPrameter(NULL)
 {
     m_WidgetName = WIDGET_WIDGET;
 }
