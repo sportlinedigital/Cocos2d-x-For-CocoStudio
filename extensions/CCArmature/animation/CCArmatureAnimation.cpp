@@ -119,6 +119,7 @@ void CCArmatureAnimation::setAnimationScale(float animationScale )
     }
 
     m_fAnimationScale = animationScale;
+
 	m_fProcessScale = m_pMovementData ? m_fAnimationScale : m_fAnimationScale * m_pMovementData->scale;
 
     CCDictElement *element = NULL;
@@ -133,6 +134,11 @@ void CCArmatureAnimation::setAnimationScale(float animationScale )
 			bone->getChildArmature()->getAnimation()->setProcessScale(m_fProcessScale);
 		}
     }
+}
+
+float CCArmatureAnimation::getAnimationScale()
+{
+	return m_fAnimationScale;
 }
 
 

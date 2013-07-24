@@ -57,17 +57,20 @@ CCProcessBase::~CCProcessBase(void)
 void CCProcessBase::pause()
 {
     m_bIsPause = true;
+	m_bIsPlaying = false;
 }
 
 
 void CCProcessBase::resume()
 {
     m_bIsPause = false;
+	m_bIsPlaying = true;
 }
 
 void CCProcessBase::stop()
 {
     m_bIsComplete = true;
+	m_bIsPlaying = false;
     m_fCurrentFrame = 0;
     m_fCurrentPercent = 0;
 }

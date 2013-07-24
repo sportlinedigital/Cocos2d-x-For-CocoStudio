@@ -389,15 +389,15 @@ float CCTween::updateFrameData(float currentPrecent)
 		do
 		{
 			from = frames[m_iFromIndex];
-			to = frames[m_iToIndex];
-
 			m_iTotalDuration  = from->frameID;
-			m_iFromIndex = m_iToIndex;
 
 			if (++m_iToIndex >= length)
 			{
 				m_iToIndex = 0;
 			}
+
+			m_iFromIndex = m_iToIndex;
+			to = frames[m_iToIndex];
 
 			if (playedTime == from->frameID)
 			{

@@ -66,6 +66,7 @@ public:
      * @param animationScale Scale value
      */
     virtual void setAnimationScale(float animationScale);
+	virtual float getAnimationScale();
 
 	//! The animation update speed
 	virtual void setAnimationInternal(float animationInternal);
@@ -143,7 +144,7 @@ protected:
     CC_SYNTHESIZE_RETAIN(CCAnimationData *, m_pAnimationData, AnimationData);
 
 	//! Scale the animation speed
-	CC_SYNTHESIZE_PASS_BY_REF(float, m_fAnimationScale, AnimationScale);
+	float m_fAnimationScale;
 
     CCMovementData *m_pMovementData;				//! CCMovementData save all MovementFrameDatas this animation used.
 
