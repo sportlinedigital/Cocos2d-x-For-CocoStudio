@@ -829,7 +829,7 @@ void CCSReader::setPropsForLabelAtlasFromJsonDictionary(UIWidget*widget,cs::CSJs
         if (sv && cmf && iw && ih && scm)
         {
             
-            cs::CSJsonDictionary* cmftDic = DICTOOL->getSubDictionary_json(options, "charMapFile");
+            cs::CSJsonDictionary* cmftDic = DICTOOL->getSubDictionary_json(options, "charMapFileData");
             int cmfType = DICTOOL->getIntValue_json(cmftDic, "resourceType");
             switch (cmfType)
             {
@@ -1361,7 +1361,12 @@ void CCSReader::setPropsForTextFieldFromJsonDictionary(UIWidget*widget,cs::CSJso
     {
         textField->setSize(CCSizeMake(dw, dh));
     }
-    
+    bool passwordEnable = DICTOOL->getBooleanValue_json(options, "passwordEnable");
+    textField->setPasswordEnable(passwordEnable);
+    if (passwordEnable)
+    {
+        textField->setPasswordStyleText(DICTOOL->getStringValue_json(options, "passwordStyleText"));
+    }
     setColorPropsForWidgetFromJsonDictionary(widget,options);
 }
 
@@ -1460,12 +1465,24 @@ void CCSReader::setPropsForLabelBMFontFromJsonDictionary(extension::UIWidget *wi
         
         UILabelBMFont* labelBMFont = (UILabelBMFont*)widget;
         
-        std::string tp_c = m_strFilePath;
-        const char* cmf_tp = NULL;
-        const char* cmft = DICTOOL->getStringValue_json(options, "fileName");
-        cmf_tp = tp_c.append(cmft).c_str();
-        
-        labelBMFont->setFntFile(cmf_tp);
+        cs::CSJsonDictionary* cmftDic = DICTOOL->getSubDictionary_json(options, "fileNameData");
+        int cmfType = DICTOOL->getIntValue_json(cmftDic, "resourceType");
+        switch (cmfType)
+        {
+            case 0:
+            {
+                std::string tp_c = m_strFilePath;
+                const char* cmfPath = DICTOOL->getStringValue_json(cmftDic, "path");
+                const char* cmf_tp = tp_c.append(cmfPath).c_str();
+                labelBMFont->setFntFile(cmf_tp);
+                break;
+            }
+            case 1:
+                CCLOG("Wrong res type of LabelAtlas!");
+                break;
+            default:
+                break;
+        }
         
         const char* text = DICTOOL->getStringValue_json(options, "text");
         labelBMFont->setText(text);

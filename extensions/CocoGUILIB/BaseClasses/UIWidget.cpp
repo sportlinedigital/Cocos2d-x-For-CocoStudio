@@ -77,7 +77,11 @@ m_bIsCreatedFromFile(false),
 m_nActionTag(0),
 m_fileDesignSize(CCSizeZero),
 m_pBindingAction(NULL),
-m_pLayoutPrameter(NULL)
+m_pLayoutPrameter(NULL),
+m_fMarginTop(0.0f),
+m_fMarginLeft(0.0f),
+m_fMarginRight(0.0f),
+m_fMarginBottom(0.0f)
 {
     m_WidgetName = WIDGET_WIDGET;
 }

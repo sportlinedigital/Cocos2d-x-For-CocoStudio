@@ -188,8 +188,18 @@ bool UICCTextField::isPasswordEnable()
 
 void UICCTextField::setPasswordStyleText(const char* styleText)
 {
+    if (strlen(styleText) > 1)
+    {
+        return;
+    }
+    char value = atoi(styleText);
+    if (value < 33 || value > 126)
+    {
+        return;
+    }
     m_strPasswordStyleText = styleText;
 }
+
 
 void UICCTextField::setPasswordText(const char *text)
 {

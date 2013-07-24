@@ -30,7 +30,7 @@ void CocosGUITestScene::runThisTest()
         p->addChild(btn);
     }
     
-    p->setLayoutType(UI_LAYOUT_LINEAR_HORIZONTAL);
+    p->setLayoutType(UI_LAYOUT_LINEAR_VERTICAL);
     
     ul->addWidget(p);
     

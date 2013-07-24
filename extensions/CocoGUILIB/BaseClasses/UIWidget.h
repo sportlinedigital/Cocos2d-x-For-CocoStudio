@@ -307,6 +307,13 @@ protected:
     UILayer* m_pUILayer;
 	int m_nActionTag;
     UILayoutPrameter* m_pLayoutPrameter;
+    
+    //test
+    float m_fMarginTop;
+    float m_fMarginLeft;
+    float m_fMarginRight;
+    float m_fMarginBottom;
+    
 };
 
 NS_CC_EXT_END
