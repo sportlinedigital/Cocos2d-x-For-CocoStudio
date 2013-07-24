@@ -371,6 +371,7 @@
 		504D895B17995BBB00E8ED0D /* UIDragPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504D895717995BB600E8ED0D /* UIDragPanel.cpp */; };
 		504D895C17995BBB00E8ED0D /* UIWrapPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504D895917995BB800E8ED0D /* UIWrapPanel.cpp */; };
 		509BEEE2178FBC0200E0EEAC /* CocosGUIExamplesScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509BEEE0178FBC0200E0EEAC /* CocosGUIExamplesScene.cpp */; };
+		50C3616B17A0274F004F27FF /* UILayoutDefine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 50C3616917A0274F004F27FF /* UILayoutDefine.cpp */; };
 		6442E66D17297DB40008499D /* TextureAtlasEncryptionTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6442E66B17297DB40008499D /* TextureAtlasEncryptionTest.cpp */; };
 		A059B9AD174D9B8E0078F84F /* ConfigurationTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A059B9AB174D9B8E0078F84F /* ConfigurationTest.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
@@ -1165,6 +1166,8 @@
 		504D895A17995BB900E8ED0D /* UIWrapPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIWrapPanel.h; sourceTree = "<group>"; };
 		509BEEE0178FBC0200E0EEAC /* CocosGUIExamplesScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocosGUIExamplesScene.cpp; sourceTree = "<group>"; };
 		509BEEE1178FBC0200E0EEAC /* CocosGUIExamplesScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocosGUIExamplesScene.h; sourceTree = "<group>"; };
+		50C3616917A0274F004F27FF /* UILayoutDefine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UILayoutDefine.cpp; sourceTree = "<group>"; };
+		50C3616A17A0274F004F27FF /* UILayoutDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILayoutDefine.h; sourceTree = "<group>"; };
 		6442E66B17297DB40008499D /* TextureAtlasEncryptionTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureAtlasEncryptionTest.cpp; sourceTree = "<group>"; };
 		6442E66C17297DB40008499D /* TextureAtlasEncryptionTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureAtlasEncryptionTest.h; sourceTree = "<group>"; };
 		A059B9AB174D9B8E0078F84F /* ConfigurationTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConfigurationTest.cpp; sourceTree = "<group>"; };
@@ -2986,6 +2989,8 @@
 			children = (
 				5013E5CD179E20510085BB3B /* UILayoutPrameter.cpp */,
 				5013E5CE179E20510085BB3B /* UILayoutPrameter.h */,
+				50C3616917A0274F004F27FF /* UILayoutDefine.cpp */,
+				50C3616A17A0274F004F27FF /* UILayoutDefine.h */,
 			);
 			path = Layouts;
 			sourceTree = "<group>";
@@ -3508,6 +3513,7 @@
 				37C7EF7A179652E800A60CCA /* class.js in Sources */,
 				5013E5CB179D08270085BB3B /* UICCTextField.cpp in Sources */,
 				5013E5CF179E20510085BB3B /* UILayoutPrameter.cpp in Sources */,
+				50C3616B17A0274F004F27FF /* UILayoutDefine.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

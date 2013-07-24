@@ -28,7 +28,7 @@
 #include "cocos2d.h"
 #include "ExtensionMacros.h"
 #include "../Layouts/UILayoutPrameter.h"
-
+#include "../Layouts/UILayoutDefine.h"
 NS_CC_EXT_BEGIN
 
 typedef enum
@@ -240,6 +240,10 @@ public:
     WidgetType getWidgetType();
     WidgetName getWidgetName();
     void setBindingAction(UIActionNode* actionNode);
+    
+    //layout
+    void setMargin(const UIMargin& margin);
+    const UIMargin& getMargin()const;
 protected:
     virtual bool init();
     virtual void initNodes();
@@ -255,6 +259,9 @@ protected:
     void longClickEvent();
     virtual bool hitTest(cocos2d::CCNode* node, cocos2d::CCPoint &pt);
     UIActionNode* m_pBindingAction;
+    
+
+    
 protected:
     bool m_bEnabled;
     bool m_bVisible;
@@ -308,11 +315,8 @@ protected:
 	int m_nActionTag;
     UILayoutPrameter* m_pLayoutPrameter;
     
-    //test
-    float m_fMarginTop;
-    float m_fMarginLeft;
-    float m_fMarginRight;
-    float m_fMarginBottom;
+    //layout
+    UIMargin m_margin;
     
 };
 

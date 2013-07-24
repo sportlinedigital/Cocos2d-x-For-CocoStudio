@@ -107,8 +107,9 @@ void UIContainerWidget::doLayout()
             for (int i=0; i<childrenCount; i++)
             {
                 UIWidget* child = dynamic_cast<UIWidget*>(arrayChildren->arr[i]);
-                child->setPosition(ccp(child->getAnchorPoint().x*child->getContentSize().width, topBoundary-(child->getAnchorPoint().y*child->getContentSize().height)));
-                topBoundary = child->getPosition().y-(child->getAnchorPoint().y*child->getContentSize().height);
+                UIMargin mg = child->getMargin();
+                child->setPosition(ccp(child->getAnchorPoint().x*child->getContentSize().width, topBoundary-(child->getAnchorPoint().y*child->getContentSize().height)-mg.top));
+                topBoundary = child->getPosition().y-(child->getAnchorPoint().y*child->getContentSize().height)-mg.bottom;
             }
             break;
         }

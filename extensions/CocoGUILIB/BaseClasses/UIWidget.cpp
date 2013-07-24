@@ -77,11 +77,7 @@ m_bIsCreatedFromFile(false),
 m_nActionTag(0),
 m_fileDesignSize(CCSizeZero),
 m_pBindingAction(NULL),
-m_pLayoutPrameter(NULL),
-m_fMarginTop(0.0f),
-m_fMarginLeft(0.0f),
-m_fMarginRight(0.0f),
-m_fMarginBottom(0.0f)
+m_pLayoutPrameter(NULL)
 {
     m_WidgetName = WIDGET_WIDGET;
 }
@@ -1333,6 +1329,16 @@ int UIWidget::getActionTag()
 void UIWidget::setBindingAction(cocos2d::extension::UIActionNode *actionNode)
 {
     m_pBindingAction = actionNode;
+}
+
+void UIWidget::setMargin(const cocos2d::extension::UIMargin &margin)
+{
+    m_margin = margin;
+}
+
+const UIMargin& UIWidget::getMargin() const
+{
+    return m_margin;
 }
 
 NS_CC_EXT_END

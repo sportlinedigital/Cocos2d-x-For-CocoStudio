@@ -27,6 +27,8 @@ void CocosGUITestScene::runThisTest()
     {
         UIButton* btn = UIButton::create();
         btn->setTextures("cocosgui/backtotopnormal.png", NULL, NULL);
+        btn->setMargin(UIMargin(0, 10, 0, 10));
+        btn->setTouchEnable(true);
         p->addChild(btn);
     }
     
