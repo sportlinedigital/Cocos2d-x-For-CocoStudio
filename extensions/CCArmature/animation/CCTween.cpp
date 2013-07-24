@@ -136,7 +136,7 @@ void CCTween::play(CCMovementBoneData *movementBoneData, int durationTo, int dur
             m_eLoopType = ANIMATION_NO_LOOP;
         }
 
-        m_iDurationTween = durationTween;
+        m_iDurationTween = durationTween * m_pMovementBoneData->scale;
 
         if (loop && m_pMovementBoneData->delay != 0)
         {

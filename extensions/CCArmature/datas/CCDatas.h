@@ -321,6 +321,7 @@ public:
     CCFrameData *getFrameData(int index);
 public:
     float delay;		//! movement delay percent, this value can produce a delay effect
+	float scale;		//! scale this movement
     float duration;		//! this CCBone in this movement will last m_iDuration frames
     std::string name;	//! bone name
 

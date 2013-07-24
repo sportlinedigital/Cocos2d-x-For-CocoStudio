@@ -303,6 +303,7 @@ void CCFrameData::copy(CCFrameData *frameData)
 
 CCMovementBoneData::CCMovementBoneData()
     : delay(0.0f)
+	, scale(1.0f)
     , duration(0)
     , name("")
 {
