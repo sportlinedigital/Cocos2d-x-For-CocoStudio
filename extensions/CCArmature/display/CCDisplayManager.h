@@ -87,9 +87,9 @@ public:
 
     int getCurrentDisplayIndex();
 
-    void setCurrentDecorativeDisplay(CCDecorativeDisplay *decoDisplay);
-    CCDecorativeDisplay *getCurrentDecorativeDisplay();
-    CCDecorativeDisplay *getDecorativeDisplayByIndex( int index);
+    virtual void setCurrentDecorativeDisplay(CCDecorativeDisplay *decoDisplay);
+    virtual CCDecorativeDisplay *getCurrentDecorativeDisplay();
+    virtual CCDecorativeDisplay *getDecorativeDisplayByIndex( int index);
 
     /**
      * Sets whether the display is visible
