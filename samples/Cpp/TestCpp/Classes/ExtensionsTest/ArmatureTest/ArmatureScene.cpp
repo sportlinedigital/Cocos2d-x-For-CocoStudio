@@ -634,6 +634,9 @@ void TestColliderDetector::onEnter()
 	armature->setScaleX(-0.2f);
 	armature->setScaleY(0.2f);
 	armature->setPosition(ccp(VisibleRect::left().x + 70, VisibleRect::left().y));
+
+	armature->getAnimation()->FrameEventSignal.connect(this, &TestColliderDetector::onFrameEvent);
+
 	addChild(armature);
 
 	armature2 = cocos2d::extension::CCArmature::create("Cowboy");
@@ -682,14 +685,6 @@ void TestColliderDetector::update(float delta)
 	armature2->setVisible(true);
 #endif
 
-	if (armature->getAnimation()->getCurrentFrameIndex() == 9)
-	{
-		CCPoint p = armature->getBone("Layer126")->getDisplayRenderNode()->convertToWorldSpaceAR(ccp(0, 0));
-		bullet->setPosition(ccp(p.x + 60, p.y));
-
-		bullet->stopAllActions();
-		bullet->runAction(CCMoveBy::create(1.5f, ccp(350, 0)));
-	}
 
 #if ENABLE_PHYSICS_BOX2D_DETECT
 	world->Step(delta, 0, 0);
@@ -710,6 +705,17 @@ void TestColliderDetector::update(float delta)
 	cpSpaceStep(space, delta);
 #endif
 }
+
+void TestColliderDetector::onFrameEvent(CCBone *bone, const char *evt)
+{
+	CCPoint p = armature->getBone("Layer126")->getDisplayRenderNode()->convertToWorldSpaceAR(ccp(0, 0));
+	bullet->setPosition(ccp(p.x + 60, p.y));
+
+	bullet->stopAllActions();
+	bullet->runAction(CCMoveBy::create(1.5f, ccp(350, 0)));
+}
+
+
 void TestColliderDetector::initWorld()
 {
 #if ENABLE_PHYSICS_BOX2D_DETECT
