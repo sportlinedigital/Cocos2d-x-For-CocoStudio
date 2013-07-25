@@ -88,6 +88,9 @@
     <Filter Include="CocoAction">
       <UniqueIdentifier>{b6a6876f-bf7f-45d5-920c-89c52909743a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CocoGUILIB\Layout">
+      <UniqueIdentifier>{15cd327f-f5cc-4765-837a-73b2129147ed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\GUI\CCScrollView\CCScrollView.cpp">
@@ -504,6 +507,15 @@
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UIWrapPanel.cpp">
       <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\Layouts\UILayoutDefine.cpp">
+      <Filter>CocoGUILIB\Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\Layouts\UILayoutPrameter.cpp">
+      <Filter>CocoGUILIB\Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\Drawable\UICCTextField.cpp">
+      <Filter>CocoGUILIB\Drawable</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\GUI\CCScrollView\CCScrollView.h">
@@ -897,6 +909,15 @@
     </ClInclude>
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UIWrapPanel.h">
       <Filter>CocoGUILIB\UIWidgets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\Layouts\UILayoutDefine.h">
+      <Filter>CocoGUILIB\Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\Layouts\UILayoutPrameter.h">
+      <Filter>CocoGUILIB\Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\Drawable\UICCTextField.h">
+      <Filter>CocoGUILIB\Drawable</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
