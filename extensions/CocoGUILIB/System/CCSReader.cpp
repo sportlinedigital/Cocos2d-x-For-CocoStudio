@@ -198,6 +198,7 @@ static std::string UTF8ToGBK(const std::string& strUTF8)
 
 UIWidget* CCSReader::widgetFromJsonFile(const char *fileName)
 {
+    m_bOlderVersion = false;
     const char *des = NULL;
     std::string jsonpath;
     cs::CSJsonDictionary *jsonDict = NULL;
