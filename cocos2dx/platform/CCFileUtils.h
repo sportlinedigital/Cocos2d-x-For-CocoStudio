@@ -251,9 +251,9 @@ public:
       *
       * @since v2.1
       */
-     void addSearchPath(const char* path);
+     virtual void addSearchPath(const char* path);
 
-	 void removeSearchPath(const char *path);
+	 virtual void removeSearchPath(const char *path);
 
 	 void removeAllPath();
     

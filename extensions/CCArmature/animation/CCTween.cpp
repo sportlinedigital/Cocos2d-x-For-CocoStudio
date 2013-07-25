@@ -408,13 +408,6 @@ float CCTween::updateFrameData(float currentPrecent)
 
 		m_iBetweenDuration = to->frameID - from->frameID;
 
-		isListEnd = m_eLoopType == ANIMATION_MAX && m_iToIndex == 0;
-
-		if(isListEnd)
-		{
-			to = from = frames[m_iFromIndex];
-		}
-
         m_eFrameTweenEasing = from->tweenEasing;
 
         setBetween(from, to);
