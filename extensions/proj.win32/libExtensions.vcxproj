@@ -152,7 +152,10 @@
     <ClCompile Include="..\CocoGUILIB\BaseClasses\UIRootWidget.cpp" />
     <ClCompile Include="..\CocoGUILIB\BaseClasses\UIWidget.cpp" />
     <ClCompile Include="..\CocoGUILIB\Drawable\UICCLabelAtlas.cpp" />
+    <ClCompile Include="..\CocoGUILIB\Drawable\UICCTextField.cpp" />
     <ClCompile Include="..\CocoGUILIB\Drawable\UIClippingLayer.cpp" />
+    <ClCompile Include="..\CocoGUILIB\Layouts\UILayoutDefine.cpp" />
+    <ClCompile Include="..\CocoGUILIB\Layouts\UILayoutPrameter.cpp" />
     <ClCompile Include="..\CocoGUILIB\System\CCSReader.cpp" />
     <ClCompile Include="..\CocoGUILIB\System\CocosGUI.cpp" />
     <ClCompile Include="..\CocoGUILIB\System\UIHelper.cpp" />
@@ -306,7 +309,10 @@
     <ClInclude Include="..\CocoGUILIB\BaseClasses\UIRootWidget.h" />
     <ClInclude Include="..\CocoGUILIB\BaseClasses\UIWidget.h" />
     <ClInclude Include="..\CocoGUILIB\Drawable\UICCLabelAtlas.h" />
+    <ClInclude Include="..\CocoGUILIB\Drawable\UICCTextField.h" />
     <ClInclude Include="..\CocoGUILIB\Drawable\UIClippingLayer.h" />
+    <ClInclude Include="..\CocoGUILIB\Layouts\UILayoutDefine.h" />
+    <ClInclude Include="..\CocoGUILIB\Layouts\UILayoutPrameter.h" />
     <ClInclude Include="..\CocoGUILIB\System\CCSReader.h" />
     <ClInclude Include="..\CocoGUILIB\System\CocosGUI.h" />
     <ClInclude Include="..\CocoGUILIB\System\UIHelper.h" />
