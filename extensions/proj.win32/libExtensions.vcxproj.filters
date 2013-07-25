@@ -507,6 +507,16 @@
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UIWrapPanel.cpp">
       <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="..\CocoGUILIB\Layouts\UILayoutDefine.cpp">
+      <Filter>CocoGUILIB\Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\Layouts\UILayoutPrameter.cpp">
+      <Filter>CocoGUILIB\Layout</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\Drawable\UICCTextField.cpp">
+      <Filter>CocoGUILIB\Drawable</Filter>
+=======
     <ClCompile Include="..\CocoGUILIB\Drawable\UICCTextField.cpp">
       <Filter>CocoGUILIB\Drawable</Filter>
     </ClCompile>
@@ -515,6 +525,7 @@
     </ClCompile>
     <ClCompile Include="..\CocoGUILIB\Layouts\UILayoutPrameter.cpp">
       <Filter>CocoGUILIB\Layerouts</Filter>
+>>>>>>> master
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -910,6 +921,16 @@
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UIWrapPanel.h">
       <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="..\CocoGUILIB\Layouts\UILayoutDefine.h">
+      <Filter>CocoGUILIB\Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\Layouts\UILayoutPrameter.h">
+      <Filter>CocoGUILIB\Layout</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\Drawable\UICCTextField.h">
+      <Filter>CocoGUILIB\Drawable</Filter>
+=======
     <ClInclude Include="..\CocoGUILIB\Drawable\UICCTextField.h">
       <Filter>CocoGUILIB\Drawable</Filter>
     </ClInclude>
@@ -918,6 +939,7 @@
     </ClInclude>
     <ClInclude Include="..\CocoGUILIB\Layouts\UILayoutPrameter.h">
       <Filter>CocoGUILIB\Layerouts</Filter>
+>>>>>>> master
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
