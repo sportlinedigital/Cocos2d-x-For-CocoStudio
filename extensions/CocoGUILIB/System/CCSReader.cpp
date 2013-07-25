@@ -880,8 +880,8 @@ void CCSReader::setPropsForPanelFromJsonDictionary(UIWidget*widget,cs::CSJsonDic
         int ecg = DICTOOL->getIntValue_json(options, "bgEndColorG");
         int ecb = DICTOOL->getIntValue_json(options, "bgEndColorB");
         
-        float bgcv1 = DICTOOL->getFloatValue_json(options, "bgColorVectorX");
-        float bgcv2 = DICTOOL->getFloatValue_json(options, "bgColorVectorY");
+        float bgcv1 = DICTOOL->getFloatValue_json(options, "vectorX");
+        float bgcv2 = DICTOOL->getFloatValue_json(options, "vectorY");
         panel->setBackGroundColorVector(ccp(bgcv1, bgcv2));
         
         int co = DICTOOL->getIntValue_json(options, "bgColorOpacity");
@@ -947,8 +947,8 @@ void CCSReader::setPropsForPanelFromJsonDictionary(UIWidget*widget,cs::CSJsonDic
         int ecg = DICTOOL->getIntValue_json(options, "bgEndColorG");
         int ecb = DICTOOL->getIntValue_json(options, "bgEndColorB");
         
-        float bgcv1 = DICTOOL->getFloatValue_json(options, "bgColorVectorX");
-        float bgcv2 = DICTOOL->getFloatValue_json(options, "bgColorVectorY");
+        float bgcv1 = DICTOOL->getFloatValue_json(options, "vectorX");
+        float bgcv2 = DICTOOL->getFloatValue_json(options, "vectorY");
         panel->setBackGroundColorVector(ccp(bgcv1, bgcv2));
         
         int co = DICTOOL->getIntValue_json(options, "bgColorOpacity");
