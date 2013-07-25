@@ -18,8 +18,8 @@ void CocosGUITestScene::runThisTest()
 //    UIButton* exitBtn = dynamic_cast<UIButton*>(ul->getWidgetByName("exitbutton"));
 //    exitBtn->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::toCocosGUIExampleScene));
     UIPanel* p = UIPanel::create();
-    p->setSize(CCSizeMake(200, 200));
-    p->setPosition(ccp(100, 100));
+    p->setSize(CCSizeMake(300, 300));
+    p->setPosition(ccp(10, 10));
     p->setBackGroundColor(ccGREEN);
     p->setBackGroundColorType(PANEL_COLOR_SOLID);
     p->setClippingEnable(true);
@@ -27,26 +27,35 @@ void CocosGUITestScene::runThisTest()
     {
         UIButton* btn = UIButton::create();
         btn->setTextures("cocosgui/backtotopnormal.png", NULL, NULL);
-        btn->setMargin(UIMargin(0, 10, 0, 10));
+//        btn->setMargin(UIMargin(0, 10, 0, 10));
         btn->setTouchEnable(true);
         p->addChild(btn);
         if (i==1)
         {
-            btn->setLinearGravity(LINEAR_GRAVITY_CENTER_HORIZONTAL);
+//            btn->setAnchorPoint(ccp(2345, 2345));
+//            btn->setLinearGravity(LINEAR_GRAVITY_CENTER_VERTICAL);
         }
     }
+    p->setName("linearlayout");
     
-    p->setLayoutType(UI_LAYOUT_LINEAR_VERTICAL);
     
     ul->addWidget(p);
     
 }
 void CocosGUITestScene::MainMenuCallback(CCObject* pSender)
 {
+    static bool is = true;
+    if (is) {
+        ((UIContainerWidget*)ul->getWidgetByName("linearlayout"))->setLayoutType(UI_LAYOUT_LINEAR_HORIZONTAL);
+    }else
+    {
+        ((UIContainerWidget*)ul->getWidgetByName("linearlayout"))->setLayoutType(UI_LAYOUT_LINEAR_VERTICAL);
+    }
+    is = !is;
     CCLOG("p1 click");
     CCLOG("p1 retain count == %d",ul->retainCount());
-    ul->removeFromParent();
-    TestScene::MainMenuCallback(pSender);
+//    ul->removeFromParent();
+//    TestScene::MainMenuCallback(pSender);
 }
 
 void CocosGUITestScene::toCocosGUIExampleScene(CCObject* pSender)
