@@ -26,6 +26,7 @@
 #define __UITEXTFIELD_H__
 
 #include "../BaseClasses/UIWidget.h"
+#include "../Drawable/UICCTextField.h"
 
 
 NS_CC_EXT_BEGIN
@@ -57,8 +58,13 @@ public:
     const char* getStringValue();
     virtual void onTouchBegan(cocos2d::CCPoint &touchPoint);
     virtual bool pointAtSelfBody(cocos2d::CCPoint &pt);
-    void setCharacterLength(int length);
-    void setIsPassWord(bool isPassword);
+    void setMaxLengthEnable(bool enable);
+    bool isMaxLengthEnable();
+    void setMaxLength(int length);
+    int getMaxLength();
+    void setPasswordEnable(bool enable);
+    bool isPasswordEnable();
+    void setPasswordStyleText(const char* styleText);
     void update(float dt);
     bool getAttachWithIME();
     void setAttachWithIME(bool attach);
@@ -97,7 +103,7 @@ protected:
     SEL_TextFieldInsertTextEvent m_pfnInsertTextSelector;
     SEL_TextFieldDeleteBackwardEvent m_pfnDeleteBackwardSelector;
     
-    CCTextFieldTTF * m_pRenderTextField;
+    UICCTextField* m_pRenderTextField;
 };
 
 NS_CC_EXT_END

@@ -40,18 +40,27 @@ UIActionManager* UIActionManager::shareManager()
 
 UIActionManager::UIActionManager()
 {
-	m_ActionList = cocos2d::CCArray::create();
-	m_ActionList->retain();
+//	m_ActionList = cocos2d::CCArray::create();
+//	m_ActionList->retain();
+    m_pActionDic = CCDictionary::create();
+    m_pActionDic->retain();
 }
 
 UIActionManager::~UIActionManager()
 {
-	m_ActionList->removeAllObjects();
-	m_ActionList->release();
+//	m_ActionList->removeAllObjects();
+//	m_ActionList->release();
+    m_pActionDic->removeAllObjects();
+    m_pActionDic->release();
 }
 
-void UIActionManager::initWithDictionary(cs::CSJsonDictionary *dic,UIWidget* root)
+void UIActionManager::initWithDictionary(const char* jsonName,cs::CSJsonDictionary *dic,UIWidget* root)
 {
+    std::string path = jsonName;
+    int pos = path.find_last_of("/");
+    std::string fileName = path.substr(pos+1,path.length());
+    CCLOG("filename == %s",fileName.c_str());
+    CCArray* actionList = CCArray::create();
     int actionCount = DICTOOL->getArrayCount_json(dic, "actionlist");
     for (int i=0; i<actionCount; i++)
     {
@@ -59,15 +68,21 @@ void UIActionManager::initWithDictionary(cs::CSJsonDictionary *dic,UIWidget* roo
         action->autorelease();
         cs::CSJsonDictionary* actionDic = DICTOOL->getDictionaryFromArray_json(dic, "actionlist", i);
         action->initWithDictionary(actionDic,root);
-        m_ActionList->addObject(action);
+        actionList->addObject(action);
     }
+    m_pActionDic->setObject(actionList, fileName);
 }
 
-UIAction* UIActionManager::GetActionByName(const char* actionName)
+UIAction* UIActionManager::GetActionByName(const char* jsonName,const char* actionName)
 {
-    for (int i=0; i<m_ActionList->count(); i++)
+    CCArray* actionList = (CCArray*)(m_pActionDic->objectForKey(jsonName));
+    if (!actionList)
     {
-        UIAction* action = dynamic_cast<UIAction*>(m_ActionList->objectAtIndex(i));
+        return NULL;
+    }
+    for (int i=0; i<actionList->count(); i++)
+    {
+        UIAction* action = dynamic_cast<UIAction*>(actionList->objectAtIndex(i));
         if (strcmp(actionName, action->getName()) == 0)
         {
             return action;
@@ -76,9 +91,9 @@ UIAction* UIActionManager::GetActionByName(const char* actionName)
     return NULL;
 }
 
-void UIActionManager::PlayActionByName(const char* actionName)
+void UIActionManager::PlayActionByName(const char* jsonName,const char* actionName)
 {
-    UIAction* action = GetActionByName(actionName);
+    UIAction* action = GetActionByName(jsonName,actionName);
     if (action)
     {
         action->Play();
@@ -88,7 +103,7 @@ void UIActionManager::PlayActionByName(const char* actionName)
 /*temp */
 void UIActionManager::releaseActions()
 {
-    m_ActionList->removeAllObjects();
+    m_pActionDic->removeAllObjects();
 //    int times = m_ActionList->data->num;
 //    for (int i=0; i<times; i++)
 //    {

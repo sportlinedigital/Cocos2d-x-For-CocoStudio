@@ -3,7 +3,8 @@
     "textures" : [],
     "designWidth" : 480.0,
     "designHeight" : 320.0,
-    "widgetTree" : {
+    "widgetTree" :
+    {
         "classname" : "Panel",
         "options" :
         {
@@ -12,6 +13,54 @@
         },
         "children" :
         [
+        {
+         "classname" : "DragPanel",
+         "options" :
+         {
+         "bounceEnable" : true,
+         "x" : 120,
+         "y" : 30,
+         "width" : 150,
+         "height" : 100,
+         "backGroundScale9Enable" : true,
+         "clipAble" : true,
+         "touchAble" : true,
+         "backGroundImage" : "scrollviewbg.png",
+         "name" : "dragpanel"
+         },
+         "children" : [
+                       {
+                       "classname" : "ImageView",
+                       "options" :
+                       {
+                       "x" : 120,
+                       "y" : 80,
+                       "fileName" : "b11.png",
+                       "touchAble" : true,
+                       "scale9Enable" : true,
+                       "capInsetsX" : 0,
+                       "capInsetsY" : 0,
+                       "capInsetsWidth" : 0,
+                       "capInsetsHeight" : 0,
+                       "scale9Width" : 512,
+                       "scale9Height" : 512,
+                       "flipX" : false,
+                       "flipY" : false,
+                       "name" : "imageview1"
+                       },
+                       "children" :[]
+                       }
+                       ]
+        },
+        {
+         "classname" : "Label",
+         "options" : {
+         "x" : 195,
+         "y" : 20,
+         "text" : "任意滚动层"
+         },
+         "children" : []
+        },
         {
          "classname" : "ScrollView",
          "options" :
@@ -316,6 +365,7 @@
          },
          "children" :[]
          },
+         /*
          {
          "classname" : "Button",
          "options" :
@@ -342,15 +392,19 @@
          },
          "children" :[]
          },
+          */
          {
          "classname" : "TextField",
          "options" :
          {
          "x" : 240,
-         "y" : 150,
+         "y" : 200,
          "fontSize" : 20,
          "placeHolder" : "TextField",
          "touchAble" : true,
+         "colorR" : 0,
+         "colorG" : 255,
+         "colorB" : 0,
          "name" : "textfield"
          },
          "children" :[]
@@ -372,7 +426,10 @@
          "options" :
          {
          "x" : 430,
-         "y" : 40,         
+         "y" : 40,
+         "colorR" : 0,
+         "colorG" : 255,
+         "colorB" : 0,
          "touchAble" : true,
          "touchSacleEnable" : true,
          "name" : "exitbutton",

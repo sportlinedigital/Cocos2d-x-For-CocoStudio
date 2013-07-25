@@ -22,34 +22,24 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#ifndef __UIACTIONMANAGER_H__
-#define __UIACTIONMANAGER_H__
+
+#ifndef __UILAYOUTPRAMETER_H__
+#define __UILAYOUTPRAMETER_H__
 
 #include "cocos2d.h"
 #include "ExtensionMacros.h"
-#include "UIAction.h"
-#include "../../CCArmature/external_tool/Json/CSContentJsonDictionary.h"
 
 NS_CC_EXT_BEGIN
 
-class UIActionManager:public cocos2d::CCObject
+class UILayoutPrameter : CCObject
 {
-protected:
-//	cocos2d::CCArray* m_ActionList;/*guiaction*/
-    CCDictionary* m_pActionDic;
-
 public:
-    UIActionManager();
-    virtual ~UIActionManager();
-    static UIActionManager* shareManager();
-	UIAction* GetActionByName(const char* jsonName,const char* actionName);
-
-	void PlayActionByName(const char* jsonName,const char* actionName);
+    UILayoutPrameter();
+    virtual ~UILayoutPrameter();
+protected:
     
-    void initWithDictionary(const char* jsonName, cs::CSJsonDictionary* dic,UIWidget* root);
-    void releaseActions();
 };
 
 NS_CC_EXT_END
 
-#endif
+#endif /* defined(UILayoutPrameter) */

@@ -165,13 +165,13 @@ void UILabel::setGravity(LabelGravity gravity)
     switch (m_nGravity)
     {
         case LabelGravityCenter:
-            m_pRenderLabel->setAnchorPoint(ccp(0.5, 0.5));
+            m_pRenderLabel->setAnchorPoint(ccp(0.5f, 0.5f));
             break;
         case LabelGravityLelf:
-            m_pRenderLabel->setAnchorPoint(ccp(0.0, 0.5));
+            m_pRenderLabel->setAnchorPoint(ccp(0.0f, 0.5f));
             break;
         case LabelGravityRight:
-            m_pRenderLabel->setAnchorPoint(ccp(1.0, 0.5));
+            m_pRenderLabel->setAnchorPoint(ccp(1.0f, 0.5f));
             break;
         default:
             break;

@@ -27,10 +27,6 @@
 NS_CC_EXT_BEGIN
 
 UIWrapPanel::UIWrapPanel()
-: m_fLeftBoundary(0.0f)
-, m_fTopBoundary(0.0f)
-, m_fRightBoundary(0.0f)
-, m_fBottomBoundary(0.0f)
 {
     
 }
@@ -123,41 +119,21 @@ void UIWrapPanel::updateWidthAndHeight()
         }
     }
     
-    m_fLeftBoundary = leftChild->getRelativeLeftPos();
-    m_fRightBoundary = rightChild->getRelativeRightPos();
-    m_fTopBoundary = topChild->getRelativeTopPos();;
-    m_fBottomBoundary = bottomChild->getRelativeBottomPos();;
+    float leftBoundary = leftChild->getRelativeLeftPos();
+    float rightBoundary = rightChild->getRelativeRightPos();
+    float topBoundary = topChild->getRelativeTopPos();
+    float bottomBoundary = bottomChild->getRelativeBottomPos();
     
-    float resWidth = m_fRightBoundary - m_fLeftBoundary;
-    float resHeight = m_fTopBoundary - m_fBottomBoundary;
+    float resWidth = rightBoundary - leftBoundary;
+    float resHeight = topBoundary - bottomBoundary;
     setSize(CCSizeMake(resWidth, resHeight));
     
-    setPosition(ccp(getPosition().x + m_fLeftBoundary, getPosition().y + m_fBottomBoundary));
+    setPosition(ccp(getPosition().x + leftBoundary, getPosition().y + bottomBoundary));
     for (int i = 0; i < childrenCount; i++)
     {
         UIWidget* child = (UIWidget*)(arrayChildren->arr[i]);
-        child->setPosition(ccp(child->getPosition().x - m_fLeftBoundary, child->getPosition().y - m_fBottomBoundary));
+        child->setPosition(ccp(child->getPosition().x - leftBoundary, child->getPosition().y - bottomBoundary));
     } 
-}
-
-float UIWrapPanel::getLeftBoundary()
-{
-    return m_fLeftBoundary;
-}
-
-float UIWrapPanel::getTopBoundary()
-{
-    return m_fTopBoundary;
-}
-
-float UIWrapPanel::getRightBoundary()
-{
-    return m_fRightBoundary;
-}
-
-float UIWrapPanel::getBottomBoundary()
-{
-    return m_fBottomBoundary;
 }
 
 NS_CC_EXT_END

@@ -69,7 +69,7 @@ m_gEndColor(ccWHITE),
 m_nCOpacity(255),
 m_parentClippingRect(CCRectZero),
 m_clippingRect(CCRectZero),
-m_AlongVector(CCPointZero)
+m_AlongVector(ccp(0.0f, -1.0f))
 {
     
 }

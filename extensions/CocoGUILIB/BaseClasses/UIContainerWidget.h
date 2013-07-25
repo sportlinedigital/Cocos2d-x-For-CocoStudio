@@ -35,6 +35,18 @@ typedef enum
     RENDER_TYPE_LAYERGRADIENT
 }RenderType;
 
+typedef enum
+{
+    UI_LAYOUT_ABSOLUTE,
+    UI_LAYOUT_LINEAR_VERTICAL,
+    UI_LAYOUT_LINEAR_HORIZONTAL,
+    UI_LAYOUT_RELATIVE,
+    UI_LAYOUT_GRID,
+    UI_LAYOUT_BORDER,
+    UI_LAYOUT_FRAME,
+    UI_LAYOUT_TABLE
+}LayoutType;
+
 
 class UIContainerWidget : public UIWidget
 {
@@ -42,8 +54,9 @@ public:
     UIContainerWidget();
     virtual ~UIContainerWidget();
     static UIContainerWidget* create();
-    //Only containerWidget can use the LayoutParameter for doing layout to child widget
-    virtual void setLayoutParameter(/*LayoutParameter * parmeter*/);
+    //Only containerWidget can use the LayoutType for doing layout to child widget
+    virtual void setLayoutType(LayoutType type);
+    virtual void doLayout();
     virtual bool addChild(UIWidget* child);
     virtual void setClippingEnable(bool able);
     virtual void setClipRect(const cocos2d::CCRect &rect);
@@ -63,6 +76,7 @@ protected:
     float m_fHeight;
     bool m_bClipAble;
     RenderType m_renderType;
+    LayoutType m_eLayoutType;
 };
 
 NS_CC_EXT_END
