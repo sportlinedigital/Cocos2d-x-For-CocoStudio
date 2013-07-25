@@ -27,7 +27,6 @@
 
 #include "cocos2d.h"
 #include "ExtensionMacros.h"
-#include "../Layouts/UILayoutPrameter.h"
 #include "../Layouts/UILayoutDefine.h"
 NS_CC_EXT_BEGIN
 
@@ -244,6 +243,8 @@ public:
     //layout
     void setMargin(const UIMargin& margin);
     const UIMargin& getMargin()const;
+    void setLinearGravity(UILinearGravity gravity);
+    UILinearGravity getLinearGravity();
 protected:
     virtual bool init();
     virtual void initNodes();
@@ -313,11 +314,10 @@ protected:
     WidgetName m_WidgetName;
     UILayer* m_pUILayer;
 	int m_nActionTag;
-    UILayoutPrameter* m_pLayoutPrameter;
     
     //layout
     UIMargin m_margin;
-    
+    UILinearGravity m_eLinearGravity;
 };
 
 NS_CC_EXT_END

@@ -106,9 +106,34 @@ void UIContainerWidget::doLayout()
             float topBoundary = m_fHeight;
             for (int i=0; i<childrenCount; i++)
             {
+                
                 UIWidget* child = dynamic_cast<UIWidget*>(arrayChildren->arr[i]);
+                UILinearGravity childGravity = child->getLinearGravity();
+                float finalPosX = child->getAnchorPoint().x*child->getContentSize().width;
+                switch (childGravity)
+                {
+                    case LINEAR_GRAVITY_NONE:
+                        break;
+                    case LINEAR_GRAVITY_LEFT:
+                        
+                        break;
+                    case LINEAR_GRAVITY_TOP:
+                        break;
+                    case LINEAR_GRAVITY_RIGHT:
+                        finalPosX = m_fWidth - ((1.0f-child->getAnchorPoint().x)*child->getContentSize().width);
+                        break;
+                    case LINEAR_GRAVITY_BOTTOM:
+                        break;
+                    case LINEAR_GRAVITY_CENTER_HORIZONTAL:
+                        finalPosX = m_fWidth/2.0f - (child->getContentSize().width)*(0.5f-child->getAnchorPoint().x);
+                        break;
+                    case LINEAR_GRAVITY_CENTER_VERTICAL:
+                        break;
+                    default:
+                        break;
+                }
                 UIMargin mg = child->getMargin();
-                child->setPosition(ccp(child->getAnchorPoint().x*child->getContentSize().width, topBoundary-(child->getAnchorPoint().y*child->getContentSize().height)-mg.top));
+                child->setPosition(ccp(finalPosX+mg.left, topBoundary-(child->getAnchorPoint().y*child->getContentSize().height)-mg.top));
                 topBoundary = child->getPosition().y-(child->getAnchorPoint().y*child->getContentSize().height)-mg.bottom;
             }
             break;

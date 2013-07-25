@@ -77,7 +77,7 @@ m_bIsCreatedFromFile(false),
 m_nActionTag(0),
 m_fileDesignSize(CCSizeZero),
 m_pBindingAction(NULL),
-m_pLayoutPrameter(NULL)
+m_eLinearGravity(LINEAR_GRAVITY_NONE)
 {
     m_WidgetName = WIDGET_WIDGET;
 }
@@ -1339,6 +1339,16 @@ void UIWidget::setMargin(const cocos2d::extension::UIMargin &margin)
 const UIMargin& UIWidget::getMargin() const
 {
     return m_margin;
+}
+
+void UIWidget::setLinearGravity(UILinearGravity gravity)
+{
+    m_eLinearGravity = gravity;
+}
+
+UILinearGravity UIWidget::getLinearGravity()
+{
+    return m_eLinearGravity;
 }
 
 NS_CC_EXT_END
