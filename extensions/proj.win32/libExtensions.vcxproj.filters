@@ -88,8 +88,8 @@
     <Filter Include="CocoAction">
       <UniqueIdentifier>{b6a6876f-bf7f-45d5-920c-89c52909743a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="CocoGUILIB\Layout">
-      <UniqueIdentifier>{15cd327f-f5cc-4765-837a-73b2129147ed}</UniqueIdentifier>
+    <Filter Include="CocoGUILIB\Layerouts">
+      <UniqueIdentifier>{f8705cd3-23c5-43da-8ad1-c0f4611dc1c4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -507,6 +507,7 @@
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UIWrapPanel.cpp">
       <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="..\CocoGUILIB\Layouts\UILayoutDefine.cpp">
       <Filter>CocoGUILIB\Layout</Filter>
     </ClCompile>
@@ -515,6 +516,16 @@
     </ClCompile>
     <ClCompile Include="..\CocoGUILIB\Drawable\UICCTextField.cpp">
       <Filter>CocoGUILIB\Drawable</Filter>
+=======
+    <ClCompile Include="..\CocoGUILIB\Drawable\UICCTextField.cpp">
+      <Filter>CocoGUILIB\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\Layouts\UILayoutDefine.cpp">
+      <Filter>CocoGUILIB\Layerouts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\Layouts\UILayoutPrameter.cpp">
+      <Filter>CocoGUILIB\Layerouts</Filter>
+>>>>>>> master
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -910,6 +921,7 @@
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UIWrapPanel.h">
       <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="..\CocoGUILIB\Layouts\UILayoutDefine.h">
       <Filter>CocoGUILIB\Layout</Filter>
     </ClInclude>
@@ -918,6 +930,16 @@
     </ClInclude>
     <ClInclude Include="..\CocoGUILIB\Drawable\UICCTextField.h">
       <Filter>CocoGUILIB\Drawable</Filter>
+=======
+    <ClInclude Include="..\CocoGUILIB\Drawable\UICCTextField.h">
+      <Filter>CocoGUILIB\Drawable</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\Layouts\UILayoutDefine.h">
+      <Filter>CocoGUILIB\Layerouts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\Layouts\UILayoutPrameter.h">
+      <Filter>CocoGUILIB\Layerouts</Filter>
+>>>>>>> master
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
