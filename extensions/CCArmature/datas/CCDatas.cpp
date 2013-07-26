@@ -224,6 +224,7 @@ CCBoneData::CCBoneData(void)
     : name("")
     , parentName("")
 {
+	scaleX = scaleY = 0;
 }
 
 CCBoneData::~CCBoneData(void)
