@@ -192,7 +192,7 @@ void UICCTextField::setPasswordStyleText(const char* styleText)
     {
         return;
     }
-    char value = atoi(styleText);
+    char value = styleText[0];
     if (value < 33 || value > 126)
     {
         return;
