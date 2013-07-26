@@ -84,21 +84,17 @@ void UIContainerWidget::setLayoutType(LayoutType type)
     doLayout();
 }
 
+LayoutType UIContainerWidget::getLayoutType()
+{
+    return m_eLayoutType;
+}
+
 void UIContainerWidget::doLayout()
 {
     switch (m_eLayoutType)
     {
         case UI_LAYOUT_ABSOLUTE:
-        {
-            ccArray* arrayChildren = m_children->data;
-            int childrenCount = arrayChildren->num;
-            for (int i=0; i<childrenCount; i++)
-            {
-                UIWidget* child = dynamic_cast<UIWidget*>(arrayChildren->arr[i]);
-                child->setPosition(child->getPosition());
-            }
             break;
-        }
         case UI_LAYOUT_LINEAR_VERTICAL:
         {
             ccArray* arrayChildren = m_children->data;
@@ -113,7 +109,6 @@ void UIContainerWidget::doLayout()
                 {
                     case LINEAR_GRAVITY_NONE:
                     case LINEAR_GRAVITY_LEFT:
-//                        finalPosX = child->getAnchorPoint().x*child->getContentSize().width;
                         break;
                     case LINEAR_GRAVITY_RIGHT:
                         finalPosX = m_fWidth - ((1.0f-child->getAnchorPoint().x)*child->getContentSize().width);
@@ -125,11 +120,8 @@ void UIContainerWidget::doLayout()
                         break;
                 }
                 UIMargin mg = child->getMargin();
-                child->setPosition(ccp(finalPosX+mg.left, topBoundary-(child->getAnchorPoint().y*child->getContentSize().height)-mg.top));
+                child->setPosition(ccp(finalPosX+mg.left, topBoundary-((1.0f-child->getAnchorPoint().y)*child->getContentSize().height)-mg.top));
                 topBoundary = child->getRelativeBottomPos()-mg.bottom;
-                CCLOG("topBound == %f",topBoundary);
-                CCLOG("child->getRelativeBottomPos() == %f",child->getRelativeBottomPos());
-                CCLOG("mg.bottom == %f",mg.bottom);
             }
             break;
         }
@@ -137,7 +129,7 @@ void UIContainerWidget::doLayout()
         {
             ccArray* arrayChildren = m_children->data;
             int childrenCount = arrayChildren->num;
-            float leftBoundary = 0;
+            float leftBoundary = 0.0f;
             for (int i=0; i<childrenCount; i++)
             {
                 UIWidget* child = dynamic_cast<UIWidget*>(arrayChildren->arr[i]);
@@ -160,17 +152,15 @@ void UIContainerWidget::doLayout()
                 UIMargin mg = child->getMargin();
                 child->setPosition(ccp(leftBoundary+mg.left+(child->getAnchorPoint().x*child->getContentSize().width), finalPosY-mg.top));
                 leftBoundary = child->getRelativeRightPos()+mg.right;
-                CCLOG("leftBoundary == %f",leftBoundary);
             }
             break;
         }
         case UI_LAYOUT_RELATIVE:
+            
             break;
         case UI_LAYOUT_GRID:
             break;
         case UI_LAYOUT_BORDER:
-            break;
-        case UI_LAYOUT_FRAME:
             break;
         case UI_LAYOUT_TABLE:
             break;

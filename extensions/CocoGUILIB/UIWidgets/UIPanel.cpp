@@ -67,9 +67,18 @@ void UIPanel::initNodes()
 
 void UIPanel::addBackGroundImage()
 {
-    m_pBackGroundImage = CCSprite::create();
-    m_pBackGroundImage->setZOrder(-1);
-    m_pRender->addChild(m_pBackGroundImage);
+    if (m_bBackGroundScale9Enable)
+    {
+        m_pBackGroundImage = CCScale9Sprite::create();
+        m_pBackGroundImage->setZOrder(-1);
+        m_pRender->addChild(m_pBackGroundImage);
+    }
+    else
+    {
+        m_pBackGroundImage = CCSprite::create();
+        m_pBackGroundImage->setZOrder(-1);
+        m_pRender->addChild(m_pBackGroundImage);
+    }
 }
 
 void UIPanel::removeBackGroundImage()

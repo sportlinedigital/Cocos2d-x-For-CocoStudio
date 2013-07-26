@@ -43,7 +43,6 @@ typedef enum
     UI_LAYOUT_RELATIVE,
     UI_LAYOUT_GRID,
     UI_LAYOUT_BORDER,
-    UI_LAYOUT_FRAME,
     UI_LAYOUT_TABLE
 }LayoutType;
 
@@ -56,6 +55,7 @@ public:
     static UIContainerWidget* create();
     //Only containerWidget can use the LayoutType for doing layout to child widget
     virtual void setLayoutType(LayoutType type);
+    virtual LayoutType getLayoutType();
     virtual void doLayout();
     virtual bool addChild(UIWidget* child);
     virtual void setClippingEnable(bool able);

@@ -317,7 +317,10 @@ protected:
     
     //layout
     UIMargin m_margin;
+    //linear
     UILinearGravity m_eLinearGravity;
+    //relative
+    
 };
 
 NS_CC_EXT_END

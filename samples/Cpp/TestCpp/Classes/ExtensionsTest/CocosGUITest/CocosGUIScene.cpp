@@ -26,30 +26,33 @@ void CocosGUITestScene::runThisTest()
     for (int i=0; i<10; i++)
     {
         UIButton* btn = UIButton::create();
-        btn->setTextures("cocosgui/backtotopnormal.png", NULL, NULL);
+        btn->setTextures("cocosgui/animationbuttonnormal.png", "cocosgui/animationbuttonpressed.png", NULL);
 //        btn->setMargin(UIMargin(0, 10, 0, 10));
         btn->setTouchEnable(true);
         p->addChild(btn);
         if (i==1)
         {
-//            btn->setAnchorPoint(ccp(2345, 2345));
-//            btn->setLinearGravity(LINEAR_GRAVITY_CENTER_VERTICAL);
+            btn->setAnchorPoint(ccp(2345, 2345));
+            btn->setLinearGravity(LINEAR_GRAVITY_CENTER_HORIZONTAL);
+            btn->setName("btn");
         }
     }
     p->setName("linearlayout");
     
-    
+    p->setLayoutType(UI_LAYOUT_LINEAR_VERTICAL);
     ul->addWidget(p);
     
 }
 void CocosGUITestScene::MainMenuCallback(CCObject* pSender)
 {
     static bool is = true;
-    if (is) {
-        ((UIContainerWidget*)ul->getWidgetByName("linearlayout"))->setLayoutType(UI_LAYOUT_LINEAR_HORIZONTAL);
-    }else
+    if (is)
     {
-        ((UIContainerWidget*)ul->getWidgetByName("linearlayout"))->setLayoutType(UI_LAYOUT_LINEAR_VERTICAL);
+        ((UIContainerWidget*)ul->getWidgetByName("linearlayout"))->getChildByName("btn")->setMargin(UIMargin(10,10,10,10));
+    }
+    else
+    {
+        ((UIContainerWidget*)ul->getWidgetByName("linearlayout"))->getChildByName("btn")->setMargin(UIMargin(0,0,0,0));
     }
     is = !is;
     CCLOG("p1 click");

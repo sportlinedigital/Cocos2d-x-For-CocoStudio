@@ -1334,6 +1334,15 @@ void UIWidget::setBindingAction(cocos2d::extension::UIActionNode *actionNode)
 void UIWidget::setMargin(const cocos2d::extension::UIMargin &margin)
 {
     m_margin = margin;
+    UIWidget* parent = getWidgetParent();
+    if (parent)
+    {
+        UIContainerWidget* containerParent = dynamic_cast<UIContainerWidget*>(parent);
+        if (containerParent)
+        {
+            containerParent->doLayout();
+        }
+    }
 }
 
 const UIMargin& UIWidget::getMargin() const
@@ -1344,6 +1353,15 @@ const UIMargin& UIWidget::getMargin() const
 void UIWidget::setLinearGravity(UILinearGravity gravity)
 {
     m_eLinearGravity = gravity;
+    UIWidget* parent = getWidgetParent();
+    if (parent)
+    {
+        UIContainerWidget* containerParent = dynamic_cast<UIContainerWidget*>(parent);
+        if (containerParent && (containerParent->getLayoutType() == UI_LAYOUT_LINEAR_HORIZONTAL || containerParent->getLayoutType() == UI_LAYOUT_LINEAR_VERTICAL))
+        {
+            containerParent->doLayout();
+        }
+    }
 }
 
 UILinearGravity UIWidget::getLinearGravity()
