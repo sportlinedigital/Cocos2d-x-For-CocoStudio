@@ -320,7 +320,7 @@ protected:
     //linear
     UILinearGravity m_eLinearGravity;
     //relative
-    
+    UIRelativeAlignParent m_eRelativeAlignParent;
 };
 
 NS_CC_EXT_END
