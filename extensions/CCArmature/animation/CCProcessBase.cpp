@@ -137,7 +137,7 @@ void CCProcessBase::update(float dt)
 void CCProcessBase::gotoFrame(int frameIndex)
 {
     m_iCurFrameIndex = frameIndex;
-    stop();
+    pause();
 }
 
 int CCProcessBase::getCurrentFrameIndex()
