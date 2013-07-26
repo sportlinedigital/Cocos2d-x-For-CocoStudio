@@ -163,17 +163,12 @@ void CCBone::update(float delta)
 
     if (m_bBoneTransformDirty)
     {
-        float cosX	= cos(m_pTweenData->skewX);
-        float cosY	= cos(m_pTweenData->skewY);
-        float sinX	= sin(m_pTweenData->skewX);
-        float sinY  = sin(m_pTweenData->skewY);
-
-        m_tWorldTransform.a = m_pTweenData->scaleX * cosY;
-        m_tWorldTransform.b = m_pTweenData->scaleX * sinY;
-        m_tWorldTransform.c = m_pTweenData->scaleY * sinX;
-        m_tWorldTransform.d = m_pTweenData->scaleY * cosX;
-        m_tWorldTransform.tx = m_pTweenData->x;
-        m_tWorldTransform.ty = m_pTweenData->y;
+		if (m_pArmature->getArmatureData()->dataVersion >= VERSION_COMBINED)
+		{
+			CCTransformHelp::nodeConcat(*m_pTweenData, *m_pBoneData);
+		}
+		
+		CCTransformHelp::nodeToMatrix(*m_pTweenData, m_tWorldTransform);
 
         m_tWorldTransform = CCAffineTransformConcat(nodeToParentTransform(), m_tWorldTransform);
 

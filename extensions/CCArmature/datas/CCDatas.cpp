@@ -245,10 +245,6 @@ CCDisplayData *CCBoneData::getDisplayData(int index)
 {
     return (CCDisplayData *)displayDataList.objectAtIndex(index);
 }
-void CCBoneData::updateBoneDataTransform()
-{
-	CCTransformHelp::nodeToMatrix(*this, boneDataTransform);
-}
 
 
 CCArmatureData::CCArmatureData()

@@ -245,7 +245,6 @@ public:
 
     void addDisplayData(CCDisplayData *displayData);
     CCDisplayData *getDisplayData(int index);
-	void updateBoneDataTransform();
 public:
     std::string name;			//! the bone's name
     std::string parentName;		//! the bone parent's name
