@@ -77,7 +77,9 @@ m_bIsCreatedFromFile(false),
 m_nActionTag(0),
 m_fileDesignSize(CCSizeZero),
 m_pBindingAction(NULL),
-m_eLinearGravity(LINEAR_GRAVITY_NONE)
+m_eLinearGravity(LINEAR_GRAVITY_NONE),
+m_eRelativeAlign(RELATIVE_ALIGN_PARENT_NONE),
+m_eRelativeAlignWidget(RELATIVE_ALIGN_WIDGET_NONE)
 {
     m_WidgetName = WIDGET_WIDGET;
 }
@@ -1367,6 +1369,26 @@ void UIWidget::setLinearGravity(UILinearGravity gravity)
 UILinearGravity UIWidget::getLinearGravity()
 {
     return m_eLinearGravity;
+}
+
+void UIWidget::setRelativeAlign(UIRelativeAlign align)
+{
+    m_eRelativeAlign = align;
+}
+
+UIRelativeAlign UIWidget::getRelativeAlign()
+{
+    return m_eRelativeAlign;
+}
+
+void UIWidget::setRelativeAlignWidget(UIRelativeAlignWidget align)
+{
+    m_eRelativeAlignWidget = align;
+}
+
+UIRelativeAlignWidget UIWidget::getRelativeAlignWidget()
+{
+    return m_eRelativeAlignWidget;
 }
 
 NS_CC_EXT_END

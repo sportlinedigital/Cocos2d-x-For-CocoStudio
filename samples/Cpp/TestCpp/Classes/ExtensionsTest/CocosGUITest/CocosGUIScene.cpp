@@ -23,7 +23,7 @@ void CocosGUITestScene::runThisTest()
     p->setBackGroundColor(ccGREEN);
     p->setBackGroundColorType(PANEL_COLOR_SOLID);
     p->setClippingEnable(true);
-    for (int i=0; i<10; i++)
+    for (int i=0; i<6; i++)
     {
         UIButton* btn = UIButton::create();
         btn->setTextures("cocosgui/animationbuttonnormal.png", "cocosgui/animationbuttonpressed.png", NULL);
@@ -34,12 +34,29 @@ void CocosGUITestScene::runThisTest()
         {
             btn->setAnchorPoint(ccp(2345, 2345));
             btn->setLinearGravity(LINEAR_GRAVITY_CENTER_HORIZONTAL);
+            btn->setRelativeAlign(RELATIVE_ALIGN_PARENT_RIGHT);
             btn->setName("btn");
+        }
+        if (i == 2)
+        {
+            btn->setRelativeAlign(RELATIVE_ALIGN_PARENT_BOTTOM);
+        }
+        if (i == 3)
+        {
+            btn->setRelativeAlign(RELATIVE_CENTER_IN_PARENT);
+        }
+        
+        if (i == 4)
+        {
+            btn->setRelativeAlign(RELATIVE_CENTER_HORIZONTAL);
+        }
+        if (i == 5) {
+            btn->setRelativeAlign(RELATIVE_CENTER_VERTICAL);
         }
     }
     p->setName("linearlayout");
     
-    p->setLayoutType(UI_LAYOUT_LINEAR_VERTICAL);
+    p->setLayoutType(UI_LAYOUT_RELATIVE);
     ul->addWidget(p);
     
 }

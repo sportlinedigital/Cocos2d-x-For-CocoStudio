@@ -156,8 +156,72 @@ void UIContainerWidget::doLayout()
             break;
         }
         case UI_LAYOUT_RELATIVE:
-            
+        {
+            ccArray* arrayChildren = m_children->data;
+            int childrenCount = arrayChildren->num;
+            for (int i=0; i<childrenCount; i++)
+            {
+                UIWidget* child = dynamic_cast<UIWidget*>(arrayChildren->arr[i]);
+                UIMargin mg = child->getMargin();
+                float finalPosX = child->getAnchorPoint().x*child->getContentSize().width;
+                float finalPosY = m_fHeight-((1.0f-child->getAnchorPoint().y)*child->getContentSize().height);
+                UIRelativeAlign align = child->getRelativeAlign();
+                switch (align)
+                {
+                    case RELATIVE_ALIGN_PARENT_NONE:
+                        break;
+                    case RELATIVE_ALIGN_PARENT_LEFT:
+                        break;
+                    case RELATIVE_ALIGN_PARENT_TOP:
+                        break;
+                    case RELATIVE_ALIGN_PARENT_RIGHT:
+                        finalPosX = m_fWidth - ((1.0f-child->getAnchorPoint().x)*child->getContentSize().width);
+                        break;
+                    case RELATIVE_ALIGN_PARENT_BOTTOM:
+                        finalPosY = child->getAnchorPoint().y*child->getContentSize().height;
+                        break;
+                    case RELATIVE_CENTER_IN_PARENT:
+                        finalPosX = m_fWidth/2.0f - (child->getContentSize().width)*(0.5f-child->getAnchorPoint().x);
+                        finalPosY = m_fHeight/2.0f - (child->getContentSize().height)*(0.5f-child->getAnchorPoint().y);
+                        break;
+                    case RELATIVE_CENTER_HORIZONTAL:
+                        finalPosX = m_fWidth/2.0f - (child->getContentSize().width)*(0.5f-child->getAnchorPoint().x);
+                        break;
+                    case RELATIVE_CENTER_VERTICAL:
+                        finalPosY = m_fHeight/2.0f - (child->getContentSize().height)*(0.5f-child->getAnchorPoint().y);
+                        break;
+                    case RELATIVE_LOCATION_ABOVE:
+                        break;
+                    case RELATIVE_LOCATION_BELOW:
+                        break;
+                    case RELATIVE_LOCATION_LEFT_OF:
+                        break;
+                    case RELATIVE_LOCATION_RIGHT_OF:
+                        break;
+                    default:
+                        break;
+                }
+                UIRelativeAlignWidget alignWidget = child->getRelativeAlignWidget();
+                switch (alignWidget)
+                {
+                    case RELATIVE_ALIGN_WIDGET_NONE:
+                        break;
+                    case RELATIVE_ALIGN_WIDGET_LEFT:
+                        break;
+                    case RELATIVE_ALIGN_WIDGET_TOP:
+                        break;
+                    case RELATIVE_ALIGN_WIDGET_RIGHT:
+                        break;
+                    case RELATIVE_ALIGN_WIDGET_BOTTOM:
+                        break;
+                    default:
+                        break;
+                }
+                //handle margin
+                child->setPosition(ccp(finalPosX+mg.left, finalPosY-mg.top));
+            }
             break;
+        }
         case UI_LAYOUT_GRID:
             break;
         case UI_LAYOUT_BORDER:

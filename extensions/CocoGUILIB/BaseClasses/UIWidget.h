@@ -245,6 +245,12 @@ public:
     const UIMargin& getMargin()const;
     void setLinearGravity(UILinearGravity gravity);
     UILinearGravity getLinearGravity();
+    
+    void setRelativeAlign(UIRelativeAlign align);
+    UIRelativeAlign getRelativeAlign();
+    
+    void setRelativeAlignWidget(UIRelativeAlignWidget align);
+    UIRelativeAlignWidget getRelativeAlignWidget();
 protected:
     virtual bool init();
     virtual void initNodes();
@@ -320,7 +326,8 @@ protected:
     //linear
     UILinearGravity m_eLinearGravity;
     //relative
-    UIRelativeAlignParent m_eRelativeAlignParent;
+    UIRelativeAlign m_eRelativeAlign;
+    UIRelativeAlignWidget m_eRelativeAlignWidget;
 };
 
 NS_CC_EXT_END
