@@ -158,25 +158,27 @@ CCArmature *CCBone::getArmature()
 
 void CCBone::update(float delta)
 {
-    if (m_pParentBone)
-        m_bBoneTransformDirty = m_bBoneTransformDirty || m_pParentBone->isTransformDirty();
+	if (m_pParentBone)
+		m_bBoneTransformDirty = m_bBoneTransformDirty || m_pParentBone->isTransformDirty();
 
-    if (m_bBoneTransformDirty)
-    {
+	if (m_bBoneTransformDirty)
+	{
 		if (m_pArmature->getArmatureData()->dataVersion >= VERSION_COMBINED)
 		{
 			CCTransformHelp::nodeConcat(*m_pTweenData, *m_pBoneData);
+			m_pTweenData->scaleX -= 1;
+			m_pTweenData->scaleY -= 1;
 		}
-		
+
 		CCTransformHelp::nodeToMatrix(*m_pTweenData, m_tWorldTransform);
 
-        m_tWorldTransform = CCAffineTransformConcat(nodeToParentTransform(), m_tWorldTransform);
+		m_tWorldTransform = CCAffineTransformConcat(nodeToParentTransform(), m_tWorldTransform);
 
-        if(m_pParentBone)
-        {
-            m_tWorldTransform = CCAffineTransformConcat(m_tWorldTransform, m_pParentBone->m_tWorldTransform);
-        }
-    }
+		if(m_pParentBone)
+		{
+			m_tWorldTransform = CCAffineTransformConcat(m_tWorldTransform, m_pParentBone->m_tWorldTransform);
+		}
+	}
 
     CCDisplayFactory::updateDisplay(this, m_pDisplayManager->getCurrentDecorativeDisplay(), delta, m_bBoneTransformDirty);
 
