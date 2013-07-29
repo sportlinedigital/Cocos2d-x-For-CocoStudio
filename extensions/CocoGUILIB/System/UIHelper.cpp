@@ -255,6 +255,24 @@ UIWidget* UIHelper::seekActionWidgetByActionTag(UIWidget* root, int tag)
 	return NULL;
 }
 
+UIWidget* UIHelper::seekWidgetByRelativeName(cocos2d::extension::UIWidget *root, const char *name)
+{
+    if (!root)
+    {
+        return NULL;
+    }
+    ccArray* arrayRootChildren = root->getChildren()->data;
+    int length = arrayRootChildren->num;
+    for (int i=0;i<length;i++)
+    {
+        UIWidget* child = (UIWidget*)(arrayRootChildren->arr[i]);
+        if (strcmp(child->getRelativeLayoutName(), name) == 0)
+        {
+            return child;
+        }
+    }
+    return NULL;
+}
 
 void UIHelper::setFileDesignWidth(float width)
 {

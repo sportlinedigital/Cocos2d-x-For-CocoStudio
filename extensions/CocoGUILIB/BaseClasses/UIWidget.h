@@ -242,15 +242,22 @@ public:
     
     //layout
     void setMargin(const UIMargin& margin);
-    const UIMargin& getMargin()const;
+    const UIMargin& getMargin() const;
     void setLinearGravity(UILinearGravity gravity);
-    UILinearGravity getLinearGravity();
+    UILinearGravity getLinearGravity() const;
     
     void setRelativeAlign(UIRelativeAlign align);
-    UIRelativeAlign getRelativeAlign();
+    UIRelativeAlign getRelativeAlign() const;
     
     void setRelativeAlignWidget(UIRelativeAlignWidget align);
-    UIRelativeAlignWidget getRelativeAlignWidget();
+    UIRelativeAlignWidget getRelativeAlignWidget() const;
+    
+    void setRelativeWidgetName(const char* name);
+    const char* getRelativeWidgetName() const;
+    
+    void setRelativeLayoutName(const char* name);
+    const char* getRelativeLayoutName() const;
+    
 protected:
     virtual bool init();
     virtual void initNodes();
@@ -328,6 +335,8 @@ protected:
     //relative
     UIRelativeAlign m_eRelativeAlign;
     UIRelativeAlignWidget m_eRelativeAlignWidget;
+    std::string m_strRelativeWidgetName;
+    std::string m_strRelativeLayoutName;
 };
 
 NS_CC_EXT_END

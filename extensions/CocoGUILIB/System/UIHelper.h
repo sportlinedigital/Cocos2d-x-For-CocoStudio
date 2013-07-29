@@ -50,6 +50,7 @@ public:
     UIWidget* seekWidgetByTag(UIWidget* root, int tag);
     UIWidget* seekWidgetByName(UIWidget* root, const char* name);
 	UIWidget* seekActionWidgetByActionTag(UIWidget* root, int tag);
+    UIWidget* seekWidgetByRelativeName(UIWidget* root, const char* name);
     void setFileDesignWidth(float width);
     float getFileDesignWidth();
     void setFileDesignHeight(float height);

@@ -24,6 +24,7 @@
 
 #include "UIContainerWidget.h"
 #include "../Drawable/UIClippingLayer.h"
+#include "../System/UIHelper.h"
 
 NS_CC_EXT_BEGIN
 
@@ -162,10 +163,15 @@ void UIContainerWidget::doLayout()
             for (int i=0; i<childrenCount; i++)
             {
                 UIWidget* child = dynamic_cast<UIWidget*>(arrayChildren->arr[i]);
-                UIMargin mg = child->getMargin();
                 float finalPosX = child->getAnchorPoint().x*child->getContentSize().width;
                 float finalPosY = m_fHeight-((1.0f-child->getAnchorPoint().y)*child->getContentSize().height);
                 UIRelativeAlign align = child->getRelativeAlign();
+                const char* relativeName = child->getRelativeWidgetName();
+                UIWidget* relativeWidget = NULL;
+                if (relativeName && strcmp(relativeName, ""))
+                {
+                    relativeWidget = CCUIHELPER->seekWidgetByRelativeName(this, relativeName);
+                }
                 switch (align)
                 {
                     case RELATIVE_ALIGN_PARENT_NONE:
@@ -191,12 +197,41 @@ void UIContainerWidget::doLayout()
                         finalPosY = m_fHeight/2.0f - (child->getContentSize().height)*(0.5f-child->getAnchorPoint().y);
                         break;
                     case RELATIVE_LOCATION_ABOVE:
+                        if (relativeWidget)
+                        {
+                            finalPosX = relativeWidget->getPosition().x;
+                            float locationBottom = relativeWidget->getRelativeTopPos();
+                            float locationLeft = relativeWidget->getRelativeLeftPos();
+                            finalPosY = locationBottom+child->getAnchorPoint().y*child->getContentSize().height;
+                            finalPosX = locationLeft+child->getAnchorPoint().x*child->getContentSize().width;
+                        }
                         break;
                     case RELATIVE_LOCATION_BELOW:
+                        if (relativeWidget)
+                        {
+                            float locationTop = relativeWidget->getRelativeBottomPos();
+                            float locationLeft = relativeWidget->getRelativeLeftPos();
+                            finalPosY = locationTop-(1.0f-child->getAnchorPoint().y)*child->getContentSize().height;
+                            finalPosX = locationLeft+child->getAnchorPoint().x*child->getContentSize().width;
+                        }
                         break;
                     case RELATIVE_LOCATION_LEFT_OF:
+                        if (relativeWidget)
+                        {
+                            float locationTop = relativeWidget->getRelativeTopPos();
+                            float locationRight = relativeWidget->getRelativeLeftPos();
+                            finalPosY = locationTop-child->getAnchorPoint().y*child->getContentSize().height;
+                            finalPosX = locationRight-(1.0f-child->getAnchorPoint().x)*child->getContentSize().width;
+                        }
                         break;
                     case RELATIVE_LOCATION_RIGHT_OF:
+                        if (relativeWidget)
+                        {
+                            float locationTop = relativeWidget->getRelativeTopPos();
+                            float locationLeft = relativeWidget->getRelativeRightPos();
+                            finalPosY = locationTop-child->getAnchorPoint().y*child->getContentSize().height;
+                            finalPosX = locationLeft+child->getAnchorPoint().x*child->getContentSize().width;
+                        }
                         break;
                     default:
                         break;
@@ -211,14 +246,65 @@ void UIContainerWidget::doLayout()
                     case RELATIVE_ALIGN_WIDGET_TOP:
                         break;
                     case RELATIVE_ALIGN_WIDGET_RIGHT:
+                    {
+                        UIRelativeAlign align = child->getRelativeAlign();
+                        if (align == RELATIVE_LOCATION_ABOVE || align == RELATIVE_LOCATION_BELOW)
+                        {
+                            if (relativeWidget)
+                            {
+                                float locationRight = relativeWidget->getRelativeRightPos();
+                                finalPosX = locationRight-(1.0f-child->getAnchorPoint().x)*child->getContentSize().width;
+                            }
+                        }
                         break;
+                    }
                     case RELATIVE_ALIGN_WIDGET_BOTTOM:
+                    {
+                        UIRelativeAlign align = child->getRelativeAlign();
+                        if (align == RELATIVE_LOCATION_LEFT_OF || align == RELATIVE_LOCATION_RIGHT_OF)
+                        {
+                            if (relativeWidget)
+                            {
+                                float locationBottom = relativeWidget->getRelativeBottomPos();
+                                finalPosY = locationBottom+child->getAnchorPoint().y*child->getContentSize().height;
+                            }
+                        }
+                        break;
+                    }
+                    default:
+                        break;
+                }
+                UIMargin relativeWidgetMargin;
+                UIMargin mg;
+                if (relativeWidget)
+                {
+                    relativeWidgetMargin = relativeWidget->getMargin();
+                    mg = child->getMargin();
+                }
+                //handle margin
+                switch (align)
+                {
+                    case RELATIVE_LOCATION_ABOVE:
+                        finalPosY += relativeWidgetMargin.top;
+                        finalPosY += relativeWidgetMargin.bottom;
+                        break;
+                    case RELATIVE_LOCATION_BELOW:
+                        finalPosY -= relativeWidgetMargin.bottom;
+                        finalPosY -= mg.top;
+                        break;
+                    case RELATIVE_LOCATION_LEFT_OF:
+                        finalPosX -= relativeWidgetMargin.left;
+                        finalPosX -= mg.right;
+                        break;
+                    case RELATIVE_LOCATION_RIGHT_OF:
+                        finalPosX += relativeWidgetMargin.right;
+                        finalPosX += mg.left;
                         break;
                     default:
                         break;
                 }
-                //handle margin
-                child->setPosition(ccp(finalPosX+mg.left, finalPosY-mg.top));
+                
+                child->setPosition(ccp(finalPosX, finalPosY));
             }
             break;
         }

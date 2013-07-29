@@ -79,7 +79,9 @@ m_fileDesignSize(CCSizeZero),
 m_pBindingAction(NULL),
 m_eLinearGravity(LINEAR_GRAVITY_NONE),
 m_eRelativeAlign(RELATIVE_ALIGN_PARENT_NONE),
-m_eRelativeAlignWidget(RELATIVE_ALIGN_WIDGET_NONE)
+m_eRelativeAlignWidget(RELATIVE_ALIGN_WIDGET_NONE),
+m_strRelativeWidgetName(""),
+m_strRelativeLayoutName("")
 {
     m_WidgetName = WIDGET_WIDGET;
 }
@@ -1366,7 +1368,7 @@ void UIWidget::setLinearGravity(UILinearGravity gravity)
     }
 }
 
-UILinearGravity UIWidget::getLinearGravity()
+UILinearGravity UIWidget::getLinearGravity() const
 {
     return m_eLinearGravity;
 }
@@ -1374,9 +1376,18 @@ UILinearGravity UIWidget::getLinearGravity()
 void UIWidget::setRelativeAlign(UIRelativeAlign align)
 {
     m_eRelativeAlign = align;
+    UIWidget* parent = getWidgetParent();
+    if (parent)
+    {
+        UIContainerWidget* containerParent = dynamic_cast<UIContainerWidget*>(parent);
+        if (containerParent && (containerParent->getLayoutType() == UI_LAYOUT_RELATIVE))
+        {
+            containerParent->doLayout();
+        }
+    }
 }
 
-UIRelativeAlign UIWidget::getRelativeAlign()
+UIRelativeAlign UIWidget::getRelativeAlign() const
 {
     return m_eRelativeAlign;
 }
@@ -1384,11 +1395,58 @@ UIRelativeAlign UIWidget::getRelativeAlign()
 void UIWidget::setRelativeAlignWidget(UIRelativeAlignWidget align)
 {
     m_eRelativeAlignWidget = align;
+    UIWidget* parent = getWidgetParent();
+    if (parent)
+    {
+        UIContainerWidget* containerParent = dynamic_cast<UIContainerWidget*>(parent);
+        if (containerParent && (containerParent->getLayoutType() == UI_LAYOUT_RELATIVE))
+        {
+            containerParent->doLayout();
+        }
+    }
 }
 
-UIRelativeAlignWidget UIWidget::getRelativeAlignWidget()
+UIRelativeAlignWidget UIWidget::getRelativeAlignWidget() const
 {
     return m_eRelativeAlignWidget;
+}
+
+void UIWidget::setRelativeWidgetName(const char *name)
+{
+    m_strRelativeWidgetName = name;
+    UIWidget* parent = getWidgetParent();
+    if (parent)
+    {
+        UIContainerWidget* containerParent = dynamic_cast<UIContainerWidget*>(parent);
+        if (containerParent && (containerParent->getLayoutType() == UI_LAYOUT_RELATIVE))
+        {
+            containerParent->doLayout();
+        }
+    }
+}
+
+const char* UIWidget::getRelativeWidgetName() const
+{
+    return m_strRelativeWidgetName.c_str();
+}
+
+void UIWidget::setRelativeLayoutName(const char* name)
+{
+    m_strRelativeLayoutName = name;
+    UIWidget* parent = getWidgetParent();
+    if (parent)
+    {
+        UIContainerWidget* containerParent = dynamic_cast<UIContainerWidget*>(parent);
+        if (containerParent && (containerParent->getLayoutType() == UI_LAYOUT_RELATIVE))
+        {
+            containerParent->doLayout();
+        }
+    }
+}
+
+const char* UIWidget::getRelativeLayoutName() const
+{
+    return m_strRelativeLayoutName.c_str();
 }
 
 NS_CC_EXT_END
