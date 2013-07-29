@@ -448,58 +448,71 @@ void CCArmature::draw()
     CCObject *object = NULL;
     CCARRAY_FOREACH(m_pChildren, object)
     {
-        CCBone *bone = (CCBone *)object;
+		if (CCBone *bone = dynamic_cast<CCBone*>(object))
+		{
+			CCDisplayManager *displayManager = bone->getDisplayManager();
+			CCNode *node = displayManager->getDisplayRenderNode();
 
-        CCDisplayManager *displayManager = bone->getDisplayManager();
-        CCNode *node = displayManager->getDisplayRenderNode();
+			if (NULL == node)
+				continue;
 
-        if (NULL == node)
-            continue;
+			if(CCSkin *skin = dynamic_cast<CCSkin *>(node))
+			{
+				CCTextureAtlas *textureAtlas = skin->getTextureAtlas();
+				if(m_pAtlas != textureAtlas)
+				{
+					if (m_pAtlas)
+					{
+						m_pAtlas->drawQuads();
+						m_pAtlas->removeAllQuads();
+					}
+				}
 
-        if(CCSkin *skin = dynamic_cast<CCSkin *>(node))
-        {
-            CCTextureAtlas *textureAtlas = skin->getTextureAtlas();
-            if(m_pAtlas != textureAtlas)
-            {
-                if (m_pAtlas)
-                {
-                    m_pAtlas->drawQuads();
-                    m_pAtlas->removeAllQuads();
-                }
-            }
+				m_pAtlas = textureAtlas;
+				if (m_pAtlas->getCapacity() == m_pAtlas->getTotalQuads() && !m_pAtlas->resizeCapacity(m_pAtlas->getCapacity() * 2))
+					return;
 
-            m_pAtlas = textureAtlas;
-            if (m_pAtlas->getCapacity() == m_pAtlas->getTotalQuads() && !m_pAtlas->resizeCapacity(m_pAtlas->getCapacity() * 2))
-                return;
+				skin->updateTransform();
+			}
+			else if(CCArmature *armature = dynamic_cast<CCArmature *>(node))
+			{
+				CCTextureAtlas *textureAtlas = armature->getTextureAtlas();
 
-            skin->updateTransform();
-        }
-        else if(CCArmature *armature = dynamic_cast<CCArmature *>(node))
-        {
-            CCTextureAtlas *textureAtlas = armature->getTextureAtlas();
+				if(m_pAtlas != textureAtlas)
+				{
+					if (m_pAtlas)
+					{
+						m_pAtlas->drawQuads();
+						m_pAtlas->removeAllQuads();
+					}
+				}
+				armature->draw();
+			}
+			else
+			{
+				if (m_pAtlas)
+				{
+					m_pAtlas->drawQuads();
+					m_pAtlas->removeAllQuads();
+				}
+				node->visit();
 
-            if(m_pAtlas != textureAtlas)
-            {
-                if (m_pAtlas)
-                {
-                    m_pAtlas->drawQuads();
-                    m_pAtlas->removeAllQuads();
-                }
-            }
-            armature->draw();
-        }
-        else
-        {
-            if (m_pAtlas)
-            {
-                m_pAtlas->drawQuads();
-                m_pAtlas->removeAllQuads();
-            }
-            node->visit();
+				CC_NODE_DRAW_SETUP();
+				ccGLBlendFunc(m_sBlendFunc.src, m_sBlendFunc.dst);
+			}
+		}
+		else if(CCNode *node = dynamic_cast<CCNode*>(object))
+		{
+			if (m_pAtlas)
+			{
+				m_pAtlas->drawQuads();
+				m_pAtlas->removeAllQuads();
+			}
+			node->visit();
 
-            CC_NODE_DRAW_SETUP();
-            ccGLBlendFunc(m_sBlendFunc.src, m_sBlendFunc.dst);
-        }
+			CC_NODE_DRAW_SETUP();
+			ccGLBlendFunc(m_sBlendFunc.src, m_sBlendFunc.dst);
+		}
     }
 
     if(m_pAtlas && !m_pBatchNode && m_pParentBone == NULL)
@@ -549,28 +562,30 @@ CCRect CCArmature::boundingBox()
     CCObject *object = NULL;
     CCARRAY_FOREACH(m_pChildren, object)
     {
-        CCBone *bone = (CCBone *)object;
-        CCRect r = bone->getDisplayManager()->getBoundingBox();
+		if (CCBone *bone = dynamic_cast<CCBone*>(object))
+		{
+			CCRect r = bone->getDisplayManager()->getBoundingBox();
 
-        if(first)
-        {
-            minx = r.getMinX();
-            miny = r.getMinY();
-            maxx = r.getMaxX();
-            maxy = r.getMaxY();
+			if(first)
+			{
+				minx = r.getMinX();
+				miny = r.getMinY();
+				maxx = r.getMaxX();
+				maxy = r.getMaxY();
 
-            first = false;
-        }
-        else
-        {
-            minx = r.getMinX() < boundingBox.getMinX() ? r.getMinX() : boundingBox.getMinX();
-            miny = r.getMinY() < boundingBox.getMinY() ? r.getMinY() : boundingBox.getMinY();
-            maxx = r.getMaxX() > boundingBox.getMaxX() ? r.getMaxX() : boundingBox.getMaxX();
-            maxy = r.getMaxY() > boundingBox.getMaxY() ? r.getMaxY() : boundingBox.getMaxY();
-        }
+				first = false;
+			}
+			else
+			{
+				minx = r.getMinX() < boundingBox.getMinX() ? r.getMinX() : boundingBox.getMinX();
+				miny = r.getMinY() < boundingBox.getMinY() ? r.getMinY() : boundingBox.getMinY();
+				maxx = r.getMaxX() > boundingBox.getMaxX() ? r.getMaxX() : boundingBox.getMaxX();
+				maxy = r.getMaxY() > boundingBox.getMaxY() ? r.getMaxY() : boundingBox.getMaxY();
+			}
 
-        boundingBox.setRect(minx, miny, maxx - minx, maxy - miny);
-    }
+			boundingBox.setRect(minx, miny, maxx - minx, maxy - miny);
+		}
+     }
 
     return boundingBox;
 }

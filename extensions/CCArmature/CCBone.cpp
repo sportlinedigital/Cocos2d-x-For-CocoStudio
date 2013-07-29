@@ -158,30 +158,27 @@ CCArmature *CCBone::getArmature()
 
 void CCBone::update(float delta)
 {
-    if (m_pParentBone)
-        m_bBoneTransformDirty = m_bBoneTransformDirty || m_pParentBone->isTransformDirty();
+	if (m_pParentBone)
+		m_bBoneTransformDirty = m_bBoneTransformDirty || m_pParentBone->isTransformDirty();
 
-    if (m_bBoneTransformDirty)
-    {
-        float cosX	= cos(m_pTweenData->skewX);
-        float cosY	= cos(m_pTweenData->skewY);
-        float sinX	= sin(m_pTweenData->skewX);
-        float sinY  = sin(m_pTweenData->skewY);
+	if (m_bBoneTransformDirty)
+	{
+		if (m_pArmature->getArmatureData()->dataVersion >= VERSION_COMBINED)
+		{
+			CCTransformHelp::nodeConcat(*m_pTweenData, *m_pBoneData);
+			m_pTweenData->scaleX -= 1;
+			m_pTweenData->scaleY -= 1;
+		}
 
-        m_tWorldTransform.a = m_pTweenData->scaleX * cosY;
-        m_tWorldTransform.b = m_pTweenData->scaleX * sinY;
-        m_tWorldTransform.c = m_pTweenData->scaleY * sinX;
-        m_tWorldTransform.d = m_pTweenData->scaleY * cosX;
-        m_tWorldTransform.tx = m_pTweenData->x;
-        m_tWorldTransform.ty = m_pTweenData->y;
+		CCTransformHelp::nodeToMatrix(*m_pTweenData, m_tWorldTransform);
 
-        m_tWorldTransform = CCAffineTransformConcat(nodeToParentTransform(), m_tWorldTransform);
+		m_tWorldTransform = CCAffineTransformConcat(nodeToParentTransform(), m_tWorldTransform);
 
-        if(m_pParentBone)
-        {
-            m_tWorldTransform = CCAffineTransformConcat(m_tWorldTransform, m_pParentBone->m_tWorldTransform);
-        }
-    }
+		if(m_pParentBone)
+		{
+			m_tWorldTransform = CCAffineTransformConcat(m_tWorldTransform, m_pParentBone->m_tWorldTransform);
+		}
+	}
 
     CCDisplayFactory::updateDisplay(this, m_pDisplayManager->getCurrentDecorativeDisplay(), delta, m_bBoneTransformDirty);
 

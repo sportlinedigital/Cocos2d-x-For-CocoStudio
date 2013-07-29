@@ -245,10 +245,6 @@ CCDisplayData *CCBoneData::getDisplayData(int index)
 {
     return (CCDisplayData *)displayDataList.objectAtIndex(index);
 }
-void CCBoneData::updateBoneDataTransform()
-{
-	CCTransformHelp::nodeToMatrix(*this, boneDataTransform);
-}
 
 
 CCArmatureData::CCArmatureData()
@@ -303,7 +299,7 @@ void CCFrameData::copy(CCFrameData *frameData)
 
 CCMovementBoneData::CCMovementBoneData()
     : delay(0.0f)
-    , scale(1.0f)
+	, scale(1.0f)
     , duration(0)
     , name("")
 {
@@ -333,6 +329,7 @@ CCFrameData *CCMovementBoneData::getFrameData(int index)
 CCMovementData::CCMovementData(void)
     : name("")
     , duration(0)
+	, scale(1.0f)
     , durationTo(0)
     , durationTween(0)
     , loop(true)

@@ -495,10 +495,10 @@ CCMovementBoneData *CCDataReaderHelper::decodeMovementBone(tinyxml2::XMLElement 
 
     if( movBoneXml )
     {
-        if( movBoneXml->QueryFloatAttribute(A_MOVEMENT_SCALE, &scale) == tinyxml2::XML_SUCCESS )
-        {
-            movBoneData->scale = scale;
-        }
+		if( movBoneXml->QueryFloatAttribute(A_MOVEMENT_SCALE, &scale) == tinyxml2::XML_SUCCESS )
+		{
+			movBoneData->scale = scale;
+		}
         if( movBoneXml->QueryFloatAttribute(A_MOVEMENT_DELAY, &delay) == tinyxml2::XML_SUCCESS )
         {
             if(delay > 0)
@@ -1022,6 +1022,7 @@ CCMovementData *CCDataReaderHelper::decodeMovement(cs::CSJsonDictionary &json)
     movementData->durationTween = json.getItemIntValue(A_DURATION_TWEEN, 0);
     movementData->durationTo = json.getItemIntValue(A_DURATION_TO, 0);
     movementData->duration = json.getItemIntValue(A_DURATION, 0);
+	movementData->scale = json.getItemIntValue(A_MOVEMENT_SCALE, 1);
     movementData->tweenEasing = (CCTweenType)json.getItemIntValue(A_TWEEN_EASING, Linear);
 
     const char *name = json.getItemStringValue(A_NAME);
@@ -1047,7 +1048,6 @@ CCMovementBoneData *CCDataReaderHelper::decodeMovementBone(cs::CSJsonDictionary 
     CCMovementBoneData *movementBoneData = CCMovementBoneData::create();
 
     movementBoneData->delay = json.getItemFloatValue(A_MOVEMENT_DELAY, 0);
-    movementBoneData->scale = json.getItemFloatValue(A_MOVEMENT_SCALE, 1);
 
     const char *name = json.getItemStringValue(A_NAME);
     if(name != NULL)

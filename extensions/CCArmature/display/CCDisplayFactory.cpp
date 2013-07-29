@@ -84,7 +84,7 @@ void CCDisplayFactory::updateDisplay(CCBone *bone, CCDecorativeDisplay *decoDisp
 			anchorPoint = CCPointApplyAffineTransform(anchorPoint, displayTransform);
 			displayTransform.tx = anchorPoint.x;
 			displayTransform.ty = anchorPoint.y;
-            CCAffineTransform t = CCAffineTransformConcat(displayTransform, bone->getArmature()->nodeToWorldTransform());
+            CCAffineTransform t = CCAffineTransformConcat(displayTransform, bone->getArmature()->nodeToParentTransform());
             detector->updateTransform(t);
         }
     }

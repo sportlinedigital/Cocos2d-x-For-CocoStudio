@@ -165,7 +165,10 @@ public:
 	virtual void draw();
 	virtual void update(float delta);
 
+	void onFrameEvent(cocos2d::extension::CCBone *bone, const char *evt);
+
 	void initWorld();
+
 
 	cocos2d::extension::CCArmature *armature;
 	cocos2d::extension::CCArmature *armature2;
