@@ -18,57 +18,14 @@ void CocosGUITestScene::runThisTest()
 //    UIButton* exitBtn = dynamic_cast<UIButton*>(ul->getWidgetByName("exitbutton"));
 //    exitBtn->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::toCocosGUIExampleScene));
     UIPanel* p = UIPanel::create();
-    p->setSize(CCSizeMake(300, 300));
-    p->setPosition(ccp(10, 10));
+    p->setSize(CCSizeMake(100, 100));
+    p->setPosition(ccp(100, 100));
     p->setBackGroundColor(ccGREEN);
     p->setBackGroundColorType(PANEL_COLOR_SOLID);
     p->setClippingEnable(true);
-    for (int i=0; i<6; i++)
-    {
-        UIPanel* btn = UIPanel::create();
-        btn->setBackGroundColor(ccBLUE);
-        btn->setBackGroundColorType(PANEL_COLOR_SOLID);
-        btn->setSize(CCSizeMake(30, 30));
-//        btn->setTextures("cocosgui/animationbuttonnormal.png", "cocosgui/animationbuttonpressed.png", NULL);
-//        btn->setMargin(UIMargin(0, 10, 0, 10));
-        btn->setTouchEnable(true);
-        p->addChild(btn);
-        if (i==1)
-        {
-//            btn->setAnchorPoint(ccp(2345, 2345));
-            btn->setLinearGravity(LINEAR_GRAVITY_CENTER_HORIZONTAL);
-            btn->setRelativeAlign(RELATIVE_CENTER_IN_PARENT);
-            btn->setName("btn");
-            btn->setRelativeLayoutName("relaBtn");
-//            btn->setMargin(UIMargin(10,10,10,10));
-        }
-        if (i == 2)
-        {
-//            btn->setTextures("cocosgui/backtotopnormal.png", "cocosgui/backtotopnormal.png", NULL);
-            btn->setBackGroundColor(ccRED);
-            btn->setRelativeAlign(RELATIVE_LOCATION_ABOVE);
-            btn->setRelativeAlignWidget(RELATIVE_ALIGN_WIDGET_BOTTOM);
-            btn->setRelativeWidgetName("relaBtn");
-            btn->setName("relaBtn");
-        }
-//        if (i == 3)
-//        {
-//            btn->setRelativeAlign(RELATIVE_CENTER_IN_PARENT);
-//        }
-//        
-//        if (i == 4)
-//        {
-//            btn->setRelativeAlign(RELATIVE_CENTER_HORIZONTAL);
-//        }
-//        if (i == 5) {
-//            btn->setRelativeAlign(RELATIVE_CENTER_VERTICAL);
-//        }
-    }
-    p->setName("linearlayout");
     
-    p->setLayoutType(UI_LAYOUT_RELATIVE);
-//    p->setLayoutType(UI_LAYOUT_LINEAR_VERTICAL);
-//    p->setLayoutType(UI_LAYOUT_LINEAR_HORIZONTAL);
+    
+    
     ul->addWidget(p);
     
 }

@@ -85,6 +85,7 @@ void UIPanel::removeBackGroundImage()
 {
     m_pRender->removeChild(m_pBackGroundImage,  true);
     m_pBackGroundImage = NULL;
+    m_strBackGroundImageFileName = "";
 }
 
 void UIPanel::setBackGroundImageScale9Enable(bool able)
@@ -136,7 +137,6 @@ void UIPanel::setBackGroundImage(const char* fileName,TextureResType texType)
         addBackGroundImage();
     }
     m_strBackGroundImageFileName = fileName;
-//    setUseMergedTexture(useSpriteFrame);
     m_eBGImageTexType = texType;
     if (m_bBackGroundScale9Enable)
     {
