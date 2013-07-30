@@ -28,12 +28,6 @@
 #include "UIWidget.h"
 
 NS_CC_EXT_BEGIN
-    
-typedef enum
-{
-    RENDER_TYPE_LAYERCOLOR,
-    RENDER_TYPE_LAYERGRADIENT
-}RenderType;
 
 typedef enum
 {
@@ -73,7 +67,6 @@ protected:
     float m_fWidth;
     float m_fHeight;
     bool m_bClipAble;
-    RenderType m_renderType;
     LayoutType m_eLayoutType;
 };
 

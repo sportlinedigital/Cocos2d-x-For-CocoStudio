@@ -34,7 +34,6 @@ UIContainerWidget::UIContainerWidget():
 m_fWidth(0.0),
 m_fHeight(0.0),
 m_bClipAble(false),
-m_renderType(RENDER_TYPE_LAYERCOLOR),
 m_eLayoutType(UI_LAYOUT_ABSOLUTE)
 {
     m_WidgetType = WidgetTypeContainer;
@@ -104,21 +103,22 @@ void UIContainerWidget::doLayout()
             for (int i=0; i<childrenCount; i++)
             {
                 UIWidget* child = dynamic_cast<UIWidget*>(arrayChildren->arr[i]);
+                WidgetType childType = child->getWidgetType();
                 UILinearGravity childGravity = child->getLinearGravity();
                 CCPoint ap = child->getAnchorPoint();
                 CCSize cs = child->getContentSize();
-                float finalPosX = ap.x*cs.width;
-                float finalPosY = topBoundary - ((1.0f-ap.y) * cs.height);
+                float finalPosX = childType == WidgetTypeWidget ? ap.x*cs.width : 0.0f;
+                float finalPosY = childType == WidgetTypeWidget ? topBoundary - ((1.0f-ap.y) * cs.height) : topBoundary - cs.height;
                 switch (childGravity)
                 {
                     case LINEAR_GRAVITY_NONE:
                     case LINEAR_GRAVITY_LEFT:
                         break;
                     case LINEAR_GRAVITY_RIGHT:
-                        finalPosX = m_fWidth - ((1.0f - ap.x) * cs.width);
+                        finalPosX = childType == WidgetTypeWidget ? m_fWidth - ((1.0f - ap.x) * cs.width) : m_fWidth - cs.width;
                         break;
                     case LINEAR_GRAVITY_CENTER_HORIZONTAL:
-                        finalPosX = m_fWidth / 2.0f - cs.width * (0.5f-ap.x);
+                        finalPosX = childType == WidgetTypeWidget ? m_fWidth / 2.0f - cs.width * (0.5f-ap.x) : (m_fWidth - cs.width) * 0.5f;
                         break;
                     default:
                         break;
@@ -140,20 +140,21 @@ void UIContainerWidget::doLayout()
             {
                 UIWidget* child = dynamic_cast<UIWidget*>(arrayChildren->arr[i]);
                 UILinearGravity childGravity = child->getLinearGravity();
+                WidgetType childType = child->getWidgetType();
                 CCPoint ap = child->getAnchorPoint();
                 CCSize cs = child->getContentSize();
-                float finalPosX = leftBoundary + (ap.x * cs.width);
-                float finalPosY = m_fHeight - (1.0f - ap.y) * cs.height;
+                float finalPosX = childType == WidgetTypeWidget ? leftBoundary + (ap.x * cs.width) : leftBoundary;
+                float finalPosY = childType == WidgetTypeWidget ? m_fHeight - (1.0f - ap.y) * cs.height : m_fHeight - cs.height;
                 switch (childGravity)
                 {
                     case LINEAR_GRAVITY_NONE:
                     case LINEAR_GRAVITY_TOP:
                         break;
                     case LINEAR_GRAVITY_BOTTOM:
-                        finalPosY = ap.y * cs.height;
+                        finalPosY = childType == WidgetTypeWidget ? ap.y * cs.height : 0.0f;
                         break;
                     case LINEAR_GRAVITY_CENTER_VERTICAL:
-                        finalPosY = m_fHeight/2.0f - cs.height * (0.5f - ap.y);
+                        finalPosY = childType == WidgetTypeWidget ? m_fHeight/2.0f - cs.height * (0.5f - ap.y) : (m_fHeight - cs.height) * 0.5f;
                         break;
                     default:
                         break;
@@ -173,8 +174,11 @@ void UIContainerWidget::doLayout()
             for (int i=0; i<childrenCount; i++)
             {
                 UIWidget* child = dynamic_cast<UIWidget*>(arrayChildren->arr[i]);
-                float finalPosX = child->getAnchorPoint().x*child->getContentSize().width;
-                float finalPosY = m_fHeight-((1.0f-child->getAnchorPoint().y)*child->getContentSize().height);
+                WidgetType childType = child->getWidgetType();
+                CCPoint ap = child->getAnchorPoint();
+                CCSize cs = child->getContentSize();
+                float finalPosX = childType == WidgetTypeWidget ? ap.x * cs.width : 0.0f;
+                float finalPosY = childType == WidgetTypeWidget ? m_fHeight - ((1.0f - ap.y) * cs.height) : m_fHeight - cs.height;
                 UIRelativeAlign align = child->getRelativeAlign();
                 const char* relativeName = child->getRelativeWidgetName();
                 UIWidget* relativeWidget = NULL;
@@ -191,29 +195,28 @@ void UIContainerWidget::doLayout()
                     case RELATIVE_ALIGN_PARENT_TOP:
                         break;
                     case RELATIVE_ALIGN_PARENT_RIGHT:
-                        finalPosX = m_fWidth - ((1.0f-child->getAnchorPoint().x)*child->getContentSize().width);
+                        finalPosX = childType == WidgetTypeWidget ? m_fWidth - ((1.0f - ap.x) * cs.width) : m_fWidth - cs.width;
                         break;
                     case RELATIVE_ALIGN_PARENT_BOTTOM:
-                        finalPosY = child->getAnchorPoint().y*child->getContentSize().height;
+                        finalPosY = childType == WidgetTypeWidget ? ap.y * cs.height : 0.0f;
                         break;
                     case RELATIVE_CENTER_IN_PARENT:
-                        finalPosX = m_fWidth/2.0f - (child->getContentSize().width)*(0.5f-child->getAnchorPoint().x);
-                        finalPosY = m_fHeight/2.0f - (child->getContentSize().height)*(0.5f-child->getAnchorPoint().y);
+                        finalPosX = childType == WidgetTypeWidget ? m_fWidth * 0.5f - cs.width * (0.5f - ap.x) : (m_fWidth - cs.width) * 0.5f;
+                        finalPosY = childType == WidgetTypeWidget ? m_fHeight * 0.5f - cs.height * (0.5f - ap.y) : (m_fHeight - cs.height) * 0.5f;
                         break;
                     case RELATIVE_CENTER_HORIZONTAL:
-                        finalPosX = m_fWidth/2.0f - (child->getContentSize().width)*(0.5f-child->getAnchorPoint().x);
+                        finalPosX = childType == WidgetTypeWidget ? m_fWidth * 0.5f - cs.width * (0.5f - ap.x) : (m_fWidth - cs.width) * 0.5f;
                         break;
                     case RELATIVE_CENTER_VERTICAL:
-                        finalPosY = m_fHeight/2.0f - (child->getContentSize().height)*(0.5f-child->getAnchorPoint().y);
+                        finalPosY = childType == WidgetTypeWidget ? m_fHeight * 0.5f - cs.height * (0.5f - ap.y) : (m_fHeight - cs.height) * 0.5f;
                         break;
                     case RELATIVE_LOCATION_ABOVE:
                         if (relativeWidget)
                         {
-                            finalPosX = relativeWidget->getPosition().x;
                             float locationBottom = relativeWidget->getRelativeTopPos();
                             float locationLeft = relativeWidget->getRelativeLeftPos();
-                            finalPosY = locationBottom+child->getAnchorPoint().y*child->getContentSize().height;
-                            finalPosX = locationLeft+child->getAnchorPoint().x*child->getContentSize().width;
+                            finalPosY = childType == WidgetTypeWidget ? locationBottom + ap.y * cs.height : locationBottom;
+                            finalPosX = childType == WidgetTypeWidget ? locationLeft + ap.x * cs.width : locationLeft;
                         }
                         break;
                     case RELATIVE_LOCATION_BELOW:
@@ -221,8 +224,8 @@ void UIContainerWidget::doLayout()
                         {
                             float locationTop = relativeWidget->getRelativeBottomPos();
                             float locationLeft = relativeWidget->getRelativeLeftPos();
-                            finalPosY = locationTop-(1.0f-child->getAnchorPoint().y)*child->getContentSize().height;
-                            finalPosX = locationLeft+child->getAnchorPoint().x*child->getContentSize().width;
+                            finalPosY = childType == WidgetTypeWidget ? locationTop - (1.0f - ap.y) * cs.height : locationTop - cs.height;
+                            finalPosX = childType == WidgetTypeWidget ? locationLeft + ap.x * cs.width : locationLeft;
                         }
                         break;
                     case RELATIVE_LOCATION_LEFT_OF:
@@ -230,8 +233,8 @@ void UIContainerWidget::doLayout()
                         {
                             float locationTop = relativeWidget->getRelativeTopPos();
                             float locationRight = relativeWidget->getRelativeLeftPos();
-                            finalPosY = locationTop-child->getAnchorPoint().y*child->getContentSize().height;
-                            finalPosX = locationRight-(1.0f-child->getAnchorPoint().x)*child->getContentSize().width;
+                            finalPosY = childType == WidgetTypeWidget ? locationTop - ap.y * cs.height : locationTop - cs.height;
+                            finalPosX = childType == WidgetTypeWidget ? locationRight - (1.0f - ap.x) * cs.width : locationRight - cs.width;
                         }
                         break;
                     case RELATIVE_LOCATION_RIGHT_OF:
@@ -239,8 +242,8 @@ void UIContainerWidget::doLayout()
                         {
                             float locationTop = relativeWidget->getRelativeTopPos();
                             float locationLeft = relativeWidget->getRelativeRightPos();
-                            finalPosY = locationTop-child->getAnchorPoint().y*child->getContentSize().height;
-                            finalPosX = locationLeft+child->getAnchorPoint().x*child->getContentSize().width;
+                            finalPosY = childType == WidgetTypeWidget ? locationTop - ap.y * cs.height : locationTop - cs.height;
+                            finalPosX = childType == WidgetTypeWidget ? locationLeft + ap.x * cs.width : locationLeft;
                         }
                         break;
                     default:
@@ -263,7 +266,7 @@ void UIContainerWidget::doLayout()
                             if (relativeWidget)
                             {
                                 float locationRight = relativeWidget->getRelativeRightPos();
-                                finalPosX = locationRight-(1.0f-child->getAnchorPoint().x)*child->getContentSize().width;
+                                finalPosX = childType == WidgetTypeWidget ? locationRight - (1.0f - ap.x) * cs.width : locationRight - cs.width;
                             }
                         }
                         break;
@@ -276,7 +279,7 @@ void UIContainerWidget::doLayout()
                             if (relativeWidget)
                             {
                                 float locationBottom = relativeWidget->getRelativeBottomPos();
-                                finalPosY = locationBottom+child->getAnchorPoint().y*child->getContentSize().height;
+                                finalPosY = childType == WidgetTypeWidget ? locationBottom + ap.y * cs.height : locationBottom;
                             }
                         }
                         break;

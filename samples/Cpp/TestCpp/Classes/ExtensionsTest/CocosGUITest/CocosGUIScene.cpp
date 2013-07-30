@@ -23,10 +23,13 @@ void CocosGUITestScene::runThisTest()
     p->setBackGroundColor(ccGREEN);
     p->setBackGroundColorType(PANEL_COLOR_SOLID);
     p->setClippingEnable(true);
-    for (int i=0; i<3; i++)
+    for (int i=0; i<6; i++)
     {
-        UIButton* btn = UIButton::create();
-        btn->setTextures("cocosgui/animationbuttonnormal.png", "cocosgui/animationbuttonpressed.png", NULL);
+        UIPanel* btn = UIPanel::create();
+        btn->setBackGroundColor(ccBLUE);
+        btn->setBackGroundColorType(PANEL_COLOR_SOLID);
+        btn->setSize(CCSizeMake(30, 30));
+//        btn->setTextures("cocosgui/animationbuttonnormal.png", "cocosgui/animationbuttonpressed.png", NULL);
 //        btn->setMargin(UIMargin(0, 10, 0, 10));
         btn->setTouchEnable(true);
         p->addChild(btn);
@@ -37,11 +40,12 @@ void CocosGUITestScene::runThisTest()
             btn->setRelativeAlign(RELATIVE_CENTER_IN_PARENT);
             btn->setName("btn");
             btn->setRelativeLayoutName("relaBtn");
-            btn->setMargin(UIMargin(10,10,10,10));
+//            btn->setMargin(UIMargin(10,10,10,10));
         }
         if (i == 2)
         {
-            btn->setTextures("cocosgui/backtotopnormal.png", "cocosgui/backtotopnormal.png", NULL);
+//            btn->setTextures("cocosgui/backtotopnormal.png", "cocosgui/backtotopnormal.png", NULL);
+            btn->setBackGroundColor(ccRED);
             btn->setRelativeAlign(RELATIVE_LOCATION_ABOVE);
             btn->setRelativeAlignWidget(RELATIVE_ALIGN_WIDGET_BOTTOM);
             btn->setRelativeWidgetName("relaBtn");
@@ -63,6 +67,8 @@ void CocosGUITestScene::runThisTest()
     p->setName("linearlayout");
     
     p->setLayoutType(UI_LAYOUT_RELATIVE);
+//    p->setLayoutType(UI_LAYOUT_LINEAR_VERTICAL);
+//    p->setLayoutType(UI_LAYOUT_LINEAR_HORIZONTAL);
     ul->addWidget(p);
     
 }

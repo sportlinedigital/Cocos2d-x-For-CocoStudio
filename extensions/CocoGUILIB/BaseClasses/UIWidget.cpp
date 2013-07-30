@@ -1255,11 +1255,6 @@ void UIWidget::setBlendFunc(cocos2d::ccBlendFunc blendFunc)
     }
 }
 
-void UIWidget::ignoreAnchorPointForPosition(bool ignore)
-{
-    m_pRender->ignoreAnchorPointForPosition(ignore);
-}
-
 CCPoint UIWidget::getTouchStartPos()
 {
     return m_touchStartPos;

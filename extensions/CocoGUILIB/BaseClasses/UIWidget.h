@@ -188,7 +188,6 @@ public:
     virtual bool isCascadeColorEnabled();
     virtual void setCascadeColorEnabled(bool cascadeColorEnabled);
     void setBlendFunc(cocos2d::ccBlendFunc blendFunc);
-    void ignoreAnchorPointForPosition(bool ignore);
     //cocos action
     virtual void setActionManager(cocos2d::CCActionManager* actionManager);
     virtual cocos2d::CCActionManager* getActionManager();
