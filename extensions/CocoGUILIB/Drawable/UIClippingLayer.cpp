@@ -244,7 +244,7 @@ void UIClippingLayer::setColorType(UILayerColorType type)
             m_pColorRender->setContentSize(getContentSize());
             m_pColorRender->setOpacity(m_nCOpacity);
             m_pColorRender->setColor(m_cColor);
-            this->addChild(m_pColorRender,-1);
+            this->addChild(m_pColorRender,-2);
             break;
         case UL_C_GRADIENT:
             m_pGradientRender = CCLayerGradient::create();
@@ -253,7 +253,7 @@ void UIClippingLayer::setColorType(UILayerColorType type)
             m_pGradientRender->setStartColor(m_gStartColor);
             m_pGradientRender->setEndColor(m_gEndColor);
             m_pGradientRender->setVector(m_AlongVector);
-            this->addChild(m_pGradientRender,-1);
+            this->addChild(m_pGradientRender,-2);
             break;
         default:
             break;

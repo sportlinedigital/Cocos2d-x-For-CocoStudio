@@ -23,9 +23,11 @@ void CocosGUITestScene::runThisTest()
     p->setBackGroundColor(ccGREEN);
     p->setBackGroundColorType(PANEL_COLOR_SOLID);
     p->setClippingEnable(true);
-    
-    
-    
+    p->setBackGroundImage("cocosgui/CloseNormal.png");
+//    p->setBackGroundColorOpacity(100);
+//    p->removeBackGroundImage();
+//    p->setBackGroundImage("cocosgui/CloseNormal.png");
+//    p->setBackGroundColorType(PANEL_COLOR_GRADIENT);
     ul->addWidget(p);
     
 }
