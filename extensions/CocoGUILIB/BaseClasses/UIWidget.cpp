@@ -76,8 +76,7 @@ m_pUILayer(NULL),
 m_bIsCreatedFromFile(false),
 m_nActionTag(0),
 m_fileDesignSize(CCSizeZero),
-m_pBindingAction(NULL),
-m_pLayoutPrameter(NULL)
+m_pBindingAction(NULL)
 {
     m_WidgetName = WIDGET_WIDGET;
 }
@@ -1256,11 +1255,6 @@ void UIWidget::setBlendFunc(cocos2d::ccBlendFunc blendFunc)
     }
 }
 
-void UIWidget::ignoreAnchorPointForPosition(bool ignore)
-{
-    m_pRender->ignoreAnchorPointForPosition(ignore);
-}
-
 CCPoint UIWidget::getTouchStartPos()
 {
     return m_touchStartPos;
@@ -1296,16 +1290,6 @@ const char* UIWidget::getName()
     return m_strName.c_str();
 }
 
-//void UIWidget::setUseMergedTexture(bool useMergedTexture)
-//{
-//    m_bUseMergedTexture = useMergedTexture;
-//}
-//
-//bool UIWidget::getUseMergedTexture()
-//{
-//    return m_bUseMergedTexture;
-//}
-
 WidgetType UIWidget::getWidgetType()
 {
     return m_WidgetType;
@@ -1329,16 +1313,6 @@ int UIWidget::getActionTag()
 void UIWidget::setBindingAction(cocos2d::extension::UIActionNode *actionNode)
 {
     m_pBindingAction = actionNode;
-}
-
-void UIWidget::setMargin(const cocos2d::extension::UIMargin &margin)
-{
-    m_margin = margin;
-}
-
-const UIMargin& UIWidget::getMargin() const
-{
-    return m_margin;
 }
 
 NS_CC_EXT_END

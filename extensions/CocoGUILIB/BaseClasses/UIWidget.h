@@ -27,8 +27,8 @@
 
 #include "cocos2d.h"
 #include "ExtensionMacros.h"
-#include "../Layouts/UILayoutPrameter.h"
 #include "../Layouts/UILayoutDefine.h"
+#include "../Layouts/UILayoutUnit.h"
 NS_CC_EXT_BEGIN
 
 typedef enum
@@ -101,7 +101,7 @@ typedef void (cocos2d::CCObject::*SEL_CancelEvent)(cocos2d::CCObject*);
 class UILayer;
 class UIActionNode;
 
-class UIWidget : public cocos2d::CCObject
+class UIWidget : public cocos2d::CCObject , public UILayoutUnit
 {
 public:
     UIWidget();
@@ -188,7 +188,6 @@ public:
     virtual bool isCascadeColorEnabled();
     virtual void setCascadeColorEnabled(bool cascadeColorEnabled);
     void setBlendFunc(cocos2d::ccBlendFunc blendFunc);
-    void ignoreAnchorPointForPosition(bool ignore);
     //cocos action
     virtual void setActionManager(cocos2d::CCActionManager* actionManager);
     virtual cocos2d::CCActionManager* getActionManager();
@@ -235,15 +234,10 @@ public:
     int getWidgetTag();
     void setName(const char* name);
     const char* getName();
-//    void setUseMergedTexture(bool useMergedTexture);
-//    bool getUseMergedTexture();
     WidgetType getWidgetType();
     WidgetName getWidgetName();
     void setBindingAction(UIActionNode* actionNode);
     
-    //layout
-    void setMargin(const UIMargin& margin);
-    const UIMargin& getMargin()const;
 protected:
     virtual bool init();
     virtual void initNodes();
@@ -259,9 +253,6 @@ protected:
     void longClickEvent();
     virtual bool hitTest(cocos2d::CCNode* node, cocos2d::CCPoint &pt);
     UIActionNode* m_pBindingAction;
-    
-
-    
 protected:
     bool m_bEnabled;
     bool m_bVisible;
@@ -308,16 +299,10 @@ protected:
     float m_fAdaptScaleY;
     int m_nWidgetTag;
     std::string m_strName;
-//    bool m_bUseMergedTexture;
     WidgetType m_WidgetType;
     WidgetName m_WidgetName;
     UILayer* m_pUILayer;
 	int m_nActionTag;
-    UILayoutPrameter* m_pLayoutPrameter;
-    
-    //layout
-    UIMargin m_margin;
-    
 };
 
 NS_CC_EXT_END

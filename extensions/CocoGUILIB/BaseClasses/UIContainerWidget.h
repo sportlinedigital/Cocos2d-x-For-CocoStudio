@@ -28,12 +28,6 @@
 #include "UIWidget.h"
 
 NS_CC_EXT_BEGIN
-    
-typedef enum
-{
-    RENDER_TYPE_LAYERCOLOR,
-    RENDER_TYPE_LAYERGRADIENT
-}RenderType;
 
 typedef enum
 {
@@ -43,7 +37,6 @@ typedef enum
     UI_LAYOUT_RELATIVE,
     UI_LAYOUT_GRID,
     UI_LAYOUT_BORDER,
-    UI_LAYOUT_FRAME,
     UI_LAYOUT_TABLE
 }LayoutType;
 
@@ -56,12 +49,11 @@ public:
     static UIContainerWidget* create();
     //Only containerWidget can use the LayoutType for doing layout to child widget
     virtual void setLayoutType(LayoutType type);
+    virtual LayoutType getLayoutType();
     virtual void doLayout();
     virtual bool addChild(UIWidget* child);
     virtual void setClippingEnable(bool able);
     virtual void setClipRect(const cocos2d::CCRect &rect);
-    virtual void updateWidth();
-    virtual void updateHeight();
     virtual void setSize(const cocos2d::CCSize &size);
     virtual float getWidth();
     virtual float getHeight();
@@ -75,7 +67,6 @@ protected:
     float m_fWidth;
     float m_fHeight;
     bool m_bClipAble;
-    RenderType m_renderType;
     LayoutType m_eLayoutType;
 };
 

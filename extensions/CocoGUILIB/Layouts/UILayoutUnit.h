@@ -22,24 +22,47 @@
  THE SOFTWARE.
  ****************************************************************************/
 
+#ifndef __UILayoutUnit_H__
+#define __UILayoutUnit_H__
 
-#ifndef __UILAYOUTPRAMETER_H__
-#define __UILAYOUTPRAMETER_H__
-
-#include "cocos2d.h"
-#include "ExtensionMacros.h"
+#include "UILayoutDefine.h"
 
 NS_CC_EXT_BEGIN
 
-class UILayoutPrameter : CCObject
+class UILayoutUnit
 {
 public:
-    UILayoutPrameter();
-    virtual ~UILayoutPrameter();
-protected:
+    UILayoutUnit();
+    virtual ~UILayoutUnit();
+    //layout
+    void setMargin(const UIMargin& margin);
+    const UIMargin& getMargin() const;
+    void setLinearGravity(UILinearGravity gravity);
+    UILinearGravity getLinearGravity() const;
     
+    void setRelativeAlign(UIRelativeAlign align);
+    UIRelativeAlign getRelativeAlign() const;
+    
+    void setRelativeAlignWidget(UIRelativeAlignWidget align);
+    UIRelativeAlignWidget getRelativeAlignWidget() const;
+    
+    void setRelativeWidgetName(const char* name);
+    const char* getRelativeWidgetName() const;
+    
+    void setRelativeLayoutName(const char* name);
+    const char* getRelativeLayoutName() const;
+protected:
+    //layout
+    UIMargin m_margin;
+    //linear
+    UILinearGravity m_eLinearGravity;
+    //relative
+    UIRelativeAlign m_eRelativeAlign;
+    UIRelativeAlignWidget m_eRelativeAlignWidget;
+    std::string m_strRelativeWidgetName;
+    std::string m_strRelativeLayoutName;
 };
 
 NS_CC_EXT_END
 
-#endif /* defined(UILayoutPrameter) */
+#endif /* defined(__UILayoutUnit__) */

@@ -24,6 +24,7 @@
 
 #include "UIContainerWidget.h"
 #include "../Drawable/UIClippingLayer.h"
+#include "../System/UIHelper.h"
 
 NS_CC_EXT_BEGIN
 
@@ -33,7 +34,6 @@ UIContainerWidget::UIContainerWidget():
 m_fWidth(0.0),
 m_fHeight(0.0),
 m_bClipAble(false),
-m_renderType(RENDER_TYPE_LAYERCOLOR),
 m_eLayoutType(UI_LAYOUT_ABSOLUTE)
 {
     m_WidgetType = WidgetTypeContainer;
@@ -84,21 +84,17 @@ void UIContainerWidget::setLayoutType(LayoutType type)
     doLayout();
 }
 
+LayoutType UIContainerWidget::getLayoutType()
+{
+    return m_eLayoutType;
+}
+
 void UIContainerWidget::doLayout()
 {
     switch (m_eLayoutType)
     {
         case UI_LAYOUT_ABSOLUTE:
-        {
-            ccArray* arrayChildren = m_children->data;
-            int childrenCount = arrayChildren->num;
-            for (int i=0; i<childrenCount; i++)
-            {
-                UIWidget* child = dynamic_cast<UIWidget*>(arrayChildren->arr[i]);
-                child->setPosition(child->getPosition());
-            }
             break;
-        }
         case UI_LAYOUT_LINEAR_VERTICAL:
         {
             ccArray* arrayChildren = m_children->data;
@@ -107,9 +103,31 @@ void UIContainerWidget::doLayout()
             for (int i=0; i<childrenCount; i++)
             {
                 UIWidget* child = dynamic_cast<UIWidget*>(arrayChildren->arr[i]);
+                WidgetType childType = child->getWidgetType();
+                UILinearGravity childGravity = child->getLinearGravity();
+                CCPoint ap = child->getAnchorPoint();
+                CCSize cs = child->getContentSize();
+                float finalPosX = childType == WidgetTypeWidget ? ap.x*cs.width : 0.0f;
+                float finalPosY = childType == WidgetTypeWidget ? topBoundary - ((1.0f-ap.y) * cs.height) : topBoundary - cs.height;
+                switch (childGravity)
+                {
+                    case LINEAR_GRAVITY_NONE:
+                    case LINEAR_GRAVITY_LEFT:
+                        break;
+                    case LINEAR_GRAVITY_RIGHT:
+                        finalPosX = childType == WidgetTypeWidget ? m_fWidth - ((1.0f - ap.x) * cs.width) : m_fWidth - cs.width;
+                        break;
+                    case LINEAR_GRAVITY_CENTER_HORIZONTAL:
+                        finalPosX = childType == WidgetTypeWidget ? m_fWidth / 2.0f - cs.width * (0.5f-ap.x) : (m_fWidth - cs.width) * 0.5f;
+                        break;
+                    default:
+                        break;
+                }
                 UIMargin mg = child->getMargin();
-                child->setPosition(ccp(child->getAnchorPoint().x*child->getContentSize().width, topBoundary-(child->getAnchorPoint().y*child->getContentSize().height)-mg.top));
-                topBoundary = child->getPosition().y-(child->getAnchorPoint().y*child->getContentSize().height)-mg.bottom;
+                finalPosX += mg.left;
+                finalPosY -= mg.top;
+                child->setPosition(ccp(finalPosX, finalPosY));
+                topBoundary = child->getRelativeBottomPos() - mg.bottom;
             }
             break;
         }
@@ -117,22 +135,194 @@ void UIContainerWidget::doLayout()
         {
             ccArray* arrayChildren = m_children->data;
             int childrenCount = arrayChildren->num;
-            float leftBoundary = 0;
+            float leftBoundary = 0.0f;
             for (int i=0; i<childrenCount; i++)
             {
                 UIWidget* child = dynamic_cast<UIWidget*>(arrayChildren->arr[i]);
-                child->setPosition(ccp(leftBoundary+5+(child->getAnchorPoint().x*child->getContentSize().width), 0));
-                leftBoundary = child->getPosition().x+(child->getAnchorPoint().x*child->getContentSize().width);
+                UILinearGravity childGravity = child->getLinearGravity();
+                WidgetType childType = child->getWidgetType();
+                CCPoint ap = child->getAnchorPoint();
+                CCSize cs = child->getContentSize();
+                float finalPosX = childType == WidgetTypeWidget ? leftBoundary + (ap.x * cs.width) : leftBoundary;
+                float finalPosY = childType == WidgetTypeWidget ? m_fHeight - (1.0f - ap.y) * cs.height : m_fHeight - cs.height;
+                switch (childGravity)
+                {
+                    case LINEAR_GRAVITY_NONE:
+                    case LINEAR_GRAVITY_TOP:
+                        break;
+                    case LINEAR_GRAVITY_BOTTOM:
+                        finalPosY = childType == WidgetTypeWidget ? ap.y * cs.height : 0.0f;
+                        break;
+                    case LINEAR_GRAVITY_CENTER_VERTICAL:
+                        finalPosY = childType == WidgetTypeWidget ? m_fHeight/2.0f - cs.height * (0.5f - ap.y) : (m_fHeight - cs.height) * 0.5f;
+                        break;
+                    default:
+                        break;
+                }
+                UIMargin mg = child->getMargin();
+                finalPosX += mg.left;
+                finalPosY -= mg.top;
+                child->setPosition(ccp(finalPosX, finalPosY));
+                leftBoundary = child->getRelativeRightPos() + mg.right;
             }
             break;
         }
         case UI_LAYOUT_RELATIVE:
+        {
+            ccArray* arrayChildren = m_children->data;
+            int childrenCount = arrayChildren->num;
+            for (int i=0; i<childrenCount; i++)
+            {
+                UIWidget* child = dynamic_cast<UIWidget*>(arrayChildren->arr[i]);
+                WidgetType childType = child->getWidgetType();
+                CCPoint ap = child->getAnchorPoint();
+                CCSize cs = child->getContentSize();
+                float finalPosX = childType == WidgetTypeWidget ? ap.x * cs.width : 0.0f;
+                float finalPosY = childType == WidgetTypeWidget ? m_fHeight - ((1.0f - ap.y) * cs.height) : m_fHeight - cs.height;
+                UIRelativeAlign align = child->getRelativeAlign();
+                const char* relativeName = child->getRelativeWidgetName();
+                UIWidget* relativeWidget = NULL;
+                if (relativeName && strcmp(relativeName, ""))
+                {
+                    relativeWidget = CCUIHELPER->seekWidgetByRelativeName(this, relativeName);
+                }
+                switch (align)
+                {
+                    case RELATIVE_ALIGN_PARENT_NONE:
+                        break;
+                    case RELATIVE_ALIGN_PARENT_LEFT:
+                        break;
+                    case RELATIVE_ALIGN_PARENT_TOP:
+                        break;
+                    case RELATIVE_ALIGN_PARENT_RIGHT:
+                        finalPosX = childType == WidgetTypeWidget ? m_fWidth - ((1.0f - ap.x) * cs.width) : m_fWidth - cs.width;
+                        break;
+                    case RELATIVE_ALIGN_PARENT_BOTTOM:
+                        finalPosY = childType == WidgetTypeWidget ? ap.y * cs.height : 0.0f;
+                        break;
+                    case RELATIVE_CENTER_IN_PARENT:
+                        finalPosX = childType == WidgetTypeWidget ? m_fWidth * 0.5f - cs.width * (0.5f - ap.x) : (m_fWidth - cs.width) * 0.5f;
+                        finalPosY = childType == WidgetTypeWidget ? m_fHeight * 0.5f - cs.height * (0.5f - ap.y) : (m_fHeight - cs.height) * 0.5f;
+                        break;
+                    case RELATIVE_CENTER_HORIZONTAL:
+                        finalPosX = childType == WidgetTypeWidget ? m_fWidth * 0.5f - cs.width * (0.5f - ap.x) : (m_fWidth - cs.width) * 0.5f;
+                        break;
+                    case RELATIVE_CENTER_VERTICAL:
+                        finalPosY = childType == WidgetTypeWidget ? m_fHeight * 0.5f - cs.height * (0.5f - ap.y) : (m_fHeight - cs.height) * 0.5f;
+                        break;
+                    case RELATIVE_LOCATION_ABOVE:
+                        if (relativeWidget)
+                        {
+                            float locationBottom = relativeWidget->getRelativeTopPos();
+                            float locationLeft = relativeWidget->getRelativeLeftPos();
+                            finalPosY = childType == WidgetTypeWidget ? locationBottom + ap.y * cs.height : locationBottom;
+                            finalPosX = childType == WidgetTypeWidget ? locationLeft + ap.x * cs.width : locationLeft;
+                        }
+                        break;
+                    case RELATIVE_LOCATION_BELOW:
+                        if (relativeWidget)
+                        {
+                            float locationTop = relativeWidget->getRelativeBottomPos();
+                            float locationLeft = relativeWidget->getRelativeLeftPos();
+                            finalPosY = childType == WidgetTypeWidget ? locationTop - (1.0f - ap.y) * cs.height : locationTop - cs.height;
+                            finalPosX = childType == WidgetTypeWidget ? locationLeft + ap.x * cs.width : locationLeft;
+                        }
+                        break;
+                    case RELATIVE_LOCATION_LEFT_OF:
+                        if (relativeWidget)
+                        {
+                            float locationTop = relativeWidget->getRelativeTopPos();
+                            float locationRight = relativeWidget->getRelativeLeftPos();
+                            finalPosY = childType == WidgetTypeWidget ? locationTop - ap.y * cs.height : locationTop - cs.height;
+                            finalPosX = childType == WidgetTypeWidget ? locationRight - (1.0f - ap.x) * cs.width : locationRight - cs.width;
+                        }
+                        break;
+                    case RELATIVE_LOCATION_RIGHT_OF:
+                        if (relativeWidget)
+                        {
+                            float locationTop = relativeWidget->getRelativeTopPos();
+                            float locationLeft = relativeWidget->getRelativeRightPos();
+                            finalPosY = childType == WidgetTypeWidget ? locationTop - ap.y * cs.height : locationTop - cs.height;
+                            finalPosX = childType == WidgetTypeWidget ? locationLeft + ap.x * cs.width : locationLeft;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                UIRelativeAlignWidget alignWidget = child->getRelativeAlignWidget();
+                switch (alignWidget)
+                {
+                    case RELATIVE_ALIGN_WIDGET_NONE:
+                        break;
+                    case RELATIVE_ALIGN_WIDGET_LEFT:
+                        break;
+                    case RELATIVE_ALIGN_WIDGET_TOP:
+                        break;
+                    case RELATIVE_ALIGN_WIDGET_RIGHT:
+                    {
+                        UIRelativeAlign align = child->getRelativeAlign();
+                        if (align == RELATIVE_LOCATION_ABOVE || align == RELATIVE_LOCATION_BELOW)
+                        {
+                            if (relativeWidget)
+                            {
+                                float locationRight = relativeWidget->getRelativeRightPos();
+                                finalPosX = childType == WidgetTypeWidget ? locationRight - (1.0f - ap.x) * cs.width : locationRight - cs.width;
+                            }
+                        }
+                        break;
+                    }
+                    case RELATIVE_ALIGN_WIDGET_BOTTOM:
+                    {
+                        UIRelativeAlign align = child->getRelativeAlign();
+                        if (align == RELATIVE_LOCATION_LEFT_OF || align == RELATIVE_LOCATION_RIGHT_OF)
+                        {
+                            if (relativeWidget)
+                            {
+                                float locationBottom = relativeWidget->getRelativeBottomPos();
+                                finalPosY = childType == WidgetTypeWidget ? locationBottom + ap.y * cs.height : locationBottom;
+                            }
+                        }
+                        break;
+                    }
+                    default:
+                        break;
+                }
+                UIMargin relativeWidgetMargin;
+                UIMargin mg;
+                if (relativeWidget)
+                {
+                    relativeWidgetMargin = relativeWidget->getMargin();
+                    mg = child->getMargin();
+                }
+                //handle margin
+                switch (align)
+                {
+                    case RELATIVE_LOCATION_ABOVE:
+                        finalPosY += relativeWidgetMargin.top;
+                        finalPosY += relativeWidgetMargin.bottom;
+                        break;
+                    case RELATIVE_LOCATION_BELOW:
+                        finalPosY -= relativeWidgetMargin.bottom;
+                        finalPosY -= mg.top;
+                        break;
+                    case RELATIVE_LOCATION_LEFT_OF:
+                        finalPosX -= relativeWidgetMargin.left;
+                        finalPosX -= mg.right;
+                        break;
+                    case RELATIVE_LOCATION_RIGHT_OF:
+                        finalPosX += relativeWidgetMargin.right;
+                        finalPosX += mg.left;
+                        break;
+                    default:
+                        break;
+                }
+                child->setPosition(ccp(finalPosX, finalPosY));
+            }
             break;
+        }
         case UI_LAYOUT_GRID:
             break;
         case UI_LAYOUT_BORDER:
-            break;
-        case UI_LAYOUT_FRAME:
             break;
         case UI_LAYOUT_TABLE:
             break;
@@ -191,21 +381,12 @@ void UIContainerWidget::setClipRect(const cocos2d::CCRect &rect)
     DYNAMIC_CAST_CLIPPINGLAYER->setClipRect(rect);
 }
 
-void UIContainerWidget::updateWidth()
-{
-
-}
-
-void UIContainerWidget::updateHeight()
-{
-    
-}
-
 void UIContainerWidget::setSize(const cocos2d::CCSize &size)
 {
     DYNAMIC_CAST_CLIPPINGLAYER->setContentSize(size);
     m_fWidth = size.width;
     m_fHeight = size.height;
+    doLayout();
 }
 
 float UIContainerWidget::getWidth()

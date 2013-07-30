@@ -22,27 +22,33 @@ void CocosGUITestScene::runThisTest()
     p->setPosition(ccp(100, 100));
     p->setBackGroundColor(ccGREEN);
     p->setBackGroundColorType(PANEL_COLOR_SOLID);
+    p->setClippingEnable(true);
     
-    for (int i=0; i<10; i++)
-    {
-        UIButton* btn = UIButton::create();
-        btn->setTextures("cocosgui/backtotopnormal.png", NULL, NULL);
-        btn->setMargin(UIMargin(0, 10, 0, 10));
-        btn->setTouchEnable(true);
-        p->addChild(btn);
-    }
     
-    p->setLayoutType(UI_LAYOUT_LINEAR_VERTICAL);
     
     ul->addWidget(p);
     
 }
 void CocosGUITestScene::MainMenuCallback(CCObject* pSender)
 {
+    static bool is = true;
+    if (is)
+    {
+//        ((UIContainerWidget*)ul->getWidgetByName("linearlayout"))->getChildByName("relaBtn")->setRelativeAlign(RELATIVE_LOCATION_LEFT_OF);
+//        ((UIContainerWidget*)ul->getWidgetByName("linearlayout"))->getChildByName("relaBtn")->setMargin(UIMargin(10,10,10,10));
+        ((UIContainerWidget*)ul->getWidgetByName("linearlayout"))->setSize(CCSizeMake(200, 200));
+    }
+    else
+    {
+//        ((UIContainerWidget*)ul->getWidgetByName("linearlayout"))->getChildByName("relaBtn")->setRelativeAlign(RELATIVE_LOCATION_RIGHT_OF);
+//        ((UIContainerWidget*)ul->getWidgetByName("linearlayout"))->getChildByName("relaBtn")->setMargin(UIMargin(10,10,10,10));
+        ((UIContainerWidget*)ul->getWidgetByName("linearlayout"))->setSize(CCSizeMake(300, 300));
+    }
+    is = !is;
     CCLOG("p1 click");
     CCLOG("p1 retain count == %d",ul->retainCount());
-    ul->removeFromParent();
-    TestScene::MainMenuCallback(pSender);
+//    ul->removeFromParent();
+//    TestScene::MainMenuCallback(pSender);
 }
 
 void CocosGUITestScene::toCocosGUIExampleScene(CCObject* pSender)

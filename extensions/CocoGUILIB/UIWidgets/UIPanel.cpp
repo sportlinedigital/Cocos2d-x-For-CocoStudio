@@ -67,15 +67,25 @@ void UIPanel::initNodes()
 
 void UIPanel::addBackGroundImage()
 {
-    m_pBackGroundImage = CCSprite::create();
-    m_pBackGroundImage->setZOrder(-1);
-    m_pRender->addChild(m_pBackGroundImage);
+    if (m_bBackGroundScale9Enable)
+    {
+        m_pBackGroundImage = CCScale9Sprite::create();
+        m_pBackGroundImage->setZOrder(-1);
+        m_pRender->addChild(m_pBackGroundImage);
+    }
+    else
+    {
+        m_pBackGroundImage = CCSprite::create();
+        m_pBackGroundImage->setZOrder(-1);
+        m_pRender->addChild(m_pBackGroundImage);
+    }
 }
 
 void UIPanel::removeBackGroundImage()
 {
     m_pRender->removeChild(m_pBackGroundImage,  true);
     m_pBackGroundImage = NULL;
+    m_strBackGroundImageFileName = "";
 }
 
 void UIPanel::setBackGroundImageScale9Enable(bool able)
@@ -127,7 +137,6 @@ void UIPanel::setBackGroundImage(const char* fileName,TextureResType texType)
         addBackGroundImage();
     }
     m_strBackGroundImageFileName = fileName;
-//    setUseMergedTexture(useSpriteFrame);
     m_eBGImageTexType = texType;
     if (m_bBackGroundScale9Enable)
     {

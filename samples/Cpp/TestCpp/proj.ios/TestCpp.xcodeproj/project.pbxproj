@@ -366,7 +366,7 @@
 		37EEEC44175DE5D3003C1193 /* ProjectileController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37EEEC3C175DE5D3003C1193 /* ProjectileController.cpp */; };
 		37EEEC45175DE5D3003C1193 /* SceneController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37EEEC3E175DE5D3003C1193 /* SceneController.cpp */; };
 		5013E5CB179D08270085BB3B /* UICCTextField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5013E5C9179D08270085BB3B /* UICCTextField.cpp */; };
-		5013E5CF179E20510085BB3B /* UILayoutPrameter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5013E5CD179E20510085BB3B /* UILayoutPrameter.cpp */; };
+		5013E5FB17A75A230085BB3B /* UILayoutUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5013E5F917A75A230085BB3B /* UILayoutUnit.cpp */; };
 		504D893B1793A77D00E8ED0D /* UISwitch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504D89391793A77D00E8ED0D /* UISwitch.cpp */; };
 		504D895B17995BBB00E8ED0D /* UIDragPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504D895717995BB600E8ED0D /* UIDragPanel.cpp */; };
 		504D895C17995BBB00E8ED0D /* UIWrapPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 504D895917995BB800E8ED0D /* UIWrapPanel.cpp */; };
@@ -1156,8 +1156,8 @@
 		37EEEC3F175DE5D3003C1193 /* SceneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneController.h; sourceTree = "<group>"; };
 		5013E5C9179D08270085BB3B /* UICCTextField.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UICCTextField.cpp; sourceTree = "<group>"; };
 		5013E5CA179D08270085BB3B /* UICCTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICCTextField.h; sourceTree = "<group>"; };
-		5013E5CD179E20510085BB3B /* UILayoutPrameter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UILayoutPrameter.cpp; sourceTree = "<group>"; };
-		5013E5CE179E20510085BB3B /* UILayoutPrameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILayoutPrameter.h; sourceTree = "<group>"; };
+		5013E5F917A75A230085BB3B /* UILayoutUnit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UILayoutUnit.cpp; sourceTree = "<group>"; };
+		5013E5FA17A75A230085BB3B /* UILayoutUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILayoutUnit.h; sourceTree = "<group>"; };
 		504D89391793A77D00E8ED0D /* UISwitch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UISwitch.cpp; sourceTree = "<group>"; };
 		504D893A1793A77D00E8ED0D /* UISwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISwitch.h; sourceTree = "<group>"; };
 		504D895717995BB600E8ED0D /* UIDragPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIDragPanel.cpp; sourceTree = "<group>"; };
@@ -2987,10 +2987,10 @@
 		5013E5CC179E1FD80085BB3B /* Layouts */ = {
 			isa = PBXGroup;
 			children = (
-				5013E5CD179E20510085BB3B /* UILayoutPrameter.cpp */,
-				5013E5CE179E20510085BB3B /* UILayoutPrameter.h */,
 				50C3616917A0274F004F27FF /* UILayoutDefine.cpp */,
 				50C3616A17A0274F004F27FF /* UILayoutDefine.h */,
+				5013E5F917A75A230085BB3B /* UILayoutUnit.cpp */,
+				5013E5FA17A75A230085BB3B /* UILayoutUnit.h */,
 			);
 			path = Layouts;
 			sourceTree = "<group>";
@@ -3512,8 +3512,8 @@
 				504D895C17995BBB00E8ED0D /* UIWrapPanel.cpp in Sources */,
 				37C7EF7A179652E800A60CCA /* class.js in Sources */,
 				5013E5CB179D08270085BB3B /* UICCTextField.cpp in Sources */,
-				5013E5CF179E20510085BB3B /* UILayoutPrameter.cpp in Sources */,
 				50C3616B17A0274F004F27FF /* UILayoutDefine.cpp in Sources */,
+				5013E5FB17A75A230085BB3B /* UILayoutUnit.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
