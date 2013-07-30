@@ -209,7 +209,7 @@ void TestDragonBones20::onEnter()
 	cocos2d::extension::CCArmature *armature = NULL;
 	armature = cocos2d::extension::CCArmature::create("Dragon");
 	armature->getAnimation()->playByIndex(1);
-	armature->getAnimation()->setAnimationScale(0.4f);
+	armature->getAnimation()->setSpeedScale(0.4f);
 	armature->setPosition(VisibleRect::center().x, VisibleRect::center().y * 0.3f);
 	armature->setScale(0.6f);
     addChild(armature);
@@ -425,7 +425,7 @@ void TestParticleDisplay::onEnter()
 	armature->getAnimation()->playByIndex(0);
 	armature->setPosition(VisibleRect::center());
 	armature->setScale(0.48f);
-	armature->getAnimation()->setAnimationScale(0.5f);
+	armature->getAnimation()->setSpeedScale(0.5f);
 	addChild(armature);
 
 
@@ -630,10 +630,13 @@ void TestColliderDetector::onEnter()
 
 	armature = cocos2d::extension::CCArmature::create("Cowboy");
 	armature->getAnimation()->play("FireWithoutBullet");
-	armature->getAnimation()->setAnimationScale(0.2f);
+	armature->getAnimation()->setSpeedScale(0.2f);
 	armature->setScaleX(-0.2f);
 	armature->setScaleY(0.2f);
 	armature->setPosition(ccp(VisibleRect::left().x + 70, VisibleRect::left().y));
+
+	armature->getAnimation()->FrameEventSignal.connect(this, &TestColliderDetector::onFrameEvent);
+
 	addChild(armature);
 
 	armature2 = cocos2d::extension::CCArmature::create("Cowboy");
@@ -682,14 +685,6 @@ void TestColliderDetector::update(float delta)
 	armature2->setVisible(true);
 #endif
 
-	if (armature->getAnimation()->getCurrentFrameIndex() == 9)
-	{
-		CCPoint p = armature->getBone("Layer126")->getDisplayRenderNode()->convertToWorldSpaceAR(ccp(0, 0));
-		bullet->setPosition(ccp(p.x + 60, p.y));
-
-		bullet->stopAllActions();
-		bullet->runAction(CCMoveBy::create(1.5f, ccp(350, 0)));
-	}
 
 #if ENABLE_PHYSICS_BOX2D_DETECT
 	world->Step(delta, 0, 0);
@@ -705,11 +700,23 @@ void TestColliderDetector::update(float delta)
 		CCBone *bb = (CCBone *)b2b->GetUserData();
 
 		bb->getArmature()->setVisible(false);
+
 	}
 #elif ENABLE_PHYSICS_CHIPMUNK_DETECT
 	cpSpaceStep(space, delta);
 #endif
 }
+
+void TestColliderDetector::onFrameEvent(CCBone *bone, const char *evt)
+{
+	CCPoint p = armature->getBone("Layer126")->getDisplayRenderNode()->convertToWorldSpaceAR(ccp(0, 0));
+	bullet->setPosition(ccp(p.x + 60, p.y));
+
+	bullet->stopAllActions();
+	bullet->runAction(CCMoveBy::create(1.5f, ccp(350, 0)));
+}
+
+
 void TestColliderDetector::initWorld()
 {
 #if ENABLE_PHYSICS_BOX2D_DETECT
@@ -813,6 +820,9 @@ void TestBoundingBox::onEnter()
 	armature->setPosition(VisibleRect::center());
    	armature->setScale(0.2f); 
 	addChild(armature);
+
+	CCSprite *sprite = CCSprite::create("Images/background3.png");
+	armature->addChild(sprite);
 }
 std::string TestBoundingBox::title()
 {
@@ -865,7 +875,7 @@ void TestArmatureNesting::onEnter()
 	armature->getAnimation()->playByIndex(1);
 	armature->setPosition(VisibleRect::center());
 	armature->setScale(1.2f);
-	armature->getAnimation()->setAnimationScale(0.4f);
+	armature->getAnimation()->setSpeedScale(0.4f);
 	addChild(armature);
 
 	weaponIndex = 0;

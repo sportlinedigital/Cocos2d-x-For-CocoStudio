@@ -79,7 +79,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A\include;$(ProjectDir)..\..\external\chipmunk\include\chipmunk;$(ProjectDir)..\..\external\sqlite3\include;$(ProjectDir)..\..\external;$(ProjectDir)..\..\external\libwebsockets\win32\include;$(ProjectDir)..\..\cocos2dx;$(ProjectDir)..\..\cocos2dx\include;$(ProjectDir)..\..\cocos2dx\kazmath\include;$(ProjectDir)..\..\cocos2dx\platform\win32;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32\pthread;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32\OGLES;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32\zlib;$(ProjectDir)..\..\CocosDenshion\include;..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A\include;$(ProjectDir)..\..\external\chipmunk\include\chipmunk;$(ProjectDir)..\..\external\sqlite3\include;$(ProjectDir)..\..\external;$(ProjectDir)..\..\external\libwebsockets\win32\include;$(ProjectDir)..\..\cocos2dx;$(ProjectDir)..\..\cocos2dx\include;$(ProjectDir)..\..\cocos2dx\kazmath\include;$(ProjectDir)..\..\cocos2dx\platform\win32;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32\pthread;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32\OGLES;$(ProjectDir)..\..\cocos2dx\platform\third_party\win32\zlib;$(ProjectDir)..\..\CocosDenshion\include;$(ProjectDir)..\..\extensions\CocoGUILIB\BaseClasses;$(ProjectDir)..\..\extensions\CocoGUILIB\Drawable;$(ProjectDir)..\..\extensions\CocoGUILIB\UIWidgets;$(ProjectDir)..\..\extensions\CocoGUILIB\Action;$(ProjectDir)..\..\extensions\CocoGUILIB\System;..\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_LIB;CC_ENABLE_CHIPMUNK_INTEGRATION=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;COCOS2D_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -152,7 +152,10 @@
     <ClCompile Include="..\CocoGUILIB\BaseClasses\UIRootWidget.cpp" />
     <ClCompile Include="..\CocoGUILIB\BaseClasses\UIWidget.cpp" />
     <ClCompile Include="..\CocoGUILIB\Drawable\UICCLabelAtlas.cpp" />
+    <ClCompile Include="..\CocoGUILIB\Drawable\UICCTextField.cpp" />
     <ClCompile Include="..\CocoGUILIB\Drawable\UIClippingLayer.cpp" />
+    <ClCompile Include="..\CocoGUILIB\Layouts\UILayoutDefine.cpp" />
+    <ClCompile Include="..\CocoGUILIB\Layouts\UILayoutPrameter.cpp" />
     <ClCompile Include="..\CocoGUILIB\System\CCSReader.cpp" />
     <ClCompile Include="..\CocoGUILIB\System\CocosGUI.cpp" />
     <ClCompile Include="..\CocoGUILIB\System\UIHelper.cpp" />
@@ -306,7 +309,10 @@
     <ClInclude Include="..\CocoGUILIB\BaseClasses\UIRootWidget.h" />
     <ClInclude Include="..\CocoGUILIB\BaseClasses\UIWidget.h" />
     <ClInclude Include="..\CocoGUILIB\Drawable\UICCLabelAtlas.h" />
+    <ClInclude Include="..\CocoGUILIB\Drawable\UICCTextField.h" />
     <ClInclude Include="..\CocoGUILIB\Drawable\UIClippingLayer.h" />
+    <ClInclude Include="..\CocoGUILIB\Layouts\UILayoutDefine.h" />
+    <ClInclude Include="..\CocoGUILIB\Layouts\UILayoutPrameter.h" />
     <ClInclude Include="..\CocoGUILIB\System\CCSReader.h" />
     <ClInclude Include="..\CocoGUILIB\System\CocosGUI.h" />
     <ClInclude Include="..\CocoGUILIB\System\UIHelper.h" />
