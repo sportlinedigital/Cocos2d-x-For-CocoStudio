@@ -71,13 +71,15 @@ void CocosGUITestScene::MainMenuCallback(CCObject* pSender)
     static bool is = true;
     if (is)
     {
-        ((UIContainerWidget*)ul->getWidgetByName("linearlayout"))->getChildByName("relaBtn")->setRelativeAlign(RELATIVE_LOCATION_LEFT_OF);
-        ((UIContainerWidget*)ul->getWidgetByName("linearlayout"))->getChildByName("relaBtn")->setMargin(UIMargin(10,10,10,10));
+//        ((UIContainerWidget*)ul->getWidgetByName("linearlayout"))->getChildByName("relaBtn")->setRelativeAlign(RELATIVE_LOCATION_LEFT_OF);
+//        ((UIContainerWidget*)ul->getWidgetByName("linearlayout"))->getChildByName("relaBtn")->setMargin(UIMargin(10,10,10,10));
+        ((UIContainerWidget*)ul->getWidgetByName("linearlayout"))->setSize(CCSizeMake(200, 200));
     }
     else
     {
-        ((UIContainerWidget*)ul->getWidgetByName("linearlayout"))->getChildByName("relaBtn")->setRelativeAlign(RELATIVE_LOCATION_RIGHT_OF);
-        ((UIContainerWidget*)ul->getWidgetByName("linearlayout"))->getChildByName("relaBtn")->setMargin(UIMargin(10,10,10,10));
+//        ((UIContainerWidget*)ul->getWidgetByName("linearlayout"))->getChildByName("relaBtn")->setRelativeAlign(RELATIVE_LOCATION_RIGHT_OF);
+//        ((UIContainerWidget*)ul->getWidgetByName("linearlayout"))->getChildByName("relaBtn")->setMargin(UIMargin(10,10,10,10));
+        ((UIContainerWidget*)ul->getWidgetByName("linearlayout"))->setSize(CCSizeMake(300, 300));
     }
     is = !is;
     CCLOG("p1 click");

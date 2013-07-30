@@ -76,12 +76,7 @@ m_pUILayer(NULL),
 m_bIsCreatedFromFile(false),
 m_nActionTag(0),
 m_fileDesignSize(CCSizeZero),
-m_pBindingAction(NULL),
-m_eLinearGravity(LINEAR_GRAVITY_NONE),
-m_eRelativeAlign(RELATIVE_ALIGN_PARENT_NONE),
-m_eRelativeAlignWidget(RELATIVE_ALIGN_WIDGET_NONE),
-m_strRelativeWidgetName(""),
-m_strRelativeLayoutName("")
+m_pBindingAction(NULL)
 {
     m_WidgetName = WIDGET_WIDGET;
 }
@@ -1300,16 +1295,6 @@ const char* UIWidget::getName()
     return m_strName.c_str();
 }
 
-//void UIWidget::setUseMergedTexture(bool useMergedTexture)
-//{
-//    m_bUseMergedTexture = useMergedTexture;
-//}
-//
-//bool UIWidget::getUseMergedTexture()
-//{
-//    return m_bUseMergedTexture;
-//}
-
 WidgetType UIWidget::getWidgetType()
 {
     return m_WidgetType;
@@ -1333,120 +1318,6 @@ int UIWidget::getActionTag()
 void UIWidget::setBindingAction(cocos2d::extension::UIActionNode *actionNode)
 {
     m_pBindingAction = actionNode;
-}
-
-void UIWidget::setMargin(const cocos2d::extension::UIMargin &margin)
-{
-    m_margin = margin;
-    UIWidget* parent = getWidgetParent();
-    if (parent)
-    {
-        UIContainerWidget* containerParent = dynamic_cast<UIContainerWidget*>(parent);
-        if (containerParent)
-        {
-            containerParent->doLayout();
-        }
-    }
-}
-
-const UIMargin& UIWidget::getMargin() const
-{
-    return m_margin;
-}
-
-void UIWidget::setLinearGravity(UILinearGravity gravity)
-{
-    m_eLinearGravity = gravity;
-    UIWidget* parent = getWidgetParent();
-    if (parent)
-    {
-        UIContainerWidget* containerParent = dynamic_cast<UIContainerWidget*>(parent);
-        if (containerParent && (containerParent->getLayoutType() == UI_LAYOUT_LINEAR_HORIZONTAL || containerParent->getLayoutType() == UI_LAYOUT_LINEAR_VERTICAL))
-        {
-            containerParent->doLayout();
-        }
-    }
-}
-
-UILinearGravity UIWidget::getLinearGravity() const
-{
-    return m_eLinearGravity;
-}
-
-void UIWidget::setRelativeAlign(UIRelativeAlign align)
-{
-    m_eRelativeAlign = align;
-    UIWidget* parent = getWidgetParent();
-    if (parent)
-    {
-        UIContainerWidget* containerParent = dynamic_cast<UIContainerWidget*>(parent);
-        if (containerParent && (containerParent->getLayoutType() == UI_LAYOUT_RELATIVE))
-        {
-            containerParent->doLayout();
-        }
-    }
-}
-
-UIRelativeAlign UIWidget::getRelativeAlign() const
-{
-    return m_eRelativeAlign;
-}
-
-void UIWidget::setRelativeAlignWidget(UIRelativeAlignWidget align)
-{
-    m_eRelativeAlignWidget = align;
-    UIWidget* parent = getWidgetParent();
-    if (parent)
-    {
-        UIContainerWidget* containerParent = dynamic_cast<UIContainerWidget*>(parent);
-        if (containerParent && (containerParent->getLayoutType() == UI_LAYOUT_RELATIVE))
-        {
-            containerParent->doLayout();
-        }
-    }
-}
-
-UIRelativeAlignWidget UIWidget::getRelativeAlignWidget() const
-{
-    return m_eRelativeAlignWidget;
-}
-
-void UIWidget::setRelativeWidgetName(const char *name)
-{
-    m_strRelativeWidgetName = name;
-    UIWidget* parent = getWidgetParent();
-    if (parent)
-    {
-        UIContainerWidget* containerParent = dynamic_cast<UIContainerWidget*>(parent);
-        if (containerParent && (containerParent->getLayoutType() == UI_LAYOUT_RELATIVE))
-        {
-            containerParent->doLayout();
-        }
-    }
-}
-
-const char* UIWidget::getRelativeWidgetName() const
-{
-    return m_strRelativeWidgetName.c_str();
-}
-
-void UIWidget::setRelativeLayoutName(const char* name)
-{
-    m_strRelativeLayoutName = name;
-    UIWidget* parent = getWidgetParent();
-    if (parent)
-    {
-        UIContainerWidget* containerParent = dynamic_cast<UIContainerWidget*>(parent);
-        if (containerParent && (containerParent->getLayoutType() == UI_LAYOUT_RELATIVE))
-        {
-            containerParent->doLayout();
-        }
-    }
-}
-
-const char* UIWidget::getRelativeLayoutName() const
-{
-    return m_strRelativeLayoutName.c_str();
 }
 
 NS_CC_EXT_END

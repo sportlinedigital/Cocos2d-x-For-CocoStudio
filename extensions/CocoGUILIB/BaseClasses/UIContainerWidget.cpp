@@ -105,24 +105,29 @@ void UIContainerWidget::doLayout()
             {
                 UIWidget* child = dynamic_cast<UIWidget*>(arrayChildren->arr[i]);
                 UILinearGravity childGravity = child->getLinearGravity();
-                float finalPosX = child->getAnchorPoint().x*child->getContentSize().width;
+                CCPoint ap = child->getAnchorPoint();
+                CCSize cs = child->getContentSize();
+                float finalPosX = ap.x*cs.width;
+                float finalPosY = topBoundary - ((1.0f-ap.y) * cs.height);
                 switch (childGravity)
                 {
                     case LINEAR_GRAVITY_NONE:
                     case LINEAR_GRAVITY_LEFT:
                         break;
                     case LINEAR_GRAVITY_RIGHT:
-                        finalPosX = m_fWidth - ((1.0f-child->getAnchorPoint().x)*child->getContentSize().width);
+                        finalPosX = m_fWidth - ((1.0f - ap.x) * cs.width);
                         break;
                     case LINEAR_GRAVITY_CENTER_HORIZONTAL:
-                        finalPosX = m_fWidth/2.0f - (child->getContentSize().width)*(0.5f-child->getAnchorPoint().x);
+                        finalPosX = m_fWidth / 2.0f - cs.width * (0.5f-ap.x);
                         break;
                     default:
                         break;
                 }
                 UIMargin mg = child->getMargin();
-                child->setPosition(ccp(finalPosX+mg.left, topBoundary-((1.0f-child->getAnchorPoint().y)*child->getContentSize().height)-mg.top));
-                topBoundary = child->getRelativeBottomPos()-mg.bottom;
+                finalPosX += mg.left;
+                finalPosY -= mg.top;
+                child->setPosition(ccp(finalPosX, finalPosY));
+                topBoundary = child->getRelativeBottomPos() - mg.bottom;
             }
             break;
         }
@@ -135,24 +140,29 @@ void UIContainerWidget::doLayout()
             {
                 UIWidget* child = dynamic_cast<UIWidget*>(arrayChildren->arr[i]);
                 UILinearGravity childGravity = child->getLinearGravity();
-                float finalPosY = m_fHeight - (1.0f-child->getAnchorPoint().y)*child->getContentSize().height;
+                CCPoint ap = child->getAnchorPoint();
+                CCSize cs = child->getContentSize();
+                float finalPosX = leftBoundary + (ap.x * cs.width);
+                float finalPosY = m_fHeight - (1.0f - ap.y) * cs.height;
                 switch (childGravity)
                 {
                     case LINEAR_GRAVITY_NONE:
                     case LINEAR_GRAVITY_TOP:
                         break;
                     case LINEAR_GRAVITY_BOTTOM:
-                        finalPosY = child->getAnchorPoint().y*child->getContentSize().height;
+                        finalPosY = ap.y * cs.height;
                         break;
                     case LINEAR_GRAVITY_CENTER_VERTICAL:
-                        finalPosY = m_fHeight/2.0f - (child->getContentSize().height)*(0.5f-child->getAnchorPoint().y);
+                        finalPosY = m_fHeight/2.0f - cs.height * (0.5f - ap.y);
                         break;
                     default:
                         break;
                 }
                 UIMargin mg = child->getMargin();
-                child->setPosition(ccp(leftBoundary+mg.left+(child->getAnchorPoint().x*child->getContentSize().width), finalPosY-mg.top));
-                leftBoundary = child->getRelativeRightPos()+mg.right;
+                finalPosX += mg.left;
+                finalPosY -= mg.top;
+                child->setPosition(ccp(finalPosX, finalPosY));
+                leftBoundary = child->getRelativeRightPos() + mg.right;
             }
             break;
         }
@@ -303,7 +313,6 @@ void UIContainerWidget::doLayout()
                     default:
                         break;
                 }
-                
                 child->setPosition(ccp(finalPosX, finalPosY));
             }
             break;
@@ -369,21 +378,12 @@ void UIContainerWidget::setClipRect(const cocos2d::CCRect &rect)
     DYNAMIC_CAST_CLIPPINGLAYER->setClipRect(rect);
 }
 
-void UIContainerWidget::updateWidth()
-{
-
-}
-
-void UIContainerWidget::updateHeight()
-{
-    
-}
-
 void UIContainerWidget::setSize(const cocos2d::CCSize &size)
 {
     DYNAMIC_CAST_CLIPPINGLAYER->setContentSize(size);
     m_fWidth = size.width;
     m_fHeight = size.height;
+    doLayout();
 }
 
 float UIContainerWidget::getWidth()

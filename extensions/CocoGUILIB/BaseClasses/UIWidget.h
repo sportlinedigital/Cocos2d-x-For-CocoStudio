@@ -28,6 +28,7 @@
 #include "cocos2d.h"
 #include "ExtensionMacros.h"
 #include "../Layouts/UILayoutDefine.h"
+#include "../Layouts/UILayoutUnit.h"
 NS_CC_EXT_BEGIN
 
 typedef enum
@@ -100,7 +101,7 @@ typedef void (cocos2d::CCObject::*SEL_CancelEvent)(cocos2d::CCObject*);
 class UILayer;
 class UIActionNode;
 
-class UIWidget : public cocos2d::CCObject
+class UIWidget : public cocos2d::CCObject , public UILayoutUnit
 {
 public:
     UIWidget();
@@ -234,29 +235,9 @@ public:
     int getWidgetTag();
     void setName(const char* name);
     const char* getName();
-//    void setUseMergedTexture(bool useMergedTexture);
-//    bool getUseMergedTexture();
     WidgetType getWidgetType();
     WidgetName getWidgetName();
     void setBindingAction(UIActionNode* actionNode);
-    
-    //layout
-    void setMargin(const UIMargin& margin);
-    const UIMargin& getMargin() const;
-    void setLinearGravity(UILinearGravity gravity);
-    UILinearGravity getLinearGravity() const;
-    
-    void setRelativeAlign(UIRelativeAlign align);
-    UIRelativeAlign getRelativeAlign() const;
-    
-    void setRelativeAlignWidget(UIRelativeAlignWidget align);
-    UIRelativeAlignWidget getRelativeAlignWidget() const;
-    
-    void setRelativeWidgetName(const char* name);
-    const char* getRelativeWidgetName() const;
-    
-    void setRelativeLayoutName(const char* name);
-    const char* getRelativeLayoutName() const;
     
 protected:
     virtual bool init();
@@ -273,9 +254,6 @@ protected:
     void longClickEvent();
     virtual bool hitTest(cocos2d::CCNode* node, cocos2d::CCPoint &pt);
     UIActionNode* m_pBindingAction;
-    
-
-    
 protected:
     bool m_bEnabled;
     bool m_bVisible;
@@ -322,21 +300,10 @@ protected:
     float m_fAdaptScaleY;
     int m_nWidgetTag;
     std::string m_strName;
-//    bool m_bUseMergedTexture;
     WidgetType m_WidgetType;
     WidgetName m_WidgetName;
     UILayer* m_pUILayer;
 	int m_nActionTag;
-    
-    //layout
-    UIMargin m_margin;
-    //linear
-    UILinearGravity m_eLinearGravity;
-    //relative
-    UIRelativeAlign m_eRelativeAlign;
-    UIRelativeAlignWidget m_eRelativeAlignWidget;
-    std::string m_strRelativeWidgetName;
-    std::string m_strRelativeLayoutName;
 };
 
 NS_CC_EXT_END

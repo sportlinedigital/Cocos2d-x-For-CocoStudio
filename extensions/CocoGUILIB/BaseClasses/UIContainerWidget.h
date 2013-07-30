@@ -60,8 +60,6 @@ public:
     virtual bool addChild(UIWidget* child);
     virtual void setClippingEnable(bool able);
     virtual void setClipRect(const cocos2d::CCRect &rect);
-    virtual void updateWidth();
-    virtual void updateHeight();
     virtual void setSize(const cocos2d::CCSize &size);
     virtual float getWidth();
     virtual float getHeight();
