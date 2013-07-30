@@ -61,9 +61,6 @@
     <Filter Include="Components">
       <UniqueIdentifier>{e82b14bf-eb08-4a40-a9a2-cc92a154d9b9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="NewFilter2">
-      <UniqueIdentifier>{7e9b0ea0-c344-484e-b2d4-c7c478c45919}</UniqueIdentifier>
-    </Filter>
     <Filter Include="CocoGUILIB">
       <UniqueIdentifier>{d2fb4d1c-d4fa-4270-b26d-9666ac84f652}</UniqueIdentifier>
     </Filter>
@@ -86,10 +83,10 @@
       <UniqueIdentifier>{bb55ef06-8fad-4ca3-80f0-15c48b325da1}</UniqueIdentifier>
     </Filter>
     <Filter Include="CocoAction">
-      <UniqueIdentifier>{b6a6876f-bf7f-45d5-920c-89c52909743a}</UniqueIdentifier>
+      <UniqueIdentifier>{7e9b0ea0-c344-484e-b2d4-c7c478c45919}</UniqueIdentifier>
     </Filter>
-    <Filter Include="CocoGUILIB\Layerouts">
-      <UniqueIdentifier>{f8705cd3-23c5-43da-8ad1-c0f4611dc1c4}</UniqueIdentifier>
+    <Filter Include="CocoGUILIB\Layouts">
+      <UniqueIdentifier>{a3cdbabf-5e24-47b2-866a-88bc01e28836}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -501,31 +498,20 @@
     <ClCompile Include="..\CocoAction\CocoActionObject.cpp">
       <Filter>CocoAction</Filter>
     </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\Drawable\UICCTextField.cpp">
+      <Filter>CocoGUILIB\Drawable</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\Layouts\UILayoutDefine.cpp">
+      <Filter>CocoGUILIB\Layouts</Filter>
+    </ClCompile>
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UIDragPanel.cpp">
       <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClCompile>
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UIWrapPanel.cpp">
       <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="..\CocoGUILIB\Layouts\UILayoutDefine.cpp">
-      <Filter>CocoGUILIB\Layout</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\Layouts\UILayoutPrameter.cpp">
-      <Filter>CocoGUILIB\Layout</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\Drawable\UICCTextField.cpp">
-      <Filter>CocoGUILIB\Drawable</Filter>
-=======
-    <ClCompile Include="..\CocoGUILIB\Drawable\UICCTextField.cpp">
-      <Filter>CocoGUILIB\Drawable</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\Layouts\UILayoutDefine.cpp">
-      <Filter>CocoGUILIB\Layerouts</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\Layouts\UILayoutPrameter.cpp">
-      <Filter>CocoGUILIB\Layerouts</Filter>
->>>>>>> master
+    <ClCompile Include="..\CocoGUILIB\Layouts\UILayoutUnit.cpp">
+      <Filter>CocoGUILIB\Layouts</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -900,6 +886,9 @@
     <ClInclude Include="..\CocostudioReader\DictionaryHelper.h">
       <Filter>CocostudioReader</Filter>
     </ClInclude>
+    <ClInclude Include="..\CocoAction\CocoActionObject.h">
+      <Filter>CocoAction</Filter>
+    </ClInclude>
     <ClInclude Include="..\CocoAction\CocoActionFrame.h">
       <Filter>CocoAction</Filter>
     </ClInclude>
@@ -912,34 +901,20 @@
     <ClInclude Include="..\CocoAction\CocoActionNode.h">
       <Filter>CocoAction</Filter>
     </ClInclude>
-    <ClInclude Include="..\CocoAction\CocoActionObject.h">
-      <Filter>CocoAction</Filter>
+    <ClInclude Include="..\CocoGUILIB\Drawable\UICCTextField.h">
+      <Filter>CocoGUILIB\Drawable</Filter>
     </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\UIWidgets\UIDragPanel.h">
-      <Filter>CocoGUILIB\UIWidgets</Filter>
+    <ClInclude Include="..\CocoGUILIB\Layouts\UILayoutDefine.h">
+      <Filter>CocoGUILIB\Layouts</Filter>
     </ClInclude>
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UIWrapPanel.h">
       <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="..\CocoGUILIB\Layouts\UILayoutDefine.h">
-      <Filter>CocoGUILIB\Layout</Filter>
+    <ClInclude Include="..\CocoGUILIB\UIWidgets\UIDragPanel.h">
+      <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\Layouts\UILayoutPrameter.h">
-      <Filter>CocoGUILIB\Layout</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\Drawable\UICCTextField.h">
-      <Filter>CocoGUILIB\Drawable</Filter>
-=======
-    <ClInclude Include="..\CocoGUILIB\Drawable\UICCTextField.h">
-      <Filter>CocoGUILIB\Drawable</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\Layouts\UILayoutDefine.h">
-      <Filter>CocoGUILIB\Layerouts</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\Layouts\UILayoutPrameter.h">
-      <Filter>CocoGUILIB\Layerouts</Filter>
->>>>>>> master
+    <ClInclude Include="..\CocoGUILIB\Layouts\UILayoutUnit.h">
+      <Filter>CocoGUILIB\Layouts</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

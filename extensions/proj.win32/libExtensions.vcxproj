@@ -155,7 +155,7 @@
     <ClCompile Include="..\CocoGUILIB\Drawable\UICCTextField.cpp" />
     <ClCompile Include="..\CocoGUILIB\Drawable\UIClippingLayer.cpp" />
     <ClCompile Include="..\CocoGUILIB\Layouts\UILayoutDefine.cpp" />
-    <ClCompile Include="..\CocoGUILIB\Layouts\UILayoutPrameter.cpp" />
+    <ClCompile Include="..\CocoGUILIB\Layouts\UILayoutUnit.cpp" />
     <ClCompile Include="..\CocoGUILIB\System\CCSReader.cpp" />
     <ClCompile Include="..\CocoGUILIB\System\CocosGUI.cpp" />
     <ClCompile Include="..\CocoGUILIB\System\UIHelper.cpp" />
@@ -312,7 +312,7 @@
     <ClInclude Include="..\CocoGUILIB\Drawable\UICCTextField.h" />
     <ClInclude Include="..\CocoGUILIB\Drawable\UIClippingLayer.h" />
     <ClInclude Include="..\CocoGUILIB\Layouts\UILayoutDefine.h" />
-    <ClInclude Include="..\CocoGUILIB\Layouts\UILayoutPrameter.h" />
+    <ClInclude Include="..\CocoGUILIB\Layouts\UILayoutUnit.h" />
     <ClInclude Include="..\CocoGUILIB\System\CCSReader.h" />
     <ClInclude Include="..\CocoGUILIB\System\CocosGUI.h" />
     <ClInclude Include="..\CocoGUILIB\System\UIHelper.h" />
