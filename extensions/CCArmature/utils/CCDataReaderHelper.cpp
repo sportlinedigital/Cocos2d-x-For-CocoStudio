@@ -1074,11 +1074,14 @@ CCMovementBoneData *CCDataReaderHelper::decodeMovementBone(cs::CSJsonDictionary 
 
 	if (s_CocoStudioVersion < VERSION_COMBINED)
 	{
-		CCFrameData *frameData = CCFrameData::create();
-		frameData->copy((CCFrameData*)movementBoneData->frameList.lastObject());
-		movementBoneData->addFrameData(frameData);
+		if (movementBoneData->frameList.count() > 0)
+		{
+			CCFrameData *frameData = CCFrameData::create();
+			frameData->copy((CCFrameData*)movementBoneData->frameList.lastObject());
+			movementBoneData->addFrameData(frameData);
 
-		frameData->frameID = movementBoneData->duration;
+			frameData->frameID = movementBoneData->duration;
+		}
 	}
 
     return movementBoneData;
