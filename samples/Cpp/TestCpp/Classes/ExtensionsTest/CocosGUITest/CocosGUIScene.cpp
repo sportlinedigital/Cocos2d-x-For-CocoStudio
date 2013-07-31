@@ -6,6 +6,14 @@ CocosGUITestScene::CocosGUITestScene(bool bPortrait)
 {
 	TestScene::init();
 }
+
+CocosGUITestScene::~CocosGUITestScene()
+{
+	cocos2d::extension::CCJsonReader::purgeJsonReader();
+	cocos2d::extension::UIActionManager::purgeUIActionManager();
+	cocos2d::extension::UIHelper::purgeUIHelper();
+}
+
 void CocosGUITestScene::runThisTest()
 {
     

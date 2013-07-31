@@ -37,7 +37,8 @@ class CocosGUIExamplesScene : public TestScene
 {
 public:
 	CocosGUIExamplesScene(bool bPortrait = false);
-    
+    ~CocosGUIExamplesScene();
+
     virtual void onEnter();
     virtual void onExit();
     
