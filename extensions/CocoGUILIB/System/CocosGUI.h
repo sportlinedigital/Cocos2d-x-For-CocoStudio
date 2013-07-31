@@ -46,7 +46,6 @@
 #include "../UIWidgets/UIControlButton.h"
 #include "../UIWidgets/UILabelBMFont.h"
 #include "../UIWidgets/UIPageView.h"
-#include "../UIWidgets/UIWrapPanel.h"
 #include "../UIWidgets/UIDragPanel.h"
 #include "UIHelper.h"
 #include "CCSReader.h"

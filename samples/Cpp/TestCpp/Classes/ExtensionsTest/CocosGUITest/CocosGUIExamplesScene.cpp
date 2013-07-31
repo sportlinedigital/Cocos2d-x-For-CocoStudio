@@ -45,6 +45,13 @@ CocosGUIExamplesScene::CocosGUIExamplesScene(bool bPortrait)
 	TestScene::init();
 }
 
+CocosGUIExamplesScene::~CocosGUIExamplesScene()
+{
+	cocos2d::extension::CCJsonReader::purgeJsonReader();
+	cocos2d::extension::UIActionManager::purgeUIActionManager();
+	cocos2d::extension::UIHelper::purgeUIHelper();
+}
+
 void CocosGUIExamplesScene::onEnter()
 {
     TestScene::onEnter();
@@ -68,16 +75,6 @@ void CocosGUIExamplesScene::onEnter()
 void CocosGUIExamplesScene::onExit()
 {
     TestScene::onExit();
-    
-    /*
-    CC_SAFE_RELEASE(m_dicBeUsedSlot);
-    CC_SAFE_RELEASE(m_dicEquipClothesSlot);
-    CC_SAFE_RELEASE(m_dicEquipWeaponsSlot);
-    CC_SAFE_RELEASE(m_dicEquipPetsSlot);
-    CC_SAFE_RELEASE(m_dicEquipClothes);
-    CC_SAFE_RELEASE(m_dicEquipWeapons);
-    CC_SAFE_RELEASE(m_dicEquipPets);
-     */
 }
 
 void CocosGUIExamplesScene::runThisTest()

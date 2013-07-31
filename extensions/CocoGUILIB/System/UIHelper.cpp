@@ -53,6 +53,11 @@ UIHelper* UIHelper::instance()
     return helperInstance;
 }
 
+void UIHelper::purgeUIHelper()
+{
+	CC_SAFE_DELETE(helperInstance);
+}
+
 UIHelper::UIHelper():
 m_textureFiles(NULL)
 {
@@ -64,7 +69,7 @@ m_textureFiles(NULL)
 
 UIHelper::~UIHelper()
 {
-    
+    cocos2d::extension::CCSReader::purgeCCSReader();
 }
 
 void UIHelper::init()

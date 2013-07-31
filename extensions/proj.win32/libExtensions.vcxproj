@@ -179,7 +179,6 @@
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UITextArea.cpp" />
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UITextButton.cpp" />
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UITextField.cpp" />
-    <ClCompile Include="..\CocoGUILIB\UIWidgets\UIWrapPanel.cpp" />
     <ClCompile Include="..\CocostudioReader\CCJsonReader.cpp" />
     <ClCompile Include="..\CocostudioReader\DictionaryHelper.cpp" />
     <ClCompile Include="..\Components\CCComAttribute.cpp" />
@@ -336,7 +335,6 @@
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UITextArea.h" />
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UITextButton.h" />
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UITextField.h" />
-    <ClInclude Include="..\CocoGUILIB\UIWidgets\UIWrapPanel.h" />
     <ClInclude Include="..\CocostudioReader\CCJsonReader.h" />
     <ClInclude Include="..\CocostudioReader\DictionaryHelper.h" />
     <ClInclude Include="..\Components\CCComAttribute.h" />

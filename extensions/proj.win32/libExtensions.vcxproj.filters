@@ -507,9 +507,6 @@
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UIDragPanel.cpp">
       <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\UIWidgets\UIWrapPanel.cpp">
-      <Filter>CocoGUILIB\UIWidgets</Filter>
-    </ClCompile>
     <ClCompile Include="..\CocoGUILIB\Layouts\UILayoutUnit.cpp">
       <Filter>CocoGUILIB\Layouts</Filter>
     </ClCompile>
@@ -906,9 +903,6 @@
     </ClInclude>
     <ClInclude Include="..\CocoGUILIB\Layouts\UILayoutDefine.h">
       <Filter>CocoGUILIB\Layouts</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\UIWidgets\UIWrapPanel.h">
-      <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClInclude>
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UIDragPanel.h">
       <Filter>CocoGUILIB\UIWidgets</Filter>

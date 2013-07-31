@@ -54,6 +54,11 @@ CCSReader* CCSReader::shareReader()
     return sharedReader;
 }
 
+void CCSReader::purgeCCSReader()
+{
+	CC_SAFE_DELETE(sharedReader);
+}
+
 int CCSReader::getVersionInteger(const char *str)
 {
     /*********temp***********/
@@ -182,7 +187,10 @@ UIWidget* CCSReader::widgetFromJsonDictionary(cs::CSJsonDictionary* data)
         {
             widget->addChild(child);
         }
+		CC_SAFE_DELETE(subData);
     }
+
+	CC_SAFE_DELETE(uiOptions);
     return widget;
 }
 
@@ -254,9 +262,11 @@ UIWidget* CCSReader::widgetFromJsonFile(const char *fileName)
     /* ********************** */
     CCLOG("file name == [%s]",fileName);
     UIActionManager::shareManager()->initWithDictionary(fileName,actions,widget);
-    delete jsonDict;
-    jsonDict = NULL;
-    delete[] des;
+
+	CC_SAFE_DELETE(widgetTree);
+	CC_SAFE_DELETE(actions);
+	CC_SAFE_DELETE(jsonDict);
+    CC_SAFE_DELETE_ARRAY(des);
     return widget;
 }
 
@@ -408,7 +418,7 @@ void CCSReader::setPropsForButtonFromJsonDictionary(UIWidget*widget,cs::CSJsonDi
             default:
                 break;
         }
-        
+        CC_SAFE_DELETE(normalDic);
         cs::CSJsonDictionary* pressedDic = DICTOOL->getSubDictionary_json(options, "pressedData");
         int pressedType = DICTOOL->getIntValue_json(pressedDic, "resourceType");
         switch (pressedType)
@@ -430,7 +440,7 @@ void CCSReader::setPropsForButtonFromJsonDictionary(UIWidget*widget,cs::CSJsonDi
             default:
                 break;
         }
-        
+        CC_SAFE_DELETE(pressedDic);
         cs::CSJsonDictionary* disabledDic = DICTOOL->getSubDictionary_json(options, "disabledData");
         int disabledType = DICTOOL->getIntValue_json(disabledDic, "resourceType");
         switch (disabledType)
@@ -452,7 +462,7 @@ void CCSReader::setPropsForButtonFromJsonDictionary(UIWidget*widget,cs::CSJsonDi
             default:
                 break;
         }
-        
+        CC_SAFE_DELETE(disabledDic);
         if (scale9Enable)
         {
             float cx = DICTOOL->getFloatValue_json(options, "capInsetsX");
@@ -537,7 +547,8 @@ void CCSReader::setPropsForCheckBoxFromJsonDictionary(UIWidget*widget,cs::CSJson
             default:
                 break;
         }
-        
+        CC_SAFE_DELETE(backGroundDic);
+
         cs::CSJsonDictionary* backGroundSelectedDic = DICTOOL->getSubDictionary_json(options, "backGroundBoxSelectedData");
         int backGroundSelectedType = DICTOOL->getIntValue_json(backGroundSelectedDic, "resourceType");
         switch (backGroundSelectedType)
@@ -559,7 +570,8 @@ void CCSReader::setPropsForCheckBoxFromJsonDictionary(UIWidget*widget,cs::CSJson
             default:
                 break;
         }
-        
+        CC_SAFE_DELETE(backGroundSelectedDic);
+
         cs::CSJsonDictionary* frontCrossDic = DICTOOL->getSubDictionary_json(options, "frontCrossData");
         int frontCrossType = DICTOOL->getIntValue_json(frontCrossDic, "resourceType");
         switch (frontCrossType)
@@ -581,6 +593,7 @@ void CCSReader::setPropsForCheckBoxFromJsonDictionary(UIWidget*widget,cs::CSJson
             default:
                 break;
         }
+		CC_SAFE_DELETE(frontCrossDic);
         
         cs::CSJsonDictionary* backGroundDisabledDic = DICTOOL->getSubDictionary_json(options, "backGroundBoxDisabledData");
         int backGroundDisabledType = DICTOOL->getIntValue_json(backGroundDisabledDic, "resourceType");
@@ -603,6 +616,7 @@ void CCSReader::setPropsForCheckBoxFromJsonDictionary(UIWidget*widget,cs::CSJson
             default:
                 break;
         }
+		CC_SAFE_DELETE(backGroundDisabledDic);
         
         cs::CSJsonDictionary* frontCrossDisabledDic = DICTOOL->getSubDictionary_json(options, "frontCrossDisabledData");
         int frontCrossDisabledType = DICTOOL->getIntValue_json(frontCrossDisabledDic, "resourceType");
@@ -625,6 +639,8 @@ void CCSReader::setPropsForCheckBoxFromJsonDictionary(UIWidget*widget,cs::CSJson
             default:
                 break;
         }
+		CC_SAFE_DELETE(frontCrossDisabledDic);
+
         setColorPropsForWidgetFromJsonDictionary(widget,options);
     }
 }
@@ -700,7 +716,6 @@ void CCSReader::setPropsForImageViewFromJsonDictionary(UIWidget*widget,cs::CSJso
         
         UIImageView* imageView = (UIImageView*)widget;
         
-        
         cs::CSJsonDictionary* imageFileNameDic = DICTOOL->getSubDictionary_json(options, "fileNameData");
         int imageFileNameType = DICTOOL->getIntValue_json(imageFileNameDic, "resourceType");
         switch (imageFileNameType)
@@ -726,7 +741,8 @@ void CCSReader::setPropsForImageViewFromJsonDictionary(UIWidget*widget,cs::CSJso
             default:
                 break;
         }
-        
+        CC_SAFE_DELETE(imageFileNameDic);
+
         bool scale9EnableExist = DICTOOL->checkObjectExist_json(options, "scale9Enable");
         bool scale9Enable = false;
         if (scale9EnableExist)
@@ -840,6 +856,7 @@ void CCSReader::setPropsForLabelAtlasFromJsonDictionary(UIWidget*widget,cs::CSJs
                 default:
                     break;
             }
+			CC_SAFE_DELETE(cmftDic);
         }
         setColorPropsForWidgetFromJsonDictionary(widget,options);
     }
@@ -977,6 +994,7 @@ void CCSReader::setPropsForPanelFromJsonDictionary(UIWidget*widget,cs::CSJsonDic
             default:
                 break;
         }
+		CC_SAFE_DELETE(imageFileNameDic);
 
         if (backGroundScale9Enable)
         {
@@ -1121,6 +1139,7 @@ void CCSReader::setPropsForSliderFromJsonDictionary(UIWidget*widget,cs::CSJsonDi
                         break;
                 }
                 slider->setBarLength(barLength);
+				CC_SAFE_DELETE(imageFileNameDic);
             }
             else
             {
@@ -1145,6 +1164,7 @@ void CCSReader::setPropsForSliderFromJsonDictionary(UIWidget*widget,cs::CSJsonDi
                     default:
                         break;
                 }
+				CC_SAFE_DELETE(imageFileNameDic);
             }
         }
 //        std::string tp_n = m_strFilePath;
@@ -1188,7 +1208,8 @@ void CCSReader::setPropsForSliderFromJsonDictionary(UIWidget*widget,cs::CSJsonDi
             default:
                 break;
         }
-        
+        CC_SAFE_DELETE(normalDic);
+
         cs::CSJsonDictionary* pressedDic = DICTOOL->getSubDictionary_json(options, "ballPressedData");
         int pressedType = DICTOOL->getIntValue_json(pressedDic, "resourceType");
         switch (pressedType)
@@ -1210,6 +1231,7 @@ void CCSReader::setPropsForSliderFromJsonDictionary(UIWidget*widget,cs::CSJsonDi
             default:
                 break;
         }
+		CC_SAFE_DELETE(pressedDic);
         
         cs::CSJsonDictionary* disabledDic = DICTOOL->getSubDictionary_json(options, "ballDisableddData");
         int disabledType = DICTOOL->getIntValue_json(disabledDic, "resourceType");
@@ -1232,7 +1254,7 @@ void CCSReader::setPropsForSliderFromJsonDictionary(UIWidget*widget,cs::CSJsonDi
             default:
                 break;
         }
-
+		CC_SAFE_DELETE(disabledDic);
         
         slider->setSlidBallPercent(DICTOOL->getIntValue_json(options, "percent"));
         bool showProgressBarExist = DICTOOL->checkObjectExist_json(options, "showProgressBar");
@@ -1415,6 +1437,8 @@ void CCSReader::setPropsForLoadingBarFromJsonDictionary(UIWidget *widget, cs::CS
             default:
                 break;
         }
+		CC_SAFE_DELETE(imageFileNameDic);
+
         loadingBar->setDirection(LoadingBarType(DICTOOL->getIntValue_json(options, "direction")));
         loadingBar->setPercent(DICTOOL->getIntValue_json(options, "percent"));
         setColorPropsForWidgetFromJsonDictionary(widget,options);
@@ -1476,7 +1500,8 @@ void CCSReader::setPropsForLabelBMFontFromJsonDictionary(UIWidget *widget, cs::C
             default:
                 break;
         }
-        
+        CC_SAFE_DELETE(cmftDic);
+
         const char* text = DICTOOL->getStringValue_json(options, "text");
         labelBMFont->setText(text);
         
