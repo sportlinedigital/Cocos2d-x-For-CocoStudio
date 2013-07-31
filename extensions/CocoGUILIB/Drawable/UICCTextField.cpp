@@ -99,20 +99,24 @@ void UICCTextField::insertText(const char * text, int len)
     std::string str_text = text;
     int str_len = strlen(CCTextFieldTTF::getString());
     
-    if (strcmp(text, "\n") != 0)
-    {
-        if (m_bMaxLengthEnable)
-        {
-            if (str_len + len > m_nMaxLength)
-            {
-                int mod = str_len % 3;
-                int offset = (mod == 0) ? 0 : (3 - mod);
-                int amount = str_len + offset;
-                str_text = str_text.substr(0, m_nMaxLength - amount);
-//                CCLOG("str_test = %s", str_text.c_str());
-            }
-        }
-    }
+	if (CCTextFieldTTF::getCharCount() > 0)
+	{
+		if (strcmp(text, "\n") != 0)
+		{
+			if (m_bMaxLengthEnable)
+			{
+				if (str_len + len > m_nMaxLength)
+				{
+					str_text = str_text.substr(0, m_nMaxLength);
+// 					int mod = str_len % 3;
+// 					int offset = (mod == 0) ? 0 : (3 - mod);
+// 					int amount = str_len + offset;
+// 					str_text = str_text.substr(0, m_nMaxLength - amount);
+	//                CCLOG("str_test = %s", str_text.c_str());
+				}
+			}
+		}
+	}
     CCTextFieldTTF::insertText(str_text.c_str(), len);
     
     // password
@@ -126,7 +130,7 @@ void UICCTextField::insertText(const char * text, int len)
     {
         if (CCTextFieldTTF::getCharCount() == 0)
         {
-            CCTextFieldTTF::setPlaceHolder(m_pPlaceHolder->c_str());
+            //CCTextFieldTTF::setPlaceHolder(m_pPlaceHolder->c_str());
         }
         closeIME();
     }

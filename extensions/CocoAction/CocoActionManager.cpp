@@ -58,6 +58,7 @@ void CocoActionManager::initWithDictionary(cs::CSJsonDictionary *dic,CCNode* roo
         cs::CSJsonDictionary* actionDic = DICTOOL->getDictionaryFromArray_json(dic, "actionlist", i);
         action->initWithDictionary(actionDic,root);
         m_ActionList->addObject(action);
+		CC_SAFE_DELETE(actionDic);
     }
 }
 

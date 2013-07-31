@@ -38,6 +38,11 @@ UIActionManager* UIActionManager::shareManager()
     return sharedActionManager;
 }
 
+void UIActionManager::purgeUIActionManager()
+{
+	CC_SAFE_DELETE(sharedActionManager);
+}
+
 UIActionManager::UIActionManager()
 {
 //	m_ActionList = cocos2d::CCArray::create();
@@ -69,6 +74,7 @@ void UIActionManager::initWithDictionary(const char* jsonName,cs::CSJsonDictiona
         cs::CSJsonDictionary* actionDic = DICTOOL->getDictionaryFromArray_json(dic, "actionlist", i);
         action->initWithDictionary(actionDic,root);
         actionList->addObject(action);
+		CC_SAFE_DELETE(actionDic);
     }
     m_pActionDic->setObject(actionList, fileName);
 }
