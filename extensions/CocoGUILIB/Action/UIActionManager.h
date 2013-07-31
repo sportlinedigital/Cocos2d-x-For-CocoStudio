@@ -32,10 +32,10 @@
 
 NS_CC_EXT_BEGIN
 
-class UIActionManager:public cocos2d::CCObject
+class UIActionManager:public CCObject
 {
 protected:
-//	cocos2d::CCArray* m_ActionList;/*guiaction*/
+//	CCArray* m_ActionList;/*guiaction*/
     CCDictionary* m_pActionDic;
 
 public:

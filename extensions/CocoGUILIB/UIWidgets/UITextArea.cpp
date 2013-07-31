@@ -50,7 +50,7 @@ UITextArea* UITextArea::create()
 void UITextArea::initNodes()
 {
     UIWidget::initNodes();
-    m_pRenderLabel = cocos2d::CCLabelTTF::create();
+    m_pRenderLabel = CCLabelTTF::create();
     m_pRender->addChild(m_pRenderLabel);
 }
 
@@ -64,17 +64,17 @@ void UITextArea::setText(const char* text)
     m_pRenderLabel->setString(strText.c_str());
 }
 
-void UITextArea::setTextAreaSize(const cocos2d::CCSize &size)
+void UITextArea::setTextAreaSize(const CCSize &size)
 {
     m_pRenderLabel->setDimensions(size);
 }
 
-void UITextArea::setTextHorizontalAlignment(cocos2d::CCTextAlignment alignment)
+void UITextArea::setTextHorizontalAlignment(CCTextAlignment alignment)
 {
     m_pRenderLabel->setHorizontalAlignment(alignment);
 }
 
-void UITextArea::setTextVerticalAlignment(cocos2d::CCVerticalTextAlignment alignment)
+void UITextArea::setTextVerticalAlignment(CCVerticalTextAlignment alignment)
 {
     m_pRenderLabel->setVerticalAlignment(alignment);
 }
@@ -92,7 +92,7 @@ const char* UITextArea::getStringValue()
 
 void UITextArea::setTextColor(int r,int g,int b)
 {
-    m_pRenderLabel->setColor(cocos2d::ccc3(r, g, b));
+    m_pRenderLabel->setColor(ccc3(r, g, b));
 }
 
 void UITextArea::setFontSize(int size)
@@ -130,7 +130,7 @@ CCNode* UITextArea::getValidNode()
     return m_pRenderLabel;
 }
 
-void UITextArea::setAnchorPoint(const cocos2d::CCPoint &pt)
+void UITextArea::setAnchorPoint(const CCPoint &pt)
 {
     UIWidget::setAnchorPoint(pt);
     m_pRenderLabel->setAnchorPoint(pt);

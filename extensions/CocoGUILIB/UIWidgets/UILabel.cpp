@@ -67,7 +67,7 @@ bool UILabel::init()
 void UILabel::initNodes()
 {
     UIWidget::initNodes();
-    m_pRenderLabel = cocos2d::CCLabelTTF::create();
+    m_pRenderLabel = CCLabelTTF::create();
     m_pRender->addChild(m_pRenderLabel);
 }
 
@@ -189,7 +189,7 @@ CCNode* UILabel::getValidNode()
     return m_pRenderLabel;
 }
 
-void UILabel::setAnchorPoint(const cocos2d::CCPoint &pt)
+void UILabel::setAnchorPoint(const CCPoint &pt)
 {
     UIWidget::setAnchorPoint(pt);
     m_pRenderLabel->setAnchorPoint(pt);

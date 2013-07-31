@@ -62,13 +62,13 @@ void UICCTextField::onEnter()
 }
 
 
-bool UICCTextField::onTextFieldAttachWithIME(cocos2d::CCTextFieldTTF *pSender)
+bool UICCTextField::onTextFieldAttachWithIME(CCTextFieldTTF *pSender)
 {
     setAttachWithIME(true);
     return false;
 }
 
-bool UICCTextField::onTextFieldInsertText(cocos2d::CCTextFieldTTF *pSender, const char *text, int nLen)
+bool UICCTextField::onTextFieldInsertText(CCTextFieldTTF *pSender, const char *text, int nLen)
 {
     setInsertText(true);
     if (m_bMaxLengthEnable)
@@ -82,13 +82,13 @@ bool UICCTextField::onTextFieldInsertText(cocos2d::CCTextFieldTTF *pSender, cons
     return false;
 }
 
-bool UICCTextField::onTextFieldDeleteBackward(cocos2d::CCTextFieldTTF *pSender, const char *delText, int nLen)
+bool UICCTextField::onTextFieldDeleteBackward(CCTextFieldTTF *pSender, const char *delText, int nLen)
 {
     setDeleteBackward(true);
     return false;
 }
 
-bool UICCTextField::onTextFieldDetachWithIME(cocos2d::CCTextFieldTTF *pSender)
+bool UICCTextField::onTextFieldDetachWithIME(CCTextFieldTTF *pSender)
 {
     setDetachWithIME(true);
     return false;

@@ -76,11 +76,11 @@ bool UICheckBox::init()
 void UICheckBox::initNodes()
 {
     UIWidget::initNodes();
-    m_pBackGroundBox = cocos2d::CCSprite::create();
-    m_pBackGroundSelectedBox = cocos2d::CCSprite::create();
-    m_pFrontCross = cocos2d::CCSprite::create();
-    m_pBackGroundBoxDisabled = cocos2d::CCSprite::create();
-    m_pFrontCrossDisabled = cocos2d::CCSprite::create();
+    m_pBackGroundBox = CCSprite::create();
+    m_pBackGroundSelectedBox = CCSprite::create();
+    m_pFrontCross = CCSprite::create();
+    m_pBackGroundBoxDisabled = CCSprite::create();
+    m_pFrontCrossDisabled = CCSprite::create();
     m_pRender->addChild(m_pBackGroundBox);
     m_pRender->addChild(m_pBackGroundSelectedBox);
     m_pRender->addChild(m_pFrontCross);
@@ -212,7 +212,7 @@ void UICheckBox::setFrontCrossDisabledTexture(const char *frontCrossDisabled,Tex
     m_pFrontCross->setOpacity(getOpacity());
 }
 
-void UICheckBox::onTouchEnded(cocos2d::CCPoint &touchPoint)
+void UICheckBox::onTouchEnded(CCPoint &touchPoint)
 {
     if (m_bFocus)
     {
@@ -290,18 +290,18 @@ void UICheckBox::unSelectedEvent()
     }
 }
 
-cocos2d::CCNode* UICheckBox::getValidNode()
+CCNode* UICheckBox::getValidNode()
 {
     return m_pBackGroundBox;
 }
 
-void UICheckBox::addSelectEvent(cocos2d::CCObject *target, SEL_SelectEvent selector)
+void UICheckBox::addSelectEvent(CCObject *target, SEL_SelectEvent selector)
 {
     m_pSelectListener = target;
     m_pfnSelectSelector = selector;
 }
 
-void UICheckBox::addUnSelectEvent(cocos2d::CCObject *target, SEL_UnSelectEvent selector)
+void UICheckBox::addUnSelectEvent(CCObject *target, SEL_UnSelectEvent selector)
 {
     m_pUnSelectListener = target;
     m_pfnUnSelectSelector = selector;
@@ -335,7 +335,7 @@ bool UICheckBox::isFlipY()
     return m_pBackGroundBox->isFlipY();
 }
 
-void UICheckBox::setAnchorPoint(const cocos2d::CCPoint &pt)
+void UICheckBox::setAnchorPoint(const CCPoint &pt)
 {
     UIWidget::setAnchorPoint(pt);
     m_pBackGroundBox->setAnchorPoint(pt);

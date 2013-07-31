@@ -36,7 +36,7 @@ public:
     virtual ~UIImageView();
     static UIImageView* create();
     virtual void setTexture(const char* fileName,TextureResType texType = UI_TEX_TYPE_LOCAL);
-    virtual void setTextureRect(const cocos2d::CCRect& rect);
+    virtual void setTextureRect(const CCRect& rect);
     void doubleClickEvent();
     void checkDoubleClick(float dt);
     void setDoubleClickEnable(bool able);
@@ -46,18 +46,18 @@ public:
     virtual bool isFlipY();
     void setScale9Enable(bool able);
     void setScale9Size(const CCSize &size);
-    void setDisplayFrame(cocos2d::CCSpriteFrame *pNewFrame);
-    void setSpriteFrame(cocos2d::CCSpriteFrame *pNewFrame);
-    void setPreferredSize(const cocos2d::CCSize& pSize);
+    void setDisplayFrame(CCSpriteFrame *pNewFrame);
+    void setSpriteFrame(CCSpriteFrame *pNewFrame);
+    void setPreferredSize(const CCSize& pSize);
     void setInsetLeft(float insetLeft);
     void setInsetTop(float insetTop);
     void setInsetRight(float insetRight);
     void setInsetBottom(float insetBottom);
     void setCapInsets(const CCRect &capInsets);
-    virtual cocos2d::CCNode* getValidNode();
-    virtual void setAnchorPoint(const cocos2d::CCPoint &pt);
-    virtual void onTouchBegan(cocos2d::CCPoint &touchPoint);
-    virtual void onTouchEnded(cocos2d::CCPoint &touchPoint);
+    virtual CCNode* getValidNode();
+    virtual void setAnchorPoint(const CCPoint &pt);
+    virtual void onTouchBegan(CCPoint &touchPoint);
+    virtual void onTouchEnded(CCPoint &touchPoint);
 protected:
     virtual void initNodes();
 protected:

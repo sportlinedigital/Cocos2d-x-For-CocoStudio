@@ -31,7 +31,7 @@
 
 NS_CC_EXT_BEGIN
 
-class UIActionFrame:public cocos2d::CCObject
+class UIActionFrame:public CCObject
 {
 protected:
 

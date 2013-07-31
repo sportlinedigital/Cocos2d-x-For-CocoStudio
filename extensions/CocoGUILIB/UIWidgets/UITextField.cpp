@@ -93,7 +93,7 @@ void UITextField::setText(const char* text)
     m_pRenderTextField->setString(strText.c_str());
 }
 
-void UITextField::setSize(const cocos2d::CCSize &size)
+void UITextField::setSize(const CCSize &size)
 {
     m_pRenderTextField->setDimensions(size);
 }
@@ -123,13 +123,13 @@ const char* UITextField::getStringValue()
     return m_pRenderTextField->getString();
 }
 
-void UITextField::onTouchBegan(cocos2d::CCPoint &touchPoint)
+void UITextField::onTouchBegan(CCPoint &touchPoint)
 {
     UIWidget::onTouchBegan(touchPoint);
     m_pRenderTextField->attachWithIME();
 }
 
-bool UITextField::pointAtSelfBody(cocos2d::CCPoint &pt)
+bool UITextField::pointAtSelfBody(CCPoint &pt)
 {
     if (!m_bUseTouchArea){
         return UIWidget::pointAtSelfBody(pt);
@@ -271,25 +271,25 @@ void UITextField::deleteBackwardEvent()
     }
 }
 
-void UITextField::addAttachWithIMEEvent(cocos2d::CCObject *target, SEL_TextFieldAttachWithIMEEvent selecor)
+void UITextField::addAttachWithIMEEvent(CCObject *target, SEL_TextFieldAttachWithIMEEvent selecor)
 {
     m_pAttachWithIMEListener = target;
     m_pfnAttachWithIMESelector = selecor;
 }
 
-void UITextField::addDetachWithIMEEvent(cocos2d::CCObject *target, SEL_TextFieldDetachWithIMEEvent selecor)
+void UITextField::addDetachWithIMEEvent(CCObject *target, SEL_TextFieldDetachWithIMEEvent selecor)
 {
     m_pDetachWithIMEListener = target;
     m_pfnDetachWithIMESelector = selecor;
 }
 
-void UITextField::addInsertTextEvent(cocos2d::CCObject *target, SEL_TextFieldInsertTextEvent selecor)
+void UITextField::addInsertTextEvent(CCObject *target, SEL_TextFieldInsertTextEvent selecor)
 {
     m_pInsertTextListener = target;
     m_pfnInsertTextSelector = selecor;
 }
 
-void UITextField::addDeleteBackwardEvent(cocos2d::CCObject *target, SEL_TextFieldDeleteBackwardEvent selecor)
+void UITextField::addDeleteBackwardEvent(CCObject *target, SEL_TextFieldDeleteBackwardEvent selecor)
 {
     m_pDeleteBackwardListener = target;
     m_pfnDeleteBackwardSelector = selecor;
@@ -300,7 +300,7 @@ CCNode* UITextField::getValidNode()
     return m_pRenderTextField;
 }
 
-void UITextField::setAnchorPoint(const cocos2d::CCPoint &pt)
+void UITextField::setAnchorPoint(const CCPoint &pt)
 {
     UIWidget::setAnchorPoint(pt);
     m_pRenderTextField->setAnchorPoint(pt);

@@ -29,7 +29,7 @@
 
 NS_CC_EXT_BEGIN
 
-typedef void (cocos2d::CCObject::*SEL_PercentChangedEvent)(cocos2d::CCObject*);
+typedef void (CCObject::*SEL_PercentChangedEvent)(CCObject*);
 #define coco_percentchangedselector(_SELECTOR) (cs::SEL_PercentChangedEvent)(&_SELECTOR)
 class UISlider : public UIWidget
 {
@@ -49,14 +49,14 @@ public:
     void setProgressBarTextureScale9(const char* fileName,float x,float y,float width,float height,bool useSpriteFrame = false);
     void setProgressBarScale(int percent);
     void setSlidBallPercent(int percent);
-    virtual bool pointAtSelfBody(cocos2d::CCPoint &pt);
-    virtual cocos2d::CCNode* getValidNode();
-    virtual void addPercentChangedEvent(cocos2d::CCObject* target,SEL_PushEvent selector);
+    virtual bool pointAtSelfBody(CCPoint &pt);
+    virtual CCNode* getValidNode();
+    virtual void addPercentChangedEvent(CCObject* target,SEL_PushEvent selector);
     int getPercent();
-    virtual void onTouchBegan(cocos2d::CCPoint &touchPoint);
-    virtual void onTouchMoved(cocos2d::CCPoint &touchPoint);
-    virtual void onTouchEnded(cocos2d::CCPoint &touchPoint);
-    virtual void onTouchCancelled(cocos2d::CCPoint &touchPoint);
+    virtual void onTouchBegan(CCPoint &touchPoint);
+    virtual void onTouchMoved(CCPoint &touchPoint);
+    virtual void onTouchEnded(CCPoint &touchPoint);
+    virtual void onTouchCancelled(CCPoint &touchPoint);
 protected:
     virtual bool init();
     int getClickPercent(float location);
@@ -64,7 +64,7 @@ protected:
     float getPercentWithBallPos(float px,float py);
     void percentChangedEvent();
 protected:
-    cocos2d::CCNode*  m_pBarNode;
+    CCNode*  m_pBarNode;
     float m_fMinLength;
     float m_fBarLength;
     int m_nDirection;
@@ -74,8 +74,8 @@ protected:
     float m_fTouchMoveStartLocation;
     bool m_bBarScale9Enable;
     bool m_bShowProgressBar;
-    cocos2d::CCNode* m_pProgressBarNode;
-    cocos2d::CCObject*       m_pPercentListener;
+    CCNode* m_pProgressBarNode;
+    CCObject*       m_pPercentListener;
     SEL_PushEvent    m_pfnPercentSelector;
     TextureResType m_eBarTexType;
     TextureResType m_eBarTexS9Type;

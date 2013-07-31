@@ -36,7 +36,7 @@ UIActionNode::UIActionNode()
 
 	m_action = NULL;
 
-	m_ActionFrameList = cocos2d::CCArray::create();
+	m_ActionFrameList = CCArray::create();
 	m_ActionFrameList->retain();
 }
 

@@ -40,29 +40,29 @@ public:
     void sortWidgets(UIWidget* widget);
     void sortRootWidgets(UIWidget* root);
     void removeManageredWidget(UIWidget* widget);
-    UIWidget* checkEventWidget(cocos2d::CCPoint &touchPoint);
+    UIWidget* checkEventWidget(CCPoint &touchPoint);
     void addCheckedDoubleClickWidget(UIWidget* widget);
     void update(float dt);
-    bool onTouchBegan(cocos2d::CCTouch* touch);
-    bool onTouchMoved(cocos2d::CCTouch* touch);
-    bool onTouchEnd(cocos2d::CCTouch* touch);
-    bool onTouchCancelled(cocos2d::CCTouch* touch);
+    bool onTouchBegan(CCTouch* touch);
+    bool onTouchMoved(CCTouch* touch);
+    bool onTouchEnd(CCTouch* touch);
+    bool onTouchCancelled(CCTouch* touch);
     
     void setRootWidget(UIWidget* root);
     UIWidget* getRootWidget();
     
 protected:
-    cocos2d::CCArray* m_manageredWidget;
+    CCArray* m_manageredWidget;
     UIWidget* m_pCurSelectedWidget;
-    cocos2d::CCPoint touchBeganedPoint;
-    cocos2d::CCPoint touchMovedPoint;
-    cocos2d::CCPoint touchEndedPoint;
-    cocos2d::CCPoint touchCanceledPoint;
+    CCPoint touchBeganedPoint;
+    CCPoint touchMovedPoint;
+    CCPoint touchEndedPoint;
+    CCPoint touchCanceledPoint;
     bool m_bWidgetBeSorted;
     bool m_bTouchDown;
     float m_fLongClickTime;
     float m_fLongClickRecordTime;
-    cocos2d::CCArray* checkedDoubleClickWidget;
+    CCArray* checkedDoubleClickWidget;
     UIWidget* m_pRootWidget;
 };
 

@@ -39,8 +39,8 @@ public:
     void setProperty(const char* stringValue,const char* charMapFile, int itemWidth, int itemHeight, const char* startCharMap,bool useSpriteFrame = false);
     void setStringValue(const char* value);
     const char* getStringValue();
-    virtual void setAnchorPoint(const cocos2d::CCPoint &pt);
-    virtual cocos2d::CCNode* getValidNode();
+    virtual void setAnchorPoint(const CCPoint &pt);
+    virtual CCNode* getValidNode();
 protected:
     virtual void initNodes();
 protected:

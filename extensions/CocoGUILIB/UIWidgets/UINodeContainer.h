@@ -36,10 +36,10 @@ public:
     virtual ~UINodeContainer();
     virtual void releaseResoures();
     static UINodeContainer* create();
-    void addCCNode(cocos2d::CCNode* node);
+    void addCCNode(CCNode* node);
     void removeCCNode(bool cleanup);
 protected:
-    cocos2d::CCNode* m_pCCNode;
+    CCNode* m_pCCNode;
 };
 
 NS_CC_EXT_END

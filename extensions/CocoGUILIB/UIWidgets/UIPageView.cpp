@@ -240,7 +240,7 @@ bool UIPageView::removeChild(UIWidget* widget, bool cleanup)
     return false;
 }
 
-void UIPageView::setSize(const cocos2d::CCSize &size)
+void UIPageView::setSize(const CCSize &size)
 {
     UIPanel::setSize(size);
     m_fRightBoundary = getWidth();
@@ -344,13 +344,13 @@ void UIPageView::update(float dt)
     }
 }
 
-void UIPageView::onTouchBegan(cocos2d::CCPoint &touchPoint)
+void UIPageView::onTouchBegan(CCPoint &touchPoint)
 {
     UIPanel::onTouchBegan(touchPoint);
     handlePressLogic(touchPoint);
 }
 
-void UIPageView::onTouchMoved(cocos2d::CCPoint &touchPoint)
+void UIPageView::onTouchMoved(CCPoint &touchPoint)
 {
     m_touchMovePos.x = touchPoint.x;
     m_touchMovePos.y = touchPoint.y;
@@ -367,7 +367,7 @@ void UIPageView::onTouchMoved(cocos2d::CCPoint &touchPoint)
     }
 }
 
-void UIPageView::onTouchEnded(cocos2d::CCPoint &touchPoint)
+void UIPageView::onTouchEnded(CCPoint &touchPoint)
 {
     UIPanel::onTouchEnded(touchPoint);
     handleReleaseLogic(touchPoint);
@@ -428,22 +428,22 @@ bool UIPageView::scrollPages(float touchOffset)
     return true;
 }
 
-void UIPageView::onTouchCancelled(cocos2d::CCPoint &touchPoint)
+void UIPageView::onTouchCancelled(CCPoint &touchPoint)
 {
     UIPanel::onTouchCancelled(touchPoint);
 }
 
-void UIPageView::handlePressLogic(cocos2d::CCPoint &touchPoint)
+void UIPageView::handlePressLogic(CCPoint &touchPoint)
 {
-    cocos2d::CCPoint nsp = m_pRender->convertToNodeSpace(touchPoint);
+    CCPoint nsp = m_pRender->convertToNodeSpace(touchPoint);
     m_fTouchMoveStartLocation = nsp.x;
     m_fTouchStartLocation = nsp.x;
 //    startRecordSlidAction();
 }
 
-void UIPageView::handleMoveLogic(cocos2d::CCPoint &touchPoint)
+void UIPageView::handleMoveLogic(CCPoint &touchPoint)
 {
-    cocos2d::CCPoint nsp = m_pRender->convertToNodeSpace(touchPoint);
+    CCPoint nsp = m_pRender->convertToNodeSpace(touchPoint);
     float offset = 0.0;
     float moveX = nsp.x;
     offset = moveX - m_fTouchMoveStartLocation;
@@ -459,7 +459,7 @@ void UIPageView::handleMoveLogic(cocos2d::CCPoint &touchPoint)
     scrollPages(offset);
 }
 
-void UIPageView::handleReleaseLogic(cocos2d::CCPoint &touchPoint)
+void UIPageView::handleReleaseLogic(CCPoint &touchPoint)
 {
     UIWidget* curPage = dynamic_cast<UIWidget*>(m_pages->objectAtIndex(m_nCurPageIdx));
     if (curPage)
@@ -499,7 +499,7 @@ void UIPageView::handleReleaseLogic(cocos2d::CCPoint &touchPoint)
 //    CCLOG("cur page idx == %d",m_nCurPageIdx);
 }
 
-void UIPageView::checkChildInfo(int handleState,UIWidget* sender,cocos2d::CCPoint &touchPoint)
+void UIPageView::checkChildInfo(int handleState,UIWidget* sender,CCPoint &touchPoint)
 {
     switch (handleState)
     {

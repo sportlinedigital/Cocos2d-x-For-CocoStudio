@@ -32,7 +32,7 @@
 
 NS_CC_EXT_BEGIN
 
-class UIAction:public cocos2d::CCObject
+class UIAction : public CCObject
 {
 protected:
 	cocos2d::CCArray* m_ActionNodeList;/*actionnode*/

@@ -69,7 +69,7 @@ bool UISlider::init()
 {
     if (UIWidget::init())
     {
-        m_pBarNode = cocos2d::CCSprite::create();
+        m_pBarNode = CCSprite::create();
         m_pRender->addChild(m_pBarNode);
         m_pSlidBall = UIButton::create();
         addChild(m_pSlidBall);
@@ -88,16 +88,16 @@ void UISlider::setBarTexture(const char* fileName,TextureResType texType)
     switch (m_eBarTexType)
     {
         case UI_TEX_TYPE_LOCAL:
-            dynamic_cast<cocos2d::CCSprite*>(m_pBarNode)->initWithFile(fileName);
+            dynamic_cast<CCSprite*>(m_pBarNode)->initWithFile(fileName);
             break;
         case UI_TEX_TYPE_PLIST:
-            dynamic_cast<cocos2d::CCSprite*>(m_pBarNode)->initWithSpriteFrameName(fileName);
+            dynamic_cast<CCSprite*>(m_pBarNode)->initWithSpriteFrameName(fileName);
             break;
         default:
             break;
     }
-    dynamic_cast<cocos2d::CCSprite*>(m_pBarNode)->setColor(getColor());
-    dynamic_cast<cocos2d::CCSprite*>(m_pBarNode)->setOpacity(getOpacity());
+    dynamic_cast<CCSprite*>(m_pBarNode)->setColor(getColor());
+    dynamic_cast<CCSprite*>(m_pBarNode)->setOpacity(getOpacity());
     m_fBarLength = m_pBarNode->getContentSize().width;
     setSlidBallPercent(m_nBarPercent);
 }
@@ -113,17 +113,17 @@ void UISlider::setBarTextureScale9(const char *fileName, float x, float y, float
     switch (m_eBarTexS9Type)
     {
         case UI_TEX_TYPE_LOCAL:
-            dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pBarNode)->initWithFile(fileName);
+            dynamic_cast<CCScale9Sprite*>(m_pBarNode)->initWithFile(fileName);
             break;
         case UI_TEX_TYPE_PLIST:
-            dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pBarNode)->initWithSpriteFrameName(fileName);
+            dynamic_cast<CCScale9Sprite*>(m_pBarNode)->initWithSpriteFrameName(fileName);
             break;
         default:
             break;
     }
-    dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pBarNode)->setColor(getColor());
-    dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pBarNode)->setOpacity(getOpacity());
-    dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pBarNode)->setContentSize(cocos2d::CCSize(m_fBarLength, m_pBarNode->getContentSize().height));
+    dynamic_cast<CCScale9Sprite*>(m_pBarNode)->setColor(getColor());
+    dynamic_cast<CCScale9Sprite*>(m_pBarNode)->setOpacity(getOpacity());
+    dynamic_cast<CCScale9Sprite*>(m_pBarNode)->setContentSize(CCSize(m_fBarLength, m_pBarNode->getContentSize().height));
     setSlidBallPercent(m_nBarPercent);
 }
 
@@ -138,11 +138,11 @@ void UISlider::setBarTextureScale9Enable(bool able)
     m_bBarScale9Enable = able;
     if (m_bBarScale9Enable)
     {
-        m_pBarNode = cocos2d::extension::CCScale9Sprite::create();
+        m_pBarNode = CCScale9Sprite::create();
     }
     else
     {
-        m_pBarNode = cocos2d::CCSprite::create();
+        m_pBarNode = CCSprite::create();
     }
     m_pRender->addChild(m_pBarNode);
 }
@@ -174,7 +174,7 @@ void UISlider::setBarLength(float length)
         return;
     }
     m_fBarLength = length;
-    dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pBarNode)->setContentSize(cocos2d::CCSize(length, m_pBarNode->getContentSize().height));
+    dynamic_cast<CCScale9Sprite*>(m_pBarNode)->setContentSize(CCSize(length, m_pBarNode->getContentSize().height));
     setSlidBallPercent(m_nBarPercent);
 }
 
@@ -216,7 +216,7 @@ void UISlider::setShowProgressBar(bool show)
     
     if (m_bShowProgressBar)
     {
-        m_pProgressBarNode = cocos2d::extension::CCScale9Sprite::create();
+        m_pProgressBarNode = CCScale9Sprite::create();
         m_pRender->addChild(m_pProgressBarNode);
         
         m_pProgressBarNode->setZOrder(m_pBarNode->getZOrder() + 1);
@@ -235,15 +235,15 @@ void UISlider::setProgressBarTextureScale9(const char *fileName, float x, float 
 {
     if (useSpriteFrame)
     {
-        dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pProgressBarNode)->initWithSpriteFrameName(fileName, cocos2d::CCRect(x,y,width,height));
+        dynamic_cast<CCScale9Sprite*>(m_pProgressBarNode)->initWithSpriteFrameName(fileName, CCRect(x,y,width,height));
     }
     else
     {
-        dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pProgressBarNode)->initWithFile(fileName, cocos2d::CCRect(x,y,width,height));
+        dynamic_cast<CCScale9Sprite*>(m_pProgressBarNode)->initWithFile(fileName, CCRect(x,y,width,height));
     }
-    dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pProgressBarNode)->setColor(getColor());
-    dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pProgressBarNode)->setOpacity(getOpacity());
-    dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pProgressBarNode)->setContentSize(cocos2d::CCSize(m_fBarLength, m_pProgressBarNode->getContentSize().height));
+    dynamic_cast<CCScale9Sprite*>(m_pProgressBarNode)->setColor(getColor());
+    dynamic_cast<CCScale9Sprite*>(m_pProgressBarNode)->setOpacity(getOpacity());
+    dynamic_cast<CCScale9Sprite*>(m_pProgressBarNode)->setContentSize(CCSize(m_fBarLength, m_pProgressBarNode->getContentSize().height));
     m_pProgressBarNode->setAnchorPoint(ccp(0.0, 0.5));
     m_pProgressBarNode->setPosition(ccp(m_pBarNode->getPosition().x - m_pBarNode->getContentSize().width / 2, m_pBarNode->getPosition().y));
     setProgressBarScale(m_nBarPercent);
@@ -252,13 +252,13 @@ void UISlider::setProgressBarTextureScale9(const char *fileName, float x, float 
 void UISlider::setProgressBarScale(int percent)
 {
     float width = static_cast<float>(m_nBarPercent) / 100 * m_fBarLength;
-    m_pProgressBarNode->setContentSize(cocos2d::CCSize(width, m_pProgressBarNode->getContentSize().height));
+    m_pProgressBarNode->setContentSize(CCSize(width, m_pProgressBarNode->getContentSize().height));
 }
 
-void UISlider::onTouchBegan(cocos2d::CCPoint &touchPoint)
+void UISlider::onTouchBegan(CCPoint &touchPoint)
 {
     UIWidget::onTouchBegan(touchPoint);
-    cocos2d::CCPoint nsp = m_pRender->convertToNodeSpace(touchPoint);
+    CCPoint nsp = m_pRender->convertToNodeSpace(touchPoint);
     m_pSlidBall->setPosition(ccp(nsp.x,0));
     m_pSlidBall->setPressState(WidgetStateSelected);
     m_nBarPercent = getPercentWithBallPos(m_pSlidBall->getPosition().x,0);
@@ -269,9 +269,9 @@ void UISlider::onTouchBegan(cocos2d::CCPoint &touchPoint)
     }
 }
 
-void UISlider::onTouchMoved(cocos2d::CCPoint &touchPoint)
+void UISlider::onTouchMoved(CCPoint &touchPoint)
 {
-    cocos2d::CCPoint nsp = m_pRender->convertToNodeSpace(touchPoint);
+    CCPoint nsp = m_pRender->convertToNodeSpace(touchPoint);
     m_pSlidBall->setPosition(ccp(nsp.x,0));
     checkSlidBoundary();
     m_nBarPercent = getPercentWithBallPos(m_pSlidBall->getPosition().x,0);
@@ -282,13 +282,13 @@ void UISlider::onTouchMoved(cocos2d::CCPoint &touchPoint)
     }
 }
 
-void UISlider::onTouchEnded(cocos2d::CCPoint &touchPoint)
+void UISlider::onTouchEnded(CCPoint &touchPoint)
 {
     UIWidget::onTouchEnded(touchPoint);
     m_pSlidBall->setPressState(WidgetStateNormal);
 }
 
-void UISlider::onTouchCancelled(cocos2d::CCPoint &touchPoint)
+void UISlider::onTouchCancelled(CCPoint &touchPoint)
 {
     UIWidget::onTouchCancelled(touchPoint);
     m_pSlidBall->setPressState(WidgetStateNormal);
@@ -299,7 +299,7 @@ float UISlider::getPercentWithBallPos(float px,float py)
     return (((px-(-m_fBarLength/2.0))/m_fBarLength)*100);
 }
 
-bool UISlider::pointAtSelfBody(cocos2d::CCPoint &pt)
+bool UISlider::pointAtSelfBody(CCPoint &pt)
 {
     if (!getAbsoluteVisible())
     {
@@ -317,12 +317,12 @@ bool UISlider::pointAtSelfBody(cocos2d::CCPoint &pt)
     return false;
 }
 
-cocos2d::CCNode* UISlider::getValidNode()
+CCNode* UISlider::getValidNode()
 {
     return m_pBarNode;
 }
 
-void UISlider::addPercentChangedEvent(cocos2d::CCObject *target, SEL_PushEvent selector)
+void UISlider::addPercentChangedEvent(CCObject *target, SEL_PushEvent selector)
 {
     m_pPercentListener = target;
     m_pfnPercentSelector = selector;

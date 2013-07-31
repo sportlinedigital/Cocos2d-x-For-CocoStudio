@@ -53,12 +53,12 @@ public:
     virtual void doLayout();
     virtual bool addChild(UIWidget* child);
     virtual void setClippingEnable(bool able);
-    virtual void setClipRect(const cocos2d::CCRect &rect);
-    virtual void setSize(const cocos2d::CCSize &size);
+    virtual void setClipRect(const CCRect &rect);
+    virtual void setSize(const CCSize &size);
     virtual float getWidth();
     virtual float getHeight();
     virtual bool isClippingEnable();
-    virtual bool hitTest(cocos2d::CCNode*node, cocos2d::CCPoint &pt);
+    virtual bool hitTest(CCNode*node, CCPoint &pt);
     CCSize getWrapSize() const;
 protected:
     virtual bool init();

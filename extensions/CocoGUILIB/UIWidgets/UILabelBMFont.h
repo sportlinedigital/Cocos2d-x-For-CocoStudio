@@ -38,12 +38,12 @@ public:
     void setFntFile(const char* fileName);
     void setText(const char* value);
     const char* getStringValue();
-    virtual cocos2d::CCNode* getValidNode();
-    virtual void setAnchorPoint(const cocos2d::CCPoint &pt);
+    virtual CCNode* getValidNode();
+    virtual void setAnchorPoint(const CCPoint &pt);
 protected:
     virtual void initNodes();
 protected:
-    cocos2d::CCLabelBMFont* m_pLabelBMFont;
+    CCLabelBMFont* m_pLabelBMFont;
 };
     
 NS_CC_EXT_END

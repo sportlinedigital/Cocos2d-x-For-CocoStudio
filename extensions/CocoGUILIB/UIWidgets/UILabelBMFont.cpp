@@ -51,7 +51,7 @@ UILabelBMFont* UILabelBMFont::create()
 void UILabelBMFont::initNodes()
 {
     UIWidget::initNodes();
-    m_pLabelBMFont = cocos2d::CCLabelBMFont::create();
+    m_pLabelBMFont = CCLabelBMFont::create();
     m_pRender->addChild(m_pLabelBMFont);
 }
 
@@ -79,7 +79,7 @@ CCNode* UILabelBMFont::getValidNode()
     return m_pLabelBMFont;
 }
 
-void UILabelBMFont::setAnchorPoint(const cocos2d::CCPoint &pt)
+void UILabelBMFont::setAnchorPoint(const CCPoint &pt)
 {
     UIWidget::setAnchorPoint(pt);
     m_pLabelBMFont->setAnchorPoint(pt);

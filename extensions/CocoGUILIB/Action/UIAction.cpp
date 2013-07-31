@@ -31,7 +31,7 @@ NS_CC_EXT_BEGIN
 
 UIAction::UIAction()
 {
-	m_ActionNodeList = cocos2d::CCArray::create();
+	m_ActionNodeList = CCArray::create();
 	m_ActionNodeList->retain();
 }
 

@@ -31,10 +31,10 @@
 
 NS_CC_EXT_BEGIN
 
-typedef void (cocos2d::CCObject::*SEL_TextFieldAttachWithIMEEvent)(cocos2d::CCObject*);
-typedef void (cocos2d::CCObject::*SEL_TextFieldDetachWithIMEEvent)(cocos2d::CCObject*);
-typedef void (cocos2d::CCObject::*SEL_TextFieldInsertTextEvent)(cocos2d::CCObject*);
-typedef void (cocos2d::CCObject::*SEL_TextFieldDeleteBackwardEvent)(cocos2d::CCObject*);
+typedef void (CCObject::*SEL_TextFieldAttachWithIMEEvent)(CCObject*);
+typedef void (CCObject::*SEL_TextFieldDetachWithIMEEvent)(CCObject*);
+typedef void (CCObject::*SEL_TextFieldInsertTextEvent)(CCObject*);
+typedef void (CCObject::*SEL_TextFieldDeleteBackwardEvent)(CCObject*);
 #define coco_TextFieldAttachWithIMESelector(_SELECTOR) (SEL_TextFieldAttachWithIMEEvent)(&_SELECTOR)
 #define coco_TextFieldDetachWithIMESelector(_SELECTOR) (SEL_TextFieldDetachWithIMEEvent)(&_SELECTOR)
 #define coco_TextFieldInsertTextSelector(_SELECTOR) (SEL_TextFieldInsertTextEvent)(&_SELECTOR)
@@ -50,14 +50,14 @@ public:
     virtual void initNodes();
     void setTouchSize(const CCSize &size);
     void setText(const char* text);
-    void setSize(const cocos2d::CCSize &size);
+    void setSize(const CCSize &size);
     void setPlaceHolder(const char* value);
     void setFontSize(int size);
     void setFontName(const char* name);
     virtual void didNotSelectSelf();
     const char* getStringValue();
-    virtual void onTouchBegan(cocos2d::CCPoint &touchPoint);
-    virtual bool pointAtSelfBody(cocos2d::CCPoint &pt);
+    virtual void onTouchBegan(CCPoint &touchPoint);
+    virtual bool pointAtSelfBody(CCPoint &pt);
     void setMaxLengthEnable(bool enable);
     bool isMaxLengthEnable();
     void setMaxLength(int length);
@@ -74,13 +74,13 @@ public:
     void setInsertText(bool insertText);
     bool getDeleteBackward();
     void setDeleteBackward(bool deleteBackward);
-    void addAttachWithIMEEvent(cocos2d::CCObject* target, SEL_TextFieldAttachWithIMEEvent selecor);
-    void addDetachWithIMEEvent(cocos2d::CCObject* target, SEL_TextFieldDetachWithIMEEvent selecor);
-    void addInsertTextEvent(cocos2d::CCObject* target, SEL_TextFieldInsertTextEvent selecor);
-    void addDeleteBackwardEvent(cocos2d::CCObject* target, SEL_TextFieldDeleteBackwardEvent selecor);
-    virtual cocos2d::CCNode* getValidNode();
-    virtual void setAnchorPoint(const cocos2d::CCPoint &pt);
-    virtual void setColor(const cocos2d::ccColor3B &color);
+    void addAttachWithIMEEvent(CCObject* target, SEL_TextFieldAttachWithIMEEvent selecor);
+    void addDetachWithIMEEvent(CCObject* target, SEL_TextFieldDetachWithIMEEvent selecor);
+    void addInsertTextEvent(CCObject* target, SEL_TextFieldInsertTextEvent selecor);
+    void addDeleteBackwardEvent(CCObject* target, SEL_TextFieldDeleteBackwardEvent selecor);
+    virtual CCNode* getValidNode();
+    virtual void setAnchorPoint(const CCPoint &pt);
+    virtual void setColor(const ccColor3B &color);
     virtual void setOpacity(int opacity);
 protected:
     // event
@@ -93,10 +93,10 @@ protected:
     float m_fTouchHeight;
     bool m_bUseTouchArea;
     
-    cocos2d::CCObject* m_pAttachWithIMEListener;
-    cocos2d::CCObject* m_pDetachWithIMEListener;
-    cocos2d::CCObject* m_pInsertTextListener;
-    cocos2d::CCObject* m_pDeleteBackwardListener;
+    CCObject* m_pAttachWithIMEListener;
+    CCObject* m_pDetachWithIMEListener;
+    CCObject* m_pInsertTextListener;
+    CCObject* m_pDeleteBackwardListener;
     
     SEL_TextFieldAttachWithIMEEvent m_pfnAttachWithIMESelector;
     SEL_TextFieldDetachWithIMEEvent m_pfnDetachWithIMESelector;

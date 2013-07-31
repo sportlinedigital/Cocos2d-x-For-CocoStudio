@@ -60,7 +60,7 @@ protected:
     float m_fFileDesignWidth;
     float m_fFileDesignHeight;
     //texture
-    cocos2d::CCArray* m_textureFiles;
+    CCArray* m_textureFiles;
 };
 
 NS_CC_EXT_END
