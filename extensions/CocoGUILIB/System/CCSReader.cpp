@@ -63,16 +63,29 @@ int CCSReader::getVersionInteger(const char *str)
     {
         return 0;
     }
-    else
-    {
-        
-        if (strVersion.compare("0.2.5.0") != 0)
-        {
-            return 0;
-        }
-    }
+    int pos = strVersion.find_first_of(".");
+    std::string t = strVersion.substr(0,pos);
+    strVersion = strVersion.substr(pos+1,strVersion.length()-1);
     
-    return 250;
+    pos = strVersion.find_first_of(".");
+    std::string h = strVersion.substr(0,pos);
+    strVersion = strVersion.substr(pos+1,strVersion.length()-1);
+    
+    pos = strVersion.find_first_of(".");
+    std::string te = strVersion.substr(0,pos);
+    strVersion = strVersion.substr(pos+1,strVersion.length()-1);
+    
+    pos = strVersion.find_first_of(".");
+    std::string s = strVersion.substr(0,pos);
+    
+    int it = atoi(t.c_str());
+    int ih = atoi(h.c_str());
+    int ite = atoi(te.c_str());
+    int is = atoi(s.c_str());
+    
+    int iVersion = it*1000+ih*100+ite*10+is;
+    CCLOG("iversion %d",iVersion);
+    return iVersion;
     /************************/
 }
 

@@ -14,21 +14,28 @@ void CocosGUITestScene::runThisTest()
     ul = UILayer::create();
     ul->scheduleUpdate();
     this->addChild(ul);
-//    ul->addWidget(CCUIHELPER->createWidgetFromJsonFile("cocosgui/CocoGUISample.json"));
+    ul->addWidget(CCUIHELPER->createWidgetFromJsonFile("cocosgui/test/NewProject1_3.json"));
 //    UIButton* exitBtn = dynamic_cast<UIButton*>(ul->getWidgetByName("exitbutton"));
 //    exitBtn->addReleaseEvent(this, coco_releaseselector(CocosGUITestScene::toCocosGUIExampleScene));
-    UIPanel* p = UIPanel::create();
-    p->setSize(CCSizeMake(100, 100));
-    p->setPosition(ccp(100, 100));
-    p->setBackGroundColor(ccGREEN);
-    p->setBackGroundColorType(PANEL_COLOR_SOLID);
-    p->setClippingEnable(true);
-    p->setBackGroundImage("cocosgui/CloseNormal.png");
-//    p->setBackGroundColorOpacity(100);
-//    p->removeBackGroundImage();
+//    UIPanel* p = UIPanel::create();
+//    p->setSize(CCSizeMake(100, 100));
+//    p->setPosition(ccp(100, 100));
+//    p->setBackGroundColor(ccGREEN);
+//    p->setBackGroundColorType(PANEL_COLOR_SOLID);
+////    p->setClippingEnable(true);
 //    p->setBackGroundImage("cocosgui/CloseNormal.png");
-//    p->setBackGroundColorType(PANEL_COLOR_GRADIENT);
-    ul->addWidget(p);
+////    p->setBackGroundColorOpacity(100);
+////    p->removeBackGroundImage();
+////    p->setBackGroundImage("cocosgui/CloseNormal.png");
+////    p->setBackGroundColorType(PANEL_COLOR_GRADIENT);
+//    ul->addWidget(p);
+//    
+//    UITextButton* tb = UITextButton::create();
+//    tb->setTextures("cocosgui/animationbuttonnormal.png", "cocosgui/animationbuttonnormal.png", "");
+//    tb->setText("sssss");
+//    tb->setPosition(ccp(100, 100));
+//    tb->setScale9Enable(true);
+//    ul->addWidget(tb);
     
 }
 void CocosGUITestScene::MainMenuCallback(CCObject* pSender)
