@@ -1,7 +1,6 @@
 #include "main.h"
 #include "AppDelegate.h"
 #include "CCEGLView.h"
-#include "vld.h"
 
 USING_NS_CC;
 

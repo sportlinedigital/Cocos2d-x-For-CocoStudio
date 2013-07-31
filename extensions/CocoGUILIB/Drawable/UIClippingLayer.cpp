@@ -76,7 +76,6 @@ m_AlongVector(ccp(0.0f, -1.0f))
 
 UIClippingLayer::~UIClippingLayer()
 {
-
 }
 
 UIClippingLayer* UIClippingLayer::create()
