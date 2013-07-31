@@ -116,7 +116,7 @@ void CCArmatureAnimation::setAnimationScale(float animationScale )
     setSpeedScale(animationScale);
 }
 
-float CCArmatureAnimation::getAnimationScale()
+float CCArmatureAnimation::getAnimationScale() const
 {
 	return getSpeedScale();
 }
@@ -147,7 +147,7 @@ void CCArmatureAnimation::setSpeedScale(float speedScale)
 	}
 }
 
-float CCArmatureAnimation::getSpeedScale()
+float CCArmatureAnimation::getSpeedScale() const
 {
 	return m_fSpeedScale;
 }

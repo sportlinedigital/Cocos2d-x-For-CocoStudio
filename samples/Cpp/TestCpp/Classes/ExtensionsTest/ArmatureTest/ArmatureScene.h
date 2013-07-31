@@ -57,18 +57,16 @@ public:
 };
 
 
-
-class TestDragonBones20 : public ArmatureTestLayer
+class TestCSWithSkeleton : public ArmatureTestLayer
 {
-public:
 	virtual void onEnter();
 	virtual std::string title();
 };
 
 
-
-class TestCSWithSkeleton : public ArmatureTestLayer
+class TestDragonBones20 : public ArmatureTestLayer
 {
+public:
 	virtual void onEnter();
 	virtual std::string title();
 };

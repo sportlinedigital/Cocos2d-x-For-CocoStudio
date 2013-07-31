@@ -108,8 +108,6 @@ void CCSpriteFrameCacheHelper::addSpriteFrameFromDict(CCDictionary *dictionary, 
 
         m_Display2ImageMap[spriteFrameName] = imagePath;
 
-        CCLOG("spriteFrameName : %s,    imagePath : %s", spriteFrameName.c_str(), imagePath);
-
         CCSpriteFrame *spriteFrame = (CCSpriteFrame *)CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(spriteFrameName.c_str());
         if (spriteFrame)
         {

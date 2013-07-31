@@ -200,25 +200,6 @@ void ArmatureTestLayer::draw()
 
 
 
-void TestDragonBones20::onEnter()
-{
-	ArmatureTestLayer::onEnter();
-
-	cocos2d::extension::CCArmature *armature = NULL;
-	armature = cocos2d::extension::CCArmature::create("Dragon");
-	armature->getAnimation()->playByIndex(1);
-	armature->getAnimation()->setSpeedScale(0.4f);
-	armature->setPosition(VisibleRect::center().x, VisibleRect::center().y * 0.3f);
-	armature->setScale(0.6f);
-    addChild(armature);
-}
-
-std::string TestDragonBones20::title()
-{
-	return "Test Export From DragonBones version 2.0";
-}
-
-
 void TestCSWithSkeleton::onEnter()
 {
 	ArmatureTestLayer::onEnter();
@@ -236,6 +217,25 @@ std::string TestCSWithSkeleton::title()
 }
 
 
+
+
+void TestDragonBones20::onEnter()
+{
+	ArmatureTestLayer::onEnter();
+
+	cocos2d::extension::CCArmature *armature = NULL;
+	armature = cocos2d::extension::CCArmature::create("Dragon");
+	armature->getAnimation()->playByIndex(1);
+	armature->getAnimation()->setSpeedScale(0.4f);
+	armature->setPosition(VisibleRect::center().x, VisibleRect::center().y * 0.3f);
+	armature->setScale(0.6f);
+    addChild(armature);
+}
+
+std::string TestDragonBones20::title()
+{
+	return "Test Export From DragonBones version 2.0";
+}
 
 
 
