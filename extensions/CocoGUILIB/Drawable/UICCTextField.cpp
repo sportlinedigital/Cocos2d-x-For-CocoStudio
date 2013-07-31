@@ -105,11 +105,15 @@ void UICCTextField::insertText(const char * text, int len)
         {
             if (str_len + len > m_nMaxLength)
             {
+                str_text = str_text.substr(0, m_nMaxLength);
+                
+                /*
                 int mod = str_len % 3;
                 int offset = (mod == 0) ? 0 : (3 - mod);
                 int amount = str_len + offset;
                 str_text = str_text.substr(0, m_nMaxLength - amount);
 //                CCLOG("str_test = %s", str_text.c_str());
+                 */
             }
         }
     }
@@ -119,16 +123,6 @@ void UICCTextField::insertText(const char * text, int len)
     if (m_bPasswordEnable)
     {
         setPasswordText(m_pInputText->c_str());
-    }
-    
-    // return
-    if (strcmp(text, "\n") == 0)
-    {
-        if (CCTextFieldTTF::getCharCount() == 0)
-        {
-            CCTextFieldTTF::setPlaceHolder(m_pPlaceHolder->c_str());
-        }
-        closeIME();
     }
 }        
 

@@ -84,40 +84,40 @@ enum DRAGPANEL_BOUNCE_DIR
     DRAGPANEL_BOUNCE_DIR_BOTTOM,
 };
 
-typedef void (CCObject::*SEL_DragPanelBerthToLeftEvent)(CCObject*);
+typedef void (cocos2d::CCObject::*SEL_DragPanelBerthToLeftEvent)(cocos2d::CCObject*);
 #define coco_DragPanelBerthToLeft_selector(_SELECTOR) (cocos2d::extension::SEL_DragPanelBerthToLeftEvent)(&_SELECTOR)
-typedef void (CCObject::*SEL_DragPanelBerthToRightEvent)(CCObject*);
+typedef void (cocos2d::CCObject::*SEL_DragPanelBerthToRightEvent)(cocos2d::CCObject*);
 #define coco_DragPanelBerthToRight_selector(_SELECTOR) (cocos2d::extension::SEL_DragPanelBerthToRightEvent)(&_SELECTOR)
-typedef void (CCObject::*SEL_DragPanelBerthToTopEvent)(CCObject*);
+typedef void (cocos2d::CCObject::*SEL_DragPanelBerthToTopEvent)(cocos2d::CCObject*);
 #define coco_DragPanelBerthToTop_selector(_SELECTOR) (cocos2d::extension::SEL_DragPanelBerthToTopEvent)(&_SELECTOR)
-typedef void (CCObject::*SEL_DragPanelBerthToBottomEvent)(CCObject*);
+typedef void (cocos2d::CCObject::*SEL_DragPanelBerthToBottomEvent)(cocos2d::CCObject*);
 #define coco_DragPanelBerthToBottom_selector(_SELECTOR) (cocos2d::extension::SEL_DragPanelBerthToBottomEvent)(&_SELECTOR)
-typedef void (CCObject::*SEL_DragPanelBerthToLeftBottomEvent)(CCObject*);
+typedef void (cocos2d::CCObject::*SEL_DragPanelBerthToLeftBottomEvent)(cocos2d::CCObject*);
 #define coco_DragPanelBerthToLeftBottom_selector(_SELECTOR) (cocos2d::extension::SEL_DragPanelBerthToLeftBottomEvent)(&_SELECTOR)
-typedef void (CCObject::*SEL_DragPanelBerthToLeftTopEvent)(CCObject*);
+typedef void (cocos2d::CCObject::*SEL_DragPanelBerthToLeftTopEvent)(cocos2d::CCObject*);
 #define coco_DragPanelBerthToLeftTop_selector(_SELECTOR) (cocos2d::extension::SEL_DragPanelBerthToLeftTopEvent)(&_SELECTOR)
-typedef void (CCObject::*SEL_DragPanelBerthToRightBottomEvent)(CCObject*);
+typedef void (cocos2d::CCObject::*SEL_DragPanelBerthToRightBottomEvent)(cocos2d::CCObject*);
 #define coco_DragPanelBerthToRightBottom_selector(_SELECTOR) (cocos2d::extension::SEL_DragPanelBerthToRightBottomEvent)(&_SELECTOR)
-typedef void (CCObject::*SEL_DragPanelBerthToRightTopEvent)(CCObject*);
+typedef void (cocos2d::CCObject::*SEL_DragPanelBerthToRightTopEvent)(cocos2d::CCObject*);
 #define coco_DragPanelBerthToRightTop_selector(_SELECTOR) (cocos2d::extension::SEL_DragPanelBerthToRightTopEvent)(&_SELECTOR)
 
-typedef void (CCObject::*SEL_DragPanelBounceOverEvent)(CCObject*);
+typedef void (cocos2d::CCObject::*SEL_DragPanelBounceOverEvent)(cocos2d::CCObject*);
 #define coco_DragPanelBounceOver_selector(_SELECTOR) (cocos2d::extension::SEL_DragPanelBounceOverEvent)(&_SELECTOR)
-typedef void (CCObject::*SEL_DragPanelBounceToLeftBottomEvent)(CCObject*);
+typedef void (cocos2d::CCObject::*SEL_DragPanelBounceToLeftBottomEvent)(cocos2d::CCObject*);
 #define coco_DragPanelBounceToLeftBottom_selector(_SELECTOR) (cocos2d::extension::SEL_DragPanelBounceToLeftBottomEvent)(&_SELECTOR)
-typedef void (CCObject::*SEL_DragPanelBounceToLeftTopEvent)(CCObject*);
+typedef void (cocos2d::CCObject::*SEL_DragPanelBounceToLeftTopEvent)(cocos2d::CCObject*);
 #define coco_DragPanelBounceToLeftTop_selector(_SELECTOR) (cocos2d::extension::SEL_DragPanelBounceToLeftTopEvent)(&_SELECTOR)
-typedef void (CCObject::*SEL_DragPanelBounceToRightBottomEvent)(CCObject*);
+typedef void (cocos2d::CCObject::*SEL_DragPanelBounceToRightBottomEvent)(cocos2d::CCObject*);
 #define coco_DragPanelBounceToRightBottom_selector(_SELECTOR) (cocos2d::extension::SEL_DragPanelBounceToRightBottomEvent)(&_SELECTOR)
-typedef void (CCObject::*SEL_DragPanelBounceToRightTopEvent)(CCObject*);
+typedef void (cocos2d::CCObject::*SEL_DragPanelBounceToRightTopEvent)(cocos2d::CCObject*);
 #define coco_DragPanelBounceToRightTop_selector(_SELECTOR) (cocos2d::extension::SEL_DragPanelBounceToRightTopEvent)(&_SELECTOR)
-typedef void (CCObject::*SEL_DragPanelBounceToLeftEvent)(CCObject*);
+typedef void (cocos2d::CCObject::*SEL_DragPanelBounceToLeftEvent)(cocos2d::CCObject*);
 #define coco_DragPanelBounceToLeft_selector(_SELECTOR) (cocos2d::extension::SEL_DragPanelBounceToLeftEvent)(&_SELECTOR)
-typedef void (CCObject::*SEL_DragPanelBounceToTopEvent)(CCObject*);
+typedef void (cocos2d::CCObject::*SEL_DragPanelBounceToTopEvent)(cocos2d::CCObject*);
 #define coco_DragPanelBounceToTop_selector(_SELECTOR) (cocos2d::extension::SEL_DragPanelBounceToTopEvent)(&_SELECTOR)
-typedef void (CCObject::*SEL_DragPanelBounceToRightEvent)(CCObject*);
+typedef void (cocos2d::CCObject::*SEL_DragPanelBounceToRightEvent)(cocos2d::CCObject*);
 #define coco_DragPanelBounceToRight_selector(_SELECTOR) (cocos2d::extension::SEL_DragPanelBounceToRightEvent)(&_SELECTOR)
-typedef void (CCObject::*SEL_DragPanelBounceToBottomEvent)(CCObject*);
+typedef void (cocos2d::CCObject::*SEL_DragPanelBounceToBottomEvent)(cocos2d::CCObject*);
 #define coco_DragPanelBounceToBottom_selector(_SELECTOR) (cocos2d::extension::SEL_DragPanelBounceToBottomEvent)(&_SELECTOR)
 
 class UIDragPanel : public UIPanel
@@ -144,13 +144,11 @@ public:
     virtual bool addChild(UIWidget* widget);
     virtual bool removeChild(UIWidget* child,bool cleanup);
     virtual void removeAllChildrenAndCleanUp(bool cleanup);
-    virtual void removeChildMoveToTrash(UIWidget* child);
-    virtual void removeChildReferenceOnly(UIWidget* child);
     
-    void handlePressLogic(CCPoint &touchPoint);
-    void handleMoveLogic(CCPoint &touchPoint);
-    void handleReleaseLogic(CCPoint &touchPoint);    
-    virtual void checkChildInfo(int handleState,UIWidget* sender,CCPoint &touchPoint);                
+    void handlePressLogic(cocos2d::CCPoint &touchPoint);
+    void handleMoveLogic(cocos2d::CCPoint &touchPoint);
+    void handleReleaseLogic(cocos2d::CCPoint &touchPoint);    
+    virtual void checkChildInfo(int handleState,UIWidget* sender,cocos2d::CCPoint &touchPoint);                
     
     /*
     void setDirection(DRAGPANEL_DIR dir);
@@ -193,6 +191,7 @@ public:
     void addBounceToBottomEvent(CCObject* target, SEL_DragPanelBounceToBottomEvent selector);    
     
 protected:
+    void updateWidthAndHeight();    
     void recordSlidTime(float dt);
     
     // check if dragpanel rect contain inner rect
@@ -260,7 +259,7 @@ protected:
     void moveToUpdate(float t);
     
 protected:
-    UIWrapPanel* m_pInnerPanel;
+    UIPanel* m_pInnerPanel;
     
     /*
     DRAGPANEL_DIR m_eDirection;
