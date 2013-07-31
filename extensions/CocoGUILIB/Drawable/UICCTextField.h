@@ -30,7 +30,7 @@
 
 NS_CC_EXT_BEGIN
 
-class UICCTextField: public cocos2d::CCTextFieldTTF, public cocos2d::CCTextFieldDelegate, public cocos2d::CCTouchDelegate
+class UICCTextField: public CCTextFieldTTF, public CCTextFieldDelegate, public CCTouchDelegate
 {
 public:
     UICCTextField();

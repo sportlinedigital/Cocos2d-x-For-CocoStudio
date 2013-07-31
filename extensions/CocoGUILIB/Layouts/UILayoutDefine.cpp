@@ -52,7 +52,7 @@ void UIMargin::setMargin(float l, float t, float r, float b)
     bottom = b;
 }
 
-bool UIMargin::equals(const cocos2d::extension::UIMargin &target) const
+bool UIMargin::equals(const UIMargin &target) const
 {
     return (left == target.left && top == target.top && right == target.right && bottom == target.bottom);
 }

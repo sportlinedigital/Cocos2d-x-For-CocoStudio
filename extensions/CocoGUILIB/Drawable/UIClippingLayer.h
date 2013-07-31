@@ -37,7 +37,7 @@ typedef enum
     UL_C_GRADIENT
 }UILayerColorType;
     
-class UIClippingLayer : public cocos2d::CCLayerRGBA
+class UIClippingLayer : public CCLayerRGBA
 {
 public:
     UIClippingLayer();
@@ -48,7 +48,7 @@ public:
     bool isClippingEnable();
     void setColorType(UILayerColorType type);
     bool getColorType();
-    void setClipRect(const cocos2d::CCRect &rect);
+    void setClipRect(const CCRect &rect);
     const CCRect& getClippingRect();
     virtual void setPosition(const CCPoint &pos);
     void setBGColor(const ccColor3B &color);

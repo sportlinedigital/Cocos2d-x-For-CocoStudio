@@ -117,7 +117,7 @@ bool UIScrollView::init()
     return false;
 }
 
-void UIScrollView::setSize(const cocos2d::CCSize &size)
+void UIScrollView::setSize(const CCSize &size)
 {
     UIPanel::setSize(size);
     m_fTopBoundary = size.height;
@@ -1113,9 +1113,9 @@ void UIScrollView::endRecordSlidAction()
     m_fSlidTime = 0.0;
 }
 
-void UIScrollView::handlePressLogic(cocos2d::CCPoint &touchPoint)
+void UIScrollView::handlePressLogic(CCPoint &touchPoint)
 {        
-    cocos2d::CCPoint nsp = m_pRender->convertToNodeSpace(touchPoint);
+    CCPoint nsp = m_pRender->convertToNodeSpace(touchPoint);
     switch (m_eDirection)
     {
         case SCROLLVIEW_DIR_VERTICAL: // vertical
@@ -1134,9 +1134,9 @@ void UIScrollView::handlePressLogic(cocos2d::CCPoint &touchPoint)
     startRecordSlidAction();
 }
 
-void UIScrollView::handleMoveLogic(cocos2d::CCPoint &touchPoint)
+void UIScrollView::handleMoveLogic(CCPoint &touchPoint)
 {
-    cocos2d::CCPoint nsp = m_pRender->convertToNodeSpace(touchPoint);
+    CCPoint nsp = m_pRender->convertToNodeSpace(touchPoint);
     float offset = 0.0;
     
     switch (m_eDirection)
@@ -1182,9 +1182,9 @@ void UIScrollView::handleMoveLogic(cocos2d::CCPoint &touchPoint)
     drag(offset);
 }
 
-void UIScrollView::handleReleaseLogic(cocos2d::CCPoint &touchPoint)
+void UIScrollView::handleReleaseLogic(CCPoint &touchPoint)
 {
-    cocos2d::CCPoint nsp = m_pRender->convertToNodeSpace(touchPoint);
+    CCPoint nsp = m_pRender->convertToNodeSpace(touchPoint);
     switch (m_eDirection)
     {
         case SCROLLVIEW_DIR_VERTICAL: // vertical
@@ -1201,30 +1201,30 @@ void UIScrollView::handleReleaseLogic(cocos2d::CCPoint &touchPoint)
     endRecordSlidAction();
 }    
 
-void UIScrollView::onTouchBegan(cocos2d::CCPoint &touchPoint)
+void UIScrollView::onTouchBegan(CCPoint &touchPoint)
 {
     UIPanel::onTouchBegan(touchPoint);
     handlePressLogic(touchPoint);
 }
 
-void UIScrollView::onTouchMoved(cocos2d::CCPoint &touchPoint)
+void UIScrollView::onTouchMoved(CCPoint &touchPoint)
 {
     UIPanel::onTouchMoved(touchPoint);
     handleMoveLogic(touchPoint);
 }
 
-void UIScrollView::onTouchEnded(cocos2d::CCPoint &touchPoint)
+void UIScrollView::onTouchEnded(CCPoint &touchPoint)
 {
     UIPanel::onTouchEnded(touchPoint);
     handleReleaseLogic(touchPoint);
 }
 
-void UIScrollView::onTouchCancelled(cocos2d::CCPoint &touchPoint)
+void UIScrollView::onTouchCancelled(CCPoint &touchPoint)
 {
     UIPanel::onTouchCancelled(touchPoint);
 }
 
-void UIScrollView::onTouchLongClicked(cocos2d::CCPoint &touchPoint)
+void UIScrollView::onTouchLongClicked(CCPoint &touchPoint)
 {
     
 }
@@ -1260,7 +1260,7 @@ void UIScrollView::recordSlidTime(float dt)
     }
 }
 
-void UIScrollView::checkChildInfo(int handleState,UIWidget* sender,cocos2d::CCPoint &touchPoint)
+void UIScrollView::checkChildInfo(int handleState,UIWidget* sender,CCPoint &touchPoint)
 {
     switch (handleState)
     {
@@ -1333,25 +1333,25 @@ void UIScrollView::scrollToRightEvent()
     }
 }
 
-void UIScrollView::addScrollToTopEvent(cocos2d::CCObject *target, SEL_ScrollToTopEvent selector)
+void UIScrollView::addScrollToTopEvent(CCObject *target, SEL_ScrollToTopEvent selector)
 {
     m_pScrollToTopListener = target;
     m_pfnScrollToTopSelector = selector;
 }
 
-void UIScrollView::addScrollToBottomEvent(cocos2d::CCObject *target, SEL_ScrollToBottomEvent selector)
+void UIScrollView::addScrollToBottomEvent(CCObject *target, SEL_ScrollToBottomEvent selector)
 {
     m_pScrollToBottomListener = target;
     m_pfnScrollToBottomSelector = selector;
 }
 
-void UIScrollView::addScrollToLeftEvent(cocos2d::CCObject *target, SEL_ScrollToLeftEvent selector)
+void UIScrollView::addScrollToLeftEvent(CCObject *target, SEL_ScrollToLeftEvent selector)
 {
     m_pScrollToLeftListener = target;
     m_pfnScrollToLeftSelector = selector;
 }
 
-void UIScrollView::addScrollToRightEvent(cocos2d::CCObject *target, SEL_ScrollToRightEvent selector)
+void UIScrollView::addScrollToRightEvent(CCObject *target, SEL_ScrollToRightEvent selector)
 {
     m_pScrollToRightListener = target;
     m_pfnScrollToRightSelector = selector;
@@ -1405,37 +1405,37 @@ void UIScrollView::berthToHorizontalCenterEvent()
     }
 }
 
-void UIScrollView::addBerthToTopEvent(cocos2d::CCObject *target, SEL_BerthToTopEvent selector)
+void UIScrollView::addBerthToTopEvent(CCObject *target, SEL_BerthToTopEvent selector)
 {
     m_pBerthToTopListener = target;
     m_pfnBerthToTopSelector = selector;
 }
 
-void UIScrollView::addBerthToBottomEvent(cocos2d::CCObject *target, SEL_BerthToBottomEvent selector)
+void UIScrollView::addBerthToBottomEvent(CCObject *target, SEL_BerthToBottomEvent selector)
 {
     m_pBerthToBottomListener = target;
     m_pfnBerthToBottomSelector = selector;
 }
 
-void UIScrollView::addBerthToVerticalCenterEvent(cocos2d::CCObject *target, SEL_BerthToVerticalCenterEvent selector)
+void UIScrollView::addBerthToVerticalCenterEvent(CCObject *target, SEL_BerthToVerticalCenterEvent selector)
 {
     m_pBerthToVerticalCenterListener = target;
     m_pfnBerthToVerticalCenterSelector = selector;
 }
 
-void UIScrollView::addBerthToLeftEvent(cocos2d::CCObject *target, SEL_BerthToLeftEvent selector)
+void UIScrollView::addBerthToLeftEvent(CCObject *target, SEL_BerthToLeftEvent selector)
 {
     m_pBerthToLeftListener = target;
     m_pfnBerthToLeftSelector = selector;
 }
 
-void UIScrollView::addBerthToRightEvent(cocos2d::CCObject *target, SEL_BerthToRightEvent selector)
+void UIScrollView::addBerthToRightEvent(CCObject *target, SEL_BerthToRightEvent selector)
 {
     m_pBerthToRightListener = target;
     m_pfnBerthToRightSelector = selector;
 }
 
-void UIScrollView::addBerthToHorizontalCenterEvent(cocos2d::CCObject *target, SEL_BerthToHorizontalCenterEvent selector)
+void UIScrollView::addBerthToHorizontalCenterEvent(CCObject *target, SEL_BerthToHorizontalCenterEvent selector)
 {
     m_pBerthToHorizontalCenterListener = target;
     m_pfnBerthToHorizontalCenterSelector = selector;

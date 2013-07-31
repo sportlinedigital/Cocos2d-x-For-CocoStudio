@@ -73,13 +73,13 @@ bool UIControlButton::init()
 void UIControlButton::initNodes()
 {
     UIWidget::initNodes();
-    m_pNormalTitle = cocos2d::CCLabelTTF::create();
-    m_pPressedTitle = cocos2d::CCLabelTTF::create();
-    m_pDisabledTitle = cocos2d::CCLabelTTF::create();
+    m_pNormalTitle = CCLabelTTF::create();
+    m_pPressedTitle = CCLabelTTF::create();
+    m_pDisabledTitle = CCLabelTTF::create();
 
-    m_pNormalBackGround = cocos2d::extension::CCScale9Sprite::create();
-    m_pPressedBackGround = cocos2d::extension::CCScale9Sprite::create();
-    m_pDisabledBackGround = cocos2d::extension::CCScale9Sprite::create();
+    m_pNormalBackGround = CCScale9Sprite::create();
+    m_pPressedBackGround = CCScale9Sprite::create();
+    m_pDisabledBackGround = CCScale9Sprite::create();
 }
 
 void UIControlButton::setTextures(const char* backgroundNormal,const char* backgroundPressed,const char* backgroundDisabled)
@@ -95,9 +95,9 @@ void UIControlButton::setTextures(const char* backgroundNormal,const char* backg
     m_pDisabledBackGround->setColor(getColor());
     m_pDisabledBackGround->setOpacity(getOpacity());
     
-    m_pNormalBackGround->setContentSize(cocos2d::CCSize(m_pNormalTitle->boundingBox().size.width+8*2,m_pNormalTitle->boundingBox().size.height+2*2));
-    m_pPressedBackGround->setContentSize(cocos2d::CCSize(m_pPressedTitle->boundingBox().size.width+8*2,m_pPressedTitle->boundingBox().size.height+2*2));
-    m_pDisabledBackGround->setContentSize(cocos2d::CCSize(m_pDisabledTitle->boundingBox().size.width+8*2,m_pDisabledTitle->boundingBox().size.height+2*2));
+    m_pNormalBackGround->setContentSize(CCSize(m_pNormalTitle->boundingBox().size.width+8*2,m_pNormalTitle->boundingBox().size.height+2*2));
+    m_pPressedBackGround->setContentSize(CCSize(m_pPressedTitle->boundingBox().size.width+8*2,m_pPressedTitle->boundingBox().size.height+2*2));
+    m_pDisabledBackGround->setContentSize(CCSize(m_pDisabledTitle->boundingBox().size.width+8*2,m_pDisabledTitle->boundingBox().size.height+2*2));
 }
 
 void UIControlButton::setTitle(const char* titleNormal,const char* titlePressed,const char* titleDisabled)
@@ -106,9 +106,9 @@ void UIControlButton::setTitle(const char* titleNormal,const char* titlePressed,
     m_pPressedTitle->setString(titlePressed);
     m_pDisabledTitle->setString(titleDisabled);
     
-    m_pNormalBackGround->setContentSize(cocos2d::CCSize(m_pNormalTitle->boundingBox().size.width+8*2,m_pNormalTitle->boundingBox().size.height+2*2));
-    m_pPressedBackGround->setContentSize(cocos2d::CCSize(m_pPressedTitle->boundingBox().size.width+8*2,m_pPressedTitle->boundingBox().size.height+2*2));
-    m_pDisabledBackGround->setContentSize(cocos2d::CCSize(m_pDisabledTitle->boundingBox().size.width+8*2,m_pDisabledTitle->boundingBox().size.height+2*2));
+    m_pNormalBackGround->setContentSize(CCSize(m_pNormalTitle->boundingBox().size.width+8*2,m_pNormalTitle->boundingBox().size.height+2*2));
+    m_pPressedBackGround->setContentSize(CCSize(m_pPressedTitle->boundingBox().size.width+8*2,m_pPressedTitle->boundingBox().size.height+2*2));
+    m_pDisabledBackGround->setContentSize(CCSize(m_pDisabledTitle->boundingBox().size.width+8*2,m_pDisabledTitle->boundingBox().size.height+2*2));
 }
 
 void UIControlButton::onPressStateChangedToNormal()
@@ -117,7 +117,7 @@ void UIControlButton::onPressStateChangedToNormal()
     {
         return;
     }
-    cocos2d::CCAction *zoomAction = cocos2d::CCScaleTo::create(0.05f, 1.0f);
+    CCAction *zoomAction = CCScaleTo::create(0.05f, 1.0f);
     runAction(zoomAction);
     
     m_pNormalBackGround->setVisible(true);
@@ -131,7 +131,7 @@ void UIControlButton::onPressStateChangedToPressed()
     {
         return;
     }
-    cocos2d::CCAction *zoomAction = cocos2d::CCScaleTo::create(0.05f, 1.1f);
+    CCAction *zoomAction = CCScaleTo::create(0.05f, 1.1f);
     runAction(zoomAction);
     
     m_pNormalBackGround->setVisible(false);
@@ -146,9 +146,9 @@ void UIControlButton::onPressStateChangedToDisabled()
     m_pDisabledBackGround->setVisible(true);
 }
 
-cocos2d::CCNode* UIControlButton::getValidNode()
+CCNode* UIControlButton::getValidNode()
 {
-    cocos2d::CCNode* validNode = NULL;
+    CCNode* validNode = NULL;
     switch (m_nCurPressState)
     {
         case WidgetStateNormal:
@@ -166,7 +166,7 @@ cocos2d::CCNode* UIControlButton::getValidNode()
     return validNode;
 }
 
-void UIControlButton::setAnchorPoint(const cocos2d::CCPoint &pt)
+void UIControlButton::setAnchorPoint(const CCPoint &pt)
 {
     UIWidget::setAnchorPoint(pt);
     m_pNormalBackGround->setAnchorPoint(pt);
@@ -243,29 +243,29 @@ void UIControlButton::setDisabledFontSize(float size)
     m_pDisabledTitle->setFontSize(size);
 }
 
-void UIControlButton::setNormalFontColor(const cocos2d::ccColor3B &color)
+void UIControlButton::setNormalFontColor(const ccColor3B &color)
 {
     m_pNormalTitle->setColor(color);
 }
 
-void UIControlButton::setPressedFontColor(const cocos2d::ccColor3B &color)
+void UIControlButton::setPressedFontColor(const ccColor3B &color)
 {
     m_pPressedTitle->setColor(color);
 }
 
-void UIControlButton::setDisalbedFontColor(const cocos2d::ccColor3B &color)
+void UIControlButton::setDisalbedFontColor(const ccColor3B &color)
 {
     m_pDisabledTitle->setColor(color);
 }
 
-void UIControlButton::setLabelAnchorPoint(const cocos2d::CCPoint &labelAnchorPoint)
+void UIControlButton::setLabelAnchorPoint(const CCPoint &labelAnchorPoint)
 {
     m_pNormalTitle->setAnchorPoint(labelAnchorPoint);
     m_pPressedTitle->setAnchorPoint(labelAnchorPoint);
     m_pDisabledTitle->setAnchorPoint(labelAnchorPoint);
 }
 
-void UIControlButton::setPreferredSize(const cocos2d::CCSize &size)
+void UIControlButton::setPreferredSize(const CCSize &size)
 {
     m_pNormalBackGround->setPreferredSize(size);
     m_pPressedBackGround->setPreferredSize(size);
@@ -274,7 +274,7 @@ void UIControlButton::setPreferredSize(const cocos2d::CCSize &size)
     m_preferredSize = size;
 }
 
-void UIControlButton::setNormalBackgroundSpriteFrame(cocos2d::CCSpriteFrame *spriteFrame)
+void UIControlButton::setNormalBackgroundSpriteFrame(CCSpriteFrame *spriteFrame)
 {
     if (!spriteFrame)
     {
@@ -286,7 +286,7 @@ void UIControlButton::setNormalBackgroundSpriteFrame(cocos2d::CCSpriteFrame *spr
     m_pNormalBackGround->setPreferredSize(m_preferredSize);
 }
 
-void UIControlButton::setPressedBackgroundSpriteFrame(cocos2d::CCSpriteFrame *spriteFrame)
+void UIControlButton::setPressedBackgroundSpriteFrame(CCSpriteFrame *spriteFrame)
 {
     if (!spriteFrame)
     {
@@ -298,7 +298,7 @@ void UIControlButton::setPressedBackgroundSpriteFrame(cocos2d::CCSpriteFrame *sp
     m_pPressedBackGround->setPreferredSize(m_preferredSize);
 }
 
-void UIControlButton::setDisabledBackgroundSpriteFrame(cocos2d::CCSpriteFrame *spriteFrame)
+void UIControlButton::setDisabledBackgroundSpriteFrame(CCSpriteFrame *spriteFrame)
 {
     if (!spriteFrame)
     {

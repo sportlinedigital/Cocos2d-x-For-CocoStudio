@@ -52,7 +52,7 @@ bool UITextButton::init()
 {
     if (UIButton::init())
     {
-        m_pTextLable = cocos2d::CCLabelTTF::create();
+        m_pTextLable = CCLabelTTF::create();
         m_pRender->addChild(m_pTextLable);
         return true;
     }
@@ -71,7 +71,7 @@ void UITextButton::setText(const char* text)
 
 void UITextButton::setTextColor(int r,int g,int b)
 {
-    m_pTextLable->setColor(cocos2d::ccc3(r, g, b));
+    m_pTextLable->setColor(ccc3(r, g, b));
 }
 
 void UITextButton::setFontSize(int size)
@@ -96,7 +96,7 @@ void UITextButton::setFlipY(bool flipY)
     m_pTextLable->setFlipY(flipY);
 }
 
-void UITextButton::setAnchorPoint(const cocos2d::CCPoint &pt)
+void UITextButton::setAnchorPoint(const CCPoint &pt)
 {
     UIButton::setAnchorPoint(pt);
     m_pTextLable->setPosition(ccp(m_pButtonNormal->getContentSize().width*(0.5f-m_pButtonNormal->getAnchorPoint().x), m_pButtonNormal->getContentSize().height*(0.5f-m_pButtonNormal->getAnchorPoint().y)));

@@ -30,14 +30,14 @@
 
 NS_CC_EXT_BEGIN
     
-class UICCLabelAtlas : public cocos2d::CCLabelAtlas
+class UICCLabelAtlas : public CCLabelAtlas
 {
 public:
     UICCLabelAtlas();
     virtual ~UICCLabelAtlas();
     static UICCLabelAtlas* create();
     void setProperty(const char *string, const char *charMapFile, unsigned int itemWidth, unsigned int itemHeight, unsigned int startCharMap);
-    void setProperty(const char *string, cocos2d::CCTexture2D *texture, unsigned int itemWidth, unsigned int itemHeight, unsigned int startCharMap);
+    void setProperty(const char *string, CCTexture2D *texture, unsigned int itemWidth, unsigned int itemHeight, unsigned int startCharMap);
     
     virtual void draw(void);
 };

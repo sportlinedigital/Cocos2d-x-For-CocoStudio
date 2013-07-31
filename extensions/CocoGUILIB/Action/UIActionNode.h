@@ -33,14 +33,14 @@
 
 NS_CC_EXT_BEGIN
 
-class UIActionNode:public cocos2d::CCObject
+class UIActionNode:public CCObject
 {
 protected:
 	int currentIndex;
 	CCAction* m_action;
 	UIWidget* m_actionNode;
     //data
-	cocos2d::CCArray* m_ActionFrameList;/*action frame*/
+	CCArray* m_ActionFrameList;/*action frame*/
     CC_SYNTHESIZE(int, m_nActionTag, ActionTag);
 public:
     UIActionNode();

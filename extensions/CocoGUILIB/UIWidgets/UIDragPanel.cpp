@@ -213,7 +213,7 @@ void UIDragPanel::removeChildReferenceOnly(UIWidget *child)
     m_pInnerPanel->removeChildReferenceOnly(child);
 }
 
-void UIDragPanel::handlePressLogic(cocos2d::CCPoint &touchPoint)
+void UIDragPanel::handlePressLogic(CCPoint &touchPoint)
 {
     // check inner rect < drag panel rect
     if (checkContainInnerRect())
@@ -251,7 +251,7 @@ void UIDragPanel::handlePressLogic(cocos2d::CCPoint &touchPoint)
     m_touchStartWorldSpace = touchPoint;    
 }
 
-void UIDragPanel::handleMoveLogic(cocos2d::CCPoint &touchPoint)
+void UIDragPanel::handleMoveLogic(CCPoint &touchPoint)
 {
     if (!m_bTouchPressed)
     {
@@ -350,7 +350,7 @@ void UIDragPanel::handleMoveLogic(cocos2d::CCPoint &touchPoint)
     //
 }
 
-void UIDragPanel::handleReleaseLogic(cocos2d::CCPoint &touchPoint)
+void UIDragPanel::handleReleaseLogic(CCPoint &touchPoint)
 {
     if (!m_bTouchPressed)
     {

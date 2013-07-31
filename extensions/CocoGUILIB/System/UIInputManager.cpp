@@ -37,9 +37,9 @@ m_fLongClickRecordTime(0.0),
 checkedDoubleClickWidget(NULL),
 m_pRootWidget(NULL)
 {
-    m_manageredWidget = cocos2d::CCArray::create();
+    m_manageredWidget = CCArray::create();
     m_manageredWidget->retain();
-    checkedDoubleClickWidget = cocos2d::CCArray::create();
+    checkedDoubleClickWidget = CCArray::create();
     checkedDoubleClickWidget->retain();
 }
 
@@ -69,7 +69,7 @@ void UIInputManager::uiSceneHasChanged()
     m_bWidgetBeSorted = false;
 }
 
-void UIInputManager::sortWidgets(cocos2d::extension::UIWidget *widget)
+void UIInputManager::sortWidgets(UIWidget *widget)
 {
     m_manageredWidget->removeAllObjects();
     sortRootWidgets(widget);
@@ -104,7 +104,7 @@ void UIInputManager::removeManageredWidget(UIWidget* widget)
     m_manageredWidget->removeObject(widget);
 }
 
-UIWidget* UIInputManager::checkEventWidget(cocos2d::CCPoint &touchPoint)
+UIWidget* UIInputManager::checkEventWidget(CCPoint &touchPoint)
 {
     if (!m_bWidgetBeSorted && m_pRootWidget)
     {
@@ -173,7 +173,7 @@ void UIInputManager::update(float dt)
     }
 }
 
-bool UIInputManager::onTouchBegan(cocos2d::CCTouch* touch)
+bool UIInputManager::onTouchBegan(CCTouch* touch)
 {
     touchBeganedPoint.x = touch->getLocation().x;
     touchBeganedPoint.y = touch->getLocation().y;
@@ -189,7 +189,7 @@ bool UIInputManager::onTouchBegan(cocos2d::CCTouch* touch)
     return true;
 }
 
-bool UIInputManager::onTouchMoved(cocos2d::CCTouch* touch)
+bool UIInputManager::onTouchMoved(CCTouch* touch)
 {
     UIWidget* hitWidget = m_pCurSelectedWidget;
     if (!hitWidget || !hitWidget->isActive())
@@ -207,7 +207,7 @@ bool UIInputManager::onTouchMoved(cocos2d::CCTouch* touch)
     return true;
 }
 
-bool UIInputManager::onTouchEnd(cocos2d::CCTouch* touch)
+bool UIInputManager::onTouchEnd(CCTouch* touch)
 {
     m_bTouchDown = false;
     UIWidget* hitWidget = m_pCurSelectedWidget;
@@ -223,7 +223,7 @@ bool UIInputManager::onTouchEnd(cocos2d::CCTouch* touch)
     return true;
 }
 
-bool UIInputManager::onTouchCancelled(cocos2d::CCTouch* touch)
+bool UIInputManager::onTouchCancelled(CCTouch* touch)
 {
     m_bTouchDown = false;
     UIWidget* hitWidget = m_pCurSelectedWidget;
@@ -239,7 +239,7 @@ bool UIInputManager::onTouchCancelled(cocos2d::CCTouch* touch)
     return true;
 }
 
-void UIInputManager::setRootWidget(cocos2d::extension::UIWidget *root)
+void UIInputManager::setRootWidget(UIWidget *root)
 {
     m_pRootWidget = root;
 }

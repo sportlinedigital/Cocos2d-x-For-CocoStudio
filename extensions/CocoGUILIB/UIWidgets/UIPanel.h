@@ -45,13 +45,13 @@ public:
     void setBackGroundImage(const char* fileName,TextureResType texType = UI_TEX_TYPE_LOCAL);
     void setBackGroundImageCapInsets(const CCRect& capInsets);
     virtual void setBackGroundColorType(PanelColorType type);
-    virtual void setSize(const cocos2d::CCSize &size);
+    virtual void setSize(const CCSize &size);
     void setBackGroundImageScale9Enable(bool able);
     void setBackGroundColor(const ccColor3B &color);
     void setBackGroundColor(const ccColor3B &startColor, const ccColor3B &endColor);
     void setBackGroundColorOpacity(int opacity);
     void setBackGroundColorVector(const CCPoint &vector);
-    virtual void setColor(const cocos2d::ccColor3B &color);
+    virtual void setColor(const ccColor3B &color);
     virtual void setOpacity(int opacity);
     void removeBackGroundImage();
 protected:
@@ -59,7 +59,7 @@ protected:
     void addBackGroundImage();
 protected:
     bool m_bBackGroundScale9Enable;
-    cocos2d::CCNode* m_pBackGroundImage;
+    CCNode* m_pBackGroundImage;
     std::string m_strBackGroundImageFileName;
     CCRect m_backGroundImageCapInsets;
     PanelColorType m_colorType;

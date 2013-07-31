@@ -60,7 +60,7 @@ UIPanel::~UIPanel()
 void UIPanel::initNodes()
 {
     UIContainerWidget::initNodes();
-    m_pBackGroundImage = cocos2d::CCSprite::create();
+    m_pBackGroundImage = CCSprite::create();
     m_pBackGroundImage->setZOrder(-1);
     m_pRender->addChild(m_pBackGroundImage);
 }
@@ -112,7 +112,7 @@ void UIPanel::setBackGroundImageScale9Enable(bool able)
     setBackGroundImageCapInsets(m_backGroundImageCapInsets);
 }
     
-void UIPanel::setSize(const cocos2d::CCSize &size)
+void UIPanel::setSize(const CCSize &size)
 {
     UIContainerWidget::setSize(size);
     if (m_pBackGroundImage == NULL)
@@ -122,7 +122,7 @@ void UIPanel::setSize(const cocos2d::CCSize &size)
     m_pBackGroundImage->setPosition(ccp(m_pRender->getContentSize().width/2.0f, m_pRender->getContentSize().height/2.0f));
     if (m_bBackGroundScale9Enable)
     {
-        dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pBackGroundImage)->setContentSize(m_pRender->getContentSize());
+        dynamic_cast<CCScale9Sprite*>(m_pBackGroundImage)->setContentSize(m_pRender->getContentSize());
     }
 }
 
@@ -143,25 +143,25 @@ void UIPanel::setBackGroundImage(const char* fileName,TextureResType texType)
         switch (m_eBGImageTexType)
         {
             case UI_TEX_TYPE_LOCAL:
-                dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pBackGroundImage)->initWithFile(fileName);
+                dynamic_cast<CCScale9Sprite*>(m_pBackGroundImage)->initWithFile(fileName);
                 break;
             case UI_TEX_TYPE_PLIST:
-                dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pBackGroundImage)->initWithSpriteFrameName(fileName);
+                dynamic_cast<CCScale9Sprite*>(m_pBackGroundImage)->initWithSpriteFrameName(fileName);
                 break;
             default:
                 break;
         }
-        dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pBackGroundImage)->setContentSize(m_pRender->getContentSize());
+        dynamic_cast<CCScale9Sprite*>(m_pBackGroundImage)->setContentSize(m_pRender->getContentSize());
     }
     else
     {
         switch (m_eBGImageTexType)
         {
             case UI_TEX_TYPE_LOCAL:
-                dynamic_cast<cocos2d::CCSprite*>(m_pBackGroundImage)->initWithFile(fileName);
+                dynamic_cast<CCSprite*>(m_pBackGroundImage)->initWithFile(fileName);
                 break;
             case UI_TEX_TYPE_PLIST:
-                dynamic_cast<cocos2d::CCSprite*>(m_pBackGroundImage)->initWithSpriteFrameName(fileName);
+                dynamic_cast<CCSprite*>(m_pBackGroundImage)->initWithSpriteFrameName(fileName);
                 break;
             default:
                 break;
@@ -169,23 +169,23 @@ void UIPanel::setBackGroundImage(const char* fileName,TextureResType texType)
     }
     if (m_bBackGroundScale9Enable)
     {
-        dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pBackGroundImage)->setColor(getColor());
-        dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pBackGroundImage)->setOpacity(getOpacity());
+        dynamic_cast<CCScale9Sprite*>(m_pBackGroundImage)->setColor(getColor());
+        dynamic_cast<CCScale9Sprite*>(m_pBackGroundImage)->setOpacity(getOpacity());
     }
     else
     {
-        dynamic_cast<cocos2d::CCSprite*>(m_pBackGroundImage)->setColor(getColor());
-        dynamic_cast<cocos2d::CCSprite*>(m_pBackGroundImage)->setOpacity(getOpacity());
+        dynamic_cast<CCSprite*>(m_pBackGroundImage)->setColor(getColor());
+        dynamic_cast<CCSprite*>(m_pBackGroundImage)->setOpacity(getOpacity());
     }
     m_pBackGroundImage->setPosition(ccp(m_pRender->getContentSize().width/2, m_pRender->getContentSize().height/2));
 }
 
-void UIPanel::setBackGroundImageCapInsets(const cocos2d::CCRect &capInsets)
+void UIPanel::setBackGroundImageCapInsets(const CCRect &capInsets)
 {
     m_backGroundImageCapInsets = capInsets;
     if (m_bBackGroundScale9Enable)
     {
-        dynamic_cast<cocos2d::extension::CCScale9Sprite*>(m_pBackGroundImage)->setCapInsets(capInsets);
+        dynamic_cast<CCScale9Sprite*>(m_pBackGroundImage)->setCapInsets(capInsets);
     }
 }
 
@@ -211,12 +211,12 @@ void UIPanel::setBackGroundColorOpacity(int opacity)
     DYNAMIC_CAST_CLIPPINGLAYER->setBGColorOpacity(opacity);
 }
 
-void UIPanel::setBackGroundColorVector(const cocos2d::CCPoint &vector)
+void UIPanel::setBackGroundColorVector(const CCPoint &vector)
 {
     DYNAMIC_CAST_CLIPPINGLAYER->setBGVector(vector);
 }
 
-void UIPanel::setColor(const cocos2d::ccColor3B &color)
+void UIPanel::setColor(const ccColor3B &color)
 {
     UIWidget::setColor(color);
     if (m_pBackGroundImage)

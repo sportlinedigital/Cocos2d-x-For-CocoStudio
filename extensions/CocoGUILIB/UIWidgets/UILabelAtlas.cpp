@@ -70,7 +70,7 @@ const char* UILabelAtlas::getStringValue()
     return m_pRenderLaberAtlas->getString();
 }
 
-void UILabelAtlas::setAnchorPoint(const cocos2d::CCPoint &pt)
+void UILabelAtlas::setAnchorPoint(const CCPoint &pt)
 {
     UIWidget::setAnchorPoint(pt);
     m_pRenderLaberAtlas->setAnchorPoint(ccp(pt.x, pt.y-0.25f));

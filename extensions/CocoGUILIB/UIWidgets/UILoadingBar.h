@@ -48,7 +48,7 @@ public:
     int getPercent();
     float getTotalWidth();
     float getTotalHeight();
-    virtual cocos2d::CCNode* getValidNode();
+    virtual CCNode* getValidNode();
 protected:
     virtual void initNodes();
 protected:

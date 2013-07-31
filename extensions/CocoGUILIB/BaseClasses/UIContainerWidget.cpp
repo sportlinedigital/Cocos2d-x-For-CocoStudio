@@ -59,7 +59,7 @@ UIContainerWidget* UIContainerWidget::create()
 /*****************temp***********/
 bool UIContainerWidget::init()
 {
-    m_children = cocos2d::CCArray::create();
+    m_children = CCArray::create();
     m_children->retain();
     initNodes();
     m_pRender->retain();
@@ -376,12 +376,12 @@ void UIContainerWidget::setClippingEnable(bool able)
     }
 }
 
-void UIContainerWidget::setClipRect(const cocos2d::CCRect &rect)
+void UIContainerWidget::setClipRect(const CCRect &rect)
 {
     DYNAMIC_CAST_CLIPPINGLAYER->setClipRect(rect);
 }
 
-void UIContainerWidget::setSize(const cocos2d::CCSize &size)
+void UIContainerWidget::setSize(const CCSize &size)
 {
     DYNAMIC_CAST_CLIPPINGLAYER->setContentSize(size);
     m_fWidth = size.width;
@@ -399,10 +399,10 @@ float UIContainerWidget::getHeight()
     return m_fHeight;
 }
 
-bool UIContainerWidget::hitTest(cocos2d::CCNode *node, cocos2d::CCPoint &pt)
+bool UIContainerWidget::hitTest(CCNode *node, CCPoint &pt)
 {
-    cocos2d::CCPoint nsp = node->convertToNodeSpace(pt);
-    cocos2d::CCSize bb = node->getContentSize();
+    CCPoint nsp = node->convertToNodeSpace(pt);
+    CCSize bb = node->getContentSize();
     if (nsp.x >= 0.0f && nsp.x <= bb.width && nsp.y >= 0.0f && nsp.y <= bb.height)
     {
         return true;

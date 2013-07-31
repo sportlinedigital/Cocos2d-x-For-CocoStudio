@@ -46,26 +46,26 @@ public:
     void insertPage(UIContainerWidget* page, int idx);
     void removePage(UIContainerWidget* page, bool cleanup);
     void removePageAtIndex(int index, bool cleanup);
-    virtual void setSize(const cocos2d::CCSize &size);
+    virtual void setSize(const CCSize &size);
     void updateChildrenSize();
     void updateChildrenPosition();
     void scrollToPage(int idx);
     virtual bool removeChild(UIWidget* widget, bool cleanup);
     virtual void removeAllChildrenAndCleanUp(bool cleanup);
-    virtual void onTouchBegan(cocos2d::CCPoint &touchPoint);
-    virtual void onTouchMoved(cocos2d::CCPoint &touchPoint);
-    virtual void onTouchEnded(cocos2d::CCPoint &touchPoint);
-    virtual void onTouchCancelled(cocos2d::CCPoint &touchPoint);
+    virtual void onTouchBegan(CCPoint &touchPoint);
+    virtual void onTouchMoved(CCPoint &touchPoint);
+    virtual void onTouchEnded(CCPoint &touchPoint);
+    virtual void onTouchCancelled(CCPoint &touchPoint);
     virtual void update(float dt);
-    virtual void checkChildInfo(int handleState,UIWidget* sender,cocos2d::CCPoint &touchPoint);
+    virtual void checkChildInfo(int handleState,UIWidget* sender,CCPoint &touchPoint);
 protected:
     virtual bool addChild(UIWidget* widget);
     virtual bool init();
     float getPositionXByIndex(int idx);
     void updateBoundaryPages();
-    void handlePressLogic(cocos2d::CCPoint &touchPoint);
-    void handleMoveLogic(cocos2d::CCPoint &touchPoint);
-    void handleReleaseLogic(cocos2d::CCPoint &touchPoint);
+    void handlePressLogic(CCPoint &touchPoint);
+    void handleMoveLogic(CCPoint &touchPoint);
+    void handleReleaseLogic(CCPoint &touchPoint);
     virtual bool scrollPages(float touchOffset);
     void movePages(float offset);
 protected:

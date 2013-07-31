@@ -80,10 +80,10 @@ bool UIListView::init()
         m_pChildPool = new UIWidgetPool();
         m_pUpdatePool = new UIWidgetPool();
          */
-        m_overTopArray = cocos2d::CCArray::create();
-        m_overBottomArray = cocos2d::CCArray::create();
-        m_overLeftArray = cocos2d::CCArray::create();
-        m_overRightArray = cocos2d::CCArray::create();
+        m_overTopArray = CCArray::create();
+        m_overBottomArray = CCArray::create();
+        m_overLeftArray = CCArray::create();
+        m_overRightArray = CCArray::create();
         CC_SAFE_RETAIN(m_overTopArray);
         CC_SAFE_RETAIN(m_overBottomArray);
         CC_SAFE_RETAIN(m_overLeftArray);
@@ -1112,13 +1112,13 @@ void UIListView::updateChildEvent()
     }
 }
 
-void UIListView::addInitChildEvent(cocos2d::CCObject *target, SEL_InitChildEvent seletor)
+void UIListView::addInitChildEvent(CCObject *target, SEL_InitChildEvent seletor)
 {
     m_pInitChildListener = target;
     m_pfnInitChildSelector = seletor;
 }
 
-void UIListView::addUpdateChildEvent(cocos2d::CCObject *target, SEL_UpdateChildEvent selector)
+void UIListView::addUpdateChildEvent(CCObject *target, SEL_UpdateChildEvent selector)
 {
     m_pUpdateChildListener = target;
     m_pfnUpdateChildSelector = selector;

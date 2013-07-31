@@ -38,9 +38,9 @@ public:
     static UITextArea* create();
     virtual void initNodes();
     void setText(const char* text);
-    void setTextAreaSize(const cocos2d::CCSize &size);
-    void setTextHorizontalAlignment(cocos2d::CCTextAlignment alignment);
-    void setTextVerticalAlignment(cocos2d::CCVerticalTextAlignment alignment);
+    void setTextAreaSize(const CCSize &size);
+    void setTextHorizontalAlignment(CCTextAlignment alignment);
+    void setTextVerticalAlignment(CCVerticalTextAlignment alignment);
     int getStringLength();
     const char* getStringValue();
     void setTextColor(int r,int g,int b);
@@ -50,8 +50,8 @@ public:
     virtual void setFlipY(bool flipY);
     virtual bool isFlipX();
     virtual bool isFlipY();
-    virtual cocos2d::CCNode* getValidNode();
-    virtual void setAnchorPoint(const cocos2d::CCPoint &pt);
+    virtual CCNode* getValidNode();
+    virtual void setAnchorPoint(const CCPoint &pt);
 protected:
     CCLabelTTF* m_pRenderLabel;
 };

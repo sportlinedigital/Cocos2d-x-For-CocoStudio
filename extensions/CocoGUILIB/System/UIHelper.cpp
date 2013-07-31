@@ -56,7 +56,7 @@ UIHelper* UIHelper::instance()
 UIHelper::UIHelper():
 m_textureFiles(NULL)
 {
-    cocos2d::CCSize winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
+    CCSize winSize = CCDirector::sharedDirector()->getWinSize();
     m_fFileDesignWidth = winSize.width;
     m_fFileDesignHeight = winSize.height;
     init();
@@ -69,7 +69,7 @@ UIHelper::~UIHelper()
 
 void UIHelper::init()
 {
-    m_textureFiles = cocos2d::CCArray::create();
+    m_textureFiles = CCArray::create();
     m_textureFiles->retain();
 }
 
@@ -81,7 +81,7 @@ UIWidget* UIHelper::createWidgetFromJsonFile(const char *fileName)
 UIWidget* UIHelper::createWidgetFromJsonFileWithAdapt(const char *fileName, bool scaleAdapt, bool equalProportions)
 {
     UIWidget* widget = createWidgetFromJsonFile(fileName);
-    cocos2d::CCSize winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
+    CCSize winSize = CCDirector::sharedDirector()->getWinSize();
     adjustWidgetProperty(widget, winSize.width/getFileDesignWidth(),winSize.height/getFileDesignHeight(), scaleAdapt, equalProportions);
     return widget;
 }
@@ -111,7 +111,7 @@ void UIHelper::adjustWidgetProperty(UIWidget* root,float xProportion,float yProp
         case 1:
         {
             UIContainerWidget* cRoot = (UIContainerWidget*)root;
-            cRoot->setSize(cocos2d::CCSize(cRoot->getWidth()*xProportion,cRoot->getHeight()*yProportion));
+            cRoot->setSize(CCSize(cRoot->getWidth()*xProportion,cRoot->getHeight()*yProportion));
         }
             break;
         default:
@@ -141,14 +141,14 @@ void UIHelper::addSpriteFrame(const char *fileName)
     int length = arrayTextures->num;
     for (int i=0;i<length;i++)
     {
-        cocos2d::CCString* file = (cocos2d::CCString*)(arrayTextures->arr[i]);
+        CCString* file = (CCString*)(arrayTextures->arr[i]);
         if (strcmp(file->m_sString.c_str(), fileName) == 0)
         {
             return;
         }
     }
-    m_textureFiles->addObject(cocos2d::CCString::create(fileName));
-    cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(fileName);
+    m_textureFiles->addObject(CCString::create(fileName));
+    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(fileName);
 }
 
 void UIHelper::removeSpriteFrame(const char *fileName)
@@ -161,10 +161,10 @@ void UIHelper::removeSpriteFrame(const char *fileName)
     int length = arrayTextures->num;
     for (int i=0;i<length;i++)
     {
-        cocos2d::CCString* file = (cocos2d::CCString*)(arrayTextures->arr[i]);
+        CCString* file = (CCString*)(arrayTextures->arr[i]);
         if (strcmp(file->m_sString.c_str(), fileName) == 0)
         {
-            cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFrameByName(fileName);
+            CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFrameByName(fileName);
             m_textureFiles->removeObject(file);
             return;
         }
@@ -177,8 +177,8 @@ void UIHelper::removeAllSpriteFrame()
     int length = arrayTextures->num;
     for (int i=0;i<length;i++)
     {
-        cocos2d::CCString* file = (cocos2d::CCString*)(arrayTextures->arr[i]);
-        cocos2d::CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFrameByName(file->m_sString.c_str());
+        CCString* file = (CCString*)(arrayTextures->arr[i]);
+        CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFrameByName(file->m_sString.c_str());
     }
     m_textureFiles->removeAllObjects();
 }
@@ -255,7 +255,7 @@ UIWidget* UIHelper::seekActionWidgetByActionTag(UIWidget* root, int tag)
 	return NULL;
 }
 
-UIWidget* UIHelper::seekWidgetByRelativeName(cocos2d::extension::UIWidget *root, const char *name)
+UIWidget* UIHelper::seekWidgetByRelativeName(UIWidget *root, const char *name)
 {
     if (!root)
     {

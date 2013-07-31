@@ -41,17 +41,17 @@ public:
     void setPressedTexture(const char* selected, TextureResType texType = UI_TEX_TYPE_LOCAL);
     void setDisabledTexture(const char* disabled, TextureResType texType = UI_TEX_TYPE_LOCAL);
     void setCapInsets(const CCRect &capInsets);
-    virtual cocos2d::CCNode* getValidNode();
-    virtual void setAnchorPoint(const cocos2d::CCPoint &pt);
+    virtual CCNode* getValidNode();
+    virtual void setAnchorPoint(const CCPoint &pt);
     virtual void setScale9Enable(bool able);
     virtual void setScale9Size(const CCSize &size);
     virtual void setFlipX(bool flipX);
     virtual void setFlipY(bool flipY);
     virtual bool isFlipX();
     virtual bool isFlipY();
-    virtual void setNormalSpriteFrame(cocos2d::CCSpriteFrame* frame);
-    virtual void setPressedSpriteFrame(cocos2d::CCSpriteFrame* frame);
-    virtual void setDisabledSpriteFrame(cocos2d::CCSpriteFrame* frame);
+    virtual void setNormalSpriteFrame(CCSpriteFrame* frame);
+    virtual void setPressedSpriteFrame(CCSpriteFrame* frame);
+    virtual void setDisabledSpriteFrame(CCSpriteFrame* frame);
 protected:
     virtual bool init();
     virtual void initNodes();
@@ -59,9 +59,9 @@ protected:
     virtual void onPressStateChangedToPressed();
     virtual void onPressStateChangedToDisabled();
 protected:
-    cocos2d::CCNode* m_pButtonNormal;
-    cocos2d::CCNode* m_pButtonClicked;
-    cocos2d::CCNode* m_pButtonDisable;
+    CCNode* m_pButtonNormal;
+    CCNode* m_pButtonClicked;
+    CCNode* m_pButtonDisable;
     std::string m_strNormalFileName;
     std::string m_strClickedFileName;
     std::string m_strDisabledFileName;

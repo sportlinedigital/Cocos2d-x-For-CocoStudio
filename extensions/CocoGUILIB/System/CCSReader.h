@@ -31,7 +31,7 @@
 NS_CC_EXT_BEGIN
 
 #define kCCSVersion 1.0
-class CCSReader : cocos2d::CCObject
+class CCSReader : CCObject
 {
 public:
     CCSReader();

@@ -66,7 +66,7 @@ UIImageView* UIImageView::create()
 void UIImageView::initNodes()
 {
     UIWidget::initNodes();
-    m_pImageRender = cocos2d::CCSprite::create();
+    m_pImageRender = CCSprite::create();
     m_pRender->addChild(m_pImageRender);
 }
 
@@ -114,7 +114,7 @@ void UIImageView::setTexture(const char *fileName, TextureResType texType)
     }
 }
 
-void UIImageView::setTextureRect(const cocos2d::CCRect &rect)
+void UIImageView::setTextureRect(const CCRect &rect)
 {
     if (m_bScale9Enable)
     {
@@ -126,7 +126,7 @@ void UIImageView::setTextureRect(const cocos2d::CCRect &rect)
     }
 }
 
-void UIImageView::onTouchBegan(cocos2d::CCPoint &touchPoint)
+void UIImageView::onTouchBegan(CCPoint &touchPoint)
 {
     setFocus(true);
     m_touchStartPos.x = touchPoint.x;
@@ -143,7 +143,7 @@ void UIImageView::onTouchBegan(cocos2d::CCPoint &touchPoint)
     }
 }
 
-void UIImageView::onTouchEnded(cocos2d::CCPoint &touchPoint)
+void UIImageView::onTouchEnded(CCPoint &touchPoint)
 {
     if (m_bDoubleClickEnable)
     {
@@ -275,11 +275,11 @@ void UIImageView::setScale9Enable(bool able)
     m_pImageRender = NULL;
     if (m_bScale9Enable)
     {
-        m_pImageRender = cocos2d::extension::CCScale9Sprite::create();
+        m_pImageRender = extension::CCScale9Sprite::create();
     }
     else
     {
-        m_pImageRender = cocos2d::CCSprite::create();
+        m_pImageRender = CCSprite::create();
     }
     setTexture(m_strTextureFile.c_str(),m_eImageTexType);
     m_pRender->addChild(m_pImageRender);
@@ -304,7 +304,7 @@ void UIImageView::setScale9Size(const CCSize &size)
     DYNAMIC_CAST_SCALE9SPRITE->setContentSize(size);
 }
 
-void UIImageView::setDisplayFrame(cocos2d::CCSpriteFrame *pNewFrame)
+void UIImageView::setDisplayFrame(CCSpriteFrame *pNewFrame)
 {
     if (!pNewFrame)
     {
@@ -320,7 +320,7 @@ void UIImageView::setDisplayFrame(cocos2d::CCSpriteFrame *pNewFrame)
     }
 }
 
-void UIImageView::setSpriteFrame(cocos2d::CCSpriteFrame *pNewFrame)
+void UIImageView::setSpriteFrame(CCSpriteFrame *pNewFrame)
 {
     if (!pNewFrame)
     {
@@ -336,7 +336,7 @@ void UIImageView::setSpriteFrame(cocos2d::CCSpriteFrame *pNewFrame)
     }
 }
 
-void UIImageView::setPreferredSize(const cocos2d::CCSize &pSize)
+void UIImageView::setPreferredSize(const CCSize &pSize)
 {
     if (!m_bScale9Enable)
     {
@@ -381,7 +381,7 @@ void UIImageView::setInsetBottom(float insetBottom)
     DYNAMIC_CAST_SCALE9SPRITE->setInsetBottom(insetBottom);
 }
 
-void UIImageView::setCapInsets(const cocos2d::CCRect &capInsets)
+void UIImageView::setCapInsets(const CCRect &capInsets)
 {
     m_capInsets = capInsets;
     if (!m_bScale9Enable)
@@ -396,7 +396,7 @@ CCNode* UIImageView::getValidNode()
     return m_pImageRender;
 }
 
-void UIImageView::setAnchorPoint(const cocos2d::CCPoint &pt)
+void UIImageView::setAnchorPoint(const CCPoint &pt)
 {
     UIWidget::setAnchorPoint(pt);
     m_pImageRender->setAnchorPoint(pt);

@@ -58,7 +58,7 @@ UILoadingBar* UILoadingBar::create()
 void UILoadingBar::initNodes()
 {
     UIWidget::initNodes();
-    m_pRenderBar = cocos2d::CCSprite::create();
+    m_pRenderBar = CCSprite::create();
     m_pRender->addChild(m_pRenderBar);
     m_pRenderBar->setAnchorPoint(ccp(0.0,0.5));
 }
@@ -147,10 +147,10 @@ void UILoadingBar::setPercent(int percent)
     {
         case UI_TEX_TYPE_PLIST:
         {
-            cocos2d::CCSprite* barNode = DYNAMIC_CAST_CCSPRITE;
+            CCSprite* barNode = DYNAMIC_CAST_CCSPRITE;
             if (barNode)
             {
-                cocos2d::CCPoint to = barNode->getTextureRect().origin;
+                CCPoint to = barNode->getTextureRect().origin;
                 x = to.x;
                 y = to.y;
             }
@@ -160,7 +160,7 @@ void UILoadingBar::setPercent(int percent)
             break;
     }
     
-    m_pRenderBar->setTextureRect(cocos2d::CCRect(x, y, m_fTotalLength * res, m_fBarHeight));
+    m_pRenderBar->setTextureRect(CCRect(x, y, m_fTotalLength * res, m_fBarHeight));
 }
 
 int UILoadingBar::getPercent()
@@ -168,7 +168,7 @@ int UILoadingBar::getPercent()
     return m_nPercent;
 }
 
-cocos2d::CCNode* UILoadingBar::getValidNode()
+CCNode* UILoadingBar::getValidNode()
 {
     return m_pRenderBar;
 }

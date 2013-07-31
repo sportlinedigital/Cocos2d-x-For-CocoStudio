@@ -194,10 +194,10 @@ UIWidget* CCSReader::widgetFromJsonFile(const char *fileName)
     const char *des = NULL;
     std::string jsonpath;
     cs::CSJsonDictionary *jsonDict = NULL;
-    jsonpath = cocos2d::CCFileUtils::sharedFileUtils()->fullPathForFilename(fileName);
+    jsonpath = CCFileUtils::sharedFileUtils()->fullPathForFilename(fileName);
     
     unsigned long size = 0;
-    des = (char*)(cocos2d::CCFileUtils::sharedFileUtils()->getFileData(jsonpath.c_str(),"r" , &size));
+    des = (char*)(CCFileUtils::sharedFileUtils()->getFileData(jsonpath.c_str(),"r" , &size));
 	if(NULL == des || strcmp(des, "") == 0)
 	{
 		printf("read json file[%s] error!\n", fileName);
@@ -227,7 +227,7 @@ UIWidget* CCSReader::widgetFromJsonFile(const char *fileName)
     float fileDesignHeight = DICTOOL->getFloatValue_json(jsonDict, "designHeight");
     if (fileDesignWidth <= 0 || fileDesignHeight <= 0) {
         printf("Read design size error!\n");
-        cocos2d::CCSize winSize = cocos2d::CCDirector::sharedDirector()->getWinSize();
+        CCSize winSize = CCDirector::sharedDirector()->getWinSize();
         CCUIHELPER->setFileDesignWidth(winSize.width);
         CCUIHELPER->setFileDesignHeight(winSize.height);
     }
@@ -1286,12 +1286,12 @@ void CCSReader::setPropsForTextAreaFromJsonDictionary(UIWidget*widget,cs::CSJson
     bool ha = DICTOOL->checkObjectExist_json(options, "hAlignment");
     if (ha)
     {
-        textArea->setTextHorizontalAlignment((cocos2d::CCTextAlignment)DICTOOL->getIntValue_json(options, "hAlignment"));
+        textArea->setTextHorizontalAlignment((CCTextAlignment)DICTOOL->getIntValue_json(options, "hAlignment"));
     }
     bool va = DICTOOL->checkObjectExist_json(options, "vAlignment");
     if (va)
     {
-        textArea->setTextVerticalAlignment((cocos2d::CCVerticalTextAlignment)DICTOOL->getIntValue_json(options, "vAlignment"));
+        textArea->setTextVerticalAlignment((CCVerticalTextAlignment)DICTOOL->getIntValue_json(options, "vAlignment"));
     }
     setColorPropsForWidgetFromJsonDictionary(widget,options);
 }
@@ -1432,7 +1432,7 @@ void CCSReader::setPropsForPageViewFromJsonDictionary(UIWidget*widget,cs::CSJson
     setColorPropsForWidgetFromJsonDictionary(widget,options);
 }
 
-void CCSReader::setPropsForLabelBMFontFromJsonDictionary(extension::UIWidget *widget, cs::CSJsonDictionary *options)
+void CCSReader::setPropsForLabelBMFontFromJsonDictionary(UIWidget *widget, cs::CSJsonDictionary *options)
 {
     if (m_bOlderVersion)
     {

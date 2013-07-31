@@ -29,8 +29,8 @@
 
 NS_CC_EXT_BEGIN
 
-typedef void (cocos2d::CCObject::*SEL_SelectEvent)(cocos2d::CCObject*);
-typedef void (cocos2d::CCObject::*SEL_UnSelectEvent)(cocos2d::CCObject*);
+typedef void (CCObject::*SEL_SelectEvent)(CCObject*);
+typedef void (CCObject::*SEL_UnSelectEvent)(CCObject*);
 #define coco_selectselector(_SELECTOR) (cocos2d::extension::SEL_SelectEvent)(&_SELECTOR)
 #define coco_unselectselector(_SELECTOR) (cocos2d::extension::SEL_UnSelectEvent)(&_SELECTOR)
 class UICheckBox : public UIWidget
@@ -47,15 +47,15 @@ public:
     void setFrontCrossDisabledTexture(const char* frontCrossDisabled,TextureResType texType = UI_TEX_TYPE_LOCAL);
     void setSelectedState(bool selected);
     bool getSelectedState();
-    virtual cocos2d::CCNode* getValidNode();
-    virtual void setAnchorPoint(const cocos2d::CCPoint &pt);
-    virtual void addSelectEvent(cocos2d::CCObject* target,SEL_SelectEvent selector);
-    virtual void addUnSelectEvent(cocos2d::CCObject* target,SEL_UnSelectEvent selector);
+    virtual CCNode* getValidNode();
+    virtual void setAnchorPoint(const CCPoint &pt);
+    virtual void addSelectEvent(CCObject* target,SEL_SelectEvent selector);
+    virtual void addUnSelectEvent(CCObject* target,SEL_UnSelectEvent selector);
     virtual void setFlipX(bool flipX);
     virtual void setFlipY(bool flipY);
     virtual bool isFlipX();
     virtual bool isFlipY();
-    virtual void onTouchEnded(cocos2d::CCPoint &touchPoint);
+    virtual void onTouchEnded(CCPoint &touchPoint);
 protected:
     virtual bool init();
     virtual void initNodes();
@@ -65,15 +65,15 @@ protected:
     void selectedEvent();
     void unSelectedEvent();
 protected:
-    cocos2d::CCSprite* m_pBackGroundBox;
-    cocos2d::CCSprite* m_pBackGroundSelectedBox;
-    cocos2d::CCSprite* m_pFrontCross;
-    cocos2d::CCSprite* m_pBackGroundBoxDisabled;
-    cocos2d::CCSprite* m_pFrontCrossDisabled;
+    CCSprite* m_pBackGroundBox;
+    CCSprite* m_pBackGroundSelectedBox;
+    CCSprite* m_pFrontCross;
+    CCSprite* m_pBackGroundBoxDisabled;
+    CCSprite* m_pFrontCrossDisabled;
     bool m_bIsSelected;
-    cocos2d::CCObject*       m_pSelectListener;
+    CCObject*       m_pSelectListener;
     SEL_SelectEvent    m_pfnSelectSelector;
-    cocos2d::CCObject*       m_pUnSelectListener;
+    CCObject*       m_pUnSelectListener;
     SEL_UnSelectEvent    m_pfnUnSelectSelector;
     TextureResType m_eBackGroundTexType;
     TextureResType m_eBackGroundSelectedTexType;

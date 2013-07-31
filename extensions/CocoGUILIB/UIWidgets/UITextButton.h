@@ -42,9 +42,9 @@ public:
     void setFontName(const char* fontName);
     virtual void setFlipX(bool flipX);
     virtual void setFlipY(bool flipY);
-    virtual void setAnchorPoint(const cocos2d::CCPoint &pt);
+    virtual void setAnchorPoint(const CCPoint &pt);
 protected:
-    cocos2d::CCLabelTTF* m_pTextLable;
+    CCLabelTTF* m_pTextLable;
     
 };
 

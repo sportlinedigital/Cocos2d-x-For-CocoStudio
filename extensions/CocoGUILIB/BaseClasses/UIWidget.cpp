@@ -99,7 +99,7 @@ UIWidget* UIWidget::create()
 
 bool UIWidget::init()
 {
-    m_children = cocos2d::CCArray::create();
+    m_children = CCArray::create();
     m_children->retain();
     initNodes();
     m_pRender->retain();
@@ -205,7 +205,7 @@ bool UIWidget::addChild(UIWidget *child)
     return true;
 }
 
-void UIWidget::setUILayer(cocos2d::extension::UILayer *uiLayer)
+void UIWidget::setUILayer(UILayer *uiLayer)
 {
     m_pUILayer = uiLayer;
 }
@@ -578,7 +578,7 @@ void UIWidget::didNotSelectSelf()
     
 }
 
-void UIWidget::onTouchBegan(cocos2d::CCPoint &touchPoint)
+void UIWidget::onTouchBegan(CCPoint &touchPoint)
 {
     setFocus(true);
     m_touchStartPos.x = touchPoint.x;
@@ -590,7 +590,7 @@ void UIWidget::onTouchBegan(cocos2d::CCPoint &touchPoint)
     pushDownEvent();
 }
 
-void UIWidget::onTouchMoved(cocos2d::CCPoint &touchPoint)
+void UIWidget::onTouchMoved(CCPoint &touchPoint)
 {
     m_touchMovePos.x = touchPoint.x;
     m_touchMovePos.y = touchPoint.y;
@@ -602,7 +602,7 @@ void UIWidget::onTouchMoved(cocos2d::CCPoint &touchPoint)
     moveEvent();
 }
 
-void UIWidget::onTouchEnded(cocos2d::CCPoint &touchPoint)
+void UIWidget::onTouchEnded(CCPoint &touchPoint)
 {
     m_touchEndPos.x = touchPoint.x;
     m_touchEndPos.y = touchPoint.y;
@@ -622,12 +622,12 @@ void UIWidget::onTouchEnded(cocos2d::CCPoint &touchPoint)
     }
 }
 
-void UIWidget::onTouchCancelled(cocos2d::CCPoint &touchPoint)
+void UIWidget::onTouchCancelled(CCPoint &touchPoint)
 {
     setPressState(WidgetStateNormal);
 }
 
-void UIWidget::onTouchLongClicked(cocos2d::CCPoint &touchPoint)
+void UIWidget::onTouchLongClicked(CCPoint &touchPoint)
 {
     longClickEvent();
 }
@@ -669,25 +669,25 @@ void UIWidget::longClickEvent()
     
 }
 
-void UIWidget::addPushDownEvent(cocos2d::CCObject*target, SEL_PushEvent selector)
+void UIWidget::addPushDownEvent(CCObject*target, SEL_PushEvent selector)
 {
     m_pPushListener = target;
     m_pfnPushSelector = selector;
 }
 
-void UIWidget::addMoveEvent(cocos2d::CCObject* target,SEL_MoveEvent selector)
+void UIWidget::addMoveEvent(CCObject* target,SEL_MoveEvent selector)
 {
     m_pMoveListener = target;
     m_pfnMoveSelector = selector;
 }
 
-void UIWidget::addReleaseEvent(cocos2d::CCObject* target,SEL_ReleaseEvent selector)
+void UIWidget::addReleaseEvent(CCObject* target,SEL_ReleaseEvent selector)
 {
     m_pReleaseListener = target;
     m_pfnReleaseSelector = selector;
 }
 
-void UIWidget::addCancelEvent(cocos2d::CCObject *target, SEL_CancelEvent selector)
+void UIWidget::addCancelEvent(CCObject *target, SEL_CancelEvent selector)
 {
     m_pCancelListener = target;
     m_pfnCancelSelector = selector;
@@ -695,21 +695,21 @@ void UIWidget::addCancelEvent(cocos2d::CCObject *target, SEL_CancelEvent selecto
 
 void UIWidget::getLocationInWindow()
 {
-    m_locationInWindow = m_pRender->convertToWorldSpace(cocos2d::CCPointZero);
+    m_locationInWindow = m_pRender->convertToWorldSpace(CCPointZero);
 }
 
-cocos2d::CCRect UIWidget::getRect()
+CCRect UIWidget::getRect()
 {
-    cocos2d::CCNode* validNode = getValidNode();
+    CCNode* validNode = getValidNode();
     float width = 0.0f;
     float height = 0.0f;
     float anchorPointX = 0.0f;
     float anchorPointY = 0.0f;
     getLocationInWindow();
-    cocos2d::CCSize nodeSize = validNode->getContentSize();
+    CCSize nodeSize = validNode->getContentSize();
     width = nodeSize.width*getAbsoluteScaleX();
     height = nodeSize.height*getAbsoluteScaleY();
-    cocos2d::CCPoint nodeAnchorPoint = validNode->getAnchorPoint();
+    CCPoint nodeAnchorPoint = validNode->getAnchorPoint();
     anchorPointX = nodeAnchorPoint.x;
     anchorPointY = nodeAnchorPoint.y;
     switch (m_WidgetType)
@@ -729,17 +729,17 @@ cocos2d::CCRect UIWidget::getRect()
     return m_rect;
 }
 
-cocos2d::CCRect UIWidget::getRelativeRect()
+CCRect UIWidget::getRelativeRect()
 {
-    cocos2d::CCNode* validNode = getValidNode();
+    CCNode* validNode = getValidNode();
     float width = 0.0f;
     float height = 0.0f;
     float anchorPointX = 0.0f;
     float anchorPointY = 0.0f;
-    cocos2d::CCSize nodeSize = validNode->getContentSize();
+    CCSize nodeSize = validNode->getContentSize();
     width = nodeSize.width*getScaleX();
     height = nodeSize.height*getScaleY();
-    cocos2d::CCPoint nodeAnchorPoint = validNode->getAnchorPoint();
+    CCPoint nodeAnchorPoint = validNode->getAnchorPoint();
     anchorPointX = nodeAnchorPoint.x;
     anchorPointY = nodeAnchorPoint.y;
     switch (m_WidgetType)
@@ -763,17 +763,17 @@ const CCSize& UIWidget::getContentSize()
     return getValidNode()->getContentSize();
 }
 
-cocos2d::CCNode* UIWidget::getValidNode()
+CCNode* UIWidget::getValidNode()
 {
     return m_pRender;
 }
 
-cocos2d::CCNode* UIWidget::getContainerNode()
+CCNode* UIWidget::getContainerNode()
 {
     return m_pRender;
 }
 
-bool UIWidget::pointAtSelfBody(cocos2d::CCPoint &pt)
+bool UIWidget::pointAtSelfBody(CCPoint &pt)
 {
     if (!getAbsoluteVisible())
     {
@@ -782,10 +782,10 @@ bool UIWidget::pointAtSelfBody(cocos2d::CCPoint &pt)
     return hitTest(getValidNode(),pt);
 }
 
-bool UIWidget::hitTest(cocos2d::CCNode* node, cocos2d::CCPoint &pt)
+bool UIWidget::hitTest(CCNode* node, CCPoint &pt)
 {
-    cocos2d::CCPoint nsp = node->convertToNodeSpace(pt);
-    cocos2d::CCRect bb = node->boundingBox();
+    CCPoint nsp = node->convertToNodeSpace(pt);
+    CCRect bb = node->boundingBox();
     if (nsp.x >= 0.0f && nsp.x <= bb.size.width && nsp.y >= 0.0f && nsp.y <= bb.size.height)
     {
         return true;
@@ -793,7 +793,7 @@ bool UIWidget::hitTest(cocos2d::CCNode* node, cocos2d::CCPoint &pt)
     return false;
 }
 
-bool UIWidget::checkVisibleDependParent(cocos2d::CCPoint &pt)
+bool UIWidget::checkVisibleDependParent(CCPoint &pt)
 {
     if (!m_bNeedCheckVisibleDependParent)
     {
@@ -817,8 +817,8 @@ bool UIWidget::checkVisibleDependParent(cocos2d::CCPoint &pt)
 
 bool UIWidget::checkBeVisibleInParent()
 {   
-    cocos2d::CCRect parentRect = m_pWidgetParent->getRect();
-    cocos2d::CCRect selfRect = getRect();
+    CCRect parentRect = m_pWidgetParent->getRect();
+    CCRect selfRect = getRect();
     bool res = !((selfRect.origin.x+selfRect.size.width) < parentRect.origin.x ||
                 (parentRect.origin.x+parentRect.size.width) <   selfRect.origin.x ||
                 (selfRect.origin.y+selfRect.size.height) < parentRect.origin.y ||
@@ -826,7 +826,7 @@ bool UIWidget::checkBeVisibleInParent()
     return res;
 }
 
-void UIWidget::checkChildInfo(int handleState, UIWidget *sender, cocos2d::CCPoint &touchPoint)
+void UIWidget::checkChildInfo(int handleState, UIWidget *sender, CCPoint &touchPoint)
 {
     if (m_pWidgetParent)
     {
@@ -834,12 +834,12 @@ void UIWidget::checkChildInfo(int handleState, UIWidget *sender, cocos2d::CCPoin
     }
 }
 
-void UIWidget::setPosition(const cocos2d::CCPoint &pos)
+void UIWidget::setPosition(const CCPoint &pos)
 {
     m_pRender->setPosition(pos);
 }
 
-void UIWidget::setAnchorPoint(const cocos2d::CCPoint &pt)
+void UIWidget::setAnchorPoint(const CCPoint &pt)
 {
     m_anchorPoint = pt;
     m_pRender->setAnchorPoint(pt);
@@ -850,12 +850,12 @@ void UIWidget::updateAnchorPoint()
     setAnchorPoint(m_anchorPoint);
 }
 
-cocos2d::CCPoint UIWidget::getPosition()
+CCPoint UIWidget::getPosition()
 {
     return m_pRender->getPosition();
 }
 
-cocos2d::CCPoint UIWidget::getAnchorPoint()
+CCPoint UIWidget::getAnchorPoint()
 {
     return m_anchorPoint;
 }
@@ -1004,13 +1004,13 @@ float UIWidget::getRelativeBottomPos()
 
 float UIWidget::getRelativeRightPos()
 {
-    cocos2d::CCRect rect = getRelativeRect();
+    CCRect rect = getRelativeRect();
     return rect.origin.x + rect.size.width;
 }
 
 float UIWidget::getRelativeTopPos()
 {
-    cocos2d::CCRect rect = getRelativeRect();
+    CCRect rect = getRelativeRect();
     return rect.origin.y + rect.size.height;
 }
 
@@ -1034,17 +1034,17 @@ CCArray* UIWidget::getChildren()
     return m_children;
 }
 
-cocos2d::CCAction* UIWidget::runAction(cocos2d::CCAction *action)
+CCAction* UIWidget::runAction(CCAction *action)
 {
     return m_pRender->runAction(action);
 }
 
-void UIWidget::setActionManager(cocos2d::CCActionManager *actionManager)
+void UIWidget::setActionManager(CCActionManager *actionManager)
 {
     m_pRender->setActionManager(actionManager);
 }
 
-cocos2d::CCActionManager* UIWidget::getActionManager()
+CCActionManager* UIWidget::getActionManager()
 {
     return m_pRender->getActionManager();
 }
@@ -1054,7 +1054,7 @@ void UIWidget::stopAllActions()
     m_pRender->stopAllActions();
 }
 
-void UIWidget::stopAction(cocos2d::CCAction *action)
+void UIWidget::stopAction(CCAction *action)
 {
     m_pRender->stopAction(action);
 }
@@ -1064,7 +1064,7 @@ void UIWidget::stopActionByTag(int tag)
     m_pRender->stopActionByTag(tag);
 }
 
-cocos2d::CCAction* UIWidget::getActionByTag(int tag)
+CCAction* UIWidget::getActionByTag(int tag)
 {
     return m_pRender->getActionByTag(tag);
 }
@@ -1160,7 +1160,7 @@ void UIWidget::setCreateFromFile(bool is)
     m_bIsCreatedFromFile = is;
 }
 
-void UIWidget::setFileDesignSize(const cocos2d::CCSize &size)
+void UIWidget::setFileDesignSize(const CCSize &size)
 {
     m_fileDesignSize = size;
 }
@@ -1170,16 +1170,16 @@ CCSize UIWidget::getFileDesignSize()
     return m_fileDesignSize;
 }
 
-void UIWidget::setColor(const cocos2d::ccColor3B &color)
+void UIWidget::setColor(const ccColor3B &color)
 {
-    cocos2d::CCRGBAProtocol* rgbap = DYNAMIC_CAST_CCRGBAPROTOCOL;
+    CCRGBAProtocol* rgbap = DYNAMIC_CAST_CCRGBAPROTOCOL;
     if (rgbap)
     {
         rgbap->setColor(color);
     }
 }
 
-const cocos2d::ccColor3B& UIWidget::getColor()
+const ccColor3B& UIWidget::getColor()
 {
     CCRGBAProtocol* rgbap = DYNAMIC_CAST_CCRGBAPROTOCOL;
     if (rgbap)
@@ -1191,7 +1191,7 @@ const cocos2d::ccColor3B& UIWidget::getColor()
 
 void UIWidget::setOpacity(int opacity)
 {
-    cocos2d::CCRGBAProtocol* rgbap = DYNAMIC_CAST_CCRGBAPROTOCOL;
+    CCRGBAProtocol* rgbap = DYNAMIC_CAST_CCRGBAPROTOCOL;
     if (rgbap)
     {
         rgbap->setOpacity(opacity);
@@ -1246,9 +1246,9 @@ void UIWidget::setCascadeColorEnabled(bool cascadeColorEnabled)
     }
 }
 
-void UIWidget::setBlendFunc(cocos2d::ccBlendFunc blendFunc)
+void UIWidget::setBlendFunc(ccBlendFunc blendFunc)
 {
-    cocos2d::CCBlendProtocol * blendNode = DYNAMIC_CAST_CCBLENDPROTOCOL;
+    CCBlendProtocol * blendNode = DYNAMIC_CAST_CCBLENDPROTOCOL;
     if (blendNode)
     {
         blendNode->setBlendFunc(blendFunc);
@@ -1310,7 +1310,7 @@ int UIWidget::getActionTag()
 	return m_nActionTag;
 }
 
-void UIWidget::setBindingAction(cocos2d::extension::UIActionNode *actionNode)
+void UIWidget::setBindingAction(UIActionNode *actionNode)
 {
     m_pBindingAction = actionNode;
 }

@@ -58,8 +58,8 @@ public:
     virtual bool isFlipY();
     void setGravity(LabelGravity gravity);
     virtual void adaptSize(float xProportion,float yProportion);
-    virtual cocos2d::CCNode* getValidNode();
-    virtual void setAnchorPoint(const cocos2d::CCPoint &pt);
+    virtual CCNode* getValidNode();
+    virtual void setAnchorPoint(const CCPoint &pt);
 protected:
     virtual bool init();
     virtual void initNodes();

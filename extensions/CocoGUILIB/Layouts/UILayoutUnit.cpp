@@ -37,7 +37,7 @@ UILayoutUnit::~UILayoutUnit()
     
 }
 
-void UILayoutUnit::setMargin(const cocos2d::extension::UIMargin &margin)
+void UILayoutUnit::setMargin(const UIMargin &margin)
 {
     m_margin = margin;
     UIWidget* subClass = dynamic_cast<UIWidget*>(this);
