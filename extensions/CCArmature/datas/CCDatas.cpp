@@ -83,7 +83,7 @@ void CCBaseData::subtract(CCBaseData *from, CCBaseData *to)
 	skewX = to->skewX - from->skewX;
 	skewY = to->skewY - from->skewY;
 
-	if(from->isUseColorInfo || to->isUseColorInfo)
+	if(isUseColorInfo || from->isUseColorInfo || to->isUseColorInfo)
 	{
 		a = to->a - from->a;
 		r = to->r - from->r;

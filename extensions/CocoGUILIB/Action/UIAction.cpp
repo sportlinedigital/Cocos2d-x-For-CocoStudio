@@ -54,6 +54,7 @@ void UIAction::initWithDictionary(cs::CSJsonDictionary *dic,UIWidget* root)
         cs::CSJsonDictionary* actionNodeDic = DICTOOL->getDictionaryFromArray_json(dic, "actionnodelist", i);
         actionNode->initWithDictionary(actionNodeDic,root);
         m_ActionNodeList->addObject(actionNode);
+		CC_SAFE_DELETE(actionNodeDic);
     }
 }
 

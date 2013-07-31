@@ -37,6 +37,7 @@ public:
     CCSReader();
     ~CCSReader();
     static CCSReader* shareReader();
+	static void purgeCCSReader();
     
     UIWidget* widgetFromJsonFile(const char* fileName);
     UIWidget* widgetFromJsonDictionary(cs::CSJsonDictionary* data);

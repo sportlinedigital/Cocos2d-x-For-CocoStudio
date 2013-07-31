@@ -155,7 +155,7 @@
     <ClCompile Include="..\CocoGUILIB\Drawable\UICCTextField.cpp" />
     <ClCompile Include="..\CocoGUILIB\Drawable\UIClippingLayer.cpp" />
     <ClCompile Include="..\CocoGUILIB\Layouts\UILayoutDefine.cpp" />
-    <ClCompile Include="..\CocoGUILIB\Layouts\UILayoutPrameter.cpp" />
+    <ClCompile Include="..\CocoGUILIB\Layouts\UILayoutUnit.cpp" />
     <ClCompile Include="..\CocoGUILIB\System\CCSReader.cpp" />
     <ClCompile Include="..\CocoGUILIB\System\CocosGUI.cpp" />
     <ClCompile Include="..\CocoGUILIB\System\UIHelper.cpp" />
@@ -179,7 +179,6 @@
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UITextArea.cpp" />
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UITextButton.cpp" />
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UITextField.cpp" />
-    <ClCompile Include="..\CocoGUILIB\UIWidgets\UIWrapPanel.cpp" />
     <ClCompile Include="..\CocostudioReader\CCJsonReader.cpp" />
     <ClCompile Include="..\CocostudioReader\DictionaryHelper.cpp" />
     <ClCompile Include="..\Components\CCComAttribute.cpp" />
@@ -312,7 +311,7 @@
     <ClInclude Include="..\CocoGUILIB\Drawable\UICCTextField.h" />
     <ClInclude Include="..\CocoGUILIB\Drawable\UIClippingLayer.h" />
     <ClInclude Include="..\CocoGUILIB\Layouts\UILayoutDefine.h" />
-    <ClInclude Include="..\CocoGUILIB\Layouts\UILayoutPrameter.h" />
+    <ClInclude Include="..\CocoGUILIB\Layouts\UILayoutUnit.h" />
     <ClInclude Include="..\CocoGUILIB\System\CCSReader.h" />
     <ClInclude Include="..\CocoGUILIB\System\CocosGUI.h" />
     <ClInclude Include="..\CocoGUILIB\System\UIHelper.h" />
@@ -336,7 +335,6 @@
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UITextArea.h" />
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UITextButton.h" />
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UITextField.h" />
-    <ClInclude Include="..\CocoGUILIB\UIWidgets\UIWrapPanel.h" />
     <ClInclude Include="..\CocostudioReader\CCJsonReader.h" />
     <ClInclude Include="..\CocostudioReader\DictionaryHelper.h" />
     <ClInclude Include="..\Components\CCComAttribute.h" />

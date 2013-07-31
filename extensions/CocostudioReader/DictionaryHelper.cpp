@@ -46,6 +46,11 @@ DictionaryHelper* DictionaryHelper::shareHelper()
     return sharedHelper;
 }
 
+void DictionaryHelper::purgeDictionaryHelper()
+{
+	 CC_SAFE_DELETE(sharedHelper);
+}
+
 cocos2d::CCDictionary* DictionaryHelper::getSubDictionary(cocos2d::CCDictionary* root,const char* key)
 {
     if (!root) {
