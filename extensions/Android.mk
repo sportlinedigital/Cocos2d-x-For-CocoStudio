@@ -84,6 +84,7 @@ CocoGUILIB/BaseClasses/UIRootWidget.cpp \
 CocoGUILIB/BaseClasses/UIWidget.cpp \
 CocoGUILIB/Drawable/UICCLabelAtlas.cpp \
 CocoGUILIB/Drawable/UIClippingLayer.cpp \
+CocoGUILIB/Drawable/UICCTextField.cpp \
 CocoGUILIB/System/CCSReader.cpp \
 CocoGUILIB/System/CocosGUI.cpp \
 CocoGUILIB/System/UIHelper.cpp \
@@ -108,6 +109,8 @@ CocoGUILIB/UIWidgets/UITextButton.cpp \
 CocoGUILIB/UIWidgets/UITextField.cpp \
 CocoGUILIB/UIWidgets/UIDragPanel.cpp \
 CocoGUILIB/UIWidgets/UIWrapPanel.cpp \
+CocoGUILIB/Layouts/UILayoutDefine.cpp \
+CocoGUILIB/Layouts/UILayoutUnit.cpp \
 spine/Animation.cpp \
 spine/AnimationState.cpp \
 spine/AnimationStateData.cpp \
