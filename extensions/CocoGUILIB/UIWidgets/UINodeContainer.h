@@ -29,7 +29,8 @@
 
 NS_CC_EXT_BEGIN
 
-class UINodeContainer : public UIWidget{
+class UINodeContainer : public UIWidget
+{
     
 public:
     UINodeContainer();
@@ -43,4 +44,4 @@ protected:
 };
 
 NS_CC_EXT_END
-#endif /* defined(__Test__CocoCCContainer__) */
+#endif /* defined(__CocoCCContainer__) */
