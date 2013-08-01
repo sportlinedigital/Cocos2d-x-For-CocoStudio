@@ -25,7 +25,7 @@ void CocosGUITestScene::runThisTest()
     UIPanel * p = (UIPanel*)CCUIHELPER->createWidgetFromJsonFile("cocosgui/CocoGUISample.json");
 //        UIPanel * p = (UIPanel*)CCUIHELPER->createWidgetFromJsonFile("cocosgui/test/5_3/5_3.ExportJson");
     ((UIScrollView*)p->getChildByName("scrollview"))->setInnerContainerSize(CCSizeMake(300, 275));
-    ((UIScrollView*)p->getChildByName("scrollview"))->setLayoutType(UI_LAYOUT_LINEAR_VERTICAL);
+//    ((UIScrollView*)p->getChildByName("scrollview"))->setLayoutType(UI_LAYOUT_LINEAR_VERTICAL);
     ((UIScrollView*)p->getChildByName("scrollview"))->addScrollToBottomEvent(this, coco_ScrollToBottomSelector(CocosGUITestScene::toCocosGUIExampleScene));
 //    UILabel* tl = UILabel::create();
 //    tl->setText("111");

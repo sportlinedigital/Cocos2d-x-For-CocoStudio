@@ -1011,6 +1011,10 @@ void CCSReader::setPropsForPanelFromJsonDictionary(UIWidget*widget,cs::CSJsonDic
 void CCSReader::setPropsForScrollViewFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options)
 {
     setPropsForPanelFromJsonDictionary(widget, options);
+    UIScrollView* scrollView = (UIScrollView*)widget;
+    float innerWidth = DICTOOL->getFloatValue_json(options, "innerWidth");
+    float innerHeight = DICTOOL->getFloatValue_json(options, "innerHeight");
+    scrollView->setInnerContainerSize(CCSizeMake(innerWidth, innerHeight));
     setColorPropsForWidgetFromJsonDictionary(widget,options);
 }
 
