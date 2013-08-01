@@ -383,7 +383,7 @@ void UIPageView::movePages(float offset)
         movePagePoint.x = child->getPosition().x + offset;
         movePagePoint.y = child->getPosition().y;
         child->setPosition(movePagePoint);
-        child->setVisible(child->checkBeVisibleInParent());
+        child->setVisible(checkChildVisibleInParent(this, child));
     }
 }
 

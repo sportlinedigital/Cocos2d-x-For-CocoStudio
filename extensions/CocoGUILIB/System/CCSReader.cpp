@@ -159,8 +159,8 @@ UIWidget* CCSReader::widgetFromJsonDictionary(cs::CSJsonDictionary* data)
     }
     else if (classname && strcmp(classname, "ListView") == 0)
     {
-        widget = UIListView::create();
-        setPropsForListViewFromJsonDictionary(widget, uiOptions);
+//        widget = UIListView::create();
+//        setPropsForListViewFromJsonDictionary(widget, uiOptions);
     }
     else if (classname && strcmp(classname, "PageView") == 0)
     {

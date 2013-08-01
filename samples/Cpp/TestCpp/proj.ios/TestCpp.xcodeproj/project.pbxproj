@@ -306,7 +306,6 @@
 		3779932F178C272000C68990 /* UILabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37799301178C272000C68990 /* UILabel.cpp */; };
 		37799330178C272000C68990 /* UILabelAtlas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37799303178C272000C68990 /* UILabelAtlas.cpp */; };
 		37799331178C272000C68990 /* UILabelBMFont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37799305178C272000C68990 /* UILabelBMFont.cpp */; };
-		37799332178C272000C68990 /* UIListView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37799307178C272000C68990 /* UIListView.cpp */; };
 		37799333178C272000C68990 /* UILoadingBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37799309178C272000C68990 /* UILoadingBar.cpp */; };
 		37799334178C272000C68990 /* UINodeContainer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3779930B178C272000C68990 /* UINodeContainer.cpp */; };
 		37799335178C272000C68990 /* UIPageView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3779930D178C272000C68990 /* UIPageView.cpp */; };
@@ -1072,8 +1071,6 @@
 		37799304178C272000C68990 /* UILabelAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILabelAtlas.h; sourceTree = "<group>"; };
 		37799305178C272000C68990 /* UILabelBMFont.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UILabelBMFont.cpp; sourceTree = "<group>"; };
 		37799306178C272000C68990 /* UILabelBMFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILabelBMFont.h; sourceTree = "<group>"; };
-		37799307178C272000C68990 /* UIListView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIListView.cpp; sourceTree = "<group>"; };
-		37799308178C272000C68990 /* UIListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIListView.h; sourceTree = "<group>"; };
 		37799309178C272000C68990 /* UILoadingBar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UILoadingBar.cpp; sourceTree = "<group>"; };
 		3779930A178C272000C68990 /* UILoadingBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILoadingBar.h; sourceTree = "<group>"; };
 		3779930B178C272000C68990 /* UINodeContainer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UINodeContainer.cpp; sourceTree = "<group>"; };
@@ -2892,8 +2889,6 @@
 				37799304178C272000C68990 /* UILabelAtlas.h */,
 				37799305178C272000C68990 /* UILabelBMFont.cpp */,
 				37799306178C272000C68990 /* UILabelBMFont.h */,
-				37799307178C272000C68990 /* UIListView.cpp */,
-				37799308178C272000C68990 /* UIListView.h */,
 				37799309178C272000C68990 /* UILoadingBar.cpp */,
 				3779930A178C272000C68990 /* UILoadingBar.h */,
 				3779930B178C272000C68990 /* UINodeContainer.cpp */,
@@ -3489,7 +3484,6 @@
 				3779932F178C272000C68990 /* UILabel.cpp in Sources */,
 				37799330178C272000C68990 /* UILabelAtlas.cpp in Sources */,
 				37799331178C272000C68990 /* UILabelBMFont.cpp in Sources */,
-				37799332178C272000C68990 /* UIListView.cpp in Sources */,
 				37799333178C272000C68990 /* UILoadingBar.cpp in Sources */,
 				37799334178C272000C68990 /* UINodeContainer.cpp in Sources */,
 				37799335178C272000C68990 /* UIPageView.cpp in Sources */,

@@ -63,6 +63,7 @@ public:
 protected:
     virtual bool init();
     virtual void initNodes();
+    virtual bool checkChildVisibleInParent(UIWidget* parent, UIWidget* child);
 protected:    
     float m_fWidth;
     float m_fHeight;

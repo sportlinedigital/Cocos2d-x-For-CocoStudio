@@ -143,11 +143,10 @@ bool UIListView::scrollChildren(float touchOffset)
     switch (m_eDirection)
     {
         case SCROLLVIEW_DIR_VERTICAL: // vertical
-            if (m_fChildrenSizeHeight <= m_fHeight)
-            {
-                UIScrollView::berthChildren(m_eDirection);
-                return false;
-            }                                
+//            if (m_fChildrenSizeHeight <= m_fHeight)
+//            {
+//                return false;
+//            }                                
             
             switch (m_eMoveDirection)
             {
@@ -157,40 +156,17 @@ bool UIListView::scrollChildren(float touchOffset)
 //                        UIWidget* child_last = m_pChildPool->rbegin();
                         float child_last_bottom = child_last->getRelativeBottomPos();
                         float scroll_bottom = m_fBottomBoundary;
-                        
-                        switch (m_eMoveMode)
+                        if (m_nEnd == m_nDataLength - 1)
                         {
-                            case SCROLLVIEW_MOVE_MODE_NORMAL: // move mode normal                                    
-                                if (m_nEnd == m_nDataLength - 1)
-                                {
-                                    if (realOffset > scroll_bottom + m_fDisBoundaryToChild_0 - child_last_bottom)
-                                    {
-                                        realOffset = scroll_bottom + m_fDisBoundaryToChild_0 - child_last_bottom;
-                                    }
-                                }
-                                UIScrollView::moveChildren(realOffset);
-                                if (m_nEnd == m_nDataLength - 1)
-                                {
-                                    return false;
-                                }                                    
-                                break;
-                                
-                            case SCROLLVIEW_MOVE_MODE_ACTION:
-                                UIScrollView::moveChildren(realOffset);
-                                
-                                if (m_nEnd == m_nDataLength - 1)
-                                {
-                                    child_last_bottom = child_last->getRelativeBottomPos();
-                                    
-                                    if (child_last_bottom > scroll_bottom)
-                                    {
-                                        return false;
-                                    }
-                                }                                    
-                                break;
-                                
-                            default:
-                                break;
+//                            if (realOffset > scroll_bottom + m_fDisBoundaryToChild_0 - child_last_bottom)
+//                            {
+//                                realOffset = scroll_bottom + m_fDisBoundaryToChild_0 - child_last_bottom;
+//                            }
+                        }
+                        UIScrollView::moveChildren(realOffset);
+                        if (m_nEnd == m_nDataLength - 1)
+                        {
+                            return false;
                         }
                         if (m_nEnd < m_nDataLength - 1)
                         {
@@ -213,39 +189,17 @@ bool UIListView::scrollChildren(float touchOffset)
                         float child_0_top = child_0->getRelativeTopPos();
                         float scroll_top = m_fTopBoundary;
                         
-                        switch (m_eMoveMode)
+                        if (m_nBegin == 0)
                         {
-                            case SCROLLVIEW_MOVE_MODE_NORMAL: // move mode normal
-                                if (m_nBegin == 0)
-                                {
-                                    if (realOffset < scroll_top - m_fDisBoundaryToChild_0 - child_0_top)
-                                    {
-                                        realOffset = scroll_top - m_fDisBoundaryToChild_0 - child_0_top;
-                                    }                                        
-                                }
-                                UIScrollView::moveChildren(realOffset);
-                                if (m_nBegin == 0)
-                                {
-                                    return false;
-                                }                                    
-                                break;
-                                
-                            case SCROLLVIEW_MOVE_MODE_ACTION: // move mode action
-                                UIScrollView::moveChildren(realOffset);                                    
-                                
-                                if (m_nBegin == 0)
-                                {
-                                    child_0_top = child_0->getRelativeTopPos();
-                                    
-                                    if (child_0_top < scroll_top)
-                                    {
-                                        return false;
-                                    }
-                                }                                    
-                                break;
-                                
-                            default:
-                                break;
+//                            if (realOffset < scroll_top - m_fDisBoundaryToChild_0 - child_0_top)
+//                            {
+//                                realOffset = scroll_top - m_fDisBoundaryToChild_0 - child_0_top;
+//                            }
+                        }
+                        UIScrollView::moveChildren(realOffset);
+                        if (m_nBegin == 0)
+                        {
+                            return false;
                         }
                         if (m_nBegin > 0)
                         {
@@ -268,11 +222,10 @@ bool UIListView::scrollChildren(float touchOffset)
             break;
             
         case SCROLLVIEW_DIR_HORIZONTAL: // horizontal
-            if (m_fChildrenSizeWidth <= m_fWidth)
-            {
-                UIScrollView::berthChildren(m_eDirection);
-                return false;
-            }                                
+//            if (m_fChildrenSizeWidth <= m_fWidth)
+//            {
+//                return false;
+//            }                                
             
             switch (m_eMoveDirection)
             {
@@ -283,39 +236,17 @@ bool UIListView::scrollChildren(float touchOffset)
                         float child_last_right = child_last->getRelativeRightPos();
                         float scroll_right = m_fRightBoundary;
                         
-                        switch (m_eMoveMode)
+                        if (m_nEnd == m_nDataLength - 1)
                         {
-                            case SCROLLVIEW_MOVE_MODE_NORMAL:
-                                if (m_nEnd == m_nDataLength - 1)
-                                {
-                                    if (realOffset < scroll_right - child_last_right)
-                                    {
-                                        realOffset = scroll_right - child_last_right;
-                                    }
-                                }
-                                UIScrollView::moveChildren(realOffset);
-                                if (m_nEnd == m_nDataLength - 1)
-                                {
-                                    return false;
-                                }
-                                break;
-                                
-                            case SCROLLVIEW_MOVE_MODE_ACTION:
-                                UIScrollView::moveChildren(realOffset);
-                                
-                                if (m_nEnd == m_nDataLength - 1)
-                                {
-                                    child_last_right = child_last->getRelativeRightPos();
-                                    
-                                    if (child_last_right < scroll_right)
-                                    {
-                                        return false;
-                                    }
-                                }
-                                break;
-                                
-                            default:
-                                break;
+                            if (realOffset < scroll_right - child_last_right)
+                            {
+                                realOffset = scroll_right - child_last_right;
+                            }
+                        }
+                        UIScrollView::moveChildren(realOffset);
+                        if (m_nEnd == m_nDataLength - 1)
+                        {
+                            return false;
                         }
                         if (m_nEnd < m_nDataLength - 1)
                         {
@@ -338,39 +269,17 @@ bool UIListView::scrollChildren(float touchOffset)
                         float child_0_left = child_0->getRelativeLeftPos();
                         float scroll_left = m_fLeftBoundary;
                         
-                        switch (m_eMoveMode)
+                        if (m_nBegin == 0)
                         {
-                            case SCROLLVIEW_MOVE_MODE_NORMAL:
-                                if (m_nBegin == 0)
-                                {
-                                    if (realOffset > scroll_left - child_0_left)
-                                    {
-                                        realOffset = scroll_left - child_0_left;
-                                    }
-                                }
-                                UIScrollView::moveChildren(realOffset);
-                                if (m_nBegin == 0)
-                                {
-                                    return false;
-                                }
-                                break;
-                                
-                            case SCROLLVIEW_MOVE_MODE_ACTION:
-                                UIScrollView::moveChildren(realOffset);
-                                
-                                if (m_nBegin == 0)
-                                {
-                                    child_0_left = child_0->getRelativeLeftPos();
-                                    
-                                    if (child_0_left > scroll_left)
-                                    {
-                                        return false;
-                                    }
-                                }
-                                break;
-                                
-                            default:
-                                break;
+                            if (realOffset > scroll_left - child_0_left)
+                            {
+                                realOffset = scroll_left - child_0_left;
+                            }
+                        }
+                        UIScrollView::moveChildren(realOffset);
+                        if (m_nBegin == 0)
+                        {
+                            return false;
                         }
                         collectOverRightChild();
                         int count = m_overRightArray->count();
@@ -403,23 +312,7 @@ void UIListView::drag(float offset)
         return;
     }
     
-    switch (m_eMoveMode)
-    {
-        case SCROLLVIEW_MOVE_MODE_NORMAL: // normal
-            scrollChildren(offset);
-            break;
-            
-        case SCROLLVIEW_MOVE_MODE_ACTION: // action
-            if (m_nBegin == 0 || m_nEnd == m_nDataLength - 1)
-            {
-                offset = calculateOffsetWithDragForce(offset);
-            }
-            scrollChildren(offset);
-            break;
-            
-        default:
-            break;
-    }
+    scrollChildren(offset);
 }        
 
 UIWidget* UIListView::getCheckPositionChild()
@@ -847,13 +740,13 @@ void UIListView::setLoopPosition()
                             
                             if (i == 0)
                             {
-                                float y = (0 - m_fDisBetweenChild) + m_fDisBetweenChild * (count - 1);
-                                child->setPosition(ccp(child->getPosition().x, y));
+//                                float y = (0 - m_fDisBetweenChild) + m_fDisBetweenChild * (count - 1);
+//                                child->setPosition(ccp(child->getPosition().x, y));
                             }
                             else
                             {
-                                UIWidget* prev_child = dynamic_cast<UIWidget*>(m_overTopArray->objectAtIndex(i - 1));
-                                child->setPosition(ccp(child->getPosition().x, prev_child->getPosition().y - m_fDisBetweenChild));
+//                                UIWidget* prev_child = dynamic_cast<UIWidget*>(m_overTopArray->objectAtIndex(i - 1));
+//                                child->setPosition(ccp(child->getPosition().x, prev_child->getPosition().y - m_fDisBetweenChild));
                             }
                         }
                     }
@@ -870,8 +763,8 @@ void UIListView::setLoopPosition()
                             if (child_bottom >= scroll_top)
                             {
                                 int index = (i == 0) ? (count - 1) : (i - 1);
-                                UIWidget* prev_child = dynamic_cast<UIWidget*>(m_children->objectAtIndex(index));
-                                child->setPosition(ccp(child->getPosition().x, prev_child->getPosition().y - m_fDisBetweenChild));
+//                                UIWidget* prev_child = dynamic_cast<UIWidget*>(m_children->objectAtIndex(index));
+//                                child->setPosition(ccp(child->getPosition().x, prev_child->getPosition().y - m_fDisBetweenChild));
                             }
                         }
                     }
@@ -887,13 +780,13 @@ void UIListView::setLoopPosition()
                             
                             if (i == 0)
                             {
-                                float y = (m_fTopBoundary) - m_fDisBetweenChild * (count - 1);
-                                child->setPosition(ccp(child->getPosition().x, y));
+//                                float y = (m_fTopBoundary) - m_fDisBetweenChild * (count - 1);
+//                                child->setPosition(ccp(child->getPosition().x, y));
                             }
                             else
                             {
-                                UIWidget* prev_child = dynamic_cast<UIWidget*>(m_overBottomArray->objectAtIndex(i - 1));
-                                child->setPosition(ccp(child->getPosition().x, prev_child->getPosition().y + m_fDisBetweenChild));                                    
+//                                UIWidget* prev_child = dynamic_cast<UIWidget*>(m_overBottomArray->objectAtIndex(i - 1));
+//                                child->setPosition(ccp(child->getPosition().x, prev_child->getPosition().y + m_fDisBetweenChild));                                    
                             }
                         }
                     }
@@ -911,7 +804,7 @@ void UIListView::setLoopPosition()
                             {
                                 int index = (i == count - 1) ? 0 : (i + 1);
                                 UIWidget* next_child = dynamic_cast<UIWidget*>(m_children->objectAtIndex(index));
-                                child->setPosition(ccp(child->getPosition().x, next_child->getPosition().y + m_fDisBetweenChild));                                    
+//                                child->setPosition(ccp(child->getPosition().x, next_child->getPosition().y + m_fDisBetweenChild));                                    
                             }
                         }
                     }
@@ -935,13 +828,13 @@ void UIListView::setLoopPosition()
                             
                             if (i == 0)
                             {
-                                float x = (m_fRightBoundary + m_fDisBetweenChild) - m_fDisBetweenChild * (count - 1);
-                                child->setPosition(ccp(x, child->getPosition().y));
+//                                float x = (m_fRightBoundary + m_fDisBetweenChild) - m_fDisBetweenChild * (count - 1);
+//                                child->setPosition(ccp(x, child->getPosition().y));
                             }
                             else
                             {
                                 UIWidget* prev_child = dynamic_cast<UIWidget*>(m_overLeftArray->objectAtIndex(i - 1));
-                                child->setPosition(ccp(prev_child->getPosition().x + m_fDisBetweenChild, child->getPosition().y));                                    
+//                                child->setPosition(ccp(prev_child->getPosition().x + m_fDisBetweenChild, child->getPosition().y));                                    
                             }
                         }
                     }
@@ -959,7 +852,7 @@ void UIListView::setLoopPosition()
                             {
                                 int index = (i == 0) ? (count - 1) : (i - 1);
                                 UIWidget* prev_child = dynamic_cast<UIWidget*>(m_children->objectAtIndex(index));
-                                child->setPosition(ccp(prev_child->getPosition().x + m_fDisBetweenChild, child->getPosition().y));
+//                                child->setPosition(ccp(prev_child->getPosition().x + m_fDisBetweenChild, child->getPosition().y));
                             }
                         }
                     }
@@ -975,13 +868,13 @@ void UIListView::setLoopPosition()
                             
                             if (i == 0)
                             {
-                                float x = (0 - m_fDisBetweenChild) + m_fDisBetweenChild * (count - 1);
-                                child->setPosition(ccp(x, child->getPosition().y));
+//                                float x = (0 - m_fDisBetweenChild) + m_fDisBetweenChild * (count - 1);
+//                                child->setPosition(ccp(x, child->getPosition().y));
                             }
                             else
                             {
                                 UIWidget* prev_child = dynamic_cast<UIWidget*>(m_overRightArray->objectAtIndex(i - 1));
-                                child->setPosition(ccp(prev_child->getPosition().x - m_fDisBetweenChild, child->getPosition().y));                                    
+//                                child->setPosition(ccp(prev_child->getPosition().x - m_fDisBetweenChild, child->getPosition().y));                                    
                             }
                         }
                     }
@@ -999,7 +892,7 @@ void UIListView::setLoopPosition()
                             {
                                 int index = (i == count - 1) ? 0 : (i + 1);
                                 UIWidget* next_child = dynamic_cast<UIWidget*>(m_children->objectAtIndex(index));
-                                child->setPosition(ccp(next_child->getPosition().x - m_fDisBetweenChild, child->getPosition().y));
+//                                child->setPosition(ccp(next_child->getPosition().x - m_fDisBetweenChild, child->getPosition().y));
                             }
                         }
                     }

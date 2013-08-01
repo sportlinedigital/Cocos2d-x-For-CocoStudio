@@ -211,7 +211,6 @@ public:
     virtual void update(float dt){};
     virtual bool pointAtSelfBody(CCPoint &pt);
     bool checkVisibleDependParent(CCPoint &pt);
-    bool checkBeVisibleInParent();
     virtual void checkChildInfo(int handleState,UIWidget* sender,CCPoint &touchPoint);
     //widget prop
     virtual float getAbsoluteScaleX();

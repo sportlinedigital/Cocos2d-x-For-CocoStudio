@@ -815,17 +815,6 @@ bool UIWidget::checkVisibleDependParent(CCPoint &pt)
     return true;
 }
 
-bool UIWidget::checkBeVisibleInParent()
-{   
-    CCRect parentRect = m_pWidgetParent->getRect();
-    CCRect selfRect = getRect();
-    bool res = !((selfRect.origin.x+selfRect.size.width) < parentRect.origin.x ||
-                (parentRect.origin.x+parentRect.size.width) <   selfRect.origin.x ||
-                (selfRect.origin.y+selfRect.size.height) < parentRect.origin.y ||
-                parentRect.origin.y+parentRect.size.height <    selfRect.origin.y);
-    return res;
-}
-
 void UIWidget::checkChildInfo(int handleState, UIWidget *sender, CCPoint &touchPoint)
 {
     if (m_pWidgetParent)

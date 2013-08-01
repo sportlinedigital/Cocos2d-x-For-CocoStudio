@@ -118,6 +118,12 @@ bool UIDragPanel::init()
     if (UIPanel::init())
     {
         setUpdateEnable(true);
+        
+        m_pInnerPanel = UIPanel::create();
+        m_pInnerPanel->setName("InnerPanel");
+        m_pInnerPanel->setTouchEnable(true);
+        UIPanel::addChild(m_pInnerPanel);
+        
         return true;
     }
     return false;
@@ -126,16 +132,15 @@ bool UIDragPanel::init()
 void UIDragPanel::initNodes()
 {
     UIPanel::initNodes();
-    
-    m_pInnerPanel = UIPanel ::create();
-    m_pInnerPanel->setTouchEnable(true);
-    UIPanel::addChild(m_pInnerPanel);
 }
 
 void UIDragPanel::releaseResoures()
 {
     UIPanel::releaseResoures();
-    m_pInnerPanel->removeFromParentAndCleanup(true);
+    m_pInnerPanel->structureChangedEvent();
+    m_pInnerPanel->releaseResoures();
+    m_pInnerPanel->m_pWidgetParent = NULL;
+    delete m_pInnerPanel;
 }
 
 void UIDragPanel::onTouchBegan(CCPoint &touchPoint)
@@ -265,7 +270,7 @@ void UIDragPanel::updateWidthAndHeight()
     }
 }
 
-void UIDragPanel::handlePressLogic(cocos2d::CCPoint &touchPoint)
+void UIDragPanel::handlePressLogic(CCPoint &touchPoint)
 {
     // check inner rect < drag panel rect
     if (checkContainInnerRect())
@@ -303,7 +308,7 @@ void UIDragPanel::handlePressLogic(cocos2d::CCPoint &touchPoint)
     m_touchStartWorldSpace = touchPoint;    
 }
 
-void UIDragPanel::handleMoveLogic(cocos2d::CCPoint &touchPoint)
+void UIDragPanel::handleMoveLogic(CCPoint &touchPoint)
 {
     if (!m_bTouchPressed)
     {
@@ -401,7 +406,7 @@ void UIDragPanel::handleMoveLogic(cocos2d::CCPoint &touchPoint)
     //
 }
 
-void UIDragPanel::handleReleaseLogic(cocos2d::CCPoint &touchPoint)
+void UIDragPanel::handleReleaseLogic(CCPoint &touchPoint)
 {
     if (!m_bTouchPressed)
     {
