@@ -22,8 +22,8 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#ifndef __UICONTROLBUTTON_H__
-#define __UICONTROLBUTTON_H__
+#ifndef __UIZOOMBUTTON_H__
+#define __UIZOOMBUTTON_H__
 
 #include "cocos2d.h"
 #include "../../GUI/CCControlExtension/CCScale9Sprite.h"
@@ -32,12 +32,12 @@
 
 NS_CC_EXT_BEGIN
 
-class UIControlButton : public UIWidget
+class UIZoomButton : public UIWidget
 {
 public:
-    UIControlButton();
-    virtual ~UIControlButton();
-    static UIControlButton* create();
+    UIZoomButton();
+    virtual ~UIZoomButton();
+    static UIZoomButton* create();
     void setTextures(const char* backgroundNormal,const char* backgroundPressed,const char* backgroundDisabled);
     void setTitle(const char* titleNormal,const char* titlePressed,const char* titleDisabled);
     virtual CCNode* getValidNode();
@@ -85,4 +85,4 @@ protected:
 NS_CC_EXT_END
 
 
-#endif /* defined(__Test__UIControlButton__) */
+#endif /* defined(__Test__UIZoomButton__) */

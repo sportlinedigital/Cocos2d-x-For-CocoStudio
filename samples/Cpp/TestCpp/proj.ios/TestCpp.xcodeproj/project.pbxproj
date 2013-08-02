@@ -301,7 +301,7 @@
 		3779932A178C272000C68990 /* UILayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 377992F6178C272000C68990 /* UILayer.cpp */; };
 		3779932B178C272000C68990 /* UIButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 377992F9178C272000C68990 /* UIButton.cpp */; };
 		3779932C178C272000C68990 /* UICheckBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 377992FB178C272000C68990 /* UICheckBox.cpp */; };
-		3779932D178C272000C68990 /* UIControlButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 377992FD178C272000C68990 /* UIControlButton.cpp */; };
+		3779932D178C272000C68990 /* UIZoomButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 377992FD178C272000C68990 /* UIZoomButton.cpp */; };
 		3779932E178C272000C68990 /* UIImageView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 377992FF178C272000C68990 /* UIImageView.cpp */; };
 		3779932F178C272000C68990 /* UILabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37799301178C272000C68990 /* UILabel.cpp */; };
 		37799330178C272000C68990 /* UILabelAtlas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37799303178C272000C68990 /* UILabelAtlas.cpp */; };
@@ -1061,8 +1061,8 @@
 		377992FA178C272000C68990 /* UIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIButton.h; sourceTree = "<group>"; };
 		377992FB178C272000C68990 /* UICheckBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UICheckBox.cpp; sourceTree = "<group>"; };
 		377992FC178C272000C68990 /* UICheckBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICheckBox.h; sourceTree = "<group>"; };
-		377992FD178C272000C68990 /* UIControlButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIControlButton.cpp; sourceTree = "<group>"; };
-		377992FE178C272000C68990 /* UIControlButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIControlButton.h; sourceTree = "<group>"; };
+		377992FD178C272000C68990 /* UIZoomButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIZoomButton.cpp; sourceTree = "<group>"; };
+		377992FE178C272000C68990 /* UIZoomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIZoomButton.h; sourceTree = "<group>"; };
 		377992FF178C272000C68990 /* UIImageView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIImageView.cpp; sourceTree = "<group>"; };
 		37799300178C272000C68990 /* UIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageView.h; sourceTree = "<group>"; };
 		37799301178C272000C68990 /* UILabel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UILabel.cpp; sourceTree = "<group>"; };
@@ -2879,8 +2879,8 @@
 				377992FA178C272000C68990 /* UIButton.h */,
 				377992FB178C272000C68990 /* UICheckBox.cpp */,
 				377992FC178C272000C68990 /* UICheckBox.h */,
-				377992FD178C272000C68990 /* UIControlButton.cpp */,
-				377992FE178C272000C68990 /* UIControlButton.h */,
+				377992FD178C272000C68990 /* UIZoomButton.cpp */,
+				377992FE178C272000C68990 /* UIZoomButton.h */,
 				377992FF178C272000C68990 /* UIImageView.cpp */,
 				37799300178C272000C68990 /* UIImageView.h */,
 				37799301178C272000C68990 /* UILabel.cpp */,
@@ -3479,7 +3479,7 @@
 				3779932A178C272000C68990 /* UILayer.cpp in Sources */,
 				3779932B178C272000C68990 /* UIButton.cpp in Sources */,
 				3779932C178C272000C68990 /* UICheckBox.cpp in Sources */,
-				3779932D178C272000C68990 /* UIControlButton.cpp in Sources */,
+				3779932D178C272000C68990 /* UIZoomButton.cpp in Sources */,
 				3779932E178C272000C68990 /* UIImageView.cpp in Sources */,
 				3779932F178C272000C68990 /* UILabel.cpp in Sources */,
 				37799330178C272000C68990 /* UILabelAtlas.cpp in Sources */,

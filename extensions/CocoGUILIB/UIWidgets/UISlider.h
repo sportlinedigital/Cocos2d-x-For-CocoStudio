@@ -30,7 +30,7 @@
 NS_CC_EXT_BEGIN
 
 typedef void (CCObject::*SEL_PercentChangedEvent)(CCObject*);
-#define coco_percentchangedselector(_SELECTOR) (cs::SEL_PercentChangedEvent)(&_SELECTOR)
+#define coco_percentchangedselector(_SELECTOR) (SEL_PercentChangedEvent)(&_SELECTOR)
 class UISlider : public UIWidget
 {
 public:

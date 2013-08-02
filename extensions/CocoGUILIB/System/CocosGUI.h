@@ -43,7 +43,7 @@
 #include "../UIWidgets/UITextField.h"
 //#include "../UIWidgets/UIListView.h"
 #include "../UIWidgets/UINodeContainer.h"
-#include "../UIWidgets/UIControlButton.h"
+#include "../UIWidgets/UIZoomButton.h"
 #include "../UIWidgets/UILabelBMFont.h"
 #include "../UIWidgets/UIPageView.h"
 #include "../UIWidgets/UIDragPanel.h"
