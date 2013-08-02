@@ -45,8 +45,9 @@ public:
     void setSlidBallPressedTexture(const char* pressed,TextureResType texType = UI_TEX_TYPE_LOCAL);
     void setSlidBallDisabledTexture(const char* disabled,TextureResType texType = UI_TEX_TYPE_LOCAL);
     void setBarLength(float length);
-    void setShowProgressBar(bool show);
-    void setProgressBarTextureScale9(const char* fileName,float x,float y,float width,float height,bool useSpriteFrame = false);
+    void setProgressBarVisible(bool show);
+    void setProgressBarTexture(const char* fileName, TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void setProgressBarTextureScale9(const char* fileName,float x,float y,float width,float height, TextureResType texTypebool = UI_TEX_TYPE_LOCAL);
     void setProgressBarScale(int percent);
     void setSlidBallPercent(int percent);
     virtual bool pointAtSelfBody(CCPoint &pt);
@@ -73,7 +74,7 @@ protected:
     float m_fBarNodeScaleValue;
     float m_fTouchMoveStartLocation;
     bool m_bBarScale9Enable;
-    bool m_bShowProgressBar;
+    bool m_bProgressBarVisible;
     CCNode* m_pProgressBarNode;
     CCObject*       m_pPercentListener;
     SEL_PushEvent    m_pfnPercentSelector;

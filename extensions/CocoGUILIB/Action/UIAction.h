@@ -36,6 +36,7 @@ class UIAction : public CCObject
 {
 protected:
 	cocos2d::CCArray* m_ActionNodeList;/*actionnode*/
+    std::string m_name;
 public:
     UIAction();
     virtual ~UIAction();
@@ -46,14 +47,18 @@ public:
 
 	void UpdateToFrameByIndex(int index);
 
+    
 	//
-	CC_SYNTHESIZE(const char*, m_name, Name);
+//	CC_SYNTHESIZE(std::string, m_name, Name);
 	//
 	CC_SYNTHESIZE(bool, m_loop, Loop);
 	//
 	CC_SYNTHESIZE(float, m_fUnitTime, UnitTime);
     
     void initWithDictionary(cs::CSJsonDictionary* dic,UIWidget* root);
+    
+    void setName(const char* name);
+    const char* getName() const;
 };
 
 NS_CC_EXT_END

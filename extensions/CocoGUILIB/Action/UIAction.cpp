@@ -97,4 +97,14 @@ void UIAction::UpdateToFrameByIndex(int index)
 	}
 }
 
+void UIAction::setName(const char* name)
+{
+    m_name = name;
+}
+
+const char* UIAction::getName() const
+{
+    return m_name.c_str();
+}
+
 NS_CC_EXT_END
