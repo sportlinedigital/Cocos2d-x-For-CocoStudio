@@ -115,7 +115,7 @@ UIWidget* UIInputManager::checkEventWidget(CCPoint &touchPoint)
     for (int i=0;i<widgetCount;i++)
     {
         UIWidget* widget = (UIWidget*)(arrayWidget->arr[i]);
-        if(widget->pointAtSelfBody(touchPoint))
+        if(widget->pointAtSelfBody(touchPoint) && widget->isActive())
         {
             if (!widget->checkVisibleDependParent(touchPoint))
             {
@@ -178,7 +178,7 @@ bool UIInputManager::onTouchBegan(CCTouch* touch)
     touchBeganedPoint.x = touch->getLocation().x;
     touchBeganedPoint.y = touch->getLocation().y;
     UIWidget* hitWidget = checkEventWidget(touchBeganedPoint);
-    if (!hitWidget || !hitWidget->isActive())
+    if (!hitWidget)
     {
         m_pCurSelectedWidget = NULL;
         return false;
@@ -192,7 +192,7 @@ bool UIInputManager::onTouchBegan(CCTouch* touch)
 bool UIInputManager::onTouchMoved(CCTouch* touch)
 {
     UIWidget* hitWidget = m_pCurSelectedWidget;
-    if (!hitWidget || !hitWidget->isActive())
+    if (!hitWidget)
     {
         return false;
     }
@@ -211,7 +211,7 @@ bool UIInputManager::onTouchEnd(CCTouch* touch)
 {
     m_bTouchDown = false;
     UIWidget* hitWidget = m_pCurSelectedWidget;
-    if (!hitWidget || !hitWidget->isActive())
+    if (!hitWidget)
     {
         return false;
     }
@@ -227,7 +227,7 @@ bool UIInputManager::onTouchCancelled(CCTouch* touch)
 {
     m_bTouchDown = false;
     UIWidget* hitWidget = m_pCurSelectedWidget;
-    if (!hitWidget || !hitWidget->isActive())
+    if (!hitWidget)
     {
         return false;
     }

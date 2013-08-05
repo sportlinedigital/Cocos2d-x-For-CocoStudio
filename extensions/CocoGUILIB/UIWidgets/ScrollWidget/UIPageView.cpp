@@ -501,6 +501,11 @@ void UIPageView::handleReleaseLogic(CCPoint &touchPoint)
 
 void UIPageView::checkChildInfo(int handleState,UIWidget* sender,CCPoint &touchPoint)
 {
+    interceptTouchEvent(handleState, sender, touchPoint);
+}
+
+void UIPageView::interceptTouchEvent(int handleState, cocos2d::extension::UIWidget *sender, cocos2d::CCPoint &touchPoint)
+{
     switch (handleState)
     {
         case 0:

@@ -45,6 +45,7 @@ void CocosGUITestScene::MainMenuCallback(CCObject* pSender)
 void CocosGUITestScene::toCocosGUIExampleScene(CCObject* pSender)
 {
     ((UIScrollView*)pSender)->setDirection(SCROLLVIEW_DIR_HORIZONTAL);
+    ((UIScrollView*)pSender)->getChildByName("backtotopbutton")->disable();
     return;
     CCLOG("p2 click");
     ul->removeFromParent();

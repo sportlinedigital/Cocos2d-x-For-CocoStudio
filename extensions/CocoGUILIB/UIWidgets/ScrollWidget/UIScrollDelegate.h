@@ -25,22 +25,17 @@
 #ifndef __UISCROLLDELEGATE_H__
 #define __UISCROLLDELEGATE_H__
 
-#include "UIWidget.h"
+#include "../../BaseClasses/UIWidget.h"
 
 NS_CC_EXT_BEGIN
 
 class UIScrollDelegate
 {
-    
-public:
-    UIScrollDelegate();
-    virtual ~UIScrollDelegate();
-    
 protected:
-    void handlePressLogic(CCPoint &touchPoint);
-    void handleMoveLogic(CCPoint &touchPoint);
-    void handleReleaseLogic(CCPoint &touchPoint);
-    virtual void checkChildInfo(int handleState,UIWidget* sender,CCPoint &touchPoint);
+    virtual void handlePressLogic(CCPoint &touchPoint) = 0;
+    virtual void handleMoveLogic(CCPoint &touchPoint) = 0;
+    virtual void handleReleaseLogic(CCPoint &touchPoint) = 0;
+    virtual void interceptTouchEvent(int handleState,UIWidget* sender,CCPoint &touchPoint) = 0;
 };
 
 NS_CC_EXT_END

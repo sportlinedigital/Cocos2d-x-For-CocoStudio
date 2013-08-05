@@ -433,6 +433,11 @@ void UIDragPanel::handleReleaseLogic(CCPoint &touchPoint)
 
 void UIDragPanel::checkChildInfo(int handleState, UIWidget *sender, CCPoint &touchPoint)
 {
+    interceptTouchEvent(handleState, sender, touchPoint);
+}
+
+void UIDragPanel::interceptTouchEvent(int handleState, cocos2d::extension::UIWidget *sender, cocos2d::CCPoint &touchPoint)
+{
     switch (handleState)
     {
         case 0:

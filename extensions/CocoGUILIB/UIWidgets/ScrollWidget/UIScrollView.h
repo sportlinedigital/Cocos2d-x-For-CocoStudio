@@ -25,7 +25,8 @@
 #ifndef __UISCROLLVIEW_H__
 #define __UISCROLLVIEW_H__
 
-#include "UIPanel.h"
+#include "../UIPanel.h"
+#include "UIScrollDelegate.h"
 
 NS_CC_EXT_BEGIN
 
@@ -55,7 +56,7 @@ typedef void (CCObject::*SEL_ScrollToRightEvent)(CCObject*);
 #define coco_ScrollToRightSelector(_SELECTOR) (cocos2d::extension::SEL_ScrollToRightEvent)(&_SELECTOR)
 
 
-class UIScrollView : public UIPanel
+class UIScrollView : public UIPanel , public UIScrollDelegate
 {
 public:
     UIScrollView();
@@ -95,12 +96,14 @@ protected:
     virtual bool scrollChildren(float touchOffset);
     void startRecordSlidAction();
     virtual void endRecordSlidAction();
-    void handlePressLogic(CCPoint &touchPoint);
-    void handleMoveLogic(CCPoint &touchPoint);
-    void handleReleaseLogic(CCPoint &touchPoint);
+    virtual void handlePressLogic(CCPoint &touchPoint);
+    virtual void handleMoveLogic(CCPoint &touchPoint);
+    virtual void handleReleaseLogic(CCPoint &touchPoint);
+    virtual void interceptTouchEvent(int handleState,UIWidget* sender,CCPoint &touchPoint);
+    virtual void checkChildInfo(int handleState,UIWidget* sender,CCPoint &touchPoint);
     virtual void update(float dt);
     void recordSlidTime(float dt);
-    virtual void checkChildInfo(int handleState,UIWidget* sender,CCPoint &touchPoint);
+    
     void scrollToTopEvent();
     void scrollToBottomEvent();
     void scrollToLeftEvent();

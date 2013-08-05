@@ -25,7 +25,8 @@
 #ifndef __TestCpp__UIDragPanel__
 #define __TestCpp__UIDragPanel__
 
-#include "UIPanel.h"
+#include "../UIPanel.h"
+#include "UIScrollDelegate.h"
 
 NS_CC_EXT_BEGIN
 
@@ -120,7 +121,7 @@ typedef void (CCObject::*SEL_DragPanelBounceToRightEvent)(CCObject*);
 typedef void (CCObject::*SEL_DragPanelBounceToBottomEvent)(CCObject*);
 #define coco_DragPanelBounceToBottom_selector(_SELECTOR) (SEL_DragPanelBounceToBottomEvent)(&_SELECTOR)
 
-class UIDragPanel : public UIPanel
+class UIDragPanel : public UIPanel// , public UIScrollDelegate
 {
 public:
     UIDragPanel();
@@ -144,11 +145,6 @@ public:
     virtual bool addChild(UIWidget* widget);
     virtual bool removeChild(UIWidget* child,bool cleanup);
     virtual void removeAllChildrenAndCleanUp(bool cleanup);
-    
-    void handlePressLogic(CCPoint &touchPoint);
-    void handleMoveLogic(CCPoint &touchPoint);
-    void handleReleaseLogic(CCPoint &touchPoint);    
-    virtual void checkChildInfo(int handleState,UIWidget* sender,CCPoint &touchPoint);                
     
     /*
     void setDirection(DRAGPANEL_DIR dir);
@@ -191,7 +187,12 @@ public:
     void addBounceToBottomEvent(CCObject* target, SEL_DragPanelBounceToBottomEvent selector);    
     
 protected:
-    void updateWidthAndHeight();    
+    virtual void handlePressLogic(CCPoint &touchPoint);
+    virtual void handleMoveLogic(CCPoint &touchPoint);
+    virtual void handleReleaseLogic(CCPoint &touchPoint);
+    virtual void interceptTouchEvent(int handleState,UIWidget* sender,CCPoint &touchPoint);
+    virtual void checkChildInfo(int handleState, UIWidget *sender, CCPoint &touchPoint);
+    void updateWidthAndHeight();
     void recordSlidTime(float dt);
     
     // check if dragpanel rect contain inner rect

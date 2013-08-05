@@ -145,6 +145,7 @@
           "text" : "返回顶部",
           "normal" : "backtotopnormal.png",
           "pressed" : "backtotoppressed.png",
+          "disabled" : "backtotoppressed.png",
           "touchAble" : true,
           "name" : "backtotopbutton"
           },

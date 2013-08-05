@@ -547,7 +547,7 @@ void UIScrollView::recordSlidTime(float dt)
     }
 }
 
-void UIScrollView::checkChildInfo(int handleState,UIWidget* sender,CCPoint &touchPoint)
+void UIScrollView::interceptTouchEvent(int handleState, cocos2d::extension::UIWidget *sender, cocos2d::CCPoint &touchPoint)
 {
     switch (handleState)
     {
@@ -556,27 +556,27 @@ void UIScrollView::checkChildInfo(int handleState,UIWidget* sender,CCPoint &touc
             break;
             
         case 1:
+        {
+            float offset = 0;
+            switch (m_eDirection)
             {
-                float offset = 0;
-                switch (m_eDirection)
-                {
-                    case SCROLLVIEW_DIR_VERTICAL: // vertical
-                        offset = fabs(sender->getTouchStartPos().y - touchPoint.y);
-                        break;
-                        
-                    case SCROLLVIEW_DIR_HORIZONTAL: // horizontal
-                        offset = fabs(sender->getTouchStartPos().x - touchPoint.x);
-                        break;
-                        
-                    default:
-                        break;
-                }
-                if (offset > m_fChildFocusCancelOffset)
-                {
-                    sender->setFocus(false);
-                    handleMoveLogic(touchPoint);
-                }
+                case SCROLLVIEW_DIR_VERTICAL: // vertical
+                    offset = fabs(sender->getTouchStartPos().y - touchPoint.y);
+                    break;
+                    
+                case SCROLLVIEW_DIR_HORIZONTAL: // horizontal
+                    offset = fabs(sender->getTouchStartPos().x - touchPoint.x);
+                    break;
+                    
+                default:
+                    break;
             }
+            if (offset > m_fChildFocusCancelOffset)
+            {
+                sender->setFocus(false);
+                handleMoveLogic(touchPoint);
+            }
+        }
             break;
             
         case 2:
@@ -586,6 +586,11 @@ void UIScrollView::checkChildInfo(int handleState,UIWidget* sender,CCPoint &touc
         case 3:
             break;
     }
+}
+
+void UIScrollView::checkChildInfo(int handleState,UIWidget* sender,CCPoint &touchPoint)
+{
+    interceptTouchEvent(handleState, sender, touchPoint);
 }
 
 void UIScrollView::scrollToTopEvent()
