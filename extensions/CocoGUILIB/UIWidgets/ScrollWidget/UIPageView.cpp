@@ -344,13 +344,13 @@ void UIPageView::update(float dt)
     }
 }
 
-void UIPageView::onTouchBegan(CCPoint &touchPoint)
+void UIPageView::onTouchBegan(const CCPoint &touchPoint)
 {
     UIPanel::onTouchBegan(touchPoint);
     handlePressLogic(touchPoint);
 }
 
-void UIPageView::onTouchMoved(CCPoint &touchPoint)
+void UIPageView::onTouchMoved(const CCPoint &touchPoint)
 {
     m_touchMovePos.x = touchPoint.x;
     m_touchMovePos.y = touchPoint.y;
@@ -367,7 +367,7 @@ void UIPageView::onTouchMoved(CCPoint &touchPoint)
     }
 }
 
-void UIPageView::onTouchEnded(CCPoint &touchPoint)
+void UIPageView::onTouchEnded(const CCPoint &touchPoint)
 {
     UIPanel::onTouchEnded(touchPoint);
     handleReleaseLogic(touchPoint);
@@ -428,12 +428,12 @@ bool UIPageView::scrollPages(float touchOffset)
     return true;
 }
 
-void UIPageView::onTouchCancelled(CCPoint &touchPoint)
+void UIPageView::onTouchCancelled(const CCPoint &touchPoint)
 {
     UIPanel::onTouchCancelled(touchPoint);
 }
 
-void UIPageView::handlePressLogic(CCPoint &touchPoint)
+void UIPageView::handlePressLogic(const CCPoint &touchPoint)
 {
     CCPoint nsp = m_pRender->convertToNodeSpace(touchPoint);
     m_fTouchMoveStartLocation = nsp.x;
@@ -441,7 +441,7 @@ void UIPageView::handlePressLogic(CCPoint &touchPoint)
 //    startRecordSlidAction();
 }
 
-void UIPageView::handleMoveLogic(CCPoint &touchPoint)
+void UIPageView::handleMoveLogic(const CCPoint &touchPoint)
 {
     CCPoint nsp = m_pRender->convertToNodeSpace(touchPoint);
     float offset = 0.0;
@@ -459,7 +459,7 @@ void UIPageView::handleMoveLogic(CCPoint &touchPoint)
     scrollPages(offset);
 }
 
-void UIPageView::handleReleaseLogic(CCPoint &touchPoint)
+void UIPageView::handleReleaseLogic(const CCPoint &touchPoint)
 {
     UIWidget* curPage = dynamic_cast<UIWidget*>(m_pages->objectAtIndex(m_nCurPageIdx));
     if (curPage)
@@ -499,12 +499,12 @@ void UIPageView::handleReleaseLogic(CCPoint &touchPoint)
 //    CCLOG("cur page idx == %d",m_nCurPageIdx);
 }
 
-void UIPageView::checkChildInfo(int handleState,UIWidget* sender,CCPoint &touchPoint)
+void UIPageView::checkChildInfo(int handleState,UIWidget* sender, const CCPoint &touchPoint)
 {
     interceptTouchEvent(handleState, sender, touchPoint);
 }
 
-void UIPageView::interceptTouchEvent(int handleState, cocos2d::extension::UIWidget *sender, cocos2d::CCPoint &touchPoint)
+void UIPageView::interceptTouchEvent(int handleState, UIWidget *sender, const CCPoint &touchPoint)
 {
     switch (handleState)
     {

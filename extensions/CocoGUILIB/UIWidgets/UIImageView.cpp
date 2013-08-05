@@ -126,7 +126,7 @@ void UIImageView::setTextureRect(const CCRect &rect)
     }
 }
 
-void UIImageView::onTouchBegan(CCPoint &touchPoint)
+void UIImageView::onTouchBegan(const CCPoint &touchPoint)
 {
     setFocus(true);
     m_touchStartPos.x = touchPoint.x;
@@ -143,7 +143,7 @@ void UIImageView::onTouchBegan(CCPoint &touchPoint)
     }
 }
 
-void UIImageView::onTouchEnded(CCPoint &touchPoint)
+void UIImageView::onTouchEnded(const CCPoint &touchPoint)
 {
     if (m_bDoubleClickEnable)
     {

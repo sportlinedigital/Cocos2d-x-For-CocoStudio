@@ -58,8 +58,8 @@ public:
     virtual float getWidth();
     virtual float getHeight();
     virtual bool isClippingEnable();
-    virtual bool hitTest(CCNode*node, CCPoint &pt);
-    CCSize getWrapSize() const;
+    virtual bool hitTest(CCNode*node, const CCPoint &pt);
+    const CCSize& getWrapSize() const;
 protected:
     virtual bool init();
     virtual void initNodes();

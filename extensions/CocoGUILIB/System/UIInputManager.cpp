@@ -104,7 +104,7 @@ void UIInputManager::removeManageredWidget(UIWidget* widget)
     m_manageredWidget->removeObject(widget);
 }
 
-UIWidget* UIInputManager::checkEventWidget(CCPoint &touchPoint)
+UIWidget* UIInputManager::checkEventWidget(const CCPoint &touchPoint)
 {
     if (!m_bWidgetBeSorted && m_pRootWidget)
     {

@@ -40,7 +40,7 @@ public:
     void sortWidgets(UIWidget* widget);
     void sortRootWidgets(UIWidget* root);
     void removeManageredWidget(UIWidget* widget);
-    UIWidget* checkEventWidget(CCPoint &touchPoint);
+    UIWidget* checkEventWidget(const CCPoint &touchPoint);
     void addCheckedDoubleClickWidget(UIWidget* widget);
     void update(float dt);
     bool onTouchBegan(CCTouch* touch);

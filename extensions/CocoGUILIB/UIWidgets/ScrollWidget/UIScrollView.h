@@ -76,11 +76,11 @@ public:
     void addScrollToLeftEvent(CCObject* target, SEL_ScrollToLeftEvent selector);
     void addScrollToRightEvent(CCObject* target, SEL_ScrollToRightEvent selector);
     
-    virtual void onTouchBegan(CCPoint &touchPoint);
-    virtual void onTouchMoved(CCPoint &touchPoint);
-    virtual void onTouchEnded(CCPoint &touchPoint);
-    virtual void onTouchCancelled(CCPoint &touchPoint);
-    virtual void onTouchLongClicked(CCPoint &touchPoint);
+    virtual void onTouchBegan(const CCPoint &touchPoint);
+    virtual void onTouchMoved(const CCPoint &touchPoint);
+    virtual void onTouchEnded(const CCPoint &touchPoint);
+    virtual void onTouchCancelled(const CCPoint &touchPoint);
+    virtual void onTouchLongClicked(const CCPoint &touchPoint);
     void setDirection(SCROLLVIEW_DIR dir);
     SCROLLVIEW_DIR getDirection();
     
@@ -96,11 +96,11 @@ protected:
     virtual bool scrollChildren(float touchOffset);
     void startRecordSlidAction();
     virtual void endRecordSlidAction();
-    virtual void handlePressLogic(CCPoint &touchPoint);
-    virtual void handleMoveLogic(CCPoint &touchPoint);
-    virtual void handleReleaseLogic(CCPoint &touchPoint);
-    virtual void interceptTouchEvent(int handleState,UIWidget* sender,CCPoint &touchPoint);
-    virtual void checkChildInfo(int handleState,UIWidget* sender,CCPoint &touchPoint);
+    virtual void handlePressLogic(const CCPoint &touchPoint);
+    virtual void handleMoveLogic(const CCPoint &touchPoint);
+    virtual void handleReleaseLogic(const CCPoint &touchPoint);
+    virtual void interceptTouchEvent(int handleState,UIWidget* sender,const CCPoint &touchPoint);
+    virtual void checkChildInfo(int handleState,UIWidget* sender,const CCPoint &touchPoint);
     virtual void update(float dt);
     void recordSlidTime(float dt);
     

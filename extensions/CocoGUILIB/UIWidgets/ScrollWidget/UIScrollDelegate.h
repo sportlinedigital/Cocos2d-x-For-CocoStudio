@@ -32,10 +32,10 @@ NS_CC_EXT_BEGIN
 class UIScrollDelegate
 {
 protected:
-    virtual void handlePressLogic(CCPoint &touchPoint) = 0;
-    virtual void handleMoveLogic(CCPoint &touchPoint) = 0;
-    virtual void handleReleaseLogic(CCPoint &touchPoint) = 0;
-    virtual void interceptTouchEvent(int handleState,UIWidget* sender,CCPoint &touchPoint) = 0;
+    virtual void handlePressLogic(const CCPoint &touchPoint) = 0;
+    virtual void handleMoveLogic(const CCPoint &touchPoint) = 0;
+    virtual void handleReleaseLogic(const CCPoint &touchPoint) = 0;
+    virtual void interceptTouchEvent(int handleState, UIWidget* sender, const CCPoint &touchPoint) = 0;
 };
 
 NS_CC_EXT_END

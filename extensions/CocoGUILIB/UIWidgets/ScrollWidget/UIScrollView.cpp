@@ -417,7 +417,7 @@ void UIScrollView::endRecordSlidAction()
     m_fSlidTime = 0.0;
 }
 
-void UIScrollView::handlePressLogic(CCPoint &touchPoint)
+void UIScrollView::handlePressLogic(const CCPoint &touchPoint)
 {        
     CCPoint nsp = m_pRender->convertToNodeSpace(touchPoint);
     switch (m_eDirection)
@@ -436,7 +436,7 @@ void UIScrollView::handlePressLogic(CCPoint &touchPoint)
     startRecordSlidAction();
 }
 
-void UIScrollView::handleMoveLogic(CCPoint &touchPoint)
+void UIScrollView::handleMoveLogic(const CCPoint &touchPoint)
 {
     CCPoint nsp = m_pRender->convertToNodeSpace(touchPoint);
     float offset = 0.0f;
@@ -483,7 +483,7 @@ void UIScrollView::handleMoveLogic(CCPoint &touchPoint)
     scrollChildren(offset);
 }
 
-void UIScrollView::handleReleaseLogic(CCPoint &touchPoint)
+void UIScrollView::handleReleaseLogic(const CCPoint &touchPoint)
 {
     CCPoint nsp = m_pRender->convertToNodeSpace(touchPoint);
     switch (m_eDirection)
@@ -502,30 +502,30 @@ void UIScrollView::handleReleaseLogic(CCPoint &touchPoint)
     endRecordSlidAction();
 }    
 
-void UIScrollView::onTouchBegan(CCPoint &touchPoint)
+void UIScrollView::onTouchBegan(const CCPoint &touchPoint)
 {
     UIPanel::onTouchBegan(touchPoint);
     handlePressLogic(touchPoint);
 }
 
-void UIScrollView::onTouchMoved(CCPoint &touchPoint)
+void UIScrollView::onTouchMoved(const CCPoint &touchPoint)
 {
     UIPanel::onTouchMoved(touchPoint);
     handleMoveLogic(touchPoint);
 }
 
-void UIScrollView::onTouchEnded(CCPoint &touchPoint)
+void UIScrollView::onTouchEnded(const CCPoint &touchPoint)
 {
     UIPanel::onTouchEnded(touchPoint);
     handleReleaseLogic(touchPoint);
 }
 
-void UIScrollView::onTouchCancelled(CCPoint &touchPoint)
+void UIScrollView::onTouchCancelled(const CCPoint &touchPoint)
 {
     UIPanel::onTouchCancelled(touchPoint);
 }
 
-void UIScrollView::onTouchLongClicked(CCPoint &touchPoint)
+void UIScrollView::onTouchLongClicked(const CCPoint &touchPoint)
 {
     
 }
@@ -547,7 +547,7 @@ void UIScrollView::recordSlidTime(float dt)
     }
 }
 
-void UIScrollView::interceptTouchEvent(int handleState, cocos2d::extension::UIWidget *sender, cocos2d::CCPoint &touchPoint)
+void UIScrollView::interceptTouchEvent(int handleState, UIWidget *sender, const CCPoint &touchPoint)
 {
     switch (handleState)
     {
@@ -588,7 +588,7 @@ void UIScrollView::interceptTouchEvent(int handleState, cocos2d::extension::UIWi
     }
 }
 
-void UIScrollView::checkChildInfo(int handleState,UIWidget* sender,CCPoint &touchPoint)
+void UIScrollView::checkChildInfo(int handleState,UIWidget* sender,const CCPoint &touchPoint)
 {
     interceptTouchEvent(handleState, sender, touchPoint);
 }

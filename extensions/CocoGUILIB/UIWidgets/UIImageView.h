@@ -56,8 +56,8 @@ public:
     void setCapInsets(const CCRect &capInsets);
     virtual CCNode* getValidNode();
     virtual void setAnchorPoint(const CCPoint &pt);
-    virtual void onTouchBegan(CCPoint &touchPoint);
-    virtual void onTouchEnded(CCPoint &touchPoint);
+    virtual void onTouchBegan(const CCPoint &touchPoint);
+    virtual void onTouchEnded(const CCPoint &touchPoint);
 protected:
     virtual void initNodes();
 protected:

@@ -304,7 +304,7 @@ void UISlider::setProgressBarScale(int percent)
     }
 }
 
-void UISlider::onTouchBegan(CCPoint &touchPoint)
+void UISlider::onTouchBegan(const CCPoint &touchPoint)
 {
     UIWidget::onTouchBegan(touchPoint);
     CCPoint nsp = m_pRender->convertToNodeSpace(touchPoint);
@@ -318,7 +318,7 @@ void UISlider::onTouchBegan(CCPoint &touchPoint)
     }
 }
 
-void UISlider::onTouchMoved(CCPoint &touchPoint)
+void UISlider::onTouchMoved(const CCPoint &touchPoint)
 {
     CCPoint nsp = m_pRender->convertToNodeSpace(touchPoint);
     m_pSlidBall->setPosition(ccp(nsp.x,0));
@@ -331,13 +331,13 @@ void UISlider::onTouchMoved(CCPoint &touchPoint)
     }
 }
 
-void UISlider::onTouchEnded(CCPoint &touchPoint)
+void UISlider::onTouchEnded(const CCPoint &touchPoint)
 {
     UIWidget::onTouchEnded(touchPoint);
     m_pSlidBall->setPressState(WidgetStateNormal);
 }
 
-void UISlider::onTouchCancelled(CCPoint &touchPoint)
+void UISlider::onTouchCancelled(const CCPoint &touchPoint)
 {
     UIWidget::onTouchCancelled(touchPoint);
     m_pSlidBall->setPressState(WidgetStateNormal);
@@ -348,7 +348,7 @@ float UISlider::getPercentWithBallPos(float px,float py)
     return (((px-(-m_fBarLength/2.0))/m_fBarLength)*100);
 }
 
-bool UISlider::pointAtSelfBody(CCPoint &pt)
+bool UISlider::pointAtSelfBody(const CCPoint &pt)
 {
     if (!getAbsoluteVisible())
     {

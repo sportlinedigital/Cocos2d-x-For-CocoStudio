@@ -400,7 +400,7 @@ float UIContainerWidget::getHeight()
     return m_fHeight;
 }
 
-bool UIContainerWidget::hitTest(CCNode *node, CCPoint &pt)
+bool UIContainerWidget::hitTest(CCNode *node, const CCPoint &pt)
 {
     CCPoint nsp = node->convertToNodeSpace(pt);
     CCSize bb = node->getContentSize();
@@ -411,7 +411,7 @@ bool UIContainerWidget::hitTest(CCNode *node, CCPoint &pt)
     return false;
 }
 
-CCSize UIContainerWidget::getWrapSize() const
+const CCSize& UIContainerWidget::getWrapSize() const
 {
     ccArray* arrayChildren = m_children->data;
     int childrenCount = arrayChildren->num;
