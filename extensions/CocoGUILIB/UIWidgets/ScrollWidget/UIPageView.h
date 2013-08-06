@@ -25,7 +25,8 @@
 #ifndef __UIPAGEVIEW_H__
 #define __UIPAGEVIEW_H__
 
-#include "UIPanel.h"
+#include "../UIPanel.h"
+#include "UIScrollDelegate.h"
 
 NS_CC_EXT_BEGIN
 
@@ -34,7 +35,7 @@ typedef enum {
     PAGEVIEW_TOUCHRIGHT
 }PVTouchDir;
 
-class UIPageView : public UIPanel
+class UIPageView : public UIPanel// , public UIScrollDelegate
 {
     
 public:
@@ -53,20 +54,21 @@ public:
     void scrollToPage(int idx);
     virtual bool removeChild(UIWidget* widget, bool cleanup);
     virtual void removeAllChildrenAndCleanUp(bool cleanup);
-    virtual void onTouchBegan(CCPoint &touchPoint);
-    virtual void onTouchMoved(CCPoint &touchPoint);
-    virtual void onTouchEnded(CCPoint &touchPoint);
-    virtual void onTouchCancelled(CCPoint &touchPoint);
+    virtual void onTouchBegan(const CCPoint &touchPoint);
+    virtual void onTouchMoved(const CCPoint &touchPoint);
+    virtual void onTouchEnded(const CCPoint &touchPoint);
+    virtual void onTouchCancelled(const CCPoint &touchPoint);
     virtual void update(float dt);
-    virtual void checkChildInfo(int handleState,UIWidget* sender,CCPoint &touchPoint);
 protected:
     virtual bool addChild(UIWidget* widget);
     virtual bool init();
     float getPositionXByIndex(int idx);
     void updateBoundaryPages();
-    void handlePressLogic(CCPoint &touchPoint);
-    void handleMoveLogic(CCPoint &touchPoint);
-    void handleReleaseLogic(CCPoint &touchPoint);
+    virtual void handlePressLogic(const CCPoint &touchPoint);
+    virtual void handleMoveLogic(const CCPoint &touchPoint);
+    virtual void handleReleaseLogic(const CCPoint &touchPoint);
+    virtual void interceptTouchEvent(int handleState, UIWidget* sender, const CCPoint &touchPoint);
+    virtual void checkChildInfo(int handleState, UIWidget* sender, const CCPoint &touchPoint);
     virtual bool scrollPages(float touchOffset);
     void movePages(float offset);
 protected:

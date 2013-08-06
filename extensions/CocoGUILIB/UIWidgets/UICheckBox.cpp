@@ -212,7 +212,7 @@ void UICheckBox::setFrontCrossDisabledTexture(const char *frontCrossDisabled,Tex
     m_pFrontCross->setOpacity(getOpacity());
 }
 
-void UICheckBox::onTouchEnded(CCPoint &touchPoint)
+void UICheckBox::onTouchEnded(const CCPoint &touchPoint)
 {
     if (m_bFocus)
     {

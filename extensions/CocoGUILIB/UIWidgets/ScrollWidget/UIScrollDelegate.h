@@ -22,46 +22,22 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#ifndef __UIHELPER_H__
-#define __UIHELPER_H__
+#ifndef __UISCROLLDELEGATE_H__
+#define __UISCROLLDELEGATE_H__
 
-#include "UIInputManager.h"
-#include "../../CCArmature/external_tool/Json/CSContentJsonDictionary.h"
-
-
-#define CCUIHELPER cocos2d::extension::UIHelper::instance()
+#include "../../BaseClasses/UIWidget.h"
 
 NS_CC_EXT_BEGIN
 
-class UIHelper
+class UIScrollDelegate
 {
-public:
-    UIHelper();
-    ~UIHelper();
-    void init();
-    
-    UIWidget* createWidgetFromJsonFile(const char* fileName);
-    static UIHelper* instance();
-	static void purgeUIHelper();
-    void addSpriteFrame(const char* fileName);
-    void removeSpriteFrame(const char* fileName);
-    void removeAllSpriteFrame();
-    UIWidget* seekWidgetByTag(UIWidget* root, int tag);
-    UIWidget* seekWidgetByName(UIWidget* root, const char* name);
-	UIWidget* seekActionWidgetByActionTag(UIWidget* root, int tag);
-    UIWidget* seekWidgetByRelativeName(UIWidget* root, const char* name);
-    void setFileDesignWidth(float width);
-    float getFileDesignWidth();
-    void setFileDesignHeight(float height);
-    float getFileDesignHeight();
 protected:
-    
-    float m_fFileDesignWidth;
-    float m_fFileDesignHeight;
-    //texture
-    CCArray* m_textureFiles;
+    virtual void handlePressLogic(const CCPoint &touchPoint) = 0;
+    virtual void handleMoveLogic(const CCPoint &touchPoint) = 0;
+    virtual void handleReleaseLogic(const CCPoint &touchPoint) = 0;
+    virtual void interceptTouchEvent(int handleState, UIWidget* sender, const CCPoint &touchPoint) = 0;
 };
 
 NS_CC_EXT_END
 
-#endif /* defined(__CocoGUI__UISystem__) */
+#endif /* defined(__UIScrollDelegate__) */

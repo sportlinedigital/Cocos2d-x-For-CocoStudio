@@ -578,7 +578,7 @@ void UIWidget::didNotSelectSelf()
     
 }
 
-void UIWidget::onTouchBegan(CCPoint &touchPoint)
+void UIWidget::onTouchBegan(const CCPoint &touchPoint)
 {
     setFocus(true);
     m_touchStartPos.x = touchPoint.x;
@@ -590,7 +590,7 @@ void UIWidget::onTouchBegan(CCPoint &touchPoint)
     pushDownEvent();
 }
 
-void UIWidget::onTouchMoved(CCPoint &touchPoint)
+void UIWidget::onTouchMoved(const CCPoint &touchPoint)
 {
     m_touchMovePos.x = touchPoint.x;
     m_touchMovePos.y = touchPoint.y;
@@ -602,7 +602,7 @@ void UIWidget::onTouchMoved(CCPoint &touchPoint)
     moveEvent();
 }
 
-void UIWidget::onTouchEnded(CCPoint &touchPoint)
+void UIWidget::onTouchEnded(const CCPoint &touchPoint)
 {
     m_touchEndPos.x = touchPoint.x;
     m_touchEndPos.y = touchPoint.y;
@@ -622,12 +622,12 @@ void UIWidget::onTouchEnded(CCPoint &touchPoint)
     }
 }
 
-void UIWidget::onTouchCancelled(CCPoint &touchPoint)
+void UIWidget::onTouchCancelled(const CCPoint &touchPoint)
 {
     setPressState(WidgetStateNormal);
 }
 
-void UIWidget::onTouchLongClicked(CCPoint &touchPoint)
+void UIWidget::onTouchLongClicked(const CCPoint &touchPoint)
 {
     longClickEvent();
 }
@@ -773,7 +773,7 @@ CCNode* UIWidget::getContainerNode()
     return m_pRender;
 }
 
-bool UIWidget::pointAtSelfBody(CCPoint &pt)
+bool UIWidget::pointAtSelfBody(const CCPoint &pt)
 {
     if (!getAbsoluteVisible())
     {
@@ -782,7 +782,7 @@ bool UIWidget::pointAtSelfBody(CCPoint &pt)
     return hitTest(getValidNode(),pt);
 }
 
-bool UIWidget::hitTest(CCNode* node, CCPoint &pt)
+bool UIWidget::hitTest(CCNode* node, const CCPoint &pt)
 {
     CCPoint nsp = node->convertToNodeSpace(pt);
     CCRect bb = node->boundingBox();
@@ -793,7 +793,7 @@ bool UIWidget::hitTest(CCNode* node, CCPoint &pt)
     return false;
 }
 
-bool UIWidget::checkVisibleDependParent(CCPoint &pt)
+bool UIWidget::checkVisibleDependParent(const CCPoint &pt)
 {
     if (!m_bNeedCheckVisibleDependParent)
     {
@@ -815,18 +815,7 @@ bool UIWidget::checkVisibleDependParent(CCPoint &pt)
     return true;
 }
 
-bool UIWidget::checkBeVisibleInParent()
-{   
-    CCRect parentRect = m_pWidgetParent->getRect();
-    CCRect selfRect = getRect();
-    bool res = !((selfRect.origin.x+selfRect.size.width) < parentRect.origin.x ||
-                (parentRect.origin.x+parentRect.size.width) <   selfRect.origin.x ||
-                (selfRect.origin.y+selfRect.size.height) < parentRect.origin.y ||
-                parentRect.origin.y+parentRect.size.height <    selfRect.origin.y);
-    return res;
-}
-
-void UIWidget::checkChildInfo(int handleState, UIWidget *sender, CCPoint &touchPoint)
+void UIWidget::checkChildInfo(int handleState, UIWidget *sender,const CCPoint &touchPoint)
 {
     if (m_pWidgetParent)
     {
@@ -850,12 +839,12 @@ void UIWidget::updateAnchorPoint()
     setAnchorPoint(m_anchorPoint);
 }
 
-CCPoint UIWidget::getPosition()
+const CCPoint& UIWidget::getPosition()
 {
     return m_pRender->getPosition();
 }
 
-CCPoint UIWidget::getAnchorPoint()
+const CCPoint& UIWidget::getAnchorPoint()
 {
     return m_anchorPoint;
 }
@@ -1165,7 +1154,7 @@ void UIWidget::setFileDesignSize(const CCSize &size)
     m_fileDesignSize = size;
 }
 
-CCSize UIWidget::getFileDesignSize()
+const CCSize& UIWidget::getFileDesignSize()
 {
     return m_fileDesignSize;
 }
@@ -1255,17 +1244,17 @@ void UIWidget::setBlendFunc(ccBlendFunc blendFunc)
     }
 }
 
-CCPoint UIWidget::getTouchStartPos()
+const CCPoint& UIWidget::getTouchStartPos()
 {
     return m_touchStartPos;
 }
 
-CCPoint UIWidget::getTouchMovePos()
+const CCPoint& UIWidget::getTouchMovePos()
 {
     return m_touchMovePos;
 }
 
-CCPoint UIWidget::getTouchEndPos()
+const CCPoint& UIWidget::getTouchEndPos()
 {
     return m_touchEndPos;
 }

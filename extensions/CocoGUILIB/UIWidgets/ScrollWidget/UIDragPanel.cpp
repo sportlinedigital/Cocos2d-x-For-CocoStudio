@@ -118,6 +118,12 @@ bool UIDragPanel::init()
     if (UIPanel::init())
     {
         setUpdateEnable(true);
+        
+        m_pInnerPanel = UIPanel::create();
+        m_pInnerPanel->setName("InnerPanel");
+        m_pInnerPanel->setTouchEnable(true);
+        UIPanel::addChild(m_pInnerPanel);
+        
         return true;
     }
     return false;
@@ -126,42 +132,41 @@ bool UIDragPanel::init()
 void UIDragPanel::initNodes()
 {
     UIPanel::initNodes();
-    
-    m_pInnerPanel = UIPanel ::create();
-    m_pInnerPanel->setTouchEnable(true);
-    UIPanel::addChild(m_pInnerPanel);
 }
 
 void UIDragPanel::releaseResoures()
 {
     UIPanel::releaseResoures();
-    m_pInnerPanel->removeFromParentAndCleanup(true);
+    m_pInnerPanel->structureChangedEvent();
+    m_pInnerPanel->releaseResoures();
+    m_pInnerPanel->m_pWidgetParent = NULL;
+    delete m_pInnerPanel;
 }
 
-void UIDragPanel::onTouchBegan(CCPoint &touchPoint)
+void UIDragPanel::onTouchBegan(const CCPoint &touchPoint)
 {
     UIPanel::onTouchBegan(touchPoint);
     handlePressLogic(touchPoint);
 }
 
-void UIDragPanel::onTouchMoved(CCPoint &touchPoint)
+void UIDragPanel::onTouchMoved(const CCPoint &touchPoint)
 {
     UIPanel::onTouchMoved(touchPoint);
     handleMoveLogic(touchPoint);
 }
 
-void UIDragPanel::onTouchEnded(CCPoint &touchPoint)
+void UIDragPanel::onTouchEnded(const CCPoint &touchPoint)
 {
     UIPanel::onTouchEnded(touchPoint);
     handleReleaseLogic(touchPoint);
 }
 
-void UIDragPanel::onTouchCancelled(CCPoint &touchPoint)
+void UIDragPanel::onTouchCancelled(const CCPoint &touchPoint)
 {
     UIPanel::onTouchCancelled(touchPoint);
 }
 
-void UIDragPanel::onTouchLongClicked(CCPoint &touchPoint)
+void UIDragPanel::onTouchLongClicked(const CCPoint &touchPoint)
 {
     
 }
@@ -265,7 +270,7 @@ void UIDragPanel::updateWidthAndHeight()
     }
 }
 
-void UIDragPanel::handlePressLogic(cocos2d::CCPoint &touchPoint)
+void UIDragPanel::handlePressLogic(const CCPoint &touchPoint)
 {
     // check inner rect < drag panel rect
     if (checkContainInnerRect())
@@ -303,7 +308,7 @@ void UIDragPanel::handlePressLogic(cocos2d::CCPoint &touchPoint)
     m_touchStartWorldSpace = touchPoint;    
 }
 
-void UIDragPanel::handleMoveLogic(cocos2d::CCPoint &touchPoint)
+void UIDragPanel::handleMoveLogic(const CCPoint &touchPoint)
 {
     if (!m_bTouchPressed)
     {
@@ -401,7 +406,7 @@ void UIDragPanel::handleMoveLogic(cocos2d::CCPoint &touchPoint)
     //
 }
 
-void UIDragPanel::handleReleaseLogic(cocos2d::CCPoint &touchPoint)
+void UIDragPanel::handleReleaseLogic(const CCPoint &touchPoint)
 {
     if (!m_bTouchPressed)
     {
@@ -426,7 +431,12 @@ void UIDragPanel::handleReleaseLogic(cocos2d::CCPoint &touchPoint)
     }
 }
 
-void UIDragPanel::checkChildInfo(int handleState, UIWidget *sender, CCPoint &touchPoint)
+void UIDragPanel::checkChildInfo(int handleState, UIWidget *sender, const CCPoint &touchPoint)
+{
+    interceptTouchEvent(handleState, sender, touchPoint);
+}
+
+void UIDragPanel::interceptTouchEvent(int handleState, UIWidget *sender, const CCPoint &touchPoint)
 {
     switch (handleState)
     {
@@ -643,7 +653,7 @@ bool UIDragPanel::checkToBoundaryWithDeltaPosition(const CCPoint&  delta)
     return false;
 }
 
-CCPoint UIDragPanel::calculateToBoundaryDeltaPosition(CCPoint delta)
+CCPoint UIDragPanel::calculateToBoundaryDeltaPosition(CCPoint& delta)
 {
     float innerLeft = m_pInnerPanel->getRelativeLeftPos();
     float innerTop = m_pInnerPanel->getRelativeTopPos();
