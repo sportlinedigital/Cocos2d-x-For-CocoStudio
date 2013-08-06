@@ -1008,6 +1008,11 @@ UIWidget* UIWidget::getWidgetParent()
     return m_pWidgetParent;
 }
 
+void UIWidget::setWidgetParent(UIWidget* parent)
+{
+	m_pWidgetParent = parent;
+}
+
 UIWidget* UIWidget::getChildByName(const char *name)
 {
     return CCUIHELPER->seekWidgetByName(this, name);

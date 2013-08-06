@@ -139,7 +139,7 @@ void UIDragPanel::releaseResoures()
     UIPanel::releaseResoures();
     m_pInnerPanel->structureChangedEvent();
     m_pInnerPanel->releaseResoures();
-    m_pInnerPanel->m_pWidgetParent = NULL;
+    m_pInnerPanel->setWidgetParent(NULL);
     delete m_pInnerPanel;
 }
 
