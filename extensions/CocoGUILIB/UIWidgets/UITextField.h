@@ -40,6 +40,7 @@ typedef void (CCObject::*SEL_TextFieldDeleteBackwardEvent)(CCObject*);
 #define coco_TextFieldInsertTextSelector(_SELECTOR) (SEL_TextFieldInsertTextEvent)(&_SELECTOR)
 #define coco_TextFieldDeleteBackwardSelector(_SELECTOR) (SEL_TextFieldDeleteBackwardEvent)(&_SELECTOR)
 
+//class UITextField : public UIWidget
 class UITextField : public UIWidget
 {
 public:
@@ -50,14 +51,14 @@ public:
     virtual void initNodes();
     void setTouchSize(const CCSize &size);
     void setText(const char* text);
-    void setSize(const CCSize &size);
+    //void setSize(const CCSize &size);
     void setPlaceHolder(const char* value);
     void setFontSize(int size);
     void setFontName(const char* name);
     virtual void didNotSelectSelf();
     const char* getStringValue();
-    virtual void onTouchBegan(const CCPoint &touchPoint);
-    virtual bool pointAtSelfBody(const CCPoint &pt);
+    virtual void onTouchBegan(CCPoint &touchPoint);
+    virtual bool pointAtSelfBody(CCPoint &pt);
     void setMaxLengthEnable(bool enable);
     bool isMaxLengthEnable();
     void setMaxLength(int length);
