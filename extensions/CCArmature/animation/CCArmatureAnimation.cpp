@@ -318,6 +318,7 @@ void CCArmatureAnimation::updateHandler()
         {
             m_fCurrentPercent = 1;
             m_bIsComplete = true;
+			m_bIsPlaying = false;
 
             MovementEventSignal.emit(m_pArmature, COMPLETE, m_strMovementID.c_str());
         }
@@ -343,19 +344,6 @@ void CCArmatureAnimation::updateHandler()
         break;
         }
     }
-
-    if (m_eLoopType == ANIMATION_LOOP_FRONT || m_eLoopType == ANIMATION_LOOP_BACK)
-    {
-        updateFrameData(m_fCurrentPercent);
-    }
-}
-
-
-void CCArmatureAnimation::updateFrameData(float currentPercent)
-{
-    m_iPrevFrameIndex = m_iCurFrameIndex;
-    m_iCurFrameIndex = m_iRawDuration * currentPercent;
-    m_iCurFrameIndex = m_iCurFrameIndex % m_iRawDuration;
 }
 
 

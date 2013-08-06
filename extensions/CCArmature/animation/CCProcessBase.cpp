@@ -142,6 +142,7 @@ void CCProcessBase::gotoFrame(int frameIndex)
 
 int CCProcessBase::getCurrentFrameIndex()
 {
+	m_iCurFrameIndex = m_iRawDuration * m_fCurrentPercent;
     return m_iCurFrameIndex;
 }
 
