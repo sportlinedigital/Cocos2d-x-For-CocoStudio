@@ -123,13 +123,13 @@ const char* UITextField::getStringValue()
     return m_pRenderTextField->getString();
 }
 
-void UITextField::onTouchBegan(CCPoint &touchPoint)
+void UITextField::onTouchBegan(const CCPoint &touchPoint)
 {
     UIWidget::onTouchBegan(touchPoint);
     m_pRenderTextField->attachWithIME();
 }
 
-bool UITextField::pointAtSelfBody(CCPoint &pt)
+bool UITextField::pointAtSelfBody(const CCPoint &pt)
 {
     if (!m_bUseTouchArea){
         return UIWidget::pointAtSelfBody(pt);

@@ -57,8 +57,8 @@ public:
     void setFontName(const char* name);
     virtual void didNotSelectSelf();
     const char* getStringValue();
-    virtual void onTouchBegan(CCPoint &touchPoint);
-    virtual bool pointAtSelfBody(CCPoint &pt);
+    virtual void onTouchBegan(const CCPoint &touchPoint);
+    virtual bool pointAtSelfBody(const CCPoint &pt);
     void setMaxLengthEnable(bool enable);
     bool isMaxLengthEnable();
     void setMaxLength(int length);
