@@ -81,7 +81,7 @@ void UIScrollView::releaseResoures()
     UIPanel::releaseResoures();
     m_pInnerContainer->structureChangedEvent();
     m_pInnerContainer->releaseResoures();
-    m_pInnerContainer->m_pWidgetParent = NULL;
+    m_pInnerContainer->setWidgetParent(NULL);
     delete m_pInnerContainer;
     m_pInnerContainer = NULL;
 }

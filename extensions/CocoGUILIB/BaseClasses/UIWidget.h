@@ -142,6 +142,7 @@ public:
     virtual float getRelativeTopPos();
     virtual CCNode* getValidNode();
     CCNode* getContainerNode();
+	void setWidgetParent(UIWidget* parent);
     UIWidget* getWidgetParent();
     UIWidget* getChildByName(const char* name);
     UIWidget* getChildByTag(int tag);
