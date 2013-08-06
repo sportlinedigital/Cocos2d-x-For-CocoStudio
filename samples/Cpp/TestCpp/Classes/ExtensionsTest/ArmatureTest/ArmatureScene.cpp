@@ -114,7 +114,7 @@ void ArmatureTestScene::MainMenuCallback(CCObject* pSender)
 	TestScene::MainMenuCallback(pSender);
 
 	removeAllChildren();
-	CCArmatureDataManager::sharedArmatureDataManager()->purgeArmatureSystem();
+	CCArmatureDataManager::purgeArmatureSystem();
 }
 
 

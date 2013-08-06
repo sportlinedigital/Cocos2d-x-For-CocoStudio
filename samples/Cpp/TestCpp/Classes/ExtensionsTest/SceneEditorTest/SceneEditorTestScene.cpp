@@ -7,7 +7,7 @@ using namespace cocos2d::extension;
 
 SceneEditorTestLayer::~SceneEditorTestLayer()
 {
-	CCArmatureDataManager::sharedArmatureDataManager()->purgeArmatureSystem();
+	CCArmatureDataManager::purgeArmatureSystem();
 }
 
 SceneEditorTestLayer::SceneEditorTestLayer()
