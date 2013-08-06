@@ -41,9 +41,8 @@ public:
     void init();
     
     UIWidget* createWidgetFromJsonFile(const char* fileName);
-    UIWidget* createWidgetFromJsonFileWithAdapt(const char* fileName, bool scaleAdapt, bool equalProportions);
-    void adjustWidgetProperty(UIWidget* root,float xProportion,float yProportion,bool scaleAdapt,bool equalProportions);
     static UIHelper* instance();
+	static void purgeUIHelper();
     void addSpriteFrame(const char* fileName);
     void removeSpriteFrame(const char* fileName);
     void removeAllSpriteFrame();

@@ -12,7 +12,7 @@ class CocosGUITestScene : public TestScene
 {
 public:
 	CocosGUITestScene(bool bPortrait = false);
-    
+    virtual ~CocosGUITestScene();
 	virtual void runThisTest();
     
 	// The CallBack for back to the main menu scene

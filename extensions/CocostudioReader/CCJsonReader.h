@@ -49,6 +49,7 @@ NS_CC_EXT_BEGIN
 
         public:
             static CCJsonReader* sharedJsonReader();
+			static void purgeJsonReader();
     
             cocos2d::CCNode* createNodeWithJsonFile(const char *pszFileName);
 
@@ -62,10 +63,6 @@ NS_CC_EXT_BEGIN
             void setPropertyFromJsonDict(cocos2d::CCNode *node, cs::CSJsonDictionary* dict);
 		public:
             static CCJsonReader* s_sharedJsonReader;
-        
-            static void purgeJsonReader();
-		private:
-			
 	};
 
 

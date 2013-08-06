@@ -23,7 +23,6 @@
  ****************************************************************************/
 
 #include "UIDragPanel.h"
-#include "UIWrapPanel.h"
 
 
 NS_CC_EXT_BEGIN
@@ -119,6 +118,12 @@ bool UIDragPanel::init()
     if (UIPanel::init())
     {
         setUpdateEnable(true);
+        
+        m_pInnerPanel = UIPanel::create();
+        m_pInnerPanel->setName("InnerPanel");
+        m_pInnerPanel->setTouchEnable(true);
+        UIPanel::addChild(m_pInnerPanel);
+        
         return true;
     }
     return false;
@@ -127,42 +132,41 @@ bool UIDragPanel::init()
 void UIDragPanel::initNodes()
 {
     UIPanel::initNodes();
-    
-    m_pInnerPanel = UIWrapPanel::create();
-    m_pInnerPanel->setTouchEnable(true);
-    UIPanel::addChild(m_pInnerPanel);
 }
 
 void UIDragPanel::releaseResoures()
 {
     UIPanel::releaseResoures();
-    m_pInnerPanel->removeFromParentAndCleanup(true);
+    m_pInnerPanel->structureChangedEvent();
+    m_pInnerPanel->releaseResoures();
+    m_pInnerPanel->setWidgetParent(NULL);
+    delete m_pInnerPanel;
 }
 
-void UIDragPanel::onTouchBegan(CCPoint &touchPoint)
+void UIDragPanel::onTouchBegan(const CCPoint &touchPoint)
 {
     UIPanel::onTouchBegan(touchPoint);
     handlePressLogic(touchPoint);
 }
 
-void UIDragPanel::onTouchMoved(CCPoint &touchPoint)
+void UIDragPanel::onTouchMoved(const CCPoint &touchPoint)
 {
     UIPanel::onTouchMoved(touchPoint);
     handleMoveLogic(touchPoint);
 }
 
-void UIDragPanel::onTouchEnded(CCPoint &touchPoint)
+void UIDragPanel::onTouchEnded(const CCPoint &touchPoint)
 {
     UIPanel::onTouchEnded(touchPoint);
     handleReleaseLogic(touchPoint);
 }
 
-void UIDragPanel::onTouchCancelled(CCPoint &touchPoint)
+void UIDragPanel::onTouchCancelled(const CCPoint &touchPoint)
 {
     UIPanel::onTouchCancelled(touchPoint);
 }
 
-void UIDragPanel::onTouchLongClicked(CCPoint &touchPoint)
+void UIDragPanel::onTouchLongClicked(const CCPoint &touchPoint)
 {
     
 }
@@ -189,13 +193,21 @@ void UIDragPanel::update(float dt)
 bool UIDragPanel::addChild(UIWidget *widget)
 {
     m_pInnerPanel->addChild(widget);
+    updateWidthAndHeight();
     
     return true;
 }
 
 bool UIDragPanel::removeChild(UIWidget *child, bool cleanup)
 {
-    return m_pInnerPanel->removeChild(child, cleanup);
+    bool value = false;
+    if (m_pInnerPanel->removeChild(child, cleanup))
+    {
+        updateWidthAndHeight();        
+        value = true;
+    }
+    
+    return value;
 }
 
 void UIDragPanel::removeAllChildrenAndCleanUp(bool cleanup)
@@ -203,17 +215,62 @@ void UIDragPanel::removeAllChildrenAndCleanUp(bool cleanup)
     m_pInnerPanel->removeAllChildrenAndCleanUp(cleanup);
 }
 
-void UIDragPanel::removeChildMoveToTrash(UIWidget *child)
+void UIDragPanel::updateWidthAndHeight()
 {
-    m_pInnerPanel->removeChildMoveToTrash(child);
+    CCArray* innerChildren = m_pInnerPanel->getChildren();
+    
+    if (innerChildren->count() <= 0)
+    {
+        return;
+    }    
+    
+    UIWidget* leftChild = dynamic_cast<UIWidget*>(innerChildren->objectAtIndex(0));
+    UIWidget* rightChild = dynamic_cast<UIWidget*>(innerChildren->objectAtIndex(0));
+    UIWidget* topChild = dynamic_cast<UIWidget*>(innerChildren->objectAtIndex(0));
+    UIWidget* bottomChild = dynamic_cast<UIWidget*>(innerChildren->objectAtIndex(0));
+        
+    ccArray* arrayChildren = innerChildren->data;
+    int childrenCount = arrayChildren->num;
+    for (int i = 0; i < childrenCount; i++)
+    {
+        UIWidget* child = (UIWidget*)(arrayChildren->arr[i]);
+        
+        if (leftChild->getRelativeLeftPos() > child->getRelativeLeftPos())
+        {
+            leftChild = child;
+        }
+        if (rightChild->getRelativeRightPos() < child->getRelativeRightPos())
+        {
+            rightChild = child;
+        }
+        if (topChild->getRelativeTopPos() < child->getRelativeTopPos())
+        {
+            topChild = child;
+        }
+        if (bottomChild->getRelativeBottomPos() > child->getRelativeBottomPos())
+        {
+            bottomChild = child;
+        }
+    }
+    
+    float leftBoundary = leftChild->getRelativeLeftPos();
+    float rightBoundary = rightChild->getRelativeRightPos();
+    float topBoundary = topChild->getRelativeTopPos();
+    float bottomBoundary = bottomChild->getRelativeBottomPos();
+    
+    float resWidth = rightBoundary - leftBoundary;
+    float resHeight = topBoundary - bottomBoundary;
+    m_pInnerPanel->setSize(CCSizeMake(resWidth, resHeight));
+    
+    m_pInnerPanel->setPosition(ccp(m_pInnerPanel->getPosition().x + leftBoundary, m_pInnerPanel->getPosition().y + bottomBoundary));
+    for (int i = 0; i < childrenCount; i++)
+    {
+        UIWidget* child = (UIWidget*)(arrayChildren->arr[i]);
+        child->setPosition(ccp(child->getPosition().x - leftBoundary, child->getPosition().y - bottomBoundary));
+    }
 }
 
-void UIDragPanel::removeChildReferenceOnly(UIWidget *child)
-{
-    m_pInnerPanel->removeChildReferenceOnly(child);
-}
-
-void UIDragPanel::handlePressLogic(CCPoint &touchPoint)
+void UIDragPanel::handlePressLogic(const CCPoint &touchPoint)
 {
     // check inner rect < drag panel rect
     if (checkContainInnerRect())
@@ -251,7 +308,7 @@ void UIDragPanel::handlePressLogic(CCPoint &touchPoint)
     m_touchStartWorldSpace = touchPoint;    
 }
 
-void UIDragPanel::handleMoveLogic(CCPoint &touchPoint)
+void UIDragPanel::handleMoveLogic(const CCPoint &touchPoint)
 {
     if (!m_bTouchPressed)
     {
@@ -266,7 +323,6 @@ void UIDragPanel::handleMoveLogic(CCPoint &touchPoint)
         
     m_bTouchMoved = true;
     
-    /* gui mark */
     CCPoint nsp = getContainerNode()->convertToNodeSpace(touchPoint);
     CCPoint delta = ccpSub(nsp, m_touchStartNodeSpace);
     m_touchStartNodeSpace = nsp;
@@ -350,7 +406,7 @@ void UIDragPanel::handleMoveLogic(CCPoint &touchPoint)
     //
 }
 
-void UIDragPanel::handleReleaseLogic(CCPoint &touchPoint)
+void UIDragPanel::handleReleaseLogic(const CCPoint &touchPoint)
 {
     if (!m_bTouchPressed)
     {
@@ -375,7 +431,12 @@ void UIDragPanel::handleReleaseLogic(CCPoint &touchPoint)
     }
 }
 
-void UIDragPanel::checkChildInfo(int handleState, UIWidget *sender, CCPoint &touchPoint)
+void UIDragPanel::checkChildInfo(int handleState, UIWidget *sender, const CCPoint &touchPoint)
+{
+    interceptTouchEvent(handleState, sender, touchPoint);
+}
+
+void UIDragPanel::interceptTouchEvent(int handleState, UIWidget *sender, const CCPoint &touchPoint)
 {
     switch (handleState)
     {
@@ -592,7 +653,7 @@ bool UIDragPanel::checkToBoundaryWithDeltaPosition(const CCPoint&  delta)
     return false;
 }
 
-CCPoint UIDragPanel::calculateToBoundaryDeltaPosition(CCPoint delta)
+CCPoint UIDragPanel::calculateToBoundaryDeltaPosition(CCPoint& delta)
 {
     float innerLeft = m_pInnerPanel->getRelativeLeftPos();
     float innerTop = m_pInnerPanel->getRelativeTopPos();

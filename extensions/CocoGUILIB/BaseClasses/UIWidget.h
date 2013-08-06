@@ -142,6 +142,7 @@ public:
     virtual float getRelativeTopPos();
     virtual CCNode* getValidNode();
     CCNode* getContainerNode();
+	void setWidgetParent(UIWidget* parent);
     UIWidget* getWidgetParent();
     UIWidget* getChildByName(const char* name);
     UIWidget* getChildByTag(int tag);
@@ -154,8 +155,8 @@ public:
     void setPosition(const CCPoint &pos);
     virtual void setAnchorPoint(const CCPoint &pt);
     void updateAnchorPoint();
-    CCPoint getPosition();
-    CCPoint getAnchorPoint();
+    const CCPoint& getPosition();
+    const CCPoint& getAnchorPoint();
     virtual void setScale(float scale);
     float getScale();
     virtual void setScaleX(float scaleX);
@@ -202,17 +203,16 @@ public:
     
     virtual void setNeedCheckVisibleDepandParent(bool need);
     void didNotSelectSelf();
-    virtual void onTouchBegan(CCPoint &touchPoint);
-    virtual void onTouchMoved(CCPoint &touchPoint);
-    virtual void onTouchEnded(CCPoint &touchPoint);
-    virtual void onTouchCancelled(CCPoint &touchPoint);
-    virtual void onTouchLongClicked(CCPoint &touchPoint);
+    virtual void onTouchBegan(const CCPoint &touchPoint);
+    virtual void onTouchMoved(const CCPoint &touchPoint);
+    virtual void onTouchEnded(const CCPoint &touchPoint);
+    virtual void onTouchCancelled(const CCPoint &touchPoint);
+    virtual void onTouchLongClicked(const CCPoint &touchPoint);
     virtual bool isClippingEnable(){return false;};
     virtual void update(float dt){};
-    virtual bool pointAtSelfBody(CCPoint &pt);
-    bool checkVisibleDependParent(CCPoint &pt);
-    bool checkBeVisibleInParent();
-    virtual void checkChildInfo(int handleState,UIWidget* sender,CCPoint &touchPoint);
+    virtual bool pointAtSelfBody(const CCPoint &pt);
+    bool checkVisibleDependParent(const CCPoint &pt);
+    virtual void checkChildInfo(int handleState,UIWidget* sender,const CCPoint &touchPoint);
     //widget prop
     virtual float getAbsoluteScaleX();
     virtual float getAbsoluteScaleY();
@@ -222,14 +222,14 @@ public:
     virtual void adaptSize(float xProportion,float yProportion);
     void setCreateFromFile(bool is);
     void setFileDesignSize(const CCSize &size);
-    CCSize getFileDesignSize();
+    const CCSize& getFileDesignSize();
     void setUILayer(UILayer* uiLayer);
     void updateChildrenUILayer(UILayer* uiLayer);
     void structureChangedEvent();
     void disableUpdate();
-    CCPoint getTouchStartPos();
-    CCPoint getTouchMovePos();
-    CCPoint getTouchEndPos();
+    const CCPoint& getTouchStartPos();
+    const CCPoint& getTouchMovePos();
+    const CCPoint& getTouchEndPos();
     void setWidgetTag(int tag);
     int getWidgetTag();
     void setName(const char* name);
@@ -251,7 +251,7 @@ protected:
     void releaseUpEvent();
     void cancelUpEvent();
     void longClickEvent();
-    virtual bool hitTest(CCNode* node, CCPoint &pt);
+    virtual bool hitTest(CCNode* node, const CCPoint &pt);
     UIActionNode* m_pBindingAction;
 protected:
     bool m_bEnabled;

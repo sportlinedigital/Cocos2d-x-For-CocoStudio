@@ -70,6 +70,7 @@ bool UIContainerWidget::init()
         renderRGBA->setCascadeColorEnabled(false);
         renderRGBA->setCascadeOpacityEnabled(false);
     }
+    setSize(CCSizeZero);
     return true;
 }
 /********************************/
@@ -399,7 +400,7 @@ float UIContainerWidget::getHeight()
     return m_fHeight;
 }
 
-bool UIContainerWidget::hitTest(CCNode *node, CCPoint &pt)
+bool UIContainerWidget::hitTest(CCNode *node, const CCPoint &pt)
 {
     CCPoint nsp = node->convertToNodeSpace(pt);
     CCSize bb = node->getContentSize();
@@ -410,7 +411,7 @@ bool UIContainerWidget::hitTest(CCNode *node, CCPoint &pt)
     return false;
 }
 
-CCSize UIContainerWidget::getWrapSize() const
+const CCSize& UIContainerWidget::getWrapSize() const
 {
     ccArray* arrayChildren = m_children->data;
     int childrenCount = arrayChildren->num;
@@ -428,6 +429,17 @@ CCSize UIContainerWidget::getWrapSize() const
         }
     }
     return CCSizeZero;
+}
+
+bool UIContainerWidget::checkChildVisibleInParent(cocos2d::extension::UIWidget *parent, cocos2d::extension::UIWidget *child)
+{
+    CCRect parentRect = parent->getRect();
+    CCRect childRect = child->getRect();
+    bool res = !((childRect.origin.x+childRect.size.width) < parentRect.origin.x ||
+                 (parentRect.origin.x+parentRect.size.width) <   childRect.origin.x ||
+                 (childRect.origin.y+childRect.size.height) < parentRect.origin.y ||
+                 parentRect.origin.y+parentRect.size.height <    childRect.origin.y);
+    return res;
 }
 
 NS_CC_EXT_END

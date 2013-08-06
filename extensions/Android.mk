@@ -108,7 +108,6 @@ CocoGUILIB/UIWidgets/UITextArea.cpp \
 CocoGUILIB/UIWidgets/UITextButton.cpp \
 CocoGUILIB/UIWidgets/UITextField.cpp \
 CocoGUILIB/UIWidgets/UIDragPanel.cpp \
-CocoGUILIB/UIWidgets/UIWrapPanel.cpp \
 CocoGUILIB/Layouts/UILayoutDefine.cpp \
 CocoGUILIB/Layouts/UILayoutUnit.cpp \
 spine/Animation.cpp \
