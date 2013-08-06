@@ -93,10 +93,10 @@ void UITextField::setText(const char* text)
     m_pRenderTextField->setString(strText.c_str());
 }
 
-void UITextField::setSize(const CCSize &size)
-{
-    m_pRenderTextField->setDimensions(size);
-}
+//void UITextField::setSize(const CCSize &size)
+//{
+//    m_pRenderTextField->setDimensions(size);
+//}
 
 void UITextField::setPlaceHolder(const char *value)
 {
@@ -123,13 +123,13 @@ const char* UITextField::getStringValue()
     return m_pRenderTextField->getString();
 }
 
-void UITextField::onTouchBegan(const CCPoint &touchPoint)
+void UITextField::onTouchBegan(CCPoint &touchPoint)
 {
     UIWidget::onTouchBegan(touchPoint);
     m_pRenderTextField->attachWithIME();
 }
 
-bool UITextField::pointAtSelfBody(const CCPoint &pt)
+bool UITextField::pointAtSelfBody(CCPoint &pt)
 {
     if (!m_bUseTouchArea){
         return UIWidget::pointAtSelfBody(pt);
