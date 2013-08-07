@@ -701,9 +701,7 @@ void CocosGUIExamplesScene::EquipSwitchBtnCallBack(CCObject *pSender)
     
     clothes_btn->active();
     weapons_btn->active();
-    pets_btn->active();
-    
-    CCDictElement* element = NULL;
+    pets_btn->active();    
     
     switch (button->getWidgetTag())
     {
@@ -725,25 +723,6 @@ void CocosGUIExamplesScene::EquipSwitchBtnCallBack(CCObject *pSender)
             clothes_panel->setTouchEnable(true, true);
             weapons_panel->setTouchEnable(false, true);
             pets_panel->setTouchEnable(false, true);
-            
-            /*
-            // equip touch able
-            CCDICT_FOREACH(m_dicEquipClothes, element)
-            {
-                UIWidget* widget = dynamic_cast<UIWidget*>(element->getObject());
-                widget->setTouchEnable(true);
-            }
-            CCDICT_FOREACH(m_dicEquipWeapons, element)
-            {
-                UIWidget* widget = dynamic_cast<UIWidget*>(element->getObject());
-                widget->setTouchEnable(false);
-            }
-            CCDICT_FOREACH(m_dicEquipPets, element)
-            {
-                UIWidget* widget = dynamic_cast<UIWidget*>(element->getObject());
-                widget->setTouchEnable(false);
-            }
-             */
         }
             break;
             
@@ -765,25 +744,6 @@ void CocosGUIExamplesScene::EquipSwitchBtnCallBack(CCObject *pSender)
             weapons_panel->setTouchEnable(true, true);
             clothes_panel->setTouchEnable(false, true);
             pets_panel->setTouchEnable(false, true);
-            
-            /*
-            // equip touch able
-            CCDICT_FOREACH(m_dicEquipClothes, element)
-            {
-                UIWidget* widget = dynamic_cast<UIWidget*>(element->getObject());
-                widget->setTouchEnable(false);
-            }
-            CCDICT_FOREACH(m_dicEquipWeapons, element)
-            {
-                UIWidget* widget = dynamic_cast<UIWidget*>(element->getObject());
-                widget->setTouchEnable(true);
-            }
-            CCDICT_FOREACH(m_dicEquipPets, element)
-            {
-                UIWidget* widget = dynamic_cast<UIWidget*>(element->getObject());
-                widget->setTouchEnable(false);
-            }
-             */
         }
             break;
             
@@ -805,25 +765,6 @@ void CocosGUIExamplesScene::EquipSwitchBtnCallBack(CCObject *pSender)
             pets_panel->setTouchEnable(true, true);
             clothes_panel->setTouchEnable(false, true);
             weapons_panel->setTouchEnable(false, true);
-            
-            /*
-            // equip touch able
-            CCDICT_FOREACH(m_dicEquipClothes, element)
-            {
-                UIWidget* widget = dynamic_cast<UIWidget*>(element->getObject());
-                widget->setTouchEnable(false);
-            }
-            CCDICT_FOREACH(m_dicEquipWeapons, element)
-            {
-                UIWidget* widget = dynamic_cast<UIWidget*>(element->getObject());
-                widget->setTouchEnable(false);
-            }
-            CCDICT_FOREACH(m_dicEquipPets, element)
-            {
-                UIWidget* widget = dynamic_cast<UIWidget*>(element->getObject());
-                widget->setTouchEnable(true);
-            }
-             */
         }
             break;
             
