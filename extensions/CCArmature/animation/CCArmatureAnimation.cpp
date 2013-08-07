@@ -327,7 +327,7 @@ void CCArmatureAnimation::updateHandler()
         {
             m_eLoopType = ANIMATION_LOOP_FRONT;
             m_fCurrentPercent = fmodf(m_fCurrentPercent, 1);
-            m_fCurrentFrame = fmodf(m_fCurrentFrame, m_iNextFrameIndex);
+            m_fCurrentFrame = m_iNextFrameIndex ==0 ? 0 : fmodf(m_fCurrentFrame, m_iNextFrameIndex);
             m_iNextFrameIndex = m_iDurationTween > 0 ? m_iDurationTween : 1;
 
             MovementEventSignal.emit(m_pArmature, START, m_strMovementID.c_str());
@@ -335,7 +335,7 @@ void CCArmatureAnimation::updateHandler()
         break;
         default:
         {
-            m_fCurrentPercent = fmodf(m_fCurrentPercent, 1);
+            //m_fCurrentPercent = fmodf(m_fCurrentPercent, 1);
             m_fCurrentFrame = fmodf(m_fCurrentFrame, m_iNextFrameIndex);
             m_iToIndex = 0;
 
@@ -346,5 +346,13 @@ void CCArmatureAnimation::updateHandler()
     }
 }
 
+std::string CCArmatureAnimation::getCurrentMovementID()
+{
+	if (m_bIsComplete)
+	{
+		return "";
+	}
+	return m_strMovementID;
+}
 
 NS_CC_EXT_END
