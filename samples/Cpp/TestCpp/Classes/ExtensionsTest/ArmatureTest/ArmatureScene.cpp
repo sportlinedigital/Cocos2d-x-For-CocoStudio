@@ -97,7 +97,7 @@ ArmatureTestScene::ArmatureTestScene(bool bPortrait)
 void ArmatureTestScene::runThisTest()
 {
 
- 	CCArmatureDataManager::sharedArmatureDataManager()->addArmatureFileInfo("armature/Cowboy0.png", "armature/Cowboy0.plist", "armature/Cowboy.ExportJson");
+ 	CCArmatureDataManager::sharedArmatureDataManager()->addArmatureFileInfo("armature/Cowboy.ExportJson");
 	CCArmatureDataManager::sharedArmatureDataManager()->addArmatureFileInfo("armature/knight.png", "armature/knight.plist", "armature/knight.xml");
 	CCArmatureDataManager::sharedArmatureDataManager()->addArmatureFileInfo("armature/weapon.png", "armature/weapon.plist", "armature/weapon.xml");
 	CCArmatureDataManager::sharedArmatureDataManager()->addArmatureFileInfo("armature/robot.png", "armature/robot.plist", "armature/robot.xml");
