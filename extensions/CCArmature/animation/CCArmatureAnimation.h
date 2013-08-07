@@ -134,6 +134,12 @@ public:
     int getMovementCount();
 
     void update(float dt);
+
+	/**
+     * Get current movementID;
+	 * @return The name of current movement
+     */
+	std::string getCurrentMovementID();
 protected:
 
     /**

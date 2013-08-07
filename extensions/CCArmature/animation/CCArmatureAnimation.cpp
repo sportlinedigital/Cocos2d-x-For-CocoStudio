@@ -358,5 +358,13 @@ void CCArmatureAnimation::updateFrameData(float currentPercent)
     m_iCurFrameIndex = m_iCurFrameIndex % m_iRawDuration;
 }
 
+std::string CCArmatureAnimation::getCurrentMovementID()
+{
+	if (m_bIsComplete)
+	{
+		return "";
+	}
+	return m_strMovementID;
+}
 
 NS_CC_EXT_END
