@@ -231,10 +231,6 @@ void CCTween::updateHandler()
         break;
         default:
         {
-			if (m_pMovementBoneData->delay != 0)
-			{
-				m_fCurrentPercent = fmodf(m_fCurrentPercent, 1);
-			}
             m_fCurrentFrame = fmodf(m_fCurrentFrame, m_iNextFrameIndex);
 
             m_iTotalDuration = 0;
@@ -355,6 +351,11 @@ void CCTween::tweenColorTo(float percent, CCFrameData *node, bool dirty)
 
 float CCTween::updateFrameData(float currentPrecent)
 {
+	if (currentPrecent > 1 && m_pMovementBoneData->delay != 0)
+	{
+		currentPrecent = fmodf(currentPrecent,1);
+	}
+	
     float playedTime = (float)m_iRawDuration * currentPrecent;
 
 
@@ -383,9 +384,6 @@ float CCTween::updateFrameData(float currentPrecent)
 			setBetween(from, to);
 			return currentPrecent;
 		}
-
-		
-
 		do
 		{
 			from = frames[m_iFromIndex];
