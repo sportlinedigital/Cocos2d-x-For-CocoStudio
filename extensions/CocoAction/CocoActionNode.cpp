@@ -112,6 +112,7 @@ void CocoActionNode::initWithDictionary(cs::CSJsonDictionary *dic,CCObject* root
 		{
 			cActionArray->addObject(actionFrame);
 		}
+		CC_SAFE_DELETE(actionFrameDic);
 	}
 	initActionNodeFromRoot(root);
 }

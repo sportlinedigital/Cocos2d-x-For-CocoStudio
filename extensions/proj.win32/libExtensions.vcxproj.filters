@@ -88,6 +88,9 @@
     <Filter Include="CocoGUILIB\Layouts">
       <UniqueIdentifier>{a3cdbabf-5e24-47b2-866a-88bc01e28836}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CocoGUILIB\UIWidgets\ScrollWidget">
+      <UniqueIdentifier>{c8c88919-3033-4a41-84f3-1e583419073e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\GUI\CCScrollView\CCScrollView.cpp">
@@ -432,9 +435,6 @@
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UICheckBox.cpp">
       <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\UIWidgets\UIControlButton.cpp">
-      <Filter>CocoGUILIB\UIWidgets</Filter>
-    </ClCompile>
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UIImageView.cpp">
       <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClCompile>
@@ -447,22 +447,13 @@
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UILabelBMFont.cpp">
       <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\UIWidgets\UIListView.cpp">
-      <Filter>CocoGUILIB\UIWidgets</Filter>
-    </ClCompile>
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UILoadingBar.cpp">
       <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClCompile>
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UINodeContainer.cpp">
       <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\UIWidgets\UIPageView.cpp">
-      <Filter>CocoGUILIB\UIWidgets</Filter>
-    </ClCompile>
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UIPanel.cpp">
-      <Filter>CocoGUILIB\UIWidgets</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\UIWidgets\UIScrollView.cpp">
       <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClCompile>
     <ClCompile Include="..\CocoGUILIB\UIWidgets\UISlider.cpp">
@@ -504,14 +495,20 @@
     <ClCompile Include="..\CocoGUILIB\Layouts\UILayoutDefine.cpp">
       <Filter>CocoGUILIB\Layouts</Filter>
     </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\UIWidgets\UIDragPanel.cpp">
-      <Filter>CocoGUILIB\UIWidgets</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CocoGUILIB\UIWidgets\UIWrapPanel.cpp">
-      <Filter>CocoGUILIB\UIWidgets</Filter>
-    </ClCompile>
     <ClCompile Include="..\CocoGUILIB\Layouts\UILayoutUnit.cpp">
       <Filter>CocoGUILIB\Layouts</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\UIWidgets\ScrollWidget\UIDragPanel.cpp">
+      <Filter>CocoGUILIB\UIWidgets\ScrollWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\UIWidgets\ScrollWidget\UIPageView.cpp">
+      <Filter>CocoGUILIB\UIWidgets\ScrollWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\UIWidgets\ScrollWidget\UIScrollView.cpp">
+      <Filter>CocoGUILIB\UIWidgets\ScrollWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CocoGUILIB\UIWidgets\UIZoomButton.cpp">
+      <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -835,9 +832,6 @@
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UICheckBox.h">
       <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\UIWidgets\UIControlButton.h">
-      <Filter>CocoGUILIB\UIWidgets</Filter>
-    </ClInclude>
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UIImageView.h">
       <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClInclude>
@@ -850,22 +844,13 @@
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UILabelBMFont.h">
       <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\UIWidgets\UIListView.h">
-      <Filter>CocoGUILIB\UIWidgets</Filter>
-    </ClInclude>
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UILoadingBar.h">
       <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClInclude>
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UINodeContainer.h">
       <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\UIWidgets\UIPageView.h">
-      <Filter>CocoGUILIB\UIWidgets</Filter>
-    </ClInclude>
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UIPanel.h">
-      <Filter>CocoGUILIB\UIWidgets</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\UIWidgets\UIScrollView.h">
       <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClInclude>
     <ClInclude Include="..\CocoGUILIB\UIWidgets\UISlider.h">
@@ -907,14 +892,23 @@
     <ClInclude Include="..\CocoGUILIB\Layouts\UILayoutDefine.h">
       <Filter>CocoGUILIB\Layouts</Filter>
     </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\UIWidgets\UIWrapPanel.h">
-      <Filter>CocoGUILIB\UIWidgets</Filter>
-    </ClInclude>
-    <ClInclude Include="..\CocoGUILIB\UIWidgets\UIDragPanel.h">
-      <Filter>CocoGUILIB\UIWidgets</Filter>
-    </ClInclude>
     <ClInclude Include="..\CocoGUILIB\Layouts\UILayoutUnit.h">
       <Filter>CocoGUILIB\Layouts</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\UIWidgets\ScrollWidget\UIDragPanel.h">
+      <Filter>CocoGUILIB\UIWidgets\ScrollWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\UIWidgets\ScrollWidget\UIPageView.h">
+      <Filter>CocoGUILIB\UIWidgets\ScrollWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\UIWidgets\ScrollWidget\UIScrollDelegate.h">
+      <Filter>CocoGUILIB\UIWidgets\ScrollWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\UIWidgets\ScrollWidget\UIScrollView.h">
+      <Filter>CocoGUILIB\UIWidgets\ScrollWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CocoGUILIB\UIWidgets\UIZoomButton.h">
+      <Filter>CocoGUILIB\UIWidgets</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

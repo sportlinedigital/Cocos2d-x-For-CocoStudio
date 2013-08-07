@@ -215,7 +215,6 @@
 		37B1CE9617A0D9ED004CAFC4 /* UICCTextField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37B1CE5017A0D9ED004CAFC4 /* UICCTextField.cpp */; };
 		37B1CE9717A0D9ED004CAFC4 /* UIClippingLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37B1CE5217A0D9ED004CAFC4 /* UIClippingLayer.cpp */; };
 		37B1CE9817A0D9ED004CAFC4 /* UILayoutDefine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37B1CE5517A0D9ED004CAFC4 /* UILayoutDefine.cpp */; };
-		37B1CE9917A0D9ED004CAFC4 /* UILayoutPrameter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37B1CE5717A0D9ED004CAFC4 /* UILayoutPrameter.cpp */; };
 		37B1CE9A17A0D9ED004CAFC4 /* CCSReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37B1CE5A17A0D9ED004CAFC4 /* CCSReader.cpp */; };
 		37B1CE9B17A0D9ED004CAFC4 /* CocosGUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37B1CE5C17A0D9ED004CAFC4 /* CocosGUI.cpp */; };
 		37B1CE9C17A0D9ED004CAFC4 /* UIHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37B1CE5E17A0D9ED004CAFC4 /* UIHelper.cpp */; };
@@ -240,9 +239,9 @@
 		37B1CEAF17A0D9ED004CAFC4 /* UITextArea.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37B1CE8517A0D9ED004CAFC4 /* UITextArea.cpp */; };
 		37B1CEB017A0D9ED004CAFC4 /* UITextButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37B1CE8717A0D9ED004CAFC4 /* UITextButton.cpp */; };
 		37B1CEB117A0D9ED004CAFC4 /* UITextField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37B1CE8917A0D9ED004CAFC4 /* UITextField.cpp */; };
-		37B1CEB217A0D9ED004CAFC4 /* UIWrapPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37B1CE8B17A0D9ED004CAFC4 /* UIWrapPanel.cpp */; };
 		37B1CEB817A0D9FD004CAFC4 /* CCJsonReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37B1CEB417A0D9FD004CAFC4 /* CCJsonReader.cpp */; };
 		37B1CEB917A0D9FD004CAFC4 /* DictionaryHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37B1CEB617A0D9FD004CAFC4 /* DictionaryHelper.cpp */; };
+		37B227DA17A9189D00AF659E /* UILayoutUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37B227D817A9189D00AF659E /* UILayoutUnit.cpp */; };
 		41BC70E415BF81A5006A0A6C /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 41BC70DA15BF81A5006A0A6C /* AppController.mm */; };
 		41BC70E515BF81A5006A0A6C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 41BC70DC15BF81A5006A0A6C /* InfoPlist.strings */; };
 		41BC70E615BF81A5006A0A6C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41BC70DE15BF81A5006A0A6C /* MainMenu.xib */; };
@@ -686,8 +685,6 @@
 		37B1CE5317A0D9ED004CAFC4 /* UIClippingLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIClippingLayer.h; sourceTree = "<group>"; };
 		37B1CE5517A0D9ED004CAFC4 /* UILayoutDefine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UILayoutDefine.cpp; sourceTree = "<group>"; };
 		37B1CE5617A0D9ED004CAFC4 /* UILayoutDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILayoutDefine.h; sourceTree = "<group>"; };
-		37B1CE5717A0D9ED004CAFC4 /* UILayoutPrameter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UILayoutPrameter.cpp; sourceTree = "<group>"; };
-		37B1CE5817A0D9ED004CAFC4 /* UILayoutPrameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILayoutPrameter.h; sourceTree = "<group>"; };
 		37B1CE5A17A0D9ED004CAFC4 /* CCSReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCSReader.cpp; sourceTree = "<group>"; };
 		37B1CE5B17A0D9ED004CAFC4 /* CCSReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSReader.h; sourceTree = "<group>"; };
 		37B1CE5C17A0D9ED004CAFC4 /* CocosGUI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocosGUI.cpp; sourceTree = "<group>"; };
@@ -736,12 +733,12 @@
 		37B1CE8817A0D9ED004CAFC4 /* UITextButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITextButton.h; sourceTree = "<group>"; };
 		37B1CE8917A0D9ED004CAFC4 /* UITextField.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UITextField.cpp; sourceTree = "<group>"; };
 		37B1CE8A17A0D9ED004CAFC4 /* UITextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITextField.h; sourceTree = "<group>"; };
-		37B1CE8B17A0D9ED004CAFC4 /* UIWrapPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIWrapPanel.cpp; sourceTree = "<group>"; };
-		37B1CE8C17A0D9ED004CAFC4 /* UIWrapPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIWrapPanel.h; sourceTree = "<group>"; };
 		37B1CEB417A0D9FD004CAFC4 /* CCJsonReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCJsonReader.cpp; sourceTree = "<group>"; };
 		37B1CEB517A0D9FD004CAFC4 /* CCJsonReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCJsonReader.h; sourceTree = "<group>"; };
 		37B1CEB617A0D9FD004CAFC4 /* DictionaryHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DictionaryHelper.cpp; sourceTree = "<group>"; };
 		37B1CEB717A0D9FD004CAFC4 /* DictionaryHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryHelper.h; sourceTree = "<group>"; };
+		37B227D817A9189D00AF659E /* UILayoutUnit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UILayoutUnit.cpp; sourceTree = "<group>"; };
+		37B227D917A9189D00AF659E /* UILayoutUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILayoutUnit.h; sourceTree = "<group>"; };
 		41BC70D915BF81A5006A0A6C /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = SOURCE_ROOT; };
 		41BC70DA15BF81A5006A0A6C /* AppController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppController.mm; sourceTree = SOURCE_ROOT; };
 		41BC70DD15BF81A5006A0A6C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
@@ -1573,10 +1570,10 @@
 		37B1CE5417A0D9ED004CAFC4 /* Layouts */ = {
 			isa = PBXGroup;
 			children = (
+				37B227D817A9189D00AF659E /* UILayoutUnit.cpp */,
+				37B227D917A9189D00AF659E /* UILayoutUnit.h */,
 				37B1CE5517A0D9ED004CAFC4 /* UILayoutDefine.cpp */,
 				37B1CE5617A0D9ED004CAFC4 /* UILayoutDefine.h */,
-				37B1CE5717A0D9ED004CAFC4 /* UILayoutPrameter.cpp */,
-				37B1CE5817A0D9ED004CAFC4 /* UILayoutPrameter.h */,
 			);
 			path = Layouts;
 			sourceTree = "<group>";
@@ -1639,8 +1636,6 @@
 				37B1CE8817A0D9ED004CAFC4 /* UITextButton.h */,
 				37B1CE8917A0D9ED004CAFC4 /* UITextField.cpp */,
 				37B1CE8A17A0D9ED004CAFC4 /* UITextField.h */,
-				37B1CE8B17A0D9ED004CAFC4 /* UIWrapPanel.cpp */,
-				37B1CE8C17A0D9ED004CAFC4 /* UIWrapPanel.h */,
 			);
 			path = UIWidgets;
 			sourceTree = "<group>";
@@ -1986,7 +1981,6 @@
 				37B1CE9617A0D9ED004CAFC4 /* UICCTextField.cpp in Sources */,
 				37B1CE9717A0D9ED004CAFC4 /* UIClippingLayer.cpp in Sources */,
 				37B1CE9817A0D9ED004CAFC4 /* UILayoutDefine.cpp in Sources */,
-				37B1CE9917A0D9ED004CAFC4 /* UILayoutPrameter.cpp in Sources */,
 				37B1CE9A17A0D9ED004CAFC4 /* CCSReader.cpp in Sources */,
 				37B1CE9B17A0D9ED004CAFC4 /* CocosGUI.cpp in Sources */,
 				37B1CE9C17A0D9ED004CAFC4 /* UIHelper.cpp in Sources */,
@@ -2011,9 +2005,9 @@
 				37B1CEAF17A0D9ED004CAFC4 /* UITextArea.cpp in Sources */,
 				37B1CEB017A0D9ED004CAFC4 /* UITextButton.cpp in Sources */,
 				37B1CEB117A0D9ED004CAFC4 /* UITextField.cpp in Sources */,
-				37B1CEB217A0D9ED004CAFC4 /* UIWrapPanel.cpp in Sources */,
 				37B1CEB817A0D9FD004CAFC4 /* CCJsonReader.cpp in Sources */,
 				37B1CEB917A0D9FD004CAFC4 /* DictionaryHelper.cpp in Sources */,
+				37B227DA17A9189D00AF659E /* UILayoutUnit.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -31,6 +31,10 @@ UICCTextField::UICCTextField()
 , m_nMaxLength(0)
 , m_bPasswordEnable(false)
 , m_strPasswordStyleText("*")
+, m_bAttachWithIME(false)
+, m_bDetachWithIME(false)
+, m_bInsertText(false)
+, m_bDeleteBackward(false)
 {
 }
 
@@ -70,6 +74,10 @@ bool UICCTextField::onTextFieldAttachWithIME(CCTextFieldTTF *pSender)
 
 bool UICCTextField::onTextFieldInsertText(CCTextFieldTTF *pSender, const char *text, int nLen)
 {
+    if (nLen == 1 && strcmp(text, "\n") == 0)
+    {
+        return false;
+    }
     setInsertText(true);
     if (m_bMaxLengthEnable)
     {
@@ -103,13 +111,24 @@ void UICCTextField::insertText(const char * text, int len)
     {
         if (m_bMaxLengthEnable)
         {
-            if (str_len + len > m_nMaxLength)
+            int multiple = 1;
+            char value = text[0];
+            if (value < 0 || value > 127)
             {
-                int mod = str_len % 3;
-                int offset = (mod == 0) ? 0 : (3 - mod);
-                int amount = str_len + offset;
-                str_text = str_text.substr(0, m_nMaxLength - amount);
-//                CCLOG("str_test = %s", str_text.c_str());
+                multiple = 3;
+            }            
+            
+            if (str_len + len > m_nMaxLength * multiple)
+            {
+                str_text = str_text.substr(0, m_nMaxLength * multiple);
+                len = m_nMaxLength * multiple;
+                /*
+                 int mod = str_len % 3;
+                 int offset = (mod == 0) ? 0 : (3 - mod);
+                 int amount = str_len + offset;
+                 str_text = str_text.substr(0, m_nMaxLength - amount);
+                 //                CCLOG("str_test = %s", str_text.c_str());
+                 */
             }
         }
     }
@@ -120,17 +139,7 @@ void UICCTextField::insertText(const char * text, int len)
     {
         setPasswordText(m_pInputText->c_str());
     }
-    
-    // return
-    if (strcmp(text, "\n") == 0)
-    {
-        if (CCTextFieldTTF::getCharCount() == 0)
-        {
-            CCTextFieldTTF::setPlaceHolder(m_pPlaceHolder->c_str());
-        }
-        closeIME();
-    }
-}        
+}
 
 void UICCTextField::deleteBackward()
 {
@@ -176,6 +185,11 @@ int UICCTextField::getMaxLength()
     return m_nMaxLength;
 }
 
+int UICCTextField::getCharCount()
+{
+    return CCTextFieldTTF::getCharCount();
+}
+
 void UICCTextField::setPasswordEnable(bool enable)
 {
     m_bPasswordEnable = enable;
@@ -199,7 +213,6 @@ void UICCTextField::setPasswordStyleText(const char* styleText)
     }
     m_strPasswordStyleText = styleText;
 }
-
 
 void UICCTextField::setPasswordText(const char *text)
 {

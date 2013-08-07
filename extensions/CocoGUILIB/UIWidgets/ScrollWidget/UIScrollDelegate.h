@@ -22,36 +22,22 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#ifndef __TestCpp__UIWrapPanel__
-#define __TestCpp__UIWrapPanel__
+#ifndef __UISCROLLDELEGATE_H__
+#define __UISCROLLDELEGATE_H__
 
-#include "UIPanel.h"
+#include "../../BaseClasses/UIWidget.h"
 
 NS_CC_EXT_BEGIN
 
-class UIWrapPanel : public UIPanel
+class UIScrollDelegate
 {
-public:
-    UIWrapPanel();
-    ~UIWrapPanel();
-    static UIWrapPanel* create();
-    
-    virtual bool init();
-    virtual bool addChild(UIWidget* widget);
-    virtual void removeAllChildrenAndCleanUp(bool cleanup);
-    virtual void removeChildMoveToTrash(UIWidget* child);
-    virtual void removeChildReferenceOnly(UIWidget* child);
-    
-    virtual void updateWidthAndHeight();    
-    
 protected:
-//    float m_fLeftBoundary;
-//    float m_fRightBoundary;
-//    float m_fTopBoundary;
-//    float m_fBottomBoundary;
-
+    virtual void handlePressLogic(const CCPoint &touchPoint) = 0;
+    virtual void handleMoveLogic(const CCPoint &touchPoint) = 0;
+    virtual void handleReleaseLogic(const CCPoint &touchPoint) = 0;
+    virtual void interceptTouchEvent(int handleState, UIWidget* sender, const CCPoint &touchPoint) = 0;
 };
 
 NS_CC_EXT_END
 
-#endif /* defined(__TestCpp__UIWrapPanel__) */
+#endif /* defined(__UIScrollDelegate__) */

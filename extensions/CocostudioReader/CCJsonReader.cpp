@@ -29,8 +29,6 @@
 #include "CCArmature/utils/CCArmatureDataManager.h"
 #include "CCArmature/external_tool/Json/CSContentJsonDictionary.h"
 #include "CocoGUILIB/System/UILayer.h"
-#include "CocoGUILIB/System/UIHelper.h"
-
 
 NS_CC_EXT_BEGIN
 
@@ -89,18 +87,17 @@ NS_CC_EXT_BEGIN
     {
         unsigned long size = 0;
         const char* pData = 0;
-		
+		cocos2d::CCNode *pNode = NULL;
         do {
               pData = (char*)(cocos2d::CCFileUtils::sharedFileUtils()->getFileData(pszFileName, "r", &size));
               CC_BREAK_IF(pData == NULL || strcmp(pData, "") == 0);
               cs::CSJsonDictionary *jsonDict = new cs::CSJsonDictionary();
               jsonDict->initWithDescription(pData);
-              return createObject(jsonDict,NULL);
+              pNode = createObject(jsonDict,NULL);
               CC_SAFE_DELETE(jsonDict);
-            
         } while (0);
         
-        return NULL;
+        return pNode;
 	}
 
 	cocos2d::CCNode* CCJsonReader::createObject(cs::CSJsonDictionary * inputFiles, cocos2d::CCNode* parent)
@@ -143,11 +140,13 @@ NS_CC_EXT_BEGIN
                 cs::CSJsonDictionary * subDict = inputFiles->getSubItemFromArray("components", i);
                 if (!subDict)
                    break;
+
                 const char *comName = subDict->getItemStringValue("classname");
                 const char *file = subDict->getItemStringValue("file");
                 const char *pComName = subDict->getItemStringValue("name");
                 if (file == NULL || strcmp(file, "") == 0)
                 {
+					CC_SAFE_DELETE(subDict);
                     continue;
                 }
                 CCAssert(file != NULL, "file must be not NULL!");
@@ -242,6 +241,7 @@ NS_CC_EXT_BEGIN
                     gb->addComponent(pRender);
 
                     CC_SAFE_DELETE(jsonDict);
+					CC_SAFE_DELETE(subData);
                 }
                 else if(comName != NULL && strcmp(comName, "CCComAudio") == 0)
                 {
@@ -320,7 +320,10 @@ NS_CC_EXT_BEGIN
             {
                 cs::CSJsonDictionary * subDict = inputFiles->getSubItemFromArray("components", i);
                 if (!subDict)
+				{
+				   CC_SAFE_DELETE(subDict);
                    break;
+				}
                 const char *comName = subDict->getItemStringValue("classname");
 				const char *pComName = subDict->getItemStringValue("name");
                 
@@ -342,6 +345,7 @@ NS_CC_EXT_BEGIN
 					{
 						pPlistFile = cocos2d::CCFileUtils::sharedFileUtils()->fullPathForFilename(plistFile);
 					}
+					CC_SAFE_DELETE(fileData);
                 }
 
                 if (comName != NULL && strcmp(comName, "CCSprite") == 0)
@@ -484,6 +488,8 @@ NS_CC_EXT_BEGIN
                     gb->addComponent(pRender);
 
                     CC_SAFE_DELETE(jsonDict);
+					CC_SAFE_DELETE(subData);
+					CC_SAFE_DELETE_ARRAY(des);
                 }
                 else if(comName != NULL && strcmp(comName, "CCComAudio") == 0)
                 {
@@ -538,7 +544,7 @@ NS_CC_EXT_BEGIN
 					CCComRender *pRender = CCComRender::create(pLayer, "GUIComponent");
 					if (pComName != NULL)
 					{
-						pRender->setName(pComName);
+					pRender->setName(pComName);
 					}
 					gb->addComponent(pRender);
 				}
@@ -600,6 +606,7 @@ NS_CC_EXT_BEGIN
     void CCJsonReader::purgeJsonReader()
     {
         CC_SAFE_DELETE(s_sharedJsonReader);
+		cocos2d::extension::DictionaryHelper::shareHelper()->purgeDictionaryHelper();
     }
 
 NS_CC_EXT_END

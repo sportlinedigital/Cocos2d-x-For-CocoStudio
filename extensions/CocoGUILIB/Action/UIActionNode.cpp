@@ -72,6 +72,7 @@ void UIActionNode::initWithDictionary(cs::CSJsonDictionary *dic,UIWidget* root)
         cs::CSJsonDictionary* actionFrameDic = DICTOOL->getDictionaryFromArray_json(dic, "actionframelist", i);
         actionFrame->initWithDictionary(actionFrameDic);
         m_ActionFrameList->addObject(actionFrame);
+		CC_SAFE_DELETE(actionFrameDic);
     }
 }
 

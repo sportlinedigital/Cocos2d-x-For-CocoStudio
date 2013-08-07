@@ -24,18 +24,6 @@
 
 #include "UIHelper.h"
 #include "../../CocostudioReader/DictionaryHelper.h"
-#include "../UIWidgets/UIButton.h"
-#include "../UIWidgets/UICheckBox.h"
-#include "../UIWidgets/UIImageView.h"
-#include "../UIWidgets/UILabel.h"
-#include "../UIWidgets/UILabelAtlas.h"
-#include "../UIWidgets/UIPanel.h"
-#include "../UIWidgets/UIScrollView.h"
-#include "../UIWidgets/UILoadingBar.h"
-#include "../UIWidgets/UISlider.h"
-#include "../UIWidgets/UITextArea.h"
-#include "../UIWidgets/UITextButton.h"
-#include "../UIWidgets/UITextField.h"
 #include "cocos2d.h"
 #include "CCSReader.h"
 
@@ -53,6 +41,11 @@ UIHelper* UIHelper::instance()
     return helperInstance;
 }
 
+void UIHelper::purgeUIHelper()
+{
+	CC_SAFE_DELETE(helperInstance);
+}
+
 UIHelper::UIHelper():
 m_textureFiles(NULL)
 {
@@ -64,7 +57,7 @@ m_textureFiles(NULL)
 
 UIHelper::~UIHelper()
 {
-    
+    cocos2d::extension::CCSReader::purgeCCSReader();
 }
 
 void UIHelper::init()
@@ -76,59 +69,6 @@ void UIHelper::init()
 UIWidget* UIHelper::createWidgetFromJsonFile(const char *fileName)
 {
     return CCSReader::shareReader()->widgetFromJsonFile(fileName);
-}
-
-UIWidget* UIHelper::createWidgetFromJsonFileWithAdapt(const char *fileName, bool scaleAdapt, bool equalProportions)
-{
-    UIWidget* widget = createWidgetFromJsonFile(fileName);
-    CCSize winSize = CCDirector::sharedDirector()->getWinSize();
-    adjustWidgetProperty(widget, winSize.width/getFileDesignWidth(),winSize.height/getFileDesignHeight(), scaleAdapt, equalProportions);
-    return widget;
-}
-
-void UIHelper::adjustWidgetProperty(UIWidget* root,float xProportion,float yProportion,bool scaleAdapt,bool equalProportions)
-{
-    switch (root->getWidgetType())
-    {
-        case 0:
-            if (root->getWidgetParent()->getWidgetType() == 1)
-            {
-                if (scaleAdapt)
-                {
-                    if (equalProportions)
-                    {
-//                            root->setScale(xProportion > yProportion ? xProportion : yProportion);
-                        float res = xProportion > yProportion ? xProportion : yProportion;
-                        root->adaptSize(res, res);
-                    }
-                    else
-                    {
-                        root->adaptSize(xProportion, yProportion);
-                    }
-                }
-            }
-            break;
-        case 1:
-        {
-            UIContainerWidget* cRoot = (UIContainerWidget*)root;
-            cRoot->setSize(CCSize(cRoot->getWidth()*xProportion,cRoot->getHeight()*yProportion));
-        }
-            break;
-        default:
-            break;
-    }
-    if (!root->getWidgetParent() || root->getWidgetParent()->getWidgetType() == 1)
-    {
-        root->setPosition(ccp(root->getPosition().x*xProportion, root->getPosition().y*yProportion));
-
-    }
-    ccArray* arrayRootChildren = root->getChildren()->data;
-    int rootChildrenCount = arrayRootChildren->num;
-    for (int i=0; i<rootChildrenCount; i++)
-    {
-        UIWidget* child = (UIWidget*)(arrayRootChildren->arr[i]);
-        adjustWidgetProperty(child,xProportion,yProportion,scaleAdapt,equalProportions);
-    }
 }
 
 void UIHelper::addSpriteFrame(const char *fileName)

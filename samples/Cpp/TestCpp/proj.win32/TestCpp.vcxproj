@@ -83,6 +83,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
+      <IgnoreSpecificDefaultLibraries>libcd</IgnoreSpecificDefaultLibraries>
     </Link>
     <PostBuildEvent>
       <Command>

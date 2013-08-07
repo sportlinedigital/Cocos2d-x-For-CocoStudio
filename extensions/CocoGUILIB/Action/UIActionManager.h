@@ -42,6 +42,8 @@ public:
     UIActionManager();
     virtual ~UIActionManager();
     static UIActionManager* shareManager();
+	static void purgeUIActionManager();
+
 	UIAction* GetActionByName(const char* jsonName,const char* actionName);
 
 	void PlayActionByName(const char* jsonName,const char* actionName);

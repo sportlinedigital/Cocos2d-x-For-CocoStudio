@@ -54,6 +54,7 @@ void UIAction::initWithDictionary(cs::CSJsonDictionary *dic,UIWidget* root)
         cs::CSJsonDictionary* actionNodeDic = DICTOOL->getDictionaryFromArray_json(dic, "actionnodelist", i);
         actionNode->initWithDictionary(actionNodeDic,root);
         m_ActionNodeList->addObject(actionNode);
+		CC_SAFE_DELETE(actionNodeDic);
     }
 }
 
@@ -94,6 +95,16 @@ void UIAction::UpdateToFrameByIndex(int index)
 
 		actionNode->UpdateToFrameByIndex(index);
 	}
+}
+
+void UIAction::setName(const char* name)
+{
+    m_name = name;
+}
+
+const char* UIAction::getName() const
+{
+    return m_name.c_str();
 }
 
 NS_CC_EXT_END

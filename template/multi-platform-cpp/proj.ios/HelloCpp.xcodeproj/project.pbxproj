@@ -213,7 +213,6 @@
 		37B1CDA117A0D86E004CAFC4 /* UICCTextField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37B1CD5B17A0D86E004CAFC4 /* UICCTextField.cpp */; };
 		37B1CDA217A0D86E004CAFC4 /* UIClippingLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37B1CD5D17A0D86E004CAFC4 /* UIClippingLayer.cpp */; };
 		37B1CDA317A0D86E004CAFC4 /* UILayoutDefine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37B1CD6017A0D86E004CAFC4 /* UILayoutDefine.cpp */; };
-		37B1CDA417A0D86E004CAFC4 /* UILayoutPrameter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37B1CD6217A0D86E004CAFC4 /* UILayoutPrameter.cpp */; };
 		37B1CDA517A0D86E004CAFC4 /* CCSReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37B1CD6517A0D86E004CAFC4 /* CCSReader.cpp */; };
 		37B1CDA617A0D86E004CAFC4 /* CocosGUI.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37B1CD6717A0D86E004CAFC4 /* CocosGUI.cpp */; };
 		37B1CDA717A0D86E004CAFC4 /* UIHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37B1CD6917A0D86E004CAFC4 /* UIHelper.cpp */; };
@@ -238,9 +237,9 @@
 		37B1CDBA17A0D86E004CAFC4 /* UITextArea.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37B1CD9017A0D86E004CAFC4 /* UITextArea.cpp */; };
 		37B1CDBB17A0D86E004CAFC4 /* UITextButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37B1CD9217A0D86E004CAFC4 /* UITextButton.cpp */; };
 		37B1CDBC17A0D86E004CAFC4 /* UITextField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37B1CD9417A0D86E004CAFC4 /* UITextField.cpp */; };
-		37B1CDBD17A0D86E004CAFC4 /* UIWrapPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37B1CD9617A0D86E004CAFC4 /* UIWrapPanel.cpp */; };
 		37B1CDC317A0D886004CAFC4 /* CCJsonReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37B1CDBF17A0D886004CAFC4 /* CCJsonReader.cpp */; };
 		37B1CDC417A0D886004CAFC4 /* DictionaryHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37B1CDC117A0D886004CAFC4 /* DictionaryHelper.cpp */; };
+		37B227C517A9162300AF659E /* UILayoutUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 37B227C317A9162300AF659E /* UILayoutUnit.cpp */; };
 		7855E0E1153FEF240059DD9A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7855E0DF153FEF240059DD9A /* Default.png */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712461292920000B8313A /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB212928DE900B8313A /* libxml2.dylib */; };
@@ -696,8 +695,6 @@
 		37B1CD5E17A0D86E004CAFC4 /* UIClippingLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIClippingLayer.h; sourceTree = "<group>"; };
 		37B1CD6017A0D86E004CAFC4 /* UILayoutDefine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UILayoutDefine.cpp; sourceTree = "<group>"; };
 		37B1CD6117A0D86E004CAFC4 /* UILayoutDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILayoutDefine.h; sourceTree = "<group>"; };
-		37B1CD6217A0D86E004CAFC4 /* UILayoutPrameter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UILayoutPrameter.cpp; sourceTree = "<group>"; };
-		37B1CD6317A0D86E004CAFC4 /* UILayoutPrameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILayoutPrameter.h; sourceTree = "<group>"; };
 		37B1CD6517A0D86E004CAFC4 /* CCSReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCSReader.cpp; sourceTree = "<group>"; };
 		37B1CD6617A0D86E004CAFC4 /* CCSReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSReader.h; sourceTree = "<group>"; };
 		37B1CD6717A0D86E004CAFC4 /* CocosGUI.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CocosGUI.cpp; sourceTree = "<group>"; };
@@ -746,12 +743,12 @@
 		37B1CD9317A0D86E004CAFC4 /* UITextButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITextButton.h; sourceTree = "<group>"; };
 		37B1CD9417A0D86E004CAFC4 /* UITextField.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UITextField.cpp; sourceTree = "<group>"; };
 		37B1CD9517A0D86E004CAFC4 /* UITextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITextField.h; sourceTree = "<group>"; };
-		37B1CD9617A0D86E004CAFC4 /* UIWrapPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIWrapPanel.cpp; sourceTree = "<group>"; };
-		37B1CD9717A0D86E004CAFC4 /* UIWrapPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIWrapPanel.h; sourceTree = "<group>"; };
 		37B1CDBF17A0D886004CAFC4 /* CCJsonReader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCJsonReader.cpp; sourceTree = "<group>"; };
 		37B1CDC017A0D886004CAFC4 /* CCJsonReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCJsonReader.h; sourceTree = "<group>"; };
 		37B1CDC117A0D886004CAFC4 /* DictionaryHelper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DictionaryHelper.cpp; sourceTree = "<group>"; };
 		37B1CDC217A0D886004CAFC4 /* DictionaryHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictionaryHelper.h; sourceTree = "<group>"; };
+		37B227C317A9162300AF659E /* UILayoutUnit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UILayoutUnit.cpp; sourceTree = "<group>"; };
+		37B227C417A9162300AF659E /* UILayoutUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILayoutUnit.h; sourceTree = "<group>"; };
 		7855E0DF153FEF240059DD9A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB212928DE900B8313A /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -1639,10 +1636,10 @@
 		37B1CD5F17A0D86E004CAFC4 /* Layouts */ = {
 			isa = PBXGroup;
 			children = (
+				37B227C317A9162300AF659E /* UILayoutUnit.cpp */,
+				37B227C417A9162300AF659E /* UILayoutUnit.h */,
 				37B1CD6017A0D86E004CAFC4 /* UILayoutDefine.cpp */,
 				37B1CD6117A0D86E004CAFC4 /* UILayoutDefine.h */,
-				37B1CD6217A0D86E004CAFC4 /* UILayoutPrameter.cpp */,
-				37B1CD6317A0D86E004CAFC4 /* UILayoutPrameter.h */,
 			);
 			path = Layouts;
 			sourceTree = "<group>";
@@ -1705,8 +1702,6 @@
 				37B1CD9317A0D86E004CAFC4 /* UITextButton.h */,
 				37B1CD9417A0D86E004CAFC4 /* UITextField.cpp */,
 				37B1CD9517A0D86E004CAFC4 /* UITextField.h */,
-				37B1CD9617A0D86E004CAFC4 /* UIWrapPanel.cpp */,
-				37B1CD9717A0D86E004CAFC4 /* UIWrapPanel.h */,
 			);
 			path = UIWidgets;
 			sourceTree = "<group>";
@@ -2026,7 +2021,6 @@
 				37B1CDA117A0D86E004CAFC4 /* UICCTextField.cpp in Sources */,
 				37B1CDA217A0D86E004CAFC4 /* UIClippingLayer.cpp in Sources */,
 				37B1CDA317A0D86E004CAFC4 /* UILayoutDefine.cpp in Sources */,
-				37B1CDA417A0D86E004CAFC4 /* UILayoutPrameter.cpp in Sources */,
 				37B1CDA517A0D86E004CAFC4 /* CCSReader.cpp in Sources */,
 				37B1CDA617A0D86E004CAFC4 /* CocosGUI.cpp in Sources */,
 				37B1CDA717A0D86E004CAFC4 /* UIHelper.cpp in Sources */,
@@ -2051,9 +2045,9 @@
 				37B1CDBA17A0D86E004CAFC4 /* UITextArea.cpp in Sources */,
 				37B1CDBB17A0D86E004CAFC4 /* UITextButton.cpp in Sources */,
 				37B1CDBC17A0D86E004CAFC4 /* UITextField.cpp in Sources */,
-				37B1CDBD17A0D86E004CAFC4 /* UIWrapPanel.cpp in Sources */,
 				37B1CDC317A0D886004CAFC4 /* CCJsonReader.cpp in Sources */,
 				37B1CDC417A0D886004CAFC4 /* DictionaryHelper.cpp in Sources */,
+				37B227C517A9162300AF659E /* UILayoutUnit.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
