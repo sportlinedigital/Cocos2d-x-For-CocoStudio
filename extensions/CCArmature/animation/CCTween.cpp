@@ -384,6 +384,7 @@ float CCTween::updateFrameData(float currentPrecent)
 			setBetween(from, to);
 			return currentPrecent;
 		}
+
 		do
 		{
 			from = frames[m_iFromIndex];
