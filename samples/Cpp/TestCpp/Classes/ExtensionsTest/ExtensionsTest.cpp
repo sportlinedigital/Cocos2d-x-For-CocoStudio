@@ -11,6 +11,7 @@
 #include "ComponentsTest/ComponentsTestScene.h"
 #include "SceneEditorTest/SceneEditorTestScene.h"
 #include "CocosGUITest/CocosGUIScene.h"
+#include "CocosGUITest/UISceneManager.h"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS) || (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 #include "NetworkTest/WebSocketTest.h"
@@ -175,12 +176,17 @@ void ExtensionsMainLayer::menuCallback(CCObject* pSender)
             break;
         case TEST_COCOSGUI:
         {
-			CocosGUITestScene *pScene = new CocosGUITestScene();
-			if (pScene)
-			{
-				pScene->runThisTest();
-				pScene->release();
-			}
+			UISceneManager* pManager = UISceneManager::sharedUISceneManager();
+            CCScene* pScene = pManager->currentUIScene();
+            CCDirector::sharedDirector()->replaceScene(pScene);
+            /*
+             CocosGUITestScene *pScene = new CocosGUITestScene();
+             if (pScene)
+             {
+                 pScene->runThisTest();
+                 pScene->release();
+             }
+             */
 		}
             break;
     default:
