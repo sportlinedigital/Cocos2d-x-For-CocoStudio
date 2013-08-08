@@ -318,6 +318,10 @@ void CCArmature::changeBoneParent(CCBone *bone, const char *parentName)
         {
             boneParent->addChildBone(bone);
         }
+		else
+		{
+			m_pTopBoneList->addObject(bone);
+		}
     }
 }
 
