@@ -159,8 +159,8 @@ UIWidget* CCSReader::widgetFromJsonDictionary(cs::CSJsonDictionary* data)
     }
     else if (classname && strcmp(classname, "ListView") == 0)
     {
-        widget = UIListView::create();
-        setPropsForListViewFromJsonDictionary(widget, uiOptions);
+//        widget = UIListView::create();
+//        setPropsForListViewFromJsonDictionary(widget, uiOptions);
     }
     else if (classname && strcmp(classname, "PageView") == 0)
     {
@@ -1011,6 +1011,10 @@ void CCSReader::setPropsForPanelFromJsonDictionary(UIWidget*widget,cs::CSJsonDic
 void CCSReader::setPropsForScrollViewFromJsonDictionary(UIWidget*widget,cs::CSJsonDictionary* options)
 {
     setPropsForPanelFromJsonDictionary(widget, options);
+    UIScrollView* scrollView = (UIScrollView*)widget;
+    float innerWidth = DICTOOL->getFloatValue_json(options, "innerWidth");
+    float innerHeight = DICTOOL->getFloatValue_json(options, "innerHeight");
+    scrollView->setInnerContainerSize(CCSizeMake(innerWidth, innerHeight));
     setColorPropsForWidgetFromJsonDictionary(widget,options);
 }
 
@@ -1078,21 +1082,21 @@ void CCSReader::setPropsForSliderFromJsonDictionary(UIWidget*widget,cs::CSJsonDi
             slider->setSlidBallTextures(normalFileName_tp,pressedFileName_tp,disabledFileName_tp);
         }
         slider->setSlidBallPercent(DICTOOL->getIntValue_json(options, "percent"));
-        bool showProgressBarExist = DICTOOL->checkObjectExist_json(options, "showProgressBar");
-        bool showProgressBar = false;
-        if (showProgressBarExist)
+        bool progressBarVisibleExist = DICTOOL->checkObjectExist_json(options, "progressBarVisible");
+        bool progressBarVisible = false;
+        if (progressBarVisibleExist)
         {
-            showProgressBar = DICTOOL->getBooleanValue_json(options, "showProgressBar");
+            progressBarVisible = DICTOOL->getBooleanValue_json(options, "progressBarVisible");
         }
-        if (showProgressBar)
+        if (progressBarVisible)
         {
-            slider->setShowProgressBar(showProgressBar);
+            slider->setProgressBarVisible(progressBarVisible);
             std::string tp_b = m_strFilePath;
             const char*imageFileName =  DICTOOL->getStringValue_json(options, "progressBarFileName");
             const char* imageFileName_tp = (imageFileName && (strcmp(imageFileName, "") != 0))?tp_b.append(imageFileName).c_str():NULL;
             if (useMergedTexture)
             {
-                slider->setProgressBarTextureScale9(imageFileName, 0, 0, 0, 0, true);
+                slider->setProgressBarTextureScale9(imageFileName, 0, 0, 0, 0, UI_TEX_TYPE_PLIST);
             }
             else
             {
@@ -1257,21 +1261,21 @@ void CCSReader::setPropsForSliderFromJsonDictionary(UIWidget*widget,cs::CSJsonDi
 		CC_SAFE_DELETE(disabledDic);
         
         slider->setSlidBallPercent(DICTOOL->getIntValue_json(options, "percent"));
-        bool showProgressBarExist = DICTOOL->checkObjectExist_json(options, "showProgressBar");
-        bool showProgressBar = false;
-        if (showProgressBarExist)
+        bool progressBarVisibleExist = DICTOOL->checkObjectExist_json(options, "progressBarVisible");
+        bool progressBarVisible = false;
+        if (progressBarVisibleExist)
         {
-            showProgressBar = DICTOOL->getBooleanValue_json(options, "showProgressBar");
+            progressBarVisible = DICTOOL->getBooleanValue_json(options, "progressBarVisible");
         }
-        if (showProgressBar)
+        if (progressBarVisible)
         {
-            slider->setShowProgressBar(showProgressBar);
+            slider->setProgressBarVisible(progressBarVisible);
             std::string tp_b = m_strFilePath;
             const char*imageFileName =  DICTOOL->getStringValue_json(options, "progressBarFileName");
             const char* imageFileName_tp = (imageFileName && (strcmp(imageFileName, "") != 0))?tp_b.append(imageFileName).c_str():NULL;
             if (useMergedTexture)
             {
-                slider->setProgressBarTextureScale9(imageFileName, 0, 0, 0, 0, true);
+                slider->setProgressBarTextureScale9(imageFileName, 0, 0, 0, 0, UI_TEX_TYPE_PLIST);
             }
             else
             {

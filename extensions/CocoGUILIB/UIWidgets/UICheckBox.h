@@ -55,7 +55,7 @@ public:
     virtual void setFlipY(bool flipY);
     virtual bool isFlipX();
     virtual bool isFlipY();
-    virtual void onTouchEnded(CCPoint &touchPoint);
+    virtual void onTouchEnded(const CCPoint &touchPoint);
 protected:
     virtual bool init();
     virtual void initNodes();

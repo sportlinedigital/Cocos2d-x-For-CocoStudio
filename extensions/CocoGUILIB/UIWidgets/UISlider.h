@@ -30,7 +30,7 @@
 NS_CC_EXT_BEGIN
 
 typedef void (CCObject::*SEL_PercentChangedEvent)(CCObject*);
-#define coco_percentchangedselector(_SELECTOR) (cs::SEL_PercentChangedEvent)(&_SELECTOR)
+#define coco_percentchangedselector(_SELECTOR) (SEL_PercentChangedEvent)(&_SELECTOR)
 class UISlider : public UIWidget
 {
 public:
@@ -45,18 +45,19 @@ public:
     void setSlidBallPressedTexture(const char* pressed,TextureResType texType = UI_TEX_TYPE_LOCAL);
     void setSlidBallDisabledTexture(const char* disabled,TextureResType texType = UI_TEX_TYPE_LOCAL);
     void setBarLength(float length);
-    void setShowProgressBar(bool show);
-    void setProgressBarTextureScale9(const char* fileName,float x,float y,float width,float height,bool useSpriteFrame = false);
+    void setProgressBarVisible(bool show);
+    void setProgressBarTexture(const char* fileName, TextureResType texType = UI_TEX_TYPE_LOCAL);
+    void setProgressBarTextureScale9(const char* fileName,float x,float y,float width,float height, TextureResType texTypebool = UI_TEX_TYPE_LOCAL);
     void setProgressBarScale(int percent);
     void setSlidBallPercent(int percent);
-    virtual bool pointAtSelfBody(CCPoint &pt);
+    virtual bool pointAtSelfBody(const CCPoint &pt);
     virtual CCNode* getValidNode();
     virtual void addPercentChangedEvent(CCObject* target,SEL_PushEvent selector);
     int getPercent();
-    virtual void onTouchBegan(CCPoint &touchPoint);
-    virtual void onTouchMoved(CCPoint &touchPoint);
-    virtual void onTouchEnded(CCPoint &touchPoint);
-    virtual void onTouchCancelled(CCPoint &touchPoint);
+    virtual void onTouchBegan(const CCPoint &touchPoint);
+    virtual void onTouchMoved(const CCPoint &touchPoint);
+    virtual void onTouchEnded(const CCPoint &touchPoint);
+    virtual void onTouchCancelled(const CCPoint &touchPoint);
 protected:
     virtual bool init();
     int getClickPercent(float location);
@@ -73,7 +74,7 @@ protected:
     float m_fBarNodeScaleValue;
     float m_fTouchMoveStartLocation;
     bool m_bBarScale9Enable;
-    bool m_bShowProgressBar;
+    bool m_bProgressBarVisible;
     CCNode* m_pProgressBarNode;
     CCObject*       m_pPercentListener;
     SEL_PushEvent    m_pfnPercentSelector;

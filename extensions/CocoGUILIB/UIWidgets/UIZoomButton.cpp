@@ -22,11 +22,11 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#include "UIControlButton.h"
+#include "UIZoomButton.h"
 
 NS_CC_EXT_BEGIN
 
-UIControlButton::UIControlButton():
+UIZoomButton::UIZoomButton():
 m_pNormalBackGround(NULL),
 m_pPressedBackGround(NULL),
 m_pDisabledBackGround(NULL),
@@ -39,14 +39,14 @@ m_preferredSize(CCSizeZero)
     m_WidgetName = WIDGET_CONTROLBUTTON;
 }
 
-UIControlButton::~UIControlButton()
+UIZoomButton::~UIZoomButton()
 {
     
 }
 
-UIControlButton* UIControlButton::create()
+UIZoomButton* UIZoomButton::create()
 {
-    UIControlButton* widget = new UIControlButton();
+    UIZoomButton* widget = new UIZoomButton();
     if (widget && widget->init()) {
         return widget;
     }
@@ -54,7 +54,7 @@ UIControlButton* UIControlButton::create()
     return NULL;
 }
 
-bool UIControlButton::init()
+bool UIZoomButton::init()
 {
     if (UIWidget::init())
     {
@@ -70,7 +70,7 @@ bool UIControlButton::init()
     return false;
 }
 
-void UIControlButton::initNodes()
+void UIZoomButton::initNodes()
 {
     UIWidget::initNodes();
     m_pNormalTitle = CCLabelTTF::create();
@@ -82,7 +82,7 @@ void UIControlButton::initNodes()
     m_pDisabledBackGround = CCScale9Sprite::create();
 }
 
-void UIControlButton::setTextures(const char* backgroundNormal,const char* backgroundPressed,const char* backgroundDisabled)
+void UIZoomButton::setTextures(const char* backgroundNormal,const char* backgroundPressed,const char* backgroundDisabled)
 {
     m_pNormalBackGround->initWithFile(backgroundNormal);
     m_pPressedBackGround->initWithFile(backgroundPressed);
@@ -100,7 +100,7 @@ void UIControlButton::setTextures(const char* backgroundNormal,const char* backg
     m_pDisabledBackGround->setContentSize(CCSize(m_pDisabledTitle->boundingBox().size.width+8*2,m_pDisabledTitle->boundingBox().size.height+2*2));
 }
 
-void UIControlButton::setTitle(const char* titleNormal,const char* titlePressed,const char* titleDisabled)
+void UIZoomButton::setTitle(const char* titleNormal,const char* titlePressed,const char* titleDisabled)
 {
     m_pNormalTitle->setString(titleNormal);
     m_pPressedTitle->setString(titlePressed);
@@ -111,7 +111,7 @@ void UIControlButton::setTitle(const char* titleNormal,const char* titlePressed,
     m_pDisabledBackGround->setContentSize(CCSize(m_pDisabledTitle->boundingBox().size.width+8*2,m_pDisabledTitle->boundingBox().size.height+2*2));
 }
 
-void UIControlButton::onPressStateChangedToNormal()
+void UIZoomButton::onPressStateChangedToNormal()
 {
     if (!m_bZoomOnTouchDown)
     {
@@ -125,7 +125,7 @@ void UIControlButton::onPressStateChangedToNormal()
     m_pDisabledBackGround->setVisible(false);
 }
 
-void UIControlButton::onPressStateChangedToPressed()
+void UIZoomButton::onPressStateChangedToPressed()
 {
     if (!m_bZoomOnTouchDown)
     {
@@ -139,14 +139,14 @@ void UIControlButton::onPressStateChangedToPressed()
     m_pDisabledBackGround->setVisible(false);
 }
 
-void UIControlButton::onPressStateChangedToDisabled()
+void UIZoomButton::onPressStateChangedToDisabled()
 {
     m_pNormalBackGround->setVisible(false);
     m_pPressedBackGround->setVisible(false);
     m_pDisabledBackGround->setVisible(true);
 }
 
-CCNode* UIControlButton::getValidNode()
+CCNode* UIZoomButton::getValidNode()
 {
     CCNode* validNode = NULL;
     switch (m_nCurPressState)
@@ -166,7 +166,7 @@ CCNode* UIControlButton::getValidNode()
     return validNode;
 }
 
-void UIControlButton::setAnchorPoint(const CCPoint &pt)
+void UIZoomButton::setAnchorPoint(const CCPoint &pt)
 {
     UIWidget::setAnchorPoint(pt);
     m_pNormalBackGround->setAnchorPoint(pt);
@@ -174,98 +174,98 @@ void UIControlButton::setAnchorPoint(const CCPoint &pt)
     m_pDisabledBackGround->setAnchorPoint(pt);
 }
 
-void UIControlButton::setFlipX(bool flipX)
+void UIZoomButton::setFlipX(bool flipX)
 {
     m_pNormalTitle->setFlipX(flipX);
     m_pPressedTitle->setFlipX(flipX);
     m_pDisabledTitle->setFlipX(flipX);
 }
 
-void UIControlButton::setFlipY(bool flipY)
+void UIZoomButton::setFlipY(bool flipY)
 {
     m_pNormalTitle->setFlipY(flipY);
     m_pPressedTitle->setFlipY(flipY);
     m_pDisabledTitle->setFlipY(flipY);
 }
 
-bool UIControlButton::isFlipX()
+bool UIZoomButton::isFlipX()
 {
     return m_pNormalTitle->isFlipX();
 }
 
-bool UIControlButton::isFlipY()
+bool UIZoomButton::isFlipY()
 {
     return m_pNormalTitle->isFlipY();
 }
 
-void UIControlButton::setNormalTitle(const char *title)
+void UIZoomButton::setNormalTitle(const char *title)
 {
     m_pNormalTitle->setString(title);
 }
 
-void UIControlButton::setPressedTitle(const char *title)
+void UIZoomButton::setPressedTitle(const char *title)
 {
     m_pPressedTitle->setString(title);
 }
 
-void UIControlButton::setDisabledTitle(const char *title)
+void UIZoomButton::setDisabledTitle(const char *title)
 {
     m_pDisabledTitle->setString(title);
 }
 
-void UIControlButton::setNormalFontName(const char *name)
+void UIZoomButton::setNormalFontName(const char *name)
 {
     m_pNormalTitle->setFontName(name);
 }
 
-void UIControlButton::setPressedFontName(const char *name)
+void UIZoomButton::setPressedFontName(const char *name)
 {
     m_pPressedTitle->setFontName(name);
 }
 
-void UIControlButton::setDisabledFontName(const char *name)
+void UIZoomButton::setDisabledFontName(const char *name)
 {
     m_pDisabledTitle->setFontName(name);
 }
 
-void UIControlButton::setNormalFontSize(float size)
+void UIZoomButton::setNormalFontSize(float size)
 {
     m_pNormalTitle->setFontSize(size);
 }
 
-void UIControlButton::setPressedFontSize(float size)
+void UIZoomButton::setPressedFontSize(float size)
 {
     m_pPressedTitle->setFontSize(size);
 }
 
-void UIControlButton::setDisabledFontSize(float size)
+void UIZoomButton::setDisabledFontSize(float size)
 {
     m_pDisabledTitle->setFontSize(size);
 }
 
-void UIControlButton::setNormalFontColor(const ccColor3B &color)
+void UIZoomButton::setNormalFontColor(const ccColor3B &color)
 {
     m_pNormalTitle->setColor(color);
 }
 
-void UIControlButton::setPressedFontColor(const ccColor3B &color)
+void UIZoomButton::setPressedFontColor(const ccColor3B &color)
 {
     m_pPressedTitle->setColor(color);
 }
 
-void UIControlButton::setDisalbedFontColor(const ccColor3B &color)
+void UIZoomButton::setDisalbedFontColor(const ccColor3B &color)
 {
     m_pDisabledTitle->setColor(color);
 }
 
-void UIControlButton::setLabelAnchorPoint(const CCPoint &labelAnchorPoint)
+void UIZoomButton::setLabelAnchorPoint(const CCPoint &labelAnchorPoint)
 {
     m_pNormalTitle->setAnchorPoint(labelAnchorPoint);
     m_pPressedTitle->setAnchorPoint(labelAnchorPoint);
     m_pDisabledTitle->setAnchorPoint(labelAnchorPoint);
 }
 
-void UIControlButton::setPreferredSize(const CCSize &size)
+void UIZoomButton::setPreferredSize(const CCSize &size)
 {
     m_pNormalBackGround->setPreferredSize(size);
     m_pPressedBackGround->setPreferredSize(size);
@@ -274,7 +274,7 @@ void UIControlButton::setPreferredSize(const CCSize &size)
     m_preferredSize = size;
 }
 
-void UIControlButton::setNormalBackgroundSpriteFrame(CCSpriteFrame *spriteFrame)
+void UIZoomButton::setNormalBackgroundSpriteFrame(CCSpriteFrame *spriteFrame)
 {
     if (!spriteFrame)
     {
@@ -286,7 +286,7 @@ void UIControlButton::setNormalBackgroundSpriteFrame(CCSpriteFrame *spriteFrame)
     m_pNormalBackGround->setPreferredSize(m_preferredSize);
 }
 
-void UIControlButton::setPressedBackgroundSpriteFrame(CCSpriteFrame *spriteFrame)
+void UIZoomButton::setPressedBackgroundSpriteFrame(CCSpriteFrame *spriteFrame)
 {
     if (!spriteFrame)
     {
@@ -298,7 +298,7 @@ void UIControlButton::setPressedBackgroundSpriteFrame(CCSpriteFrame *spriteFrame
     m_pPressedBackGround->setPreferredSize(m_preferredSize);
 }
 
-void UIControlButton::setDisabledBackgroundSpriteFrame(CCSpriteFrame *spriteFrame)
+void UIZoomButton::setDisabledBackgroundSpriteFrame(CCSpriteFrame *spriteFrame)
 {
     if (!spriteFrame)
     {
@@ -310,12 +310,12 @@ void UIControlButton::setDisabledBackgroundSpriteFrame(CCSpriteFrame *spriteFram
     m_pDisabledBackGround->setPreferredSize(m_preferredSize);
 }
 
-void UIControlButton::setZoomOnTouchDown(bool zoom)
+void UIZoomButton::setZoomOnTouchDown(bool zoom)
 {
     m_bZoomOnTouchDown = zoom;
 }
 
-bool UIControlButton::getZoomOnTouchDown()
+bool UIZoomButton::getZoomOnTouchDown()
 {
     return m_bZoomOnTouchDown;
 }
